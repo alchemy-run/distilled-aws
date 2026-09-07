@@ -1,0 +1,1235 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "airquality",
+    "version": "v1",
+    "title": "Air Quality API",
+    "baseUrl": "https://airquality.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.airquality_v1#Interval": {
+      "type": "structure",
+      "members": {
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be before the end."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be the same or after the start."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time."
+      }
+    },
+    "com.gcp.airquality_v1#HourInfo": {
+      "type": "structure",
+      "members": {
+        "healthRecommendations": {
+          "target": "com.gcp.airquality_v1#HealthRecommendations",
+          "traits": {
+            "smithy.api#documentation": "Health advice and recommended actions related to the reported air quality conditions. Recommendations are tailored differently for populations at risk, groups with greater sensitivities to pollutants, and the general population."
+          }
+        },
+        "dateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A rounded down timestamp indicating the time the data refers to in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. For example: \"2014-10-02T15:00:00Z\"."
+          }
+        },
+        "indexes": {
+          "target": "com.gcp.airquality_v1#AirQualityIndexList",
+          "traits": {
+            "smithy.api#documentation": "Based on the request parameters, this list will include (up to) two air quality indexes: - Universal AQI. Will be returned if the universalAqi boolean is set to true. - Local AQI. Will be returned if the LOCAL_AQI extra computation is specified."
+          }
+        },
+        "pollutants": {
+          "target": "com.gcp.airquality_v1#PollutantList",
+          "traits": {
+            "smithy.api#documentation": "A list of pollutants affecting the location specified in the request. Note: This field will be returned only for requests that specified one or more of the following extra computations: POLLUTANT_ADDITIONAL_INFO, DOMINANT_POLLUTANT_CONCENTRATION, POLLUTANT_CONCENTRATION."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the air quality information for each hour in the requested range. For example, if the request is for 48 hours of history there will be 48 elements of hourly info."
+      }
+    },
+    "com.gcp.airquality_v1#AirQualityIndexList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.airquality_v1#AirQualityIndex"
+      }
+    },
+    "com.gcp.airquality_v1#PollutantList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.airquality_v1#Pollutant"
+      }
+    },
+    "com.gcp.airquality_v1#LookupForecastRequest": {
+      "type": "structure",
+      "members": {
+        "extraComputations": {
+          "target": "com.gcp.airquality_v1#LookupForecastRequestExtraComputationsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional features that can be optionally enabled. Specifying extra computations will result in the relevant elements and fields to be returned in the response."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF standard (default = 'en')."
+          }
+        },
+        "dateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A timestamp for which to return the data for a specific point in time. The timestamp is rounded to the previous exact hour. Note: this will return hourly data for the requested timestamp only (i.e. a single hourly info element). For example, a request sent where the date_time parameter is set to 2023-01-03T11:05:49Z will be rounded down to 2023-01-03T11:00:00Z."
+          }
+        },
+        "location": {
+          "target": "com.gcp.airquality_v1#LatLng",
+          "traits": {
+            "smithy.api#documentation": "Required. The latitude and longitude for which the API looks for air quality data."
+          }
+        },
+        "uaqiColorPalette": {
+          "target": "com.gcp.airquality_v1#LookupForecastRequestUaqiColorPaletteEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Determines the color palette used for data provided by the 'Universal Air Quality Index' (UAQI). This color palette is relevant just for UAQI, other AQIs have a predetermined color palette that can't be controlled."
+          }
+        },
+        "period": {
+          "target": "com.gcp.airquality_v1#Interval",
+          "traits": {
+            "smithy.api#documentation": "Indicates the start and end period for which to get the forecast data. The timestamp is rounded to the previous exact hour."
+          }
+        },
+        "universalAqi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, the Universal AQI will be included in the 'indexes' field of the response (default = true)."
+          }
+        },
+        "customLocalAqis": {
+          "target": "com.gcp.airquality_v1#CustomLocalAqiList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Expresses a 'country/region to AQI' relationship. Pairs a country/region with a desired AQI so that air quality data that is required for that country/region will be displayed according to the chosen AQI. This parameter can be used to specify a non-default AQI for a given country, for example, to get the US EPA index for Canada rather than the default index for Canada."
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of hourly info records to return per page (default = 24)."
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token received from a previous forecast call. It is used to retrieve the subsequent page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request object of the air quality forecast API."
+      }
+    },
+    "com.gcp.airquality_v1#LookupForecastRequestExtraComputationsItemEnum": {
+      "type": "enum",
+      "members": {
+        "EXTRA_COMPUTATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTRA_COMPUTATION_UNSPECIFIED"
+          }
+        },
+        "LOCAL_AQI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_AQI"
+          }
+        },
+        "HEALTH_RECOMMENDATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTH_RECOMMENDATIONS"
+          }
+        },
+        "POLLUTANT_ADDITIONAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLLUTANT_ADDITIONAL_INFO"
+          }
+        },
+        "DOMINANT_POLLUTANT_CONCENTRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMINANT_POLLUTANT_CONCENTRATION"
+          }
+        },
+        "POLLUTANT_CONCENTRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLLUTANT_CONCENTRATION"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupForecastRequestExtraComputationsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.airquality_v1#LookupForecastRequestExtraComputationsItemEnum"
+      }
+    },
+    "com.gcp.airquality_v1#LookupForecastRequestUaqiColorPaletteEnum": {
+      "type": "enum",
+      "members": {
+        "COLOR_PALETTE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLOR_PALETTE_UNSPECIFIED"
+          }
+        },
+        "RED_GREEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RED_GREEN"
+          }
+        },
+        "INDIGO_PERSIAN_DARK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIGO_PERSIAN_DARK"
+          }
+        },
+        "INDIGO_PERSIAN_LIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIGO_PERSIAN_LIGHT"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#CustomLocalAqiList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.airquality_v1#CustomLocalAqi"
+      }
+    },
+    "com.gcp.airquality_v1#LookupCurrentConditionsResponse": {
+      "type": "structure",
+      "members": {
+        "healthRecommendations": {
+          "target": "com.gcp.airquality_v1#HealthRecommendations",
+          "traits": {
+            "smithy.api#documentation": "Health advice and recommended actions related to the reported air quality conditions. Recommendations are tailored differently for populations at risk, groups with greater sensitivities to pollutants, and the general population."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ISO_3166-1 alpha-2 code of the country/region corresponding to the location provided in the request. This field might be omitted from the response if the location provided in the request resides in a disputed territory."
+          }
+        },
+        "pollutants": {
+          "target": "com.gcp.airquality_v1#PollutantList",
+          "traits": {
+            "smithy.api#documentation": "A list of pollutants affecting the location specified in the request. Note: This field will be returned only for requests that specified one or more of the following extra computations: POLLUTANT_ADDITIONAL_INFO, DOMINANT_POLLUTANT_CONCENTRATION, POLLUTANT_CONCENTRATION."
+          }
+        },
+        "dateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A rounded down timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. For example: \"2014-10-02T15:00:00Z\"."
+          }
+        },
+        "indexes": {
+          "target": "com.gcp.airquality_v1#AirQualityIndexList",
+          "traits": {
+            "smithy.api#documentation": "Based on the request parameters, this list will include (up to) two air quality indexes: - Universal AQI. Will be returned if the universalAqi boolean is set to true. - Local AQI. Will be returned if the LOCAL_AQI extra computation is specified."
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#Color": {
+      "type": "structure",
+      "members": {
+        "red": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The amount of red in the color as a value in the interval [0, 1]."
+          }
+        },
+        "green": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The amount of green in the color as a value in the interval [0, 1]."
+          }
+        },
+        "alpha": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The fraction of this color that should be applied to the pixel. That is, the final pixel color is defined by the equation: `pixel color = alpha * (this color) + (1.0 - alpha) * (background color)` This means that a value of 1.0 corresponds to a solid color, whereas a value of 0.0 corresponds to a completely transparent color. This uses a wrapper message rather than a simple float scalar so that it is possible to distinguish between a default value and the value being unset. If omitted, this color object is rendered as a solid color (as if the alpha value had been explicitly given a value of 1.0)."
+          }
+        },
+        "blue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The amount of blue in the color as a value in the interval [0, 1]."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to and from color representations in various languages over compactness. For example, the fields of this representation can be trivially provided to the constructor of `java.awt.Color` in Java; it can also be trivially provided to UIColor's `+colorWithRed:green:blue:alpha` method in iOS; and, with just a little work, it can be easily formatted into a CSS `rgba()` string in JavaScript. This reference page doesn't have information about the absolute color space that should be used to interpret the RGB value—for example, sRGB, Adobe RGB, DCI-P3, and BT.2020. By default, applications should assume the sRGB color space. When color equality needs to be decided, implementations, unless documented otherwise, treat two colors as equal if all their red, green, blue, and alpha values each differ by at most `1e-5`. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); }; var rgbToCssColor = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); } resultBuilder.push(hexString); return resultBuilder.join(''); }; // ..."
+      }
+    },
+    "com.gcp.airquality_v1#LookupCurrentConditionsRequest": {
+      "type": "structure",
+      "members": {
+        "customLocalAqis": {
+          "target": "com.gcp.airquality_v1#CustomLocalAqiList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Expresses a 'country/region to AQI' relationship. Pairs a country/region with a desired AQI so that air quality data that is required for that country/region will be displayed according to the chosen AQI. This parameter can be used to specify a non-default AQI for a given country, for example, to get the US EPA index for Canada rather than the default index for Canada."
+          }
+        },
+        "location": {
+          "target": "com.gcp.airquality_v1#LatLng",
+          "traits": {
+            "smithy.api#documentation": "Required. The longitude and latitude from which the API looks for air quality current conditions data."
+          }
+        },
+        "uaqiColorPalette": {
+          "target": "com.gcp.airquality_v1#LookupCurrentConditionsRequestUaqiColorPaletteEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Determines the color palette used for data provided by the 'Universal Air Quality Index' (UAQI). This color palette is relevant just for UAQI, other AQIs have a predetermined color palette that can't be controlled."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF standard. Default value is en."
+          }
+        },
+        "extraComputations": {
+          "target": "com.gcp.airquality_v1#LookupCurrentConditionsRequestExtraComputationsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional features that can be optionally enabled. Specifying extra computations will result in the relevant elements and fields to be returned in the response."
+          }
+        },
+        "universalAqi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, the Universal AQI will be included in the 'indexes' field of the response. Default value is true."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request definition of the air quality current conditions."
+      }
+    },
+    "com.gcp.airquality_v1#LookupCurrentConditionsRequestUaqiColorPaletteEnum": {
+      "type": "enum",
+      "members": {
+        "COLOR_PALETTE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLOR_PALETTE_UNSPECIFIED"
+          }
+        },
+        "RED_GREEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RED_GREEN"
+          }
+        },
+        "INDIGO_PERSIAN_DARK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIGO_PERSIAN_DARK"
+          }
+        },
+        "INDIGO_PERSIAN_LIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIGO_PERSIAN_LIGHT"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupCurrentConditionsRequestExtraComputationsItemEnum": {
+      "type": "enum",
+      "members": {
+        "EXTRA_COMPUTATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTRA_COMPUTATION_UNSPECIFIED"
+          }
+        },
+        "LOCAL_AQI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_AQI"
+          }
+        },
+        "HEALTH_RECOMMENDATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTH_RECOMMENDATIONS"
+          }
+        },
+        "POLLUTANT_ADDITIONAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLLUTANT_ADDITIONAL_INFO"
+          }
+        },
+        "DOMINANT_POLLUTANT_CONCENTRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMINANT_POLLUTANT_CONCENTRATION"
+          }
+        },
+        "POLLUTANT_CONCENTRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLLUTANT_CONCENTRATION"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupCurrentConditionsRequestExtraComputationsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.airquality_v1#LookupCurrentConditionsRequestExtraComputationsItemEnum"
+      }
+    },
+    "com.gcp.airquality_v1#Concentration": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Value of the pollutant concentration."
+          }
+        },
+        "units": {
+          "target": "com.gcp.airquality_v1#ConcentrationUnitsEnum",
+          "traits": {
+            "smithy.api#documentation": "Units for measuring this pollutant concentration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The concentration of a given pollutant in the air."
+      }
+    },
+    "com.gcp.airquality_v1#ConcentrationUnitsEnum": {
+      "type": "enum",
+      "members": {
+        "UNIT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNIT_UNSPECIFIED"
+          }
+        },
+        "PARTS_PER_BILLION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PARTS_PER_BILLION"
+          }
+        },
+        "MICROGRAMS_PER_CUBIC_METER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MICROGRAMS_PER_CUBIC_METER"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupHistoryResponse": {
+      "type": "structure",
+      "members": {
+        "hoursInfo": {
+          "target": "com.gcp.airquality_v1#HourInfoList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains the air quality information for each hour in the requested range. For example, if the request is for 48 hours of history there will be 48 elements of hourly info."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The ISO_3166-1 alpha-2 code of the country/region corresponding to the location provided in the request. This field might be omitted from the response if the location provided in the request resides in a disputed territory."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The token to retrieve the next page."
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#HourInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.airquality_v1#HourInfo"
+      }
+    },
+    "com.gcp.airquality_v1#Pollutant": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pollutant's code name (for example, \"so2\"). For a list of supported pollutant codes, see [Reported pollutants](/maps/documentation/air-quality/pollutants#reported_pollutants)."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.gcp.airquality_v1#AdditionalInfo",
+          "traits": {
+            "smithy.api#documentation": "Additional information about the pollutant."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pollutant's display name. For example: \"NOx\"."
+          }
+        },
+        "concentration": {
+          "target": "com.gcp.airquality_v1#Concentration",
+          "traits": {
+            "smithy.api#documentation": "The pollutant's concentration level measured by one of the standard air pollutation measure units."
+          }
+        },
+        "fullName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The pollutant's full name. For chemical compounds, this is the IUPAC name. Example: \"Sulfur Dioxide\". For more information about the IUPAC names table, see https://iupac.org/what-we-do/periodic-table-of-elements/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data regarding an air quality pollutant."
+      }
+    },
+    "com.gcp.airquality_v1#HttpBody": {
+      "type": "structure",
+      "members": {
+        "contentType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTTP Content-Type header value specifying the content type of the body."
+          }
+        },
+        "data": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTTP request/response body as raw binary."
+          }
+        },
+        "extensions": {
+          "target": "com.gcp.airquality_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "Application specific response metadata. Must be set in the first response for streaming APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged."
+      }
+    },
+    "com.gcp.airquality_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.airquality_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.airquality_v1#DocumentMap"
+      }
+    },
+    "com.gcp.airquality_v1#AirQualityIndex": {
+      "type": "structure",
+      "members": {
+        "aqiDisplay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of the index numeric score, that may include prefix or suffix symbols, which usually represents the worst index score. Example: >100 or 10+. Note: This field should be used when you want to display the index score. For non-numeric indexes, this field is empty."
+          }
+        },
+        "color": {
+          "target": "com.gcp.airquality_v1#Color",
+          "traits": {
+            "smithy.api#documentation": "The color used to represent the AQI numeric score."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The index's code. This field represents the index for programming purposes by using snake case instead of spaces. Examples: \"uaqi\", \"fra_atmo\"."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual classification of the index numeric score interpretation. For example: \"Excellent air quality\"."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human readable representation of the index name. Example: \"AQI (US)\""
+          }
+        },
+        "aqi": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": " The index's numeric score. Examples: 10, 100. The value is not normalized and should only be interpreted in the context of its related air-quality index. For non-numeric indexes, this field will not be returned. Note: This field should be used for calculations, graph display, etc. For displaying the index score, you should use the AQI display field."
+          }
+        },
+        "dominantPollutant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The chemical symbol of the dominant pollutant. For example: \"CO\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The basic object for representing different air quality metrics. When brought together, these metrics provide a snapshot about the current air quality conditions. There are multiple indexes in the world serving different purposes and groups interested in measuring different aspects of air quality."
+      }
+    },
+    "com.gcp.airquality_v1#LatLng": {
+      "type": "structure",
+      "members": {
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The longitude in degrees. It must be in the range [-180.0, +180.0]."
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The latitude in degrees. It must be in the range [-90.0, +90.0]."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this object must conform to the WGS84 standard. Values must be within normalized ranges."
+      }
+    },
+    "com.gcp.airquality_v1#CustomLocalAqi": {
+      "type": "structure",
+      "members": {
+        "aqi": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AQI to associate the country/region with. Value should be a [valid index](/maps/documentation/air-quality/laqis) code."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The country/region requiring the custom AQI. Value should be provided using [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Expresses a 'country/region to AQI' relationship. Pairs a country/region with a desired AQI so that air quality data that is required for that country/region will be displayed according to the chosen AQI."
+      }
+    },
+    "com.gcp.airquality_v1#LookupForecastResponse": {
+      "type": "structure",
+      "members": {
+        "hourlyForecasts": {
+          "target": "com.gcp.airquality_v1#HourlyForecastList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Contains the air quality information for each hour in the requested range. For example, if the request is for 48 hours of forecast there will be 48 elements of hourly forecasts."
+          }
+        },
+        "regionCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The ISO_3166-1 alpha-2 code of the country/region corresponding to the location provided in the request. This field might be omitted from the response if the location provided in the request resides in a disputed territory."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The token to retrieve the next page."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response object of the air quality forecast API."
+      }
+    },
+    "com.gcp.airquality_v1#HourlyForecastList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.airquality_v1#HourlyForecast"
+      }
+    },
+    "com.gcp.airquality_v1#HealthRecommendations": {
+      "type": "structure",
+      "members": {
+        "heartDiseasePopulation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Heart and circulatory system diseases."
+          }
+        },
+        "athletes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sports and other strenuous outdoor activities."
+          }
+        },
+        "lungDiseasePopulation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Respiratory related problems and asthma suffers."
+          }
+        },
+        "pregnantWomen": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Women at all stages of pregnancy."
+          }
+        },
+        "generalPopulation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "No specific sensitivities."
+          }
+        },
+        "elderly": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Retirees and people older than the general population."
+          }
+        },
+        "children": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Younger populations including children, toddlers, and babies."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Health recommendations for different population groups in a free text format. The recommendations are derived from their associated air quality conditions."
+      }
+    },
+    "com.gcp.airquality_v1#HourlyForecast": {
+      "type": "structure",
+      "members": {
+        "healthRecommendations": {
+          "target": "com.gcp.airquality_v1#HealthRecommendations",
+          "traits": {
+            "smithy.api#documentation": "Health advice and recommended actions related to the reported air quality conditions. Recommendations are tailored differently for populations at risk, groups with greater sensitivities to pollutants, and the general population."
+          }
+        },
+        "dateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A rounded down timestamp indicating the time (hour) the data refers to in RFC3339 UTC \"Zulu\" format. For example: \"2014-10-02T15:00:00Z\"."
+          }
+        },
+        "indexes": {
+          "target": "com.gcp.airquality_v1#AirQualityIndexList",
+          "traits": {
+            "smithy.api#documentation": "Based on the request parameters, this list will include (up to) two air quality indexes: - Universal AQI. Will be returned if the `universal_aqi` boolean is set to true. - Local AQI. Will be returned if the LOCAL_AQI extra computation is specified."
+          }
+        },
+        "pollutants": {
+          "target": "com.gcp.airquality_v1#PollutantList",
+          "traits": {
+            "smithy.api#documentation": "A list of pollutants affecting the location specified in the request. Note: This field will be returned only for requests that specified one or more of the following extra computations: POLLUTANT_ADDITIONAL_INFO, DOMINANT_POLLUTANT_CONCENTRATION, POLLUTANT_CONCENTRATION."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the air quality information for each hour in the requested range. For example, if the request is for 48 hours of forecast there will be 48 elements of hourly forecasts."
+      }
+    },
+    "com.gcp.airquality_v1#LookupHistoryRequest": {
+      "type": "structure",
+      "members": {
+        "dateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A timestamp for which to return historical data. The timestamp is rounded to the previous exact hour. Note: this will return hourly data for the requested timestamp only (i.e. a single hourly info element). For example, a request sent where the dateTime parameter is set to 2023-01-03T11:05:49Z will be rounded down to 2023-01-03T11:00:00Z. A timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\"."
+          }
+        },
+        "location": {
+          "target": "com.gcp.airquality_v1#LatLng",
+          "traits": {
+            "smithy.api#documentation": "Required. The latitude and longitude for which the API looks for air quality history data."
+          }
+        },
+        "uaqiColorPalette": {
+          "target": "com.gcp.airquality_v1#LookupHistoryRequestUaqiColorPaletteEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Determines the color palette used for data provided by the 'Universal Air Quality Index' (UAQI). This color palette is relevant just for UAQI, other AQIs have a predetermined color palette that can't be controlled."
+          }
+        },
+        "hours": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number from 1 to 720 that indicates the hours range for the request. For example: A value of 48 will yield data from the last 48 hours."
+          }
+        },
+        "extraComputations": {
+          "target": "com.gcp.airquality_v1#LookupHistoryRequestExtraComputationsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional features that can be optionally enabled. Specifying extra computations will result in the relevant elements and fields to be returned in the response."
+          }
+        },
+        "languageCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Allows the client to choose the language for the response. If data cannot be provided for that language the API uses the closest match. Allowed values rely on the IETF standard. Default value is en."
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A page token received from a previous history call. It is used to retrieve the subsequent page. Note that when providing a value for this parameter all other parameters provided must match the call that provided the page token (the previous call)."
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum number of hourly info records to return per page. The default is 72 and the max value is 168 (7 days of data)."
+          }
+        },
+        "customLocalAqis": {
+          "target": "com.gcp.airquality_v1#CustomLocalAqiList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Expresses a 'country/region to AQI' relationship. Pairs a country/region with a desired AQI so that air quality data that is required for that country/region will be displayed according to the chosen AQI. This parameter can be used to specify a non-default AQI for a given country, for example, to get the US EPA index for Canada rather than the default index for Canada."
+          }
+        },
+        "universalAqi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If set to true, the Universal AQI will be included in the 'indexes' field of the response. Default value is true."
+          }
+        },
+        "period": {
+          "target": "com.gcp.airquality_v1#Interval",
+          "traits": {
+            "smithy.api#documentation": "Indicates the start and end period for which to get the historical data. The timestamp is rounded to the previous exact hour."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The request object of the air quality history API."
+      }
+    },
+    "com.gcp.airquality_v1#LookupHistoryRequestUaqiColorPaletteEnum": {
+      "type": "enum",
+      "members": {
+        "COLOR_PALETTE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COLOR_PALETTE_UNSPECIFIED"
+          }
+        },
+        "RED_GREEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RED_GREEN"
+          }
+        },
+        "INDIGO_PERSIAN_DARK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIGO_PERSIAN_DARK"
+          }
+        },
+        "INDIGO_PERSIAN_LIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INDIGO_PERSIAN_LIGHT"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupHistoryRequestExtraComputationsItemEnum": {
+      "type": "enum",
+      "members": {
+        "EXTRA_COMPUTATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXTRA_COMPUTATION_UNSPECIFIED"
+          }
+        },
+        "LOCAL_AQI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOCAL_AQI"
+          }
+        },
+        "HEALTH_RECOMMENDATIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTH_RECOMMENDATIONS"
+          }
+        },
+        "POLLUTANT_ADDITIONAL_INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLLUTANT_ADDITIONAL_INFO"
+          }
+        },
+        "DOMINANT_POLLUTANT_CONCENTRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DOMINANT_POLLUTANT_CONCENTRATION"
+          }
+        },
+        "POLLUTANT_CONCENTRATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POLLUTANT_CONCENTRATION"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupHistoryRequestExtraComputationsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.airquality_v1#LookupHistoryRequestExtraComputationsItemEnum"
+      }
+    },
+    "com.gcp.airquality_v1#AdditionalInfo": {
+      "type": "structure",
+      "members": {
+        "effects": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text representing the pollutant's main health effects."
+          }
+        },
+        "sources": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text representing the pollutant's main emission sources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The emission sources and health effects of a given pollutant."
+      }
+    },
+    "com.gcp.airquality_v1#LookupForecastRequest_": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.airquality_v1#LookupForecastRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.airquality_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.airquality_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.airquality_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.airquality_v1#LookupForecast": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.airquality_v1#LookupForecastRequest_"
+      },
+      "output": {
+        "target": "com.gcp.airquality_v1#LookupForecastResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.airquality_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.airquality_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.airquality_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.airquality_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/forecast:lookup"
+        },
+        "smithy.api#documentation": "Returns air quality forecast for a specific location for a given time range."
+      }
+    },
+    "com.gcp.airquality_v1#LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum": {
+      "type": "enum",
+      "members": {
+        "MAP_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAP_TYPE_UNSPECIFIED"
+          }
+        },
+        "UAQI_RED_GREEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UAQI_RED_GREEN"
+          }
+        },
+        "UAQI_INDIGO_PERSIAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UAQI_INDIGO_PERSIAN"
+          }
+        },
+        "PM25_INDIGO_PERSIAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PM25_INDIGO_PERSIAN"
+          }
+        },
+        "GBR_DEFRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GBR_DEFRA"
+          }
+        },
+        "DEU_UBA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEU_UBA"
+          }
+        },
+        "CAN_EC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CAN_EC"
+          }
+        },
+        "FRA_ATMO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRA_ATMO"
+          }
+        },
+        "US_AQI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "US_AQI"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupHeatmapTileMapTypesHeatmapTilesRequest": {
+      "type": "structure",
+      "members": {
+        "zoom": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The map's zoom level. Defines how large or small the contents of a map appear in a map view. Zoom level 0 is the entire world in a single tile. Zoom level 1 is the entire world in 4 tiles. Zoom level 2 is the entire world in 16 tiles. Zoom level 16 is the entire world in 65,536 tiles. Allowed values: 0-16",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "x": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Defines the east-west point in the requested tile.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "y": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Defines the north-south point in the requested tile.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "mapType": {
+          "target": "com.gcp.airquality_v1#LookupHeatmapTileMapTypesHeatmapTilesMapTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The type of the air quality heatmap. Defines the pollutant that the map will graphically represent. Allowed values: - UAQI_RED_GREEN (UAQI, red-green palette) - UAQI_INDIGO_PERSIAN (UAQI, indigo-persian palette) - PM25_INDIGO_PERSIAN - GBR_DEFRA - DEU_UBA - CAN_EC - FRA_ATMO - US_AQI",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupHeatmapTileMapTypesHeatmapTiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.airquality_v1#LookupHeatmapTileMapTypesHeatmapTilesRequest"
+      },
+      "output": {
+        "target": "com.gcp.airquality_v1#HttpBody"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.airquality_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.airquality_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/mapTypes/{mapType}/heatmapTiles/{zoom}/{x}/{y}"
+        },
+        "smithy.api#documentation": "Returns a bytes array containing the data of the tile PNG image."
+      }
+    },
+    "com.gcp.airquality_v1#LookupCurrentConditionsRequest_": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.airquality_v1#LookupCurrentConditionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupCurrentConditions": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.airquality_v1#LookupCurrentConditionsRequest_"
+      },
+      "output": {
+        "target": "com.gcp.airquality_v1#LookupCurrentConditionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.airquality_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.airquality_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.airquality_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.airquality_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/currentConditions:lookup"
+        },
+        "smithy.api#documentation": "The Current Conditions endpoint provides hourly air quality information in more than 100 countries, up to a 500 x 500 meters resolution. Includes over 70 local indexes and global air quality index and categories."
+      }
+    },
+    "com.gcp.airquality_v1#LookupHistoryRequest_": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.airquality_v1#LookupHistoryRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.airquality_v1#LookupHistory": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.airquality_v1#LookupHistoryRequest_"
+      },
+      "output": {
+        "target": "com.gcp.airquality_v1#LookupHistoryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.airquality_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.airquality_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.airquality_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.airquality_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/history:lookup"
+        },
+        "smithy.api#documentation": "Returns air quality history for a specific location for a given time range."
+      }
+    }
+  }
+}

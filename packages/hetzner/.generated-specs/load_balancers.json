@@ -1,0 +1,4590 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.hetzner.load_balancers#ListLoadBalancersRequestSortItem": {
+      "type": "enum",
+      "members": {
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        },
+        "ID_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:asc"
+          }
+        },
+        "ID_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id:desc"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "NAME_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name:asc"
+          }
+        },
+        "NAME_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name:desc"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "CREATED_ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created:asc"
+          }
+        },
+        "CREATED_DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created:desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersRequestSortList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#ListLoadBalancersRequestSortItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersRequest": {
+      "type": "structure",
+      "members": {
+        "sort": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersRequestSortList",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "Sort resources by field and direction. May be used multiple times.\n\nFor more information, see \"[Sorting](#description/sorting)\".\n"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name",
+            "smithy.api#documentation": "Filter resources by their name.\n\nThe response will only contain the resources\nmatching exactly the specified name.\n"
+          }
+        },
+        "label_selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "label_selector",
+            "smithy.api#documentation": "Filter resources by labels.\n\nThe response will only contain resources matching the label selector.\nFor more information, see \"[Label Selector](#description/label-selector)\".\n"
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "Page number to return. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "Maximum number of entries returned per page. For more information, see \"[Pagination](#description/pagination)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPublicNetIpv4": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4) of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dns_ptr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reverse DNS PTR entry for the IPv4 address of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP address (v4)."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPublicNetIpv6": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v6) of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dns_ptr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reverse DNS PTR entry for the IPv6 address of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP address (v6)."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPublicNet": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Public Interface enabled or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "ipv4": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPublicNetIpv4",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4).",
+            "smithy.api#required": {}
+          }
+        },
+        "ipv6": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPublicNetIpv6",
+          "traits": {
+            "smithy.api#documentation": "IP address (v6).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Public network information."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPrivateNetItem": {
+      "type": "structure",
+      "members": {
+        "network": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Network.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4) of this Load Balancer in this Network.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPrivateNetList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPrivateNetItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Private networks information."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLocation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable description of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country the [Location](#tag/locations) resides in.\n\nISO 3166-1 alpha-2 code of the country.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the closest city to the [Location](#tag/locations).\n\nCity name or city name and state in short form. E.g. `Falkenstein` or `Ashburn, VA`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Latitude of the city closest to the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Longitude of the city closest to the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Network Zone this [Location](#tag/locations) resides in.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypeDeprecation": {
+      "type": "structure",
+      "members": {
+        "unavailable_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecated resource removal.\n\nOnce this date is reached, the resource will not be returned\nby resource type \"list\" endpoint, and the resource can not be\nused to create new resources. For example, if this is an\nimage, you can not create new servers with this image after\nthe mentioned date.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "announced": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecation announcement.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n"
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesItemPriceHourly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hourly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesItemPriceMonthly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Monthly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesItemPricePerTbTraffic": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesItem": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Location](#tag/locations) the price is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "price_hourly": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesItemPriceHourly",
+          "traits": {
+            "smithy.api#documentation": "Hourly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_monthly": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesItemPriceMonthly",
+          "traits": {
+            "smithy.api#documentation": "Monthly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free traffic per month in bytes in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_per_tb_traffic": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesItemPricePerTbTraffic",
+          "traits": {
+            "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Price per [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerType": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_connections": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of maximum simultaneous open connections.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_services": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of services a Load Balancer of this type can have.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_targets": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of targets a single Load Balancer can have.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_assigned_certificates": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of SSL Certificates that can be assigned to a single Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**Deprecated:** This field is deprecated. Use the `deprecation` object instead.\n\nPoint in time when the Load Balancer type is deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deprecation": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypeDeprecation",
+          "traits": {
+            "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prices": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerTypePricesList",
+          "traits": {
+            "smithy.api#documentation": "Price per [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemProtection": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the Resource from being deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protection configuration for the Resource."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.load_balancers#ServiceTCP": {
+      "type": "structure",
+      "members": {
+        "protocol": {
+          "target": "com.hetzner.load_balancers#ServiceTCPProtocol",
+          "traits": {
+            "smithy.api#documentation": "Protocol of the Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "listen_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer listens on.",
+            "smithy.api#required": {}
+          }
+        },
+        "destination_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer will balance to.",
+            "smithy.api#required": {}
+          }
+        },
+        "proxyprotocol": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is Proxyprotocol enabled or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "health_check": {
+          "target": "com.hetzner.load_balancers#ServiceTCPHealthCheck",
+          "traits": {
+            "smithy.api#documentation": "Service health check.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ServiceTCPProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "https"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protocol of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceTCPHealthCheckProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the health check."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceTCPHealthCheckHttpStatusCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceTCPHealthCheckHttp": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Host header to send in the HTTP request. May not contain spaces, percent or backslash symbols. Can be null, in that case no host header is sent.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTTP path to use for health checks. May not contain literal spaces, use percent-encoding instead.",
+            "smithy.api#required": {}
+          }
+        },
+        "response": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that must be contained in HTTP response in order to pass the health check."
+          }
+        },
+        "status_codes": {
+          "target": "com.hetzner.load_balancers#ServiceTCPHealthCheckHttpStatusCodesList",
+          "traits": {
+            "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+          }
+        },
+        "tls": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use HTTPS for health check."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional configuration for protocol http."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceTCPHealthCheck": {
+      "type": "structure",
+      "members": {
+        "protocol": {
+          "target": "com.hetzner.load_balancers#ServiceTCPHealthCheckProtocol",
+          "traits": {
+            "smithy.api#documentation": "Type of the health check.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the health check will be performed on.",
+            "smithy.api#required": {}
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time interval in seconds health checks are performed.",
+            "smithy.api#required": {}
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time in seconds after an attempt is considered a timeout.",
+            "smithy.api#required": {}
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unsuccessful retries needed until a target is considered unhealthy; an unhealthy target needs the same number of successful retries to become healthy again.",
+            "smithy.api#required": {}
+          }
+        },
+        "http": {
+          "target": "com.hetzner.load_balancers#ServiceTCPHealthCheckHttp",
+          "traits": {
+            "smithy.api#documentation": "Additional configuration for protocol http."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service health check."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPProtocol": {
+      "type": "structure",
+      "members": {
+        "protocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocolProtocol",
+          "traits": {
+            "smithy.api#documentation": "Protocol of the Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "listen_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer listens on.",
+            "smithy.api#required": {}
+          }
+        },
+        "destination_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer will balance to.",
+            "smithy.api#required": {}
+          }
+        },
+        "proxyprotocol": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is Proxyprotocol enabled or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "health_check": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocolHealthCheck",
+          "traits": {
+            "smithy.api#documentation": "Service health check.",
+            "smithy.api#required": {}
+          }
+        },
+        "http": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocolHttp",
+          "traits": {
+            "smithy.api#documentation": "Configuration option for protocol http.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ServiceHTTPProtocolProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "https"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protocol of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPProtocolHealthCheckProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the health check."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPProtocolHealthCheckHttpStatusCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPProtocolHealthCheckHttp": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Host header to send in the HTTP request. May not contain spaces, percent or backslash symbols. Can be null, in that case no host header is sent.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTTP path to use for health checks. May not contain literal spaces, use percent-encoding instead.",
+            "smithy.api#required": {}
+          }
+        },
+        "response": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that must be contained in HTTP response in order to pass the health check."
+          }
+        },
+        "status_codes": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocolHealthCheckHttpStatusCodesList",
+          "traits": {
+            "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+          }
+        },
+        "tls": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use HTTPS for health check."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional configuration for protocol http."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPProtocolHealthCheck": {
+      "type": "structure",
+      "members": {
+        "protocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocolHealthCheckProtocol",
+          "traits": {
+            "smithy.api#documentation": "Type of the health check.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the health check will be performed on.",
+            "smithy.api#required": {}
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time interval in seconds health checks are performed.",
+            "smithy.api#required": {}
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time in seconds after an attempt is considered a timeout.",
+            "smithy.api#required": {}
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unsuccessful retries needed until a target is considered unhealthy; an unhealthy target needs the same number of successful retries to become healthy again.",
+            "smithy.api#required": {}
+          }
+        },
+        "http": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocolHealthCheckHttp",
+          "traits": {
+            "smithy.api#documentation": "Additional configuration for protocol http."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service health check."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPProtocolHttp": {
+      "type": "structure",
+      "members": {
+        "cookie_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the cookie used for sticky sessions.",
+            "smithy.api#required": {}
+          }
+        },
+        "cookie_lifetime": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lifetime of the cookie used for sticky sessions (in seconds).",
+            "smithy.api#required": {}
+          }
+        },
+        "timeout_idle": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Idle timeout in seconds for the client and server side.",
+            "smithy.api#required": {}
+          }
+        },
+        "sticky_sessions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use sticky sessions.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration option for protocol http."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPSProtocol": {
+      "type": "structure",
+      "members": {
+        "protocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocolProtocol",
+          "traits": {
+            "smithy.api#documentation": "Protocol of the Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "listen_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer listens on.",
+            "smithy.api#required": {}
+          }
+        },
+        "destination_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the Load Balancer will balance to.",
+            "smithy.api#required": {}
+          }
+        },
+        "proxyprotocol": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is Proxyprotocol enabled or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "health_check": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocolHealthCheck",
+          "traits": {
+            "smithy.api#documentation": "Service health check.",
+            "smithy.api#required": {}
+          }
+        },
+        "http": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocolHttp",
+          "traits": {
+            "smithy.api#documentation": "Configuration option for protocol https.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ServiceHTTPSProtocolProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        },
+        "HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "https"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protocol of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPSProtocolHealthCheckProtocol": {
+      "type": "enum",
+      "members": {
+        "TCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tcp"
+          }
+        },
+        "HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "http"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the health check."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPSProtocolHealthCheckHttpStatusCodesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPSProtocolHealthCheckHttp": {
+      "type": "structure",
+      "members": {
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Host header to send in the HTTP request. May not contain spaces, percent or backslash symbols. Can be null, in that case no host header is sent.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "HTTP path to use for health checks. May not contain literal spaces, use percent-encoding instead.",
+            "smithy.api#required": {}
+          }
+        },
+        "response": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "String that must be contained in HTTP response in order to pass the health check."
+          }
+        },
+        "status_codes": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocolHealthCheckHttpStatusCodesList",
+          "traits": {
+            "smithy.api#documentation": "List of returned HTTP status codes in order to pass the health check. Supports the wildcards `?` for exactly one character and `*` for multiple ones."
+          }
+        },
+        "tls": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use HTTPS for health check."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional configuration for protocol http."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPSProtocolHealthCheck": {
+      "type": "structure",
+      "members": {
+        "protocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocolHealthCheckProtocol",
+          "traits": {
+            "smithy.api#documentation": "Type of the health check.",
+            "smithy.api#required": {}
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Port the health check will be performed on.",
+            "smithy.api#required": {}
+          }
+        },
+        "interval": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time interval in seconds health checks are performed.",
+            "smithy.api#required": {}
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Time in seconds after an attempt is considered a timeout.",
+            "smithy.api#required": {}
+          }
+        },
+        "retries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unsuccessful retries needed until a target is considered unhealthy; an unhealthy target needs the same number of successful retries to become healthy again.",
+            "smithy.api#required": {}
+          }
+        },
+        "http": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocolHealthCheckHttp",
+          "traits": {
+            "smithy.api#documentation": "Additional configuration for protocol http."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service health check."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPSProtocolHttpCertificatesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "IDs of the Certificates to use for TLS/SSL termination by the Load Balancer; empty for TLS/SSL passthrough."
+      }
+    },
+    "com.hetzner.load_balancers#ServiceHTTPSProtocolHttp": {
+      "type": "structure",
+      "members": {
+        "cookie_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the cookie used for sticky sessions.",
+            "smithy.api#required": {}
+          }
+        },
+        "cookie_lifetime": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lifetime of the cookie used for sticky sessions (in seconds).",
+            "smithy.api#required": {}
+          }
+        },
+        "timeout_idle": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Idle timeout in seconds for the client and server side.",
+            "smithy.api#required": {}
+          }
+        },
+        "certificates": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocolHttpCertificatesList",
+          "traits": {
+            "smithy.api#documentation": "IDs of the Certificates to use for TLS/SSL termination by the Load Balancer; empty for TLS/SSL passthrough.",
+            "smithy.api#required": {}
+          }
+        },
+        "redirect_http": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Redirect HTTP requests to HTTPS.",
+            "smithy.api#required": {}
+          }
+        },
+        "sticky_sessions": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use sticky sessions.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration option for protocol https."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemServicesItem": {
+      "type": "union",
+      "members": {
+        "ServiceTCP": {
+          "target": "com.hetzner.load_balancers#ServiceTCP"
+        },
+        "ServiceHTTPProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocol"
+        },
+        "ServiceHTTPSProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocol"
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemServicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemServicesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of services that belong to this Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeServer": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.load_balancers#TargetTypeServerType",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.load_balancers#TargetTypeServerServer",
+          "traits": {
+            "smithy.api#documentation": "Server where the traffic should be routed to. Only present for target type \"server\".",
+            "smithy.api#required": {}
+          }
+        },
+        "health_status": {
+          "target": "com.hetzner.load_balancers#TargetTypeServerHealthStatusList",
+          "traits": {
+            "smithy.api#documentation": "List of health statuses of the services on this target. Only present for target types \"server\" and \"ip\".",
+            "smithy.api#required": {}
+          }
+        },
+        "use_private_ip": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use the private network IP instead of the public IP. Only present for target types \"server\" and \"label_selector\".",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeServerType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the resource."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeServerServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Server.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP of the Server that the traffic is routed to. Either the Server's primary IPv4 or, if an IPv6 was specified when adding the target, an IPv6 within the Server's /64 subnet.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Server where the traffic should be routed to. Only present for target type \"server\"."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeServerHealthStatusItemStatus": {
+      "type": "enum",
+      "members": {
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeServerHealthStatusItem": {
+      "type": "structure",
+      "members": {
+        "listen_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancers#TargetTypeServerHealthStatusItemStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeServerHealthStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#TargetTypeServerHealthStatusItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of health statuses of the services on this target. Only present for target types \"server\" and \"ip\"."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeLabelSelector": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelectorType",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "label_selector": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelectorLabelSelector",
+          "traits": {
+            "smithy.api#documentation": "Label selector used to determine targets. Only present for target type \"label_selector\".",
+            "smithy.api#required": {}
+          }
+        },
+        "targets": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsList",
+          "traits": {
+            "smithy.api#documentation": "List of resolved label selector target Servers.",
+            "smithy.api#required": {}
+          }
+        },
+        "use_private_ip": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use the private network IP instead of the public IP. Only present for target types \"server\" and \"label_selector\".",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeLabelSelectorType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the resource."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeLabelSelectorLabelSelector": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label selector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Label selector used to determine targets. Only present for target type \"label_selector\"."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Server.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP of the Server that the traffic is routed to. Either the Server's primary IPv4 or, if an IPv6 was specified when adding the target, an IPv6 within the Server's /64 subnet.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Server where the traffic should be routed to. Only present for target type \"server\"."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItemHealthStatusItemStatus": {
+      "type": "enum",
+      "members": {
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItemHealthStatusItem": {
+      "type": "structure",
+      "members": {
+        "listen_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItemHealthStatusItemStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItemHealthStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItemHealthStatusItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of health statuses of the services on this target. Only present for target types \"server\" and \"ip\"."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource. Here always \"server\".",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItemServer",
+          "traits": {
+            "smithy.api#documentation": "Server where the traffic should be routed to. Only present for target type \"server\".",
+            "smithy.api#required": {}
+          }
+        },
+        "health_status": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItemHealthStatusList",
+          "traits": {
+            "smithy.api#documentation": "List of health statuses of the services on this target. Only present for target types \"server\" and \"ip\".",
+            "smithy.api#required": {}
+          }
+        },
+        "use_private_ip": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use the private network IP instead of the public IP. Only present for target types \"server\" and \"label_selector\".",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#TargetTypeLabelSelectorTargetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of resolved label selector target Servers."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeIP": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.load_balancers#TargetTypeIPType",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "com.hetzner.load_balancers#TargetTypeIPIp",
+          "traits": {
+            "smithy.api#documentation": "IP target where the traffic should be routed to. It is only possible to use the (Public or vSwitch) IPs of Hetzner Online Root Servers belonging to the project owner. IPs belonging to other users are blocked. Additionally IPs belonging to services provided by Hetzner Cloud (Servers, Load Balancers, ...) are blocked as well. Only present for target type `ip`.",
+            "smithy.api#required": {}
+          }
+        },
+        "health_status": {
+          "target": "com.hetzner.load_balancers#TargetTypeIPHealthStatusList",
+          "traits": {
+            "smithy.api#documentation": "List of health statuses of the services on this target. Only present for target types \"server\" and \"ip\".",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeIPType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the resource."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeIPIp": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP of a server that belongs to the same customer (public IPv4/IPv6) or private IP in a subnet type vswitch.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP target where the traffic should be routed to. It is only possible to use the (Public or vSwitch) IPs of Hetzner Online Root Servers belonging to the project owner. IPs belonging to other users are blocked. Additionally IPs belonging to services provided by Hetzner Cloud (Servers, Load Balancers, ...) are blocked as well. Only present for target type `ip`."
+      }
+    },
+    "com.hetzner.load_balancers#TargetTypeIPHealthStatusItemStatus": {
+      "type": "enum",
+      "members": {
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unhealthy"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeIPHealthStatusItem": {
+      "type": "structure",
+      "members": {
+        "listen_port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancers#TargetTypeIPHealthStatusItemStatus",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#TargetTypeIPHealthStatusList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#TargetTypeIPHealthStatusItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of health statuses of the services on this target. Only present for target types \"server\" and \"ip\"."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemTargetsItem": {
+      "type": "union",
+      "members": {
+        "TargetTypeServer": {
+          "target": "com.hetzner.load_balancers#TargetTypeServer"
+        },
+        "TargetTypeLabelSelector": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelector"
+        },
+        "TargetTypeIP": {
+          "target": "com.hetzner.load_balancers#TargetTypeIP"
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemTargetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemTargetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of targets that belong to this Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemAlgorithmType": {
+      "type": "enum",
+      "members": {
+        "ROUND_ROBIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "round_robin"
+          }
+        },
+        "LEAST_CONNECTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "least_connections"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the algorithm."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemAlgorithm": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemAlgorithmType",
+          "traits": {
+            "smithy.api#documentation": "Type of the algorithm.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Algorithm of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Load Balancer](#tag/load-balancers).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Resource. Must be unique per Project.",
+            "smithy.api#required": {}
+          }
+        },
+        "public_net": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPublicNet",
+          "traits": {
+            "smithy.api#documentation": "Public network information.",
+            "smithy.api#required": {}
+          }
+        },
+        "private_net": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemPrivateNetList",
+          "traits": {
+            "smithy.api#documentation": "Private networks information.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLocation",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "load_balancer_type": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLoadBalancerType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "protection": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemProtection",
+          "traits": {
+            "smithy.api#documentation": "Protection configuration for the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "services": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemServicesList",
+          "traits": {
+            "smithy.api#documentation": "List of services that belong to this Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "targets": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemTargetsList",
+          "traits": {
+            "smithy.api#documentation": "List of targets that belong to this Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "algorithm": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItemAlgorithm",
+          "traits": {
+            "smithy.api#documentation": "Algorithm of the Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "outgoing_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Outbound Traffic for the current billing period in bytes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ingoing_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Inbound Traffic for the current billing period in bytes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free Traffic for the current billing period in bytes.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseMetaPagination": {
+      "type": "structure",
+      "members": {
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current page number.",
+            "smithy.api#required": {}
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of entries returned per page.",
+            "smithy.api#required": {}
+          }
+        },
+        "previous_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the previous page. Can be null if the current page is the first one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the next page. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Page number of the last page available. Can be null if the current page is the last one.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "total_entries": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of entries that exist for this query. Can be null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information."
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponseMeta": {
+      "type": "structure",
+      "members": {
+        "pagination": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseMetaPagination",
+          "traits": {
+            "smithy.api#documentation": "See \"[Pagination](#description/pagination)\" for more information.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#ListLoadBalancersResponse": {
+      "type": "structure",
+      "members": {
+        "load_balancers": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseLoadBalancersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "meta": {
+          "target": "com.hetzner.load_balancers#ListLoadBalancersResponseMeta",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancers#ListLoadBalancers": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancers#ListLoadBalancersRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancers#ListLoadBalancersResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/load_balancers",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Load Balancers\n\nGets all existing Load Balancers that you have available.",
+        "smithy.api#paginated": {
+          "mode": "page",
+          "inputToken": "page",
+          "outputToken": "meta.pagination.next_page",
+          "items": "load_balancers",
+          "pageSize": "per_page"
+        }
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestAlgorithmType": {
+      "type": "enum",
+      "members": {
+        "ROUND_ROBIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "round_robin"
+          }
+        },
+        "LEAST_CONNECTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "least_connections"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the algorithm."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestAlgorithm": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestAlgorithmType",
+          "traits": {
+            "smithy.api#documentation": "Type of the algorithm.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Algorithm of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestServicesItem": {
+      "type": "union",
+      "members": {
+        "ServiceTCP": {
+          "target": "com.hetzner.load_balancers#ServiceTCP"
+        },
+        "ServiceHTTPProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocol"
+        },
+        "ServiceHTTPSProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocol"
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestServicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestServicesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of services."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItemType": {
+      "type": "enum",
+      "members": {
+        "SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "server"
+          }
+        },
+        "LABEL_SELECTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "label_selector"
+          }
+        },
+        "IP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the resource."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItemServer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Server.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional public IP of the Server to use as target.\nMust be the Primary IPv4 of the Server, or an IPv6 host address within IPv6 /64 subnet of the Server. If omitted, the Primary IPv4 of the Server is used. Must not be a private IP and is only valid for public targets."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for type Server, only valid and required if type is `server`."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItemLabelSelector": {
+      "type": "structure",
+      "members": {
+        "selector": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label selector.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for label selector targets, only valid and required if type is `label_selector`."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItemIp": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP of a server that belongs to the same customer (public IPv4/IPv6) or private IP in a subnet type vswitch.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for an IP target. It is only possible to use the (Public or vSwitch) IPs of Hetzner Online Root Servers belonging to the project owner. IPs belonging to other users are blocked. Additionally IPs belonging to services provided by Hetzner Cloud (Servers, Load Balancers, ...) are blocked as well. Only valid and required if type is `ip`."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItemType",
+          "traits": {
+            "smithy.api#documentation": "Type of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "server": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItemServer",
+          "traits": {
+            "smithy.api#documentation": "Configuration for type Server, only valid and required if type is `server`."
+          }
+        },
+        "label_selector": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItemLabelSelector",
+          "traits": {
+            "smithy.api#documentation": "Configuration for label selector targets, only valid and required if type is `label_selector`."
+          }
+        },
+        "ip": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItemIp",
+          "traits": {
+            "smithy.api#documentation": "Configuration for an IP target. It is only possible to use the (Public or vSwitch) IPs of Hetzner Online Root Servers belonging to the project owner. IPs belonging to other users are blocked. Additionally IPs belonging to services provided by Hetzner Cloud (Servers, Load Balancers, ...) are blocked as well. Only valid and required if type is `ip`."
+          }
+        },
+        "use_private_ip": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use the private network IP instead of the public IP of the Server, requires the Server and Load Balancer to be in the same network. Only valid for target types `server` and `label_selector`."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of targets."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "load_balancer_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID or name of the Load Balancer type this Load Balancer should be created with.",
+            "smithy.api#required": {}
+          }
+        },
+        "algorithm": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestAlgorithm",
+          "traits": {
+            "smithy.api#documentation": "Algorithm of the Load Balancer."
+          }
+        },
+        "services": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestServicesList",
+          "traits": {
+            "smithy.api#documentation": "Array of services."
+          }
+        },
+        "targets": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestTargetsList",
+          "traits": {
+            "smithy.api#documentation": "Array of targets."
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        },
+        "public_interface": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable the public interface of the Load Balancer."
+          }
+        },
+        "network": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the network the Load Balancer should be attached to on creation."
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of network zone."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID or name of Location to create Load Balancer in."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPublicNetIpv4": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4) of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dns_ptr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reverse DNS PTR entry for the IPv4 address of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP address (v4)."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPublicNetIpv6": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v6) of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dns_ptr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reverse DNS PTR entry for the IPv6 address of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP address (v6)."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPublicNet": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Public Interface enabled or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "ipv4": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPublicNetIpv4",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4).",
+            "smithy.api#required": {}
+          }
+        },
+        "ipv6": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPublicNetIpv6",
+          "traits": {
+            "smithy.api#documentation": "IP address (v6).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Public network information."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPrivateNetItem": {
+      "type": "structure",
+      "members": {
+        "network": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Network.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4) of this Load Balancer in this Network.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPrivateNetList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPrivateNetItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Private networks information."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLocation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable description of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country the [Location](#tag/locations) resides in.\n\nISO 3166-1 alpha-2 code of the country.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the closest city to the [Location](#tag/locations).\n\nCity name or city name and state in short form. E.g. `Falkenstein` or `Ashburn, VA`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Latitude of the city closest to the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Longitude of the city closest to the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Network Zone this [Location](#tag/locations) resides in.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypeDeprecation": {
+      "type": "structure",
+      "members": {
+        "unavailable_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecated resource removal.\n\nOnce this date is reached, the resource will not be returned\nby resource type \"list\" endpoint, and the resource can not be\nused to create new resources. For example, if this is an\nimage, you can not create new servers with this image after\nthe mentioned date.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "announced": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecation announcement.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n"
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceHourly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hourly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceMonthly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Monthly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPricePerTbTraffic": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItem": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Location](#tag/locations) the price is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "price_hourly": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceHourly",
+          "traits": {
+            "smithy.api#documentation": "Hourly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_monthly": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceMonthly",
+          "traits": {
+            "smithy.api#documentation": "Monthly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free traffic per month in bytes in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_per_tb_traffic": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPricePerTbTraffic",
+          "traits": {
+            "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Price per [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerType": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_connections": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of maximum simultaneous open connections.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_services": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of services a Load Balancer of this type can have.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_targets": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of targets a single Load Balancer can have.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_assigned_certificates": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of SSL Certificates that can be assigned to a single Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**Deprecated:** This field is deprecated. Use the `deprecation` object instead.\n\nPoint in time when the Load Balancer type is deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deprecation": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypeDeprecation",
+          "traits": {
+            "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prices": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesList",
+          "traits": {
+            "smithy.api#documentation": "Price per [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerProtection": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the Resource from being deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protection configuration for the Resource."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerServicesItem": {
+      "type": "union",
+      "members": {
+        "ServiceTCP": {
+          "target": "com.hetzner.load_balancers#ServiceTCP"
+        },
+        "ServiceHTTPProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocol"
+        },
+        "ServiceHTTPSProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocol"
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerServicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerServicesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of services that belong to this Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerTargetsItem": {
+      "type": "union",
+      "members": {
+        "TargetTypeServer": {
+          "target": "com.hetzner.load_balancers#TargetTypeServer"
+        },
+        "TargetTypeLabelSelector": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelector"
+        },
+        "TargetTypeIP": {
+          "target": "com.hetzner.load_balancers#TargetTypeIP"
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerTargetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerTargetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of targets that belong to this Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerAlgorithmType": {
+      "type": "enum",
+      "members": {
+        "ROUND_ROBIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "round_robin"
+          }
+        },
+        "LEAST_CONNECTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "least_connections"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the algorithm."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerAlgorithm": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerAlgorithmType",
+          "traits": {
+            "smithy.api#documentation": "Type of the algorithm.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Algorithm of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Load Balancer](#tag/load-balancers).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Resource. Must be unique per Project.",
+            "smithy.api#required": {}
+          }
+        },
+        "public_net": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPublicNet",
+          "traits": {
+            "smithy.api#documentation": "Public network information.",
+            "smithy.api#required": {}
+          }
+        },
+        "private_net": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerPrivateNetList",
+          "traits": {
+            "smithy.api#documentation": "Private networks information.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLocation",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "load_balancer_type": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLoadBalancerType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "protection": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerProtection",
+          "traits": {
+            "smithy.api#documentation": "Protection configuration for the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "services": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerServicesList",
+          "traits": {
+            "smithy.api#documentation": "List of services that belong to this Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "targets": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerTargetsList",
+          "traits": {
+            "smithy.api#documentation": "List of targets that belong to this Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "algorithm": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancerAlgorithm",
+          "traits": {
+            "smithy.api#documentation": "Algorithm of the Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "outgoing_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Outbound Traffic for the current billing period in bytes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ingoing_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Inbound Traffic for the current billing period in bytes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free Traffic for the current billing period in bytes.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseActionStatus": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the Action."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseActionResourcesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the Resource.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseActionResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseActionResourcesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources the Action relates to."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseActionError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fixed error code for machines.",
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message for humans.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null."
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponseAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Action](#description/actions).",
+            "smithy.api#required": {}
+          }
+        },
+        "command": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Command executed in the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseActionStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the Action.",
+            "smithy.api#required": {}
+          }
+        },
+        "started": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was started (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "finished": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Action was finished (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format). Only set if the Action is finished otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "progress": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Progress of the Action in percent.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseActionResourcesList",
+          "traits": {
+            "smithy.api#documentation": "Resources the Action relates to.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseActionError",
+          "traits": {
+            "smithy.api#documentation": "Error message for the Action if an error occurred, otherwise null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancerResponse": {
+      "type": "structure",
+      "members": {
+        "load_balancer": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseLoadBalancer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancerResponseAction",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancers#CreateLoadBalancer": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancers#CreateLoadBalancerRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancers#CreateLoadBalancerResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/load_balancers",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Load Balancer\n\nCreates a Load Balancer.\n\n#### Operation specific errors"
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPublicNetIpv4": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4) of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dns_ptr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reverse DNS PTR entry for the IPv4 address of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP address (v4)."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPublicNetIpv6": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v6) of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dns_ptr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reverse DNS PTR entry for the IPv6 address of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP address (v6)."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPublicNet": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Public Interface enabled or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "ipv4": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPublicNetIpv4",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4).",
+            "smithy.api#required": {}
+          }
+        },
+        "ipv6": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPublicNetIpv6",
+          "traits": {
+            "smithy.api#documentation": "IP address (v6).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Public network information."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPrivateNetItem": {
+      "type": "structure",
+      "members": {
+        "network": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Network.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4) of this Load Balancer in this Network.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPrivateNetList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPrivateNetItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Private networks information."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLocation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable description of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country the [Location](#tag/locations) resides in.\n\nISO 3166-1 alpha-2 code of the country.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the closest city to the [Location](#tag/locations).\n\nCity name or city name and state in short form. E.g. `Falkenstein` or `Ashburn, VA`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Latitude of the city closest to the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Longitude of the city closest to the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Network Zone this [Location](#tag/locations) resides in.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypeDeprecation": {
+      "type": "structure",
+      "members": {
+        "unavailable_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecated resource removal.\n\nOnce this date is reached, the resource will not be returned\nby resource type \"list\" endpoint, and the resource can not be\nused to create new resources. For example, if this is an\nimage, you can not create new servers with this image after\nthe mentioned date.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "announced": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecation announcement.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n"
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceHourly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hourly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceMonthly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Monthly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPricePerTbTraffic": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItem": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Location](#tag/locations) the price is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "price_hourly": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceHourly",
+          "traits": {
+            "smithy.api#documentation": "Hourly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_monthly": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceMonthly",
+          "traits": {
+            "smithy.api#documentation": "Monthly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free traffic per month in bytes in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_per_tb_traffic": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPricePerTbTraffic",
+          "traits": {
+            "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Price per [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerType": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_connections": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of maximum simultaneous open connections.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_services": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of services a Load Balancer of this type can have.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_targets": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of targets a single Load Balancer can have.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_assigned_certificates": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of SSL Certificates that can be assigned to a single Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**Deprecated:** This field is deprecated. Use the `deprecation` object instead.\n\nPoint in time when the Load Balancer type is deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deprecation": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypeDeprecation",
+          "traits": {
+            "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prices": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerTypePricesList",
+          "traits": {
+            "smithy.api#documentation": "Price per [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerProtection": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the Resource from being deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protection configuration for the Resource."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerServicesItem": {
+      "type": "union",
+      "members": {
+        "ServiceTCP": {
+          "target": "com.hetzner.load_balancers#ServiceTCP"
+        },
+        "ServiceHTTPProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocol"
+        },
+        "ServiceHTTPSProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocol"
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerServicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerServicesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of services that belong to this Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerTargetsItem": {
+      "type": "union",
+      "members": {
+        "TargetTypeServer": {
+          "target": "com.hetzner.load_balancers#TargetTypeServer"
+        },
+        "TargetTypeLabelSelector": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelector"
+        },
+        "TargetTypeIP": {
+          "target": "com.hetzner.load_balancers#TargetTypeIP"
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerTargetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerTargetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of targets that belong to this Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerAlgorithmType": {
+      "type": "enum",
+      "members": {
+        "ROUND_ROBIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "round_robin"
+          }
+        },
+        "LEAST_CONNECTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "least_connections"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the algorithm."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerAlgorithm": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerAlgorithmType",
+          "traits": {
+            "smithy.api#documentation": "Type of the algorithm.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Algorithm of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Load Balancer](#tag/load-balancers).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Resource. Must be unique per Project.",
+            "smithy.api#required": {}
+          }
+        },
+        "public_net": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPublicNet",
+          "traits": {
+            "smithy.api#documentation": "Public network information.",
+            "smithy.api#required": {}
+          }
+        },
+        "private_net": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerPrivateNetList",
+          "traits": {
+            "smithy.api#documentation": "Private networks information.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLocation",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "load_balancer_type": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLoadBalancerType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "protection": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerProtection",
+          "traits": {
+            "smithy.api#documentation": "Protection configuration for the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "services": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerServicesList",
+          "traits": {
+            "smithy.api#documentation": "List of services that belong to this Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "targets": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerTargetsList",
+          "traits": {
+            "smithy.api#documentation": "List of targets that belong to this Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "algorithm": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancerAlgorithm",
+          "traits": {
+            "smithy.api#documentation": "Algorithm of the Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "outgoing_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Outbound Traffic for the current billing period in bytes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ingoing_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Inbound Traffic for the current billing period in bytes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free Traffic for the current billing period in bytes.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerResponse": {
+      "type": "structure",
+      "members": {
+        "load_balancer": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerResponseLoadBalancer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancer": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/load_balancers/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a Load Balancer\n\nGets a specific Load Balancer object."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerRequestLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\n\nNote that the set of [Labels](#description/labels) provided in the request will overwrite the\nexisting one.\n\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New Load Balancer name."
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerRequestLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\n\nNote that the set of [Labels](#description/labels) provided in the request will overwrite the\nexisting one.\n\nFor more information, see \"[Labels](#description/labels)\".\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPublicNetIpv4": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4) of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dns_ptr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reverse DNS PTR entry for the IPv4 address of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP address (v4)."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPublicNetIpv6": {
+      "type": "structure",
+      "members": {
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v6) of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dns_ptr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reverse DNS PTR entry for the IPv6 address of this Load Balancer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "IP address (v6)."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPublicNet": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Public Interface enabled or not.",
+            "smithy.api#required": {}
+          }
+        },
+        "ipv4": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPublicNetIpv4",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4).",
+            "smithy.api#required": {}
+          }
+        },
+        "ipv6": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPublicNetIpv6",
+          "traits": {
+            "smithy.api#documentation": "IP address (v6).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Public network information."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPrivateNetItem": {
+      "type": "structure",
+      "members": {
+        "network": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Network.",
+            "smithy.api#required": {}
+          }
+        },
+        "ip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP address (v4) of this Load Balancer in this Network.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPrivateNetList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPrivateNetItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Private networks information."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLocation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human readable description of the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country the [Location](#tag/locations) resides in.\n\nISO 3166-1 alpha-2 code of the country.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the closest city to the [Location](#tag/locations).\n\nCity name or city name and state in short form. E.g. `Falkenstein` or `Ashburn, VA`.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "latitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Latitude of the city closest to the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "longitude": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Longitude of the city closest to the [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "network_zone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Network Zone this [Location](#tag/locations) resides in.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypeDeprecation": {
+      "type": "structure",
+      "members": {
+        "unavailable_after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecated resource removal.\n\nOnce this date is reached, the resource will not be returned\nby resource type \"list\" endpoint, and the resource can not be\nused to create new resources. For example, if this is an\nimage, you can not create new servers with this image after\nthe mentioned date.\n",
+            "smithy.api#required": {}
+          }
+        },
+        "announced": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the deprecation announcement.\n",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n"
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceHourly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hourly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceMonthly": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Monthly price in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPricePerTbTraffic": {
+      "type": "structure",
+      "members": {
+        "net": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price without VAT.",
+            "smithy.api#required": {}
+          }
+        },
+        "gross": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Price with VAT added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItem": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the [Location](#tag/locations) the price is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "price_hourly": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceHourly",
+          "traits": {
+            "smithy.api#documentation": "Hourly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_monthly": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPriceMonthly",
+          "traits": {
+            "smithy.api#documentation": "Monthly price in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free traffic per month in bytes in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        },
+        "price_per_tb_traffic": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItemPricePerTbTraffic",
+          "traits": {
+            "smithy.api#documentation": "Additional traffic price per TB in this [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Price per [Location](#tag/locations)."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerType": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the Load Balancer type.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_connections": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of maximum simultaneous open connections.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_services": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of services a Load Balancer of this type can have.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_targets": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of targets a single Load Balancer can have.",
+            "smithy.api#required": {}
+          }
+        },
+        "max_assigned_certificates": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of SSL Certificates that can be assigned to a single Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "deprecated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "**Deprecated:** This field is deprecated. Use the `deprecation` object instead.\n\nPoint in time when the Load Balancer type is deprecated (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "deprecation": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypeDeprecation",
+          "traits": {
+            "smithy.api#documentation": "Describes if, when and how the resource is deprecated. If this field is\nset to `null` the resource is not deprecated. If a value is set, it is\nconsidered deprecated.\n",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prices": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerTypePricesList",
+          "traits": {
+            "smithy.api#documentation": "Price per [Location](#tag/locations).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerProtection": {
+      "type": "structure",
+      "members": {
+        "delete": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prevent the Resource from being deleted.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Protection configuration for the Resource."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n"
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerServicesItem": {
+      "type": "union",
+      "members": {
+        "ServiceTCP": {
+          "target": "com.hetzner.load_balancers#ServiceTCP"
+        },
+        "ServiceHTTPProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPProtocol"
+        },
+        "ServiceHTTPSProtocol": {
+          "target": "com.hetzner.load_balancers#ServiceHTTPSProtocol"
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerServicesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerServicesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of services that belong to this Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerTargetsItem": {
+      "type": "union",
+      "members": {
+        "TargetTypeServer": {
+          "target": "com.hetzner.load_balancers#TargetTypeServer"
+        },
+        "TargetTypeLabelSelector": {
+          "target": "com.hetzner.load_balancers#TargetTypeLabelSelector"
+        },
+        "TargetTypeIP": {
+          "target": "com.hetzner.load_balancers#TargetTypeIP"
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerTargetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerTargetsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of targets that belong to this Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerAlgorithmType": {
+      "type": "enum",
+      "members": {
+        "ROUND_ROBIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "round_robin"
+          }
+        },
+        "LEAST_CONNECTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "least_connections"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the algorithm."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerAlgorithm": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerAlgorithmType",
+          "traits": {
+            "smithy.api#documentation": "Type of the algorithm.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Algorithm of the Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the [Load Balancer](#tag/load-balancers).",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Resource. Must be unique per Project.",
+            "smithy.api#required": {}
+          }
+        },
+        "public_net": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPublicNet",
+          "traits": {
+            "smithy.api#documentation": "Public network information.",
+            "smithy.api#required": {}
+          }
+        },
+        "private_net": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerPrivateNetList",
+          "traits": {
+            "smithy.api#documentation": "Private networks information.",
+            "smithy.api#required": {}
+          }
+        },
+        "location": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLocation",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "load_balancer_type": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLoadBalancerType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "protection": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerProtection",
+          "traits": {
+            "smithy.api#documentation": "Protection configuration for the Resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "labels": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "User-defined labels (`key/value` pairs) for the Resource.\nFor more information, see \"[Labels](#description/labels)\".\n",
+            "smithy.api#required": {}
+          }
+        },
+        "created": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Point in time when the Resource was created (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "services": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerServicesList",
+          "traits": {
+            "smithy.api#documentation": "List of services that belong to this Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "targets": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerTargetsList",
+          "traits": {
+            "smithy.api#documentation": "List of targets that belong to this Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "algorithm": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancerAlgorithm",
+          "traits": {
+            "smithy.api#documentation": "Algorithm of the Load Balancer.",
+            "smithy.api#required": {}
+          }
+        },
+        "outgoing_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Outbound Traffic for the current billing period in bytes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ingoing_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Inbound Traffic for the current billing period in bytes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "included_traffic": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Free Traffic for the current billing period in bytes.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancerResponse": {
+      "type": "structure",
+      "members": {
+        "load_balancer": {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponseLoadBalancer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancers#UpdateLoadBalancer": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancers#UpdateLoadBalancerRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancers#UpdateLoadBalancerResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/load_balancers/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a Load Balancer\n\nUpdates a Load Balancer. You can update a Load Balancer’s name and a Load Balancer’s labels.\n\nNote: if the Load Balancer object changes during the request, the response will be a “conflict” error."
+      }
+    },
+    "com.hetzner.load_balancers#DeleteLoadBalancerRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancers#DeleteLoadBalancer": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancers#DeleteLoadBalancerRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/load_balancers/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Load Balancer\n\nDeletes a Load Balancer."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetricsRequestTypeItem": {
+      "type": "enum",
+      "members": {
+        "OPEN_CONNECTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open_connections"
+          }
+        },
+        "CONNECTIONS_PER_SECOND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "connections_per_second"
+          }
+        },
+        "REQUESTS_PER_SECOND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "requests_per_second"
+          }
+        },
+        "BANDWIDTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bandwidth"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetricsRequestTypeList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerMetricsRequestTypeItem"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetricsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "ID of the Load Balancer."
+          }
+        },
+        "type": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerMetricsRequestTypeList",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Type of metrics to get."
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "start",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Start of period to get Metrics for (must be in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format)."
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "end",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "End of period to get Metrics for (must be in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format)."
+          }
+        },
+        "step": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "step",
+            "smithy.api#documentation": "Resolution of results in seconds."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetricsTimeSeriesValueValuesItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetricsTimeSeriesValueValuesList": {
+      "type": "list",
+      "member": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetricsTimeSeriesValueValuesItemList"
+      },
+      "traits": {
+        "smithy.api#documentation": "Metrics timestamps with values."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetricsTimeSeriesValue": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetricsTimeSeriesValueValuesList",
+          "traits": {
+            "smithy.api#documentation": "Metrics timestamps with values.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetricsTimeSeriesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetricsTimeSeriesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "Hash with timeseries information, containing the name of timeseries as key."
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetrics": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start of period of metrics reported (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End of period of metrics reported (in [RFC3339](https://datatracker.ietf.org/doc/html/rfc3339#section-5.6) format).",
+            "smithy.api#required": {}
+          }
+        },
+        "step": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Resolution of results in seconds.",
+            "smithy.api#required": {}
+          }
+        },
+        "time_series": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetricsTimeSeriesMap",
+          "traits": {
+            "smithy.api#documentation": "Hash with timeseries information, containing the name of timeseries as key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetricsResponse": {
+      "type": "structure",
+      "members": {
+        "metrics": {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerMetricsResponseMetrics",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.hetzner.load_balancers#GetLoadBalancerMetrics": {
+      "type": "operation",
+      "input": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerMetricsRequest"
+      },
+      "output": {
+        "target": "com.hetzner.load_balancers#GetLoadBalancerMetricsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/load_balancers/{id}/metrics",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get Metrics for a LoadBalancer\n\nYou must specify the type of metric to get: `open_connections`, `connections_per_second`, `requests_per_second` or `bandwidth`. You can also specify more than one type by comma separation, e.g. `requests_per_second,bandwidth`.\n\nDepending on the type you will get different time series data:\n\n\nMetrics are available for the last 30 days only.\n\nIf you do not provide the step argument we will automatically adjust it so that 200 samples are returned.\n\nWe limit the number of samples to a maximum of 500 and will adjust the step parameter accordingly."
+      }
+    },
+    "com.hetzner.load_balancers#LoadBalancers": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.hetzner.load_balancers#ListLoadBalancers"
+        },
+        {
+          "target": "com.hetzner.load_balancers#CreateLoadBalancer"
+        },
+        {
+          "target": "com.hetzner.load_balancers#GetLoadBalancer"
+        },
+        {
+          "target": "com.hetzner.load_balancers#UpdateLoadBalancer"
+        },
+        {
+          "target": "com.hetzner.load_balancers#DeleteLoadBalancer"
+        },
+        {
+          "target": "com.hetzner.load_balancers#GetLoadBalancerMetrics"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hetzner Cloud API",
+        "smithy.api#documentation": "# Overview\n\nThis is the official documentation for the Hetzner Cloud API.\n\n## Introduction\n\nThe Hetzner Cloud API operates over HTTPS and uses JSON as its data format. The API is a RESTful API and utilizes HTTP methods and HTTP status codes to specify requests and responses.\n\nAs an alternative to working directly with our API you may also consider to use:\n\n- Our CLI program [hcloud](https://github.com/hetznercloud/cli)\n- Our [library for Go](https://github.com/hetznercloud/hcloud-go)\n- Our [library for Python](https://github.com/hetznercloud/hcloud-python)\n\nYou can find even more libraries, tools and integrations on our [Awesome List on GitHub](https://github.com/hetznercloud/awesome-hcloud).\n\n### Open source credits\n\nIf you are developing an open-source project that supports or intends to add support for Hetzner APIs, you may be eligible for a free one-time credit of up to € 50 / $ 50 on your account. Please contact us via the support page on your [Hetzner Console](https://console.hetzner.cloud/support) and let us know the following:\n\n- The name of the project you are working on\n- A short description of the project\n- Link to the project website or repo where the project is hosted\n- Affiliation with / role in the project (e.g. project maintainer)\n- Link to some other open-source work you have already done (if you have done so)\n\n**Note:** We only consider rewards for projects that provide Hetzner-specific functionality or integrations. For example, our Object Storage exposes a standard S3 API without any Hetzner-specific extensions. Projects that focus solely on generic S3 capabilities (e.g., general S3 clients or SDKs) are not Hetzner-specific and are therefore not eligible for Hetzner Rewards.\n\n## Getting Started\n\nTo get started using the API you first need an API token. Sign in into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token. Make sure to copy the token because it won’t be shown to you again. A token is bound to a Project, to interact with the API of another Project you have to create a new token inside the Project. Let’s say your new token is `LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj`.\n\nYou’re now ready to do your first request against the API. To get a list of all Servers in your Project, issue the example request on the right side using [curl](https://curl.se/).\n\nMake sure to replace the token in the example command with the token you have just created. Since your Project probably does not contain any Servers yet, the example response will look like the response on the right side. We will almost always provide a resource root like `servers` inside the example response. A response can also contain a `meta` object with information like [Pagination](#description/pagination).\n\n**Example Request**\n\n```shell\ncurl -H \"Authorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\" \\\n  https://api.hetzner.cloud/v1/servers\n```\n\n**Example Response**\n\n```json\n{\n  \"servers\": [],\n  \"meta\": {\n    \"pagination\": {\n      \"page\": 1,\n      \"per_page\": 25,\n      \"previous_page\": null,\n      \"next_page\": null,\n      \"last_page\": 1,\n      \"total_entries\": 0\n    }\n  }\n}\n```\n\n## Authentication\n\nAll requests to the Hetzner Cloud API must be authenticated via a API token. Include your secret API token in every request you send to the API with the `Authorization` HTTP header.\n\nTo create a new API token for your Project, switch into the [Hetzner Console](https://console.hetzner.com/) choose a Project, go to `Security` → `API Tokens`, and generate a new token.\n\n**Example Authorization header**\n\n```http\nAuthorization: Bearer LRK9DAWQ1ZAEFSrCNEEzLCUwhYX1U3g7wMg4dTlkkDC96fyDuyJ39nVbVjCKSDfj\n```\n\n## Query Parameters\n\nThe API makes use of query parameters to sort and filter responses. The parameter names and values must be URI encoded according to [RFC2396](https://datatracker.ietf.org/doc/html/rfc2396). Query parameters of type `array` can be used multiple times:\n\n**Example query parameters for pagination**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?page=1&page_size=12\n```\n\n**Example use of multiple values for a parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?type=uploaded&type=managed\n```\n\n**Example use of an encoded parameter**\n\n```\nhttps://api.hetzner.cloud/v1/certificates?label_selector=key%3Dvalue\n```\n\n## Errors\n\nErrors are indicated by HTTP status codes. Further, the response of the request which generated the error contains an error code, an error message, and, optionally, error details. The schema of the error details object depends on the error code.\n\nThe error response contains the following keys:\n\n\n**Example response**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n### Error Codes\n\n\n**invalid_input**\n\n```json\n{\n  \"error\": {\n    \"code\": \"invalid_input\",\n    \"message\": \"invalid input in field 'broken_field': is too long\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"broken_field\",\n          \"messages\": [\"is too long\"]\n        }\n      ]\n    }\n  }\n}\n```\n\n**uniqueness_error**\n\n```json\n{\n  \"error\": {\n    \"code\": \"uniqueness_error\",\n    \"message\": \"SSH key with the same fingerprint already exists\",\n    \"details\": {\n      \"fields\": [\n        {\n          \"name\": \"public_key\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**resource_limit_exceeded**\n\n```json\n{\n  \"error\": {\n    \"code\": \"resource_limit_exceeded\",\n    \"message\": \"project limit exceeded\",\n    \"details\": {\n      \"limits\": [\n        {\n          \"name\": \"project_limit\"\n        }\n      ]\n    }\n  }\n}\n```\n\n**deprecated_api_endpoint**\n\n```json\n{\n  \"error\": {\n    \"code\": \"deprecated_api_endpoint\",\n    \"message\": \"API functionality was removed\",\n    \"details\": {\n      \"announcement\": \"https://docs.hetzner.cloud/changelog#2023-07-20-foo-endpoint-is-deprecated\"\n    }\n  }\n}\n```\n\n## Actions\n\nActions represent asynchronous tasks within the API, targeting one or more resources. Triggering changes in the API may return a `running` action.\n\nAn action should be waited upon, until it reaches either the `success` or `error` state. Avoid polling the action's state too frequently to reduce the risk of exhausting your API requests and hitting the [rate limit](#description/rate-limiting).\n\nIf an action fails, it will contain details about the underlying error.\n\nOnce the asynchronous tasks have completed and the targeted resources are in a consistent state, the action is marked as succeeded.\n\nIn some cases, you may trigger multiple changes at once, and only wait for the returned actions at a later stage.\n\n## Labels\n\nLabels are `key/value` pairs that can be attached to all resources.\n\nValid label keys have two segments: an optional prefix and name, separated by a slash (`/`). The name segment is required and must be a string of 63 characters or less, beginning and ending with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between. The prefix is optional. If specified, the prefix must be a DNS subdomain: a series of DNS labels separated by dots (`.`), not longer than 253 characters in total, followed by a slash (`/`).\n\nValid label values must be a string of 63 characters or less and must be empty or begin and end with an alphanumeric character (`[a-z0-9A-Z]`) with dashes (`-`), underscores (`_`), dots (`.`), and alphanumerics between.\n\nThe `hetzner.cloud/` prefix is reserved and cannot be used.\n\n**Example Labels**\n\n```json\n{\n  \"labels\": {\n    \"environment\": \"development\",\n    \"service\": \"backend\",\n    \"example.com/my\": \"label\",\n    \"just-a-key\": \"\"\n  }\n}\n```\n\n## Label Selector\n\nFor resources with labels, you can filter resources by their labels using the label selector query language.\n\n\n### Examples\n\n- Returns all resources that have a `env=production` label and that don't have a `type=database` label:\n\n  `env=production,type!=database`\n\n- Returns all resources that have a `env=testing` or `env=staging` label:\n\n  `env in (testing,staging)`\n\n- Returns all resources that don't have a `type` label:\n\n  `!type`\n\n## Pagination\n\nResponses which return multiple items support pagination. If they do support pagination, it can be controlled with following query string parameters:\n\n- A `page` parameter specifies the page to fetch. The number of the first page is 1.\n- A `per_page` parameter specifies the number of items returned per page. The default value is 25, the maximum value is 50 except otherwise specified in the documentation.\n\nResponses contain a `Link` header with pagination information.\n\nAdditionally, if the response body is JSON and the root object is an object, that object has a `pagination` object inside the `meta` object with pagination information:\n\n**Example Pagination**\n\n```json\n{\n    \"servers\": [...],\n    \"meta\": {\n        \"pagination\": {\n            \"page\": 2,\n            \"per_page\": 25,\n            \"previous_page\": 1,\n            \"next_page\": 3,\n            \"last_page\": 4,\n            \"total_entries\": 100\n        }\n    }\n}\n```\n\nThe keys `previous_page`, `next_page`, `last_page`, and `total_entries` may be `null` when on the first page, last page, or when the total number of entries is unknown.\n\n**Example Pagination Link header**\n\n```http\nLink: <https://api.hetzner.cloud/v1/actions?page=2&per_page=5>; rel=\"prev\",\n      <https://api.hetzner.cloud/v1/actions?page=4&per_page=5>; rel=\"next\",\n      <https://api.hetzner.cloud/v1/actions?page=6&per_page=5>; rel=\"last\"\n```\n\nLine breaks have been added for display purposes only and responses may only contain some of the above `rel` values.\n\n## Rate Limiting\n\nAll requests, whether they are authenticated or not, are subject to rate limiting. If you have reached your limit, your requests will be handled with a `429 Too Many Requests` error. Burst requests are allowed. Responses contain several headers which provide information about your current rate limit status.\n\n- The `RateLimit-Limit` header contains the total number of requests you can perform per hour.\n- The `RateLimit-Remaining` header contains the number of requests remaining in the current rate limit time frame.\n- The `RateLimit-Reset` header contains a UNIX timestamp of the point in time when your rate limit will have recovered, and you will have the full number of requests available again.\n\nThe default limit is 3600 requests per hour and per Project. The number of remaining requests increases gradually. For example, when your limit is 3600 requests per hour, the number of remaining requests will increase by 1 every second.\n\n## Server Metadata\n\nYour Server can discover metadata about itself by doing a HTTP request to specific URLs. The following data is available:\n\n\n**Example: Summary**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata\n```\n\n```yaml\navailability-zone: hel1-dc2\nhostname: my-server\ninstance-id: 42\npublic-ipv4: 1.2.3.4\nregion: eu-central\n```\n\n**Example: Hostname**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/hostname\nmy-server\n```\n\n**Example: Instance ID**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/instance-id\n42\n```\n\n**Example: Public IPv4**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/public-ipv4\n1.2.3.4\n```\n\n**Example: Private Networks**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/private-networks\n```\n\n```yaml\n- ip: 10.0.0.2\n  alias_ips: [10.0.0.3, 10.0.0.4]\n  interface_num: 1\n  mac_address: 86:00:00:2a:7d:e0\n  network_id: 1234\n  network_name: nw-test1\n  network: 10.0.0.0/8\n  subnet: 10.0.0.0/24\n  gateway: 10.0.0.1\n- ip: 192.168.0.2\n  alias_ips: []\n  interface_num: 2\n  mac_address: 86:00:00:2a:7d:e1\n  network_id: 4321\n  network_name: nw-test2\n  network: 192.168.0.0/16\n  subnet: 192.168.0.0/24\n  gateway: 192.168.0.1\n```\n\n**Example: Availability Zone**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/availability-zone\nhel1-dc2\n```\n\n**Example: Region**\n\n```shell\n$ curl http://169.254.169.254/hetzner/v1/metadata/region\neu-central\n```\n\n## Sorting\n\nSome responses which return multiple items support sorting. If they do support sorting the documentation states which fields can be used for sorting. You specify sorting with the `sort` query string parameter. You can sort by multiple fields. You can set the sort direction by appending `:asc` or `:desc` to the field name. By default, ascending sorting is used.\n\n**Example: Sorting**\n\n```\nhttps://api.hetzner.cloud/v1/actions?sort=status\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc\nhttps://api.hetzner.cloud/v1/actions?sort=status:desc\nhttps://api.hetzner.cloud/v1/actions?sort=status:asc&sort=command:desc\n```\n\n## Deprecation Notices\n\nYou can find all announced deprecations in our [Changelog](/changelog)."
+      }
+    }
+  }
+}

@@ -1,0 +1,2053 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.developerhub#GeneratePreviewArtifacts": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#GeneratePreviewArtifactsRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#GeneratePreviewArtifactsResponse2"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevHub/locations/{location}/generatePreviewArtifacts",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Generate preview dockerfile and manifests.",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#GeneratePreviewArtifactsResponse2": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.azure.developerhub#GeneratePreviewArtifactsResponse",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.developerhub#GeneratePreviewArtifactsResponse": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Dockerfile and manifest artifacts generated as a preview are returned as a map<path string,content string>"
+      }
+    },
+    "com.azure.developerhub#GeneratePreviewArtifactsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "generationLanguage": {
+          "target": "com.azure.developerhub#GenerationLanguage"
+        },
+        "languageVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the language image used for execution in the generated dockerfile."
+          }
+        },
+        "builderVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the language image used for building the code in the generated dockerfile."
+          }
+        },
+        "port": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The port the application is exposed on."
+          }
+        },
+        "appName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the app."
+          }
+        },
+        "dockerfileOutputDirectory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The directory to output the generated Dockerfile to."
+          }
+        },
+        "manifestOutputDirectory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The directory to output the generated manifests to."
+          }
+        },
+        "dockerfileGenerationMode": {
+          "target": "com.azure.developerhub#DockerfileGenerationMode"
+        },
+        "manifestGenerationMode": {
+          "target": "com.azure.developerhub#ManifestGenerationMode"
+        },
+        "manifestType": {
+          "target": "com.azure.developerhub#GenerationManifestType"
+        },
+        "imageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the image to be generated."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The namespace to deploy the application to."
+          }
+        },
+        "imageTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tag to apply to the generated image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#GenerationManifestType": {
+      "type": "enum",
+      "members": {
+        "HELM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "helm"
+          }
+        },
+        "KUBE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kube"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Determines the type of manifests to be generated."
+      }
+    },
+    "com.azure.developerhub#ManifestGenerationMode": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The mode of generation to be used for generating Manifest."
+      }
+    },
+    "com.azure.developerhub#DockerfileGenerationMode": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The mode of generation to be used for generating Dockerfiles."
+      }
+    },
+    "com.azure.developerhub#GenerationLanguage": {
+      "type": "enum",
+      "members": {
+        "CLOJURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clojure"
+          }
+        },
+        "CSHARP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "csharp"
+          }
+        },
+        "ERLANG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "erlang"
+          }
+        },
+        "GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "go"
+          }
+        },
+        "GOMODULE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gomodule"
+          }
+        },
+        "GRADLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gradle"
+          }
+        },
+        "JAVA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "java"
+          }
+        },
+        "JAVASCRIPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "javascript"
+          }
+        },
+        "PHP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "php"
+          }
+        },
+        "PYTHON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "python"
+          }
+        },
+        "RUBY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ruby"
+          }
+        },
+        "RUST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rust"
+          }
+        },
+        "SWIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "swift"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The programming language used."
+      }
+    },
+    "com.azure.developerhub#WorkflowDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#WorkflowDeleteRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#DeleteWorkflowResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevHub/workflows/{workflowName}",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Deletes a workflow",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#DeleteWorkflowResponse": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "delete status message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "delete response if content must be provided on delete operation"
+      }
+    },
+    "com.azure.developerhub#WorkflowDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workflowName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workflow resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#WorkflowUpdateTags": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#WorkflowUpdateTagsRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#WorkflowUpdateTagsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevHub/workflows/{workflowName}",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Updates tags on a workflow.",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#WorkflowUpdateTagsResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.developerhub#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.developerhub#WorkflowUpdateTagsResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.developerhub#WorkflowProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a workflow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.developerhub#WorkflowProperties": {
+      "type": "structure",
+      "members": {
+        "githubWorkflowProfile": {
+          "target": "com.azure.developerhub#GitHubWorkflowProfile",
+          "traits": {
+            "smithy.api#documentation": "Profile of a github workflow."
+          }
+        },
+        "artifactGenerationProperties": {
+          "target": "com.azure.developerhub#ArtifactGenerationProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for generating artifacts like dockerfile and manifests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Workflow properties"
+      }
+    },
+    "com.azure.developerhub#ArtifactGenerationProperties": {
+      "type": "structure",
+      "members": {
+        "generationLanguage": {
+          "target": "com.azure.developerhub#GenerationLanguage"
+        },
+        "languageVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the language image used for execution in the generated dockerfile."
+          }
+        },
+        "builderVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version of the language image used for building the code in the generated dockerfile."
+          }
+        },
+        "port": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The port the application is exposed on."
+          }
+        },
+        "appName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the app."
+          }
+        },
+        "dockerfileOutputDirectory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The directory to output the generated Dockerfile to."
+          }
+        },
+        "manifestOutputDirectory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The directory to output the generated manifests to."
+          }
+        },
+        "dockerfileGenerationMode": {
+          "target": "com.azure.developerhub#DockerfileGenerationMode"
+        },
+        "manifestGenerationMode": {
+          "target": "com.azure.developerhub#ManifestGenerationMode"
+        },
+        "manifestType": {
+          "target": "com.azure.developerhub#GenerationManifestType"
+        },
+        "imageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the image to be generated."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The namespace to deploy the application to."
+          }
+        },
+        "imageTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tag to apply to the generated image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties used for generating artifacts such as Dockerfiles and manifests."
+      }
+    },
+    "com.azure.developerhub#GitHubWorkflowProfile": {
+      "type": "structure",
+      "members": {
+        "repositoryOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository Owner"
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository Name"
+          }
+        },
+        "branchName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository Branch Name"
+          }
+        },
+        "dockerfile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path to the Dockerfile within the repository."
+          }
+        },
+        "dockerBuildContext": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path to Dockerfile Build Context within the repository."
+          }
+        },
+        "deploymentProperties": {
+          "target": "com.azure.developerhub#DeploymentProperties"
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kubernetes namespace the application is deployed to."
+          }
+        },
+        "acr": {
+          "target": "com.azure.developerhub#ACR"
+        },
+        "oidcCredentials": {
+          "target": "com.azure.developerhub#GitHubWorkflowProfileOidcCredentials",
+          "traits": {
+            "smithy.api#documentation": "The fields needed for OIDC with GitHub."
+          }
+        },
+        "aksResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Kubernetes Cluster Resource the application will be deployed to."
+          }
+        },
+        "prURL": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to the Pull Request submitted against the users repository."
+          }
+        },
+        "pullNumber": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number associated with the submitted pull request."
+          }
+        },
+        "prStatus": {
+          "target": "com.azure.developerhub#PullRequestStatus"
+        },
+        "lastWorkflowRun": {
+          "target": "com.azure.developerhub#WorkflowRun"
+        },
+        "authStatus": {
+          "target": "com.azure.developerhub#AuthorizationStatus"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GitHub Workflow Profile"
+      }
+    },
+    "com.azure.developerhub#AuthorizationStatus": {
+      "type": "enum",
+      "members": {
+        "AUTHORIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Authorized"
+          }
+        },
+        "NOTFOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotFound"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Determines the authorization status of requests."
+      }
+    },
+    "com.azure.developerhub#WorkflowRun": {
+      "type": "structure",
+      "members": {
+        "succeeded": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Describes if the workflow run succeeded."
+          }
+        },
+        "workflowRunURL": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to the run of the workflow."
+          }
+        },
+        "lastRunAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of the last workflow run."
+          }
+        },
+        "workflowRunStatus": {
+          "target": "com.azure.developerhub#WorkflowRunStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.developerhub#WorkflowRunStatus": {
+      "type": "enum",
+      "members": {
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "queued"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "inprogress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the status of the workflow run"
+      }
+    },
+    "com.azure.developerhub#PullRequestStatus": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "SUBMITTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "submitted"
+          }
+        },
+        "MERGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "merged"
+          }
+        },
+        "REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "removed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the Pull Request submitted against the users repository."
+      }
+    },
+    "com.azure.developerhub#GitHubWorkflowProfileOidcCredentials": {
+      "type": "structure",
+      "members": {
+        "azureClientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Application Client ID"
+          }
+        },
+        "azureTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Directory (tenant) ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The fields needed for OIDC with GitHub."
+      }
+    },
+    "com.azure.developerhub#ACR": {
+      "type": "structure",
+      "members": {
+        "acrSubscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ACR subscription id"
+          }
+        },
+        "acrResourceGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ACR resource group"
+          }
+        },
+        "acrRegistryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ACR registry"
+          }
+        },
+        "acrRepositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ACR repository"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information on the azure container registry"
+      }
+    },
+    "com.azure.developerhub#DeploymentProperties": {
+      "type": "structure",
+      "members": {
+        "manifestType": {
+          "target": "com.azure.developerhub#ManifestType"
+        },
+        "kubeManifestLocations": {
+          "target": "com.azure.developerhub#DeploymentPropertiesKubeManifestLocationsList"
+        },
+        "helmChartPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Helm chart directory path in repository."
+          }
+        },
+        "helmValues": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Helm Values.yaml file location in repository."
+          }
+        },
+        "overrides": {
+          "target": "com.azure.developerhub#DeploymentPropertiesOverridesMap",
+          "traits": {
+            "smithy.api#documentation": "Manifest override values."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.developerhub#DeploymentPropertiesOverridesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Manifest override values."
+      }
+    },
+    "com.azure.developerhub#DeploymentPropertiesKubeManifestLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.developerhub#ManifestType": {
+      "type": "enum",
+      "members": {
+        "HELM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "helm"
+          }
+        },
+        "KUBE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kube"
+          }
+        },
+        "KUSTOMIZE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kustomize"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Determines the type of manifests within the repository."
+      }
+    },
+    "com.azure.developerhub#WorkflowUpdateTagsResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.developerhub#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.developerhub#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.developerhub#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.developerhub#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.developerhub#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.developerhub#WorkflowUpdateTagsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workflowName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workflow resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.developerhub#WorkflowUpdateTagsRequestTagsMap"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#WorkflowUpdateTagsRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.developerhub#WorkflowCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#WorkflowCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#WorkflowCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevHub/workflows/{workflowName}",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Creates or updates a workflow",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#WorkflowCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.developerhub#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.developerhub#WorkflowCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.developerhub#WorkflowProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a workflow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.developerhub#WorkflowCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.developerhub#WorkflowCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workflowName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workflow resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.developerhub#WorkflowCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.developerhub#WorkflowPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of a workflow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#WorkflowPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "githubWorkflowProfile": {
+          "target": "com.azure.developerhub#GitHubWorkflowProfileInput",
+          "traits": {
+            "smithy.api#documentation": "Profile of a github workflow."
+          }
+        },
+        "artifactGenerationProperties": {
+          "target": "com.azure.developerhub#ArtifactGenerationProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties for generating artifacts like dockerfile and manifests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Workflow properties"
+      }
+    },
+    "com.azure.developerhub#GitHubWorkflowProfileInput": {
+      "type": "structure",
+      "members": {
+        "repositoryOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository Owner"
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository Name"
+          }
+        },
+        "branchName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository Branch Name"
+          }
+        },
+        "dockerfile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path to the Dockerfile within the repository."
+          }
+        },
+        "dockerBuildContext": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path to Dockerfile Build Context within the repository."
+          }
+        },
+        "deploymentProperties": {
+          "target": "com.azure.developerhub#DeploymentProperties"
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kubernetes namespace the application is deployed to."
+          }
+        },
+        "acr": {
+          "target": "com.azure.developerhub#ACR"
+        },
+        "oidcCredentials": {
+          "target": "com.azure.developerhub#GitHubWorkflowProfileInputOidcCredentials",
+          "traits": {
+            "smithy.api#documentation": "The fields needed for OIDC with GitHub."
+          }
+        },
+        "aksResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure Kubernetes Cluster Resource the application will be deployed to."
+          }
+        },
+        "lastWorkflowRun": {
+          "target": "com.azure.developerhub#WorkflowRunInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "GitHub Workflow Profile"
+      }
+    },
+    "com.azure.developerhub#WorkflowRunInput": {
+      "type": "structure",
+      "members": {
+        "workflowRunStatus": {
+          "target": "com.azure.developerhub#WorkflowRunStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.developerhub#GitHubWorkflowProfileInputOidcCredentials": {
+      "type": "structure",
+      "members": {
+        "azureClientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Application Client ID"
+          }
+        },
+        "azureTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Directory (tenant) ID"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The fields needed for OIDC with GitHub."
+      }
+    },
+    "com.azure.developerhub#WorkflowCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.developerhub#WorkflowGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#WorkflowGetRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#WorkflowGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevHub/workflows/{workflowName}",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Gets a workflow.",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#WorkflowGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.developerhub#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.developerhub#WorkflowGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.developerhub#WorkflowProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a workflow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.developerhub#WorkflowGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.developerhub#WorkflowGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workflowName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the workflow resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#WorkflowListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#WorkflowListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#WorkflowListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevHub/workflows",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Gets a list of workflows within a resource group.",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#WorkflowListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.developerhub#WorkflowListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of workflows."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to the next set of workflow results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from List Workflows operation."
+      }
+    },
+    "com.azure.developerhub#WorkflowListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.developerhub#Workflow"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of workflows."
+      }
+    },
+    "com.azure.developerhub#Workflow": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.developerhub#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.developerhub#WorkflowTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.developerhub#WorkflowProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a workflow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource representation of a workflow"
+      }
+    },
+    "com.azure.developerhub#WorkflowTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.developerhub#WorkflowListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "managedClusterResource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "managedClusterResource",
+            "smithy.api#documentation": "The ManagedCluster resource associated with the workflows."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#WorkflowList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#WorkflowListRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#WorkflowListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevHub/workflows",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Gets a list of workflows associated with the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#WorkflowListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#ListGitHubOAuth": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#ListGitHubOAuthRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#GitHubOAuthListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevHub/locations/{location}/githuboauth",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#GitHubOAuthListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.developerhub#GitHubOAuthListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Singleton list response containing one GitHubOAuthResponse response"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from List GitHubOAuth operation."
+      }
+    },
+    "com.azure.developerhub#GitHubOAuthListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.developerhub#GitHubOAuthResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "Singleton list response containing one GitHubOAuthResponse response"
+      }
+    },
+    "com.azure.developerhub#GitHubOAuthResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.developerhub#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.developerhub#GitHubOAuthProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a workflow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Singleton response of GitHubOAuth containing "
+      }
+    },
+    "com.azure.developerhub#GitHubOAuthProperties": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "user making request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from List GitHubOAuth operation."
+      }
+    },
+    "com.azure.developerhub#ListGitHubOAuthRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#GitHubOAuthCallback": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#GitHubOAuthCallbackRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#GitHubOAuthCallbackResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevHub/locations/{location}/githuboauth/default",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Callback URL to hit once authenticated with GitHub App to have the service store the OAuth token.",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#GitHubOAuthCallbackResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.developerhub#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.developerhub#GitHubOAuthProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a workflow."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.developerhub#GitHubOAuthCallbackRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "code",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The code response from authenticating the GitHub App."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The state response from authenticating the GitHub App."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#GitHubOAuth": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.developerhub#GitHubOAuthRequest"
+      },
+      "output": {
+        "target": "com.azure.developerhub#GitHubOAuthInfoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DevHub/locations/{location}/githuboauth/default/getGitHubOAuthInfo",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Gets GitHubOAuth info used to authenticate users with the Developer Hub GitHub App.",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#GitHubOAuthInfoResponse": {
+      "type": "structure",
+      "members": {
+        "authURL": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for authorizing the Developer Hub GitHub App"
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OAuth token used to make calls to GitHub"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "URL used to authorize the Developer Hub GitHub App"
+      }
+    },
+    "com.azure.developerhub#GitHubOAuthRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "redirectUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL the client will redirect to on successful authentication. If empty, no redirect will occur."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.developerhub#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.developerhub#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DevHub/operations",
+          "code": 200,
+          "apiVersion": "2023-08-01"
+        },
+        "smithy.api#documentation": "Gets a list of operations.\n\nReturns list of operations.",
+        "com.distilled.openapi#apiVersion": "2023-08-01"
+      }
+    },
+    "com.azure.developerhub#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.developerhub#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.developerhub#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.developerhub#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.developerhub#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.developerhub#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.developerhub#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.developerhub#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.developerhub#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.developerhub#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.developerhub#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.developerhub#Developerhub": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.developerhub#GeneratePreviewArtifacts"
+        },
+        {
+          "target": "com.azure.developerhub#WorkflowDelete"
+        },
+        {
+          "target": "com.azure.developerhub#WorkflowUpdateTags"
+        },
+        {
+          "target": "com.azure.developerhub#WorkflowCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.developerhub#WorkflowGet"
+        },
+        {
+          "target": "com.azure.developerhub#WorkflowListByResourceGroup"
+        },
+        {
+          "target": "com.azure.developerhub#WorkflowList"
+        },
+        {
+          "target": "com.azure.developerhub#ListGitHubOAuth"
+        },
+        {
+          "target": "com.azure.developerhub#GitHubOAuthCallback"
+        },
+        {
+          "target": "com.azure.developerhub#GitHubOAuth"
+        },
+        {
+          "target": "com.azure.developerhub#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Developerhub",
+        "smithy.api#documentation": "Azure Developerhub API — merged from the developerhub resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

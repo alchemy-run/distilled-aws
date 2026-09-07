@@ -1,0 +1,43 @@
+{
+  "description": "Key dictionary / op aliases for iam (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "allowedCorsOrigins": "allowed_cors_origins",
+        "beginVerification": "begin_verification",
+        "clientId": "client_id",
+        "clientName": "client_name",
+        "clientSecret": "client_secret",
+        "clientUri": "client_uri",
+        "clientUriVerification": "client_uri_verification",
+        "createdAt": "created_at",
+        "createdOn": "created_on",
+        "documentationUrl": "documentation_url",
+        "emailDomain": "email_domain",
+        "firstName": "first_name",
+        "grantTypes": "grant_types",
+        "hasRotatedSecret": "has_rotated_secret",
+        "lastName": "last_name",
+        "logoUri": "logo_uri",
+        "modifiedOn": "modified_on",
+        "perPage": "per_page",
+        "permissionGroups": "permission_groups",
+        "policyUri": "policy_uri",
+        "postLogoutRedirectUris": "post_logout_redirect_uris",
+        "promotedAt": "promoted_at",
+        "redirectUris": "redirect_uris",
+        "resourceGroups": "resource_groups",
+        "responseTypes": "response_types",
+        "resultInfo": "result_info",
+        "tokenEndpointAuthMethod": "token_endpoint_auth_method",
+        "tosUri": "tos_uri",
+        "totalCount": "total_count",
+        "updatedAt": "updated_at",
+        "updatedOn": "updated_on",
+        "useFedrampLanguage": "use_fedramp_language"
+      }
+    }
+  ]
+}

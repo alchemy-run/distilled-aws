@@ -1,0 +1,41 @@
+{
+  "description": "Align user#BillingHistoryList with distilled cloudflare/user listBillingHistories",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#BillingHistoryList",
+      "path": "/shapes/com.cloudflare.user#ListBillingHistories"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#BillingHistoryListRequest",
+      "path": "/shapes/com.cloudflare.user#ListBillingHistoriesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListBillingHistories/input/target",
+      "value": "com.cloudflare.user#ListBillingHistoriesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#BillingHistoryListResponse",
+      "path": "/shapes/com.cloudflare.user#ListBillingHistoriesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListBillingHistories/output/target",
+      "value": "com.cloudflare.user#ListBillingHistoriesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#ListBillingHistories/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

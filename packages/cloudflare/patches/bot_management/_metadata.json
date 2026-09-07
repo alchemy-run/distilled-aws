@@ -1,0 +1,28 @@
+{
+  "description": "Key dictionary / op aliases for bot_management (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "aiBotsProtection": "ai_bots_protection",
+        "autoUpdateModel": "auto_update_model",
+        "bmCookieEnabled": "bm_cookie_enabled",
+        "cfRobotsVariant": "cf_robots_variant",
+        "contentBotsProtection": "content_bots_protection",
+        "crawlerProtection": "crawler_protection",
+        "enableJs": "enable_js",
+        "fightMode": "fight_mode",
+        "isRobotsTxtManaged": "is_robots_txt_managed",
+        "optimizeWordpress": "optimize_wordpress",
+        "sbfmDefinitelyAutomated": "sbfm_definitely_automated",
+        "sbfmLikelyAutomated": "sbfm_likely_automated",
+        "sbfmStaticResourceProtection": "sbfm_static_resource_protection",
+        "sbfmVerifiedBots": "sbfm_verified_bots",
+        "staleZoneConfiguration": "stale_zone_configuration",
+        "suppressSessionScore": "suppress_session_score",
+        "usingLatestModel": "using_latest_model"
+      }
+    }
+  ]
+}

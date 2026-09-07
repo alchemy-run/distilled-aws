@@ -1,0 +1,1788 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.storagediscovery#ReportGenerateReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#ReportGenerateReportRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#GetReportResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}/reports/{discoveryResourceName}/generateReport",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "A long-running resource action.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#GetReportResult": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.azure.storagediscovery#GetReportResultResultsList",
+          "traits": {
+            "smithy.api#documentation": "One or more result sets, in the same order as the queries in the request body",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of the report operation"
+      }
+    },
+    "com.azure.storagediscovery#GetReportResultResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#ReportResultSet"
+      },
+      "traits": {
+        "smithy.api#documentation": "One or more result sets, in the same order as the queries in the request body"
+      }
+    },
+    "com.azure.storagediscovery#ReportResultSet": {
+      "type": "structure",
+      "members": {
+        "columns": {
+          "target": "com.azure.storagediscovery#ReportResultSetColumnsList",
+          "traits": {
+            "smithy.api#documentation": "Array of columns object, present only if the query succeeded"
+          }
+        },
+        "rows": {
+          "target": "com.azure.storagediscovery#ReportResultSetRowsList",
+          "traits": {
+            "smithy.api#documentation": "Array of all rows from ADX, present only if the query succeeded"
+          }
+        },
+        "errorCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provides an error about the query, present only if the query fails"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The result set of the report operation"
+      }
+    },
+    "com.azure.storagediscovery#ReportResultSetRowsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#ReportResultSetRowsItemList"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of all rows from ADX, present only if the query succeeded"
+      }
+    },
+    "com.azure.storagediscovery#ReportResultSetRowsItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.azure.storagediscovery#ReportResultSetColumnsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#ReportResultColumn"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of columns object, present only if the query succeeded"
+      }
+    },
+    "com.azure.storagediscovery#ReportResultColumn": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the column",
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ADX type of the column",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The column of the response result set"
+      }
+    },
+    "com.azure.storagediscovery#ReportGenerateReportRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "storageDiscoveryWorkspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the StorageDiscoveryWorkspace"
+          }
+        },
+        "discoveryResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the ReportResource"
+          }
+        },
+        "queries": {
+          "target": "com.azure.storagediscovery#ReportGenerateReportRequestQueriesList",
+          "traits": {
+            "smithy.api#documentation": "The queries to execute against Storage Discovery data.\nFormat: Base64-encoded JSON object with structure:\n{\"queries\":[{\"name\":\"queryName\",\"query\":\"KQL query\"}]}\nFor query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#ReportGenerateReportRequestQueriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The queries to execute against Storage Discovery data.\nFormat: Base64-encoded JSON object with structure:\n{\"queries\":[{\"name\":\"queryName\",\"query\":\"KQL query\"}]}\nFor query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery"
+      }
+    },
+    "com.azure.storagediscovery#ReportGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#ReportGetRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#ReportGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}/reports/{discoveryResourceName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get a ReportResource",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#ReportGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagediscovery#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagediscovery#ReportProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagediscovery#ReportProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.storagediscovery#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for the Report resource used only as a proxy for the Report API."
+      }
+    },
+    "com.azure.storagediscovery#AzureResourceManagerResourceProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state of a resource type."
+      }
+    },
+    "com.azure.storagediscovery#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.storagediscovery#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.storagediscovery#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.storagediscovery#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.storagediscovery#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.storagediscovery#ReportGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "storageDiscoveryWorkspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the StorageDiscoveryWorkspace"
+          }
+        },
+        "discoveryResourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the ReportResource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#ReportListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#ReportListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#ReportResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}/reports",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "List ReportResource resources by StorageDiscoveryWorkspace",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#ReportResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storagediscovery#ReportResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The ReportResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a ReportResource list operation."
+      }
+    },
+    "com.azure.storagediscovery#ReportResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#ReportResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ReportResource items on this page"
+      }
+    },
+    "com.azure.storagediscovery#ReportResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagediscovery#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagediscovery#ReportProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A report resource"
+      }
+    },
+    "com.azure.storagediscovery#ReportListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "storageDiscoveryWorkspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the StorageDiscoveryWorkspace"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesReport": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesReportRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#GetReportResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}/report",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "A long-running resource action.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesReportRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "storageDiscoveryWorkspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the StorageDiscoveryWorkspace"
+          }
+        },
+        "queries": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesReportRequestQueriesList",
+          "traits": {
+            "smithy.api#documentation": "The queries to execute against Storage Discovery data.\nFormat: Base64-encoded JSON object with structure:\n{\"queries\":[{\"name\":\"queryName\",\"query\":\"KQL query\"}]}\nFor query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesReportRequestQueriesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The queries to execute against Storage Discovery data.\nFormat: Base64-encoded JSON object with structure:\n{\"queries\":[{\"name\":\"queryName\",\"query\":\"KQL query\"}]}\nFor query syntax and available tables, see: https://aka.ms/storageDiscoveryQuery"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Delete a StorageDiscoveryWorkspace",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "storageDiscoveryWorkspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the StorageDiscoveryWorkspace"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Update a StorageDiscoveryWorkspace",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagediscovery#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspaceProperties": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesSku",
+          "traits": {
+            "smithy.api#documentation": "The storage discovery sku"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the storage discovery workspace"
+          }
+        },
+        "workspaceRoots": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesWorkspaceRootsList",
+          "traits": {
+            "smithy.api#documentation": "The view level storage discovery data estate",
+            "smithy.api#required": {}
+          }
+        },
+        "scopes": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesScopesList",
+          "traits": {
+            "smithy.api#documentation": "The scopes of the storage discovery workspace.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.storagediscovery#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage Discovery Workspace Properties"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryScope"
+      },
+      "traits": {
+        "smithy.api#documentation": "The scopes of the storage discovery workspace."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryScope": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the collection",
+            "smithy.api#required": {}
+          }
+        },
+        "resourceTypes": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryScopeResourceTypesList",
+          "traits": {
+            "smithy.api#documentation": "Resource types for the collection",
+            "smithy.api#required": {}
+          }
+        },
+        "tagKeysOnly": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryScopeTagKeysOnlyList",
+          "traits": {
+            "smithy.api#documentation": "The storage account tags keys to filter"
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryScopeTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage Discovery Scope. This had added validations"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryScopeTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryScopeTagKeysOnlyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The storage account tags keys to filter"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryScopeResourceTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryResourceType"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource types for the collection"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryResourceType": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_STORAGE_STORAGEACCOUNTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.Storage/storageAccounts"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage Discovery Resource Type"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesWorkspaceRootsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The view level storage discovery data estate"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesSku": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The storage discovery sku"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "storageDiscoveryWorkspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the StorageDiscoveryWorkspace"
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesUpdate",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesUpdate": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.storagediscovery#StorageDiscoverySku",
+          "traits": {
+            "smithy.api#documentation": "The storage discovery sku"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the storage discovery workspace"
+          }
+        },
+        "workspaceRoots": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesUpdateWorkspaceRootsList",
+          "traits": {
+            "smithy.api#documentation": "The view level storage discovery data estate"
+          }
+        },
+        "scopes": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesUpdateScopesList",
+          "traits": {
+            "smithy.api#documentation": "The scopes of the storage discovery workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The template for adding updateable properties."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesUpdateScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryScope"
+      },
+      "traits": {
+        "smithy.api#documentation": "The scopes of the storage discovery workspace."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesUpdateWorkspaceRootsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The view level storage discovery data estate"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoverySku": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage Discovery Sku"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Create a StorageDiscoveryWorkspace",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagediscovery#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "storageDiscoveryWorkspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the StorageDiscoveryWorkspace"
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesInputSku",
+          "traits": {
+            "smithy.api#documentation": "The storage discovery sku"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the storage discovery workspace"
+          }
+        },
+        "workspaceRoots": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesInputWorkspaceRootsList",
+          "traits": {
+            "smithy.api#documentation": "The view level storage discovery data estate",
+            "smithy.api#required": {}
+          }
+        },
+        "scopes": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesInputScopesList",
+          "traits": {
+            "smithy.api#documentation": "The scopes of the storage discovery workspace.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage Discovery Workspace Properties"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesInputScopesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryScope"
+      },
+      "traits": {
+        "smithy.api#documentation": "The scopes of the storage discovery workspace."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesInputWorkspaceRootsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The view level storage discovery data estate"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacePropertiesInputSku": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The storage discovery sku"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get a StorageDiscoveryWorkspace",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagediscovery#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "storageDiscoveryWorkspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the StorageDiscoveryWorkspace"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "List StorageDiscoveryWorkspace resources by resource group",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspaceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The StorageDiscoveryWorkspace items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a StorageDiscoveryWorkspace list operation."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspaceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspace"
+      },
+      "traits": {
+        "smithy.api#documentation": "The StorageDiscoveryWorkspace items on this page"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspace": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.storagediscovery#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Storage Discovery Workspace resource. This resource configures the collection of storage account metrics."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspaceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#ReportListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#ReportListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#ReportResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces/{storageDiscoveryWorkspaceName}/reports",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "List ReportResource resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#ReportListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "storageDiscoveryWorkspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the StorageDiscoveryWorkspace"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#StorageDiscoveryWorkspaceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.StorageDiscovery/storageDiscoveryWorkspaces",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "List StorageDiscoveryWorkspace resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#StorageDiscoveryWorkspacesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.storagediscovery#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.storagediscovery#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.StorageDiscovery/operations",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.storagediscovery#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.storagediscovery#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.storagediscovery#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.storagediscovery#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.storagediscovery#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.storagediscovery#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.storagediscovery#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.storagediscovery#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.storagediscovery#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.storagediscovery#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.storagediscovery#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.storagediscovery#Storagediscovery": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.storagediscovery#ReportGenerateReport"
+        },
+        {
+          "target": "com.azure.storagediscovery#ReportGet"
+        },
+        {
+          "target": "com.azure.storagediscovery#ReportListByResourceGroup"
+        },
+        {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesReport"
+        },
+        {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesDelete"
+        },
+        {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesUpdate"
+        },
+        {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesGet"
+        },
+        {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.storagediscovery#ReportListBySubscription"
+        },
+        {
+          "target": "com.azure.storagediscovery#StorageDiscoveryWorkspacesListBySubscription"
+        },
+        {
+          "target": "com.azure.storagediscovery#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Storagediscovery",
+        "smithy.api#documentation": "Azure Storagediscovery API — merged from the storagediscovery resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

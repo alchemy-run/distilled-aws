@@ -1,0 +1,42 @@
+{
+  "description": "Align images#V1Delete with distilled cloudflare/images deleteV1",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1Delete",
+      "path": "/shapes/com.cloudflare.images#DeleteV1"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1DeleteRequest",
+      "path": "/shapes/com.cloudflare.images#DeleteV1Request"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#DeleteV1/input/target",
+      "value": "com.cloudflare.images#DeleteV1Request"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1DeleteResponse",
+      "path": "/shapes/com.cloudflare.images#DeleteV1Response"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#DeleteV1/output/target",
+      "value": "com.cloudflare.images#DeleteV1Response"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.images#DeleteV1/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.images#ImagesAccessNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.images#ImageNotFound"
+        }
+      ]
+    }
+  ]
+}

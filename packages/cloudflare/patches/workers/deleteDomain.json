@@ -1,0 +1,29 @@
+{
+  "description": "Align workers#DomainsDelete with distilled cloudflare/workers deleteDomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsDelete",
+      "path": "/shapes/com.cloudflare.workers#DeleteDomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#DomainsDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers#DeleteDomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#DeleteDomain/input/target",
+      "value": "com.cloudflare.workers#DeleteDomainRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#DeleteDomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#DomainNotFound"
+        }
+      ]
+    }
+  ]
+}

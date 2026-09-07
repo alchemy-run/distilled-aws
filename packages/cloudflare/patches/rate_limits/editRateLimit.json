@@ -1,0 +1,30 @@
+{
+  "description": "Align rate_limits#Edit with distilled cloudflare/rate-limits editRateLimit",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#Edit",
+      "path": "/shapes/com.cloudflare.rate_limits#EditRateLimit"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#EditRequest",
+      "path": "/shapes/com.cloudflare.rate_limits#EditRateLimitRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#EditRateLimit/input/target",
+      "value": "com.cloudflare.rate_limits#EditRateLimitRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rate_limits#EditResponse",
+      "path": "/shapes/com.cloudflare.rate_limits#EditRateLimitResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rate_limits#EditRateLimit/output/target",
+      "value": "com.cloudflare.rate_limits#EditRateLimitResponse"
+    }
+  ]
+}

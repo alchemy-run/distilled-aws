@@ -1,0 +1,30 @@
+{
+  "description": "Align zones#EnvironmentsDelete with distilled cloudflare/zones deleteEnvironment",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsDelete",
+      "path": "/shapes/com.cloudflare.zones#DeleteEnvironment"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsDeleteRequest",
+      "path": "/shapes/com.cloudflare.zones#DeleteEnvironmentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#DeleteEnvironment/input/target",
+      "value": "com.cloudflare.zones#DeleteEnvironmentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#EnvironmentsDeleteResponse",
+      "path": "/shapes/com.cloudflare.zones#DeleteEnvironmentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#DeleteEnvironment/output/target",
+      "value": "com.cloudflare.zones#DeleteEnvironmentResponse"
+    }
+  ]
+}

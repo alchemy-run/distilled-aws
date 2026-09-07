@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#NetworksSubnetsWarpDelete with distilled cloudflare/zero-trust deleteNetworkSubnetWarp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsWarpDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkSubnetWarp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsWarpDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkSubnetWarpRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkSubnetWarp/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteNetworkSubnetWarpRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsWarpDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkSubnetWarpResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteNetworkSubnetWarp/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteNetworkSubnetWarpResponse"
+    }
+  ]
+}

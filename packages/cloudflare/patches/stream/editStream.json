@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#Edit with distilled cloudflare/stream editStream",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#Edit",
+      "path": "/shapes/com.cloudflare.stream#EditStream"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#EditRequest",
+      "path": "/shapes/com.cloudflare.stream#EditStreamRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#EditStream/input/target",
+      "value": "com.cloudflare.stream#EditStreamRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#EditResponse",
+      "path": "/shapes/com.cloudflare.stream#EditStreamResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#EditStream/output/target",
+      "value": "com.cloudflare.stream#EditStreamResponse"
+    }
+  ]
+}

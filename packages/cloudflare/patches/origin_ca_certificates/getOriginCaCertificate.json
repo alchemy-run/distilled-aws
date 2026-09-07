@@ -1,0 +1,42 @@
+{
+  "description": "Align origin_ca_certificates#Get with distilled cloudflare/origin-ca-certificates getOriginCaCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_ca_certificates#Get",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#GetOriginCaCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_ca_certificates#GetRequest",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#GetOriginCaCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#GetOriginCaCertificate/input/target",
+      "value": "com.cloudflare.origin_ca_certificates#GetOriginCaCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_ca_certificates#GetResponse",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#GetOriginCaCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#GetOriginCaCertificate/output/target",
+      "value": "com.cloudflare.origin_ca_certificates#GetOriginCaCertificateResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_ca_certificates#GetOriginCaCertificate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_ca_certificates#CertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.origin_ca_certificates#Forbidden"
+        }
+      ]
+    }
+  ]
+}

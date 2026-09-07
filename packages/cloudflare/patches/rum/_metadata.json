@@ -1,0 +1,21 @@
+{
+  "description": "Key dictionary / op aliases for rum (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "autoInstall": "auto_install",
+        "deleteRules": "delete_rules",
+        "isPaused": "is_paused",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "siteTag": "site_tag",
+        "siteToken": "site_token",
+        "totalCount": "total_count",
+        "zoneName": "zone_name",
+        "zoneTag": "zone_tag"
+      }
+    }
+  ]
+}

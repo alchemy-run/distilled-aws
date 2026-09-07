@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#SessionsGetParticipantDataFromPeerId with distilled cloudflare/realtime-kit getParticipantDataFromPeerIdSession",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#SessionsGetParticipantDataFromPeerId",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetParticipantDataFromPeerIdSession"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#SessionsGetParticipantDataFromPeerIdRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetParticipantDataFromPeerIdSessionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetParticipantDataFromPeerIdSession/input/target",
+      "value": "com.cloudflare.realtime_kit#GetParticipantDataFromPeerIdSessionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#SessionsGetParticipantDataFromPeerIdResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetParticipantDataFromPeerIdSessionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetParticipantDataFromPeerIdSession/output/target",
+      "value": "com.cloudflare.realtime_kit#GetParticipantDataFromPeerIdSessionResponse"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Align security_center#InsightsClassificationUpdateForAccount with distilled cloudflare/security-center patchInsightClassificationForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsClassificationUpdateForAccount",
+      "path": "/shapes/com.cloudflare.security_center#PatchInsightClassificationForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsClassificationUpdateForAccountRequest",
+      "path": "/shapes/com.cloudflare.security_center#PatchInsightClassificationForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#PatchInsightClassificationForAccount/input/target",
+      "value": "com.cloudflare.security_center#PatchInsightClassificationForAccountRequest"
+    }
+  ]
+}

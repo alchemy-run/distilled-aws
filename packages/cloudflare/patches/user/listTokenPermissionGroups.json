@@ -1,0 +1,38 @@
+{
+  "description": "Align user#TokensPermissionGroupsList with distilled cloudflare/user listTokenPermissionGroups",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensPermissionGroupsList",
+      "path": "/shapes/com.cloudflare.user#ListTokenPermissionGroups"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensPermissionGroupsListRequest",
+      "path": "/shapes/com.cloudflare.user#ListTokenPermissionGroupsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListTokenPermissionGroups/input/target",
+      "value": "com.cloudflare.user#ListTokenPermissionGroupsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensPermissionGroupsListResponse",
+      "path": "/shapes/com.cloudflare.user#ListTokenPermissionGroupsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#ListTokenPermissionGroups/output/target",
+      "value": "com.cloudflare.user#ListTokenPermissionGroupsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#ListTokenPermissionGroups/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

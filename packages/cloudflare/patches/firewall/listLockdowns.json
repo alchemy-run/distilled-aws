@@ -1,0 +1,50 @@
+{
+  "description": "Align firewall#LockdownsList with distilled cloudflare/firewall listLockdowns",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsList",
+      "path": "/shapes/com.cloudflare.firewall#ListLockdowns"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsListRequest",
+      "path": "/shapes/com.cloudflare.firewall#ListLockdownsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#ListLockdowns/input/target",
+      "value": "com.cloudflare.firewall#ListLockdownsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#LockdownsListResponse",
+      "path": "/shapes/com.cloudflare.firewall#ListLockdownsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#ListLockdowns/output/target",
+      "value": "com.cloudflare.firewall#ListLockdownsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#ListLockdowns/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#ListLockdowns/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

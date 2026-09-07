@@ -1,0 +1,39 @@
+{
+  "description": "Align secrets_store#QuotaGet with distilled cloudflare/secrets-store getQuota",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#QuotaGet",
+      "path": "/shapes/com.cloudflare.secrets_store#GetQuota"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#QuotaGetRequest",
+      "path": "/shapes/com.cloudflare.secrets_store#GetQuotaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#GetQuota/input/target",
+      "value": "com.cloudflare.secrets_store#GetQuotaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#QuotaGetResponse",
+      "path": "/shapes/com.cloudflare.secrets_store#GetQuotaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#GetQuota/output/target",
+      "value": "com.cloudflare.secrets_store#GetQuotaResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.secrets_store#GetQuota/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.secrets_store#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

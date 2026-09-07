@@ -1,0 +1,2654 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.kernels#DuplicateXetFilesRequestTargetType": {
+      "type": "enum",
+      "members": {
+        "DATASET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataset"
+          }
+        },
+        "MODEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "model"
+          }
+        },
+        "SPACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "space"
+          }
+        },
+        "KERNEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "kernel"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#DuplicateXetFilesRequestTarget": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.kernels#DuplicateXetFilesRequestTargetType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#DuplicateXetFilesRequestFilesItem": {
+      "type": "structure",
+      "members": {
+        "xetHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "filename": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#DuplicateXetFilesRequestFilesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#DuplicateXetFilesRequestFilesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#DuplicateXetFilesRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "target": {
+          "target": "com.huggingface.kernels#DuplicateXetFilesRequestTarget",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "files": {
+          "target": "com.huggingface.kernels#DuplicateXetFilesRequestFilesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.kernels#DuplicateXetFilesResponseFailedItem": {
+      "type": "structure",
+      "members": {
+        "xetHash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Xet content hash of the file that failed",
+            "smithy.api#required": {}
+          }
+        },
+        "sha256": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "sha256 of the file that failed",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#DuplicateXetFilesResponseFailedList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#DuplicateXetFilesResponseFailedItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-file failures"
+      }
+    },
+    "com.huggingface.kernels#DuplicateXetFilesResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if all requested files were duplicated (or already present)",
+            "smithy.api#required": {}
+          }
+        },
+        "processed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of unique files processed",
+            "smithy.api#required": {}
+          }
+        },
+        "succeeded": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of files duplicated or already present in the target",
+            "smithy.api#required": {}
+          }
+        },
+        "failed": {
+          "target": "com.huggingface.kernels#DuplicateXetFilesResponseFailedList",
+          "traits": {
+            "smithy.api#documentation": "Per-file failures",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.kernels#DuplicateXetFiles": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.kernels#DuplicateXetFilesRequest"
+      },
+      "output": {
+        "target": "com.huggingface.kernels#DuplicateXetFilesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/kernels/{namespace}/{repo}/lfs-files/duplicate",
+          "code": 200
+        },
+        "smithy.api#documentation": "Duplicate xet files\n\nDuplicate xet-stored files from this repo (source) into another repo (target) by xet hash, without re-uploading file bytes. The caller must then commit the files with their sha256/size as usual."
+      }
+    },
+    "com.huggingface.kernels#ListKernelsRequestAuthorCase1List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsRequestAuthor": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.huggingface.kernels#ListKernelsRequestAuthorCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter by author"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsRequestIdCase1List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsRequestId": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.huggingface.kernels#ListKernelsRequestIdCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter by ID"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsRequestArxivIdsCase1List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsRequestArxivIds": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.huggingface.kernels#ListKernelsRequestArxivIdsCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter by Arxiv ID"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsRequestFilterCase1List": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsRequestFilter": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#String"
+        },
+        "Case1": {
+          "target": "com.huggingface.kernels#ListKernelsRequestFilterCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter by tags"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsRequestSort": {
+      "type": "enum",
+      "members": {
+        "DOWNLOADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "downloads"
+          }
+        },
+        "LIKES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "likes"
+          }
+        },
+        "LASTMODIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lastModified"
+          }
+        },
+        "TRENDINGSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trendingScore"
+          }
+        },
+        "LIKES30D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "likes30d"
+          }
+        },
+        "ID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "_id"
+          }
+        },
+        "ID_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sort field (e.g. downloads, likes, lastModified, trendingScore)"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsRequestDirection": {
+      "type": "enum",
+      "members": {
+        "_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1"
+          }
+        },
+        "_1_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-1"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sort direction: 1 for ascending, -1 for descending"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsRequestExpandCase0": {
+      "type": "enum",
+      "members": {
+        "AUTHOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "author"
+          }
+        },
+        "CARDDATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cardData"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "DOWNLOADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "downloads"
+          }
+        },
+        "DOWNLOADSALLTIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "downloadsAllTime"
+          }
+        },
+        "GATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gated"
+          }
+        },
+        "LASTMODIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lastModified"
+          }
+        },
+        "CREATEDAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "createdAt"
+          }
+        },
+        "LIKES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "likes"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SHA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha"
+          }
+        },
+        "FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "files"
+          }
+        },
+        "TAGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tags"
+          }
+        },
+        "TRENDINGSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trendingScore"
+          }
+        },
+        "BUILDMETADATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "buildMetadata"
+          }
+        },
+        "SUPPORTEDDRIVERFAMILIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supportedDriverFamilies"
+          }
+        },
+        "RESOURCEGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resourceGroup"
+          }
+        },
+        "ARXIVIDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "arxivIds"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsRequestExpandCase1Item": {
+      "type": "enum",
+      "members": {
+        "AUTHOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "author"
+          }
+        },
+        "CARDDATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cardData"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "DOWNLOADS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "downloads"
+          }
+        },
+        "DOWNLOADSALLTIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "downloadsAllTime"
+          }
+        },
+        "GATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gated"
+          }
+        },
+        "LASTMODIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "lastModified"
+          }
+        },
+        "CREATEDAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "createdAt"
+          }
+        },
+        "LIKES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "likes"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SHA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sha"
+          }
+        },
+        "FILES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "files"
+          }
+        },
+        "TAGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tags"
+          }
+        },
+        "TRENDINGSCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trendingScore"
+          }
+        },
+        "BUILDMETADATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "buildMetadata"
+          }
+        },
+        "SUPPORTEDDRIVERFAMILIES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "supportedDriverFamilies"
+          }
+        },
+        "RESOURCEGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resourceGroup"
+          }
+        },
+        "ARXIVIDS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "arxivIds"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsRequestExpandCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#ListKernelsRequestExpandCase1Item"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsRequestExpand": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.kernels#ListKernelsRequestExpandCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.kernels#ListKernelsRequestExpandCase1List"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Display specific fields in the response"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsRequest": {
+      "type": "structure",
+      "members": {
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search"
+          }
+        },
+        "author": {
+          "target": "com.huggingface.kernels#ListKernelsRequestAuthor",
+          "traits": {
+            "smithy.api#httpQuery": "author"
+          }
+        },
+        "id": {
+          "target": "com.huggingface.kernels#ListKernelsRequestId",
+          "traits": {
+            "smithy.api#httpQuery": "id"
+          }
+        },
+        "arxivIds": {
+          "target": "com.huggingface.kernels#ListKernelsRequestArxivIds",
+          "traits": {
+            "smithy.api#httpQuery": "arxivIds"
+          }
+        },
+        "filter": {
+          "target": "com.huggingface.kernels#ListKernelsRequestFilter",
+          "traits": {
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "sort": {
+          "target": "com.huggingface.kernels#ListKernelsRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort"
+          }
+        },
+        "direction": {
+          "target": "com.huggingface.kernels#ListKernelsRequestDirection",
+          "traits": {
+            "smithy.api#httpQuery": "direction"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit"
+          }
+        },
+        "cursor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "cursor"
+          }
+        },
+        "full": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "full"
+          }
+        },
+        "gated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "gated"
+          }
+        },
+        "expand": {
+          "target": "com.huggingface.kernels#ListKernelsRequestExpand",
+          "traits": {
+            "smithy.api#httpQuery": "expand"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemCardDataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Kernel card metadata"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemGated": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Boolean"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Gated access status"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemFilesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of files in the kernel"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Kernel tags"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityTorchItem": {
+      "type": "enum",
+      "members": {
+        "_2_8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2.8"
+          }
+        },
+        "_2_9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2.9"
+          }
+        },
+        "_2_10": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "2.10"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityTorchList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityTorchItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityOsItem": {
+      "type": "enum",
+      "members": {
+        "MACOS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "macos"
+          }
+        },
+        "LINUX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "linux"
+          }
+        },
+        "WINDOWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "windows"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityOsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityOsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityArchItem": {
+      "type": "enum",
+      "members": {
+        "X86_64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "x86_64"
+          }
+        },
+        "ARM64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "arm64"
+          }
+        },
+        "AARCH64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "aarch64"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityArchList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityArchItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibility": {
+      "type": "structure",
+      "members": {
+        "torch": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityTorchList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "os": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityOsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "arch": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibilityArchList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsItemType": {
+      "type": "enum",
+      "members": {
+        "CUDA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cuda"
+          }
+        },
+        "ROCM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocm"
+          }
+        },
+        "METAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "metal"
+          }
+        },
+        "XPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "xpu"
+          }
+        },
+        "CPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cpu"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsItemHardwareTypesItem": {
+      "type": "enum",
+      "members": {
+        "_5_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5.0"
+          }
+        },
+        "_5_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5.2"
+          }
+        },
+        "_6_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "6.0"
+          }
+        },
+        "_6_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "6.1"
+          }
+        },
+        "_6_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "6.2"
+          }
+        },
+        "_7_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7.0"
+          }
+        },
+        "_7_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7.2"
+          }
+        },
+        "_7_5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7.5"
+          }
+        },
+        "_8_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "8.0"
+          }
+        },
+        "_8_6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "8.6"
+          }
+        },
+        "_8_7": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "8.7"
+          }
+        },
+        "_8_9": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "8.9"
+          }
+        },
+        "_9_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "9.0"
+          }
+        },
+        "_10_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10.0"
+          }
+        },
+        "_10_3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10.3"
+          }
+        },
+        "_11_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "11.0"
+          }
+        },
+        "_12_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "12.0"
+          }
+        },
+        "_12_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "12.1"
+          }
+        },
+        "_13_0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "13.0"
+          }
+        },
+        "_5_0_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5.0+PTX"
+          }
+        },
+        "_5_2_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "5.2+PTX"
+          }
+        },
+        "_6_0_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "6.0+PTX"
+          }
+        },
+        "_6_1_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "6.1+PTX"
+          }
+        },
+        "_6_2_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "6.2+PTX"
+          }
+        },
+        "_7_0_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7.0+PTX"
+          }
+        },
+        "_7_2_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7.2+PTX"
+          }
+        },
+        "_7_5_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7.5+PTX"
+          }
+        },
+        "_8_0_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "8.0+PTX"
+          }
+        },
+        "_8_6_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "8.6+PTX"
+          }
+        },
+        "_8_7_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "8.7+PTX"
+          }
+        },
+        "_8_9_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "8.9+PTX"
+          }
+        },
+        "_9_0_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "9.0+PTX"
+          }
+        },
+        "_10_0_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10.0+PTX"
+          }
+        },
+        "_10_3_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10.3+PTX"
+          }
+        },
+        "_11_0_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "11.0+PTX"
+          }
+        },
+        "_12_0_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "12.0+PTX"
+          }
+        },
+        "_12_1_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "12.1+PTX"
+          }
+        },
+        "_13_0_PTX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "13.0+PTX"
+          }
+        },
+        "_9_0A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "9.0a"
+          }
+        },
+        "_10_0A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10.0a"
+          }
+        },
+        "_10_3A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10.3a"
+          }
+        },
+        "_11_0A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "11.0a"
+          }
+        },
+        "_12_0A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "12.0a"
+          }
+        },
+        "_12_1A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "12.1a"
+          }
+        },
+        "_13_0A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "13.0a"
+          }
+        },
+        "_10_0F": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "10.0f"
+          }
+        },
+        "_12_0F": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "12.0f"
+          }
+        },
+        "_13_0F": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "13.0f"
+          }
+        },
+        "GFX900": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx900"
+          }
+        },
+        "GFX906": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx906"
+          }
+        },
+        "GFX908": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx908"
+          }
+        },
+        "GFX90A": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx90a"
+          }
+        },
+        "GFX942": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx942"
+          }
+        },
+        "GFX950": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx950"
+          }
+        },
+        "GFX1030": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx1030"
+          }
+        },
+        "GFX1100": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx1100"
+          }
+        },
+        "GFX1101": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx1101"
+          }
+        },
+        "GFX1102": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx1102"
+          }
+        },
+        "GFX1150": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx1150"
+          }
+        },
+        "GFX1151": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx1151"
+          }
+        },
+        "GFX1200": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx1200"
+          }
+        },
+        "GFX1201": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gfx1201"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsItemHardwareTypesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsItemHardwareTypesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsItemType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hardwareTypes": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsItemHardwareTypesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "noArchs": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBuilder": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String"
+        },
+        "dirty": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadata": {
+      "type": "structure",
+      "members": {
+        "compatibility": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataCompatibility"
+        },
+        "backends": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBackendsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "builder": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadataBuilder"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Build metadata"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemSupportedDriverFamiliesItem": {
+      "type": "enum",
+      "members": {
+        "CUDA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cuda"
+          }
+        },
+        "ROCM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocm"
+          }
+        },
+        "METAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "metal"
+          }
+        },
+        "XPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "xpu"
+          }
+        },
+        "CPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cpu"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemSupportedDriverFamiliesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#ListKernelsResponseBodyItemSupportedDriverFamiliesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Driver families supported by the kernel (derived from build metadata)"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItemResourceGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource group information"
+      }
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyItem": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kernel ID in format namespace/name",
+            "smithy.api#required": {}
+          }
+        },
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Namespace (user or organization) of the kernel"
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the kernel is private"
+          }
+        },
+        "cardData": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemCardDataMap",
+          "traits": {
+            "smithy.api#documentation": "Kernel card metadata"
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the kernel is disabled"
+          }
+        },
+        "downloads": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of downloads in the last 30 days"
+          }
+        },
+        "downloadsAllTime": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of downloads"
+          }
+        },
+        "gated": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemGated",
+          "traits": {
+            "smithy.api#documentation": "Gated access status"
+          }
+        },
+        "lastModified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last modification timestamp"
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Creation timestamp"
+          }
+        },
+        "likes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of likes"
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current commit SHA"
+          }
+        },
+        "files": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemFilesList",
+          "traits": {
+            "smithy.api#documentation": "List of files in the kernel"
+          }
+        },
+        "tags": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemTagsList",
+          "traits": {
+            "smithy.api#documentation": "Kernel tags"
+          }
+        },
+        "trendingScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Trending score"
+          }
+        },
+        "buildMetadata": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemBuildMetadata",
+          "traits": {
+            "smithy.api#documentation": "Build metadata"
+          }
+        },
+        "supportedDriverFamilies": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemSupportedDriverFamiliesList",
+          "traits": {
+            "smithy.api#documentation": "Driver families supported by the kernel (derived from build metadata)"
+          }
+        },
+        "resourceGroup": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyItemResourceGroup",
+          "traits": {
+            "smithy.api#documentation": "Resource group information"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#ListKernelsResponseBodyItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#ListKernelsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.kernels#ListKernelsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.kernels#ListKernels": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.kernels#ListKernelsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.kernels#ListKernelsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/kernels",
+          "code": 200
+        },
+        "smithy.api#documentation": "List kernels\n\nList kernels with optional filtering, sorting, and pagination"
+      }
+    },
+    "com.huggingface.kernels#GetKernelRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.kernels#GetKernelResponseGatedCase1": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseGated": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Document"
+        },
+        "Case1": {
+          "target": "com.huggingface.kernels#GetKernelResponseGatedCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseResourceGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseAuthorDataCase0Plan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseAuthorDataCase0": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "com.huggingface.kernels#GetKernelResponseAuthorDataCase0Plan"
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseAuthorDataCase1PrimaryOrgPlan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseAuthorDataCase1PrimaryOrgUserRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseAuthorDataCase1PrimaryOrg": {
+      "type": "structure",
+      "members": {
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "plan": {
+          "target": "com.huggingface.kernels#GetKernelResponseAuthorDataCase1PrimaryOrgPlan"
+        },
+        "details": {
+          "target": "smithy.api#String"
+        },
+        "hasPrivateMembersList": {
+          "target": "smithy.api#Boolean"
+        },
+        "userRole": {
+          "target": "com.huggingface.kernels#GetKernelResponseAuthorDataCase1PrimaryOrgUserRole"
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseAuthorDataCase1": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "primaryOrg": {
+          "target": "com.huggingface.kernels#GetKernelResponseAuthorDataCase1PrimaryOrg"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseAuthorData": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.kernels#GetKernelResponseAuthorDataCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.kernels#GetKernelResponseAuthorDataCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseFilesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseSupportedDriverFamiliesItem": {
+      "type": "enum",
+      "members": {
+        "CUDA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cuda"
+          }
+        },
+        "ROCM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocm"
+          }
+        },
+        "METAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "metal"
+          }
+        },
+        "XPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "xpu"
+          }
+        },
+        "CPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cpu"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponseSupportedDriverFamiliesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#GetKernelResponseSupportedDriverFamiliesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelResponse": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isLikedByUser": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastModified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "likes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repoType": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gated": {
+          "target": "com.huggingface.kernels#GetKernelResponseGated",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroup": {
+          "target": "com.huggingface.kernels#GetKernelResponseResourceGroup"
+        },
+        "authorData": {
+          "target": "com.huggingface.kernels#GetKernelResponseAuthorData"
+        },
+        "files": {
+          "target": "com.huggingface.kernels#GetKernelResponseFilesList"
+        },
+        "supportedDriverFamilies": {
+          "target": "com.huggingface.kernels#GetKernelResponseSupportedDriverFamiliesList"
+        },
+        "trustedPublisher": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.kernels#GetKernel": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.kernels#GetKernelRequest"
+      },
+      "output": {
+        "target": "com.huggingface.kernels#GetKernelResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/kernels/{namespace}/{repo}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get kernel"
+      }
+    },
+    "com.huggingface.kernels#GetKernelRevisionRequest": {
+      "type": "structure",
+      "members": {
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rev": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseGatedCase1": {
+      "type": "enum",
+      "members": {
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        },
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseGated": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Document"
+        },
+        "Case1": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseGatedCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseResourceGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase0Plan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase0": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "plan": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase0Plan"
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase1PrimaryOrgPlan": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "team"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plus"
+          }
+        },
+        "ACADEMIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "academia"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase1PrimaryOrgUserRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "WRITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "write"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributor"
+          }
+        },
+        "READ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "read"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase1PrimaryOrg": {
+      "type": "structure",
+      "members": {
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "plan": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase1PrimaryOrgPlan"
+        },
+        "details": {
+          "target": "smithy.api#String"
+        },
+        "hasPrivateMembersList": {
+          "target": "smithy.api#Boolean"
+        },
+        "userRole": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase1PrimaryOrgUserRole"
+        },
+        "numUsers": {
+          "target": "smithy.api#Double"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase1": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatarUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "fullname": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHf": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isHfAdmin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isMod": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followerCount": {
+          "target": "smithy.api#Double"
+        },
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isPro": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isUserFollowing": {
+          "target": "smithy.api#Boolean"
+        },
+        "primaryOrg": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase1PrimaryOrg"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseAuthorData": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseAuthorDataCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseFilesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseSupportedDriverFamiliesItem": {
+      "type": "enum",
+      "members": {
+        "CUDA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cuda"
+          }
+        },
+        "ROCM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rocm"
+          }
+        },
+        "METAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "metal"
+          }
+        },
+        "XPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "xpu"
+          }
+        },
+        "CPU": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cpu"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponseSupportedDriverFamiliesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.kernels#GetKernelRevisionResponseSupportedDriverFamiliesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.kernels#GetKernelRevisionResponse": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "isLikedByUser": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "lastModified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "likes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repoType": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gated": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseGated",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "resourceGroup": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseResourceGroup"
+        },
+        "authorData": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseAuthorData"
+        },
+        "files": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseFilesList"
+        },
+        "supportedDriverFamilies": {
+          "target": "com.huggingface.kernels#GetKernelRevisionResponseSupportedDriverFamiliesList"
+        },
+        "trustedPublisher": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.kernels#GetKernelRevision": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.kernels#GetKernelRevisionRequest"
+      },
+      "output": {
+        "target": "com.huggingface.kernels#GetKernelRevisionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/kernels/{namespace}/{repo}/revision/{rev}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get kernel"
+      }
+    },
+    "com.huggingface.kernels#Kernels": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.kernels#DuplicateXetFiles"
+        },
+        {
+          "target": "com.huggingface.kernels#ListKernels"
+        },
+        {
+          "target": "com.huggingface.kernels#GetKernel"
+        },
+        {
+          "target": "com.huggingface.kernels#GetKernelRevision"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

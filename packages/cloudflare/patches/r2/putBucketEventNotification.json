@@ -1,0 +1,56 @@
+{
+  "description": "Align r2#BucketsEventNotificationsUpdate with distilled cloudflare/r2 putBucketEventNotification",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsEventNotificationsUpdate",
+      "path": "/shapes/com.cloudflare.r2#PutBucketEventNotification"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsEventNotificationsUpdateRequest",
+      "path": "/shapes/com.cloudflare.r2#PutBucketEventNotificationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#PutBucketEventNotification/input/target",
+      "value": "com.cloudflare.r2#PutBucketEventNotificationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsEventNotificationsUpdateResponse",
+      "path": "/shapes/com.cloudflare.r2#PutBucketEventNotificationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#PutBucketEventNotification/output/target",
+      "value": "com.cloudflare.r2#PutBucketEventNotificationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#PutBucketEventNotification/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#BucketNotFound"
+        },
+        {
+          "target": "com.cloudflare.r2#InvalidEventNotificationConfig"
+        },
+        {
+          "target": "com.cloudflare.r2#EventNotificationRuleConflict"
+        },
+        {
+          "target": "com.cloudflare.r2#QueueNotFound"
+        },
+        {
+          "target": "com.cloudflare.r2#InvalidRoute"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#PutBucketEventNotificationRequest/members/cf_r2_jurisdiction",
+      "path": "/shapes/com.cloudflare.r2#PutBucketEventNotificationRequest/members/jurisdiction"
+    }
+  ]
+}

@@ -1,0 +1,2423 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.agentic_provisioning#GetHealth": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/agentic/provisioning/health",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get health"
+      }
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemCategoriesItem": {
+      "type": "enum",
+      "members": {
+        "COMPUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "compute"
+          }
+        },
+        "DATABASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "database"
+          }
+        },
+        "STORAGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "storage"
+          }
+        },
+        "CACHE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cache"
+          }
+        },
+        "MESSAGING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "messaging"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "NOTIFICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notification"
+          }
+        },
+        "AUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auth"
+          }
+        },
+        "CDN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cdn"
+          }
+        },
+        "OBSERVABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability"
+          }
+        },
+        "ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "analytics"
+          }
+        },
+        "PAYMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "payments"
+          }
+        },
+        "SEARCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "search"
+          }
+        },
+        "CI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ci"
+          }
+        },
+        "FEATURE_FLAGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "feature_flags"
+          }
+        },
+        "AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemCategoriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemCategoriesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemKind": {
+      "type": "enum",
+      "members": {
+        "DEPLOYABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployable"
+          }
+        },
+        "PLAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plan"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0Case0ConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0Case0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "freeform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe_price": {
+          "target": "smithy.api#String"
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0Case0ConfigurationMap"
+        },
+        "is_default": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0Case1ConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0Case1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe_price": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "freeform": {
+          "target": "smithy.api#String"
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0Case1ConfigurationMap"
+        },
+        "is_default": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0Case0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0Case1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1ItemCase0ConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1ItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "freeform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe_price": {
+          "target": "smithy.api#String"
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1ItemCase0ConfigurationMap"
+        },
+        "is_default": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1ItemCase1ConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1ItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe_price": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "freeform": {
+          "target": "smithy.api#String"
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1ItemCase1ConfigurationMap"
+        },
+        "is_default": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1Item": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1ItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1ItemCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1Item"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1Paid": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1PaidCase1List"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paid": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1Paid",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase0ParentServiceIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default": {
+          "target": "smithy.api#Boolean"
+        },
+        "parent_service_ids": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase0ParentServiceIdsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase0ConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "freeform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe_price": {
+          "target": "smithy.api#String"
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase0ConfigurationMap"
+        },
+        "is_default": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase1ConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe_price": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "freeform": {
+          "target": "smithy.api#String"
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase1ConfigurationMap"
+        },
+        "is_default": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1Paid": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1PaidCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1ParentServiceIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "paid": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1Paid",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "default": {
+          "target": "smithy.api#Boolean"
+        },
+        "parent_service_ids": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1ParentServiceIdsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItem": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItemCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2Component": {
+      "type": "structure",
+      "members": {
+        "options": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2ComponentOptionsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "component": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2Component",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricing": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricingCase2"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemScope": {
+      "type": "enum",
+      "members": {
+        "PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project"
+          }
+        },
+        "ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "account"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemKycRequiredFieldsItem": {
+      "type": "enum",
+      "members": {
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "phone"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "country"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemKycRequiredFieldsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemKycRequiredFieldsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemKyc": {
+      "type": "structure",
+      "members": {
+        "required_fields": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemKycRequiredFieldsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConfigurationSchemaPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConfigurationSchema": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConfigurationSchemaPropertiesMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemAllowedUpdatesItemDirection": {
+      "type": "enum",
+      "members": {
+        "ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "any"
+          }
+        },
+        "UP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "up"
+          }
+        },
+        "DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "down"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemAllowedUpdatesItem": {
+      "type": "structure",
+      "members": {
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemAllowedUpdatesItemDirection",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemAllowedUpdatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemAllowedUpdatesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConstraintsCount": {
+      "type": "structure",
+      "members": {
+        "at_most": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConstraintsMutualExclusion": {
+      "type": "structure",
+      "members": {
+        "allowed_updates": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConstraints": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConstraintsCount"
+        },
+        "mutual_exclusion": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConstraintsMutualExclusion"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "categories": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemCategoriesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemKind"
+        },
+        "pricing": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemPricing",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "group": {
+          "target": "smithy.api#String"
+        },
+        "scope": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemScope"
+        },
+        "kyc": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemKyc"
+        },
+        "configuration_schema": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConfigurationSchema"
+        },
+        "allowed_updates": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemAllowedUpdatesList"
+        },
+        "constraints": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItemConstraints"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponseDataList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetServicesResponse": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.huggingface.agentic_provisioning#GetServicesResponseDataList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#GetServices": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.huggingface.agentic_provisioning#GetServicesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/agentic/provisioning/services",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get services"
+      }
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequestScopesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequestKycVerifiedFieldsItem": {
+      "type": "enum",
+      "members": {
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "PHONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "phone"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "country"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequestKycVerifiedFieldsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequestKycVerifiedFieldsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequestKyc": {
+      "type": "structure",
+      "members": {
+        "verified_fields": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequestKycVerifiedFieldsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequestClientCapabilitiesItem": {
+      "type": "enum",
+      "members": {
+        "BROWSER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "browser"
+          }
+        },
+        "EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "email"
+          }
+        },
+        "SMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sms"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequestClientCapabilitiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequestClientCapabilitiesItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequestConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequestOrchestratorStripe": {
+      "type": "structure",
+      "members": {
+        "organization": {
+          "target": "smithy.api#String"
+        },
+        "account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequestOrchestrator": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequestOrchestratorStripe",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "object": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scopes": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequestScopesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String"
+        },
+        "country": {
+          "target": "smithy.api#String"
+        },
+        "kyc": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequestKyc"
+        },
+        "client_capabilities": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequestClientCapabilitiesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequestConfigurationMap"
+        },
+        "confirmation_secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "orchestrator": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequestOrchestrator",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase0CredentialsBearerAccount": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "payment_credentials": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase0CredentialsBearer": {
+      "type": "structure",
+      "members": {
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "refresh_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "account": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase0CredentialsBearerAccount",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase0Credentials": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "bearer": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase0CredentialsBearer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "credentials": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase0Credentials",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase1RequiresAuthRedirect": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase1RequiresAuth": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "redirect": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase1RequiresAuthRedirect",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "requires_auth": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase1RequiresAuth",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequestResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequestResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#CreateAccountRequest": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.agentic_provisioning#CreateAccountRequestRequest"
+      },
+      "output": {
+        "target": "com.huggingface.agentic_provisioning#CreateAccountRequestResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.agentic_provisioning#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/agentic/provisioning/account_requests",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create account request"
+      }
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase0": {
+      "type": "structure",
+      "members": {
+        "service_id": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase1ConfigurationVisibility": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The visibility of the repository (defaults to private)"
+      }
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase1Configuration": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the repository (defaults to a random name if not provided)"
+          }
+        },
+        "visibility": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase1ConfigurationVisibility",
+          "traits": {
+            "smithy.api#documentation": "The visibility of the repository (defaults to private)"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase1": {
+      "type": "structure",
+      "members": {
+        "service_id": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase1Configuration",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase2Configuration": {
+      "type": "structure",
+      "members": {
+        "rechargeAmountUsd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional pay-as-you-go auto top-up ceiling, in USD. If set, usage above the plan's included quota is billed via the shared payment token (minimum $15). If omitted, the plan's included quota is a hard cap."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase2PaymentCredentials": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe_payment_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase2": {
+      "type": "structure",
+      "members": {
+        "service_id": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase2Configuration"
+        },
+        "payment_credentials": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase2PaymentCredentials"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase3Configuration": {
+      "type": "structure",
+      "members": {
+        "rechargeAmountUsd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional pay-as-you-go auto top-up ceiling, in USD. If set, usage above the plan's included quota is billed via the shared payment token (minimum $15). If omitted, the plan's included quota is a hard cap."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase3PaymentCredentials": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe_payment_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase3": {
+      "type": "structure",
+      "members": {
+        "service_id": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase3Configuration"
+        },
+        "payment_credentials": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase3PaymentCredentials"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequestBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBodyCase3"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequestBody",
+          "traits": {
+            "smithy.api#httpPayload": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase0CompleteAccessConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase0Complete": {
+      "type": "structure",
+      "members": {
+        "access_configuration": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase0CompleteAccessConfigurationMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "complete": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase0Complete",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase2Error": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase2": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase2Error",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource provisioning error"
+      }
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceResponseBodyCase2"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResourceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResourceResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#ProvisionResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.agentic_provisioning#ProvisionResourceRequest"
+      },
+      "output": {
+        "target": "com.huggingface.agentic_provisioning#ProvisionResourceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.agentic_provisioning#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/agentic/provisioning/resources",
+          "code": 200
+        },
+        "smithy.api#documentation": "Provision a resource"
+      }
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase0CompleteAccessConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase0Complete": {
+      "type": "structure",
+      "members": {
+        "access_configuration": {
+          "target": "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase0CompleteAccessConfigurationMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "complete": {
+          "target": "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase0Complete",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase2": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase3Error": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase3": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase3Error",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase2"
+        },
+        "Case3": {
+          "target": "com.huggingface.agentic_provisioning#GetResourceByIdResponseBodyCase3"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#GetResourceByIdResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.agentic_provisioning#GetResourceByIdResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#GetResourceById": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.agentic_provisioning#GetResourceByIdRequest"
+      },
+      "output": {
+        "target": "com.huggingface.agentic_provisioning#GetResourceByIdResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.agentic_provisioning#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/agentic/provisioning/resources/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a resource by ID"
+      }
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceRequestConfiguration": {
+      "type": "structure",
+      "members": {
+        "rechargeAmountUsd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Set a number (USD, minimum $15) to enable or update pay-as-you-go auto top-up; pass null to disable; omit to leave it unchanged.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceRequestPaymentCredentials": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "stripe_payment_token": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "service_id": {
+          "target": "smithy.api#String"
+        },
+        "configuration": {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceRequestConfiguration"
+        },
+        "payment_credentials": {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceRequestPaymentCredentials"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase0CompleteAccessConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase0Complete": {
+      "type": "structure",
+      "members": {
+        "access_configuration": {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase0CompleteAccessConfigurationMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "complete": {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase0Complete",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase2Error": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase2": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase2Error",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Service update error"
+      }
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase1"
+        },
+        "Case2": {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBodyCase2"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceServiceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#UpdateResourceService": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceRequest"
+      },
+      "output": {
+        "target": "com.huggingface.agentic_provisioning#UpdateResourceServiceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.agentic_provisioning#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/agentic/provisioning/resources/{id}/update_service",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update resource service"
+      }
+    },
+    "com.huggingface.agentic_provisioning#RemoveResourceRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#RemoveResourceResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#RemoveResourceResponseBodyCase1Error": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#RemoveResourceResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.huggingface.agentic_provisioning#RemoveResourceResponseBodyCase1Error",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource removal not supported"
+      }
+    },
+    "com.huggingface.agentic_provisioning#RemoveResourceResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#RemoveResourceResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#RemoveResourceResponseBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#RemoveResourceResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.agentic_provisioning#RemoveResourceResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#RemoveResource": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.agentic_provisioning#RemoveResourceRequest"
+      },
+      "output": {
+        "target": "com.huggingface.agentic_provisioning#RemoveResourceResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.agentic_provisioning#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/agentic/provisioning/resources/{id}/remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove resource"
+      }
+    },
+    "com.huggingface.agentic_provisioning#RotateResourceCredentialsRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase0CompleteAccessConfigurationMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase0Complete": {
+      "type": "structure",
+      "members": {
+        "access_configuration": {
+          "target": "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase0CompleteAccessConfigurationMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase0": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "complete": {
+          "target": "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase0Complete",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase1Error": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase1Error",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Credential rotation not supported"
+      }
+    },
+    "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase0"
+        },
+        "Case1": {
+          "target": "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#RotateResourceCredentials": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.agentic_provisioning#RotateResourceCredentialsRequest"
+      },
+      "output": {
+        "target": "com.huggingface.agentic_provisioning#RotateResourceCredentialsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.agentic_provisioning#BadRequest"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#NotFound"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/agentic/provisioning/resources/{id}/rotate_credentials",
+          "code": 200
+        },
+        "smithy.api#documentation": "Rotate resource credentials"
+      }
+    },
+    "com.huggingface.agentic_provisioning#CreateDeepLinkRequest": {
+      "type": "structure",
+      "members": {
+        "purpose": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#CreateDeepLinkResponse": {
+      "type": "structure",
+      "members": {
+        "purpose": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.agentic_provisioning#CreateDeepLink": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.agentic_provisioning#CreateDeepLinkRequest"
+      },
+      "output": {
+        "target": "com.huggingface.agentic_provisioning#CreateDeepLinkResponse"
+      },
+      "errors": [
+        {
+          "target": "com.huggingface.agentic_provisioning#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/agentic/provisioning/deep_links",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create deep link"
+      }
+    },
+    "com.huggingface.agentic_provisioning#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.huggingface.agentic_provisioning#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.huggingface.agentic_provisioning#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.huggingface.agentic_provisioning#AgenticProvisioning": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.agentic_provisioning#GetHealth"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#GetServices"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#CreateAccountRequest"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#ProvisionResource"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#GetResourceById"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#UpdateResourceService"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#RemoveResource"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#RotateResourceCredentials"
+        },
+        {
+          "target": "com.huggingface.agentic_provisioning#CreateDeepLink"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

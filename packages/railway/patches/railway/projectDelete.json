@@ -1,0 +1,10 @@
+{
+  "description": "projectDelete returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#ProjectDeleteRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation projectDelete($id: String!) {\n  projectDelete(id: $id)\n}"
+    }
+  ]
+}

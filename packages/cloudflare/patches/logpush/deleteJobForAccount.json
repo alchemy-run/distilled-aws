@@ -1,0 +1,39 @@
+{
+  "description": "Align logpush#JobsDeleteForAccount with distilled cloudflare/logpush deleteJobForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsDeleteForAccount",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsDeleteForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForAccount/input/target",
+      "value": "com.cloudflare.logpush#DeleteJobForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsDeleteForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForAccount/output/target",
+      "value": "com.cloudflare.logpush#DeleteJobForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#DeleteJobForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.logpush#JobNotFound"
+        }
+      ]
+    }
+  ]
+}

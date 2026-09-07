@@ -1,0 +1,48 @@
+{
+  "description": "Align d1#DatabaseTimeTravelGetBookmark with distilled cloudflare/d1 getBookmarkDatabaseTimeTravel",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseTimeTravelGetBookmark",
+      "path": "/shapes/com.cloudflare.d1#GetBookmarkDatabaseTimeTravel"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseTimeTravelGetBookmarkRequest",
+      "path": "/shapes/com.cloudflare.d1#GetBookmarkDatabaseTimeTravelRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#GetBookmarkDatabaseTimeTravel/input/target",
+      "value": "com.cloudflare.d1#GetBookmarkDatabaseTimeTravelRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseTimeTravelGetBookmarkResponse",
+      "path": "/shapes/com.cloudflare.d1#GetBookmarkDatabaseTimeTravelResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#GetBookmarkDatabaseTimeTravel/output/target",
+      "value": "com.cloudflare.d1#GetBookmarkDatabaseTimeTravelResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#GetBookmarkDatabaseTimeTravel/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#NoHistoryAvailable"
+        },
+        {
+          "target": "com.cloudflare.d1#TimestampTooOld"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align alerting#SilencesList with distilled cloudflare/alerting listSilences",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesList",
+      "path": "/shapes/com.cloudflare.alerting#ListSilences"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesListRequest",
+      "path": "/shapes/com.cloudflare.alerting#ListSilencesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#ListSilences/input/target",
+      "value": "com.cloudflare.alerting#ListSilencesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesListResponse",
+      "path": "/shapes/com.cloudflare.alerting#ListSilencesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#ListSilences/output/target",
+      "value": "com.cloudflare.alerting#ListSilencesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#ListSilences/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

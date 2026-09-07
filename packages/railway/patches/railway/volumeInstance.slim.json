@@ -1,0 +1,14 @@
+{
+  "description": "Drop nested environment (canvasGroupRefs/meta) from volumeInstance GET. Alchemy only needs instance scalars plus volume { id, name, projectId }.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#VolumeInstanceRequest/traits/com.railway.graphql#operation/query",
+      "value": "query volumeInstance($id: String!) {\n  volumeInstance(id: $id) {\n    createdAt\n    currentSizeMB\n    deletedAt\n    environmentId\n    externalId\n    id\n    isPendingDeletion\n    mountPath\n    region\n    serviceId\n    sizeMB\n    state\n    volume {\n      createdAt\n      id\n      name\n      projectId\n    }\n    volumeId\n  }\n}"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.railway.api#VolumeInstanceResponse/members/environment"
+    }
+  ]
+}

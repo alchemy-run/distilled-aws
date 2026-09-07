@@ -1,0 +1,45 @@
+{
+  "description": "Align accounts#SubscriptionsUpdate with distilled cloudflare/accounts updateSubscription",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#SubscriptionsUpdate",
+      "path": "/shapes/com.cloudflare.accounts#UpdateSubscription"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#SubscriptionsUpdateRequest",
+      "path": "/shapes/com.cloudflare.accounts#UpdateSubscriptionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#UpdateSubscription/input/target",
+      "value": "com.cloudflare.accounts#UpdateSubscriptionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#SubscriptionsUpdateResponse",
+      "path": "/shapes/com.cloudflare.accounts#UpdateSubscriptionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#UpdateSubscription/output/target",
+      "value": "com.cloudflare.accounts#UpdateSubscriptionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#UpdateSubscription/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#JsonDecodeFailure"
+        },
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.accounts#EndpointNotFound"
+        }
+      ]
+    }
+  ]
+}

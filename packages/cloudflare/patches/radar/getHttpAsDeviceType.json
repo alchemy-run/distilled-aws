@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpAsesDeviceTypeGet with distilled cloudflare/radar getHttpAsDeviceType",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesDeviceTypeGet",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsDeviceType"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesDeviceTypeGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsDeviceTypeRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsDeviceType/input/target",
+      "value": "com.cloudflare.radar#GetHttpAsDeviceTypeRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesDeviceTypeGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsDeviceTypeResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsDeviceType/output/target",
+      "value": "com.cloudflare.radar#GetHttpAsDeviceTypeResponse"
+    }
+  ]
+}

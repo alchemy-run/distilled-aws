@@ -1,0 +1,41 @@
+{
+  "description": "Align security_center#InsightsAuditLogsListForZone with distilled cloudflare/security-center listInsightAuditLogsForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsAuditLogsListForZone",
+      "path": "/shapes/com.cloudflare.security_center#ListInsightAuditLogsForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsAuditLogsListForZoneRequest",
+      "path": "/shapes/com.cloudflare.security_center#ListInsightAuditLogsForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#ListInsightAuditLogsForZone/input/target",
+      "value": "com.cloudflare.security_center#ListInsightAuditLogsForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_center#InsightsAuditLogsListForZoneResponse",
+      "path": "/shapes/com.cloudflare.security_center#ListInsightAuditLogsForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_center#ListInsightAuditLogsForZone/output/target",
+      "value": "com.cloudflare.security_center#ListInsightAuditLogsForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.security_center#ListInsightAuditLogsForZone/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursor",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

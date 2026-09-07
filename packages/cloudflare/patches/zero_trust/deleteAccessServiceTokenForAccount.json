@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessServiceTokensDeleteForAccount with distilled cloudflare/zero-trust deleteAccessServiceTokenForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensDeleteForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessServiceTokenForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensDeleteForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessServiceTokenForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessServiceTokenForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessServiceTokenForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensDeleteForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessServiceTokenForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessServiceTokenForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessServiceTokenForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessServiceTokenForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessServiceTokenNotFound"
+        }
+      ]
+    }
+  ]
+}

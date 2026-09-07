@@ -1,0 +1,39 @@
+{
+  "description": "Align cache#OriginCloudRegionsUpdate with distilled cloudflare/cache putOriginCloudRegion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsUpdate",
+      "path": "/shapes/com.cloudflare.cache#PutOriginCloudRegion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsUpdateRequest",
+      "path": "/shapes/com.cloudflare.cache#PutOriginCloudRegionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#PutOriginCloudRegion/input/target",
+      "value": "com.cloudflare.cache#PutOriginCloudRegionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsUpdateResponse",
+      "path": "/shapes/com.cloudflare.cache#PutOriginCloudRegionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#PutOriginCloudRegion/output/target",
+      "value": "com.cloudflare.cache#PutOriginCloudRegionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#PutOriginCloudRegion/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,278 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.security_txt#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_txt#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_txt#DeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/security-center/securitytxt",
+          "code": 200
+        },
+        "smithy.api#documentation": "Removes the security.txt file configuration for a zone. The /.well-known/security.txt endpoint will no longer be served.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.security_txt#GetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_txt#GetResponseAcknowledgmentsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#GetResponseCanonicalList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#GetResponseContactList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#GetResponseEncryptionList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#GetResponseHiringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#GetResponsePolicyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#GetResponse": {
+      "type": "structure",
+      "members": {
+        "acknowledgments": {
+          "target": "com.cloudflare.security_txt#GetResponseAcknowledgmentsList"
+        },
+        "canonical": {
+          "target": "com.cloudflare.security_txt#GetResponseCanonicalList"
+        },
+        "contact": {
+          "target": "com.cloudflare.security_txt#GetResponseContactList"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "encryption": {
+          "target": "com.cloudflare.security_txt#GetResponseEncryptionList"
+        },
+        "expires": {
+          "target": "smithy.api#String"
+        },
+        "hiring": {
+          "target": "com.cloudflare.security_txt#GetResponseHiringList"
+        },
+        "policy": {
+          "target": "com.cloudflare.security_txt#GetResponsePolicyList"
+        },
+        "preferred_languages": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.security_txt#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_txt#GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.security_txt#GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/security-center/securitytxt",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieves the current security.txt file configuration for a zone, used for security vulnerability reporting.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.security_txt#UpdateRequestAcknowledgmentsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#UpdateRequestCanonicalList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#UpdateRequestContactList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#UpdateRequestEncryptionList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#UpdateRequestHiringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#UpdateRequestPolicyList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.security_txt#UpdateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "acknowledgments": {
+          "target": "com.cloudflare.security_txt#UpdateRequestAcknowledgmentsList"
+        },
+        "canonical": {
+          "target": "com.cloudflare.security_txt#UpdateRequestCanonicalList"
+        },
+        "contact": {
+          "target": "com.cloudflare.security_txt#UpdateRequestContactList"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "encryption": {
+          "target": "com.cloudflare.security_txt#UpdateRequestEncryptionList"
+        },
+        "expires": {
+          "target": "smithy.api#String"
+        },
+        "hiring": {
+          "target": "com.cloudflare.security_txt#UpdateRequestHiringList"
+        },
+        "policy": {
+          "target": "com.cloudflare.security_txt#UpdateRequestPolicyList"
+        },
+        "preferred_languages": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.security_txt#Update": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.security_txt#UpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/security-center/securitytxt",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates the security.txt file configuration for a zone, which provides security researchers with vulnerability reporting information.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.security_txt#SecurityTxt": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.security_txt#Delete"
+        },
+        {
+          "target": "com.cloudflare.security_txt#Get"
+        },
+        {
+          "target": "com.cloudflare.security_txt#Update"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare SecurityTxt",
+        "smithy.api#documentation": "Cloudflare API — security_txt resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

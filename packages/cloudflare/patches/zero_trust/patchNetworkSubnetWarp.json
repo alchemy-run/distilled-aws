@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#NetworksSubnetsWarpEdit with distilled cloudflare/zero-trust patchNetworkSubnetWarp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsWarpEdit",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetWarp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsWarpEditRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetWarpRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetWarp/input/target",
+      "value": "com.cloudflare.zero_trust#PatchNetworkSubnetWarpRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#NetworksSubnetsWarpEditResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetWarpResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchNetworkSubnetWarp/output/target",
+      "value": "com.cloudflare.zero_trust#PatchNetworkSubnetWarpResponse"
+    }
+  ]
+}

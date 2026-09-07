@@ -1,0 +1,21 @@
+node_modules/
+dist/
+lib/
+.out/
+.test/
+.DS_Store
+.env
+*.tsbuildinfo
+
+.repomix-output.txt
+
+# Husky - ignore generated files but keep hooks
+.husky/_
+!.husky/pre-commit
+
+.cache
+.turbo/
+.tmp
+*.tgz
+.scripts-types/
+**/.turbo/

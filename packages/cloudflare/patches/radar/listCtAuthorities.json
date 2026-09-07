@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#CtAuthoritiesList with distilled cloudflare/radar listCtAuthorities",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#CtAuthoritiesList",
+      "path": "/shapes/com.cloudflare.radar#ListCtAuthorities"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#CtAuthoritiesListRequest",
+      "path": "/shapes/com.cloudflare.radar#ListCtAuthoritiesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListCtAuthorities/input/target",
+      "value": "com.cloudflare.radar#ListCtAuthoritiesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#CtAuthoritiesListResponse",
+      "path": "/shapes/com.cloudflare.radar#ListCtAuthoritiesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListCtAuthorities/output/target",
+      "value": "com.cloudflare.radar#ListCtAuthoritiesResponse"
+    }
+  ]
+}

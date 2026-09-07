@@ -1,0 +1,76 @@
+{
+  "description": "workers/subdomain/edge-preview is absent from the API docs (docs-absent endpoint, like containers): GET returns a preview-session token used as cf-preview-upload-config-token when uploading a preview worker, plus an optional exchange URL. Shapes transcribed from the distilled SDK's createSubdomainEdgePreviewSession. Needed by alchemy's EdgeSession (state-store login / preview uploads).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateSubdomainEdgePreviewSessionRequest",
+      "value": {
+        "type": "structure",
+        "members": {
+          "account_id": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Identifier.",
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {}
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#input": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateSubdomainEdgePreviewSessionResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "token": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Session token used as cf-preview-upload-config-token when uploading a preview worker.",
+              "smithy.api#required": {}
+            }
+          },
+          "exchange_url": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#documentation": "Optional URL to exchange the token for a re-encoded version."
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#output": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateSubdomainEdgePreviewSession",
+      "value": {
+        "type": "operation",
+        "input": {
+          "target": "com.cloudflare.workers#CreateSubdomainEdgePreviewSessionRequest"
+        },
+        "output": {
+          "target": "com.cloudflare.workers#CreateSubdomainEdgePreviewSessionResponse"
+        },
+        "errors": [
+          {
+            "target": "com.cloudflare.workers#InvalidRoute"
+          }
+        ],
+        "traits": {
+          "smithy.api#http": {
+            "method": "GET",
+            "uri": "/accounts/{account_id}/workers/subdomain/edge-preview",
+            "code": 200
+          },
+          "smithy.api#documentation": "Create an edge-preview session for the account's workers.dev subdomain (undocumented endpoint)."
+        }
+      }
+    }
+  ]
+}

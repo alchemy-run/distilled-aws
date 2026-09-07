@@ -1,0 +1,49 @@
+{
+  "description": "Key dictionary / op aliases for queues (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "backlogBytes": "backlog_bytes",
+        "backlogCount": "backlog_count",
+        "batchSize": "batch_size",
+        "bucketName": "bucket_name",
+        "consumerId": "consumer_id",
+        "consumersTotalCount": "consumers_total_count",
+        "contentType": "content_type",
+        "createdAt": "created_at",
+        "createdOn": "created_on",
+        "deadLetterQueue": "dead_letter_queue",
+        "delaySeconds": "delay_seconds",
+        "deleteMessagesPermanently": "delete_messages_permanently",
+        "deliveryDelay": "delivery_delay",
+        "deliveryPaused": "delivery_paused",
+        "documentationUrl": "documentation_url",
+        "leaseId": "lease_id",
+        "maxConcurrency": "max_concurrency",
+        "maxRetries": "max_retries",
+        "maxWaitTimeMs": "max_wait_time_ms",
+        "messageBacklogCount": "message_backlog_count",
+        "messageRetentionPeriod": "message_retention_period",
+        "modelName": "model_name",
+        "modifiedAt": "modified_at",
+        "modifiedOn": "modified_on",
+        "oldestMessageTimestampMs": "oldest_message_timestamp_ms",
+        "perPage": "per_page",
+        "producersTotalCount": "producers_total_count",
+        "queueId": "queue_id",
+        "queueName": "queue_name",
+        "resultInfo": "result_info",
+        "retryDelay": "retry_delay",
+        "scriptName": "script_name",
+        "startedAt": "started_at",
+        "timestampMs": "timestamp_ms",
+        "totalCount": "total_count",
+        "visibilityTimeoutMs": "visibility_timeout_ms",
+        "workerName": "worker_name",
+        "workflowName": "workflow_name"
+      }
+    }
+  ]
+}

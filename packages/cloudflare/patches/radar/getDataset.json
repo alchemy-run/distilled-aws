@@ -1,0 +1,20 @@
+{
+  "description": "Align radar#DatasetsGet with distilled cloudflare/radar getDataset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DatasetsGet",
+      "path": "/shapes/com.cloudflare.radar#GetDataset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DatasetsGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetDatasetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetDataset/input/target",
+      "value": "com.cloudflare.radar#GetDatasetRequest"
+    }
+  ]
+}

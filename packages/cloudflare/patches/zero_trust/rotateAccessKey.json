@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessKeysRotate with distilled cloudflare/zero-trust rotateAccessKey",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessKeysRotate",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessKey"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessKeysRotateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessKeyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessKey/input/target",
+      "value": "com.cloudflare.zero_trust#RotateAccessKeyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessKeysRotateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessKeyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RotateAccessKey/output/target",
+      "value": "com.cloudflare.zero_trust#RotateAccessKeyResponse"
+    }
+  ]
+}

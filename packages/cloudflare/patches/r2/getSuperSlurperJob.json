@@ -1,0 +1,30 @@
+{
+  "description": "Align r2#SuperSlurperJobsGet with distilled cloudflare/r2 getSuperSlurperJob",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperJobsGet",
+      "path": "/shapes/com.cloudflare.r2#GetSuperSlurperJob"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperJobsGetRequest",
+      "path": "/shapes/com.cloudflare.r2#GetSuperSlurperJobRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#GetSuperSlurperJob/input/target",
+      "value": "com.cloudflare.r2#GetSuperSlurperJobRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperJobsGetResponse",
+      "path": "/shapes/com.cloudflare.r2#GetSuperSlurperJobResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#GetSuperSlurperJob/output/target",
+      "value": "com.cloudflare.r2#GetSuperSlurperJobResponse"
+    }
+  ]
+}

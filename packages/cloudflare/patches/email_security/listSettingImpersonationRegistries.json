@@ -1,0 +1,53 @@
+{
+  "description": "Align email_security#SettingsImpersonationRegistryList with distilled cloudflare/email-security listSettingImpersonationRegistries",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsImpersonationRegistryList",
+      "path": "/shapes/com.cloudflare.email_security#ListSettingImpersonationRegistries"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsImpersonationRegistryListRequest",
+      "path": "/shapes/com.cloudflare.email_security#ListSettingImpersonationRegistriesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#ListSettingImpersonationRegistries/input/target",
+      "value": "com.cloudflare.email_security#ListSettingImpersonationRegistriesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_security#SettingsImpersonationRegistryListResponse",
+      "path": "/shapes/com.cloudflare.email_security#ListSettingImpersonationRegistriesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_security#ListSettingImpersonationRegistries/output/target",
+      "value": "com.cloudflare.email_security#ListSettingImpersonationRegistriesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#ListSettingImpersonationRegistries/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_security#ListSettingImpersonationRegistries/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_security#EmailSecurityNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.email_security#Forbidden"
+        }
+      ]
+    }
+  ]
+}

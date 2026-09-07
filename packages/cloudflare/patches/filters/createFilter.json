@@ -1,0 +1,38 @@
+{
+  "description": "Align filters#Create with distilled cloudflare/filters createFilter",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#Create",
+      "path": "/shapes/com.cloudflare.filters#CreateFilter"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#CreateRequest",
+      "path": "/shapes/com.cloudflare.filters#CreateFilterRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#CreateFilter/input/target",
+      "value": "com.cloudflare.filters#CreateFilterRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.filters#CreateResponse",
+      "path": "/shapes/com.cloudflare.filters#CreateFilterResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.filters#CreateFilter/output/target",
+      "value": "com.cloudflare.filters#CreateFilterResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.filters#CreateFilter/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

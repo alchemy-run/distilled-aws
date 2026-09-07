@@ -1,0 +1,30 @@
+{
+  "description": "Align workers#ScriptsAssetsUploadCreate with distilled cloudflare/workers createScriptAssetUpload",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsAssetsUploadCreate",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptAssetUpload"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsAssetsUploadCreateRequest",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptAssetUploadRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptAssetUpload/input/target",
+      "value": "com.cloudflare.workers#CreateScriptAssetUploadRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsAssetsUploadCreateResponse",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptAssetUploadResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateScriptAssetUpload/output/target",
+      "value": "com.cloudflare.workers#CreateScriptAssetUploadResponse"
+    }
+  ]
+}

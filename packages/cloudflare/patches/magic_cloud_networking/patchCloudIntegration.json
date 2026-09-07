@@ -1,0 +1,45 @@
+{
+  "description": "Align magic_cloud_networking#CloudIntegrationsEdit with distilled cloudflare/magic-cloud-networking patchCloudIntegration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsEdit",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PatchCloudIntegration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsEditRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PatchCloudIntegrationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PatchCloudIntegration/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#PatchCloudIntegrationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#CloudIntegrationsEditResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PatchCloudIntegrationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PatchCloudIntegration/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#PatchCloudIntegrationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#PatchCloudIntegration/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_cloud_networking#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#CloudIntegrationNotFound"
+        }
+      ]
+    }
+  ]
+}

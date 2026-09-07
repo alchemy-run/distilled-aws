@@ -1,0 +1,47 @@
+{
+  "description": "Align magic_transit#IpsecTunnelsList with distilled cloudflare/magic-transit listIpsecTunnels",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#IpsecTunnelsList",
+      "path": "/shapes/com.cloudflare.magic_transit#ListIpsecTunnels"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#IpsecTunnelsListRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#ListIpsecTunnelsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListIpsecTunnels/input/target",
+      "value": "com.cloudflare.magic_transit#ListIpsecTunnelsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#IpsecTunnelsListResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#ListIpsecTunnelsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListIpsecTunnels/output/target",
+      "value": "com.cloudflare.magic_transit#ListIpsecTunnelsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#ListIpsecTunnels/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_transit#MagicTransitNotOnboarded"
+        },
+        {
+          "target": "com.cloudflare.magic_transit#Forbidden"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ListIpsecTunnelsRequest/members/x_magic_new_hc_target",
+      "path": "/shapes/com.cloudflare.magic_transit#ListIpsecTunnelsRequest/members/xMagicNewHcTarget"
+    }
+  ]
+}

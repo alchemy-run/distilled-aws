@@ -1,0 +1,162 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.codes_of_conduct#CodeOfConduct": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code Of Conduct"
+      }
+    },
+    "com.github.codes_of_conduct#GetAllCodesOfConductResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.codes_of_conduct#CodeOfConduct"
+      },
+      "traits": {}
+    },
+    "com.github.codes_of_conduct#GetAllCodesOfConductResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.codes_of_conduct#GetAllCodesOfConductResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.codes_of_conduct#GetAllCodesOfConduct": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.github.codes_of_conduct#GetAllCodesOfConductResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/codes_of_conduct",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all codes of conduct\n\nReturns array of all GitHub's codes of conduct."
+      }
+    },
+    "com.github.codes_of_conduct#GetConductCodeRequest": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.codes_of_conduct#GetConductCode": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.codes_of_conduct#GetConductCodeRequest"
+      },
+      "output": {
+        "target": "com.github.codes_of_conduct#CodeOfConduct"
+      },
+      "errors": [
+        {
+          "target": "com.github.codes_of_conduct#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/codes_of_conduct/{key}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a code of conduct\n\nReturns information about the specified GitHub code of conduct."
+      }
+    },
+    "com.github.codes_of_conduct#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.codes_of_conduct#CodesOfConduct": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.codes_of_conduct#GetAllCodesOfConduct"
+        },
+        {
+          "target": "com.github.codes_of_conduct#GetConductCode"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

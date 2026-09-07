@@ -1,0 +1,1016 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.metrics#MetricAnomalyBody": {
+      "type": "structure",
+      "members": {
+        "metricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Exact metric name to characterize (e.g. 'metrics_rate_limiter_message_lag_seconds').",
+            "smithy.api#required": {}
+          }
+        },
+        "anomalyFrom": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start of the suspicious window (inclusive). ISO 8601 — e.g. when the alert fired or the graph started looking wrong.",
+            "smithy.api#required": {}
+          }
+        },
+        "anomalyTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End of the suspicious window (exclusive). Defaults to now."
+          }
+        },
+        "baselineFrom": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start of the healthy comparison window. Defaults to one anomaly-window-length before baselineTo."
+          }
+        },
+        "baselineTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End of the healthy comparison window. Defaults to anomalyFrom. Must not extend past anomalyFrom."
+          }
+        },
+        "aggregation": {
+          "target": "com.posthog.metrics#AggregationEnum",
+          "traits": {
+            "smithy.api#documentation": "Aggregation to characterize. Omit to auto-pick from the metric's OTel type (counter -> rate, gauge -> avg, histogram -> histogram_quantile 0.95).\n\n* `sum` - sum\n* `avg` - avg\n* `count` - count\n* `p95` - p95\n* `rate` - rate\n* `increase` - increase\n* `histogram_quantile` - histogram_quantile",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "quantile": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Quantile for histogram_quantile. Defaults to 0.95.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filters": {
+          "target": "com.posthog.metrics#MetricAnomalyBodyFiltersList",
+          "traits": {
+            "smithy.api#documentation": "Label predicates narrowing which series are characterized."
+          }
+        },
+        "candidateKeys": {
+          "target": "com.posthog.metrics#MetricAnomalyBodyCandidateKeysList",
+          "traits": {
+            "smithy.api#documentation": "Label keys to drill into when finding which label values moved. Omit to auto-discover the most common keys on this metric (plus service_name). Max 4 are used."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#AggregationEnum": {
+      "type": "enum",
+      "members": {
+        "SUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sum"
+          }
+        },
+        "AVG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "avg"
+          }
+        },
+        "COUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "count"
+          }
+        },
+        "P95": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "p95"
+          }
+        },
+        "RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rate"
+          }
+        },
+        "INCREASE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "increase"
+          }
+        },
+        "HISTOGRAM_QUANTILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "histogram_quantile"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `sum` - sum\n* `avg` - avg\n* `count` - count\n* `p95` - p95\n* `rate` - rate\n* `increase` - increase\n* `histogram_quantile` - histogram_quantile"
+      }
+    },
+    "com.posthog.metrics#MetricFilter": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Attribute name to filter on, without any type-tag suffix (e.g. 'k8s.pod.name', 'env').",
+            "smithy.api#required": {}
+          }
+        },
+        "op": {
+          "target": "com.posthog.metrics#OpEnum",
+          "traits": {
+            "smithy.api#documentation": "Comparison operator. 'regex'/'not_regex' use RE2 syntax. Negative operators also match rows that lack the key entirely, mirroring Prometheus negative matchers.\n\n* `eq` - eq\n* `neq` - neq\n* `regex` - regex\n* `not_regex` - not_regex"
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value to compare against. For regex operators this is the pattern.",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.posthog.metrics#MetricAttributeScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Where the attribute lives: 'resource' = per-target resource attributes (k8s.pod.name, service.version), 'attribute' = per-datapoint attributes (http.method, path), 'auto' = resource first with per-datapoint fallback. Use 'auto' unless you know the exact scope.\n\n* `resource` - resource\n* `attribute` - attribute\n* `auto` - auto"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#OpEnum": {
+      "type": "enum",
+      "members": {
+        "EQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eq"
+          }
+        },
+        "NEQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "neq"
+          }
+        },
+        "REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "regex"
+          }
+        },
+        "NOT_REGEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_regex"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `eq` - eq\n* `neq` - neq\n* `regex` - regex\n* `not_regex` - not_regex"
+      }
+    },
+    "com.posthog.metrics#MetricAttributeScopeEnum": {
+      "type": "enum",
+      "members": {
+        "RESOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "resource"
+          }
+        },
+        "ATTRIBUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "attribute"
+          }
+        },
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `resource` - resource\n* `attribute` - attribute\n* `auto` - auto"
+      }
+    },
+    "com.posthog.metrics#MetricAnomalyBodyFiltersList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricFilter"
+      },
+      "traits": {
+        "smithy.api#documentation": "Label predicates narrowing which series are characterized."
+      }
+    },
+    "com.posthog.metrics#MetricAnomalyBodyCandidateKeysList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Label keys to drill into when finding which label values moved. Omit to auto-discover the most common keys on this metric (plus service_name). Max 4 are used."
+      }
+    },
+    "com.posthog.metrics#MetricsCharacterizeCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "query": {
+          "target": "com.posthog.metrics#MetricAnomalyBody",
+          "traits": {
+            "smithy.api#documentation": "The anomaly characterization to run.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.metrics#MetricAnomalyReport": {
+      "type": "structure",
+      "members": {
+        "metric_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric that was characterized.",
+            "smithy.api#required": {}
+          }
+        },
+        "aggregation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregation used (auto-picked when not specified).",
+            "smithy.api#required": {}
+          }
+        },
+        "interval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bucket size of the analysis grid.",
+            "smithy.api#required": {}
+          }
+        },
+        "baseline_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Baseline window start, ISO 8601.",
+            "smithy.api#required": {}
+          }
+        },
+        "baseline_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Baseline window end, ISO 8601.",
+            "smithy.api#required": {}
+          }
+        },
+        "anomaly_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Anomaly window start, ISO 8601.",
+            "smithy.api#required": {}
+          }
+        },
+        "anomaly_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Anomaly window end, ISO 8601.",
+            "smithy.api#required": {}
+          }
+        },
+        "baseline_mean": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Mean over the baseline window.",
+            "smithy.api#required": {}
+          }
+        },
+        "baseline_stddev": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Population stddev over the baseline window.",
+            "smithy.api#required": {}
+          }
+        },
+        "anomaly_mean": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Mean over the anomaly window.",
+            "smithy.api#required": {}
+          }
+        },
+        "anomaly_peak": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum bucket value in the anomaly window.",
+            "smithy.api#required": {}
+          }
+        },
+        "change_ratio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "anomaly_mean / baseline_mean. A zero baseline yields anomaly_mean itself.",
+            "smithy.api#required": {}
+          }
+        },
+        "direction": {
+          "target": "com.posthog.metrics#MetricAnomalyDirectionEnum",
+          "traits": {
+            "smithy.api#documentation": "Which way the metric moved versus the baseline.\n\n* `up` - up\n* `down` - down\n* `flat` - flat",
+            "smithy.api#required": {}
+          }
+        },
+        "onset_time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First bucket clearly outside the baseline range (3 stddevs or 50% relative change), or null if no clear onset.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "top_movers": {
+          "target": "com.posthog.metrics#MetricAnomalyReportTopMoversList",
+          "traits": {
+            "smithy.api#documentation": "Label values whose behavior changed the most between windows, largest change first. Empty when nothing moved or the metric has no labels.",
+            "smithy.api#required": {}
+          }
+        },
+        "series": {
+          "target": "com.posthog.metrics#MetricSeries",
+          "traits": {
+            "smithy.api#documentation": "The metric across baseline + anomaly windows on one grid, for plotting or further inspection.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricAnomalyDirectionEnum": {
+      "type": "enum",
+      "members": {
+        "UP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "up"
+          }
+        },
+        "DOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "down"
+          }
+        },
+        "FLAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flat"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `up` - up\n* `down` - down\n* `flat` - flat"
+      }
+    },
+    "com.posthog.metrics#MetricAnomalyDimension": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label key that was drilled into.",
+            "smithy.api#required": {}
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label value this row describes.",
+            "smithy.api#required": {}
+          }
+        },
+        "baseline_value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Mean value over the baseline window for this label value.",
+            "smithy.api#required": {}
+          }
+        },
+        "anomaly_value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Mean value over the anomaly window for this label value.",
+            "smithy.api#required": {}
+          }
+        },
+        "change_ratio": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "anomaly_value / baseline_value. A zero baseline yields the anomaly value itself (new traffic).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricAnomalyReportTopMoversList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricAnomalyDimension"
+      },
+      "traits": {
+        "smithy.api#documentation": "Label values whose behavior changed the most between windows, largest change first. Empty when nothing moved or the metric has no labels."
+      }
+    },
+    "com.posthog.metrics#MetricSeries": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.posthog.metrics#MetricSeriesLabelsMap",
+          "traits": {
+            "smithy.api#documentation": "Label values identifying this series. Empty for an ungrouped query.",
+            "smithy.api#required": {}
+          }
+        },
+        "points": {
+          "target": "com.posthog.metrics#MetricSeriesPointsList",
+          "traits": {
+            "smithy.api#documentation": "Time-bucketed points, ordered by time ascending.",
+            "smithy.api#required": {}
+          }
+        },
+        "metric_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric the series was computed from. Null for formula results.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "clause": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the query clause that produced this series.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricSeriesLabelsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Label values identifying this series. Empty for an ungrouped query."
+      }
+    },
+    "com.posthog.metrics#MetricQueryPoint": {
+      "type": "structure",
+      "members": {
+        "time": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bucket start as ISO 8601 timestamp.",
+            "smithy.api#required": {}
+          }
+        },
+        "value": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Aggregated value for the bucket.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricSeriesPointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricQueryPoint"
+      },
+      "traits": {
+        "smithy.api#documentation": "Time-bucketed points, ordered by time ascending."
+      }
+    },
+    "com.posthog.metrics#MetricsCharacterizeCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.metrics#MetricsCharacterizeCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.metrics#MetricAnomalyReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/metrics/characterize/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Characterize a metric anomaly: compare an anomaly window against a\nbaseline, find the onset, and rank which label values moved."
+      }
+    },
+    "com.posthog.metrics#MetricsHasMetricsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.metrics#MetricsHasMetricsRetrieveResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricsHasMetricsRetrieveResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.metrics#MetricsHasMetricsRetrieveResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.metrics#MetricsHasMetricsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.metrics#MetricsHasMetricsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.metrics#MetricsHasMetricsRetrieveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/metrics/has_metrics/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.metrics#MetricQueryBody": {
+      "type": "structure",
+      "members": {
+        "metricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Exact metric name to query (e.g. 'http.server.duration'). Single-clause shorthand — mutually exclusive with 'clauses'."
+          }
+        },
+        "aggregation": {
+          "target": "com.posthog.metrics#AggregationEnum",
+          "traits": {
+            "smithy.api#documentation": "Aggregation applied per time bucket. 'rate' (per-second) and 'increase' are counter-aware: per-series deltas with Prometheus counter-reset handling, temporality-aware (delta-temporality samples count as-is). 'histogram_quantile' interpolates from OTel histogram buckets and requires 'quantile'.\n\n* `sum` - sum\n* `avg` - avg\n* `count` - count\n* `p95` - p95\n* `rate` - rate\n* `increase` - increase\n* `histogram_quantile` - histogram_quantile"
+          }
+        },
+        "quantile": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Quantile in (0, 1) for 'histogram_quantile' (e.g. 0.95). Ignored for other aggregations.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filters": {
+          "target": "com.posthog.metrics#MetricQueryBodyFiltersList",
+          "traits": {
+            "smithy.api#documentation": "Label predicates ANDed together. Rows must satisfy every filter."
+          }
+        },
+        "groupBy": {
+          "target": "com.posthog.metrics#MetricQueryBodyGroupByList",
+          "traits": {
+            "smithy.api#documentation": "Labels to split the result into separate series by. Series share one time grid and are capped at the 100 largest."
+          }
+        },
+        "interval": {
+          "target": "com.posthog.metrics#MetricQueryIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "Bucket size for the shared time grid. Omit to auto-pick (~60 buckets across the range).\n\n* `second` - second\n* `minute` - minute\n* `minute_5` - minute_5\n* `minute_15` - minute_15\n* `hour` - hour\n* `hour_6` - hour_6\n* `day` - day\n* `week` - week",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "clauses": {
+          "target": "com.posthog.metrics#MetricQueryBodyClausesList",
+          "traits": {
+            "smithy.api#documentation": "Full multi-clause form: each clause is an independent metric selection sharing the request's time grid (maximum 10). Mutually exclusive with 'metricName'."
+          }
+        },
+        "formula": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Arithmetic over clause names evaluated server-side per grid point, e.g. '(a - b) / a'. Supports + - * / and parentheses; division by zero yields 0. When set, only the formula result series are returned.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "dateFrom": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Lower bound (inclusive) for the query range. ISO 8601.",
+            "smithy.api#required": {}
+          }
+        },
+        "dateTo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Upper bound (exclusive) for the query range. Defaults to now if omitted."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricQueryBodyFiltersList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricFilter"
+      },
+      "traits": {
+        "smithy.api#documentation": "Label predicates ANDed together. Rows must satisfy every filter."
+      }
+    },
+    "com.posthog.metrics#MetricGroupBy": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Attribute name to split series by (e.g. 'k8s.pod.name', 'env').",
+            "smithy.api#required": {}
+          }
+        },
+        "scope": {
+          "target": "com.posthog.metrics#MetricAttributeScopeEnum",
+          "traits": {
+            "smithy.api#documentation": "Where the attribute lives; same semantics as filter scope. Use 'auto' unless you know the exact scope.\n\n* `resource` - resource\n* `attribute` - attribute\n* `auto` - auto"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricQueryBodyGroupByList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricGroupBy"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels to split the result into separate series by. Series share one time grid and are capped at the 100 largest."
+      }
+    },
+    "com.posthog.metrics#MetricQueryIntervalEnum": {
+      "type": "enum",
+      "members": {
+        "SECOND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "second"
+          }
+        },
+        "MINUTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "minute"
+          }
+        },
+        "MINUTE_5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "minute_5"
+          }
+        },
+        "MINUTE_15": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "minute_15"
+          }
+        },
+        "HOUR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour"
+          }
+        },
+        "HOUR_6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hour_6"
+          }
+        },
+        "DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "day"
+          }
+        },
+        "WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "week"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `second` - second\n* `minute` - minute\n* `minute_5` - minute_5\n* `minute_15` - minute_15\n* `hour` - hour\n* `hour_6` - hour_6\n* `day` - day\n* `week` - week"
+      }
+    },
+    "com.posthog.metrics#MetricClause": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Clause name a formula refers to (e.g. 'a').",
+            "smithy.api#required": {}
+          }
+        },
+        "metricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Exact metric name this clause queries.",
+            "smithy.api#required": {}
+          }
+        },
+        "aggregation": {
+          "target": "com.posthog.metrics#AggregationEnum",
+          "traits": {
+            "smithy.api#documentation": "Aggregation applied per time bucket; same semantics as the top-level aggregation.\n\n* `sum` - sum\n* `avg` - avg\n* `count` - count\n* `p95` - p95\n* `rate` - rate\n* `increase` - increase\n* `histogram_quantile` - histogram_quantile"
+          }
+        },
+        "quantile": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Quantile in (0, 1) for 'histogram_quantile'.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "filters": {
+          "target": "com.posthog.metrics#MetricClauseFiltersList",
+          "traits": {
+            "smithy.api#documentation": "Label predicates ANDed together for this clause."
+          }
+        },
+        "groupBy": {
+          "target": "com.posthog.metrics#MetricClauseGroupByList",
+          "traits": {
+            "smithy.api#documentation": "Labels to split this clause into separate series by."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricClauseFiltersList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricFilter"
+      },
+      "traits": {
+        "smithy.api#documentation": "Label predicates ANDed together for this clause."
+      }
+    },
+    "com.posthog.metrics#MetricClauseGroupByList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricGroupBy"
+      },
+      "traits": {
+        "smithy.api#documentation": "Labels to split this clause into separate series by."
+      }
+    },
+    "com.posthog.metrics#MetricQueryBodyClausesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricClause"
+      },
+      "traits": {
+        "smithy.api#documentation": "Full multi-clause form: each clause is an independent metric selection sharing the request's time grid (maximum 10). Mutually exclusive with 'metricName'."
+      }
+    },
+    "com.posthog.metrics#MetricsQueryCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "query": {
+          "target": "com.posthog.metrics#MetricQueryBody",
+          "traits": {
+            "smithy.api#documentation": "The metric query to execute.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.metrics#MetricQueryResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.metrics#MetricQueryResponseResultsList",
+          "traits": {
+            "smithy.api#documentation": "One series per (clause, label-set). A single ungrouped query returns exactly one series with empty labels.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricQueryResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricSeries"
+      },
+      "traits": {
+        "smithy.api#documentation": "One series per (clause, label-set). A single ungrouped query returns exactly one series with empty labels."
+      }
+    },
+    "com.posthog.metrics#MetricsQueryCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.metrics#MetricsQueryCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.metrics#MetricQueryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/metrics/query/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.metrics#MetricsValuesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Max number of names to return. Defaults to 100; maximum 1000."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "value",
+            "smithy.api#documentation": "Substring filter (case-insensitive) applied to metric names."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.metrics#MetricNamesResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.metrics#MetricNamesResponseResultsList",
+          "traits": {
+            "smithy.api#documentation": "Distinct metric names ordered by recent activity.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricName": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metric name as it appears in the team's data.",
+            "smithy.api#required": {}
+          }
+        },
+        "metric_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "OTel metric type (gauge, sum, histogram, summary, exponential_histogram).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.metrics#MetricNamesResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.metrics#MetricName"
+      },
+      "traits": {
+        "smithy.api#documentation": "Distinct metric names ordered by recent activity."
+      }
+    },
+    "com.posthog.metrics#MetricsValuesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.metrics#MetricsValuesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.metrics#MetricNamesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/metrics/values/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Distinct metric names for the team. Backs the picker UI."
+      }
+    },
+    "com.posthog.metrics#Metrics": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.metrics#MetricsCharacterizeCreate"
+        },
+        {
+          "target": "com.posthog.metrics#MetricsHasMetricsRetrieve"
+        },
+        {
+          "target": "com.posthog.metrics#MetricsQueryCreate"
+        },
+        {
+          "target": "com.posthog.metrics#MetricsValuesRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

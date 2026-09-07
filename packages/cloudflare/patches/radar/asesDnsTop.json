@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsTopAses with distilled cloudflare/radar asesDnsTop",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTopAses",
+      "path": "/shapes/com.cloudflare.radar#AsesDnsTop"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTopAsesRequest",
+      "path": "/shapes/com.cloudflare.radar#AsesDnsTopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AsesDnsTop/input/target",
+      "value": "com.cloudflare.radar#AsesDnsTopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTopAsesResponse",
+      "path": "/shapes/com.cloudflare.radar#AsesDnsTopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AsesDnsTop/output/target",
+      "value": "com.cloudflare.radar#AsesDnsTopResponse"
+    }
+  ]
+}

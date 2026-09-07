@@ -1,0 +1,12 @@
+{
+  "description": "Type createRoute error code 10019 as RouteScriptNotFound (distilled #368).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateRoute/errors/-",
+      "value": {
+        "target": "com.cloudflare.workers#RouteScriptNotFound"
+      }
+    }
+  ]
+}

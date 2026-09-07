@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesDeploymentGroupsEdit with distilled cloudflare/zero-trust patchDeviceDeploymentGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDeploymentGroupsEdit",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDeviceDeploymentGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDeploymentGroupsEditRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDeviceDeploymentGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDeviceDeploymentGroup/input/target",
+      "value": "com.cloudflare.zero_trust#PatchDeviceDeploymentGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDeploymentGroupsEditResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDeviceDeploymentGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDeviceDeploymentGroup/output/target",
+      "value": "com.cloudflare.zero_trust#PatchDeviceDeploymentGroupResponse"
+    }
+  ]
+}

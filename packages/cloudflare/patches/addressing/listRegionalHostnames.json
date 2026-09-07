@@ -1,0 +1,47 @@
+{
+  "description": "Align addressing#RegionalHostnamesList with distilled cloudflare/addressing listRegionalHostnames",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#RegionalHostnamesList",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnames"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#RegionalHostnamesListRequest",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnamesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnames/input/target",
+      "value": "com.cloudflare.addressing#ListRegionalHostnamesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#RegionalHostnamesListResponse",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnamesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnames/output/target",
+      "value": "com.cloudflare.addressing#ListRegionalHostnamesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnames/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#ListRegionalHostnames/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#Forbidden"
+        }
+      ]
+    }
+  ]
+}

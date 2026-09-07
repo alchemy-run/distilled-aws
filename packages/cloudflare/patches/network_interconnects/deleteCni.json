@@ -1,0 +1,20 @@
+{
+  "description": "Align network_interconnects#CnisDelete with distilled cloudflare/network-interconnects deleteCni",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#CnisDelete",
+      "path": "/shapes/com.cloudflare.network_interconnects#DeleteCni"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.network_interconnects#CnisDeleteRequest",
+      "path": "/shapes/com.cloudflare.network_interconnects#DeleteCniRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.network_interconnects#DeleteCni/input/target",
+      "value": "com.cloudflare.network_interconnects#DeleteCniRequest"
+    }
+  ]
+}

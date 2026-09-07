@@ -1,0 +1,38 @@
+{
+  "description": "Align ai#AuthorsList with distilled cloudflare/ai listAuthors",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#AuthorsList",
+      "path": "/shapes/com.cloudflare.ai#ListAuthors"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#AuthorsListRequest",
+      "path": "/shapes/com.cloudflare.ai#ListAuthorsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListAuthors/input/target",
+      "value": "com.cloudflare.ai#ListAuthorsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#AuthorsListResponse",
+      "path": "/shapes/com.cloudflare.ai#ListAuthorsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListAuthors/output/target",
+      "value": "com.cloudflare.ai#ListAuthorsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai#ListAuthors/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

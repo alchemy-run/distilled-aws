@@ -1,0 +1,42 @@
+{
+  "description": "Align token_validation#ConfigurationCreate with distilled cloudflare/token-validation createConfiguration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.token_validation#ConfigurationCreate",
+      "path": "/shapes/com.cloudflare.token_validation#CreateConfiguration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.token_validation#ConfigurationCreateRequest",
+      "path": "/shapes/com.cloudflare.token_validation#CreateConfigurationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.token_validation#CreateConfiguration/input/target",
+      "value": "com.cloudflare.token_validation#CreateConfigurationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.token_validation#ConfigurationCreateResponse",
+      "path": "/shapes/com.cloudflare.token_validation#CreateConfigurationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.token_validation#CreateConfiguration/output/target",
+      "value": "com.cloudflare.token_validation#CreateConfigurationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.token_validation#CreateConfiguration/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.token_validation#TokenValidationNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.token_validation#Forbidden"
+        }
+      ]
+    }
+  ]
+}

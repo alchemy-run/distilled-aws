@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#BillingTopupConfigGet with distilled cloudflare/ai-gateway getBillingTopupConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingTopupConfigGet",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingTopupConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingTopupConfigGetRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingTopupConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingTopupConfig/input/target",
+      "value": "com.cloudflare.ai_gateway#GetBillingTopupConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingTopupConfigGetResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingTopupConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#GetBillingTopupConfig/output/target",
+      "value": "com.cloudflare.ai_gateway#GetBillingTopupConfigResponse"
+    }
+  ]
+}

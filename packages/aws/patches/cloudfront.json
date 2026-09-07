@@ -1,0 +1,124 @@
+{
+  "operations": {},
+  "enums": {
+    "HttpVersion": {
+      "add": ["HTTP1.1", "HTTP2", "HTTP3", "HTTP2AND3"]
+    }
+  },
+  "structures": {
+    "KeyValueStore": {
+      "members": {
+        "Comment": {
+          "optional": true
+        }
+      }
+    },
+    "DistributionList": {
+      "members": {
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "DistributionIdList": {
+      "members": {
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "InvalidationList": {
+      "members": {
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "RealtimeLogConfigs": {
+      "members": {
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "AnycastIpListCollection": {
+      "members": {
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "CloudFrontOriginAccessIdentityList": {
+      "members": {
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "DistributionIdOwnerList": {
+      "members": {
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "OriginAccessControlList": {
+      "members": {
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "StreamingDistributionList": {
+      "members": {
+        "Marker": {
+          "optional": true
+        }
+      }
+    },
+    "VpcOriginList": {
+      "members": {
+        "Marker": {
+          "optional": true
+        },
+        "IsTruncated": {
+          "optional": true
+        },
+        "MaxItems": {
+          "optional": true
+        },
+        "Quantity": {
+          "optional": true
+        }
+      }
+    },
+    "DistributionSummary": {
+      "members": {
+        "WebACLId": {
+          "optional": true
+        }
+      }
+    },
+    "S3OriginConfig": {
+      "members": {
+        "OriginAccessIdentity": {
+          "optional": true
+        }
+      }
+    },
+    "FunctionConfig": {
+      "members": {
+        "Comment": {
+          "optional": true
+        }
+      }
+    },
+    "OriginAccessControlSummary": {
+      "members": {
+        "Description": {
+          "optional": true
+        }
+      }
+    }
+  }
+}

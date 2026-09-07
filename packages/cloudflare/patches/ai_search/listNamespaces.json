@@ -1,0 +1,41 @@
+{
+  "description": "Align ai_search#NamespacesList with distilled cloudflare/aisearch listNamespaces",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesList",
+      "path": "/shapes/com.cloudflare.ai_search#ListNamespaces"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesListRequest",
+      "path": "/shapes/com.cloudflare.ai_search#ListNamespacesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#ListNamespaces/input/target",
+      "value": "com.cloudflare.ai_search#ListNamespacesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesListResponse",
+      "path": "/shapes/com.cloudflare.ai_search#ListNamespacesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#ListNamespaces/output/target",
+      "value": "com.cloudflare.ai_search#ListNamespacesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#ListNamespaces/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

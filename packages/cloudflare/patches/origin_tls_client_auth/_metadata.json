@@ -1,0 +1,43 @@
+{
+  "description": "Key dictionary / op aliases for origin_tls_client_auth (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "certId": "cert_id",
+        "certStatus": "cert_status",
+        "certUpdatedAt": "cert_updated_at",
+        "certUploadedOn": "cert_uploaded_on",
+        "createdAt": "created_at",
+        "expiresOn": "expires_on",
+        "privateKey": "private_key",
+        "serialNumber": "serial_number",
+        "updatedAt": "updated_at",
+        "uploadedOn": "uploaded_on"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/metadata/opAliases",
+      "value": [
+        {
+          "alias": "createZoneCertificate",
+          "target": "createOriginTlsClientAuth"
+        },
+        {
+          "alias": "deleteZoneCertificate",
+          "target": "deleteOriginTlsClientAuth"
+        },
+        {
+          "alias": "getZoneCertificate",
+          "target": "getOriginTlsClientAuth"
+        },
+        {
+          "alias": "listZoneCertificates",
+          "target": "listOriginTlsClientAuths"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align intel#DomainsBulksGet with distilled cloudflare/intel getDomainBulk",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DomainsBulksGet",
+      "path": "/shapes/com.cloudflare.intel#GetDomainBulk"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DomainsBulksGetRequest",
+      "path": "/shapes/com.cloudflare.intel#GetDomainBulkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetDomainBulk/input/target",
+      "value": "com.cloudflare.intel#GetDomainBulkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DomainsBulksGetResponse",
+      "path": "/shapes/com.cloudflare.intel#GetDomainBulkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetDomainBulk/output/target",
+      "value": "com.cloudflare.intel#GetDomainBulkResponse"
+    }
+  ]
+}

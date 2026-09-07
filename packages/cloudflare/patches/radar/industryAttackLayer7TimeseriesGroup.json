@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer7TimeseriesGroupsIndustry with distilled cloudflare/radar industryAttackLayer7TimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TimeseriesGroupsIndustry",
+      "path": "/shapes/com.cloudflare.radar#IndustryAttackLayer7TimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TimeseriesGroupsIndustryRequest",
+      "path": "/shapes/com.cloudflare.radar#IndustryAttackLayer7TimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IndustryAttackLayer7TimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#IndustryAttackLayer7TimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7TimeseriesGroupsIndustryResponse",
+      "path": "/shapes/com.cloudflare.radar#IndustryAttackLayer7TimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IndustryAttackLayer7TimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#IndustryAttackLayer7TimeseriesGroupResponse"
+    }
+  ]
+}

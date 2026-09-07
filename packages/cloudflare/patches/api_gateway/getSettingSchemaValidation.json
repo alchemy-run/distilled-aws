@@ -1,0 +1,39 @@
+{
+  "description": "Align api_gateway#SettingsSchemaValidationGet with distilled cloudflare/api-gateway getSettingSchemaValidation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#SettingsSchemaValidationGet",
+      "path": "/shapes/com.cloudflare.api_gateway#GetSettingSchemaValidation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#SettingsSchemaValidationGetRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#GetSettingSchemaValidationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetSettingSchemaValidation/input/target",
+      "value": "com.cloudflare.api_gateway#GetSettingSchemaValidationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#SettingsSchemaValidationGetResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#GetSettingSchemaValidationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#GetSettingSchemaValidation/output/target",
+      "value": "com.cloudflare.api_gateway#GetSettingSchemaValidationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#GetSettingSchemaValidation/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

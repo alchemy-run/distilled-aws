@@ -1,0 +1,20 @@
+{
+  "description": "Docs gap: `hostnames: array of HostnameAssociation` leaves the item type opaque, but each item is a hostname string on the wire (and v0 typed string[]). Type the list items on both the update request and the get/update responses.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.certificate_authorities#HostnameAssociationsGetResponseHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.certificate_authorities#HostnameAssociationsUpdateRequestHostnamesList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.certificate_authorities#HostnameAssociationsUpdateResponseHostnamesList/member/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

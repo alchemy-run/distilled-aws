@@ -1,0 +1,29 @@
+{
+  "description": "Align alerting#DestinationsWebhooksDelete with distilled cloudflare/alerting deleteDestinationWebhook",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsWebhooksDelete",
+      "path": "/shapes/com.cloudflare.alerting#DeleteDestinationWebhook"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsWebhooksDeleteRequest",
+      "path": "/shapes/com.cloudflare.alerting#DeleteDestinationWebhookRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#DeleteDestinationWebhook/input/target",
+      "value": "com.cloudflare.alerting#DeleteDestinationWebhookRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#DeleteDestinationWebhook/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

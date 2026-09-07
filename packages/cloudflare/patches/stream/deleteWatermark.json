@@ -1,0 +1,42 @@
+{
+  "description": "Align stream#WatermarksDelete with distilled cloudflare/stream deleteWatermark",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WatermarksDelete",
+      "path": "/shapes/com.cloudflare.stream#DeleteWatermark"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WatermarksDeleteRequest",
+      "path": "/shapes/com.cloudflare.stream#DeleteWatermarkRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteWatermark/input/target",
+      "value": "com.cloudflare.stream#DeleteWatermarkRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#WatermarksDeleteResponse",
+      "path": "/shapes/com.cloudflare.stream#DeleteWatermarkResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteWatermark/output/target",
+      "value": "com.cloudflare.stream#DeleteWatermarkResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#DeleteWatermark/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.stream#WatermarkNotFound"
+        },
+        {
+          "target": "com.cloudflare.stream#Forbidden"
+        }
+      ]
+    }
+  ]
+}

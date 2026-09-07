@@ -1,0 +1,354 @@
+{
+  "description": "Add the (undocumented but stable) keyspace resize request endpoints used by planetscale-go and the pscale CLI: PUT/GET/DELETE /organizations/{organization}/databases/{database}/branches/{branch}/keyspaces/{keyspace}/resizes. This is the only API for changing a Vitess keyspace's replica count in place (createDatabase rejects `replicas` for mysql databases with 422 'Replicas param is not supported for mysql databases'). Field shapes were captured from live API responses (2026-07): PUT returns the created KeyspaceResizeRequest, GET returns the standard paginated envelope of them, DELETE cancels a queued resize. A PUT while a resize is finalizing is rejected 422 'Database branch keyspace has a resize in progress'; a no-op PUT is rejected 422 'Keyspace is already configured with the requested values'.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/KeyspaceResizeRequest",
+      "value": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The ID of the keyspace resize request"
+          },
+          "state": {
+            "type": "string",
+            "description": "The state of the keyspace resize request: pending, resizing, completed, or cancelled"
+          },
+          "started_at": {
+            "type": "string",
+            "description": "The time the resize started, or null when still queued",
+            "x-nullable": true
+          },
+          "completed_at": {
+            "type": "string",
+            "description": "The time the resize completed, or null while in progress",
+            "x-nullable": true
+          },
+          "created_at": {
+            "type": "string",
+            "description": "The time the resize request was created"
+          },
+          "updated_at": {
+            "type": "string",
+            "description": "The time the resize request was last updated"
+          },
+          "replicas": {
+            "type": "integer",
+            "description": "The total number of replicas after the resize"
+          },
+          "extra_replicas": {
+            "type": "integer",
+            "description": "The number of additional replicas beyond the cluster size's included default after the resize"
+          },
+          "previous_replicas": {
+            "type": "integer",
+            "description": "The total number of replicas before the resize"
+          },
+          "cluster_name": {
+            "type": "string",
+            "description": "The SKU representing the keyspace's cluster after the resize"
+          },
+          "cluster_display_name": {
+            "type": "string",
+            "description": "The SKU representing the keyspace's cluster after the resize, for display"
+          },
+          "previous_cluster_name": {
+            "type": "string",
+            "description": "The SKU representing the keyspace's cluster before the resize"
+          },
+          "previous_cluster_display_name": {
+            "type": "string",
+            "description": "The SKU representing the keyspace's cluster before the resize, for display"
+          },
+          "rdonly_replicas": {
+            "type": "integer",
+            "description": "The number of read-only replicas after the resize",
+            "x-nullable": true
+          },
+          "previous_rdonly_replicas": {
+            "type": "integer",
+            "description": "The number of read-only replicas before the resize",
+            "x-nullable": true
+          },
+          "vector_pool_allocation": {
+            "type": "integer",
+            "description": "The vector pool allocation after the resize",
+            "x-nullable": true
+          },
+          "previous_vector_pool_allocation": {
+            "type": "integer",
+            "description": "The vector pool allocation before the resize",
+            "x-nullable": true
+          },
+          "actor": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "description": "The ID of the actor"
+              },
+              "display_name": {
+                "type": "string",
+                "description": "The name of the actor"
+              },
+              "avatar_url": {
+                "type": "string",
+                "description": "The URL of the actor's avatar"
+              }
+            },
+            "required": ["id", "display_name", "avatar_url"]
+          }
+        },
+        "required": [
+          "id",
+          "state",
+          "started_at",
+          "completed_at",
+          "created_at",
+          "updated_at",
+          "replicas",
+          "extra_replicas",
+          "previous_replicas",
+          "cluster_name",
+          "previous_cluster_name"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedKeyspaceResizeRequest",
+      "value": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The response type. Always \"list\" for paginated responses."
+          },
+          "current_page": {
+            "type": "integer",
+            "description": "The current page number"
+          },
+          "next_page": {
+            "type": "integer",
+            "description": "The next page number, or null when this is the last page",
+            "x-nullable": true
+          },
+          "next_page_url": {
+            "type": "string",
+            "description": "The next page of results, or null when this is the last page",
+            "x-nullable": true
+          },
+          "prev_page": {
+            "type": "integer",
+            "description": "The previous page number, or null when this is the first page",
+            "x-nullable": true
+          },
+          "prev_page_url": {
+            "type": "string",
+            "description": "The previous page of results, or null when this is the first page",
+            "x-nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/definitions/KeyspaceResizeRequest"
+            }
+          }
+        },
+        "required": [
+          "type",
+          "current_page",
+          "next_page",
+          "next_page_url",
+          "prev_page",
+          "prev_page_url",
+          "data"
+        ]
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1organizations~1{organization}~1databases~1{database}~1branches~1{branch}~1keyspaces~1{keyspace}~1resizes",
+      "value": {
+        "put": {
+          "tags": ["Database branch keyspaces"],
+          "consumes": ["application/json"],
+          "operationId": "create_keyspace_resize_request",
+          "summary": "Create a keyspace resize request",
+          "description": "Starts or queues an in-place resize of a branch keyspace's cluster size and/or replica count. Rejected with 422 while another resize is in progress or when the keyspace is already configured with the requested values.",
+          "parameters": [
+            {
+              "name": "organization",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the organization the branch belongs to"
+            },
+            {
+              "name": "database",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the database the branch belongs to"
+            },
+            {
+              "name": "branch",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the branch"
+            },
+            {
+              "name": "keyspace",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the keyspace"
+            },
+            {
+              "name": "body",
+              "in": "body",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "cluster_size": {
+                    "type": "string",
+                    "description": "The new cluster size for the keyspace: PS_10, PS_20,…"
+                  },
+                  "extra_replicas": {
+                    "type": "integer",
+                    "description": "The number of additional replicas per shard beyond the cluster size's included default (each production cluster includes 2 replicas)"
+                  }
+                }
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns the created keyspace resize request",
+              "schema": {
+                "$ref": "#/definitions/KeyspaceResizeRequest"
+              },
+              "headers": {}
+            },
+            "401": { "description": "Unauthorized" },
+            "403": { "description": "Forbidden" },
+            "404": { "description": "Not Found" },
+            "422": { "description": "Unprocessable Entity" },
+            "500": { "description": "Internal Server Error" }
+          }
+        },
+        "get": {
+          "tags": ["Database branch keyspaces"],
+          "consumes": ["application/json"],
+          "operationId": "list_keyspace_resize_requests",
+          "summary": "List keyspace resize requests",
+          "description": "Lists resize requests for a branch keyspace, most recent first.",
+          "parameters": [
+            {
+              "name": "organization",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the organization the branch belongs to"
+            },
+            {
+              "name": "database",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the database the branch belongs to"
+            },
+            {
+              "name": "branch",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the branch"
+            },
+            {
+              "name": "keyspace",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the keyspace"
+            },
+            {
+              "name": "page",
+              "type": "integer",
+              "in": "query",
+              "required": false,
+              "description": "If provided, specifies the page offset of returned results"
+            },
+            {
+              "name": "per_page",
+              "type": "integer",
+              "in": "query",
+              "required": false,
+              "description": "If provided, specifies the number of returned results"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns keyspace resize requests",
+              "schema": {
+                "$ref": "#/definitions/PaginatedKeyspaceResizeRequest"
+              },
+              "headers": {}
+            },
+            "401": { "description": "Unauthorized" },
+            "403": { "description": "Forbidden" },
+            "404": { "description": "Not Found" },
+            "500": { "description": "Internal Server Error" }
+          }
+        },
+        "delete": {
+          "tags": ["Database branch keyspaces"],
+          "consumes": ["application/json"],
+          "operationId": "cancel_keyspace_resize_request",
+          "summary": "Cancel a queued keyspace resize request",
+          "description": "Cancels a queued resize of a branch keyspace.",
+          "parameters": [
+            {
+              "name": "organization",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the organization the branch belongs to"
+            },
+            {
+              "name": "database",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the database the branch belongs to"
+            },
+            {
+              "name": "branch",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the branch"
+            },
+            {
+              "name": "keyspace",
+              "type": "string",
+              "in": "path",
+              "required": true,
+              "description": "The name of the keyspace"
+            }
+          ],
+          "responses": {
+            "204": { "description": "No Content" },
+            "401": { "description": "Unauthorized" },
+            "403": { "description": "Forbidden" },
+            "404": { "description": "Not Found" },
+            "422": { "description": "Unprocessable Entity" },
+            "500": { "description": "Internal Server Error" }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align pipelines#List with distilled cloudflare/pipelines listPipelines",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#List",
+      "path": "/shapes/com.cloudflare.pipelines#ListPipelines"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#ListRequest",
+      "path": "/shapes/com.cloudflare.pipelines#ListPipelinesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#ListPipelines/input/target",
+      "value": "com.cloudflare.pipelines#ListPipelinesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pipelines#ListResponse",
+      "path": "/shapes/com.cloudflare.pipelines#ListPipelinesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pipelines#ListPipelines/output/target",
+      "value": "com.cloudflare.pipelines#ListPipelinesResponse"
+    }
+  ]
+}

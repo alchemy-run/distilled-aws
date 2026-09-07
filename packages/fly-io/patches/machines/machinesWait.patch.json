@@ -1,0 +1,12 @@
+{
+  "description": "Type 408 wait timeout as GatewayTimeout so machinesWait can retry a typed tag.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1machines~1{machine_id}~1wait/get/responses/408",
+      "value": {
+        "description": "Request Timeout"
+      }
+    }
+  ]
+}

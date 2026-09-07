@@ -1,0 +1,30 @@
+{
+  "description": "Align botnet_feed#ConfigsAsnDelete with distilled cloudflare/botnet-feed deleteConfigAsn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.botnet_feed#ConfigsAsnDelete",
+      "path": "/shapes/com.cloudflare.botnet_feed#DeleteConfigAsn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.botnet_feed#ConfigsAsnDeleteRequest",
+      "path": "/shapes/com.cloudflare.botnet_feed#DeleteConfigAsnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.botnet_feed#DeleteConfigAsn/input/target",
+      "value": "com.cloudflare.botnet_feed#DeleteConfigAsnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.botnet_feed#ConfigsAsnDeleteResponse",
+      "path": "/shapes/com.cloudflare.botnet_feed#DeleteConfigAsnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.botnet_feed#DeleteConfigAsn/output/target",
+      "value": "com.cloudflare.botnet_feed#DeleteConfigAsnResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#As112SummaryProtocol with distilled cloudflare/radar protocolAs112Summary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112SummaryProtocol",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112Summary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112SummaryProtocolRequest",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112SummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112Summary/input/target",
+      "value": "com.cloudflare.radar#ProtocolAs112SummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112SummaryProtocolResponse",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112SummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAs112Summary/output/target",
+      "value": "com.cloudflare.radar#ProtocolAs112SummaryResponse"
+    }
+  ]
+}

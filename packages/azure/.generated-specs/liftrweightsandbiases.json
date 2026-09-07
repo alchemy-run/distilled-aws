@@ -1,0 +1,1660 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.liftrweightsandbiases#InstancesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.liftrweightsandbiases#InstancesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WeightsAndBiases/instances/{instancename}",
+          "code": 200,
+          "apiVersion": "2024-09-18"
+        },
+        "smithy.api#documentation": "Delete a InstanceResource",
+        "com.distilled.openapi#apiVersion": "2024-09-18"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "instancename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Instance resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.liftrweightsandbiases#InstancesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.liftrweightsandbiases#InstancesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WeightsAndBiases/instances/{instancename}",
+          "code": 200,
+          "apiVersion": "2024-09-18"
+        },
+        "smithy.api#documentation": "Update a InstanceResource",
+        "com.distilled.openapi#apiVersion": "2024-09-18"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.liftrweightsandbiases#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.liftrweightsandbiases#InstancesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.liftrweightsandbiases#InstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.liftrweightsandbiases#InstancesUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.liftrweightsandbiases#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.liftrweightsandbiases#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.liftrweightsandbiases#UserAssignedIdentities": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.liftrweightsandbiases#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.liftrweightsandbiases#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.liftrweightsandbiases#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstanceProperties": {
+      "type": "structure",
+      "members": {
+        "marketplace": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseMarketplaceDetails",
+          "traits": {
+            "smithy.api#documentation": "Marketplace details of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseUserDetails",
+          "traits": {
+            "smithy.api#documentation": "Details of the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.liftrweightsandbiases#AzureResourceManagerResourceProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource."
+          }
+        },
+        "partnerProperties": {
+          "target": "com.azure.liftrweightsandbiases#PartnerProperties",
+          "traits": {
+            "smithy.api#documentation": "partner properties",
+            "smithy.api#required": {}
+          }
+        },
+        "singleSignOnProperties": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseSingleSignOnPropertiesV2",
+          "traits": {
+            "smithy.api#documentation": "Single sign-on properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to Instance"
+      }
+    },
+    "com.azure.liftrweightsandbiases#LiftrBaseSingleSignOnPropertiesV2": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseSingleSignOnType",
+          "traits": {
+            "smithy.api#documentation": "Type of Single Sign-On mechanism being used",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseSingleSignOnStates",
+          "traits": {
+            "smithy.api#documentation": "State of the Single Sign On for the resource"
+          }
+        },
+        "enterpriseAppId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "AAD enterprise application Id used to setup SSO"
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for SSO to be used by the partner to redirect the user to their system"
+          }
+        },
+        "aadDomains": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseSingleSignOnPropertiesV2AadDomainsList",
+          "traits": {
+            "smithy.api#documentation": "List of AAD domains fetched from Microsoft Graph for user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to Single Sign On Resource"
+      }
+    },
+    "com.azure.liftrweightsandbiases#LiftrBaseSingleSignOnPropertiesV2AadDomainsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of AAD domains fetched from Microsoft Graph for user."
+      }
+    },
+    "com.azure.liftrweightsandbiases#LiftrBaseSingleSignOnStates": {
+      "type": "enum",
+      "members": {
+        "INITIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Initial"
+          }
+        },
+        "ENABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enable"
+          }
+        },
+        "DISABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Various states of the SSO resource"
+      }
+    },
+    "com.azure.liftrweightsandbiases#LiftrBaseSingleSignOnType": {
+      "type": "enum",
+      "members": {
+        "SAML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Saml"
+          }
+        },
+        "OPENID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OpenId"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines the type of Single Sign-On (SSO) mechanism being used"
+      }
+    },
+    "com.azure.liftrweightsandbiases#PartnerProperties": {
+      "type": "structure",
+      "members": {
+        "region": {
+          "target": "com.azure.liftrweightsandbiases#Region",
+          "traits": {
+            "smithy.api#documentation": "The region of the instance",
+            "smithy.api#required": {}
+          }
+        },
+        "subdomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subdomain of the instance",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Partner's specific Properties"
+      }
+    },
+    "com.azure.liftrweightsandbiases#Region": {
+      "type": "enum",
+      "members": {
+        "EASTUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eastus"
+          }
+        },
+        "CENTRALUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "centralus"
+          }
+        },
+        "WESTUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "westus"
+          }
+        },
+        "WESTEUROPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "westeurope"
+          }
+        },
+        "JAPANEAST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "japaneast"
+          }
+        },
+        "KOREACENTRAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "koreacentral"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The available regions"
+      }
+    },
+    "com.azure.liftrweightsandbiases#AzureResourceManagerResourceProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state of a resource type."
+      }
+    },
+    "com.azure.liftrweightsandbiases#LiftrBaseUserDetails": {
+      "type": "structure",
+      "members": {
+        "firstName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First name of the user"
+          }
+        },
+        "lastName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Last name of the user"
+          }
+        },
+        "emailAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the user"
+          }
+        },
+        "upn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's principal name"
+          }
+        },
+        "phoneNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User's phone number"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User details for an organization"
+      }
+    },
+    "com.azure.liftrweightsandbiases#LiftrBaseMarketplaceDetails": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure subscription id for the the marketplace offer is purchased from"
+          }
+        },
+        "subscriptionStatus": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseMarketplaceSubscriptionStatus",
+          "traits": {
+            "smithy.api#documentation": "Marketplace subscription status"
+          }
+        },
+        "offerDetails": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseOfferDetails",
+          "traits": {
+            "smithy.api#documentation": "Offer details for the marketplace that is selected by the user",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Marketplace details for an organization"
+      }
+    },
+    "com.azure.liftrweightsandbiases#LiftrBaseOfferDetails": {
+      "type": "structure",
+      "members": {
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Publisher Id for the marketplace offer",
+            "smithy.api#required": {}
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Offer Id for the marketplace offer",
+            "smithy.api#required": {}
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plan Id for the marketplace offer",
+            "smithy.api#required": {}
+          }
+        },
+        "planName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plan Name for the marketplace offer"
+          }
+        },
+        "termUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plan Display Name for the marketplace offer"
+          }
+        },
+        "termId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plan Display Name for the marketplace offer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Offer details for the marketplace that is selected by the user"
+      }
+    },
+    "com.azure.liftrweightsandbiases#LiftrBaseMarketplaceSubscriptionStatus": {
+      "type": "enum",
+      "members": {
+        "PENDINGFULFILLMENTSTART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PendingFulfillmentStart"
+          }
+        },
+        "SUBSCRIBED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Subscribed"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        },
+        "UNSUBSCRIBED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unsubscribed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Marketplace subscription status of a resource."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.liftrweightsandbiases#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.liftrweightsandbiases#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.liftrweightsandbiases#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.liftrweightsandbiases#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.liftrweightsandbiases#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "instancename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Instance resource"
+          }
+        },
+        "tags": {
+          "target": "com.azure.liftrweightsandbiases#InstancesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "identity": {
+          "target": "com.azure.liftrweightsandbiases#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput",
+          "traits": {
+            "smithy.api#documentation": "The managed service identities assigned to this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.liftrweightsandbiases#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType",
+          "traits": {
+            "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.liftrweightsandbiases#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The identities assigned to this resource by the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.liftrweightsandbiases#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.liftrweightsandbiases#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "The identities assigned to this resource by the user."
+      }
+    },
+    "com.azure.liftrweightsandbiases#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputUserAssignedIdentitiesValue": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.liftrweightsandbiases#AzureResourceManagerCommonTypesManagedServiceIdentityUpdateInputType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WeightsAndBiases/instances/{instancename}",
+          "code": 200,
+          "apiVersion": "2024-09-18"
+        },
+        "smithy.api#documentation": "Create a InstanceResource",
+        "com.distilled.openapi#apiVersion": "2024-09-18"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.liftrweightsandbiases#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.liftrweightsandbiases#InstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.liftrweightsandbiases#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.liftrweightsandbiases#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "instancename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Instance resource"
+          }
+        },
+        "tags": {
+          "target": "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.liftrweightsandbiases#InstancePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.liftrweightsandbiases#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.liftrweightsandbiases#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.liftrweightsandbiases#UserAssignedIdentitiesInput": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.liftrweightsandbiases#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.liftrweightsandbiases#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "marketplace": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseMarketplaceDetails",
+          "traits": {
+            "smithy.api#documentation": "Marketplace details of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseUserDetails",
+          "traits": {
+            "smithy.api#documentation": "Details of the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "partnerProperties": {
+          "target": "com.azure.liftrweightsandbiases#PartnerProperties",
+          "traits": {
+            "smithy.api#documentation": "partner properties",
+            "smithy.api#required": {}
+          }
+        },
+        "singleSignOnProperties": {
+          "target": "com.azure.liftrweightsandbiases#LiftrBaseSingleSignOnPropertiesV2",
+          "traits": {
+            "smithy.api#documentation": "Single sign-on properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties specific to Instance"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.liftrweightsandbiases#InstancesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.liftrweightsandbiases#InstancesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WeightsAndBiases/instances/{instancename}",
+          "code": 200,
+          "apiVersion": "2024-09-18"
+        },
+        "smithy.api#documentation": "Get a InstanceResource",
+        "com.distilled.openapi#apiVersion": "2024-09-18"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.liftrweightsandbiases#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.liftrweightsandbiases#InstancesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.liftrweightsandbiases#InstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.liftrweightsandbiases#InstancesGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.liftrweightsandbiases#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.liftrweightsandbiases#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "instancename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Instance resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.liftrweightsandbiases#InstancesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.liftrweightsandbiases#InstanceResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.WeightsAndBiases/instances",
+          "code": 200,
+          "apiVersion": "2024-09-18"
+        },
+        "smithy.api#documentation": "List InstanceResource resources by resource group",
+        "com.distilled.openapi#apiVersion": "2024-09-18"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstanceResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.liftrweightsandbiases#InstanceResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The InstanceResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a InstanceResource list operation."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstanceResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.liftrweightsandbiases#InstanceResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The InstanceResource items on this page"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstanceResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.liftrweightsandbiases#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.liftrweightsandbiases#InstanceResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.liftrweightsandbiases#InstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.liftrweightsandbiases#InstanceResourceIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Concrete tracked resource types can be created by aliasing this type using a specific property type."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstanceResourceIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.liftrweightsandbiases#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.liftrweightsandbiases#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstanceResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.liftrweightsandbiases#InstancesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.liftrweightsandbiases#InstanceResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.WeightsAndBiases/instances",
+          "code": 200,
+          "apiVersion": "2024-09-18"
+        },
+        "smithy.api#documentation": "List InstanceResource resources by subscription ID",
+        "com.distilled.openapi#apiVersion": "2024-09-18"
+      }
+    },
+    "com.azure.liftrweightsandbiases#InstancesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.liftrweightsandbiases#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.WeightsAndBiases/operations",
+          "code": 200,
+          "apiVersion": "2024-09-18"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2024-09-18"
+      }
+    },
+    "com.azure.liftrweightsandbiases#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.liftrweightsandbiases#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.liftrweightsandbiases#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.liftrweightsandbiases#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.liftrweightsandbiases#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.liftrweightsandbiases#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.liftrweightsandbiases#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.liftrweightsandbiases#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.liftrweightsandbiases#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.liftrweightsandbiases#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.liftrweightsandbiases#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.liftrweightsandbiases#Liftrweightsandbiases": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.liftrweightsandbiases#InstancesDelete"
+        },
+        {
+          "target": "com.azure.liftrweightsandbiases#InstancesUpdate"
+        },
+        {
+          "target": "com.azure.liftrweightsandbiases#InstancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.liftrweightsandbiases#InstancesGet"
+        },
+        {
+          "target": "com.azure.liftrweightsandbiases#InstancesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.liftrweightsandbiases#InstancesListBySubscription"
+        },
+        {
+          "target": "com.azure.liftrweightsandbiases#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Liftrweightsandbiases",
+        "smithy.api#documentation": "Azure Liftrweightsandbiases API — merged from the liftrweightsandbiases resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

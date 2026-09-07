@@ -1,0 +1,71 @@
+{
+  "description": "Add vendor extension to document error code to category mappings for code generation",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/x-error-categories",
+      "value": {
+        "unauthorized": {
+          "category": "AuthError",
+          "decorator": "withAuthError",
+          "description": "Authentication/authorization failure (401)"
+        },
+        "forbidden": {
+          "category": "AuthError",
+          "decorator": "withAuthError",
+          "description": "Access forbidden (403)"
+        },
+        "not_found": {
+          "category": "NotFoundError",
+          "decorator": "withNotFoundError",
+          "description": "Resource not found (404)"
+        },
+        "conflict": {
+          "category": "ConflictError",
+          "decorator": "withConflictError",
+          "description": "Resource conflict (409)"
+        },
+        "unprocessable_entity": {
+          "category": "BadRequestError",
+          "decorator": "withBadRequestError",
+          "description": "Validation error (422)"
+        },
+        "bad_request": {
+          "category": "BadRequestError",
+          "decorator": "withBadRequestError",
+          "description": "Invalid request (400)"
+        },
+        "too_many_requests": {
+          "category": "ThrottlingError",
+          "decorator": "withThrottlingError",
+          "description": "Rate limited (429)"
+        },
+        "internal_server_error": {
+          "category": "ServerError",
+          "decorator": "withServerError",
+          "description": "Server error (500)"
+        },
+        "service_unavailable": {
+          "category": "ServerError",
+          "decorator": "withServerError",
+          "description": "Service unavailable (503)"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/x-http-status-to-error-code",
+      "value": {
+        "401": "unauthorized",
+        "403": "forbidden",
+        "404": "not_found",
+        "409": "conflict",
+        "422": "unprocessable_entity",
+        "400": "bad_request",
+        "429": "too_many_requests",
+        "500": "internal_server_error",
+        "503": "service_unavailable"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align browser_rendering#MarkdownCreate with distilled cloudflare/browser-rendering createMarkdown",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#MarkdownCreate",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateMarkdown"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#MarkdownCreateRequest",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateMarkdownRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateMarkdown/input/target",
+      "value": "com.cloudflare.browser_rendering#CreateMarkdownRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.browser_rendering#MarkdownCreateResponse",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateMarkdownResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.browser_rendering#CreateMarkdown/output/target",
+      "value": "com.cloudflare.browser_rendering#CreateMarkdownResponse"
+    }
+  ]
+}

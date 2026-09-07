@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpEntriesIntegrationDelete with distilled cloudflare/zero-trust deleteDlpEntryIntegration",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesIntegrationDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryIntegration"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesIntegrationDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryIntegrationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryIntegration/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpEntryIntegrationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesIntegrationDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryIntegrationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpEntryIntegration/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpEntryIntegrationResponse"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "operations": {
+    "listBotAliases": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "listIntents": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "listSlotTypes": {
+      "errors": ["ResourceNotFoundException"]
+    }
+  }
+}

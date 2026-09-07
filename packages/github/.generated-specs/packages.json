@@ -1,0 +1,4499 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.packages#ListDockerMigrationConflictingPackagesForOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#Package": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the package.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the package.",
+            "smithy.api#required": {}
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#PackagePackageType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "version_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of versions of the package.",
+            "smithy.api#required": {}
+          }
+        },
+        "visibility": {
+          "target": "com.github.packages#PackageVisibility",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.packages#NullableSimpleUser",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "repository": {
+          "target": "com.github.packages#NullableMinimalRepository",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A software package"
+      }
+    },
+    "com.github.packages#PackagePackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#PackageVisibility": {
+      "type": "enum",
+      "members": {
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#NullableSimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.packages#NullableMinimalRepository": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "full_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.packages#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "fork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archive_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "assignees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "blobs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branches_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "collaborators_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "comments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "compare_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contents_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contributors_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deployments_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "downloads_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "forks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_commits_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_refs_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "git_url": {
+          "target": "smithy.api#String"
+        },
+        "issue_comment_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issue_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "keys_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "labels_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "languages_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "merges_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "milestones_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notifications_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pulls_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "releases_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ssh_url": {
+          "target": "smithy.api#String"
+        },
+        "stargazers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "statuses_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscribers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscription_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tags_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "teams_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "trees_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "clone_url": {
+          "target": "smithy.api#String"
+        },
+        "mirror_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "svn_url": {
+          "target": "smithy.api#String"
+        },
+        "homepage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks_count": {
+          "target": "smithy.api#Integer"
+        },
+        "stargazers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The size of the repository, in kilobytes. Size is calculated hourly. When a repository is initially created, the size is 0."
+          }
+        },
+        "default_branch": {
+          "target": "smithy.api#String"
+        },
+        "open_issues_count": {
+          "target": "smithy.api#Integer"
+        },
+        "is_template": {
+          "target": "smithy.api#Boolean"
+        },
+        "topics": {
+          "target": "com.github.packages#NullableMinimalRepositoryTopicsList"
+        },
+        "has_issues": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_projects": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_wiki": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pages": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_downloads": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_discussions": {
+          "target": "smithy.api#Boolean"
+        },
+        "has_pull_requests": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull_request_creation_policy": {
+          "target": "com.github.packages#NullableMinimalRepositoryPullRequestCreationPolicy",
+          "traits": {
+            "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "visibility": {
+          "target": "smithy.api#String"
+        },
+        "pushed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.packages#NullableMinimalRepositoryPermissions"
+        },
+        "role_name": {
+          "target": "smithy.api#String"
+        },
+        "temp_clone_token": {
+          "target": "smithy.api#String"
+        },
+        "delete_branch_on_merge": {
+          "target": "smithy.api#Boolean"
+        },
+        "subscribers_count": {
+          "target": "smithy.api#Integer"
+        },
+        "network_count": {
+          "target": "smithy.api#Integer"
+        },
+        "code_of_conduct": {
+          "target": "com.github.packages#CodeOfConduct"
+        },
+        "license": {
+          "target": "com.github.packages#NullableMinimalRepositoryLicense",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "forks": {
+          "target": "smithy.api#Integer"
+        },
+        "open_issues": {
+          "target": "smithy.api#Integer"
+        },
+        "watchers": {
+          "target": "smithy.api#Integer"
+        },
+        "allow_forking": {
+          "target": "smithy.api#Boolean"
+        },
+        "web_commit_signoff_required": {
+          "target": "smithy.api#Boolean"
+        },
+        "security_and_analysis": {
+          "target": "com.github.packages#SecurityAndAnalysis",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "custom_properties": {
+          "target": "com.github.packages#NullableMinimalRepositoryCustomPropertiesMap",
+          "traits": {
+            "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Minimal Repository"
+      }
+    },
+    "com.github.packages#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.packages#NullableMinimalRepositoryTopicsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.packages#NullableMinimalRepositoryPullRequestCreationPolicy": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "COLLABORATORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborators_only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The policy controlling who can create pull requests: all or collaborators_only."
+      }
+    },
+    "com.github.packages#NullableMinimalRepositoryPermissions": {
+      "type": "structure",
+      "members": {
+        "admin": {
+          "target": "smithy.api#Boolean"
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean"
+        },
+        "push": {
+          "target": "smithy.api#Boolean"
+        },
+        "triage": {
+          "target": "smithy.api#Boolean"
+        },
+        "pull": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#CodeOfConduct": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Code Of Conduct"
+      }
+    },
+    "com.github.packages#NullableMinimalRepositoryLicense": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "spdx_id": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysis": {
+      "type": "structure",
+      "members": {
+        "advanced_security": {
+          "target": "com.github.packages#SecurityAndAnalysisAdvancedSecurity",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+          }
+        },
+        "code_security": {
+          "target": "com.github.packages#SecurityAndAnalysisCodeSecurity"
+        },
+        "dependabot_security_updates": {
+          "target": "com.github.packages#SecurityAndAnalysisDependabotSecurityUpdates",
+          "traits": {
+            "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+          }
+        },
+        "secret_scanning": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanning"
+        },
+        "secret_scanning_push_protection": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningPushProtection"
+        },
+        "secret_scanning_non_provider_patterns": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningNonProviderPatterns"
+        },
+        "secret_scanning_ai_detection": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningAiDetection"
+        },
+        "secret_scanning_delegated_alert_dismissal": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal"
+        },
+        "secret_scanning_delegated_bypass": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypass"
+        },
+        "secret_scanning_delegated_bypass_options": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptions"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisAdvancedSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisAdvancedSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.packages#SecurityAndAnalysisAdvancedSecurityStatus"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable GitHub Advanced Security for the repository.\n\nFor standalone Code Scanning or Secret Protection products, this parameter cannot be used.\n"
+      }
+    },
+    "com.github.packages#SecurityAndAnalysisCodeSecurityStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisCodeSecurity": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.packages#SecurityAndAnalysisCodeSecurityStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisDependabotSecurityUpdatesStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+      }
+    },
+    "com.github.packages#SecurityAndAnalysisDependabotSecurityUpdates": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.packages#SecurityAndAnalysisDependabotSecurityUpdatesStatus",
+          "traits": {
+            "smithy.api#documentation": "The enablement status of Dependabot security updates for the repository."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enable or disable Dependabot security updates for the repository."
+      }
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanning": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningPushProtectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningPushProtection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningPushProtectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningNonProviderPatterns": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningNonProviderPatternsStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningAiDetectionStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningAiDetection": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningAiDetectionStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedAlertDismissal": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedAlertDismissalStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypass": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassStatus"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEAM"
+          }
+        },
+        "ROLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the bypass reviewer"
+      }
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode": {
+      "type": "enum",
+      "members": {
+        "ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALWAYS"
+          }
+        },
+        "EXEMPT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXEMPT"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass mode for the reviewer"
+      }
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem": {
+      "type": "structure",
+      "members": {
+        "reviewer_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the team or role selected as a bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "reviewer_type": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemReviewerType",
+          "traits": {
+            "smithy.api#documentation": "The type of the bypass reviewer",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItemMode",
+          "traits": {
+            "smithy.api#documentation": "The bypass mode for the reviewer"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+      }
+    },
+    "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptions": {
+      "type": "structure",
+      "members": {
+        "reviewers": {
+          "target": "com.github.packages#SecurityAndAnalysisSecretScanningDelegatedBypassOptionsReviewersList",
+          "traits": {
+            "smithy.api#documentation": "The bypass reviewers for secret scanning delegated bypass"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#NullableMinimalRepositoryCustomPropertiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "The custom properties that were defined for the repository. The keys are the custom property names, and the values are the corresponding custom property values."
+      }
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForOrganizationResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#Package"
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForOrganizationResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#ListDockerMigrationConflictingPackagesForOrganizationRequest"
+      },
+      "output": {
+        "target": "com.github.packages#ListDockerMigrationConflictingPackagesForOrganizationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/docker/conflicts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get list of conflicting packages during Docker migration for organization\n\nLists all packages that are in a specific organization, are readable by the requesting user, and that encountered a conflict during a Docker migration.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint."
+      }
+    },
+    "com.github.packages#ListPackagesForOrganizationRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListPackagesForOrganizationRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internal"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListPackagesForOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#ListPackagesForOrganizationRequestPackageType",
+          "traits": {
+            "smithy.api#httpQuery": "package_type",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "visibility": {
+          "target": "com.github.packages#ListPackagesForOrganizationRequestVisibility",
+          "traits": {
+            "smithy.api#httpQuery": "visibility",
+            "smithy.api#documentation": "The selected visibility of the packages.  This parameter is optional and only filters an existing result set.\n\nThe `internal` visibility is only supported for GitHub Packages registries that allow for granular permissions. For other ecosystems `internal` is synonymous with `private`.\nFor the list of GitHub Packages registries that support granular permissions, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#ListPackagesForOrganizationResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#Package"
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListPackagesForOrganizationResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.packages#ListPackagesForOrganizationResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.packages#ListPackagesForOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#ListPackagesForOrganizationRequest"
+      },
+      "output": {
+        "target": "com.github.packages#ListPackagesForOrganizationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#BadRequest"
+        },
+        {
+          "target": "com.github.packages#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/packages",
+          "code": 200
+        },
+        "smithy.api#documentation": "List packages for an organization\n\nLists packages in an organization readable by the user.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#GetPackageForOrganizationRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetPackageForOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#GetPackageForOrganizationRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#GetPackageForOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#GetPackageForOrganizationRequest"
+      },
+      "output": {
+        "target": "com.github.packages#Package"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/packages/{package_type}/{package_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a package for an organization\n\nGets a specific package in an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#DeletePackageForOrgRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#DeletePackageForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#DeletePackageForOrgRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#DeletePackageForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#DeletePackageForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/packages/{package_type}/{package_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a package for an organization\n\nDeletes an entire package in an organization. You cannot delete a public package if any version of the package has more than 5,000 downloads. In this scenario, contact GitHub support for further assistance.\n\nThe authenticated user must have admin permissions in the organization to use this endpoint. If the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must also have admin permissions to the package. For the list of these registries, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\"\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `delete:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#RestorePackageForOrgRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#RestorePackageForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#RestorePackageForOrgRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "token",
+            "smithy.api#documentation": "package token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#RestorePackageForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#RestorePackageForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/packages/{package_type}/{package_name}/restore",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restore a package for an organization\n\nRestores an entire package in an organization.\n\nYou can restore a deleted package under the following conditions:\n  - The package was deleted within the last 30 days.\n  - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace first.\n\nThe authenticated user must have admin permissions in the organization to use this endpoint. If the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must also have admin permissions to the package. For the list of these registries, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\"\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `write:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgRequestState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "state": {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgRequestState",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "The state of the package, either active or deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#PackageVersion": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the package version.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the package version.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "package_html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        },
+        "license": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "deleted_at": {
+          "target": "smithy.api#String"
+        },
+        "metadata": {
+          "target": "com.github.packages#PackageVersionMetadata"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A version of a software package"
+      }
+    },
+    "com.github.packages#PackageVersionMetadataPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#PackageVersionMetadataContainerTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.packages#PackageVersionMetadataContainer": {
+      "type": "structure",
+      "members": {
+        "tags": {
+          "target": "com.github.packages#PackageVersionMetadataContainerTagsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#PackageVersionMetadataDockerTagList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.github.packages#PackageVersionMetadataDocker": {
+      "type": "structure",
+      "members": {
+        "tag": {
+          "target": "com.github.packages#PackageVersionMetadataDockerTagList"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#PackageVersionMetadata": {
+      "type": "structure",
+      "members": {
+        "package_type": {
+          "target": "com.github.packages#PackageVersionMetadataPackageType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "container": {
+          "target": "com.github.packages#PackageVersionMetadataContainer"
+        },
+        "docker": {
+          "target": "com.github.packages#PackageVersionMetadataDocker"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#PackageVersion"
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgRequest"
+      },
+      "output": {
+        "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/packages/{package_type}/{package_name}/versions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List package versions for a package owned by an organization\n\nLists package versions for a package owned by an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#GetPackageVersionForOrganizationRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetPackageVersionForOrganizationRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#GetPackageVersionForOrganizationRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "package_version_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the package version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#GetPackageVersionForOrganization": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#GetPackageVersionForOrganizationRequest"
+      },
+      "output": {
+        "target": "com.github.packages#PackageVersion"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a package version for an organization\n\nGets a specific package version in an organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#DeletePackageVersionForOrgRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#DeletePackageVersionForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#DeletePackageVersionForOrgRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "package_version_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the package version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#DeletePackageVersionForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#DeletePackageVersionForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete package version for an organization\n\nDeletes a specific package version in an organization. If the package is public and the package version has more than 5,000 downloads, you cannot delete the package version. In this scenario, contact GitHub support for further assistance.\n\nThe authenticated user must have admin permissions in the organization to use this endpoint. If the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must also have admin permissions to the package. For the list of these registries, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\"\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `delete:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#RestorePackageVersionForOrgRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#RestorePackageVersionForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#RestorePackageVersionForOrgRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "package_version_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the package version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#RestorePackageVersionForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#RestorePackageVersionForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restore package version for an organization\n\nRestores a specific package version in an organization.\n\nYou can restore a deleted package under the following conditions:\n  - The package was deleted within the last 30 days.\n  - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace first.\n\nThe authenticated user must have admin permissions in the organization to use this endpoint. If the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must also have admin permissions to the package. For the list of these registries, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\"\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `write:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#Package"
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.github.packages#ListDockerMigrationConflictingPackagesForAuthenticatedUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/docker/conflicts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get list of conflicting packages during Docker migration for authenticated-user\n\nLists all packages that are owned by the authenticated user within the user's namespace, and that encountered a conflict during a Docker migration.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint."
+      }
+    },
+    "com.github.packages#ListPackagesForAuthenticatedUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListPackagesForAuthenticatedUserRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internal"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListPackagesForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "package_type": {
+          "target": "com.github.packages#ListPackagesForAuthenticatedUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpQuery": "package_type",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "visibility": {
+          "target": "com.github.packages#ListPackagesForAuthenticatedUserRequestVisibility",
+          "traits": {
+            "smithy.api#httpQuery": "visibility",
+            "smithy.api#documentation": "The selected visibility of the packages.  This parameter is optional and only filters an existing result set.\n\nThe `internal` visibility is only supported for GitHub Packages registries that allow for granular permissions. For other ecosystems `internal` is synonymous with `private`.\nFor the list of GitHub Packages registries that support granular permissions, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#ListPackagesForAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#Package"
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListPackagesForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.packages#ListPackagesForAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.packages#ListPackagesForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#ListPackagesForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.packages#ListPackagesForAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/packages",
+          "code": 200
+        },
+        "smithy.api#documentation": "List packages for the authenticated user's namespace\n\nLists packages owned by the authenticated user within the user's namespace.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#GetPackageForAuthenticatedUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetPackageForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "package_type": {
+          "target": "com.github.packages#GetPackageForAuthenticatedUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#GetPackageForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#GetPackageForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.packages#Package"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/packages/{package_type}/{package_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a package for the authenticated user\n\nGets a specific package for a package owned by the authenticated user.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#DeletePackageForAuthenticatedUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#DeletePackageForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "package_type": {
+          "target": "com.github.packages#DeletePackageForAuthenticatedUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#DeletePackageForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#DeletePackageForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/packages/{package_type}/{package_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a package for the authenticated user\n\nDeletes a package owned by the authenticated user. You cannot delete a public package if any version of the package has more than 5,000 downloads. In this scenario, contact GitHub support for further assistance.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `delete:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#RestorePackageForAuthenticatedUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#RestorePackageForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "package_type": {
+          "target": "com.github.packages#RestorePackageForAuthenticatedUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "token",
+            "smithy.api#documentation": "package token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#RestorePackageForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#RestorePackageForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/user/packages/{package_type}/{package_name}/restore",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restore a package for the authenticated user\n\nRestores a package owned by the authenticated user.\n\nYou can restore a deleted package under the following conditions:\n  - The package was deleted within the last 30 days.\n  - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace first.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `write:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequestState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deleted"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "package_type": {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "state": {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequestState",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "The state of the package, either active or deleted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#PackageVersion"
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/packages/{package_type}/{package_name}/versions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List package versions for a package owned by the authenticated user\n\nLists package versions for a package owned by the authenticated user.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#GetPackageVersionForAuthenticatedUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetPackageVersionForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "package_type": {
+          "target": "com.github.packages#GetPackageVersionForAuthenticatedUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "package_version_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the package version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#GetPackageVersionForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#GetPackageVersionForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.packages#PackageVersion"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/packages/{package_type}/{package_name}/versions/{package_version_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a package version for the authenticated user\n\nGets a specific package version for a package owned by the authenticated user.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#DeletePackageVersionForAuthenticatedUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#DeletePackageVersionForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "package_type": {
+          "target": "com.github.packages#DeletePackageVersionForAuthenticatedUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "package_version_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the package version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#DeletePackageVersionForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#DeletePackageVersionForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/packages/{package_type}/{package_name}/versions/{package_version_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a package version for the authenticated user\n\nDeletes a specific package version for a package owned by the authenticated user.  If the package is public and the package version has more than 5,000 downloads, you cannot delete the package version. In this scenario, contact GitHub support for further assistance.\n\nThe authenticated user must have admin permissions in the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `delete:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#RestorePackageVersionForAuthenticatedUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#RestorePackageVersionForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "package_type": {
+          "target": "com.github.packages#RestorePackageVersionForAuthenticatedUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "package_version_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the package version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#RestorePackageVersionForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#RestorePackageVersionForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/user/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restore a package version for the authenticated user\n\nRestores a package version owned by the authenticated user.\n\nYou can restore a deleted package version under the following conditions:\n  - The package was deleted within the last 30 days.\n  - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace first.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `write:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#Package"
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.packages#ListDockerMigrationConflictingPackagesForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#ListDockerMigrationConflictingPackagesForUserRequest"
+      },
+      "output": {
+        "target": "com.github.packages#ListDockerMigrationConflictingPackagesForUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/docker/conflicts",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get list of conflicting packages during Docker migration for user\n\nLists all packages that are in a specific user's namespace, that the requesting user has access to, and that encountered a conflict during Docker migration.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint."
+      }
+    },
+    "com.github.packages#ListPackagesForUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListPackagesForUserRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "public"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "internal"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListPackagesForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#ListPackagesForUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpQuery": "package_type",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "visibility": {
+          "target": "com.github.packages#ListPackagesForUserRequestVisibility",
+          "traits": {
+            "smithy.api#httpQuery": "visibility",
+            "smithy.api#documentation": "The selected visibility of the packages.  This parameter is optional and only filters an existing result set.\n\nThe `internal` visibility is only supported for GitHub Packages registries that allow for granular permissions. For other ecosystems `internal` is synonymous with `private`.\nFor the list of GitHub Packages registries that support granular permissions, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#ListPackagesForUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#Package"
+      },
+      "traits": {}
+    },
+    "com.github.packages#ListPackagesForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.packages#ListPackagesForUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.packages#ListPackagesForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#ListPackagesForUserRequest"
+      },
+      "output": {
+        "target": "com.github.packages#ListPackagesForUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#BadRequest"
+        },
+        {
+          "target": "com.github.packages#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/packages",
+          "code": 200
+        },
+        "smithy.api#documentation": "List packages for a user\n\nLists all packages in a user's namespace for which the requesting user has access.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#GetPackageForUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetPackageForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#GetPackageForUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#GetPackageForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#GetPackageForUserRequest"
+      },
+      "output": {
+        "target": "com.github.packages#Package"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/packages/{package_type}/{package_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a package for a user\n\nGets a specific package metadata for a public package owned by a user.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#DeletePackageForUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#DeletePackageForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#DeletePackageForUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#DeletePackageForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#DeletePackageForUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/users/{username}/packages/{package_type}/{package_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a package for a user\n\nDeletes an entire package for a user. You cannot delete a public package if any version of the package has more than 5,000 downloads. In this scenario, contact GitHub support for further assistance.\n\nIf the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must have admin permissions to the package. For the list of these registries, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\"\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `delete:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#RestorePackageForUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#RestorePackageForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#RestorePackageForUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "token",
+            "smithy.api#documentation": "package token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#RestorePackageForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#RestorePackageForUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users/{username}/packages/{package_type}/{package_name}/restore",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restore a package for a user\n\nRestores an entire package for a user.\n\nYou can restore a deleted package under the following conditions:\n  - The package was deleted within the last 30 days.\n  - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace first.\n\nIf the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must have admin permissions to the package. For the list of these registries, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\"\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `write:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByUserResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.packages#PackageVersion"
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByUserResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.packages#GetAllPackageVersionsForPackageOwnedByUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByUserRequest"
+      },
+      "output": {
+        "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/packages/{package_type}/{package_name}/versions",
+          "code": 200
+        },
+        "smithy.api#documentation": "List package versions for a package owned by a user\n\nLists package versions for a public package owned by a specified user.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#GetPackageVersionForUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#GetPackageVersionForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#GetPackageVersionForUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "package_version_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the package version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#GetPackageVersionForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#GetPackageVersionForUserRequest"
+      },
+      "output": {
+        "target": "com.github.packages#PackageVersion"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a package version for a user\n\nGets a specific package version for a public package owned by a specified user.\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` scope to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#DeletePackageVersionForUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#DeletePackageVersionForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#DeletePackageVersionForUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "package_version_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the package version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#DeletePackageVersionForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#DeletePackageVersionForUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete package version for a user\n\nDeletes a specific package version for a user. If the package is public and the package version has more than 5,000 downloads, you cannot delete the package version. In this scenario, contact GitHub support for further assistance.\n\nIf the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must have admin permissions to the package. For the list of these registries, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\"\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `delete:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#RestorePackageVersionForUserRequestPackageType": {
+      "type": "enum",
+      "members": {
+        "NPM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm"
+          }
+        },
+        "MAVEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven"
+          }
+        },
+        "RUBYGEMS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems"
+          }
+        },
+        "DOCKER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker"
+          }
+        },
+        "NUGET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.packages#RestorePackageVersionForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "package_type": {
+          "target": "com.github.packages#RestorePackageVersionForUserRequestPackageType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of supported package. Packages in GitHub's Gradle registry have the type `maven`. Docker images pushed to GitHub's Container registry (`ghcr.io`) have the type `container`. You can use the type `docker` to find images that were pushed to GitHub's Docker registry (`docker.pkg.github.com`), even if these have now been migrated to the Container registry."
+          }
+        },
+        "package_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the package."
+          }
+        },
+        "package_version_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Unique identifier of the package version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.packages#RestorePackageVersionForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.packages#RestorePackageVersionForUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.packages#Forbidden"
+        },
+        {
+          "target": "com.github.packages#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users/{username}/packages/{package_type}/{package_name}/versions/{package_version_id}/restore",
+          "code": 200
+        },
+        "smithy.api#documentation": "Restore package version for a user\n\nRestores a specific package version for a user.\n\nYou can restore a deleted package under the following conditions:\n  - The package was deleted within the last 30 days.\n  - The same package namespace and version is still available and not reused for a new package. If the same package namespace is not available, you will not be able to restore your package. In this scenario, to restore the deleted package, you must delete the new package that uses the deleted package's namespace first.\n\nIf the `package_type` belongs to a GitHub Packages registry that supports granular permissions, the authenticated user must have admin permissions to the package. For the list of these registries, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#granular-permissions-for-userorganization-scoped-packages).\"\n\nOAuth app tokens and personal access tokens (classic) need the `read:packages` and `write:packages` scopes to use this endpoint. For more information, see \"[About permissions for GitHub Packages](https://docs.github.com/packages/learn-github-packages/about-permissions-for-github-packages#permissions-for-repository-scoped-packages).\""
+      }
+    },
+    "com.github.packages#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.packages#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.github.packages#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.packages#Packages": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForOrganization"
+        },
+        {
+          "target": "com.github.packages#ListPackagesForOrganization"
+        },
+        {
+          "target": "com.github.packages#GetPackageForOrganization"
+        },
+        {
+          "target": "com.github.packages#DeletePackageForOrg"
+        },
+        {
+          "target": "com.github.packages#RestorePackageForOrg"
+        },
+        {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByOrg"
+        },
+        {
+          "target": "com.github.packages#GetPackageVersionForOrganization"
+        },
+        {
+          "target": "com.github.packages#DeletePackageVersionForOrg"
+        },
+        {
+          "target": "com.github.packages#RestorePackageVersionForOrg"
+        },
+        {
+          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#ListPackagesForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#GetPackageForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#DeletePackageForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#RestorePackageForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#GetPackageVersionForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#DeletePackageVersionForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#RestorePackageVersionForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.packages#ListDockerMigrationConflictingPackagesForUser"
+        },
+        {
+          "target": "com.github.packages#ListPackagesForUser"
+        },
+        {
+          "target": "com.github.packages#GetPackageForUser"
+        },
+        {
+          "target": "com.github.packages#DeletePackageForUser"
+        },
+        {
+          "target": "com.github.packages#RestorePackageForUser"
+        },
+        {
+          "target": "com.github.packages#GetAllPackageVersionsForPackageOwnedByUser"
+        },
+        {
+          "target": "com.github.packages#GetPackageVersionForUser"
+        },
+        {
+          "target": "com.github.packages#DeletePackageVersionForUser"
+        },
+        {
+          "target": "com.github.packages#RestorePackageVersionForUser"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

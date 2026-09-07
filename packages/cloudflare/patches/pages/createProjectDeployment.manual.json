@@ -1,0 +1,130 @@
+{
+  "description": "Hand-authored: Pages direct-upload deployment is multipart/form-data (branch/manifest fields + named file parts); the API docs describe no body for it. Field names transcribed from the distilled SDK (naming oracle).",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeployment/traits/smithy.api#http/contentType",
+      "value": "multipart"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/branch",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The branch to build the new deployment from."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/commit_dirty",
+      "value": {
+        "target": "smithy.api#Boolean",
+        "traits": {}
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/commit_hash",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {}
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/commit_message",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {}
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/manifest",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "JSON string mapping file paths to their content hashes."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/pages_build_output_dir",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {}
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/wrangler_config_hash",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {}
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/headers",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#jsonName": "_headers"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/redirects",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#jsonName": "_redirects"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/routes_json",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#jsonName": "_routes.json"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/worker_bundle",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#jsonName": "_worker.bundle"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/worker_js",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#jsonName": "_worker.js"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectDeploymentRequest/members/functions_filepath_routing_config_json",
+      "value": {
+        "target": "smithy.api#Document",
+        "traits": {
+          "smithy.api#jsonName": "functions-filepath-routing-config.json"
+        }
+      }
+    }
+  ]
+}

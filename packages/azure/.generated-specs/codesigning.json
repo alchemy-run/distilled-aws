@@ -1,0 +1,2015 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.codesigning#CertificateProfilesRevokeCertificate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CertificateProfilesRevokeCertificateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}/certificateProfiles/{profileName}/revokeCertificate",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Revoke a certificate under a certificate profile.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesRevokeCertificateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Artifact Signing account name."
+          }
+        },
+        "profileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Certificate profile name."
+          }
+        },
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Serial number of the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "thumbprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Thumbprint of the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "effectiveAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the revocation is effective.",
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reason for the revocation.",
+            "smithy.api#required": {}
+          }
+        },
+        "remarks": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Remarks for the revocation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CertificateProfilesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}/certificateProfiles/{profileName}",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Delete a certificate profile.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Artifact Signing account name."
+          }
+        },
+        "profileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Certificate profile name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CertificateProfilesCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.codesigning#CertificateProfilesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}/certificateProfiles/{profileName}",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Create a certificate profile.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.codesigning#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CertificateProfileProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.codesigning#CertificateProfileProperties": {
+      "type": "structure",
+      "members": {
+        "profileType": {
+          "target": "com.azure.codesigning#ProfileType",
+          "traits": {
+            "smithy.api#documentation": "Profile type of the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "includeStreetAddress": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include STREET in the certificate subject name."
+          }
+        },
+        "includeCity": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include L in the certificate subject name. Applicable only for private trust, private trust ci profile types"
+          }
+        },
+        "includeState": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include S in the certificate subject name. Applicable only for private trust, private trust ci profile types"
+          }
+        },
+        "includeCountry": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include C in the certificate subject name. Applicable only for private trust, private trust ci profile types"
+          }
+        },
+        "includePostalCode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include PC in the certificate subject name."
+          }
+        },
+        "identityValidationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identity validation id used for the certificate subject name.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.codesigning#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Status of the current operation on certificate profile."
+          }
+        },
+        "status": {
+          "target": "com.azure.codesigning#CertificateProfileStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the certificate profile."
+          }
+        },
+        "certificates": {
+          "target": "com.azure.codesigning#CertificateProfilePropertiesCertificatesList",
+          "traits": {
+            "smithy.api#documentation": "List of renewed certificates."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the certificate profile."
+      }
+    },
+    "com.azure.codesigning#CertificateProfilePropertiesCertificatesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.codesigning#Certificate"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of renewed certificates."
+      }
+    },
+    "com.azure.codesigning#Certificate": {
+      "type": "structure",
+      "members": {
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Serial number of the certificate."
+          }
+        },
+        "enhancedKeyUsage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Enhanced key usage of the certificate."
+          }
+        },
+        "subjectName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Subject name of the certificate."
+          }
+        },
+        "thumbprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Thumbprint of the certificate."
+          }
+        },
+        "createdDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate created date."
+          }
+        },
+        "expiryDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate expiry date."
+          }
+        },
+        "status": {
+          "target": "com.azure.codesigning#CertificateStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the certificate."
+          }
+        },
+        "revocation": {
+          "target": "com.azure.codesigning#Revocation",
+          "traits": {
+            "smithy.api#documentation": "Revocations history of a certificate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the certificate."
+      }
+    },
+    "com.azure.codesigning#Revocation": {
+      "type": "structure",
+      "members": {
+        "requestedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the revocation is requested."
+          }
+        },
+        "effectiveAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp when the revocation is effective."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reason for revocation."
+          }
+        },
+        "remarks": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Remarks for the revocation."
+          }
+        },
+        "status": {
+          "target": "com.azure.codesigning#RevocationStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the revocation."
+          }
+        },
+        "failureReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reason for the revocation failure."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Revocation details of the certificate."
+      }
+    },
+    "com.azure.codesigning#RevocationStatus": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InProgress"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Revocation status of the certificate."
+      }
+    },
+    "com.azure.codesigning#CertificateStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Expired"
+          }
+        },
+        "REVOKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Revoked"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the certificate"
+      }
+    },
+    "com.azure.codesigning#CertificateProfileStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Suspended"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the certificate profiles."
+      }
+    },
+    "com.azure.codesigning#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the current operation."
+      }
+    },
+    "com.azure.codesigning#ProfileType": {
+      "type": "enum",
+      "members": {
+        "PUBLICTRUST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PublicTrust"
+          }
+        },
+        "PRIVATETRUST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PrivateTrust"
+          }
+        },
+        "PRIVATETRUSTCIPOLICY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PrivateTrustCIPolicy"
+          }
+        },
+        "VBSENCLAVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VBSEnclave"
+          }
+        },
+        "PUBLICTRUSTTEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PublicTrustTest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the certificate"
+      }
+    },
+    "com.azure.codesigning#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.codesigning#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.codesigning#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.codesigning#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.codesigning#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Artifact Signing account name."
+          }
+        },
+        "profileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Certificate profile name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CertificateProfilePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CertificateProfilePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "profileType": {
+          "target": "com.azure.codesigning#ProfileType",
+          "traits": {
+            "smithy.api#documentation": "Profile type of the certificate.",
+            "smithy.api#required": {}
+          }
+        },
+        "includeStreetAddress": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include STREET in the certificate subject name."
+          }
+        },
+        "includeCity": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include L in the certificate subject name. Applicable only for private trust, private trust ci profile types"
+          }
+        },
+        "includeState": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include S in the certificate subject name. Applicable only for private trust, private trust ci profile types"
+          }
+        },
+        "includeCountry": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include C in the certificate subject name. Applicable only for private trust, private trust ci profile types"
+          }
+        },
+        "includePostalCode": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to include PC in the certificate subject name."
+          }
+        },
+        "identityValidationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identity validation id used for the certificate subject name.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the certificate profile."
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CertificateProfilesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.codesigning#CertificateProfilesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}/certificateProfiles/{profileName}",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Get details of a certificate profile.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.codesigning#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CertificateProfileProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Artifact Signing account name."
+          }
+        },
+        "profileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Certificate profile name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesListByCodeSigningAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CertificateProfilesListByCodeSigningAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.codesigning#CertificateProfileListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}/certificateProfiles",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "List certificate profiles under an artifact signing account.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CertificateProfileListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.codesigning#CertificateProfileListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The CertificateProfile items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a CertificateProfile list operation."
+      }
+    },
+    "com.azure.codesigning#CertificateProfileListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.codesigning#CertificateProfile"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CertificateProfile items on this page"
+      }
+    },
+    "com.azure.codesigning#CertificateProfile": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.codesigning#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CertificateProfileProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Certificate profile resource."
+      }
+    },
+    "com.azure.codesigning#CertificateProfilesListByCodeSigningAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Artifact Signing account name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CodeSigningAccountsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Delete an artifact signing account.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Artifact Signing account name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CodeSigningAccountsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.codesigning#CodeSigningAccountsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Update an artifact signing account.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.codesigning#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.codesigning#CodeSigningAccountsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CodeSigningAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountProperties": {
+      "type": "structure",
+      "members": {
+        "accountUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI of the artifact signing account which is used during signing files."
+          }
+        },
+        "sku": {
+          "target": "com.azure.codesigning#AccountSku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the artifact signing account."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.codesigning#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Status of the current operation on artifact signing account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the artifact signing account."
+      }
+    },
+    "com.azure.codesigning#AccountSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.codesigning#SkuName",
+          "traits": {
+            "smithy.api#documentation": "Name of the SKU.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU of the artifact signing account."
+      }
+    },
+    "com.azure.codesigning#SkuName": {
+      "type": "enum",
+      "members": {
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        },
+        "PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Premium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the sku."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Artifact Signing account name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.codesigning#CodeSigningAccountsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CodeSigningAccountPatchProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the artifact signing account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountPatchProperties": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.codesigning#AccountSkuPatch",
+          "traits": {
+            "smithy.api#documentation": "SKU of the artifact signing account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the artifact signing account."
+      }
+    },
+    "com.azure.codesigning#AccountSkuPatch": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.codesigning#SkuName",
+          "traits": {
+            "smithy.api#documentation": "Name of the SKU."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU of the artifact signing account."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CodeSigningAccountsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.codesigning#CodeSigningAccountsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Create an artifact Signing Account.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.codesigning#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.codesigning#CodeSigningAccountsCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CodeSigningAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Artifact Signing account name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.codesigning#CodeSigningAccountsCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CodeSigningAccountPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.codesigning#AccountSku",
+          "traits": {
+            "smithy.api#documentation": "SKU of the artifact signing account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the artifact signing account."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CodeSigningAccountsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.codesigning#CodeSigningAccountsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Get an artifact Signing Account.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.codesigning#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.codesigning#CodeSigningAccountsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CodeSigningAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Artifact Signing account name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CodeSigningAccountsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.codesigning#CodeSigningAccountListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Lists artifact signing accounts within a resource group.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.codesigning#CodeSigningAccountListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The CodeSigningAccount items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a CodeSigningAccount list operation."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.codesigning#CodeSigningAccount"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CodeSigningAccount items on this page"
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccount": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.codesigning#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.codesigning#CodeSigningAccountTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.codesigning#CodeSigningAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Artifact signing account resource."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CodeSigningAccountsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.codesigning#CodeSigningAccountListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.CodeSigning/codeSigningAccounts",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Lists artifact signing accounts within a subscription.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsCheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.codesigning#CodeSigningAccountsCheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.codesigning#CheckNameAvailabilityResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.CodeSigning/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "Checks if the artifact signing account name is valid and is not already in use.",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#CheckNameAvailabilityResult": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A boolean value that indicates whether the name is available for you to use. If true, the name is available. If false, the name has already been taken or is invalid and cannot be used."
+          }
+        },
+        "reason": {
+          "target": "com.azure.codesigning#NameUnavailabilityReason",
+          "traits": {
+            "smithy.api#documentation": "The reason that an artifact signing account name could not be used. The Reason element is only returned if nameAvailable is false."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An error message explaining the Reason value in more detail."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The CheckNameAvailability operation response."
+      }
+    },
+    "com.azure.codesigning#NameUnavailabilityReason": {
+      "type": "enum",
+      "members": {
+        "ACCOUNTNAMEINVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AccountNameInvalid"
+          }
+        },
+        "ALREADYEXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlreadyExists"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reason that an artifact signing account name could not be used. The Reason element is only returned if nameAvailable is false."
+      }
+    },
+    "com.azure.codesigning#CodeSigningAccountsCheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource, \"Microsoft.CodeSigning/codeSigningAccounts\".",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Artifact signing account name.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.codesigning#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.codesigning#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.CodeSigning/operations",
+          "code": 200,
+          "apiVersion": "2025-10-13"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-10-13"
+      }
+    },
+    "com.azure.codesigning#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.codesigning#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.codesigning#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.codesigning#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.codesigning#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.codesigning#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.codesigning#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.codesigning#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.codesigning#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.codesigning#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.codesigning#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.codesigning#Codesigning": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.codesigning#CertificateProfilesRevokeCertificate"
+        },
+        {
+          "target": "com.azure.codesigning#CertificateProfilesDelete"
+        },
+        {
+          "target": "com.azure.codesigning#CertificateProfilesCreate"
+        },
+        {
+          "target": "com.azure.codesigning#CertificateProfilesGet"
+        },
+        {
+          "target": "com.azure.codesigning#CertificateProfilesListByCodeSigningAccount"
+        },
+        {
+          "target": "com.azure.codesigning#CodeSigningAccountsDelete"
+        },
+        {
+          "target": "com.azure.codesigning#CodeSigningAccountsUpdate"
+        },
+        {
+          "target": "com.azure.codesigning#CodeSigningAccountsCreate"
+        },
+        {
+          "target": "com.azure.codesigning#CodeSigningAccountsGet"
+        },
+        {
+          "target": "com.azure.codesigning#CodeSigningAccountsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.codesigning#CodeSigningAccountsListBySubscription"
+        },
+        {
+          "target": "com.azure.codesigning#CodeSigningAccountsCheckNameAvailability"
+        },
+        {
+          "target": "com.azure.codesigning#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Codesigning",
+        "smithy.api#documentation": "Azure Codesigning API — merged from the codesigning resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

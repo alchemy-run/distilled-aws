@@ -1,0 +1,1413 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.business_knowledge#BusinessKnowledgeDocumentsWindowListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this knowledge document."
+          }
+        },
+        "around_ordinal": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "around_ordinal",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Zero-based chunk ordinal to center the window on (from a search result)."
+          }
+        },
+        "radius": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "radius",
+            "smithy.api#documentation": "Number of chunks before and after the center to include. Defaults to 5, clamped to [0, 15]."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#KnowledgeDocumentWindow": {
+      "type": "structure",
+      "members": {
+        "chunk_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier of this chunk. Same value used in search results.",
+            "smithy.api#required": {}
+          }
+        },
+        "ordinal": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Zero-based position of this chunk within its document. Use it as `around_ordinal` to recenter the window.",
+            "smithy.api#required": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The chunk's text content.",
+            "smithy.api#required": {}
+          }
+        },
+        "heading_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Breadcrumb of section headings this chunk sits under. Empty when the document has no heading structure.",
+            "smithy.api#required": {}
+          }
+        },
+        "source_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human label of the knowledge source this chunk belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "document_title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the document this chunk belongs to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One chunk in a drill-down window over a single knowledge document.\n\nOutput-only — the rows come from the `get_document_window` logic helper\n(a `KnowledgeSearchResult` dataclass), not the ORM, so this is a plain\nread serializer rather than a `ModelSerializer`."
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeDocumentsWindowListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.business_knowledge#KnowledgeDocumentWindow"
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeDocumentsWindowListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeDocumentsWindowListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeDocumentsWindowList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeDocumentsWindowListRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeDocumentsWindowListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/business_knowledge/documents/{id}/window/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read-only access to parsed knowledge documents. Exposes hybrid search\n(``search``) and a drill-down window (``window``) so an agent (PHAI or\nMCP) can find and explore business knowledge chunks."
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeDocumentsSearchListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of ranked chunks to return. Defaults to 10, capped at 20."
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "query",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Natural-language search query. Runs hybrid (semantic + full-text) retrieval over all SAFE, READY knowledge chunks in this project."
+          }
+        },
+        "rerank": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "rerank",
+            "smithy.api#documentation": "When true, rerank search results with a listwise LLM pass for better relevance. Defaults to false (RRF order only). Falls back to RRF order on rerank failure."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#KnowledgeSearchResult": {
+      "type": "structure",
+      "members": {
+        "chunk_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier of this chunk.",
+            "smithy.api#required": {}
+          }
+        },
+        "document_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the parent document. Pass to the document-window endpoint with `around_ordinal` to drill down.",
+            "smithy.api#required": {}
+          }
+        },
+        "ordinal": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Zero-based position of this chunk within its document. Use as `around_ordinal` in the document-window endpoint.",
+            "smithy.api#required": {}
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the knowledge source this chunk belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "source_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human label of the knowledge source this chunk belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "source_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source type (text, url, or file).",
+            "smithy.api#required": {}
+          }
+        },
+        "document_title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the document this chunk belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "heading_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Breadcrumb of section headings this chunk sits under. Empty when the document has no heading structure.",
+            "smithy.api#required": {}
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The chunk's text content.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One ranked chunk from a business knowledge search.\n\nOutput-only — the rows come from the ``search_knowledge_for_team`` logic\nhelper (a ``KnowledgeSearchResult`` dataclass), not the ORM."
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeDocumentsSearchListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.business_knowledge#KnowledgeSearchResult"
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeDocumentsSearchListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeDocumentsSearchListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeDocumentsSearchList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeDocumentsSearchListRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeDocumentsSearchListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/business_knowledge/documents/search/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read-only access to parsed knowledge documents. Exposes hybrid search\n(``search``) and a drill-down window (``window``) so an agent (PHAI or\nMCP) can find and explore business knowledge chunks."
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "ticket_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "ticket_id",
+            "smithy.api#documentation": "When provided, returns per-ticket gap rows instead of aggregated view. Requires `ticket:read` scope in addition to `business_knowledge:read`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#PaginatedKnowledgeGapSuggestionList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.business_knowledge#PaginatedKnowledgeGapSuggestionListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#KnowledgeGapSuggestion": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for this gap suggestion.",
+            "smithy.api#required": {}
+          }
+        },
+        "ticket_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ticket that surfaced this gap.",
+            "smithy.api#required": {}
+          }
+        },
+        "topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Raw topic the AI couldn't answer.",
+            "smithy.api#required": {}
+          }
+        },
+        "normalized_topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Normalized cluster key for grouping.",
+            "smithy.api#required": {}
+          }
+        },
+        "ticket_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ticket classification type.",
+            "smithy.api#required": {}
+          }
+        },
+        "outcome": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pipeline outcome that produced this gap.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current status: pending, accepted, or dismissed.",
+            "smithy.api#required": {}
+          }
+        },
+        "resolved_source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Knowledge source created to fill this gap.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this gap was first recorded.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#PaginatedKnowledgeGapSuggestionListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.business_knowledge#KnowledgeGapSuggestion"
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#PaginatedKnowledgeGapSuggestionList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/business_knowledge/gap_suggestions/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Surfaces topics the support AI couldn't answer from the knowledge base.\n\nTwo list shapes controlled by the ``ticket_id`` query param:\n- **per-ticket** (``?ticket_id=<uuid>``): individual gap rows for that ticket.\n- **aggregated** (no ``ticket_id``): gaps grouped by normalized topic with counts,\n  for the Business knowledge suggestions panel."
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this knowledge gap suggestion."
+          }
+        },
+        "resolved_source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional knowledge source to link when accepting.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#KnowledgeGapSuggestion"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/business_knowledge/gap_suggestions/{id}/accept/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Surfaces topics the support AI couldn't answer from the knowledge base.\n\nTwo list shapes controlled by the ``ticket_id`` query param:\n- **per-ticket** (``?ticket_id=<uuid>``): individual gap rows for that ticket.\n- **aggregated** (no ``ticket_id``): gaps grouped by normalized topic with counts,\n  for the Business knowledge suggestions panel."
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsDismissCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this knowledge gap suggestion."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsDismissCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsDismissCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#KnowledgeGapSuggestion"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/business_knowledge/gap_suggestions/{id}/dismiss/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Surfaces topics the support AI couldn't answer from the knowledge base.\n\nTwo list shapes controlled by the ``ticket_id`` query param:\n- **per-ticket** (``?ticket_id=<uuid>``): individual gap rows for that ticket.\n- **aggregated** (no ``ticket_id``): gaps grouped by normalized topic with counts,\n  for the Business knowledge suggestions panel."
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptTopicCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "normalized_topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The normalized topic key identifying the gap cluster to act on.",
+            "smithy.api#required": {}
+          }
+        },
+        "resolved_source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional knowledge source to link when accepting.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#GapTopicActionResult": {
+      "type": "structure",
+      "members": {
+        "normalized_topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The normalized topic cluster that was acted on.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of gap rows whose status changed.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptTopicCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptTopicCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#GapTopicActionResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/business_knowledge/gap_suggestions/accept_topic/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Accept all pending suggestions for a normalized topic cluster."
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsDismissTopicCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "normalized_topic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The normalized topic key identifying the gap cluster to act on.",
+            "smithy.api#required": {}
+          }
+        },
+        "resolved_source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional knowledge source to link when accepting.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsDismissTopicCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsDismissTopicCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#GapTopicActionResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/business_knowledge/gap_suggestions/dismiss_topic/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Dismiss all pending suggestions for a normalized topic cluster."
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#PaginatedKnowledgeSourceList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.business_knowledge#PaginatedKnowledgeSourceListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#KnowledgeSource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "source_type": {
+          "target": "com.posthog.business_knowledge#KnowledgeSourceSourceTypeEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.business_knowledge#KnowledgeSourceStatusEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "error_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "document_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of documents belonging to this source.",
+            "smithy.api#required": {}
+          }
+        },
+        "chunk_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of chunks belonging to this source.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "source_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_refresh_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_refresh_status": {
+          "target": "com.posthog.business_knowledge#LastRefreshStatusEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_refresh_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "refresh_interval": {
+          "target": "com.posthog.business_knowledge#RefreshIntervalEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next_refresh_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the background coordinator will next auto-refresh this source. Null for manual sources or sources never refreshed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "has_unsafe_documents": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when at least one document in this source was flagged unsafe by the content classifier and is therefore excluded from agent search.",
+            "smithy.api#required": {}
+          }
+        },
+        "embedding_status": {
+          "target": "com.posthog.business_knowledge#EmbeddingStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Semantic-index state of this source. A `ready` source serves keyword (full-text) search immediately, but semantic search needs a background job to classify and embed its documents, which can take up to an hour. `pending` — at least one document is still awaiting classification or embedding. `completed` — every eligible document has been submitted to the embedding pipeline. `disabled` — the organization has not approved AI data processing, so embeddings never run and search stays keyword-only. Only meaningful while `status` is `ready`.",
+            "smithy.api#required": {}
+          }
+        },
+        "crawl_mode": {
+          "target": "com.posthog.business_knowledge#CrawlModeEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "crawl_config": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "original_filename": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "file_content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "file_size_bytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "always_include": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#KnowledgeSourceSourceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text"
+          }
+        },
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url"
+          }
+        },
+        "FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "file"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `text` - Text\n* `url` - URL\n* `file` - File"
+      }
+    },
+    "com.posthog.business_knowledge#KnowledgeSourceStatusEnum": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "processing"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ready"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `pending` - Pending\n* `processing` - Processing\n* `ready` - Ready\n* `error` - Error"
+      }
+    },
+    "com.posthog.business_knowledge#LastRefreshStatusEnum": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "NOT_MODIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "not_modified"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `success` - Success\n* `not_modified` - Not modified\n* `error` - Error"
+      }
+    },
+    "com.posthog.business_knowledge#RefreshIntervalEnum": {
+      "type": "enum",
+      "members": {
+        "MANUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "manual"
+          }
+        },
+        "_1H": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "1h"
+          }
+        },
+        "_6H": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "6h"
+          }
+        },
+        "_24H": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "24h"
+          }
+        },
+        "_7D": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "7d"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `manual` - Manual only\n* `1h` - Every hour\n* `6h` - Every 6 hours\n* `24h` - Every day\n* `7d` - Every week"
+      }
+    },
+    "com.posthog.business_knowledge#EmbeddingStatusEnum": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#CrawlModeEnum": {
+      "type": "enum",
+      "members": {
+        "SINGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "single"
+          }
+        },
+        "SITEMAP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sitemap"
+          }
+        },
+        "SAME_ORIGIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "same_origin"
+          }
+        },
+        "GITHUB_REPO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_repo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `single` - Single page\n* `sitemap` - Sitemap\n* `same_origin` - Same origin crawl\n* `github_repo` - GitHub repository"
+      }
+    },
+    "com.posthog.business_knowledge#PaginatedKnowledgeSourceListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.business_knowledge#KnowledgeSource"
+      },
+      "traits": {}
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#PaginatedKnowledgeSourceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/business_knowledge/sources/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short human label for the source. Shown in the settings list and in agent citations.",
+            "smithy.api#required": {}
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Raw text to index. Capped at 1 MB; larger payloads should be split into multiple sources or wait for URL/file support in Stage 2/3.",
+            "smithy.api#required": {}
+          }
+        },
+        "always_include": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, this source's content is injected into every support reply prompt as general context (tone, policies, direction)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#KnowledgeSource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/business_knowledge/sources/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this knowledge source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#KnowledgeSource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/business_knowledge/sources/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this knowledge source."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New human label for the source."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Replacement text. Omit to keep the existing content."
+          }
+        },
+        "always_include": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, this source's content is injected into every support reply prompt as general context."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#KnowledgeSource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/business_knowledge/sources/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this knowledge source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/business_knowledge/sources/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesRefreshCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this knowledge source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesRefreshCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesRefreshCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#KnowledgeSource"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/business_knowledge/sources/{id}/refresh/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesTextRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this knowledge source."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesTextRetrieveResponse": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledgeSourcesTextRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesTextRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesTextRetrieveResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/business_knowledge/sources/{id}/text/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.business_knowledge#BusinessKnowledge": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeDocumentsWindowList"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeDocumentsSearchList"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsList"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptCreate"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsDismissCreate"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsAcceptTopicCreate"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeGapSuggestionsDismissTopicCreate"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesList"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesCreate"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesRetrieve"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesDestroy"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesRefreshCreate"
+        },
+        {
+          "target": "com.posthog.business_knowledge#BusinessKnowledgeSourcesTextRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

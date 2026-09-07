@@ -1,0 +1,115 @@
+{
+  "description": "Fix Backup and PaginatedBackup schema: many fields can be null (started_at, expires_at, completed_at, deleted_at, backup_policy, linted_at, schedule_time, last_ran_at, next_run_at)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/started_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/expires_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/completed_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/backup_policy/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/schema_snapshot/properties/linted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/backup_policy/properties/schedule_time/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/backup_policy/properties/last_ran_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/backup_policy/properties/next_run_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/restored_branches/items/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Backup/properties/database_branch/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/started_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/expires_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/completed_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/backup_policy/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/schema_snapshot/properties/linted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/backup_policy/properties/schedule_time/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/backup_policy/properties/last_ran_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/backup_policy/properties/next_run_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/restored_branches/items/properties/deleted_at/x-nullable",
+      "value": true
+    },
+    {
+      "op": "add",
+      "path": "/definitions/PaginatedBackup/properties/data/items/properties/database_branch/properties/deleted_at/x-nullable",
+      "value": true
+    }
+  ]
+}

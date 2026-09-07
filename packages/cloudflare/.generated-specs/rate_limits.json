@@ -1,0 +1,2363 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.cloudflare.rate_limits#CreateRequestActionMode": {
+      "type": "enum",
+      "members": {
+        "SIMULATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "simulate"
+          }
+        },
+        "BAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ban"
+          }
+        },
+        "CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "challenge"
+          }
+        },
+        "JS_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "js_challenge"
+          }
+        },
+        "MANAGED_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_challenge"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestActionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The response body to return. The value must conform to the configured content type."
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the body. Must be one of the following: `text/plain`, `text/xml`, or `application/json`."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestAction": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.cloudflare.rate_limits#CreateRequestActionMode",
+          "traits": {
+            "smithy.api#documentation": "The action to perform."
+          }
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#CreateRequestActionResponse",
+          "traits": {
+            "smithy.api#documentation": "A custom content type and reponse to return when the threshold is exceeded. The custom response configured in this object will override the custom error for the zone. This object is optional."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds during which Cloudflare will perform the mitigation action. Must be an integer value greater than or equal to the period."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestMatchHeadersItemOp": {
+      "type": "enum",
+      "members": {
+        "EQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eq"
+          }
+        },
+        "NE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ne"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestMatchHeadersItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the response header to match."
+          }
+        },
+        "op": {
+          "target": "com.cloudflare.rate_limits#CreateRequestMatchHeadersItemOp",
+          "traits": {
+            "smithy.api#documentation": "The operator used when matching: `eq` means \"equal\" and `ne` means \"not equal\"."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the response header, which must match exactly."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestMatchHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#CreateRequestMatchHeadersItem"
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestMatchRequestMethodsItem": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "_ALL_"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestMatchRequestMethodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#CreateRequestMatchRequestMethodsItem"
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestMatchRequestSchemesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestMatchRequest": {
+      "type": "structure",
+      "members": {
+        "methods": {
+          "target": "com.cloudflare.rate_limits#CreateRequestMatchRequestMethodsList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP methods to match. You can specify a subset (for example, `['POST','PUT']`) or all methods (`['_ALL_']`). This field is optional when creating a rate limit."
+          }
+        },
+        "schemes": {
+          "target": "com.cloudflare.rate_limits#CreateRequestMatchRequestSchemesList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP schemes to match. You can specify one scheme (`['HTTPS']`), both schemes (`['HTTP','HTTPS']`), or all schemes (`['_ALL_']`). This field is optional."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL pattern to match, composed of a host and a path such as `example.org/path*`. Normalization is applied before the pattern is matched. `*` wildcards are expanded to match applicable traffic. Query strings are not matched. Set the value to `*` to match all traffic to your zone."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestMatchResponse": {
+      "type": "structure",
+      "members": {
+        "origin_traffic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, only the uncached traffic served from your origin servers will count towards rate limiting. In this case, any cached traffic served by Cloudflare will not count towards rate limiting. This field is optional."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequestMatch": {
+      "type": "structure",
+      "members": {
+        "headers": {
+          "target": "com.cloudflare.rate_limits#CreateRequestMatchHeadersList"
+        },
+        "request": {
+          "target": "com.cloudflare.rate_limits#CreateRequestMatchRequest"
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#CreateRequestMatchResponse"
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#CreateRequestAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded.",
+            "smithy.api#required": {}
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#CreateRequestMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold.",
+            "smithy.api#required": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action.",
+            "smithy.api#required": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseActionMode": {
+      "type": "enum",
+      "members": {
+        "SIMULATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "simulate"
+          }
+        },
+        "BAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ban"
+          }
+        },
+        "CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "challenge"
+          }
+        },
+        "JS_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "js_challenge"
+          }
+        },
+        "MANAGED_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_challenge"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseActionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The response body to return. The value must conform to the configured content type."
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the body. Must be one of the following: `text/plain`, `text/xml`, or `application/json`."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseAction": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.cloudflare.rate_limits#CreateResponseActionMode",
+          "traits": {
+            "smithy.api#documentation": "The action to perform."
+          }
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#CreateResponseActionResponse",
+          "traits": {
+            "smithy.api#documentation": "A custom content type and reponse to return when the threshold is exceeded. The custom response configured in this object will override the custom error for the zone. This object is optional."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds during which Cloudflare will perform the mitigation action. Must be an integer value greater than or equal to the period."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseBypassItemName": {
+      "type": "enum",
+      "members": {
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseBypassItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.cloudflare.rate_limits#CreateResponseBypassItemName"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to bypass."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseBypassList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#CreateResponseBypassItem"
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseMatchHeadersItemOp": {
+      "type": "enum",
+      "members": {
+        "EQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eq"
+          }
+        },
+        "NE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ne"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseMatchHeadersItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the response header to match."
+          }
+        },
+        "op": {
+          "target": "com.cloudflare.rate_limits#CreateResponseMatchHeadersItemOp",
+          "traits": {
+            "smithy.api#documentation": "The operator used when matching: `eq` means \"equal\" and `ne` means \"not equal\"."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the response header, which must match exactly."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseMatchHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#CreateResponseMatchHeadersItem"
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseMatchRequestMethodsItem": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "_ALL_"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseMatchRequestMethodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#CreateResponseMatchRequestMethodsItem"
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseMatchRequestSchemesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseMatchRequest": {
+      "type": "structure",
+      "members": {
+        "methods": {
+          "target": "com.cloudflare.rate_limits#CreateResponseMatchRequestMethodsList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP methods to match. You can specify a subset (for example, `['POST','PUT']`) or all methods (`['_ALL_']`). This field is optional when creating a rate limit."
+          }
+        },
+        "schemes": {
+          "target": "com.cloudflare.rate_limits#CreateResponseMatchRequestSchemesList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP schemes to match. You can specify one scheme (`['HTTPS']`), both schemes (`['HTTP','HTTPS']`), or all schemes (`['_ALL_']`). This field is optional."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL pattern to match, composed of a host and a path such as `example.org/path*`. Normalization is applied before the pattern is matched. `*` wildcards are expanded to match applicable traffic. Query strings are not matched. Set the value to `*` to match all traffic to your zone."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseMatchResponse": {
+      "type": "structure",
+      "members": {
+        "origin_traffic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, only the uncached traffic served from your origin servers will count towards rate limiting. In this case, any cached traffic served by Cloudflare will not count towards rate limiting. This field is optional."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponseMatch": {
+      "type": "structure",
+      "members": {
+        "headers": {
+          "target": "com.cloudflare.rate_limits#CreateResponseMatchHeadersList"
+        },
+        "request": {
+          "target": "com.cloudflare.rate_limits#CreateResponseMatchRequest"
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#CreateResponseMatchResponse"
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#CreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the rate limit."
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#CreateResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
+          }
+        },
+        "bypass": {
+          "target": "com.cloudflare.rate_limits#CreateResponseBypassList",
+          "traits": {
+            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#CreateResponseMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rate_limits#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#CreateRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#CreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/zones/{zone_id}/rate_limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a new rate limit for a zone. Refer to the object definition for a list of required attributes."
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rate_limit_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the unique identifier of the rate limit.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseActionMode": {
+      "type": "enum",
+      "members": {
+        "SIMULATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "simulate"
+          }
+        },
+        "BAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ban"
+          }
+        },
+        "CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "challenge"
+          }
+        },
+        "JS_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "js_challenge"
+          }
+        },
+        "MANAGED_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_challenge"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseActionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The response body to return. The value must conform to the configured content type."
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the body. Must be one of the following: `text/plain`, `text/xml`, or `application/json`."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseAction": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseActionMode",
+          "traits": {
+            "smithy.api#documentation": "The action to perform."
+          }
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseActionResponse",
+          "traits": {
+            "smithy.api#documentation": "A custom content type and reponse to return when the threshold is exceeded. The custom response configured in this object will override the custom error for the zone. This object is optional."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds during which Cloudflare will perform the mitigation action. Must be an integer value greater than or equal to the period."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseBypassItemName": {
+      "type": "enum",
+      "members": {
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseBypassItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseBypassItemName"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to bypass."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseBypassList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#DeleteResponseBypassItem"
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseMatchHeadersItemOp": {
+      "type": "enum",
+      "members": {
+        "EQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eq"
+          }
+        },
+        "NE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ne"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseMatchHeadersItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the response header to match."
+          }
+        },
+        "op": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseMatchHeadersItemOp",
+          "traits": {
+            "smithy.api#documentation": "The operator used when matching: `eq` means \"equal\" and `ne` means \"not equal\"."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the response header, which must match exactly."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseMatchHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#DeleteResponseMatchHeadersItem"
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseMatchRequestMethodsItem": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "_ALL_"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseMatchRequestMethodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#DeleteResponseMatchRequestMethodsItem"
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseMatchRequestSchemesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseMatchRequest": {
+      "type": "structure",
+      "members": {
+        "methods": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseMatchRequestMethodsList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP methods to match. You can specify a subset (for example, `['POST','PUT']`) or all methods (`['_ALL_']`). This field is optional when creating a rate limit."
+          }
+        },
+        "schemes": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseMatchRequestSchemesList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP schemes to match. You can specify one scheme (`['HTTPS']`), both schemes (`['HTTP','HTTPS']`), or all schemes (`['_ALL_']`). This field is optional."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL pattern to match, composed of a host and a path such as `example.org/path*`. Normalization is applied before the pattern is matched. `*` wildcards are expanded to match applicable traffic. Query strings are not matched. Set the value to `*` to match all traffic to your zone."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseMatchResponse": {
+      "type": "structure",
+      "members": {
+        "origin_traffic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, only the uncached traffic served from your origin servers will count towards rate limiting. In this case, any cached traffic served by Cloudflare will not count towards rate limiting. This field is optional."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponseMatch": {
+      "type": "structure",
+      "members": {
+        "headers": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseMatchHeadersList"
+        },
+        "request": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseMatchRequest"
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseMatchResponse"
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#DeleteResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the rate limit."
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
+          }
+        },
+        "bypass": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseBypassList",
+          "traits": {
+            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#DeleteResponseMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rate_limits#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#DeleteRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#DeleteResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/zones/{zone_id}/rate_limits/{rate_limit_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes an existing rate limit.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestActionMode": {
+      "type": "enum",
+      "members": {
+        "SIMULATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "simulate"
+          }
+        },
+        "BAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ban"
+          }
+        },
+        "CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "challenge"
+          }
+        },
+        "JS_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "js_challenge"
+          }
+        },
+        "MANAGED_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_challenge"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestActionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The response body to return. The value must conform to the configured content type."
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the body. Must be one of the following: `text/plain`, `text/xml`, or `application/json`."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestAction": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.cloudflare.rate_limits#EditRequestActionMode",
+          "traits": {
+            "smithy.api#documentation": "The action to perform."
+          }
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#EditRequestActionResponse",
+          "traits": {
+            "smithy.api#documentation": "A custom content type and reponse to return when the threshold is exceeded. The custom response configured in this object will override the custom error for the zone. This object is optional."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds during which Cloudflare will perform the mitigation action. Must be an integer value greater than or equal to the period."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestMatchHeadersItemOp": {
+      "type": "enum",
+      "members": {
+        "EQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eq"
+          }
+        },
+        "NE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ne"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestMatchHeadersItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the response header to match."
+          }
+        },
+        "op": {
+          "target": "com.cloudflare.rate_limits#EditRequestMatchHeadersItemOp",
+          "traits": {
+            "smithy.api#documentation": "The operator used when matching: `eq` means \"equal\" and `ne` means \"not equal\"."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the response header, which must match exactly."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestMatchHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#EditRequestMatchHeadersItem"
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestMatchRequestMethodsItem": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "_ALL_"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestMatchRequestMethodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#EditRequestMatchRequestMethodsItem"
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestMatchRequestSchemesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestMatchRequest": {
+      "type": "structure",
+      "members": {
+        "methods": {
+          "target": "com.cloudflare.rate_limits#EditRequestMatchRequestMethodsList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP methods to match. You can specify a subset (for example, `['POST','PUT']`) or all methods (`['_ALL_']`). This field is optional when creating a rate limit."
+          }
+        },
+        "schemes": {
+          "target": "com.cloudflare.rate_limits#EditRequestMatchRequestSchemesList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP schemes to match. You can specify one scheme (`['HTTPS']`), both schemes (`['HTTP','HTTPS']`), or all schemes (`['_ALL_']`). This field is optional."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL pattern to match, composed of a host and a path such as `example.org/path*`. Normalization is applied before the pattern is matched. `*` wildcards are expanded to match applicable traffic. Query strings are not matched. Set the value to `*` to match all traffic to your zone."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestMatchResponse": {
+      "type": "structure",
+      "members": {
+        "origin_traffic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, only the uncached traffic served from your origin servers will count towards rate limiting. In this case, any cached traffic served by Cloudflare will not count towards rate limiting. This field is optional."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequestMatch": {
+      "type": "structure",
+      "members": {
+        "headers": {
+          "target": "com.cloudflare.rate_limits#EditRequestMatchHeadersList"
+        },
+        "request": {
+          "target": "com.cloudflare.rate_limits#EditRequestMatchRequest"
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#EditRequestMatchResponse"
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rate_limit_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the unique identifier of the rate limit.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#EditRequestAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded.",
+            "smithy.api#required": {}
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#EditRequestMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold.",
+            "smithy.api#required": {}
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action.",
+            "smithy.api#required": {}
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseActionMode": {
+      "type": "enum",
+      "members": {
+        "SIMULATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "simulate"
+          }
+        },
+        "BAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ban"
+          }
+        },
+        "CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "challenge"
+          }
+        },
+        "JS_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "js_challenge"
+          }
+        },
+        "MANAGED_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_challenge"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseActionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The response body to return. The value must conform to the configured content type."
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the body. Must be one of the following: `text/plain`, `text/xml`, or `application/json`."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseAction": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.cloudflare.rate_limits#EditResponseActionMode",
+          "traits": {
+            "smithy.api#documentation": "The action to perform."
+          }
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#EditResponseActionResponse",
+          "traits": {
+            "smithy.api#documentation": "A custom content type and reponse to return when the threshold is exceeded. The custom response configured in this object will override the custom error for the zone. This object is optional."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds during which Cloudflare will perform the mitigation action. Must be an integer value greater than or equal to the period."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseBypassItemName": {
+      "type": "enum",
+      "members": {
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseBypassItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.cloudflare.rate_limits#EditResponseBypassItemName"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to bypass."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseBypassList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#EditResponseBypassItem"
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseMatchHeadersItemOp": {
+      "type": "enum",
+      "members": {
+        "EQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eq"
+          }
+        },
+        "NE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ne"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseMatchHeadersItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the response header to match."
+          }
+        },
+        "op": {
+          "target": "com.cloudflare.rate_limits#EditResponseMatchHeadersItemOp",
+          "traits": {
+            "smithy.api#documentation": "The operator used when matching: `eq` means \"equal\" and `ne` means \"not equal\"."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the response header, which must match exactly."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseMatchHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#EditResponseMatchHeadersItem"
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseMatchRequestMethodsItem": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "_ALL_"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseMatchRequestMethodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#EditResponseMatchRequestMethodsItem"
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseMatchRequestSchemesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseMatchRequest": {
+      "type": "structure",
+      "members": {
+        "methods": {
+          "target": "com.cloudflare.rate_limits#EditResponseMatchRequestMethodsList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP methods to match. You can specify a subset (for example, `['POST','PUT']`) or all methods (`['_ALL_']`). This field is optional when creating a rate limit."
+          }
+        },
+        "schemes": {
+          "target": "com.cloudflare.rate_limits#EditResponseMatchRequestSchemesList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP schemes to match. You can specify one scheme (`['HTTPS']`), both schemes (`['HTTP','HTTPS']`), or all schemes (`['_ALL_']`). This field is optional."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL pattern to match, composed of a host and a path such as `example.org/path*`. Normalization is applied before the pattern is matched. `*` wildcards are expanded to match applicable traffic. Query strings are not matched. Set the value to `*` to match all traffic to your zone."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseMatchResponse": {
+      "type": "structure",
+      "members": {
+        "origin_traffic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, only the uncached traffic served from your origin servers will count towards rate limiting. In this case, any cached traffic served by Cloudflare will not count towards rate limiting. This field is optional."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponseMatch": {
+      "type": "structure",
+      "members": {
+        "headers": {
+          "target": "com.cloudflare.rate_limits#EditResponseMatchHeadersList"
+        },
+        "request": {
+          "target": "com.cloudflare.rate_limits#EditResponseMatchRequest"
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#EditResponseMatchResponse"
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#EditResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the rate limit."
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#EditResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
+          }
+        },
+        "bypass": {
+          "target": "com.cloudflare.rate_limits#EditResponseBypassList",
+          "traits": {
+            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#EditResponseMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rate_limits#Edit": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#EditRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#EditResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/zones/{zone_id}/rate_limits/{rate_limit_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Updates an existing rate limit.",
+        "smithy.api#idempotent": {}
+      }
+    },
+    "com.cloudflare.rate_limits#GetRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "rate_limit_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines the unique identifier of the rate limit.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseActionMode": {
+      "type": "enum",
+      "members": {
+        "SIMULATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "simulate"
+          }
+        },
+        "BAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ban"
+          }
+        },
+        "CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "challenge"
+          }
+        },
+        "JS_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "js_challenge"
+          }
+        },
+        "MANAGED_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_challenge"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseActionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The response body to return. The value must conform to the configured content type."
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the body. Must be one of the following: `text/plain`, `text/xml`, or `application/json`."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseAction": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.cloudflare.rate_limits#GetResponseActionMode",
+          "traits": {
+            "smithy.api#documentation": "The action to perform."
+          }
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#GetResponseActionResponse",
+          "traits": {
+            "smithy.api#documentation": "A custom content type and reponse to return when the threshold is exceeded. The custom response configured in this object will override the custom error for the zone. This object is optional."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds during which Cloudflare will perform the mitigation action. Must be an integer value greater than or equal to the period."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseBypassItemName": {
+      "type": "enum",
+      "members": {
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseBypassItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.cloudflare.rate_limits#GetResponseBypassItemName"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to bypass."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseBypassList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#GetResponseBypassItem"
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseMatchHeadersItemOp": {
+      "type": "enum",
+      "members": {
+        "EQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eq"
+          }
+        },
+        "NE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ne"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseMatchHeadersItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the response header to match."
+          }
+        },
+        "op": {
+          "target": "com.cloudflare.rate_limits#GetResponseMatchHeadersItemOp",
+          "traits": {
+            "smithy.api#documentation": "The operator used when matching: `eq` means \"equal\" and `ne` means \"not equal\"."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the response header, which must match exactly."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseMatchHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#GetResponseMatchHeadersItem"
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseMatchRequestMethodsItem": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "_ALL_"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseMatchRequestMethodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#GetResponseMatchRequestMethodsItem"
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseMatchRequestSchemesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseMatchRequest": {
+      "type": "structure",
+      "members": {
+        "methods": {
+          "target": "com.cloudflare.rate_limits#GetResponseMatchRequestMethodsList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP methods to match. You can specify a subset (for example, `['POST','PUT']`) or all methods (`['_ALL_']`). This field is optional when creating a rate limit."
+          }
+        },
+        "schemes": {
+          "target": "com.cloudflare.rate_limits#GetResponseMatchRequestSchemesList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP schemes to match. You can specify one scheme (`['HTTPS']`), both schemes (`['HTTP','HTTPS']`), or all schemes (`['_ALL_']`). This field is optional."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL pattern to match, composed of a host and a path such as `example.org/path*`. Normalization is applied before the pattern is matched. `*` wildcards are expanded to match applicable traffic. Query strings are not matched. Set the value to `*` to match all traffic to your zone."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseMatchResponse": {
+      "type": "structure",
+      "members": {
+        "origin_traffic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, only the uncached traffic served from your origin servers will count towards rate limiting. In this case, any cached traffic served by Cloudflare will not count towards rate limiting. This field is optional."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponseMatch": {
+      "type": "structure",
+      "members": {
+        "headers": {
+          "target": "com.cloudflare.rate_limits#GetResponseMatchHeadersList"
+        },
+        "request": {
+          "target": "com.cloudflare.rate_limits#GetResponseMatchRequest"
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#GetResponseMatchResponse"
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#GetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the rate limit."
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#GetResponseAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
+          }
+        },
+        "bypass": {
+          "target": "com.cloudflare.rate_limits#GetResponseBypassList",
+          "traits": {
+            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#GetResponseMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {},
+        "smithy.api#documentation": "Unwrapped `result` payload of the Cloudflare v4 response envelope."
+      }
+    },
+    "com.cloudflare.rate_limits#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#GetRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#GetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/rate_limits/{rate_limit_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches the details of a rate limit.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.rate_limits#ListRequest": {
+      "type": "structure",
+      "members": {
+        "zone_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Defines an identifier.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Defines the page number of paginated results.",
+            "smithy.api#httpQuery": "page"
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Defines the maximum number of results per page. You can only set the value to `1` or to a multiple of 5 such as `5`, `10`, `15`, or `20`.",
+            "smithy.api#httpQuery": "per_page"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemActionMode": {
+      "type": "enum",
+      "members": {
+        "SIMULATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "simulate"
+          }
+        },
+        "BAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ban"
+          }
+        },
+        "CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "challenge"
+          }
+        },
+        "JS_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "js_challenge"
+          }
+        },
+        "MANAGED_CHALLENGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managed_challenge"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemActionResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The response body to return. The value must conform to the configured content type."
+          }
+        },
+        "content_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content type of the body. Must be one of the following: `text/plain`, `text/xml`, or `application/json`."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemAction": {
+      "type": "structure",
+      "members": {
+        "mode": {
+          "target": "com.cloudflare.rate_limits#ListResultItemActionMode",
+          "traits": {
+            "smithy.api#documentation": "The action to perform."
+          }
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#ListResultItemActionResponse",
+          "traits": {
+            "smithy.api#documentation": "A custom content type and reponse to return when the threshold is exceeded. The custom response configured in this object will override the custom error for the zone. This object is optional."
+          }
+        },
+        "timeout": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds during which Cloudflare will perform the mitigation action. Must be an integer value greater than or equal to the period."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemBypassItemName": {
+      "type": "enum",
+      "members": {
+        "URL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "url"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemBypassItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.cloudflare.rate_limits#ListResultItemBypassItemName"
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to bypass."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemBypassList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#ListResultItemBypassItem"
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemMatchHeadersItemOp": {
+      "type": "enum",
+      "members": {
+        "EQ": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eq"
+          }
+        },
+        "NE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ne"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemMatchHeadersItem": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the response header to match."
+          }
+        },
+        "op": {
+          "target": "com.cloudflare.rate_limits#ListResultItemMatchHeadersItemOp",
+          "traits": {
+            "smithy.api#documentation": "The operator used when matching: `eq` means \"equal\" and `ne` means \"not equal\"."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value of the response header, which must match exactly."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemMatchHeadersList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#ListResultItemMatchHeadersItem"
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemMatchRequestMethodsItem": {
+      "type": "enum",
+      "members": {
+        "GET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GET"
+          }
+        },
+        "POST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "POST"
+          }
+        },
+        "PUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUT"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "PATCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PATCH"
+          }
+        },
+        "HEAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEAD"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "_ALL_"
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemMatchRequestMethodsList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#ListResultItemMatchRequestMethodsItem"
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemMatchRequestSchemesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemMatchRequest": {
+      "type": "structure",
+      "members": {
+        "methods": {
+          "target": "com.cloudflare.rate_limits#ListResultItemMatchRequestMethodsList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP methods to match. You can specify a subset (for example, `['POST','PUT']`) or all methods (`['_ALL_']`). This field is optional when creating a rate limit."
+          }
+        },
+        "schemes": {
+          "target": "com.cloudflare.rate_limits#ListResultItemMatchRequestSchemesList",
+          "traits": {
+            "smithy.api#documentation": "The HTTP schemes to match. You can specify one scheme (`['HTTPS']`), both schemes (`['HTTP','HTTPS']`), or all schemes (`['_ALL_']`). This field is optional."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL pattern to match, composed of a host and a path such as `example.org/path*`. Normalization is applied before the pattern is matched. `*` wildcards are expanded to match applicable traffic. Query strings are not matched. Set the value to `*` to match all traffic to your zone."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemMatchResponse": {
+      "type": "structure",
+      "members": {
+        "origin_traffic": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, only the uncached traffic served from your origin servers will count towards rate limiting. In this case, any cached traffic served by Cloudflare will not count towards rate limiting. This field is optional."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItemMatch": {
+      "type": "structure",
+      "members": {
+        "headers": {
+          "target": "com.cloudflare.rate_limits#ListResultItemMatchHeadersList"
+        },
+        "request": {
+          "target": "com.cloudflare.rate_limits#ListResultItemMatchRequest"
+        },
+        "response": {
+          "target": "com.cloudflare.rate_limits#ListResultItemMatchResponse"
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the rate limit."
+          }
+        },
+        "action": {
+          "target": "com.cloudflare.rate_limits#ListResultItemAction",
+          "traits": {
+            "smithy.api#documentation": "The action to perform when the threshold of matched traffic within the configured period is exceeded."
+          }
+        },
+        "bypass": {
+          "target": "com.cloudflare.rate_limits#ListResultItemBypassList",
+          "traits": {
+            "smithy.api#documentation": "Criteria specifying when the current rate limit should be bypassed. You can specify that the rate limit should not apply to one or more URLs."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An informative summary of the rule. This value is sanitized and any tags will be removed."
+          }
+        },
+        "disabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, indicates that the rate limit is currently disabled."
+          }
+        },
+        "match": {
+          "target": "com.cloudflare.rate_limits#ListResultItemMatch",
+          "traits": {
+            "smithy.api#documentation": "Determines which traffic the rate limit counts towards the threshold."
+          }
+        },
+        "period": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds (an integer value) to count matching traffic. If the count exceeds the configured threshold within this period, Cloudflare will perform the configured action."
+          }
+        },
+        "threshold": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The threshold that will trigger the configured mitigation action. Configure this value along with the `period` property to establish a threshold per period."
+          }
+        }
+      }
+    },
+    "com.cloudflare.rate_limits#ListResultList": {
+      "type": "list",
+      "member": {
+        "target": "com.cloudflare.rate_limits#ListResultItem"
+      }
+    },
+    "com.cloudflare.rate_limits#ListResponse": {
+      "type": "structure",
+      "members": {
+        "result": {
+          "target": "com.cloudflare.rate_limits#ListResultList",
+          "traits": {
+            "com.cloudflare.protocols#envelopePayload": {},
+            "smithy.api#documentation": "The unwrapped `result` payload of the v4 response envelope."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.cloudflare.rate_limits#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.cloudflare.rate_limits#ListRequest"
+      },
+      "output": {
+        "target": "com.cloudflare.rate_limits#ListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/zones/{zone_id}/rate_limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Fetches the rate limits for a zone.",
+        "smithy.api#readonly": {}
+      }
+    },
+    "com.cloudflare.rate_limits#RateLimits": {
+      "type": "service",
+      "version": "4.0",
+      "operations": [
+        {
+          "target": "com.cloudflare.rate_limits#Create"
+        },
+        {
+          "target": "com.cloudflare.rate_limits#Delete"
+        },
+        {
+          "target": "com.cloudflare.rate_limits#Edit"
+        },
+        {
+          "target": "com.cloudflare.rate_limits#Get"
+        },
+        {
+          "target": "com.cloudflare.rate_limits#List"
+        }
+      ],
+      "traits": {
+        "com.cloudflare.protocols#v4Json": {},
+        "smithy.api#title": "Cloudflare RateLimits",
+        "smithy.api#documentation": "Cloudflare API — rate_limits resource. Speaks the v4 JSON envelope protocol; operation outputs describe the unwrapped `result` payload."
+      }
+    }
+  }
+}

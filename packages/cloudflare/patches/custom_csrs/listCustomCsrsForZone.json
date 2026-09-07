@@ -1,0 +1,41 @@
+{
+  "description": "Align custom_csrs#ListForZone with distilled cloudflare/custom-csrs listCustomCsrsForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#ListForZone",
+      "path": "/shapes/com.cloudflare.custom_csrs#ListCustomCsrsForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#ListForZoneRequest",
+      "path": "/shapes/com.cloudflare.custom_csrs#ListCustomCsrsForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_csrs#ListCustomCsrsForZone/input/target",
+      "value": "com.cloudflare.custom_csrs#ListCustomCsrsForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#ListForZoneResponse",
+      "path": "/shapes/com.cloudflare.custom_csrs#ListCustomCsrsForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_csrs#ListCustomCsrsForZone/output/target",
+      "value": "com.cloudflare.custom_csrs#ListCustomCsrsForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.custom_csrs#ListCustomCsrsForZone/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "operations": {
+    "createConnectorProfile": {
+      "errors": ["ConnectorServerException"]
+    },
+    "updateConnectorProfile": {
+      "errors": ["ConnectorServerException"]
+    }
+  },
+  "structures": {
+    "DatadogConnectorProfileCredentials": {
+      "members": {
+        "applicationKey": { "sensitive": true }
+      }
+    },
+    "DynatraceConnectorProfileCredentials": {
+      "members": {
+        "apiToken": { "sensitive": true }
+      }
+    },
+    "InforNexusConnectorProfileCredentials": {
+      "members": {
+        "secretAccessKey": { "sensitive": true },
+        "datakey": { "sensitive": true }
+      }
+    },
+    "GoogleAnalyticsConnectorProfileCredentials": {
+      "members": {
+        "refreshToken": { "sensitive": true }
+      }
+    },
+    "HoneycodeConnectorProfileCredentials": {
+      "members": {
+        "refreshToken": { "sensitive": true }
+      }
+    },
+    "SalesforceConnectorProfileCredentials": {
+      "members": {
+        "refreshToken": { "sensitive": true }
+      }
+    },
+    "OAuth2Credentials": {
+      "members": {
+        "refreshToken": { "sensitive": true }
+      }
+    },
+    "OAuthCredentials": {
+      "members": {
+        "refreshToken": { "sensitive": true }
+      }
+    },
+    "PardotConnectorProfileCredentials": {
+      "members": {
+        "refreshToken": { "sensitive": true }
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "description": "Align origin_tls_client_auth#HostnameCertificatesDelete with distilled cloudflare/origin-tls-client-auth deleteHostnameCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnameCertificatesDelete",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnameCertificatesDeleteRequest",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificate/input/target",
+      "value": "com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnameCertificatesDeleteResponse",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificate/output/target",
+      "value": "com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificateResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#DeleteHostnameCertificate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#HostnameCertificateInUse"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#CertificatePendingDeletion"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#CertificatePendingDeployment"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#InvalidCertificateId"
+        },
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Forbidden"
+        }
+      ]
+    }
+  ]
+}

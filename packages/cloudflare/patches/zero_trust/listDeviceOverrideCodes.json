@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#DevicesOverrideCodesList with distilled cloudflare/zero-trust listDeviceOverrideCodes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesOverrideCodesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceOverrideCodes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesOverrideCodesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceOverrideCodesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceOverrideCodes/input/target",
+      "value": "com.cloudflare.zero_trust#ListDeviceOverrideCodesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesOverrideCodesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceOverrideCodesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceOverrideCodes/output/target",
+      "value": "com.cloudflare.zero_trust#ListDeviceOverrideCodesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceOverrideCodes/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "description": "Access group/policy exclude+require rules are the same discriminated union as include, but the docs render their arms as bare one-key wrappers (e.g. `object { github-organization }` with no children), so spec-to-smithy converts them to degenerate `{ key: Document }` structures. The include arms are fully specified and Cloudflare accepts the identical rule union in all three positions - point exclude/require at the include list so the request types (and wire encoding, e.g. the `github-organization` jsonName) match the include side. Paths address the post-per-op-patch (verb-first) request roots.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForAccountRequest/members/exclude/target",
+      "value": "com.cloudflare.zero_trust#AccessGroupsCreateForAccountRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForAccountRequest/members/require/target",
+      "value": "com.cloudflare.zero_trust#AccessGroupsCreateForAccountRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessGroupForAccountRequest/members/exclude/target",
+      "value": "com.cloudflare.zero_trust#AccessGroupsUpdateForAccountRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessGroupForAccountRequest/members/require/target",
+      "value": "com.cloudflare.zero_trust#AccessGroupsUpdateForAccountRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForZoneRequest/members/exclude/target",
+      "value": "com.cloudflare.zero_trust#AccessGroupsCreateForZoneRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessGroupForZoneRequest/members/require/target",
+      "value": "com.cloudflare.zero_trust#AccessGroupsCreateForZoneRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessGroupForZoneRequest/members/exclude/target",
+      "value": "com.cloudflare.zero_trust#AccessGroupsUpdateForZoneRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessGroupForZoneRequest/members/require/target",
+      "value": "com.cloudflare.zero_trust#AccessGroupsUpdateForZoneRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessPolicyRequest/members/exclude/target",
+      "value": "com.cloudflare.zero_trust#AccessPoliciesCreateRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessPolicyRequest/members/require/target",
+      "value": "com.cloudflare.zero_trust#AccessPoliciesCreateRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessPolicyRequest/members/exclude/target",
+      "value": "com.cloudflare.zero_trust#AccessPoliciesUpdateRequestIncludeList"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessPolicyRequest/members/require/target",
+      "value": "com.cloudflare.zero_trust#AccessPoliciesUpdateRequestIncludeList"
+    }
+  ]
+}

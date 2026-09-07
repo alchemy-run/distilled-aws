@@ -1,0 +1,30 @@
+{
+  "description": "Align moq#RelaysDelete with distilled cloudflare/moq deleteRelay",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysDelete",
+      "path": "/shapes/com.cloudflare.moq#DeleteRelay"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysDeleteRequest",
+      "path": "/shapes/com.cloudflare.moq#DeleteRelayRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.moq#DeleteRelay/input/target",
+      "value": "com.cloudflare.moq#DeleteRelayRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.moq#RelaysDeleteResponse",
+      "path": "/shapes/com.cloudflare.moq#DeleteRelayResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.moq#DeleteRelay/output/target",
+      "value": "com.cloudflare.moq#DeleteRelayResponse"
+    }
+  ]
+}

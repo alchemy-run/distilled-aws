@@ -1,0 +1,45 @@
+{
+  "description": "Align acm#CustomTrustStoreCreate with distilled cloudflare/acm createCustomTrustStore",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.acm#CustomTrustStoreCreate",
+      "path": "/shapes/com.cloudflare.acm#CreateCustomTrustStore"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.acm#CustomTrustStoreCreateRequest",
+      "path": "/shapes/com.cloudflare.acm#CreateCustomTrustStoreRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.acm#CreateCustomTrustStore/input/target",
+      "value": "com.cloudflare.acm#CreateCustomTrustStoreRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.acm#CustomTrustStoreCreateResponse",
+      "path": "/shapes/com.cloudflare.acm#CreateCustomTrustStoreResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.acm#CreateCustomTrustStore/output/target",
+      "value": "com.cloudflare.acm#CreateCustomTrustStoreResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.acm#CreateCustomTrustStore/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    }
+  ]
+}

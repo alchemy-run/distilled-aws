@@ -1,0 +1,47 @@
+{
+  "description": "Align stream#KeysGet with distilled cloudflare/stream getKey",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#KeysGet",
+      "path": "/shapes/com.cloudflare.stream#GetKey"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#KeysGetRequest",
+      "path": "/shapes/com.cloudflare.stream#GetKeyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetKey/input/target",
+      "value": "com.cloudflare.stream#GetKeyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#KeysGetResponse",
+      "path": "/shapes/com.cloudflare.stream#GetKeyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#GetKey/output/target",
+      "value": "com.cloudflare.stream#GetKeyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#GetKey/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#GetKey/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.stream#Forbidden"
+        }
+      ]
+    }
+  ]
+}

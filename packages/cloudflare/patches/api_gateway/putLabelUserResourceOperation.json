@@ -1,0 +1,30 @@
+{
+  "description": "Align api_gateway#LabelsUserResourcesOperationUpdate with distilled cloudflare/api-gateway putLabelUserResourceOperation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserResourcesOperationUpdate",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUserResourceOperation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserResourcesOperationUpdateRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUserResourceOperationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUserResourceOperation/input/target",
+      "value": "com.cloudflare.api_gateway#PutLabelUserResourceOperationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserResourcesOperationUpdateResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUserResourceOperationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#PutLabelUserResourceOperation/output/target",
+      "value": "com.cloudflare.api_gateway#PutLabelUserResourceOperationResponse"
+    }
+  ]
+}

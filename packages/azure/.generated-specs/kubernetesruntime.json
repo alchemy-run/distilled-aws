@@ -1,0 +1,2598 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.kubernetesruntime#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.KubernetesRuntime/operations",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.kubernetesruntime#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.kubernetesruntime#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.kubernetesruntime#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.kubernetesruntime#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.kubernetesruntime#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.kubernetesruntime#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.kubernetesruntime#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.kubernetesruntime#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.kubernetesruntime#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#StorageClassDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses/{storageClassName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Delete a StorageClassResource",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "storageClassName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the the storage class"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#StorageClassUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#StorageClassUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses/{storageClassName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Update a StorageClassResource",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#StorageClassProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassProperties": {
+      "type": "structure",
+      "members": {
+        "allowVolumeExpansion": {
+          "target": "com.azure.kubernetesruntime#VolumeExpansion",
+          "traits": {
+            "smithy.api#documentation": "Volume can be expanded or not"
+          }
+        },
+        "mountOptions": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesMountOptionsList",
+          "traits": {
+            "smithy.api#documentation": "Additional mount options"
+          }
+        },
+        "provisioner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provisioner name"
+          }
+        },
+        "volumeBindingMode": {
+          "target": "com.azure.kubernetesruntime#VolumeBindingMode",
+          "traits": {
+            "smithy.api#documentation": "Binding mode of volumes: Immediate, WaitForFirstConsumer"
+          }
+        },
+        "accessModes": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesAccessModesList",
+          "traits": {
+            "smithy.api#documentation": "The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce]"
+          }
+        },
+        "dataResilience": {
+          "target": "com.azure.kubernetesruntime#DataResilienceTier",
+          "traits": {
+            "smithy.api#documentation": "Allow single data node failure"
+          }
+        },
+        "failoverSpeed": {
+          "target": "com.azure.kubernetesruntime#FailoverTier",
+          "traits": {
+            "smithy.api#documentation": "Failover speed: NA, Slow, Fast"
+          }
+        },
+        "limitations": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesLimitationsList",
+          "traits": {
+            "smithy.api#documentation": "Limitations of the storage class"
+          }
+        },
+        "performance": {
+          "target": "com.azure.kubernetesruntime#PerformanceTier",
+          "traits": {
+            "smithy.api#documentation": "Performance tier"
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Selection priority when multiple storage classes meet the criteria. 0: Highest, -1: Never use"
+          }
+        },
+        "typeProperties": {
+          "target": "com.azure.kubernetesruntime#StorageClassTypeProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the StorageClass",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.kubernetesruntime#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Resource provision state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the StorageClass StorageClass."
+      }
+    },
+    "com.azure.kubernetesruntime#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the current operation."
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassTypeProperties": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.kubernetesruntime#SCType",
+          "traits": {
+            "smithy.api#documentation": "Type of the storage class.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of storage class of the StorageClass"
+      }
+    },
+    "com.azure.kubernetesruntime#SCType": {
+      "type": "enum",
+      "members": {
+        "NATIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Native"
+          }
+        },
+        "RWX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RWX"
+          }
+        },
+        "BLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Blob"
+          }
+        },
+        "NFS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NFS"
+          }
+        },
+        "SMB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMB"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of a storage class"
+      }
+    },
+    "com.azure.kubernetesruntime#PerformanceTier": {
+      "type": "enum",
+      "members": {
+        "UNDEFINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Undefined"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Premium"
+          }
+        },
+        "ULTRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Ultra"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Performance tier of a storage class"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesLimitationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Limitations of the storage class"
+      }
+    },
+    "com.azure.kubernetesruntime#FailoverTier": {
+      "type": "enum",
+      "members": {
+        "NOTAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotAvailable"
+          }
+        },
+        "SLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Slow"
+          }
+        },
+        "FAST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Fast"
+          }
+        },
+        "SUPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Super"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Failover tier of a storage class"
+      }
+    },
+    "com.azure.kubernetesruntime#DataResilienceTier": {
+      "type": "enum",
+      "members": {
+        "NOTDATARESILIENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotDataResilient"
+          }
+        },
+        "DATARESILIENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataResilient"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data resilience tier of a storage class"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesAccessModesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.kubernetesruntime#AccessMode"
+      },
+      "traits": {
+        "smithy.api#documentation": "The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce]"
+      }
+    },
+    "com.azure.kubernetesruntime#AccessMode": {
+      "type": "enum",
+      "members": {
+        "READWRITEONCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReadWriteOnce"
+          }
+        },
+        "READWRITEMANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReadWriteMany"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage Class Access Mode"
+      }
+    },
+    "com.azure.kubernetesruntime#VolumeBindingMode": {
+      "type": "enum",
+      "members": {
+        "IMMEDIATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Immediate"
+          }
+        },
+        "WAITFORFIRSTCONSUMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WaitForFirstConsumer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Storage class volume binding mode"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesMountOptionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional mount options"
+      }
+    },
+    "com.azure.kubernetesruntime#VolumeExpansion": {
+      "type": "enum",
+      "members": {
+        "ALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Allow"
+          }
+        },
+        "DISALLOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disallow"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Ability to expand volumes of a storage class"
+      }
+    },
+    "com.azure.kubernetesruntime#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.kubernetesruntime#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.kubernetesruntime#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.kubernetesruntime#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.kubernetesruntime#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "storageClassName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the the storage class"
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesUpdate",
+          "traits": {
+            "smithy.api#documentation": "The properties of StorageClass"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesUpdate": {
+      "type": "structure",
+      "members": {
+        "allowVolumeExpansion": {
+          "target": "com.azure.kubernetesruntime#VolumeExpansion",
+          "traits": {
+            "smithy.api#documentation": "Volume can be expanded or not"
+          }
+        },
+        "mountOptions": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesUpdateMountOptionsList",
+          "traits": {
+            "smithy.api#documentation": "Additional mount options"
+          }
+        },
+        "accessModes": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesUpdateAccessModesList",
+          "traits": {
+            "smithy.api#documentation": "The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce]"
+          }
+        },
+        "dataResilience": {
+          "target": "com.azure.kubernetesruntime#DataResilienceTier",
+          "traits": {
+            "smithy.api#documentation": "Allow single data node failure"
+          }
+        },
+        "failoverSpeed": {
+          "target": "com.azure.kubernetesruntime#FailoverTier",
+          "traits": {
+            "smithy.api#documentation": "Failover speed: NA, Slow, Fast"
+          }
+        },
+        "limitations": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesUpdateLimitationsList",
+          "traits": {
+            "smithy.api#documentation": "Limitations of the storage class"
+          }
+        },
+        "performance": {
+          "target": "com.azure.kubernetesruntime#PerformanceTier",
+          "traits": {
+            "smithy.api#documentation": "Performance tier"
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Selection priority when multiple storage classes meet the criteria. 0: Highest, -1: Never use"
+          }
+        },
+        "typeProperties": {
+          "target": "com.azure.kubernetesruntime#StorageClassTypePropertiesUpdate",
+          "traits": {
+            "smithy.api#documentation": "New storage class type of storageClass"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The model for updating storageClass properties"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassTypePropertiesUpdate": {
+      "type": "structure",
+      "members": {
+        "backingStorageClassName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The backing storageclass used to create new storageclass"
+          }
+        },
+        "azureStorageAccountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Storage Account Name"
+          }
+        },
+        "azureStorageAccountKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Storage Account Key"
+          }
+        },
+        "server": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NFS Server"
+          }
+        },
+        "share": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NFS share"
+          }
+        },
+        "subDir": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Sub directory under share. If the sub directory doesn't exist, driver will create it"
+          }
+        },
+        "mountPermissions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mounted folder permissions. Default is 0. If set as non-zero, driver will perform `chmod` after mount"
+          }
+        },
+        "onDelete": {
+          "target": "com.azure.kubernetesruntime#NfsDirectoryActionOnVolumeDeletion",
+          "traits": {
+            "smithy.api#documentation": "The action to take when a NFS volume is deleted. Default is Delete"
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SMB Source"
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server username"
+          }
+        },
+        "password": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server password",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server domain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The model for update a storageClass"
+      }
+    },
+    "com.azure.kubernetesruntime#NfsDirectoryActionOnVolumeDeletion": {
+      "type": "enum",
+      "members": {
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Delete"
+          }
+        },
+        "RETAIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Retain"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The action to take when a NFS volume is deleted"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesUpdateLimitationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Limitations of the storage class"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesUpdateAccessModesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.kubernetesruntime#AccessMode"
+      },
+      "traits": {
+        "smithy.api#documentation": "The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce]"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesUpdateMountOptionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional mount options"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#StorageClassCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#StorageClassCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses/{storageClassName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Create a StorageClassResource",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#StorageClassProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "storageClassName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the the storage class"
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "allowVolumeExpansion": {
+          "target": "com.azure.kubernetesruntime#VolumeExpansion",
+          "traits": {
+            "smithy.api#documentation": "Volume can be expanded or not"
+          }
+        },
+        "mountOptions": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesInputMountOptionsList",
+          "traits": {
+            "smithy.api#documentation": "Additional mount options"
+          }
+        },
+        "provisioner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provisioner name"
+          }
+        },
+        "volumeBindingMode": {
+          "target": "com.azure.kubernetesruntime#VolumeBindingMode",
+          "traits": {
+            "smithy.api#documentation": "Binding mode of volumes: Immediate, WaitForFirstConsumer"
+          }
+        },
+        "accessModes": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesInputAccessModesList",
+          "traits": {
+            "smithy.api#documentation": "The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce]"
+          }
+        },
+        "dataResilience": {
+          "target": "com.azure.kubernetesruntime#DataResilienceTier",
+          "traits": {
+            "smithy.api#documentation": "Allow single data node failure"
+          }
+        },
+        "failoverSpeed": {
+          "target": "com.azure.kubernetesruntime#FailoverTier",
+          "traits": {
+            "smithy.api#documentation": "Failover speed: NA, Slow, Fast"
+          }
+        },
+        "limitations": {
+          "target": "com.azure.kubernetesruntime#StorageClassPropertiesInputLimitationsList",
+          "traits": {
+            "smithy.api#documentation": "Limitations of the storage class"
+          }
+        },
+        "performance": {
+          "target": "com.azure.kubernetesruntime#PerformanceTier",
+          "traits": {
+            "smithy.api#documentation": "Performance tier"
+          }
+        },
+        "priority": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Selection priority when multiple storage classes meet the criteria. 0: Highest, -1: Never use"
+          }
+        },
+        "typeProperties": {
+          "target": "com.azure.kubernetesruntime#StorageClassTypeProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the StorageClass",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the StorageClass StorageClass."
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesInputLimitationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Limitations of the storage class"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesInputAccessModesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.kubernetesruntime#AccessMode"
+      },
+      "traits": {
+        "smithy.api#documentation": "The access mode: [ReadWriteOnce, ReadWriteMany] or [ReadWriteOnce]"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassPropertiesInputMountOptionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional mount options"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#StorageClassGetRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#StorageClassGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses/{storageClassName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Get a StorageClassResource",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#StorageClassProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "storageClassName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the the storage class"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#StorageClassListRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#StorageClassResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/storageClasses",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "List StorageClassResource resources by parent",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.kubernetesruntime#StorageClassResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The StorageClassResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a StorageClassResource list operation."
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.kubernetesruntime#StorageClassResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The StorageClassResource items on this page"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#StorageClassProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A StorageClass resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters)"
+      }
+    },
+    "com.azure.kubernetesruntime#StorageClassListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#ServicesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services/{serviceName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Delete a ServiceResource",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the the service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#ServicesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#ServicesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services/{serviceName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Create a ServiceResource",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#ServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#ServiceProperties": {
+      "type": "structure",
+      "members": {
+        "rpObjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The object id of the service principal of the RP provisioned in the tenant"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.kubernetesruntime#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Resource provision state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for the service resource"
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the the service"
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#ServicePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#ServicePropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Properties for the service resource"
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#ServicesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#ServicesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services/{serviceName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Get a ServiceResource",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#ServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "serviceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the the service"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#ServicesListRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#ServiceResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/services",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "List ServiceResource resources by parent",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#ServiceResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.kubernetesruntime#ServiceResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The ServiceResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a ServiceResource list operation."
+      }
+    },
+    "com.azure.kubernetesruntime#ServiceResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.kubernetesruntime#ServiceResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ServiceResource items on this page"
+      }
+    },
+    "com.azure.kubernetesruntime#ServiceResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#ServiceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Service resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters)"
+      }
+    },
+    "com.azure.kubernetesruntime#ServicesListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#LoadBalancersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers/{loadBalancerName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Delete a LoadBalancer",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "loadBalancerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the LoadBalancer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers/{loadBalancerName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Create a LoadBalancer",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerProperties": {
+      "type": "structure",
+      "members": {
+        "addresses": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerPropertiesAddressesList",
+          "traits": {
+            "smithy.api#documentation": "IP Range",
+            "smithy.api#required": {}
+          }
+        },
+        "serviceSelector": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerPropertiesServiceSelectorMap",
+          "traits": {
+            "smithy.api#documentation": "A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label \"a=b\", then please specify {\"a\": \"b\"} in the field."
+          }
+        },
+        "advertiseMode": {
+          "target": "com.azure.kubernetesruntime#AdvertiseMode",
+          "traits": {
+            "smithy.api#documentation": "Advertise Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "bgpPeers": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerPropertiesBgpPeersList",
+          "traits": {
+            "smithy.api#documentation": "The list of BGP peers it should advertise to. Null or empty means to advertise to all peers."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.kubernetesruntime#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Resource provision state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the LoadBalancer."
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerPropertiesBgpPeersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of BGP peers it should advertise to. Null or empty means to advertise to all peers."
+      }
+    },
+    "com.azure.kubernetesruntime#AdvertiseMode": {
+      "type": "enum",
+      "members": {
+        "ARP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ARP"
+          }
+        },
+        "BGP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BGP"
+          }
+        },
+        "BOTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Both"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum of advertise mode"
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerPropertiesServiceSelectorMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label \"a=b\", then please specify {\"a\": \"b\"} in the field."
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerPropertiesAddressesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "IP Range"
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "loadBalancerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the LoadBalancer"
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "addresses": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerPropertiesInputAddressesList",
+          "traits": {
+            "smithy.api#documentation": "IP Range",
+            "smithy.api#required": {}
+          }
+        },
+        "serviceSelector": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerPropertiesInputServiceSelectorMap",
+          "traits": {
+            "smithy.api#documentation": "A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label \"a=b\", then please specify {\"a\": \"b\"} in the field."
+          }
+        },
+        "advertiseMode": {
+          "target": "com.azure.kubernetesruntime#AdvertiseMode",
+          "traits": {
+            "smithy.api#documentation": "Advertise Mode",
+            "smithy.api#required": {}
+          }
+        },
+        "bgpPeers": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerPropertiesInputBgpPeersList",
+          "traits": {
+            "smithy.api#documentation": "The list of BGP peers it should advertise to. Null or empty means to advertise to all peers."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the LoadBalancer."
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerPropertiesInputBgpPeersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of BGP peers it should advertise to. Null or empty means to advertise to all peers."
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerPropertiesInputServiceSelectorMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A dynamic label mapping to select related services. For instance, if you want to create a load balancer only for services with label \"a=b\", then please specify {\"a\": \"b\"} in the field."
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerPropertiesInputAddressesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "IP Range"
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#LoadBalancersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#LoadBalancersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers/{loadBalancerName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Get a LoadBalancer",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "loadBalancerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the LoadBalancer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#LoadBalancersListRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#LoadBalancerListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/loadBalancers",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "List LoadBalancer resources by parent",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The LoadBalancer items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a LoadBalancer list operation."
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancerListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.kubernetesruntime#LoadBalancer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The LoadBalancer items on this page"
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#LoadBalancerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A LoadBalancer resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters)"
+      }
+    },
+    "com.azure.kubernetesruntime#LoadBalancersListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#BgpPeersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/bgpPeers/{bgpPeerName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Delete a BgpPeer",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "bgpPeerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the BgpPeer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#BgpPeersCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#BgpPeersCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/bgpPeers/{bgpPeerName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Create a BgpPeer",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#BgpPeerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeerProperties": {
+      "type": "structure",
+      "members": {
+        "myAsn": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "My ASN",
+            "smithy.api#required": {}
+          }
+        },
+        "peerAsn": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Peer ASN",
+            "smithy.api#required": {}
+          }
+        },
+        "peerAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Peer Address",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.kubernetesruntime#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Resource provision state"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the BgpPeer."
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "bgpPeerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the BgpPeer"
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#BgpPeerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeerPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "myAsn": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "My ASN",
+            "smithy.api#required": {}
+          }
+        },
+        "peerAsn": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Peer ASN",
+            "smithy.api#required": {}
+          }
+        },
+        "peerAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Peer Address",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the BgpPeer."
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#BgpPeersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#BgpPeersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/bgpPeers/{bgpPeerName}",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "Get a BgpPeer",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#BgpPeerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersGetRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "bgpPeerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the BgpPeer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.kubernetesruntime#BgpPeersListRequest"
+      },
+      "output": {
+        "target": "com.azure.kubernetesruntime#BgpPeerListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{resourceUri}/providers/Microsoft.KubernetesRuntime/bgpPeers",
+          "code": 200,
+          "apiVersion": "2024-03-01"
+        },
+        "smithy.api#documentation": "List BgpPeer resources by parent",
+        "com.distilled.openapi#apiVersion": "2024-03-01"
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeerListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.kubernetesruntime#BgpPeerListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The BgpPeer items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a BgpPeer list operation."
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeerListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.kubernetesruntime#BgpPeer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The BgpPeer items on this page"
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeer": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.kubernetesruntime#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.kubernetesruntime#BgpPeerProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A BgpPeer resource for an Arc connected cluster (Microsoft.Kubernetes/connectedClusters)"
+      }
+    },
+    "com.azure.kubernetesruntime#BgpPeersListRequest": {
+      "type": "structure",
+      "members": {
+        "resourceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.kubernetesruntime#Kubernetesruntime": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.kubernetesruntime#OperationsList"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#StorageClassDelete"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#StorageClassUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#StorageClassCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#StorageClassGet"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#StorageClassList"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ServicesDelete"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ServicesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ServicesGet"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#ServicesList"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#LoadBalancersDelete"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#LoadBalancersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#LoadBalancersGet"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#LoadBalancersList"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#BgpPeersDelete"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#BgpPeersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#BgpPeersGet"
+        },
+        {
+          "target": "com.azure.kubernetesruntime#BgpPeersList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Kubernetesruntime",
+        "smithy.api#documentation": "Azure Kubernetesruntime API — merged from the kubernetesruntime resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

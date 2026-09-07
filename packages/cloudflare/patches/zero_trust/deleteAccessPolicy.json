@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessPoliciesDelete with distilled cloudflare/zero-trust deleteAccessPolicy",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessPoliciesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessPolicy"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessPoliciesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessPolicyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessPolicy/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessPolicyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessPoliciesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessPolicyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessPolicy/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessPolicyResponse"
+    }
+  ]
+}

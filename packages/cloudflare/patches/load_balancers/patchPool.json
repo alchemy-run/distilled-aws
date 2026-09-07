@@ -1,0 +1,30 @@
+{
+  "description": "Align load_balancers#PoolsEdit with distilled cloudflare/load-balancers patchPool",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsEdit",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchPool"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsEditRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchPoolRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchPool/input/target",
+      "value": "com.cloudflare.load_balancers#PatchPoolRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsEditResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchPoolResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#PatchPool/output/target",
+      "value": "com.cloudflare.load_balancers#PatchPoolResponse"
+    }
+  ]
+}

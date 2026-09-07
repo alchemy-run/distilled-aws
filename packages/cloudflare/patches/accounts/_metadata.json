@@ -1,0 +1,58 @@
+{
+  "description": "Key dictionary / op aliases for accounts (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "abuseContactEmail": "abuse_contact_email",
+        "cachePurge": "cache_purge",
+        "cfRayId": "cf_ray_id",
+        "createdOn": "created_on",
+        "currentPeriodEnd": "current_period_end",
+        "currentPeriodStart": "current_period_start",
+        "dnsRecords": "dns_records",
+        "enforceTwofactor": "enforce_twofactor",
+        "expiresOn": "expires_on",
+        "externallyManaged": "externally_managed",
+        "firstName": "first_name",
+        "ipAddress": "ip_address",
+        "isContract": "is_contract",
+        "issuedOn": "issued_on",
+        "lastName": "last_name",
+        "lastUsedOn": "last_used_on",
+        "managedBy": "managed_by",
+        "modifiedOn": "modified_on",
+        "notBefore": "not_before",
+        "notIn": "not_in",
+        "parentOrgId": "parent_org_id",
+        "parentOrgName": "parent_org_name",
+        "perPage": "per_page",
+        "permissionGroups": "permission_groups",
+        "publicName": "public_name",
+        "ratePlan": "rate_plan",
+        "requestIp": "request_ip",
+        "resourceGroups": "resource_groups",
+        "resultInfo": "result_info",
+        "statusCode": "status_code",
+        "subscriptionId": "subscription_id",
+        "tokenId": "token_id",
+        "tokenName": "token_name",
+        "totalCount": "total_count",
+        "twoFactorAuthenticationEnabled": "two_factor_authentication_enabled",
+        "userAgent": "user_agent",
+        "zoneSettings": "zone_settings"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/metadata/opAliases",
+      "value": [
+        {
+          "alias": "listTokenPermissionGroups",
+          "target": "getTokenPermissionGroup"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align load_balancers#RegionsGet with distilled cloudflare/load-balancers getRegion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#RegionsGet",
+      "path": "/shapes/com.cloudflare.load_balancers#GetRegion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#RegionsGetRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#GetRegionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetRegion/input/target",
+      "value": "com.cloudflare.load_balancers#GetRegionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#RegionsGetResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#GetRegionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetRegion/output/target",
+      "value": "com.cloudflare.load_balancers#GetRegionResponse"
+    }
+  ]
+}

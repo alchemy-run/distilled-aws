@@ -1,0 +1,41 @@
+{
+  "description": "Align abuse_reports#MitigationsList with distilled cloudflare/abuse-reports listMitigations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.abuse_reports#MitigationsList",
+      "path": "/shapes/com.cloudflare.abuse_reports#ListMitigations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.abuse_reports#MitigationsListRequest",
+      "path": "/shapes/com.cloudflare.abuse_reports#ListMitigationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.abuse_reports#ListMitigations/input/target",
+      "value": "com.cloudflare.abuse_reports#ListMitigationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.abuse_reports#MitigationsListResponse",
+      "path": "/shapes/com.cloudflare.abuse_reports#ListMitigationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.abuse_reports#ListMitigations/output/target",
+      "value": "com.cloudflare.abuse_reports#ListMitigationsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.abuse_reports#ListMitigations/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result.items",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

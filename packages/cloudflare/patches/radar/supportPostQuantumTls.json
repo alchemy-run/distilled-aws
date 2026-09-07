@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#PostQuantumTlsSupport with distilled cloudflare/radar supportPostQuantumTls",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#PostQuantumTlsSupport",
+      "path": "/shapes/com.cloudflare.radar#SupportPostQuantumTls"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#PostQuantumTlsSupportRequest",
+      "path": "/shapes/com.cloudflare.radar#SupportPostQuantumTlsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SupportPostQuantumTls/input/target",
+      "value": "com.cloudflare.radar#SupportPostQuantumTlsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#PostQuantumTlsSupportResponse",
+      "path": "/shapes/com.cloudflare.radar#SupportPostQuantumTlsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SupportPostQuantumTls/output/target",
+      "value": "com.cloudflare.radar#SupportPostQuantumTlsResponse"
+    }
+  ]
+}

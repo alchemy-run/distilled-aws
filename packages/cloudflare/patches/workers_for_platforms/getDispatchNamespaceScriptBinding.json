@@ -1,0 +1,38 @@
+{
+  "description": "Align workers_for_platforms#DispatchNamespacesScriptsBindingsGet with distilled cloudflare/workers-for-platforms getDispatchNamespaceScriptBinding",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsBindingsGet",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptBinding"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsBindingsGetRequest",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptBindingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptBinding/input/target",
+      "value": "com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptBindingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsBindingsGetResponse",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptBindingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptBinding/output/target",
+      "value": "com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptBindingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#GetDispatchNamespaceScriptBinding/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

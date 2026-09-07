@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DevicesIpProfilesDelete with distilled cloudflare/zero-trust deleteDeviceIpProfile",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesIpProfilesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceIpProfile"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesIpProfilesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceIpProfileRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceIpProfile/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceIpProfileRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesIpProfilesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceIpProfileResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDeviceIpProfile/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDeviceIpProfileResponse"
+    }
+  ]
+}

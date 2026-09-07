@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#RankingTimeseriesGroups with distilled cloudflare/radar timeseriesGroupsRanking",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingTimeseriesGroups",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsRanking"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingTimeseriesGroupsRequest",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsRankingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsRanking/input/target",
+      "value": "com.cloudflare.radar#TimeseriesGroupsRankingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RankingTimeseriesGroupsResponse",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsRankingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#TimeseriesGroupsRanking/output/target",
+      "value": "com.cloudflare.radar#TimeseriesGroupsRankingResponse"
+    }
+  ]
+}

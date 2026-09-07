@@ -1,0 +1,16 @@
+{
+  "errors": {
+    "ThrottlingException": {
+      "message": { "type": "string", "optional": true },
+      "serviceCode": { "type": "string", "optional": true }
+    }
+  },
+  "errorCategories": {
+    "ThrottlingException": ["ThrottlingError", "RetryableError"]
+  },
+  "operations": {
+    "associateAttributeGroup": {
+      "errors": ["ThrottlingException"]
+    }
+  }
+}

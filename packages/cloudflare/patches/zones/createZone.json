@@ -1,0 +1,51 @@
+{
+  "description": "Align zones#Create with distilled cloudflare/zones createZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#Create",
+      "path": "/shapes/com.cloudflare.zones#CreateZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CreateRequest",
+      "path": "/shapes/com.cloudflare.zones#CreateZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#CreateZone/input/target",
+      "value": "com.cloudflare.zones#CreateZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#CreateResponse",
+      "path": "/shapes/com.cloudflare.zones#CreateZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#CreateZone/output/target",
+      "value": "com.cloudflare.zones#CreateZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#CreateZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zones#ZoneAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.zones#ZoneCreationBlocked"
+        },
+        {
+          "target": "com.cloudflare.zones#InvalidDomain"
+        },
+        {
+          "target": "com.cloudflare.zones#DomainNotRegistered"
+        },
+        {
+          "target": "com.cloudflare.zones#SubdomainNotAllowed"
+        }
+      ]
+    }
+  ]
+}

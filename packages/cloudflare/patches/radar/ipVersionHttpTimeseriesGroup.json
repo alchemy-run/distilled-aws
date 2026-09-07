@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpTimeseriesGroupsIpVersion with distilled cloudflare/radar ipVersionHttpTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsIpVersion",
+      "path": "/shapes/com.cloudflare.radar#IpVersionHttpTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsIpVersionRequest",
+      "path": "/shapes/com.cloudflare.radar#IpVersionHttpTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpVersionHttpTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#IpVersionHttpTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsIpVersionResponse",
+      "path": "/shapes/com.cloudflare.radar#IpVersionHttpTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpVersionHttpTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#IpVersionHttpTimeseriesGroupResponse"
+    }
+  ]
+}

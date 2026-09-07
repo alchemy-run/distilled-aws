@@ -1,0 +1,39 @@
+{
+  "description": "Align accounts#Get with distilled cloudflare/accounts getAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#Get",
+      "path": "/shapes/com.cloudflare.accounts#GetAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#GetRequest",
+      "path": "/shapes/com.cloudflare.accounts#GetAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetAccount/input/target",
+      "value": "com.cloudflare.accounts#GetAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#GetResponse",
+      "path": "/shapes/com.cloudflare.accounts#GetAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetAccount/output/target",
+      "value": "com.cloudflare.accounts#GetAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#GetAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

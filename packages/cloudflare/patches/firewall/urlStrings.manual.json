@@ -1,0 +1,65 @@
+{
+  "description": "Docs gap: zone-lockdown and WAF-override `urls: array of ...` leave the item type opaque, but each item is a URL pattern string on the wire (v0 typed string[]).",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#LockdownsCreateRequestUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#LockdownsCreateResponseUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#LockdownsGetResponseUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#LockdownsListResultItemUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#LockdownsUpdateRequestUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#LockdownsUpdateResponseUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#WafOverridesCreateRequestUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#WafOverridesCreateResponseUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#WafOverridesGetResponseUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#WafOverridesListResultItemUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#WafOverridesUpdateRequestUrlsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#WafOverridesUpdateResponseUrlsList/member/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

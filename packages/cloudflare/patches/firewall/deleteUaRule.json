@@ -1,0 +1,42 @@
+{
+  "description": "Align firewall#UaRulesDelete with distilled cloudflare/firewall deleteUaRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#UaRulesDelete",
+      "path": "/shapes/com.cloudflare.firewall#DeleteUaRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#UaRulesDeleteRequest",
+      "path": "/shapes/com.cloudflare.firewall#DeleteUaRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteUaRule/input/target",
+      "value": "com.cloudflare.firewall#DeleteUaRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#UaRulesDeleteResponse",
+      "path": "/shapes/com.cloudflare.firewall#DeleteUaRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#DeleteUaRule/output/target",
+      "value": "com.cloudflare.firewall#DeleteUaRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#DeleteUaRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#UaRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

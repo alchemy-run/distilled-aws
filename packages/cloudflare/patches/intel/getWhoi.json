@@ -1,0 +1,30 @@
+{
+  "description": "Align intel#WhoisGet with distilled cloudflare/intel getWhoi",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#WhoisGet",
+      "path": "/shapes/com.cloudflare.intel#GetWhoi"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#WhoisGetRequest",
+      "path": "/shapes/com.cloudflare.intel#GetWhoiRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetWhoi/input/target",
+      "value": "com.cloudflare.intel#GetWhoiRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#WhoisGetResponse",
+      "path": "/shapes/com.cloudflare.intel#GetWhoiResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#GetWhoi/output/target",
+      "value": "com.cloudflare.intel#GetWhoiResponse"
+    }
+  ]
+}

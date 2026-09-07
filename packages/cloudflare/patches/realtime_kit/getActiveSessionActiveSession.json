@@ -1,0 +1,30 @@
+{
+  "description": "Align realtime_kit#ActiveSessionGetActiveSession with distilled cloudflare/realtime-kit getActiveSessionActiveSession",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#ActiveSessionGetActiveSession",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetActiveSessionActiveSession"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#ActiveSessionGetActiveSessionRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetActiveSessionActiveSessionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetActiveSessionActiveSession/input/target",
+      "value": "com.cloudflare.realtime_kit#GetActiveSessionActiveSessionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#ActiveSessionGetActiveSessionResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetActiveSessionActiveSessionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#GetActiveSessionActiveSession/output/target",
+      "value": "com.cloudflare.realtime_kit#GetActiveSessionActiveSessionResponse"
+    }
+  ]
+}

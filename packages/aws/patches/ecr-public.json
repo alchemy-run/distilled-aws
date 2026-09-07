@@ -1,0 +1,9 @@
+{
+  "structures": {
+    "AuthorizationData": {
+      "members": {
+        "authorizationToken": { "sensitive": true }
+      }
+    }
+  }
+}

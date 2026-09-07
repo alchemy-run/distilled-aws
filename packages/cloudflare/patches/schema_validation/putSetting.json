@@ -1,0 +1,42 @@
+{
+  "description": "Align schema_validation#SettingsUpdate with distilled cloudflare/schema-validation putSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsUpdate",
+      "path": "/shapes/com.cloudflare.schema_validation#PutSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsUpdateRequest",
+      "path": "/shapes/com.cloudflare.schema_validation#PutSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#PutSetting/input/target",
+      "value": "com.cloudflare.schema_validation#PutSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsUpdateResponse",
+      "path": "/shapes/com.cloudflare.schema_validation#PutSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#PutSetting/output/target",
+      "value": "com.cloudflare.schema_validation#PutSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.schema_validation#PutSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.schema_validation#UnentitledMitigationAction"
+        },
+        {
+          "target": "com.cloudflare.schema_validation#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align rulesets#UpdateForZone with distilled cloudflare/rulesets updateRulesetForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#UpdateForZone",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateRulesetForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#UpdateForZoneRequest",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateRulesetForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateRulesetForZone/input/target",
+      "value": "com.cloudflare.rulesets#UpdateRulesetForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#UpdateForZoneResponse",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateRulesetForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateRulesetForZone/output/target",
+      "value": "com.cloudflare.rulesets#UpdateRulesetForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rulesets#UpdateRulesetForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rulesets#RulesetNotFound"
+        },
+        {
+          "target": "com.cloudflare.rulesets#Forbidden"
+        }
+      ]
+    }
+  ]
+}

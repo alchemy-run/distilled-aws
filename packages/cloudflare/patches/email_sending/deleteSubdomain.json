@@ -1,0 +1,32 @@
+{
+  "description": "Align email_sending#SubdomainsDelete with distilled cloudflare/email-sending deleteSubdomain",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsDelete",
+      "path": "/shapes/com.cloudflare.email_sending#DeleteSubdomain"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_sending#SubdomainsDeleteRequest",
+      "path": "/shapes/com.cloudflare.email_sending#DeleteSubdomainRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_sending#DeleteSubdomain/input/target",
+      "value": "com.cloudflare.email_sending#DeleteSubdomainRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_sending#DeleteSubdomain/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_sending#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.email_sending#SendingSubdomainNotFound"
+        }
+      ]
+    }
+  ]
+}

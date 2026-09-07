@@ -1,0 +1,34 @@
+{
+  "description": "Key dictionary / op aliases for logpush (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "batchPrefix": "batch_prefix",
+        "batchSuffix": "batch_suffix",
+        "destinationConf": "destination_conf",
+        "errorMessage": "error_message",
+        "fieldDelimiter": "field_delimiter",
+        "fieldNames": "field_names",
+        "lastComplete": "last_complete",
+        "lastError": "last_error",
+        "logpullOptions": "logpull_options",
+        "maxUploadBytes": "max_upload_bytes",
+        "maxUploadIntervalSeconds": "max_upload_interval_seconds",
+        "maxUploadRecords": "max_upload_records",
+        "mergeSubrequests": "merge_subrequests",
+        "outputOptions": "output_options",
+        "outputType": "output_type",
+        "ownershipChallenge": "ownership_challenge",
+        "recordDelimiter": "record_delimiter",
+        "recordPrefix": "record_prefix",
+        "recordSuffix": "record_suffix",
+        "recordTemplate": "record_template",
+        "sampleRate": "sample_rate",
+        "sessionId": "session_id",
+        "timestampFormat": "timestamp_format"
+      }
+    }
+  ]
+}

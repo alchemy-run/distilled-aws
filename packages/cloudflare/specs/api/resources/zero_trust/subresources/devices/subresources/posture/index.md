@@ -1,0 +1,7037 @@
+# Posture
+
+## List device posture rules
+
+**get** `/accounts/{account_id}/devices/posture`
+
+Fetches device posture rules for a Zero Trust account.
+
+### Path Parameters
+
+- `account_id: string`
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: array of DevicePostureRule`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `description: optional string`
+
+    The description of the device posture rule.
+
+  - `expiration: optional string`
+
+    Sets the expiration time for a posture check result. If empty, the result remains valid until it is overwritten by new data from the WARP client.
+
+  - `input: optional DeviceInput`
+
+    The value to be checked against.
+
+    - `FileInput object { operating_system, path, exists, 2 more }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `exists: optional boolean`
+
+        Whether or not file exists.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `UniqueClientIDInput object { id, operating_system }`
+
+      - `id: string`
+
+        List ID.
+
+      - `operating_system: "android" or "ios" or "chromeos"`
+
+        Operating System.
+
+        - `"android"`
+
+        - `"ios"`
+
+        - `"chromeos"`
+
+    - `DomainJoinedInput object { operating_system, domain }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `domain: optional string`
+
+        Domain.
+
+    - `OSVersionInput object { operating_system, operator, version, 3 more }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `version: string`
+
+        Version of OS.
+
+      - `os_distro_name: optional string`
+
+        Operating System Distribution Name (linux only).
+
+      - `os_distro_revision: optional string`
+
+        Version of OS Distribution (linux only).
+
+      - `os_version_extra: optional string`
+
+        Additional operating system version details. For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product Version Extra. For Linux, the distribution name and version.
+
+    - `FirewallInput object { enabled, operating_system }`
+
+      - `enabled: boolean`
+
+        Enabled.
+
+      - `operating_system: "windows" or "mac"`
+
+        Operating System.
+
+        - `"windows"`
+
+        - `"mac"`
+
+    - `SentineloneInput object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesCarbonblackInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesAccessSerialNumberListInputRequest object { id }`
+
+      - `id: string`
+
+        UUID of Access List.
+
+    - `DiskEncryptionInput object { checkDisks, requireAll }`
+
+      - `checkDisks: optional array of CarbonblackInput`
+
+        List of volume names to be checked for encryption.
+
+      - `requireAll: optional boolean`
+
+        Whether to check all disks for encryption.
+
+    - `TeamsDevicesApplicationInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        Path for the application.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `ClientCertificateInput object { certificate_id, cn }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `cn: string`
+
+        Common Name that is protected by the certificate.
+
+    - `TeamsDevicesClientCertificateV2InputRequest object { certificate_id, check_private_key, operating_system, 4 more }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `check_private_key: boolean`
+
+        Confirm the certificate was not imported from another device. We recommend keeping this enabled unless the certificate was deployed without a private key.
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `cn: optional string`
+
+        Certificate Common Name. This may include one or more variables in the ${ } notation. Only ${serial_number} and ${hostname} are valid variables.
+
+      - `extended_key_usage: optional array of "clientAuth" or "emailProtection"`
+
+        List of values indicating purposes for which the certificate public key can be used.
+
+        - `"clientAuth"`
+
+        - `"emailProtection"`
+
+      - `locations: optional object { paths, trust_stores }`
+
+        - `paths: optional array of string`
+
+          List of paths to check for client certificate on linux.
+
+        - `trust_stores: optional array of "system" or "user"`
+
+          List of trust stores to check for client certificate.
+
+          - `"system"`
+
+          - `"user"`
+
+      - `subject_alternative_names: optional array of string`
+
+        List of certificate Subject Alternative Names.
+
+    - `TeamsDevicesAntivirusInputRequest object { update_window_days }`
+
+      - `update_window_days: optional number`
+
+        Number of days that the antivirus should be updated within.
+
+    - `WorkspaceOneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown"`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `CrowdstrikeInput object { connection_id, last_seen, operator, 6 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `last_seen: optional string`
+
+        For more details on last seen, please refer to the Crowdstrike documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `os: optional string`
+
+        Os Version.
+
+      - `overall: optional string`
+
+        Overall.
+
+      - `sensor_config: optional string`
+
+        SensorConfig.
+
+      - `state: optional "online" or "offline" or "unknown"`
+
+        For more details on state, please refer to the Crowdstrike documentation.
+
+        - `"online"`
+
+        - `"offline"`
+
+        - `"unknown"`
+
+      - `version: optional string`
+
+        Version.
+
+      - `versionOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Version Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `IntuneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown" or 3 more`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+        - `"notapplicable"`
+
+        - `"ingraceperiod"`
+
+        - `"error"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `KolideInput object { connection_id, auth_state, countOperator, issue_count }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `auth_state: optional array of "Good" or "Notified" or "Will Block" or "Blocked"`
+
+        The set of Kolide device authentication states that pass the posture check. Device must match one of the specified states.
+
+        - `"Good"`
+
+        - `"Notified"`
+
+        - `"Will Block"`
+
+        - `"Blocked"`
+
+      - `countOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Count Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `issue_count: optional string`
+
+        The Number of Issues.
+
+    - `TaniumInput object { connection_id, eid_last_seen, operator, 3 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `eid_last_seen: optional string`
+
+        For more details on eid last seen, refer to the Tanium documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator to evaluate risk_level or eid_last_seen.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `risk_level: optional "low" or "medium" or "high" or "critical"`
+
+        For more details on risk level, refer to the Tanium documentation.
+
+        - `"low"`
+
+        - `"medium"`
+
+        - `"high"`
+
+        - `"critical"`
+
+      - `scoreOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Score Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `total_score: optional number`
+
+        For more details on total score, refer to the Tanium documentation.
+
+    - `SentineloneS2sInput object { connection_id, active_threats, infected, 4 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `active_threats: optional number`
+
+        The Number of active threats.
+
+      - `infected: optional boolean`
+
+        Whether device is infected.
+
+      - `is_active: optional boolean`
+
+        Whether device is active.
+
+      - `network_status: optional "connected" or "disconnected" or "disconnecting" or "connecting"`
+
+        Network status of device.
+
+        - `"connected"`
+
+        - `"disconnected"`
+
+        - `"disconnecting"`
+
+        - `"connecting"`
+
+      - `operational_state: optional "na" or "partially_disabled" or "auto_fully_disabled" or 4 more`
+
+        Agent operational state.
+
+        - `"na"`
+
+        - `"partially_disabled"`
+
+        - `"auto_fully_disabled"`
+
+        - `"fully_disabled"`
+
+        - `"auto_partially_disabled"`
+
+        - `"disabled_error"`
+
+        - `"db_corruption"`
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `TeamsDevicesCustomS2sInputRequest object { connection_id, operator, score }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `score: number`
+
+        A value between 0-100 assigned to devices set by the 3rd party posture provider.
+
+  - `match: optional array of DeviceMatch`
+
+    The conditions that the client must match to run the rule.
+
+    - `platform: optional "windows" or "mac" or "linux" or 3 more`
+
+      - `"windows"`
+
+      - `"mac"`
+
+      - `"linux"`
+
+      - `"android"`
+
+      - `"ios"`
+
+      - `"chromeos"`
+
+  - `name: optional string`
+
+    The name of the device posture rule.
+
+  - `schedule: optional string`
+
+    Polling frequency for the WARP client posture check. Default: `5m` (poll every five minutes). Minimum: `1m`.
+
+  - `type: optional "file" or "application" or "tanium" or 20 more`
+
+    The type of device posture rule.
+
+    - `"file"`
+
+    - `"application"`
+
+    - `"tanium"`
+
+    - `"gateway"`
+
+    - `"warp"`
+
+    - `"disk_encryption"`
+
+    - `"serial_number"`
+
+    - `"sentinelone"`
+
+    - `"carbonblack"`
+
+    - `"firewall"`
+
+    - `"os_version"`
+
+    - `"domain_joined"`
+
+    - `"client_certificate"`
+
+    - `"client_certificate_v2"`
+
+    - `"antivirus"`
+
+    - `"unique_client_id"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"intune"`
+
+    - `"workspace_one"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result_info: optional object { count, page, per_page, total_count }`
+
+  - `count: optional number`
+
+    Total number of results for the requested service.
+
+  - `page: optional number`
+
+    Current page within paginated list of results.
+
+  - `per_page: optional number`
+
+    Number of results per page of results.
+
+  - `total_count: optional number`
+
+    Total results available without any search parameters.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": [
+    {
+      "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+      "description": "The rule for admin serial numbers",
+      "expiration": "1h",
+      "input": {
+        "operating_system": "linux",
+        "path": "/bin/cat",
+        "exists": true,
+        "sha256": "https://api.us-2.crowdstrike.com",
+        "thumbprint": "0aabab210bdb998e9cf45da2c9ce352977ab531c681b74cf1e487be1bbe9fe6e"
+      },
+      "match": [
+        {
+          "platform": "windows"
+        }
+      ],
+      "name": "Admin Serial Numbers",
+      "schedule": "1h",
+      "type": "file"
+    }
+  ],
+  "success": true,
+  "result_info": {
+    "count": 1,
+    "page": 1,
+    "per_page": 20,
+    "total_count": 2000
+  }
+}
+```
+
+## Get device posture rule details
+
+**get** `/accounts/{account_id}/devices/posture/{rule_id}`
+
+Fetches a single device posture rule.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `rule_id: string`
+
+  API UUID.
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: DevicePostureRule`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `description: optional string`
+
+    The description of the device posture rule.
+
+  - `expiration: optional string`
+
+    Sets the expiration time for a posture check result. If empty, the result remains valid until it is overwritten by new data from the WARP client.
+
+  - `input: optional DeviceInput`
+
+    The value to be checked against.
+
+    - `FileInput object { operating_system, path, exists, 2 more }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `exists: optional boolean`
+
+        Whether or not file exists.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `UniqueClientIDInput object { id, operating_system }`
+
+      - `id: string`
+
+        List ID.
+
+      - `operating_system: "android" or "ios" or "chromeos"`
+
+        Operating System.
+
+        - `"android"`
+
+        - `"ios"`
+
+        - `"chromeos"`
+
+    - `DomainJoinedInput object { operating_system, domain }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `domain: optional string`
+
+        Domain.
+
+    - `OSVersionInput object { operating_system, operator, version, 3 more }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `version: string`
+
+        Version of OS.
+
+      - `os_distro_name: optional string`
+
+        Operating System Distribution Name (linux only).
+
+      - `os_distro_revision: optional string`
+
+        Version of OS Distribution (linux only).
+
+      - `os_version_extra: optional string`
+
+        Additional operating system version details. For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product Version Extra. For Linux, the distribution name and version.
+
+    - `FirewallInput object { enabled, operating_system }`
+
+      - `enabled: boolean`
+
+        Enabled.
+
+      - `operating_system: "windows" or "mac"`
+
+        Operating System.
+
+        - `"windows"`
+
+        - `"mac"`
+
+    - `SentineloneInput object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesCarbonblackInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesAccessSerialNumberListInputRequest object { id }`
+
+      - `id: string`
+
+        UUID of Access List.
+
+    - `DiskEncryptionInput object { checkDisks, requireAll }`
+
+      - `checkDisks: optional array of CarbonblackInput`
+
+        List of volume names to be checked for encryption.
+
+      - `requireAll: optional boolean`
+
+        Whether to check all disks for encryption.
+
+    - `TeamsDevicesApplicationInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        Path for the application.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `ClientCertificateInput object { certificate_id, cn }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `cn: string`
+
+        Common Name that is protected by the certificate.
+
+    - `TeamsDevicesClientCertificateV2InputRequest object { certificate_id, check_private_key, operating_system, 4 more }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `check_private_key: boolean`
+
+        Confirm the certificate was not imported from another device. We recommend keeping this enabled unless the certificate was deployed without a private key.
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `cn: optional string`
+
+        Certificate Common Name. This may include one or more variables in the ${ } notation. Only ${serial_number} and ${hostname} are valid variables.
+
+      - `extended_key_usage: optional array of "clientAuth" or "emailProtection"`
+
+        List of values indicating purposes for which the certificate public key can be used.
+
+        - `"clientAuth"`
+
+        - `"emailProtection"`
+
+      - `locations: optional object { paths, trust_stores }`
+
+        - `paths: optional array of string`
+
+          List of paths to check for client certificate on linux.
+
+        - `trust_stores: optional array of "system" or "user"`
+
+          List of trust stores to check for client certificate.
+
+          - `"system"`
+
+          - `"user"`
+
+      - `subject_alternative_names: optional array of string`
+
+        List of certificate Subject Alternative Names.
+
+    - `TeamsDevicesAntivirusInputRequest object { update_window_days }`
+
+      - `update_window_days: optional number`
+
+        Number of days that the antivirus should be updated within.
+
+    - `WorkspaceOneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown"`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `CrowdstrikeInput object { connection_id, last_seen, operator, 6 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `last_seen: optional string`
+
+        For more details on last seen, please refer to the Crowdstrike documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `os: optional string`
+
+        Os Version.
+
+      - `overall: optional string`
+
+        Overall.
+
+      - `sensor_config: optional string`
+
+        SensorConfig.
+
+      - `state: optional "online" or "offline" or "unknown"`
+
+        For more details on state, please refer to the Crowdstrike documentation.
+
+        - `"online"`
+
+        - `"offline"`
+
+        - `"unknown"`
+
+      - `version: optional string`
+
+        Version.
+
+      - `versionOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Version Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `IntuneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown" or 3 more`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+        - `"notapplicable"`
+
+        - `"ingraceperiod"`
+
+        - `"error"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `KolideInput object { connection_id, auth_state, countOperator, issue_count }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `auth_state: optional array of "Good" or "Notified" or "Will Block" or "Blocked"`
+
+        The set of Kolide device authentication states that pass the posture check. Device must match one of the specified states.
+
+        - `"Good"`
+
+        - `"Notified"`
+
+        - `"Will Block"`
+
+        - `"Blocked"`
+
+      - `countOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Count Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `issue_count: optional string`
+
+        The Number of Issues.
+
+    - `TaniumInput object { connection_id, eid_last_seen, operator, 3 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `eid_last_seen: optional string`
+
+        For more details on eid last seen, refer to the Tanium documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator to evaluate risk_level or eid_last_seen.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `risk_level: optional "low" or "medium" or "high" or "critical"`
+
+        For more details on risk level, refer to the Tanium documentation.
+
+        - `"low"`
+
+        - `"medium"`
+
+        - `"high"`
+
+        - `"critical"`
+
+      - `scoreOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Score Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `total_score: optional number`
+
+        For more details on total score, refer to the Tanium documentation.
+
+    - `SentineloneS2sInput object { connection_id, active_threats, infected, 4 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `active_threats: optional number`
+
+        The Number of active threats.
+
+      - `infected: optional boolean`
+
+        Whether device is infected.
+
+      - `is_active: optional boolean`
+
+        Whether device is active.
+
+      - `network_status: optional "connected" or "disconnected" or "disconnecting" or "connecting"`
+
+        Network status of device.
+
+        - `"connected"`
+
+        - `"disconnected"`
+
+        - `"disconnecting"`
+
+        - `"connecting"`
+
+      - `operational_state: optional "na" or "partially_disabled" or "auto_fully_disabled" or 4 more`
+
+        Agent operational state.
+
+        - `"na"`
+
+        - `"partially_disabled"`
+
+        - `"auto_fully_disabled"`
+
+        - `"fully_disabled"`
+
+        - `"auto_partially_disabled"`
+
+        - `"disabled_error"`
+
+        - `"db_corruption"`
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `TeamsDevicesCustomS2sInputRequest object { connection_id, operator, score }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `score: number`
+
+        A value between 0-100 assigned to devices set by the 3rd party posture provider.
+
+  - `match: optional array of DeviceMatch`
+
+    The conditions that the client must match to run the rule.
+
+    - `platform: optional "windows" or "mac" or "linux" or 3 more`
+
+      - `"windows"`
+
+      - `"mac"`
+
+      - `"linux"`
+
+      - `"android"`
+
+      - `"ios"`
+
+      - `"chromeos"`
+
+  - `name: optional string`
+
+    The name of the device posture rule.
+
+  - `schedule: optional string`
+
+    Polling frequency for the WARP client posture check. Default: `5m` (poll every five minutes). Minimum: `1m`.
+
+  - `type: optional "file" or "application" or "tanium" or 20 more`
+
+    The type of device posture rule.
+
+    - `"file"`
+
+    - `"application"`
+
+    - `"tanium"`
+
+    - `"gateway"`
+
+    - `"warp"`
+
+    - `"disk_encryption"`
+
+    - `"serial_number"`
+
+    - `"sentinelone"`
+
+    - `"carbonblack"`
+
+    - `"firewall"`
+
+    - `"os_version"`
+
+    - `"domain_joined"`
+
+    - `"client_certificate"`
+
+    - `"client_certificate_v2"`
+
+    - `"antivirus"`
+
+    - `"unique_client_id"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"intune"`
+
+    - `"workspace_one"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture/$RULE_ID \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": {
+    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+    "description": "The rule for admin serial numbers",
+    "expiration": "1h",
+    "input": {
+      "operating_system": "linux",
+      "path": "/bin/cat",
+      "exists": true,
+      "sha256": "https://api.us-2.crowdstrike.com",
+      "thumbprint": "0aabab210bdb998e9cf45da2c9ce352977ab531c681b74cf1e487be1bbe9fe6e"
+    },
+    "match": [
+      {
+        "platform": "windows"
+      }
+    ],
+    "name": "Admin Serial Numbers",
+    "schedule": "1h",
+    "type": "file"
+  },
+  "success": true
+}
+```
+
+## Create a device posture rule
+
+**post** `/accounts/{account_id}/devices/posture`
+
+Creates a new device posture rule.
+
+### Path Parameters
+
+- `account_id: string`
+
+### Body Parameters
+
+- `name: string`
+
+  The name of the device posture rule.
+
+- `type: "file" or "application" or "tanium" or 20 more`
+
+  The type of device posture rule.
+
+  - `"file"`
+
+  - `"application"`
+
+  - `"tanium"`
+
+  - `"gateway"`
+
+  - `"warp"`
+
+  - `"disk_encryption"`
+
+  - `"serial_number"`
+
+  - `"sentinelone"`
+
+  - `"carbonblack"`
+
+  - `"firewall"`
+
+  - `"os_version"`
+
+  - `"domain_joined"`
+
+  - `"client_certificate"`
+
+  - `"client_certificate_v2"`
+
+  - `"antivirus"`
+
+  - `"unique_client_id"`
+
+  - `"kolide"`
+
+  - `"tanium_s2s"`
+
+  - `"crowdstrike_s2s"`
+
+  - `"intune"`
+
+  - `"workspace_one"`
+
+  - `"sentinelone_s2s"`
+
+  - `"custom_s2s"`
+
+- `description: optional string`
+
+  The description of the device posture rule.
+
+- `expiration: optional string`
+
+  Sets the expiration time for a posture check result. If empty, the result remains valid until it is overwritten by new data from the WARP client.
+
+- `input: optional DeviceInput`
+
+  The value to be checked against.
+
+  - `FileInput object { operating_system, path, exists, 2 more }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      File path.
+
+    - `exists: optional boolean`
+
+      Whether or not file exists.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `UniqueClientIDInput object { id, operating_system }`
+
+    - `id: string`
+
+      List ID.
+
+    - `operating_system: "android" or "ios" or "chromeos"`
+
+      Operating System.
+
+      - `"android"`
+
+      - `"ios"`
+
+      - `"chromeos"`
+
+  - `DomainJoinedInput object { operating_system, domain }`
+
+    - `operating_system: "windows"`
+
+      Operating System.
+
+      - `"windows"`
+
+    - `domain: optional string`
+
+      Domain.
+
+  - `OSVersionInput object { operating_system, operator, version, 3 more }`
+
+    - `operating_system: "windows"`
+
+      Operating System.
+
+      - `"windows"`
+
+    - `operator: "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `version: string`
+
+      Version of OS.
+
+    - `os_distro_name: optional string`
+
+      Operating System Distribution Name (linux only).
+
+    - `os_distro_revision: optional string`
+
+      Version of OS Distribution (linux only).
+
+    - `os_version_extra: optional string`
+
+      Additional operating system version details. For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product Version Extra. For Linux, the distribution name and version.
+
+  - `FirewallInput object { enabled, operating_system }`
+
+    - `enabled: boolean`
+
+      Enabled.
+
+    - `operating_system: "windows" or "mac"`
+
+      Operating System.
+
+      - `"windows"`
+
+      - `"mac"`
+
+  - `SentineloneInput object { operating_system, path, sha256, thumbprint }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      File path.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `TeamsDevicesCarbonblackInputRequest object { operating_system, path, sha256, thumbprint }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      File path.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `TeamsDevicesAccessSerialNumberListInputRequest object { id }`
+
+    - `id: string`
+
+      UUID of Access List.
+
+  - `DiskEncryptionInput object { checkDisks, requireAll }`
+
+    - `checkDisks: optional array of CarbonblackInput`
+
+      List of volume names to be checked for encryption.
+
+    - `requireAll: optional boolean`
+
+      Whether to check all disks for encryption.
+
+  - `TeamsDevicesApplicationInputRequest object { operating_system, path, sha256, thumbprint }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      Path for the application.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `ClientCertificateInput object { certificate_id, cn }`
+
+    - `certificate_id: string`
+
+      UUID of Cloudflare managed certificate.
+
+    - `cn: string`
+
+      Common Name that is protected by the certificate.
+
+  - `TeamsDevicesClientCertificateV2InputRequest object { certificate_id, check_private_key, operating_system, 4 more }`
+
+    - `certificate_id: string`
+
+      UUID of Cloudflare managed certificate.
+
+    - `check_private_key: boolean`
+
+      Confirm the certificate was not imported from another device. We recommend keeping this enabled unless the certificate was deployed without a private key.
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `cn: optional string`
+
+      Certificate Common Name. This may include one or more variables in the ${ } notation. Only ${serial_number} and ${hostname} are valid variables.
+
+    - `extended_key_usage: optional array of "clientAuth" or "emailProtection"`
+
+      List of values indicating purposes for which the certificate public key can be used.
+
+      - `"clientAuth"`
+
+      - `"emailProtection"`
+
+    - `locations: optional object { paths, trust_stores }`
+
+      - `paths: optional array of string`
+
+        List of paths to check for client certificate on linux.
+
+      - `trust_stores: optional array of "system" or "user"`
+
+        List of trust stores to check for client certificate.
+
+        - `"system"`
+
+        - `"user"`
+
+    - `subject_alternative_names: optional array of string`
+
+      List of certificate Subject Alternative Names.
+
+  - `TeamsDevicesAntivirusInputRequest object { update_window_days }`
+
+    - `update_window_days: optional number`
+
+      Number of days that the antivirus should be updated within.
+
+  - `WorkspaceOneInput object { compliance_status, connection_id }`
+
+    - `compliance_status: "compliant" or "noncompliant" or "unknown"`
+
+      Compliance Status.
+
+      - `"compliant"`
+
+      - `"noncompliant"`
+
+      - `"unknown"`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+  - `CrowdstrikeInput object { connection_id, last_seen, operator, 6 more }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `last_seen: optional string`
+
+      For more details on last seen, please refer to the Crowdstrike documentation.
+
+    - `operator: optional "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `os: optional string`
+
+      Os Version.
+
+    - `overall: optional string`
+
+      Overall.
+
+    - `sensor_config: optional string`
+
+      SensorConfig.
+
+    - `state: optional "online" or "offline" or "unknown"`
+
+      For more details on state, please refer to the Crowdstrike documentation.
+
+      - `"online"`
+
+      - `"offline"`
+
+      - `"unknown"`
+
+    - `version: optional string`
+
+      Version.
+
+    - `versionOperator: optional "<" or "<=" or ">" or 2 more`
+
+      Version Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+  - `IntuneInput object { compliance_status, connection_id }`
+
+    - `compliance_status: "compliant" or "noncompliant" or "unknown" or 3 more`
+
+      Compliance Status.
+
+      - `"compliant"`
+
+      - `"noncompliant"`
+
+      - `"unknown"`
+
+      - `"notapplicable"`
+
+      - `"ingraceperiod"`
+
+      - `"error"`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+  - `KolideInput object { connection_id, auth_state, countOperator, issue_count }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `auth_state: optional array of "Good" or "Notified" or "Will Block" or "Blocked"`
+
+      The set of Kolide device authentication states that pass the posture check. Device must match one of the specified states.
+
+      - `"Good"`
+
+      - `"Notified"`
+
+      - `"Will Block"`
+
+      - `"Blocked"`
+
+    - `countOperator: optional "<" or "<=" or ">" or 2 more`
+
+      Count Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `issue_count: optional string`
+
+      The Number of Issues.
+
+  - `TaniumInput object { connection_id, eid_last_seen, operator, 3 more }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `eid_last_seen: optional string`
+
+      For more details on eid last seen, refer to the Tanium documentation.
+
+    - `operator: optional "<" or "<=" or ">" or 2 more`
+
+      Operator to evaluate risk_level or eid_last_seen.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `risk_level: optional "low" or "medium" or "high" or "critical"`
+
+      For more details on risk level, refer to the Tanium documentation.
+
+      - `"low"`
+
+      - `"medium"`
+
+      - `"high"`
+
+      - `"critical"`
+
+    - `scoreOperator: optional "<" or "<=" or ">" or 2 more`
+
+      Score Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `total_score: optional number`
+
+      For more details on total score, refer to the Tanium documentation.
+
+  - `SentineloneS2sInput object { connection_id, active_threats, infected, 4 more }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `active_threats: optional number`
+
+      The Number of active threats.
+
+    - `infected: optional boolean`
+
+      Whether device is infected.
+
+    - `is_active: optional boolean`
+
+      Whether device is active.
+
+    - `network_status: optional "connected" or "disconnected" or "disconnecting" or "connecting"`
+
+      Network status of device.
+
+      - `"connected"`
+
+      - `"disconnected"`
+
+      - `"disconnecting"`
+
+      - `"connecting"`
+
+    - `operational_state: optional "na" or "partially_disabled" or "auto_fully_disabled" or 4 more`
+
+      Agent operational state.
+
+      - `"na"`
+
+      - `"partially_disabled"`
+
+      - `"auto_fully_disabled"`
+
+      - `"fully_disabled"`
+
+      - `"auto_partially_disabled"`
+
+      - `"disabled_error"`
+
+      - `"db_corruption"`
+
+    - `operator: optional "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+  - `TeamsDevicesCustomS2sInputRequest object { connection_id, operator, score }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `operator: "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `score: number`
+
+      A value between 0-100 assigned to devices set by the 3rd party posture provider.
+
+- `match: optional array of DeviceMatch`
+
+  The conditions that the client must match to run the rule.
+
+  - `platform: optional "windows" or "mac" or "linux" or 3 more`
+
+    - `"windows"`
+
+    - `"mac"`
+
+    - `"linux"`
+
+    - `"android"`
+
+    - `"ios"`
+
+    - `"chromeos"`
+
+- `schedule: optional string`
+
+  Polling frequency for the WARP client posture check. Default: `5m` (poll every five minutes). Minimum: `1m`.
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: DevicePostureRule`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `description: optional string`
+
+    The description of the device posture rule.
+
+  - `expiration: optional string`
+
+    Sets the expiration time for a posture check result. If empty, the result remains valid until it is overwritten by new data from the WARP client.
+
+  - `input: optional DeviceInput`
+
+    The value to be checked against.
+
+    - `FileInput object { operating_system, path, exists, 2 more }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `exists: optional boolean`
+
+        Whether or not file exists.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `UniqueClientIDInput object { id, operating_system }`
+
+      - `id: string`
+
+        List ID.
+
+      - `operating_system: "android" or "ios" or "chromeos"`
+
+        Operating System.
+
+        - `"android"`
+
+        - `"ios"`
+
+        - `"chromeos"`
+
+    - `DomainJoinedInput object { operating_system, domain }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `domain: optional string`
+
+        Domain.
+
+    - `OSVersionInput object { operating_system, operator, version, 3 more }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `version: string`
+
+        Version of OS.
+
+      - `os_distro_name: optional string`
+
+        Operating System Distribution Name (linux only).
+
+      - `os_distro_revision: optional string`
+
+        Version of OS Distribution (linux only).
+
+      - `os_version_extra: optional string`
+
+        Additional operating system version details. For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product Version Extra. For Linux, the distribution name and version.
+
+    - `FirewallInput object { enabled, operating_system }`
+
+      - `enabled: boolean`
+
+        Enabled.
+
+      - `operating_system: "windows" or "mac"`
+
+        Operating System.
+
+        - `"windows"`
+
+        - `"mac"`
+
+    - `SentineloneInput object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesCarbonblackInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesAccessSerialNumberListInputRequest object { id }`
+
+      - `id: string`
+
+        UUID of Access List.
+
+    - `DiskEncryptionInput object { checkDisks, requireAll }`
+
+      - `checkDisks: optional array of CarbonblackInput`
+
+        List of volume names to be checked for encryption.
+
+      - `requireAll: optional boolean`
+
+        Whether to check all disks for encryption.
+
+    - `TeamsDevicesApplicationInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        Path for the application.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `ClientCertificateInput object { certificate_id, cn }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `cn: string`
+
+        Common Name that is protected by the certificate.
+
+    - `TeamsDevicesClientCertificateV2InputRequest object { certificate_id, check_private_key, operating_system, 4 more }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `check_private_key: boolean`
+
+        Confirm the certificate was not imported from another device. We recommend keeping this enabled unless the certificate was deployed without a private key.
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `cn: optional string`
+
+        Certificate Common Name. This may include one or more variables in the ${ } notation. Only ${serial_number} and ${hostname} are valid variables.
+
+      - `extended_key_usage: optional array of "clientAuth" or "emailProtection"`
+
+        List of values indicating purposes for which the certificate public key can be used.
+
+        - `"clientAuth"`
+
+        - `"emailProtection"`
+
+      - `locations: optional object { paths, trust_stores }`
+
+        - `paths: optional array of string`
+
+          List of paths to check for client certificate on linux.
+
+        - `trust_stores: optional array of "system" or "user"`
+
+          List of trust stores to check for client certificate.
+
+          - `"system"`
+
+          - `"user"`
+
+      - `subject_alternative_names: optional array of string`
+
+        List of certificate Subject Alternative Names.
+
+    - `TeamsDevicesAntivirusInputRequest object { update_window_days }`
+
+      - `update_window_days: optional number`
+
+        Number of days that the antivirus should be updated within.
+
+    - `WorkspaceOneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown"`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `CrowdstrikeInput object { connection_id, last_seen, operator, 6 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `last_seen: optional string`
+
+        For more details on last seen, please refer to the Crowdstrike documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `os: optional string`
+
+        Os Version.
+
+      - `overall: optional string`
+
+        Overall.
+
+      - `sensor_config: optional string`
+
+        SensorConfig.
+
+      - `state: optional "online" or "offline" or "unknown"`
+
+        For more details on state, please refer to the Crowdstrike documentation.
+
+        - `"online"`
+
+        - `"offline"`
+
+        - `"unknown"`
+
+      - `version: optional string`
+
+        Version.
+
+      - `versionOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Version Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `IntuneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown" or 3 more`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+        - `"notapplicable"`
+
+        - `"ingraceperiod"`
+
+        - `"error"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `KolideInput object { connection_id, auth_state, countOperator, issue_count }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `auth_state: optional array of "Good" or "Notified" or "Will Block" or "Blocked"`
+
+        The set of Kolide device authentication states that pass the posture check. Device must match one of the specified states.
+
+        - `"Good"`
+
+        - `"Notified"`
+
+        - `"Will Block"`
+
+        - `"Blocked"`
+
+      - `countOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Count Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `issue_count: optional string`
+
+        The Number of Issues.
+
+    - `TaniumInput object { connection_id, eid_last_seen, operator, 3 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `eid_last_seen: optional string`
+
+        For more details on eid last seen, refer to the Tanium documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator to evaluate risk_level or eid_last_seen.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `risk_level: optional "low" or "medium" or "high" or "critical"`
+
+        For more details on risk level, refer to the Tanium documentation.
+
+        - `"low"`
+
+        - `"medium"`
+
+        - `"high"`
+
+        - `"critical"`
+
+      - `scoreOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Score Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `total_score: optional number`
+
+        For more details on total score, refer to the Tanium documentation.
+
+    - `SentineloneS2sInput object { connection_id, active_threats, infected, 4 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `active_threats: optional number`
+
+        The Number of active threats.
+
+      - `infected: optional boolean`
+
+        Whether device is infected.
+
+      - `is_active: optional boolean`
+
+        Whether device is active.
+
+      - `network_status: optional "connected" or "disconnected" or "disconnecting" or "connecting"`
+
+        Network status of device.
+
+        - `"connected"`
+
+        - `"disconnected"`
+
+        - `"disconnecting"`
+
+        - `"connecting"`
+
+      - `operational_state: optional "na" or "partially_disabled" or "auto_fully_disabled" or 4 more`
+
+        Agent operational state.
+
+        - `"na"`
+
+        - `"partially_disabled"`
+
+        - `"auto_fully_disabled"`
+
+        - `"fully_disabled"`
+
+        - `"auto_partially_disabled"`
+
+        - `"disabled_error"`
+
+        - `"db_corruption"`
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `TeamsDevicesCustomS2sInputRequest object { connection_id, operator, score }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `score: number`
+
+        A value between 0-100 assigned to devices set by the 3rd party posture provider.
+
+  - `match: optional array of DeviceMatch`
+
+    The conditions that the client must match to run the rule.
+
+    - `platform: optional "windows" or "mac" or "linux" or 3 more`
+
+      - `"windows"`
+
+      - `"mac"`
+
+      - `"linux"`
+
+      - `"android"`
+
+      - `"ios"`
+
+      - `"chromeos"`
+
+  - `name: optional string`
+
+    The name of the device posture rule.
+
+  - `schedule: optional string`
+
+    Polling frequency for the WARP client posture check. Default: `5m` (poll every five minutes). Minimum: `1m`.
+
+  - `type: optional "file" or "application" or "tanium" or 20 more`
+
+    The type of device posture rule.
+
+    - `"file"`
+
+    - `"application"`
+
+    - `"tanium"`
+
+    - `"gateway"`
+
+    - `"warp"`
+
+    - `"disk_encryption"`
+
+    - `"serial_number"`
+
+    - `"sentinelone"`
+
+    - `"carbonblack"`
+
+    - `"firewall"`
+
+    - `"os_version"`
+
+    - `"domain_joined"`
+
+    - `"client_certificate"`
+
+    - `"client_certificate_v2"`
+
+    - `"antivirus"`
+
+    - `"unique_client_id"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"intune"`
+
+    - `"workspace_one"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{
+          "name": "Admin Serial Numbers",
+          "type": "file",
+          "description": "The rule for admin serial numbers",
+          "expiration": "1h",
+          "input": {
+            "operating_system": "linux",
+            "path": "/bin/cat",
+            "thumbprint": "0aabab210bdb998e9cf45da2c9ce352977ab531c681b74cf1e487be1bbe9fe6e"
+          },
+          "schedule": "1h"
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": {
+    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+    "description": "The rule for admin serial numbers",
+    "expiration": "1h",
+    "input": {
+      "operating_system": "linux",
+      "path": "/bin/cat",
+      "exists": true,
+      "sha256": "https://api.us-2.crowdstrike.com",
+      "thumbprint": "0aabab210bdb998e9cf45da2c9ce352977ab531c681b74cf1e487be1bbe9fe6e"
+    },
+    "match": [
+      {
+        "platform": "windows"
+      }
+    ],
+    "name": "Admin Serial Numbers",
+    "schedule": "1h",
+    "type": "file"
+  },
+  "success": true
+}
+```
+
+## Update a device posture rule
+
+**put** `/accounts/{account_id}/devices/posture/{rule_id}`
+
+Updates a device posture rule.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `rule_id: string`
+
+  API UUID.
+
+### Body Parameters
+
+- `name: string`
+
+  The name of the device posture rule.
+
+- `type: "file" or "application" or "tanium" or 20 more`
+
+  The type of device posture rule.
+
+  - `"file"`
+
+  - `"application"`
+
+  - `"tanium"`
+
+  - `"gateway"`
+
+  - `"warp"`
+
+  - `"disk_encryption"`
+
+  - `"serial_number"`
+
+  - `"sentinelone"`
+
+  - `"carbonblack"`
+
+  - `"firewall"`
+
+  - `"os_version"`
+
+  - `"domain_joined"`
+
+  - `"client_certificate"`
+
+  - `"client_certificate_v2"`
+
+  - `"antivirus"`
+
+  - `"unique_client_id"`
+
+  - `"kolide"`
+
+  - `"tanium_s2s"`
+
+  - `"crowdstrike_s2s"`
+
+  - `"intune"`
+
+  - `"workspace_one"`
+
+  - `"sentinelone_s2s"`
+
+  - `"custom_s2s"`
+
+- `description: optional string`
+
+  The description of the device posture rule.
+
+- `expiration: optional string`
+
+  Sets the expiration time for a posture check result. If empty, the result remains valid until it is overwritten by new data from the WARP client.
+
+- `input: optional DeviceInput`
+
+  The value to be checked against.
+
+  - `FileInput object { operating_system, path, exists, 2 more }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      File path.
+
+    - `exists: optional boolean`
+
+      Whether or not file exists.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `UniqueClientIDInput object { id, operating_system }`
+
+    - `id: string`
+
+      List ID.
+
+    - `operating_system: "android" or "ios" or "chromeos"`
+
+      Operating System.
+
+      - `"android"`
+
+      - `"ios"`
+
+      - `"chromeos"`
+
+  - `DomainJoinedInput object { operating_system, domain }`
+
+    - `operating_system: "windows"`
+
+      Operating System.
+
+      - `"windows"`
+
+    - `domain: optional string`
+
+      Domain.
+
+  - `OSVersionInput object { operating_system, operator, version, 3 more }`
+
+    - `operating_system: "windows"`
+
+      Operating System.
+
+      - `"windows"`
+
+    - `operator: "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `version: string`
+
+      Version of OS.
+
+    - `os_distro_name: optional string`
+
+      Operating System Distribution Name (linux only).
+
+    - `os_distro_revision: optional string`
+
+      Version of OS Distribution (linux only).
+
+    - `os_version_extra: optional string`
+
+      Additional operating system version details. For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product Version Extra. For Linux, the distribution name and version.
+
+  - `FirewallInput object { enabled, operating_system }`
+
+    - `enabled: boolean`
+
+      Enabled.
+
+    - `operating_system: "windows" or "mac"`
+
+      Operating System.
+
+      - `"windows"`
+
+      - `"mac"`
+
+  - `SentineloneInput object { operating_system, path, sha256, thumbprint }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      File path.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `TeamsDevicesCarbonblackInputRequest object { operating_system, path, sha256, thumbprint }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      File path.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `TeamsDevicesAccessSerialNumberListInputRequest object { id }`
+
+    - `id: string`
+
+      UUID of Access List.
+
+  - `DiskEncryptionInput object { checkDisks, requireAll }`
+
+    - `checkDisks: optional array of CarbonblackInput`
+
+      List of volume names to be checked for encryption.
+
+    - `requireAll: optional boolean`
+
+      Whether to check all disks for encryption.
+
+  - `TeamsDevicesApplicationInputRequest object { operating_system, path, sha256, thumbprint }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      Path for the application.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `ClientCertificateInput object { certificate_id, cn }`
+
+    - `certificate_id: string`
+
+      UUID of Cloudflare managed certificate.
+
+    - `cn: string`
+
+      Common Name that is protected by the certificate.
+
+  - `TeamsDevicesClientCertificateV2InputRequest object { certificate_id, check_private_key, operating_system, 4 more }`
+
+    - `certificate_id: string`
+
+      UUID of Cloudflare managed certificate.
+
+    - `check_private_key: boolean`
+
+      Confirm the certificate was not imported from another device. We recommend keeping this enabled unless the certificate was deployed without a private key.
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `cn: optional string`
+
+      Certificate Common Name. This may include one or more variables in the ${ } notation. Only ${serial_number} and ${hostname} are valid variables.
+
+    - `extended_key_usage: optional array of "clientAuth" or "emailProtection"`
+
+      List of values indicating purposes for which the certificate public key can be used.
+
+      - `"clientAuth"`
+
+      - `"emailProtection"`
+
+    - `locations: optional object { paths, trust_stores }`
+
+      - `paths: optional array of string`
+
+        List of paths to check for client certificate on linux.
+
+      - `trust_stores: optional array of "system" or "user"`
+
+        List of trust stores to check for client certificate.
+
+        - `"system"`
+
+        - `"user"`
+
+    - `subject_alternative_names: optional array of string`
+
+      List of certificate Subject Alternative Names.
+
+  - `TeamsDevicesAntivirusInputRequest object { update_window_days }`
+
+    - `update_window_days: optional number`
+
+      Number of days that the antivirus should be updated within.
+
+  - `WorkspaceOneInput object { compliance_status, connection_id }`
+
+    - `compliance_status: "compliant" or "noncompliant" or "unknown"`
+
+      Compliance Status.
+
+      - `"compliant"`
+
+      - `"noncompliant"`
+
+      - `"unknown"`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+  - `CrowdstrikeInput object { connection_id, last_seen, operator, 6 more }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `last_seen: optional string`
+
+      For more details on last seen, please refer to the Crowdstrike documentation.
+
+    - `operator: optional "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `os: optional string`
+
+      Os Version.
+
+    - `overall: optional string`
+
+      Overall.
+
+    - `sensor_config: optional string`
+
+      SensorConfig.
+
+    - `state: optional "online" or "offline" or "unknown"`
+
+      For more details on state, please refer to the Crowdstrike documentation.
+
+      - `"online"`
+
+      - `"offline"`
+
+      - `"unknown"`
+
+    - `version: optional string`
+
+      Version.
+
+    - `versionOperator: optional "<" or "<=" or ">" or 2 more`
+
+      Version Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+  - `IntuneInput object { compliance_status, connection_id }`
+
+    - `compliance_status: "compliant" or "noncompliant" or "unknown" or 3 more`
+
+      Compliance Status.
+
+      - `"compliant"`
+
+      - `"noncompliant"`
+
+      - `"unknown"`
+
+      - `"notapplicable"`
+
+      - `"ingraceperiod"`
+
+      - `"error"`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+  - `KolideInput object { connection_id, auth_state, countOperator, issue_count }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `auth_state: optional array of "Good" or "Notified" or "Will Block" or "Blocked"`
+
+      The set of Kolide device authentication states that pass the posture check. Device must match one of the specified states.
+
+      - `"Good"`
+
+      - `"Notified"`
+
+      - `"Will Block"`
+
+      - `"Blocked"`
+
+    - `countOperator: optional "<" or "<=" or ">" or 2 more`
+
+      Count Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `issue_count: optional string`
+
+      The Number of Issues.
+
+  - `TaniumInput object { connection_id, eid_last_seen, operator, 3 more }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `eid_last_seen: optional string`
+
+      For more details on eid last seen, refer to the Tanium documentation.
+
+    - `operator: optional "<" or "<=" or ">" or 2 more`
+
+      Operator to evaluate risk_level or eid_last_seen.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `risk_level: optional "low" or "medium" or "high" or "critical"`
+
+      For more details on risk level, refer to the Tanium documentation.
+
+      - `"low"`
+
+      - `"medium"`
+
+      - `"high"`
+
+      - `"critical"`
+
+    - `scoreOperator: optional "<" or "<=" or ">" or 2 more`
+
+      Score Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `total_score: optional number`
+
+      For more details on total score, refer to the Tanium documentation.
+
+  - `SentineloneS2sInput object { connection_id, active_threats, infected, 4 more }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `active_threats: optional number`
+
+      The Number of active threats.
+
+    - `infected: optional boolean`
+
+      Whether device is infected.
+
+    - `is_active: optional boolean`
+
+      Whether device is active.
+
+    - `network_status: optional "connected" or "disconnected" or "disconnecting" or "connecting"`
+
+      Network status of device.
+
+      - `"connected"`
+
+      - `"disconnected"`
+
+      - `"disconnecting"`
+
+      - `"connecting"`
+
+    - `operational_state: optional "na" or "partially_disabled" or "auto_fully_disabled" or 4 more`
+
+      Agent operational state.
+
+      - `"na"`
+
+      - `"partially_disabled"`
+
+      - `"auto_fully_disabled"`
+
+      - `"fully_disabled"`
+
+      - `"auto_partially_disabled"`
+
+      - `"disabled_error"`
+
+      - `"db_corruption"`
+
+    - `operator: optional "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+  - `TeamsDevicesCustomS2sInputRequest object { connection_id, operator, score }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `operator: "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `score: number`
+
+      A value between 0-100 assigned to devices set by the 3rd party posture provider.
+
+- `match: optional array of DeviceMatch`
+
+  The conditions that the client must match to run the rule.
+
+  - `platform: optional "windows" or "mac" or "linux" or 3 more`
+
+    - `"windows"`
+
+    - `"mac"`
+
+    - `"linux"`
+
+    - `"android"`
+
+    - `"ios"`
+
+    - `"chromeos"`
+
+- `schedule: optional string`
+
+  Polling frequency for the WARP client posture check. Default: `5m` (poll every five minutes). Minimum: `1m`.
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: DevicePostureRule`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `description: optional string`
+
+    The description of the device posture rule.
+
+  - `expiration: optional string`
+
+    Sets the expiration time for a posture check result. If empty, the result remains valid until it is overwritten by new data from the WARP client.
+
+  - `input: optional DeviceInput`
+
+    The value to be checked against.
+
+    - `FileInput object { operating_system, path, exists, 2 more }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `exists: optional boolean`
+
+        Whether or not file exists.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `UniqueClientIDInput object { id, operating_system }`
+
+      - `id: string`
+
+        List ID.
+
+      - `operating_system: "android" or "ios" or "chromeos"`
+
+        Operating System.
+
+        - `"android"`
+
+        - `"ios"`
+
+        - `"chromeos"`
+
+    - `DomainJoinedInput object { operating_system, domain }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `domain: optional string`
+
+        Domain.
+
+    - `OSVersionInput object { operating_system, operator, version, 3 more }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `version: string`
+
+        Version of OS.
+
+      - `os_distro_name: optional string`
+
+        Operating System Distribution Name (linux only).
+
+      - `os_distro_revision: optional string`
+
+        Version of OS Distribution (linux only).
+
+      - `os_version_extra: optional string`
+
+        Additional operating system version details. For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product Version Extra. For Linux, the distribution name and version.
+
+    - `FirewallInput object { enabled, operating_system }`
+
+      - `enabled: boolean`
+
+        Enabled.
+
+      - `operating_system: "windows" or "mac"`
+
+        Operating System.
+
+        - `"windows"`
+
+        - `"mac"`
+
+    - `SentineloneInput object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesCarbonblackInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesAccessSerialNumberListInputRequest object { id }`
+
+      - `id: string`
+
+        UUID of Access List.
+
+    - `DiskEncryptionInput object { checkDisks, requireAll }`
+
+      - `checkDisks: optional array of CarbonblackInput`
+
+        List of volume names to be checked for encryption.
+
+      - `requireAll: optional boolean`
+
+        Whether to check all disks for encryption.
+
+    - `TeamsDevicesApplicationInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        Path for the application.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `ClientCertificateInput object { certificate_id, cn }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `cn: string`
+
+        Common Name that is protected by the certificate.
+
+    - `TeamsDevicesClientCertificateV2InputRequest object { certificate_id, check_private_key, operating_system, 4 more }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `check_private_key: boolean`
+
+        Confirm the certificate was not imported from another device. We recommend keeping this enabled unless the certificate was deployed without a private key.
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `cn: optional string`
+
+        Certificate Common Name. This may include one or more variables in the ${ } notation. Only ${serial_number} and ${hostname} are valid variables.
+
+      - `extended_key_usage: optional array of "clientAuth" or "emailProtection"`
+
+        List of values indicating purposes for which the certificate public key can be used.
+
+        - `"clientAuth"`
+
+        - `"emailProtection"`
+
+      - `locations: optional object { paths, trust_stores }`
+
+        - `paths: optional array of string`
+
+          List of paths to check for client certificate on linux.
+
+        - `trust_stores: optional array of "system" or "user"`
+
+          List of trust stores to check for client certificate.
+
+          - `"system"`
+
+          - `"user"`
+
+      - `subject_alternative_names: optional array of string`
+
+        List of certificate Subject Alternative Names.
+
+    - `TeamsDevicesAntivirusInputRequest object { update_window_days }`
+
+      - `update_window_days: optional number`
+
+        Number of days that the antivirus should be updated within.
+
+    - `WorkspaceOneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown"`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `CrowdstrikeInput object { connection_id, last_seen, operator, 6 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `last_seen: optional string`
+
+        For more details on last seen, please refer to the Crowdstrike documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `os: optional string`
+
+        Os Version.
+
+      - `overall: optional string`
+
+        Overall.
+
+      - `sensor_config: optional string`
+
+        SensorConfig.
+
+      - `state: optional "online" or "offline" or "unknown"`
+
+        For more details on state, please refer to the Crowdstrike documentation.
+
+        - `"online"`
+
+        - `"offline"`
+
+        - `"unknown"`
+
+      - `version: optional string`
+
+        Version.
+
+      - `versionOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Version Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `IntuneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown" or 3 more`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+        - `"notapplicable"`
+
+        - `"ingraceperiod"`
+
+        - `"error"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `KolideInput object { connection_id, auth_state, countOperator, issue_count }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `auth_state: optional array of "Good" or "Notified" or "Will Block" or "Blocked"`
+
+        The set of Kolide device authentication states that pass the posture check. Device must match one of the specified states.
+
+        - `"Good"`
+
+        - `"Notified"`
+
+        - `"Will Block"`
+
+        - `"Blocked"`
+
+      - `countOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Count Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `issue_count: optional string`
+
+        The Number of Issues.
+
+    - `TaniumInput object { connection_id, eid_last_seen, operator, 3 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `eid_last_seen: optional string`
+
+        For more details on eid last seen, refer to the Tanium documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator to evaluate risk_level or eid_last_seen.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `risk_level: optional "low" or "medium" or "high" or "critical"`
+
+        For more details on risk level, refer to the Tanium documentation.
+
+        - `"low"`
+
+        - `"medium"`
+
+        - `"high"`
+
+        - `"critical"`
+
+      - `scoreOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Score Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `total_score: optional number`
+
+        For more details on total score, refer to the Tanium documentation.
+
+    - `SentineloneS2sInput object { connection_id, active_threats, infected, 4 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `active_threats: optional number`
+
+        The Number of active threats.
+
+      - `infected: optional boolean`
+
+        Whether device is infected.
+
+      - `is_active: optional boolean`
+
+        Whether device is active.
+
+      - `network_status: optional "connected" or "disconnected" or "disconnecting" or "connecting"`
+
+        Network status of device.
+
+        - `"connected"`
+
+        - `"disconnected"`
+
+        - `"disconnecting"`
+
+        - `"connecting"`
+
+      - `operational_state: optional "na" or "partially_disabled" or "auto_fully_disabled" or 4 more`
+
+        Agent operational state.
+
+        - `"na"`
+
+        - `"partially_disabled"`
+
+        - `"auto_fully_disabled"`
+
+        - `"fully_disabled"`
+
+        - `"auto_partially_disabled"`
+
+        - `"disabled_error"`
+
+        - `"db_corruption"`
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `TeamsDevicesCustomS2sInputRequest object { connection_id, operator, score }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `score: number`
+
+        A value between 0-100 assigned to devices set by the 3rd party posture provider.
+
+  - `match: optional array of DeviceMatch`
+
+    The conditions that the client must match to run the rule.
+
+    - `platform: optional "windows" or "mac" or "linux" or 3 more`
+
+      - `"windows"`
+
+      - `"mac"`
+
+      - `"linux"`
+
+      - `"android"`
+
+      - `"ios"`
+
+      - `"chromeos"`
+
+  - `name: optional string`
+
+    The name of the device posture rule.
+
+  - `schedule: optional string`
+
+    Polling frequency for the WARP client posture check. Default: `5m` (poll every five minutes). Minimum: `1m`.
+
+  - `type: optional "file" or "application" or "tanium" or 20 more`
+
+    The type of device posture rule.
+
+    - `"file"`
+
+    - `"application"`
+
+    - `"tanium"`
+
+    - `"gateway"`
+
+    - `"warp"`
+
+    - `"disk_encryption"`
+
+    - `"serial_number"`
+
+    - `"sentinelone"`
+
+    - `"carbonblack"`
+
+    - `"firewall"`
+
+    - `"os_version"`
+
+    - `"domain_joined"`
+
+    - `"client_certificate"`
+
+    - `"client_certificate_v2"`
+
+    - `"antivirus"`
+
+    - `"unique_client_id"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"intune"`
+
+    - `"workspace_one"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture/$RULE_ID \
+    -X PUT \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{
+          "name": "Admin Serial Numbers",
+          "type": "file",
+          "description": "The rule for admin serial numbers",
+          "expiration": "1h",
+          "input": {
+            "operating_system": "linux",
+            "path": "/bin/cat",
+            "thumbprint": "0aabab210bdb998e9cf45da2c9ce352977ab531c681b74cf1e487be1bbe9fe6e"
+          },
+          "schedule": "1h"
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": {
+    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+    "description": "The rule for admin serial numbers",
+    "expiration": "1h",
+    "input": {
+      "operating_system": "linux",
+      "path": "/bin/cat",
+      "exists": true,
+      "sha256": "https://api.us-2.crowdstrike.com",
+      "thumbprint": "0aabab210bdb998e9cf45da2c9ce352977ab531c681b74cf1e487be1bbe9fe6e"
+    },
+    "match": [
+      {
+        "platform": "windows"
+      }
+    ],
+    "name": "Admin Serial Numbers",
+    "schedule": "1h",
+    "type": "file"
+  },
+  "success": true
+}
+```
+
+## Delete a device posture rule
+
+**delete** `/accounts/{account_id}/devices/posture/{rule_id}`
+
+Deletes a device posture rule.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `rule_id: string`
+
+  API UUID.
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: object { id }`
+
+  - `id: optional string`
+
+    API UUID.
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture/$RULE_ID \
+    -X DELETE \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": {
+    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415"
+  },
+  "success": true
+}
+```
+
+## Domain Types
+
+### Carbonblack Input
+
+- `CarbonblackInput = string`
+
+### Client Certificate Input
+
+- `ClientCertificateInput object { certificate_id, cn }`
+
+  - `certificate_id: string`
+
+    UUID of Cloudflare managed certificate.
+
+  - `cn: string`
+
+    Common Name that is protected by the certificate.
+
+### Crowdstrike Input
+
+- `CrowdstrikeInput object { connection_id, last_seen, operator, 6 more }`
+
+  - `connection_id: string`
+
+    Posture Integration ID.
+
+  - `last_seen: optional string`
+
+    For more details on last seen, please refer to the Crowdstrike documentation.
+
+  - `operator: optional "<" or "<=" or ">" or 2 more`
+
+    Operator.
+
+    - `"<"`
+
+    - `"<="`
+
+    - `">"`
+
+    - `">="`
+
+    - `"=="`
+
+  - `os: optional string`
+
+    Os Version.
+
+  - `overall: optional string`
+
+    Overall.
+
+  - `sensor_config: optional string`
+
+    SensorConfig.
+
+  - `state: optional "online" or "offline" or "unknown"`
+
+    For more details on state, please refer to the Crowdstrike documentation.
+
+    - `"online"`
+
+    - `"offline"`
+
+    - `"unknown"`
+
+  - `version: optional string`
+
+    Version.
+
+  - `versionOperator: optional "<" or "<=" or ">" or 2 more`
+
+    Version Operator.
+
+    - `"<"`
+
+    - `"<="`
+
+    - `">"`
+
+    - `">="`
+
+    - `"=="`
+
+### Device Input
+
+- `DeviceInput = FileInput or UniqueClientIDInput or DomainJoinedInput or 17 more`
+
+  The value to be checked against.
+
+  - `FileInput object { operating_system, path, exists, 2 more }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      File path.
+
+    - `exists: optional boolean`
+
+      Whether or not file exists.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `UniqueClientIDInput object { id, operating_system }`
+
+    - `id: string`
+
+      List ID.
+
+    - `operating_system: "android" or "ios" or "chromeos"`
+
+      Operating System.
+
+      - `"android"`
+
+      - `"ios"`
+
+      - `"chromeos"`
+
+  - `DomainJoinedInput object { operating_system, domain }`
+
+    - `operating_system: "windows"`
+
+      Operating System.
+
+      - `"windows"`
+
+    - `domain: optional string`
+
+      Domain.
+
+  - `OSVersionInput object { operating_system, operator, version, 3 more }`
+
+    - `operating_system: "windows"`
+
+      Operating System.
+
+      - `"windows"`
+
+    - `operator: "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `version: string`
+
+      Version of OS.
+
+    - `os_distro_name: optional string`
+
+      Operating System Distribution Name (linux only).
+
+    - `os_distro_revision: optional string`
+
+      Version of OS Distribution (linux only).
+
+    - `os_version_extra: optional string`
+
+      Additional operating system version details. For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product Version Extra. For Linux, the distribution name and version.
+
+  - `FirewallInput object { enabled, operating_system }`
+
+    - `enabled: boolean`
+
+      Enabled.
+
+    - `operating_system: "windows" or "mac"`
+
+      Operating System.
+
+      - `"windows"`
+
+      - `"mac"`
+
+  - `SentineloneInput object { operating_system, path, sha256, thumbprint }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      File path.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `TeamsDevicesCarbonblackInputRequest object { operating_system, path, sha256, thumbprint }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      File path.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `TeamsDevicesAccessSerialNumberListInputRequest object { id }`
+
+    - `id: string`
+
+      UUID of Access List.
+
+  - `DiskEncryptionInput object { checkDisks, requireAll }`
+
+    - `checkDisks: optional array of CarbonblackInput`
+
+      List of volume names to be checked for encryption.
+
+    - `requireAll: optional boolean`
+
+      Whether to check all disks for encryption.
+
+  - `TeamsDevicesApplicationInputRequest object { operating_system, path, sha256, thumbprint }`
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `path: string`
+
+      Path for the application.
+
+    - `sha256: optional string`
+
+      SHA-256.
+
+    - `thumbprint: optional string`
+
+      Signing certificate thumbprint.
+
+  - `ClientCertificateInput object { certificate_id, cn }`
+
+    - `certificate_id: string`
+
+      UUID of Cloudflare managed certificate.
+
+    - `cn: string`
+
+      Common Name that is protected by the certificate.
+
+  - `TeamsDevicesClientCertificateV2InputRequest object { certificate_id, check_private_key, operating_system, 4 more }`
+
+    - `certificate_id: string`
+
+      UUID of Cloudflare managed certificate.
+
+    - `check_private_key: boolean`
+
+      Confirm the certificate was not imported from another device. We recommend keeping this enabled unless the certificate was deployed without a private key.
+
+    - `operating_system: "windows" or "linux" or "mac"`
+
+      Operating system.
+
+      - `"windows"`
+
+      - `"linux"`
+
+      - `"mac"`
+
+    - `cn: optional string`
+
+      Certificate Common Name. This may include one or more variables in the ${ } notation. Only ${serial_number} and ${hostname} are valid variables.
+
+    - `extended_key_usage: optional array of "clientAuth" or "emailProtection"`
+
+      List of values indicating purposes for which the certificate public key can be used.
+
+      - `"clientAuth"`
+
+      - `"emailProtection"`
+
+    - `locations: optional object { paths, trust_stores }`
+
+      - `paths: optional array of string`
+
+        List of paths to check for client certificate on linux.
+
+      - `trust_stores: optional array of "system" or "user"`
+
+        List of trust stores to check for client certificate.
+
+        - `"system"`
+
+        - `"user"`
+
+    - `subject_alternative_names: optional array of string`
+
+      List of certificate Subject Alternative Names.
+
+  - `TeamsDevicesAntivirusInputRequest object { update_window_days }`
+
+    - `update_window_days: optional number`
+
+      Number of days that the antivirus should be updated within.
+
+  - `WorkspaceOneInput object { compliance_status, connection_id }`
+
+    - `compliance_status: "compliant" or "noncompliant" or "unknown"`
+
+      Compliance Status.
+
+      - `"compliant"`
+
+      - `"noncompliant"`
+
+      - `"unknown"`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+  - `CrowdstrikeInput object { connection_id, last_seen, operator, 6 more }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `last_seen: optional string`
+
+      For more details on last seen, please refer to the Crowdstrike documentation.
+
+    - `operator: optional "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `os: optional string`
+
+      Os Version.
+
+    - `overall: optional string`
+
+      Overall.
+
+    - `sensor_config: optional string`
+
+      SensorConfig.
+
+    - `state: optional "online" or "offline" or "unknown"`
+
+      For more details on state, please refer to the Crowdstrike documentation.
+
+      - `"online"`
+
+      - `"offline"`
+
+      - `"unknown"`
+
+    - `version: optional string`
+
+      Version.
+
+    - `versionOperator: optional "<" or "<=" or ">" or 2 more`
+
+      Version Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+  - `IntuneInput object { compliance_status, connection_id }`
+
+    - `compliance_status: "compliant" or "noncompliant" or "unknown" or 3 more`
+
+      Compliance Status.
+
+      - `"compliant"`
+
+      - `"noncompliant"`
+
+      - `"unknown"`
+
+      - `"notapplicable"`
+
+      - `"ingraceperiod"`
+
+      - `"error"`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+  - `KolideInput object { connection_id, auth_state, countOperator, issue_count }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `auth_state: optional array of "Good" or "Notified" or "Will Block" or "Blocked"`
+
+      The set of Kolide device authentication states that pass the posture check. Device must match one of the specified states.
+
+      - `"Good"`
+
+      - `"Notified"`
+
+      - `"Will Block"`
+
+      - `"Blocked"`
+
+    - `countOperator: optional "<" or "<=" or ">" or 2 more`
+
+      Count Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `issue_count: optional string`
+
+      The Number of Issues.
+
+  - `TaniumInput object { connection_id, eid_last_seen, operator, 3 more }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `eid_last_seen: optional string`
+
+      For more details on eid last seen, refer to the Tanium documentation.
+
+    - `operator: optional "<" or "<=" or ">" or 2 more`
+
+      Operator to evaluate risk_level or eid_last_seen.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `risk_level: optional "low" or "medium" or "high" or "critical"`
+
+      For more details on risk level, refer to the Tanium documentation.
+
+      - `"low"`
+
+      - `"medium"`
+
+      - `"high"`
+
+      - `"critical"`
+
+    - `scoreOperator: optional "<" or "<=" or ">" or 2 more`
+
+      Score Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `total_score: optional number`
+
+      For more details on total score, refer to the Tanium documentation.
+
+  - `SentineloneS2sInput object { connection_id, active_threats, infected, 4 more }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `active_threats: optional number`
+
+      The Number of active threats.
+
+    - `infected: optional boolean`
+
+      Whether device is infected.
+
+    - `is_active: optional boolean`
+
+      Whether device is active.
+
+    - `network_status: optional "connected" or "disconnected" or "disconnecting" or "connecting"`
+
+      Network status of device.
+
+      - `"connected"`
+
+      - `"disconnected"`
+
+      - `"disconnecting"`
+
+      - `"connecting"`
+
+    - `operational_state: optional "na" or "partially_disabled" or "auto_fully_disabled" or 4 more`
+
+      Agent operational state.
+
+      - `"na"`
+
+      - `"partially_disabled"`
+
+      - `"auto_fully_disabled"`
+
+      - `"fully_disabled"`
+
+      - `"auto_partially_disabled"`
+
+      - `"disabled_error"`
+
+      - `"db_corruption"`
+
+    - `operator: optional "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+  - `TeamsDevicesCustomS2sInputRequest object { connection_id, operator, score }`
+
+    - `connection_id: string`
+
+      Posture Integration ID.
+
+    - `operator: "<" or "<=" or ">" or 2 more`
+
+      Operator.
+
+      - `"<"`
+
+      - `"<="`
+
+      - `">"`
+
+      - `">="`
+
+      - `"=="`
+
+    - `score: number`
+
+      A value between 0-100 assigned to devices set by the 3rd party posture provider.
+
+### Device Match
+
+- `DeviceMatch object { platform }`
+
+  - `platform: optional "windows" or "mac" or "linux" or 3 more`
+
+    - `"windows"`
+
+    - `"mac"`
+
+    - `"linux"`
+
+    - `"android"`
+
+    - `"ios"`
+
+    - `"chromeos"`
+
+### Device Posture Rule
+
+- `DevicePostureRule object { id, description, expiration, 5 more }`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `description: optional string`
+
+    The description of the device posture rule.
+
+  - `expiration: optional string`
+
+    Sets the expiration time for a posture check result. If empty, the result remains valid until it is overwritten by new data from the WARP client.
+
+  - `input: optional DeviceInput`
+
+    The value to be checked against.
+
+    - `FileInput object { operating_system, path, exists, 2 more }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `exists: optional boolean`
+
+        Whether or not file exists.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `UniqueClientIDInput object { id, operating_system }`
+
+      - `id: string`
+
+        List ID.
+
+      - `operating_system: "android" or "ios" or "chromeos"`
+
+        Operating System.
+
+        - `"android"`
+
+        - `"ios"`
+
+        - `"chromeos"`
+
+    - `DomainJoinedInput object { operating_system, domain }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `domain: optional string`
+
+        Domain.
+
+    - `OSVersionInput object { operating_system, operator, version, 3 more }`
+
+      - `operating_system: "windows"`
+
+        Operating System.
+
+        - `"windows"`
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `version: string`
+
+        Version of OS.
+
+      - `os_distro_name: optional string`
+
+        Operating System Distribution Name (linux only).
+
+      - `os_distro_revision: optional string`
+
+        Version of OS Distribution (linux only).
+
+      - `os_version_extra: optional string`
+
+        Additional operating system version details. For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product Version Extra. For Linux, the distribution name and version.
+
+    - `FirewallInput object { enabled, operating_system }`
+
+      - `enabled: boolean`
+
+        Enabled.
+
+      - `operating_system: "windows" or "mac"`
+
+        Operating System.
+
+        - `"windows"`
+
+        - `"mac"`
+
+    - `SentineloneInput object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesCarbonblackInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        File path.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `TeamsDevicesAccessSerialNumberListInputRequest object { id }`
+
+      - `id: string`
+
+        UUID of Access List.
+
+    - `DiskEncryptionInput object { checkDisks, requireAll }`
+
+      - `checkDisks: optional array of CarbonblackInput`
+
+        List of volume names to be checked for encryption.
+
+      - `requireAll: optional boolean`
+
+        Whether to check all disks for encryption.
+
+    - `TeamsDevicesApplicationInputRequest object { operating_system, path, sha256, thumbprint }`
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `path: string`
+
+        Path for the application.
+
+      - `sha256: optional string`
+
+        SHA-256.
+
+      - `thumbprint: optional string`
+
+        Signing certificate thumbprint.
+
+    - `ClientCertificateInput object { certificate_id, cn }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `cn: string`
+
+        Common Name that is protected by the certificate.
+
+    - `TeamsDevicesClientCertificateV2InputRequest object { certificate_id, check_private_key, operating_system, 4 more }`
+
+      - `certificate_id: string`
+
+        UUID of Cloudflare managed certificate.
+
+      - `check_private_key: boolean`
+
+        Confirm the certificate was not imported from another device. We recommend keeping this enabled unless the certificate was deployed without a private key.
+
+      - `operating_system: "windows" or "linux" or "mac"`
+
+        Operating system.
+
+        - `"windows"`
+
+        - `"linux"`
+
+        - `"mac"`
+
+      - `cn: optional string`
+
+        Certificate Common Name. This may include one or more variables in the ${ } notation. Only ${serial_number} and ${hostname} are valid variables.
+
+      - `extended_key_usage: optional array of "clientAuth" or "emailProtection"`
+
+        List of values indicating purposes for which the certificate public key can be used.
+
+        - `"clientAuth"`
+
+        - `"emailProtection"`
+
+      - `locations: optional object { paths, trust_stores }`
+
+        - `paths: optional array of string`
+
+          List of paths to check for client certificate on linux.
+
+        - `trust_stores: optional array of "system" or "user"`
+
+          List of trust stores to check for client certificate.
+
+          - `"system"`
+
+          - `"user"`
+
+      - `subject_alternative_names: optional array of string`
+
+        List of certificate Subject Alternative Names.
+
+    - `TeamsDevicesAntivirusInputRequest object { update_window_days }`
+
+      - `update_window_days: optional number`
+
+        Number of days that the antivirus should be updated within.
+
+    - `WorkspaceOneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown"`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `CrowdstrikeInput object { connection_id, last_seen, operator, 6 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `last_seen: optional string`
+
+        For more details on last seen, please refer to the Crowdstrike documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `os: optional string`
+
+        Os Version.
+
+      - `overall: optional string`
+
+        Overall.
+
+      - `sensor_config: optional string`
+
+        SensorConfig.
+
+      - `state: optional "online" or "offline" or "unknown"`
+
+        For more details on state, please refer to the Crowdstrike documentation.
+
+        - `"online"`
+
+        - `"offline"`
+
+        - `"unknown"`
+
+      - `version: optional string`
+
+        Version.
+
+      - `versionOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Version Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `IntuneInput object { compliance_status, connection_id }`
+
+      - `compliance_status: "compliant" or "noncompliant" or "unknown" or 3 more`
+
+        Compliance Status.
+
+        - `"compliant"`
+
+        - `"noncompliant"`
+
+        - `"unknown"`
+
+        - `"notapplicable"`
+
+        - `"ingraceperiod"`
+
+        - `"error"`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+    - `KolideInput object { connection_id, auth_state, countOperator, issue_count }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `auth_state: optional array of "Good" or "Notified" or "Will Block" or "Blocked"`
+
+        The set of Kolide device authentication states that pass the posture check. Device must match one of the specified states.
+
+        - `"Good"`
+
+        - `"Notified"`
+
+        - `"Will Block"`
+
+        - `"Blocked"`
+
+      - `countOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Count Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `issue_count: optional string`
+
+        The Number of Issues.
+
+    - `TaniumInput object { connection_id, eid_last_seen, operator, 3 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `eid_last_seen: optional string`
+
+        For more details on eid last seen, refer to the Tanium documentation.
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator to evaluate risk_level or eid_last_seen.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `risk_level: optional "low" or "medium" or "high" or "critical"`
+
+        For more details on risk level, refer to the Tanium documentation.
+
+        - `"low"`
+
+        - `"medium"`
+
+        - `"high"`
+
+        - `"critical"`
+
+      - `scoreOperator: optional "<" or "<=" or ">" or 2 more`
+
+        Score Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `total_score: optional number`
+
+        For more details on total score, refer to the Tanium documentation.
+
+    - `SentineloneS2sInput object { connection_id, active_threats, infected, 4 more }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `active_threats: optional number`
+
+        The Number of active threats.
+
+      - `infected: optional boolean`
+
+        Whether device is infected.
+
+      - `is_active: optional boolean`
+
+        Whether device is active.
+
+      - `network_status: optional "connected" or "disconnected" or "disconnecting" or "connecting"`
+
+        Network status of device.
+
+        - `"connected"`
+
+        - `"disconnected"`
+
+        - `"disconnecting"`
+
+        - `"connecting"`
+
+      - `operational_state: optional "na" or "partially_disabled" or "auto_fully_disabled" or 4 more`
+
+        Agent operational state.
+
+        - `"na"`
+
+        - `"partially_disabled"`
+
+        - `"auto_fully_disabled"`
+
+        - `"fully_disabled"`
+
+        - `"auto_partially_disabled"`
+
+        - `"disabled_error"`
+
+        - `"db_corruption"`
+
+      - `operator: optional "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+    - `TeamsDevicesCustomS2sInputRequest object { connection_id, operator, score }`
+
+      - `connection_id: string`
+
+        Posture Integration ID.
+
+      - `operator: "<" or "<=" or ">" or 2 more`
+
+        Operator.
+
+        - `"<"`
+
+        - `"<="`
+
+        - `">"`
+
+        - `">="`
+
+        - `"=="`
+
+      - `score: number`
+
+        A value between 0-100 assigned to devices set by the 3rd party posture provider.
+
+  - `match: optional array of DeviceMatch`
+
+    The conditions that the client must match to run the rule.
+
+    - `platform: optional "windows" or "mac" or "linux" or 3 more`
+
+      - `"windows"`
+
+      - `"mac"`
+
+      - `"linux"`
+
+      - `"android"`
+
+      - `"ios"`
+
+      - `"chromeos"`
+
+  - `name: optional string`
+
+    The name of the device posture rule.
+
+  - `schedule: optional string`
+
+    Polling frequency for the WARP client posture check. Default: `5m` (poll every five minutes). Minimum: `1m`.
+
+  - `type: optional "file" or "application" or "tanium" or 20 more`
+
+    The type of device posture rule.
+
+    - `"file"`
+
+    - `"application"`
+
+    - `"tanium"`
+
+    - `"gateway"`
+
+    - `"warp"`
+
+    - `"disk_encryption"`
+
+    - `"serial_number"`
+
+    - `"sentinelone"`
+
+    - `"carbonblack"`
+
+    - `"firewall"`
+
+    - `"os_version"`
+
+    - `"domain_joined"`
+
+    - `"client_certificate"`
+
+    - `"client_certificate_v2"`
+
+    - `"antivirus"`
+
+    - `"unique_client_id"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"intune"`
+
+    - `"workspace_one"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+### Disk Encryption Input
+
+- `DiskEncryptionInput object { checkDisks, requireAll }`
+
+  - `checkDisks: optional array of CarbonblackInput`
+
+    List of volume names to be checked for encryption.
+
+  - `requireAll: optional boolean`
+
+    Whether to check all disks for encryption.
+
+### Domain Joined Input
+
+- `DomainJoinedInput object { operating_system, domain }`
+
+  - `operating_system: "windows"`
+
+    Operating System.
+
+    - `"windows"`
+
+  - `domain: optional string`
+
+    Domain.
+
+### File Input
+
+- `FileInput object { operating_system, path, exists, 2 more }`
+
+  - `operating_system: "windows" or "linux" or "mac"`
+
+    Operating system.
+
+    - `"windows"`
+
+    - `"linux"`
+
+    - `"mac"`
+
+  - `path: string`
+
+    File path.
+
+  - `exists: optional boolean`
+
+    Whether or not file exists.
+
+  - `sha256: optional string`
+
+    SHA-256.
+
+  - `thumbprint: optional string`
+
+    Signing certificate thumbprint.
+
+### Firewall Input
+
+- `FirewallInput object { enabled, operating_system }`
+
+  - `enabled: boolean`
+
+    Enabled.
+
+  - `operating_system: "windows" or "mac"`
+
+    Operating System.
+
+    - `"windows"`
+
+    - `"mac"`
+
+### Intune Input
+
+- `IntuneInput object { compliance_status, connection_id }`
+
+  - `compliance_status: "compliant" or "noncompliant" or "unknown" or 3 more`
+
+    Compliance Status.
+
+    - `"compliant"`
+
+    - `"noncompliant"`
+
+    - `"unknown"`
+
+    - `"notapplicable"`
+
+    - `"ingraceperiod"`
+
+    - `"error"`
+
+  - `connection_id: string`
+
+    Posture Integration ID.
+
+### Kolide Input
+
+- `KolideInput object { connection_id, auth_state, countOperator, issue_count }`
+
+  - `connection_id: string`
+
+    Posture Integration ID.
+
+  - `auth_state: optional array of "Good" or "Notified" or "Will Block" or "Blocked"`
+
+    The set of Kolide device authentication states that pass the posture check. Device must match one of the specified states.
+
+    - `"Good"`
+
+    - `"Notified"`
+
+    - `"Will Block"`
+
+    - `"Blocked"`
+
+  - `countOperator: optional "<" or "<=" or ">" or 2 more`
+
+    Count Operator.
+
+    - `"<"`
+
+    - `"<="`
+
+    - `">"`
+
+    - `">="`
+
+    - `"=="`
+
+  - `issue_count: optional string`
+
+    The Number of Issues.
+
+### OS Version Input
+
+- `OSVersionInput object { operating_system, operator, version, 3 more }`
+
+  - `operating_system: "windows"`
+
+    Operating System.
+
+    - `"windows"`
+
+  - `operator: "<" or "<=" or ">" or 2 more`
+
+    Operator.
+
+    - `"<"`
+
+    - `"<="`
+
+    - `">"`
+
+    - `">="`
+
+    - `"=="`
+
+  - `version: string`
+
+    Version of OS.
+
+  - `os_distro_name: optional string`
+
+    Operating System Distribution Name (linux only).
+
+  - `os_distro_revision: optional string`
+
+    Version of OS Distribution (linux only).
+
+  - `os_version_extra: optional string`
+
+    Additional operating system version details. For Windows, the UBR (Update Build Revision). For Mac or iOS, the Product Version Extra. For Linux, the distribution name and version.
+
+### Sentinelone Input
+
+- `SentineloneInput object { operating_system, path, sha256, thumbprint }`
+
+  - `operating_system: "windows" or "linux" or "mac"`
+
+    Operating system.
+
+    - `"windows"`
+
+    - `"linux"`
+
+    - `"mac"`
+
+  - `path: string`
+
+    File path.
+
+  - `sha256: optional string`
+
+    SHA-256.
+
+  - `thumbprint: optional string`
+
+    Signing certificate thumbprint.
+
+### Sentinelone S2s Input
+
+- `SentineloneS2sInput object { connection_id, active_threats, infected, 4 more }`
+
+  - `connection_id: string`
+
+    Posture Integration ID.
+
+  - `active_threats: optional number`
+
+    The Number of active threats.
+
+  - `infected: optional boolean`
+
+    Whether device is infected.
+
+  - `is_active: optional boolean`
+
+    Whether device is active.
+
+  - `network_status: optional "connected" or "disconnected" or "disconnecting" or "connecting"`
+
+    Network status of device.
+
+    - `"connected"`
+
+    - `"disconnected"`
+
+    - `"disconnecting"`
+
+    - `"connecting"`
+
+  - `operational_state: optional "na" or "partially_disabled" or "auto_fully_disabled" or 4 more`
+
+    Agent operational state.
+
+    - `"na"`
+
+    - `"partially_disabled"`
+
+    - `"auto_fully_disabled"`
+
+    - `"fully_disabled"`
+
+    - `"auto_partially_disabled"`
+
+    - `"disabled_error"`
+
+    - `"db_corruption"`
+
+  - `operator: optional "<" or "<=" or ">" or 2 more`
+
+    Operator.
+
+    - `"<"`
+
+    - `"<="`
+
+    - `">"`
+
+    - `">="`
+
+    - `"=="`
+
+### Tanium Input
+
+- `TaniumInput object { connection_id, eid_last_seen, operator, 3 more }`
+
+  - `connection_id: string`
+
+    Posture Integration ID.
+
+  - `eid_last_seen: optional string`
+
+    For more details on eid last seen, refer to the Tanium documentation.
+
+  - `operator: optional "<" or "<=" or ">" or 2 more`
+
+    Operator to evaluate risk_level or eid_last_seen.
+
+    - `"<"`
+
+    - `"<="`
+
+    - `">"`
+
+    - `">="`
+
+    - `"=="`
+
+  - `risk_level: optional "low" or "medium" or "high" or "critical"`
+
+    For more details on risk level, refer to the Tanium documentation.
+
+    - `"low"`
+
+    - `"medium"`
+
+    - `"high"`
+
+    - `"critical"`
+
+  - `scoreOperator: optional "<" or "<=" or ">" or 2 more`
+
+    Score Operator.
+
+    - `"<"`
+
+    - `"<="`
+
+    - `">"`
+
+    - `">="`
+
+    - `"=="`
+
+  - `total_score: optional number`
+
+    For more details on total score, refer to the Tanium documentation.
+
+### Unique Client ID Input
+
+- `UniqueClientIDInput object { id, operating_system }`
+
+  - `id: string`
+
+    List ID.
+
+  - `operating_system: "android" or "ios" or "chromeos"`
+
+    Operating System.
+
+    - `"android"`
+
+    - `"ios"`
+
+    - `"chromeos"`
+
+### Workspace One Input
+
+- `WorkspaceOneInput object { compliance_status, connection_id }`
+
+  - `compliance_status: "compliant" or "noncompliant" or "unknown"`
+
+    Compliance Status.
+
+    - `"compliant"`
+
+    - `"noncompliant"`
+
+    - `"unknown"`
+
+  - `connection_id: string`
+
+    Posture Integration ID.
+
+### Posture Delete Response
+
+- `PostureDeleteResponse object { id }`
+
+  - `id: optional string`
+
+    API UUID.
+
+# Integrations
+
+## List your device posture integrations
+
+**get** `/accounts/{account_id}/devices/posture/integration`
+
+Fetches the list of device posture integrations for an account.
+
+### Path Parameters
+
+- `account_id: string`
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: array of Integration`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `config: optional object { api_url, auth_url, client_id }`
+
+    The configuration object containing third-party integration information.
+
+    - `api_url: string`
+
+      The Workspace One API URL provided in the Workspace One Admin Dashboard.
+
+    - `auth_url: string`
+
+      The Workspace One Authorization URL depending on your region.
+
+    - `client_id: string`
+
+      The Workspace One client ID provided in the Workspace One Admin Dashboard.
+
+  - `interval: optional string`
+
+    The interval between each posture check with the third-party API. Use `m` for minutes (e.g. `5m`) and `h` for hours (e.g. `12h`).
+
+  - `name: optional string`
+
+    The name of the device posture integration.
+
+  - `type: optional "workspace_one" or "crowdstrike_s2s" or "uptycs" or 5 more`
+
+    The type of device posture integration.
+
+    - `"workspace_one"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"uptycs"`
+
+    - `"intune"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+- `result_info: optional object { count, page, per_page, total_count }`
+
+  - `count: optional number`
+
+    Total number of results for the requested service.
+
+  - `page: optional number`
+
+    Current page within paginated list of results.
+
+  - `per_page: optional number`
+
+    Number of results per page of results.
+
+  - `total_count: optional number`
+
+    Total results available without any search parameters.
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture/integration \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": [
+    {
+      "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+      "config": {
+        "api_url": "https://as123.awmdm.com/API",
+        "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
+        "client_id": "example client id"
+      },
+      "interval": "10m",
+      "name": "My Workspace One Integration",
+      "type": "workspace_one"
+    }
+  ],
+  "success": true,
+  "result_info": {
+    "count": 1,
+    "page": 1,
+    "per_page": 20,
+    "total_count": 2000
+  }
+}
+```
+
+## Get device posture integration details
+
+**get** `/accounts/{account_id}/devices/posture/integration/{integration_id}`
+
+Fetches details for a single device posture integration.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `integration_id: string`
+
+  API UUID.
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: Integration`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `config: optional object { api_url, auth_url, client_id }`
+
+    The configuration object containing third-party integration information.
+
+    - `api_url: string`
+
+      The Workspace One API URL provided in the Workspace One Admin Dashboard.
+
+    - `auth_url: string`
+
+      The Workspace One Authorization URL depending on your region.
+
+    - `client_id: string`
+
+      The Workspace One client ID provided in the Workspace One Admin Dashboard.
+
+  - `interval: optional string`
+
+    The interval between each posture check with the third-party API. Use `m` for minutes (e.g. `5m`) and `h` for hours (e.g. `12h`).
+
+  - `name: optional string`
+
+    The name of the device posture integration.
+
+  - `type: optional "workspace_one" or "crowdstrike_s2s" or "uptycs" or 5 more`
+
+    The type of device posture integration.
+
+    - `"workspace_one"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"uptycs"`
+
+    - `"intune"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture/integration/$INTEGRATION_ID \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": {
+    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+    "config": {
+      "api_url": "https://as123.awmdm.com/API",
+      "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
+      "client_id": "example client id"
+    },
+    "interval": "10m",
+    "name": "My Workspace One Integration",
+    "type": "workspace_one"
+  },
+  "success": true
+}
+```
+
+## Create a device posture integration
+
+**post** `/accounts/{account_id}/devices/posture/integration`
+
+Create a new device posture integration.
+
+### Path Parameters
+
+- `account_id: string`
+
+### Body Parameters
+
+- `config: object { api_url, auth_url, client_id, client_secret }  or object { api_url, client_id, client_secret, customer_id }  or object { api_url, client_key, client_secret, customer_id }  or 5 more`
+
+  The configuration object containing third-party integration information.
+
+  - `TeamsDevicesWorkspaceOneConfigRequest object { api_url, auth_url, client_id, client_secret }`
+
+    - `api_url: string`
+
+      The Workspace One API URL provided in the Workspace One Admin Dashboard.
+
+    - `auth_url: string`
+
+      The Workspace One Authorization URL depending on your region.
+
+    - `client_id: string`
+
+      The Workspace One client ID provided in the Workspace One Admin Dashboard.
+
+    - `client_secret: string`
+
+      The Workspace One client secret provided in the Workspace One Admin Dashboard.
+
+  - `TeamsDevicesCrowdstrikeConfigRequest object { api_url, client_id, client_secret, customer_id }`
+
+    - `api_url: string`
+
+      The Crowdstrike API URL.
+
+    - `client_id: string`
+
+      The Crowdstrike client ID.
+
+    - `client_secret: string`
+
+      The Crowdstrike client secret.
+
+    - `customer_id: string`
+
+      The Crowdstrike customer ID.
+
+  - `TeamsDevicesUptycsConfigRequest object { api_url, client_key, client_secret, customer_id }`
+
+    - `api_url: string`
+
+      The Uptycs API URL.
+
+    - `client_key: string`
+
+      The Uptycs client secret.
+
+    - `client_secret: string`
+
+      The Uptycs client secret.
+
+    - `customer_id: string`
+
+      The Uptycs customer ID.
+
+  - `TeamsDevicesIntuneConfigRequest object { client_id, client_secret, customer_id }`
+
+    - `client_id: string`
+
+      The Intune client ID.
+
+    - `client_secret: string`
+
+      The Intune client secret.
+
+    - `customer_id: string`
+
+      The Intune customer ID.
+
+  - `TeamsDevicesKolideConfigRequest object { client_id, client_secret }`
+
+    - `client_id: string`
+
+      The Kolide client ID.
+
+    - `client_secret: string`
+
+      The Kolide client secret.
+
+  - `TeamsDevicesTaniumConfigRequest object { api_url, client_secret, access_client_id, access_client_secret }`
+
+    - `api_url: string`
+
+      The Tanium API URL.
+
+    - `client_secret: string`
+
+      The Tanium client secret.
+
+    - `access_client_id: optional string`
+
+      If present, this id will be passed in the `CF-Access-Client-ID` header when hitting the `api_url`.
+
+    - `access_client_secret: optional string`
+
+      If present, this secret will be passed in the `CF-Access-Client-Secret` header when hitting the `api_url`.
+
+  - `TeamsDevicesSentineloneS2sConfigRequest object { api_url, client_secret }`
+
+    - `api_url: string`
+
+      The SentinelOne S2S API URL.
+
+    - `client_secret: string`
+
+      The SentinelOne S2S client secret.
+
+  - `TeamsDevicesCustomS2sConfigRequest object { access_client_id, access_client_secret, api_url }`
+
+    - `access_client_id: string`
+
+      This id will be passed in the `CF-Access-Client-ID` header when hitting the `api_url`.
+
+    - `access_client_secret: string`
+
+      This secret will be passed in the `CF-Access-Client-Secret` header when hitting the `api_url`.
+
+    - `api_url: string`
+
+      The Custom Device Posture Integration  API URL.
+
+- `interval: string`
+
+  The interval between each posture check with the third-party API. Use `m` for minutes (e.g. `5m`) and `h` for hours (e.g. `12h`).
+
+- `name: string`
+
+  The name of the device posture integration.
+
+- `type: "workspace_one" or "crowdstrike_s2s" or "uptycs" or 5 more`
+
+  The type of device posture integration.
+
+  - `"workspace_one"`
+
+  - `"crowdstrike_s2s"`
+
+  - `"uptycs"`
+
+  - `"intune"`
+
+  - `"kolide"`
+
+  - `"tanium_s2s"`
+
+  - `"sentinelone_s2s"`
+
+  - `"custom_s2s"`
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: Integration`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `config: optional object { api_url, auth_url, client_id }`
+
+    The configuration object containing third-party integration information.
+
+    - `api_url: string`
+
+      The Workspace One API URL provided in the Workspace One Admin Dashboard.
+
+    - `auth_url: string`
+
+      The Workspace One Authorization URL depending on your region.
+
+    - `client_id: string`
+
+      The Workspace One client ID provided in the Workspace One Admin Dashboard.
+
+  - `interval: optional string`
+
+    The interval between each posture check with the third-party API. Use `m` for minutes (e.g. `5m`) and `h` for hours (e.g. `12h`).
+
+  - `name: optional string`
+
+    The name of the device posture integration.
+
+  - `type: optional "workspace_one" or "crowdstrike_s2s" or "uptycs" or 5 more`
+
+    The type of device posture integration.
+
+    - `"workspace_one"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"uptycs"`
+
+    - `"intune"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture/integration \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{
+          "config": {
+            "api_url": "https://as123.awmdm.com/API",
+            "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
+            "client_id": "example client id",
+            "client_secret": "example client secret"
+          },
+          "interval": "10m",
+          "name": "My Workspace One Integration",
+          "type": "workspace_one"
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": {
+    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+    "config": {
+      "api_url": "https://as123.awmdm.com/API",
+      "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
+      "client_id": "example client id"
+    },
+    "interval": "10m",
+    "name": "My Workspace One Integration",
+    "type": "workspace_one"
+  },
+  "success": true
+}
+```
+
+## Update a device posture integration
+
+**patch** `/accounts/{account_id}/devices/posture/integration/{integration_id}`
+
+Updates a configured device posture integration.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `integration_id: string`
+
+  API UUID.
+
+### Body Parameters
+
+- `config: optional object { api_url, auth_url, client_id, client_secret }  or object { api_url, client_id, client_secret, customer_id }  or object { api_url, client_key, client_secret, customer_id }  or 5 more`
+
+  The configuration object containing third-party integration information.
+
+  - `TeamsDevicesWorkspaceOneConfigRequest object { api_url, auth_url, client_id, client_secret }`
+
+    - `api_url: string`
+
+      The Workspace One API URL provided in the Workspace One Admin Dashboard.
+
+    - `auth_url: string`
+
+      The Workspace One Authorization URL depending on your region.
+
+    - `client_id: string`
+
+      The Workspace One client ID provided in the Workspace One Admin Dashboard.
+
+    - `client_secret: string`
+
+      The Workspace One client secret provided in the Workspace One Admin Dashboard.
+
+  - `TeamsDevicesCrowdstrikeConfigRequest object { api_url, client_id, client_secret, customer_id }`
+
+    - `api_url: string`
+
+      The Crowdstrike API URL.
+
+    - `client_id: string`
+
+      The Crowdstrike client ID.
+
+    - `client_secret: string`
+
+      The Crowdstrike client secret.
+
+    - `customer_id: string`
+
+      The Crowdstrike customer ID.
+
+  - `TeamsDevicesUptycsConfigRequest object { api_url, client_key, client_secret, customer_id }`
+
+    - `api_url: string`
+
+      The Uptycs API URL.
+
+    - `client_key: string`
+
+      The Uptycs client secret.
+
+    - `client_secret: string`
+
+      The Uptycs client secret.
+
+    - `customer_id: string`
+
+      The Uptycs customer ID.
+
+  - `TeamsDevicesIntuneConfigRequest object { client_id, client_secret, customer_id }`
+
+    - `client_id: string`
+
+      The Intune client ID.
+
+    - `client_secret: string`
+
+      The Intune client secret.
+
+    - `customer_id: string`
+
+      The Intune customer ID.
+
+  - `TeamsDevicesKolideConfigRequest object { client_id, client_secret }`
+
+    - `client_id: string`
+
+      The Kolide client ID.
+
+    - `client_secret: string`
+
+      The Kolide client secret.
+
+  - `TeamsDevicesTaniumConfigRequest object { api_url, client_secret, access_client_id, access_client_secret }`
+
+    - `api_url: string`
+
+      The Tanium API URL.
+
+    - `client_secret: string`
+
+      The Tanium client secret.
+
+    - `access_client_id: optional string`
+
+      If present, this id will be passed in the `CF-Access-Client-ID` header when hitting the `api_url`.
+
+    - `access_client_secret: optional string`
+
+      If present, this secret will be passed in the `CF-Access-Client-Secret` header when hitting the `api_url`.
+
+  - `TeamsDevicesSentineloneS2sConfigRequest object { api_url, client_secret }`
+
+    - `api_url: string`
+
+      The SentinelOne S2S API URL.
+
+    - `client_secret: string`
+
+      The SentinelOne S2S client secret.
+
+  - `TeamsDevicesCustomS2sConfigRequest object { access_client_id, access_client_secret, api_url }`
+
+    - `access_client_id: string`
+
+      This id will be passed in the `CF-Access-Client-ID` header when hitting the `api_url`.
+
+    - `access_client_secret: string`
+
+      This secret will be passed in the `CF-Access-Client-Secret` header when hitting the `api_url`.
+
+    - `api_url: string`
+
+      The Custom Device Posture Integration  API URL.
+
+- `interval: optional string`
+
+  The interval between each posture check with the third-party API. Use `m` for minutes (e.g. `5m`) and `h` for hours (e.g. `12h`).
+
+- `name: optional string`
+
+  The name of the device posture integration.
+
+- `type: optional "workspace_one" or "crowdstrike_s2s" or "uptycs" or 5 more`
+
+  The type of device posture integration.
+
+  - `"workspace_one"`
+
+  - `"crowdstrike_s2s"`
+
+  - `"uptycs"`
+
+  - `"intune"`
+
+  - `"kolide"`
+
+  - `"tanium_s2s"`
+
+  - `"sentinelone_s2s"`
+
+  - `"custom_s2s"`
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: Integration`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `config: optional object { api_url, auth_url, client_id }`
+
+    The configuration object containing third-party integration information.
+
+    - `api_url: string`
+
+      The Workspace One API URL provided in the Workspace One Admin Dashboard.
+
+    - `auth_url: string`
+
+      The Workspace One Authorization URL depending on your region.
+
+    - `client_id: string`
+
+      The Workspace One client ID provided in the Workspace One Admin Dashboard.
+
+  - `interval: optional string`
+
+    The interval between each posture check with the third-party API. Use `m` for minutes (e.g. `5m`) and `h` for hours (e.g. `12h`).
+
+  - `name: optional string`
+
+    The name of the device posture integration.
+
+  - `type: optional "workspace_one" or "crowdstrike_s2s" or "uptycs" or 5 more`
+
+    The type of device posture integration.
+
+    - `"workspace_one"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"uptycs"`
+
+    - `"intune"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture/integration/$INTEGRATION_ID \
+    -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{
+          "config": {
+            "api_url": "https://as123.awmdm.com/API",
+            "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
+            "client_id": "example client id",
+            "client_secret": "example client secret"
+          },
+          "interval": "10m",
+          "name": "My Workspace One Integration",
+          "type": "workspace_one"
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": {
+    "id": "f174e90a-fafe-4643-bbbc-4a0ed4fc8415",
+    "config": {
+      "api_url": "https://as123.awmdm.com/API",
+      "auth_url": "https://na.uemauth.workspaceone.com/connect/token",
+      "client_id": "example client id"
+    },
+    "interval": "10m",
+    "name": "My Workspace One Integration",
+    "type": "workspace_one"
+  },
+  "success": true
+}
+```
+
+## Delete a device posture integration
+
+**delete** `/accounts/{account_id}/devices/posture/integration/{integration_id}`
+
+Delete a configured device posture integration.
+
+### Path Parameters
+
+- `account_id: string`
+
+- `integration_id: string`
+
+  API UUID.
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: unknown or string`
+
+  - `unknown`
+
+  - `string`
+
+- `success: true`
+
+  Whether the API call was successful.
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/accounts/$ACCOUNT_ID/devices/posture/integration/$INTEGRATION_ID \
+    -X DELETE \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN"
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": {},
+  "success": true
+}
+```
+
+## Domain Types
+
+### Integration
+
+- `Integration object { id, config, interval, 2 more }`
+
+  - `id: optional string`
+
+    API UUID.
+
+  - `config: optional object { api_url, auth_url, client_id }`
+
+    The configuration object containing third-party integration information.
+
+    - `api_url: string`
+
+      The Workspace One API URL provided in the Workspace One Admin Dashboard.
+
+    - `auth_url: string`
+
+      The Workspace One Authorization URL depending on your region.
+
+    - `client_id: string`
+
+      The Workspace One client ID provided in the Workspace One Admin Dashboard.
+
+  - `interval: optional string`
+
+    The interval between each posture check with the third-party API. Use `m` for minutes (e.g. `5m`) and `h` for hours (e.g. `12h`).
+
+  - `name: optional string`
+
+    The name of the device posture integration.
+
+  - `type: optional "workspace_one" or "crowdstrike_s2s" or "uptycs" or 5 more`
+
+    The type of device posture integration.
+
+    - `"workspace_one"`
+
+    - `"crowdstrike_s2s"`
+
+    - `"uptycs"`
+
+    - `"intune"`
+
+    - `"kolide"`
+
+    - `"tanium_s2s"`
+
+    - `"sentinelone_s2s"`
+
+    - `"custom_s2s"`
+
+### Integration Delete Response
+
+- `IntegrationDeleteResponse = unknown or string`
+
+  - `unknown`
+
+  - `string`

@@ -1,0 +1,32 @@
+{
+  "description": "The docs mark chat-completions message `content` required, but the live API accepts null/absent content (runtime-verified by alchemy-effect against v0, which modeled it string|array|null and optional). Make it optional and nullable on all three request message-item shapes.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.ai_search#InstancesChatCompletionsRequestMessagesItem/members/content/traits/smithy.api#required"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#InstancesChatCompletionsRequestMessagesItem/members/content/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesChatCompletionsRequestMessagesItem/members/content/traits/smithy.api#required"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesChatCompletionsRequestMessagesItem/members/content/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesInstancesChatCompletionsRequestMessagesItem/members/content/traits/smithy.api#required"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#NamespacesInstancesChatCompletionsRequestMessagesItem/members/content/traits/com.cloudflare.protocols#nullable",
+      "value": {}
+    }
+  ]
+}

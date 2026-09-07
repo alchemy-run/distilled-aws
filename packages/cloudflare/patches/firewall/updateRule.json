@@ -1,0 +1,30 @@
+{
+  "description": "Align firewall#RulesUpdate with distilled cloudflare/firewall updateRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesUpdate",
+      "path": "/shapes/com.cloudflare.firewall#UpdateRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesUpdateRequest",
+      "path": "/shapes/com.cloudflare.firewall#UpdateRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateRule/input/target",
+      "value": "com.cloudflare.firewall#UpdateRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#RulesUpdateResponse",
+      "path": "/shapes/com.cloudflare.firewall#UpdateRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#UpdateRule/output/target",
+      "value": "com.cloudflare.firewall#UpdateRuleResponse"
+    }
+  ]
+}

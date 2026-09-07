@@ -1,0 +1,38 @@
+{
+  "description": "Align ai#TasksList with distilled cloudflare/ai listTasks",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#TasksList",
+      "path": "/shapes/com.cloudflare.ai#ListTasks"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#TasksListRequest",
+      "path": "/shapes/com.cloudflare.ai#ListTasksRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListTasks/input/target",
+      "value": "com.cloudflare.ai#ListTasksRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#TasksListResponse",
+      "path": "/shapes/com.cloudflare.ai#ListTasksResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListTasks/output/target",
+      "value": "com.cloudflare.ai#ListTasksResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai#ListTasks/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

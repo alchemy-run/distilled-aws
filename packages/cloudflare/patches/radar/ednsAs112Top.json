@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#As112TopEdns with distilled cloudflare/radar ednsAs112Top",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TopEdns",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112Top"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TopEdnsRequest",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112TopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112Top/input/target",
+      "value": "com.cloudflare.radar#EdnsAs112TopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TopEdnsResponse",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112TopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112Top/output/target",
+      "value": "com.cloudflare.radar#EdnsAs112TopResponse"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "description": "pipeline listing is page/per_page envelope-paginated — mark it so result_info is delivered (consumer-proven)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pipelines#ListPipelines/traits/smithy.api#paginated",
+      "value": {
+        "inputToken": "page",
+        "pageSize": "per_page",
+        "items": "results"
+      }
+    }
+  ]
+}

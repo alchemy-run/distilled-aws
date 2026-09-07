@@ -1,0 +1,38 @@
+{
+  "description": "Align ai#ToMarkdownSupported with distilled cloudflare/ai supportedToMarkdown",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ToMarkdownSupported",
+      "path": "/shapes/com.cloudflare.ai#SupportedToMarkdown"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ToMarkdownSupportedRequest",
+      "path": "/shapes/com.cloudflare.ai#SupportedToMarkdownRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#SupportedToMarkdown/input/target",
+      "value": "com.cloudflare.ai#SupportedToMarkdownRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#ToMarkdownSupportedResponse",
+      "path": "/shapes/com.cloudflare.ai#SupportedToMarkdownResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#SupportedToMarkdown/output/target",
+      "value": "com.cloudflare.ai#SupportedToMarkdownResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai#SupportedToMarkdown/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

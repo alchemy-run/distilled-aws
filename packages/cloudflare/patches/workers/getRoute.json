@@ -1,0 +1,48 @@
+{
+  "description": "Align workers#RoutesGet with distilled cloudflare/workers getRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesGet",
+      "path": "/shapes/com.cloudflare.workers#GetRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesGetRequest",
+      "path": "/shapes/com.cloudflare.workers#GetRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetRoute/input/target",
+      "value": "com.cloudflare.workers#GetRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesGetResponse",
+      "path": "/shapes/com.cloudflare.workers#GetRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetRoute/output/target",
+      "value": "com.cloudflare.workers#GetRouteResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#GetRoute/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#RouteNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

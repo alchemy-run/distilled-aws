@@ -1,0 +1,26 @@
+{
+  "description": "Key dictionary / op aliases for rules (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdOn": "created_on",
+        "excludeExactHostname": "exclude_exact_hostname",
+        "includeSubdomains": "include_subdomains",
+        "modifiedOn": "modified_on",
+        "numItems": "num_items",
+        "numReferencingFilters": "num_referencing_filters",
+        "operationId": "operation_id",
+        "preservePathSuffix": "preserve_path_suffix",
+        "preserveQueryString": "preserve_query_string",
+        "resultInfo": "result_info",
+        "sourceUrl": "source_url",
+        "statusCode": "status_code",
+        "subpathMatching": "subpath_matching",
+        "targetUrl": "target_url",
+        "urlHostname": "url_hostname"
+      }
+    }
+  ]
+}

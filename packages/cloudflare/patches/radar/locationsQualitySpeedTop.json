@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#QualitySpeedTopLocations with distilled cloudflare/radar locationsQualitySpeedTop",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualitySpeedTopLocations",
+      "path": "/shapes/com.cloudflare.radar#LocationsQualitySpeedTop"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualitySpeedTopLocationsRequest",
+      "path": "/shapes/com.cloudflare.radar#LocationsQualitySpeedTopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsQualitySpeedTop/input/target",
+      "value": "com.cloudflare.radar#LocationsQualitySpeedTopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualitySpeedTopLocationsResponse",
+      "path": "/shapes/com.cloudflare.radar#LocationsQualitySpeedTopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#LocationsQualitySpeedTop/output/target",
+      "value": "com.cloudflare.radar#LocationsQualitySpeedTopResponse"
+    }
+  ]
+}

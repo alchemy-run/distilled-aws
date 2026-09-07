@@ -1,0 +1,42 @@
+{
+  "description": "Align flagship#AppsFlagsUpdate with distilled cloudflare/flagship updateAppFlag",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsFlagsUpdate",
+      "path": "/shapes/com.cloudflare.flagship#UpdateAppFlag"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsFlagsUpdateRequest",
+      "path": "/shapes/com.cloudflare.flagship#UpdateAppFlagRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#UpdateAppFlag/input/target",
+      "value": "com.cloudflare.flagship#UpdateAppFlagRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsFlagsUpdateResponse",
+      "path": "/shapes/com.cloudflare.flagship#UpdateAppFlagResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#UpdateAppFlag/output/target",
+      "value": "com.cloudflare.flagship#UpdateAppFlagResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.flagship#UpdateAppFlag/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.flagship#FlagshipFlagNotFound"
+        },
+        {
+          "target": "com.cloudflare.flagship#FlagshipAppNotFound"
+        }
+      ]
+    }
+  ]
+}

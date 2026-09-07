@@ -1,0 +1,41 @@
+{
+  "description": "Align zero_trust#DexRulesList with distilled cloudflare/zero-trust listDexRules",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexRulesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexRules"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexRulesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexRulesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexRules/input/target",
+      "value": "com.cloudflare.zero_trust#ListDexRulesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexRulesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexRulesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexRules/output/target",
+      "value": "com.cloudflare.zero_trust#ListDexRulesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexRules/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result.items",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

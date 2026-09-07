@@ -1,0 +1,1748 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.private_registries#ListOrgPrivateRegistriesRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.private_registries#OrgPrivateRegistryConfiguration": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the private registry configuration.",
+            "smithy.api#required": {}
+          }
+        },
+        "registry_type": {
+          "target": "com.github.private_registries#OrgPrivateRegistryConfigurationRegistryType",
+          "traits": {
+            "smithy.api#documentation": "The registry type.",
+            "smithy.api#required": {}
+          }
+        },
+        "auth_type": {
+          "target": "com.github.private_registries#OrgPrivateRegistryConfigurationAuthType",
+          "traits": {
+            "smithy.api#documentation": "The authentication type for the private registry."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the private registry."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username to use when authenticating with the private registry.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "replaces_base": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this private registry replaces the base registry (e.g., npmjs.org for npm, rubygems.org for rubygems). When `true`, Dependabot will only use this registry and will not fall back to the public registry. When `false` (default), Dependabot will use this registry for scoped packages but may fall back to the public registry for other packages."
+          }
+        },
+        "visibility": {
+          "target": "com.github.private_registries#OrgPrivateRegistryConfigurationVisibility",
+          "traits": {
+            "smithy.api#documentation": "Which type of organization repositories have access to the private registry.",
+            "smithy.api#required": {}
+          }
+        },
+        "tenant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the Azure AD application."
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the Azure AD application."
+          }
+        },
+        "aws_region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS region."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS account ID."
+          }
+        },
+        "role_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS IAM role name."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CodeArtifact domain."
+          }
+        },
+        "domain_owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CodeArtifact domain owner."
+          }
+        },
+        "jfrog_oidc_provider_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JFrog OIDC provider name."
+          }
+        },
+        "audience": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OIDC audience."
+          }
+        },
+        "identity_mapping_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JFrog identity mapping name."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith organization namespace."
+          }
+        },
+        "service_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith service account slug."
+          }
+        },
+        "api_host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith API host."
+          }
+        },
+        "workload_identity_provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full resource name of the GCP Workload Identity Provider (e.g. `projects/<NUM>/locations/global/workloadIdentityPools/<POOL>/providers/<PROVIDER>`)."
+          }
+        },
+        "service_account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GCP service account email to impersonate. If omitted, the federated token is used directly (direct WIF)."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private registry configuration for an organization"
+      }
+    },
+    "com.github.private_registries#OrgPrivateRegistryConfigurationRegistryType": {
+      "type": "enum",
+      "members": {
+        "MAVEN_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven_repository"
+          }
+        },
+        "NUGET_FEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget_feed"
+          }
+        },
+        "GOPROXY_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "goproxy_server"
+          }
+        },
+        "NPM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm_registry"
+          }
+        },
+        "RUBYGEMS_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems_server"
+          }
+        },
+        "CARGO_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cargo_registry"
+          }
+        },
+        "COMPOSER_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "composer_repository"
+          }
+        },
+        "DOCKER_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker_registry"
+          }
+        },
+        "GIT_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git_source"
+          }
+        },
+        "HELM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "helm_registry"
+          }
+        },
+        "HEX_ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hex_organization"
+          }
+        },
+        "HEX_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hex_repository"
+          }
+        },
+        "PUB_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pub_repository"
+          }
+        },
+        "PYTHON_INDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "python_index"
+          }
+        },
+        "TERRAFORM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terraform_registry"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The registry type."
+      }
+    },
+    "com.github.private_registries#OrgPrivateRegistryConfigurationAuthType": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token"
+          }
+        },
+        "USERNAME_PASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "username_password"
+          }
+        },
+        "OIDC_AZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_azure"
+          }
+        },
+        "OIDC_AWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_aws"
+          }
+        },
+        "OIDC_JFROG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_jfrog"
+          }
+        },
+        "OIDC_CLOUDSMITH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_cloudsmith"
+          }
+        },
+        "OIDC_GCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_gcp"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The authentication type for the private registry."
+      }
+    },
+    "com.github.private_registries#OrgPrivateRegistryConfigurationVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Which type of organization repositories have access to the private registry."
+      }
+    },
+    "com.github.private_registries#ListOrgPrivateRegistriesResponseConfigurationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.private_registries#OrgPrivateRegistryConfiguration"
+      },
+      "traits": {}
+    },
+    "com.github.private_registries#ListOrgPrivateRegistriesResponse": {
+      "type": "structure",
+      "members": {
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "configurations": {
+          "target": "com.github.private_registries#ListOrgPrivateRegistriesResponseConfigurationsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.private_registries#ListOrgPrivateRegistries": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.private_registries#ListOrgPrivateRegistriesRequest"
+      },
+      "output": {
+        "target": "com.github.private_registries#ListOrgPrivateRegistriesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.private_registries#BadRequest"
+        },
+        {
+          "target": "com.github.private_registries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/private-registries",
+          "code": 200
+        },
+        "smithy.api#documentation": "List private registries for an organization\n\nLists all private registry configurations available at the organization-level without revealing their encrypted\nvalues.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.private_registries#CreateOrgPrivateRegistryRequestRegistryType": {
+      "type": "enum",
+      "members": {
+        "MAVEN_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven_repository"
+          }
+        },
+        "NUGET_FEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget_feed"
+          }
+        },
+        "GOPROXY_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "goproxy_server"
+          }
+        },
+        "NPM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm_registry"
+          }
+        },
+        "RUBYGEMS_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems_server"
+          }
+        },
+        "CARGO_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cargo_registry"
+          }
+        },
+        "COMPOSER_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "composer_repository"
+          }
+        },
+        "DOCKER_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker_registry"
+          }
+        },
+        "GIT_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git_source"
+          }
+        },
+        "HELM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "helm_registry"
+          }
+        },
+        "HEX_ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hex_organization"
+          }
+        },
+        "HEX_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hex_repository"
+          }
+        },
+        "PUB_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pub_repository"
+          }
+        },
+        "PYTHON_INDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "python_index"
+          }
+        },
+        "TERRAFORM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terraform_registry"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The registry type."
+      }
+    },
+    "com.github.private_registries#CreateOrgPrivateRegistryRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry."
+      }
+    },
+    "com.github.private_registries#CreateOrgPrivateRegistryRequestSelectedRepositoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. You can manage the list of selected repositories using the [Update a private registry for an organization](https://docs.github.com/rest/private-registries/organization-configurations#update-a-private-registry-for-an-organization) endpoint. This field should be omitted if `visibility` is set to `all` or `private`."
+      }
+    },
+    "com.github.private_registries#CreateOrgPrivateRegistryRequestAuthType": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token"
+          }
+        },
+        "USERNAME_PASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "username_password"
+          }
+        },
+        "OIDC_AZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_azure"
+          }
+        },
+        "OIDC_AWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_aws"
+          }
+        },
+        "OIDC_JFROG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_jfrog"
+          }
+        },
+        "OIDC_CLOUDSMITH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_cloudsmith"
+          }
+        },
+        "OIDC_GCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_gcp"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The authentication type for the private registry. Defaults to `token` if not specified. Use `oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp` for OIDC authentication."
+      }
+    },
+    "com.github.private_registries#CreateOrgPrivateRegistryRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "registry_type": {
+          "target": "com.github.private_registries#CreateOrgPrivateRegistryRequestRegistryType",
+          "traits": {
+            "smithy.api#documentation": "The registry type.",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the private registry.",
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username to use when authenticating with the private registry. This field should be omitted if the private registry does not require a username for authentication.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "replaces_base": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this private registry should replace the base registry (e.g., npmjs.org for npm, rubygems.org for rubygems). When set to `true`, Dependabot will only use this registry and will not fall back to the public registry. When set to `false` (default), Dependabot will use this registry for scoped packages but may fall back to the public registry for other packages."
+          }
+        },
+        "encrypted_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value for your secret, encrypted with [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages) using the public key retrieved from the [Get private registries public key for an organization](https://docs.github.com/rest/private-registries/organization-configurations#get-private-registries-public-key-for-an-organization) endpoint. Required when `auth_type` is `token` or `username_password`. Should be omitted for OIDC auth types."
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the key you used to encrypt the secret. Required when `auth_type` is `token` or `username_password`. Should be omitted for OIDC auth types."
+          }
+        },
+        "visibility": {
+          "target": "com.github.private_registries#CreateOrgPrivateRegistryRequestVisibility",
+          "traits": {
+            "smithy.api#documentation": "Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry.",
+            "smithy.api#required": {}
+          }
+        },
+        "selected_repository_ids": {
+          "target": "com.github.private_registries#CreateOrgPrivateRegistryRequestSelectedRepositoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. You can manage the list of selected repositories using the [Update a private registry for an organization](https://docs.github.com/rest/private-registries/organization-configurations#update-a-private-registry-for-an-organization) endpoint. This field should be omitted if `visibility` is set to `all` or `private`."
+          }
+        },
+        "auth_type": {
+          "target": "com.github.private_registries#CreateOrgPrivateRegistryRequestAuthType",
+          "traits": {
+            "smithy.api#documentation": "The authentication type for the private registry. Defaults to `token` if not specified. Use `oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp` for OIDC authentication."
+          }
+        },
+        "tenant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the Azure AD application. Required when `auth_type` is `oidc_azure`."
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the Azure AD application. Required when `auth_type` is `oidc_azure`."
+          }
+        },
+        "aws_region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS region. Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS account ID. Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "role_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS IAM role name. Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CodeArtifact domain. Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "domain_owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CodeArtifact domain owner (AWS account ID). Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "jfrog_oidc_provider_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JFrog OIDC provider name. Required when `auth_type` is `oidc_jfrog`."
+          }
+        },
+        "audience": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OIDC audience. Optional for `oidc_aws`, `oidc_jfrog`, and `oidc_gcp`, and required for `oidc_cloudsmith` auth types."
+          }
+        },
+        "identity_mapping_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JFrog identity mapping name. Optional for `oidc_jfrog` auth type."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith organization namespace. Required when `auth_type` is `oidc_cloudsmith`."
+          }
+        },
+        "service_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith service account slug. Required when `auth_type` is `oidc_cloudsmith`."
+          }
+        },
+        "api_host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith API host. Optional for `oidc_cloudsmith` auth type. If omitted, `api.cloudsmith.io` is used by default."
+          }
+        },
+        "workload_identity_provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full resource name of the GCP Workload Identity Provider (e.g. `projects/<NUM>/locations/global/workloadIdentityPools/<POOL>/providers/<PROVIDER>`). Required when `auth_type` is `oidc_gcp`."
+          }
+        },
+        "service_account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GCP service account email to impersonate. Optional for `oidc_gcp` auth type. If omitted, the federated token is used directly (direct WIF)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositories": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the private registry configuration.",
+            "smithy.api#required": {}
+          }
+        },
+        "registry_type": {
+          "target": "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositoriesRegistryType",
+          "traits": {
+            "smithy.api#documentation": "The registry type.",
+            "smithy.api#required": {}
+          }
+        },
+        "auth_type": {
+          "target": "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositoriesAuthType",
+          "traits": {
+            "smithy.api#documentation": "The authentication type for the private registry."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the private registry."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username to use when authenticating with the private registry."
+          }
+        },
+        "replaces_base": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this private registry replaces the base registry (e.g., npmjs.org for npm, rubygems.org for rubygems). When `true`, Dependabot will only use this registry and will not fall back to the public registry. When `false` (default), Dependabot will use this registry for scoped packages but may fall back to the public registry for other packages."
+          }
+        },
+        "visibility": {
+          "target": "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositoriesVisibility",
+          "traits": {
+            "smithy.api#documentation": "Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry.",
+            "smithy.api#required": {}
+          }
+        },
+        "selected_repository_ids": {
+          "target": "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositoriesSelectedRepositoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "An array of repository IDs that can access the organization private registry when `visibility` is set to `selected`."
+          }
+        },
+        "tenant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the Azure AD application."
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the Azure AD application."
+          }
+        },
+        "aws_region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS region."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS account ID."
+          }
+        },
+        "role_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS IAM role name."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CodeArtifact domain."
+          }
+        },
+        "domain_owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CodeArtifact domain owner."
+          }
+        },
+        "jfrog_oidc_provider_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JFrog OIDC provider name."
+          }
+        },
+        "audience": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OIDC audience."
+          }
+        },
+        "identity_mapping_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JFrog identity mapping name."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith organization namespace."
+          }
+        },
+        "service_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith service account slug."
+          }
+        },
+        "api_host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith API host."
+          }
+        },
+        "workload_identity_provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full resource name of the GCP Workload Identity Provider (e.g. `projects/<NUM>/locations/global/workloadIdentityPools/<POOL>/providers/<PROVIDER>`)."
+          }
+        },
+        "service_account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GCP service account email to impersonate. If omitted, the federated token is used directly (direct WIF)."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private registry configuration for an organization"
+      }
+    },
+    "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositoriesRegistryType": {
+      "type": "enum",
+      "members": {
+        "MAVEN_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven_repository"
+          }
+        },
+        "NUGET_FEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget_feed"
+          }
+        },
+        "GOPROXY_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "goproxy_server"
+          }
+        },
+        "NPM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm_registry"
+          }
+        },
+        "RUBYGEMS_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems_server"
+          }
+        },
+        "CARGO_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cargo_registry"
+          }
+        },
+        "COMPOSER_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "composer_repository"
+          }
+        },
+        "DOCKER_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker_registry"
+          }
+        },
+        "GIT_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git_source"
+          }
+        },
+        "HELM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "helm_registry"
+          }
+        },
+        "HEX_ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hex_organization"
+          }
+        },
+        "HEX_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hex_repository"
+          }
+        },
+        "PUB_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pub_repository"
+          }
+        },
+        "PYTHON_INDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "python_index"
+          }
+        },
+        "TERRAFORM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terraform_registry"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The registry type."
+      }
+    },
+    "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositoriesAuthType": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token"
+          }
+        },
+        "USERNAME_PASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "username_password"
+          }
+        },
+        "OIDC_AZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_azure"
+          }
+        },
+        "OIDC_AWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_aws"
+          }
+        },
+        "OIDC_JFROG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_jfrog"
+          }
+        },
+        "OIDC_CLOUDSMITH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_cloudsmith"
+          }
+        },
+        "OIDC_GCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_gcp"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The authentication type for the private registry."
+      }
+    },
+    "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositoriesVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry."
+      }
+    },
+    "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositoriesSelectedRepositoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of repository IDs that can access the organization private registry when `visibility` is set to `selected`."
+      }
+    },
+    "com.github.private_registries#CreateOrgPrivateRegistry": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.private_registries#CreateOrgPrivateRegistryRequest"
+      },
+      "output": {
+        "target": "com.github.private_registries#OrgPrivateRegistryConfigurationWithSelectedRepositories"
+      },
+      "errors": [
+        {
+          "target": "com.github.private_registries#NotFound"
+        },
+        {
+          "target": "com.github.private_registries#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/private-registries",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a private registry for an organization\n\nCreates a private registry configuration with an encrypted value for an organization. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see \"[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api).\"\nFor OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp`), the `encrypted_value` and `key_id` fields should be omitted.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.private_registries#GetOrgPublicKeyRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.private_registries#GetOrgPublicKeyResponse": {
+      "type": "structure",
+      "members": {
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identifier for the key.",
+            "smithy.api#required": {}
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Base64 encoded public key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.private_registries#GetOrgPublicKey": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.private_registries#GetOrgPublicKeyRequest"
+      },
+      "output": {
+        "target": "com.github.private_registries#GetOrgPublicKeyResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.private_registries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/private-registries/public-key",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get private registries public key for an organization\n\nGets the org public key, which is needed to encrypt private registry secrets. You need to encrypt a secret before you can create or update secrets.\n\nOAuth tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.private_registries#GetOrgPrivateRegistryRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.private_registries#GetOrgPrivateRegistry": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.private_registries#GetOrgPrivateRegistryRequest"
+      },
+      "output": {
+        "target": "com.github.private_registries#OrgPrivateRegistryConfiguration"
+      },
+      "errors": [
+        {
+          "target": "com.github.private_registries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/private-registries/{secret_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a private registry for an organization\n\nGet the configuration of a single private registry defined for an organization, omitting its encrypted value.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.private_registries#UpdateOrgPrivateRegistryRequestRegistryType": {
+      "type": "enum",
+      "members": {
+        "MAVEN_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "maven_repository"
+          }
+        },
+        "NUGET_FEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuget_feed"
+          }
+        },
+        "GOPROXY_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "goproxy_server"
+          }
+        },
+        "NPM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "npm_registry"
+          }
+        },
+        "RUBYGEMS_SERVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rubygems_server"
+          }
+        },
+        "CARGO_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cargo_registry"
+          }
+        },
+        "COMPOSER_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "composer_repository"
+          }
+        },
+        "DOCKER_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docker_registry"
+          }
+        },
+        "GIT_SOURCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "git_source"
+          }
+        },
+        "HELM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "helm_registry"
+          }
+        },
+        "HEX_ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hex_organization"
+          }
+        },
+        "HEX_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hex_repository"
+          }
+        },
+        "PUB_REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pub_repository"
+          }
+        },
+        "PYTHON_INDEX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "python_index"
+          }
+        },
+        "TERRAFORM_REGISTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "terraform_registry"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The registry type."
+      }
+    },
+    "com.github.private_registries#UpdateOrgPrivateRegistryRequestVisibility": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "private"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry."
+      }
+    },
+    "com.github.private_registries#UpdateOrgPrivateRegistryRequestSelectedRepositoryIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. This field should be omitted if `visibility` is set to `all` or `private`."
+      }
+    },
+    "com.github.private_registries#UpdateOrgPrivateRegistryRequestAuthType": {
+      "type": "enum",
+      "members": {
+        "TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "token"
+          }
+        },
+        "USERNAME_PASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "username_password"
+          }
+        },
+        "OIDC_AZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_azure"
+          }
+        },
+        "OIDC_AWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_aws"
+          }
+        },
+        "OIDC_JFROG": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_jfrog"
+          }
+        },
+        "OIDC_CLOUDSMITH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_cloudsmith"
+          }
+        },
+        "OIDC_GCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "oidc_gcp"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The authentication type for the private registry. This field cannot be changed after creation. If provided, it must match the existing `auth_type` of the configuration. To change the authentication type, delete and recreate the configuration."
+      }
+    },
+    "com.github.private_registries#UpdateOrgPrivateRegistryRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        },
+        "registry_type": {
+          "target": "com.github.private_registries#UpdateOrgPrivateRegistryRequestRegistryType",
+          "traits": {
+            "smithy.api#documentation": "The registry type."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL of the private registry."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username to use when authenticating with the private registry. This field should be omitted if the private registry does not require a username for authentication.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "replaces_base": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this private registry should replace the base registry (e.g., npmjs.org for npm, rubygems.org for rubygems). When set to `true`, Dependabot will only use this registry and will not fall back to the public registry. When set to `false` (default), Dependabot will use this registry for scoped packages but may fall back to the public registry for other packages."
+          }
+        },
+        "encrypted_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value for your secret, encrypted with [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages) using the public key retrieved from the [Get private registries public key for an organization](https://docs.github.com/rest/private-registries/organization-configurations#get-private-registries-public-key-for-an-organization) endpoint."
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the key you used to encrypt the secret."
+          }
+        },
+        "visibility": {
+          "target": "com.github.private_registries#UpdateOrgPrivateRegistryRequestVisibility",
+          "traits": {
+            "smithy.api#documentation": "Which type of organization repositories have access to the private registry. `selected` means only the repositories specified by `selected_repository_ids` can access the private registry."
+          }
+        },
+        "selected_repository_ids": {
+          "target": "com.github.private_registries#UpdateOrgPrivateRegistryRequestSelectedRepositoryIdsList",
+          "traits": {
+            "smithy.api#documentation": "An array of repository IDs that can access the organization private registry. You can only provide a list of repository IDs when `visibility` is set to `selected`. This field should be omitted if `visibility` is set to `all` or `private`."
+          }
+        },
+        "auth_type": {
+          "target": "com.github.private_registries#UpdateOrgPrivateRegistryRequestAuthType",
+          "traits": {
+            "smithy.api#documentation": "The authentication type for the private registry. This field cannot be changed after creation. If provided, it must match the existing `auth_type` of the configuration. To change the authentication type, delete and recreate the configuration."
+          }
+        },
+        "tenant_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the Azure AD application. Required when `auth_type` is `oidc_azure`."
+          }
+        },
+        "client_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the Azure AD application. Required when `auth_type` is `oidc_azure`."
+          }
+        },
+        "aws_region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS region. Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "account_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS account ID. Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "role_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AWS IAM role name. Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CodeArtifact domain. Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "domain_owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CodeArtifact domain owner (AWS account ID). Required when `auth_type` is `oidc_aws`."
+          }
+        },
+        "jfrog_oidc_provider_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JFrog OIDC provider name. Required when `auth_type` is `oidc_jfrog`."
+          }
+        },
+        "audience": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The OIDC audience. Optional for `oidc_aws`, `oidc_jfrog`, and `oidc_gcp`, and required for `oidc_cloudsmith` auth types."
+          }
+        },
+        "identity_mapping_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The JFrog identity mapping name. Optional for `oidc_jfrog` auth type."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith organization namespace. Required when `auth_type` is `oidc_cloudsmith`."
+          }
+        },
+        "service_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith service account slug. Required when `auth_type` is `oidc_cloudsmith`."
+          }
+        },
+        "api_host": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloudsmith API host. Optional for `oidc_cloudsmith` auth type. If omitted, `api.cloudsmith.io` is used by default."
+          }
+        },
+        "workload_identity_provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full resource name of the GCP Workload Identity Provider (e.g. `projects/<NUM>/locations/global/workloadIdentityPools/<POOL>/providers/<PROVIDER>`). Required when `auth_type` is `oidc_gcp`."
+          }
+        },
+        "service_account": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The GCP service account email to impersonate. Optional for `oidc_gcp` auth type. If omitted, the federated token is used directly (direct WIF)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.private_registries#UpdateOrgPrivateRegistry": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.private_registries#UpdateOrgPrivateRegistryRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.private_registries#NotFound"
+        },
+        {
+          "target": "com.github.private_registries#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/orgs/{org}/private-registries/{secret_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a private registry for an organization\n\nUpdates a private registry configuration with an encrypted value for an organization. Encrypt your secret using [LibSodium](https://libsodium.gitbook.io/doc/bindings_for_other_languages). For more information, see \"[Encrypting secrets for the REST API](https://docs.github.com/rest/guides/encrypting-secrets-for-the-rest-api).\"\nFor OIDC-based registries (`oidc_azure`, `oidc_aws`, `oidc_jfrog`, `oidc_cloudsmith`, or `oidc_gcp`), the `encrypted_value` and `key_id` fields should be omitted.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.private_registries#DeleteOrgPrivateRegistryRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "secret_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the secret."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.private_registries#DeleteOrgPrivateRegistry": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.private_registries#DeleteOrgPrivateRegistryRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.private_registries#BadRequest"
+        },
+        {
+          "target": "com.github.private_registries#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/private-registries/{secret_name}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a private registry for an organization\n\nDelete a private registry configuration at the organization-level.\n\nOAuth app tokens and personal access tokens (classic) need the `admin:org` scope to use this endpoint."
+      }
+    },
+    "com.github.private_registries#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.github.private_registries#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.private_registries#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.private_registries#PrivateRegistries": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.private_registries#ListOrgPrivateRegistries"
+        },
+        {
+          "target": "com.github.private_registries#CreateOrgPrivateRegistry"
+        },
+        {
+          "target": "com.github.private_registries#GetOrgPublicKey"
+        },
+        {
+          "target": "com.github.private_registries#GetOrgPrivateRegistry"
+        },
+        {
+          "target": "com.github.private_registries#UpdateOrgPrivateRegistry"
+        },
+        {
+          "target": "com.github.private_registries#DeleteOrgPrivateRegistry"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

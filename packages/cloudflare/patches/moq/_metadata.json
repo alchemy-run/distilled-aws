@@ -1,0 +1,16 @@
+{
+  "description": "Key dictionary / op aliases for moq (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "lingeringSubscribe": "lingering_subscribe",
+        "maxTimeoutMs": "max_timeout_ms",
+        "originFallback": "origin_fallback",
+        "tokenPublishSubscribe": "token_publish_subscribe",
+        "tokenSubscribe": "token_subscribe"
+      }
+    }
+  ]
+}

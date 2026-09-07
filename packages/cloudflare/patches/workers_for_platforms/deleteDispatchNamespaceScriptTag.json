@@ -1,0 +1,30 @@
+{
+  "description": "Align workers_for_platforms#DispatchNamespacesScriptsTagsDelete with distilled cloudflare/workers-for-platforms deleteDispatchNamespaceScriptTag",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsTagsDelete",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScriptTag"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsTagsDeleteRequest",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScriptTagRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScriptTag/input/target",
+      "value": "com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScriptTagRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsTagsDeleteResponse",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScriptTagResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScriptTag/output/target",
+      "value": "com.cloudflare.workers_for_platforms#DeleteDispatchNamespaceScriptTagResponse"
+    }
+  ]
+}

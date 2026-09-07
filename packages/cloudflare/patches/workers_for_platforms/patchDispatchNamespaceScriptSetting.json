@@ -1,0 +1,30 @@
+{
+  "description": "Align workers_for_platforms#DispatchNamespacesScriptsSettingsEdit with distilled cloudflare/workers-for-platforms patchDispatchNamespaceScriptSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSettingsEdit",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PatchDispatchNamespaceScriptSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSettingsEditRequest",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PatchDispatchNamespaceScriptSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PatchDispatchNamespaceScriptSetting/input/target",
+      "value": "com.cloudflare.workers_for_platforms#PatchDispatchNamespaceScriptSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsSettingsEditResponse",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PatchDispatchNamespaceScriptSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PatchDispatchNamespaceScriptSetting/output/target",
+      "value": "com.cloudflare.workers_for_platforms#PatchDispatchNamespaceScriptSettingResponse"
+    }
+  ]
+}

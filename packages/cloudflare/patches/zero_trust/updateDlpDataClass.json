@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpDataClassesUpdate with distilled cloudflare/zero-trust updateDlpDataClass",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataClassesUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpDataClass"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataClassesUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpDataClassRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpDataClass/input/target",
+      "value": "com.cloudflare.zero_trust#UpdateDlpDataClassRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataClassesUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpDataClassResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpDataClass/output/target",
+      "value": "com.cloudflare.zero_trust#UpdateDlpDataClassResponse"
+    }
+  ]
+}

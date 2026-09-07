@@ -1,0 +1,7 @@
+{
+  "operations": {
+    "getCanary": {
+      "errors": ["ResourceNotFoundException"]
+    }
+  }
+}

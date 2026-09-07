@@ -1,0 +1,207 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.axiom.api#IngestToDatasetRequest": {
+      "type": "structure",
+      "members": {
+        "dataset_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp_field": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "timestamp-field",
+            "smithy.api#documentation": "The name of the field to use as the timestamp. If not specified, the timestamp will be the time the event was received by Axiom."
+          }
+        },
+        "timestamp_format": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "timestamp-format",
+            "smithy.api#documentation": "The date-time format of the timestamp field. The reference time is `Mon Jan 2 15:04:05 -0700 MST 2006`, as specified in https://pkg.go.dev/time/?tab=doc#Parse"
+          }
+        },
+        "csv_delimiter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "csv-delimiter",
+            "smithy.api#documentation": "The delimiter to use when parsing CSV data. If not specified, the default delimiter is `,`."
+          }
+        },
+        "body": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.axiom.api#IngestStatus": {
+      "type": "structure",
+      "members": {
+        "blocksCreated": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "failed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "failures": {
+          "target": "com.axiom.api#IngestStatusFailuresList"
+        },
+        "ingested": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "processedBytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "walLength": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.axiom.api#IngestFailure": {
+      "type": "structure",
+      "members": {
+        "error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.axiom.api#IngestStatusFailuresList": {
+      "type": "list",
+      "member": {
+        "target": "com.axiom.api#IngestFailure"
+      },
+      "traits": {}
+    },
+    "com.axiom.api#IngestToDataset": {
+      "type": "operation",
+      "input": {
+        "target": "com.axiom.api#IngestToDatasetRequest"
+      },
+      "output": {
+        "target": "com.axiom.api#IngestStatus"
+      },
+      "errors": [
+        {
+          "target": "com.axiom.api#BadRequest"
+        },
+        {
+          "target": "com.axiom.api#NotFound"
+        },
+        {
+          "target": "com.axiom.api#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/datasets/{dataset_id}/ingest",
+          "code": 200
+        }
+      }
+    },
+    "com.axiom.api#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.axiom.api#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.axiom.api#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.axiom.api#AxiomEdgeIngest": {
+      "type": "service",
+      "version": "2.0.0",
+      "operations": [
+        {
+          "target": "com.axiom.api#IngestToDataset"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Axiom",
+        "smithy.api#documentation": "A public and stable API for interacting with axiom services"
+      }
+    }
+  }
+}

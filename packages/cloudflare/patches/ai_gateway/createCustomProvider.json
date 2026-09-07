@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#CustomProvidersCreate with distilled cloudflare/ai-gateway createCustomProvider",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#CustomProvidersCreate",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateCustomProvider"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#CustomProvidersCreateRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateCustomProviderRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateCustomProvider/input/target",
+      "value": "com.cloudflare.ai_gateway#CreateCustomProviderRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#CustomProvidersCreateResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateCustomProviderResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateCustomProvider/output/target",
+      "value": "com.cloudflare.ai_gateway#CreateCustomProviderResponse"
+    }
+  ]
+}

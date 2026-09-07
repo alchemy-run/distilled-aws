@@ -1,0 +1,20 @@
+{
+  "description": "Align cloudforce_one#BinaryStorageGet with distilled cloudflare/cloudforce-one getBinaryStorage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#BinaryStorageGet",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetBinaryStorage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#BinaryStorageGetRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetBinaryStorageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetBinaryStorage/input/target",
+      "value": "com.cloudflare.cloudforce_one#GetBinaryStorageRequest"
+    }
+  ]
+}

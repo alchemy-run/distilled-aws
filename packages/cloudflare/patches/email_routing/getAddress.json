@@ -1,0 +1,30 @@
+{
+  "description": "Align email_routing#AddressesGet with distilled cloudflare/email-routing getAddress",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesGet",
+      "path": "/shapes/com.cloudflare.email_routing#GetAddress"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesGetRequest",
+      "path": "/shapes/com.cloudflare.email_routing#GetAddressRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#GetAddress/input/target",
+      "value": "com.cloudflare.email_routing#GetAddressRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#AddressesGetResponse",
+      "path": "/shapes/com.cloudflare.email_routing#GetAddressResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#GetAddress/output/target",
+      "value": "com.cloudflare.email_routing#GetAddressResponse"
+    }
+  ]
+}

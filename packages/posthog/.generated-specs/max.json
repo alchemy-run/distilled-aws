@@ -1,0 +1,1741 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.max#ConversationsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#PaginatedConversationMinimalList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.max#PaginatedConversationMinimalListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.max#ConversationMinimal": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.posthog.max#ConversationStatus"
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the conversation.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "topic": {
+          "target": "com.posthog.max#TopicEnum",
+          "traits": {
+            "smithy.api#documentation": "Product domain the conversation is about, classified from the first question.\n\n* `web_analytics` - Web analytics\n* `product_analytics` - Product analytics\n* `session_replay` - Session replay\n* `surveys` - Surveys\n* `feature_flags` - Feature flags\n* `experiments` - Experiments\n* `error_tracking` - Error tracking\n* `data_warehouse` - Data warehouse\n* `other` - Other",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user": {
+          "target": "com.posthog.max#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.max#ConversationType"
+        },
+        "is_internal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this conversation was created during an impersonated session (e.g., by support agents). Internal conversations are hidden from customers.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "slack_thread_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique key for Slack thread: '{workspace_id}:{channel}:{thread_ts}'",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "slack_workspace_domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slack workspace subdomain (e.g. 'posthog' for posthog.slack.com)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "task": {
+          "target": "com.posthog.max#TaskDetailDTO",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.max#ConversationStatus": {
+      "type": "enum",
+      "members": {
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "CANCELING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "canceling"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `idle` - Idle\n* `in_progress` - In progress\n* `canceling` - Canceling"
+      }
+    },
+    "com.posthog.max#TopicEnum": {
+      "type": "enum",
+      "members": {
+        "WEB_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "web_analytics"
+          }
+        },
+        "PRODUCT_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product_analytics"
+          }
+        },
+        "SESSION_REPLAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "session_replay"
+          }
+        },
+        "SURVEYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "surveys"
+          }
+        },
+        "FEATURE_FLAGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "feature_flags"
+          }
+        },
+        "EXPERIMENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "experiments"
+          }
+        },
+        "ERROR_TRACKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error_tracking"
+          }
+        },
+        "DATA_WAREHOUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data_warehouse"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `web_analytics` - Web analytics\n* `product_analytics` - Product analytics\n* `session_replay` - Session replay\n* `surveys` - Surveys\n* `feature_flags` - Feature flags\n* `experiments` - Experiments\n* `error_tracking` - Error tracking\n* `data_warehouse` - Data warehouse\n* `other` - Other"
+      }
+    },
+    "com.posthog.max#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.max#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.max#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.max#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.max#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.max#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.max#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.max#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.max#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.max#ConversationType": {
+      "type": "enum",
+      "members": {
+        "ASSISTANT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "assistant"
+          }
+        },
+        "TOOL_CALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tool_call"
+          }
+        },
+        "DEEP_RESEARCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deep_research"
+          }
+        },
+        "SLACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `assistant` - Assistant\n* `tool_call` - Tool call\n* `deep_research` - Deep research\n* `slack` - Slack"
+      }
+    },
+    "com.posthog.max#TaskDetailDTO": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "task_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title_manually_set": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "origin_product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "github_integration": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "github_user_integration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "signal_report": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "json_schema": {
+          "target": "com.posthog.max#TaskDetailDTOJsonSchemaMap",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "internal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "archived_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latest_run": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the latest TaskRun; null when the task has no runs.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.max#TaskUserBasicInfo",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "ci_prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Conversation envelope variant: ``latest_run`` is just the latest run's id, not the nested\nrun detail. The frontend only needs the id to reconnect to sandbox logs, and emitting the id\navoids presigning a log URL per conversation.\n\nRead access here follows the conversation (the share-by-link unit), not per-creator task\nvisibility — write/send stays creator-gated. See ``tasks_facade.get_conversation_task_dtos``."
+      }
+    },
+    "com.posthog.max#TaskDetailDTOJsonSchemaMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.max#TaskUserBasicInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "uuid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.max#TaskUserBasicInfoHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response shape for a task creator, mirroring core ``UserBasicSerializer`` output."
+      }
+    },
+    "com.posthog.max#TaskUserBasicInfoHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.max#PaginatedConversationMinimalListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.max#ConversationMinimal"
+      },
+      "traits": {}
+    },
+    "com.posthog.max#ConversationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.max#PaginatedConversationMinimalList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/conversations/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.max#ConversationsCreateRequestContextualToolsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.max#AgentModeEnum": {
+      "type": "enum",
+      "members": {
+        "PRODUCT_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product_analytics"
+          }
+        },
+        "SQL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sql"
+          }
+        },
+        "SESSION_REPLAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "session_replay"
+          }
+        },
+        "ERROR_TRACKING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error_tracking"
+          }
+        },
+        "PLAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plan"
+          }
+        },
+        "EXECUTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "execution"
+          }
+        },
+        "SURVEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "survey"
+          }
+        },
+        "RESEARCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "research"
+          }
+        },
+        "FLAGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flags"
+          }
+        },
+        "LLM_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "llm_analytics"
+          }
+        },
+        "SANDBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sandbox"
+          }
+        },
+        "USER_INTERVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user_interview"
+          }
+        },
+        "CUSTOMER_ANALYTICS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "customer_analytics"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `product_analytics` - product_analytics\n* `sql` - sql\n* `session_replay` - session_replay\n* `error_tracking` - error_tracking\n* `plan` - plan\n* `execution` - execution\n* `survey` - survey\n* `research` - research\n* `flags` - flags\n* `llm_analytics` - llm_analytics\n* `sandbox` - sandbox\n* `user_interview` - user_interview\n* `customer_analytics` - customer_analytics"
+      }
+    },
+    "com.posthog.max#ConversationsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String"
+        },
+        "contextual_tools": {
+          "target": "com.posthog.max#ConversationsCreateRequestContextualToolsMap"
+        },
+        "ui_context": {
+          "target": "smithy.api#Document"
+        },
+        "billing_context": {
+          "target": "smithy.api#Document"
+        },
+        "trace_id": {
+          "target": "smithy.api#String"
+        },
+        "session_id": {
+          "target": "smithy.api#String"
+        },
+        "agent_mode": {
+          "target": "com.posthog.max#AgentModeEnum"
+        },
+        "is_sandbox": {
+          "target": "smithy.api#Boolean"
+        },
+        "resume_payload": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#Message": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String"
+        },
+        "contextual_tools": {
+          "target": "com.posthog.max#MessageContextualToolsMap"
+        },
+        "ui_context": {
+          "target": "smithy.api#Document"
+        },
+        "billing_context": {
+          "target": "smithy.api#Document"
+        },
+        "trace_id": {
+          "target": "smithy.api#String"
+        },
+        "session_id": {
+          "target": "smithy.api#String"
+        },
+        "agent_mode": {
+          "target": "com.posthog.max#AgentModeEnum"
+        },
+        "is_sandbox": {
+          "target": "smithy.api#Boolean"
+        },
+        "resume_payload": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializer for appending a message to an existing conversation without triggering AI processing."
+      }
+    },
+    "com.posthog.max#MessageContextualToolsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.max#ConversationsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.max#Message"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/conversations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Unified endpoint that handles both conversation creation and streaming.\n\n- If message is provided: Start new conversation processing\n- If no message: Stream from existing conversation"
+      }
+    },
+    "com.posthog.max#ConversationsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#Conversation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "com.posthog.max#ConversationStatus"
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the conversation.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "topic": {
+          "target": "com.posthog.max#TopicEnum",
+          "traits": {
+            "smithy.api#documentation": "Product domain the conversation is about, classified from the first question.\n\n* `web_analytics` - Web analytics\n* `product_analytics` - Product analytics\n* `session_replay` - Session replay\n* `surveys` - Surveys\n* `feature_flags` - Feature flags\n* `experiments` - Experiments\n* `error_tracking` - Error tracking\n* `data_warehouse` - Data warehouse\n* `other` - Other",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "user": {
+          "target": "com.posthog.max#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "com.posthog.max#ConversationType"
+        },
+        "is_internal": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether this conversation was created during an impersonated session (e.g., by support agents). Internal conversations are hidden from customers.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "slack_thread_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique key for Slack thread: '{workspace_id}:{channel}:{thread_ts}'",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "slack_workspace_domain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slack workspace subdomain (e.g. 'posthog' for posthog.slack.com)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "messages": {
+          "target": "com.posthog.max#ConversationMessagesList"
+        },
+        "has_unsupported_content": {
+          "target": "smithy.api#Boolean"
+        },
+        "agent_mode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "agent_runtime": {
+          "target": "com.posthog.max#AgentRuntimeEnum",
+          "traits": {
+            "smithy.api#documentation": "Runtime that owns this conversation. 'langgraph' conversations return their messages in the `messages` field; born-'sandbox' conversations return an empty `messages` array and load history from the products/tasks logs endpoint. A converted conversation is 'sandbox' but still returns its legacy thread in `messages`.\n\n* `langgraph` - LangGraph\n* `sandbox` - Sandbox"
+          }
+        },
+        "is_sandbox": {
+          "target": "smithy.api#Boolean"
+        },
+        "pending_approvals": {
+          "target": "com.posthog.max#ConversationPendingApprovalsList",
+          "traits": {
+            "smithy.api#documentation": "Return pending approval cards as structured data.\n\nCombines metadata from conversation.approval_decisions with payload from checkpoint\ninterrupts (single source of truth for payload data)."
+          }
+        },
+        "task": {
+          "target": "com.posthog.max#TaskDetailDTO",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.max#ConversationMessagesItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.max#ConversationMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.max#ConversationMessagesItemMap"
+      },
+      "traits": {}
+    },
+    "com.posthog.max#AgentRuntimeEnum": {
+      "type": "enum",
+      "members": {
+        "LANGGRAPH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "langgraph"
+          }
+        },
+        "SANDBOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sandbox"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `langgraph` - LangGraph\n* `sandbox` - Sandbox"
+      }
+    },
+    "com.posthog.max#ConversationPendingApprovalsItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.max#ConversationPendingApprovalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.max#ConversationPendingApprovalsItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "Return pending approval cards as structured data.\n\nCombines metadata from conversation.approval_decisions with payload from checkpoint\ninterrupts (single source of truth for payload data)."
+      }
+    },
+    "com.posthog.max#ConversationsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.max#Conversation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.max#ConversationsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#ConversationsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a conversation."
+      }
+    },
+    "com.posthog.max#ConversationsAppendMessageCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#MessageMinimal": {
+      "type": "structure",
+      "members": {
+        "content": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Serializer for appending a message to an existing conversation without triggering AI processing."
+      }
+    },
+    "com.posthog.max#ConversationsAppendMessageCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsAppendMessageCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.max#MessageMinimal"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/append_message/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Appends a message to an existing conversation without triggering AI processing.\nThis is used for client-side generated messages that need to be persisted\n(e.g., support ticket confirmation messages)."
+      }
+    },
+    "com.posthog.max#ConversationsCancelPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#ConversationsCancelPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsCancelPartialUpdateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.max#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/cancel/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Cancel the conversation's in-progress LangGraph run."
+      }
+    },
+    "com.posthog.max#SandboxAttachedContextItem": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.posthog.max#SandboxAttachedContextItemTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Attachment kind. Entity types carry `id` (+ optional `name`); `text` carries `value`.\n\n* `action` - action\n* `dashboard` - dashboard\n* `error_tracking_issue` - error_tracking_issue\n* `evaluation` - evaluation\n* `event` - event\n* `insight` - insight\n* `notebook` - notebook\n* `text` - text",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Entity identifier — integer for `dashboard`/`action`, string short_id/UUID otherwise. Absent for `text`."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional human-readable label rendered in the context block."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-text content. Only for `text` attachments."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One typed attachment carried by a sandbox message."
+      }
+    },
+    "com.posthog.max#SandboxAttachedContextItemTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "action"
+          }
+        },
+        "DASHBOARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dashboard"
+          }
+        },
+        "ERROR_TRACKING_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error_tracking_issue"
+          }
+        },
+        "EVALUATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "evaluation"
+          }
+        },
+        "EVENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "event"
+          }
+        },
+        "INSIGHT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "insight"
+          }
+        },
+        "NOTEBOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notebook"
+          }
+        },
+        "TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `action` - action\n* `dashboard` - dashboard\n* `error_tracking_issue` - error_tracking_issue\n* `evaluation` - evaluation\n* `event` - event\n* `insight` - insight\n* `notebook` - notebook\n* `text` - text"
+      }
+    },
+    "com.posthog.max#ConversationsOpenCreateRequestAttachedContextList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.max#SandboxAttachedContextItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Typed PostHog entities (and free text) attached to this message."
+      }
+    },
+    "com.posthog.max#InitialPermissionModeEnum": {
+      "type": "enum",
+      "members": {
+        "DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "default"
+          }
+        },
+        "ACCEPTEDITS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "acceptEdits"
+          }
+        },
+        "PLAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "plan"
+          }
+        },
+        "BYPASSPERMISSIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bypassPermissions"
+          }
+        },
+        "AUTO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "auto"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `default` - default\n* `acceptEdits` - acceptEdits\n* `plan` - plan\n* `bypassPermissions` - bypassPermissions\n* `auto` - auto"
+      }
+    },
+    "com.posthog.max#ConversationsOpenCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        },
+        "content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user's message text. Omit or null to warm a sandbox (boot + idle) ahead of the first message.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Client-generated trace id correlated with the resulting Run's SSE stream."
+          }
+        },
+        "attached_context": {
+          "target": "com.posthog.max#ConversationsOpenCreateRequestAttachedContextList",
+          "traits": {
+            "smithy.api#documentation": "Typed PostHog entities (and free text) attached to this message."
+          }
+        },
+        "initial_permission_mode": {
+          "target": "com.posthog.max#InitialPermissionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Initial permission mode for the sandbox agent session. Defaults to `auto`, which allows safe tool use while preserving explicit confirmations.\n\n* `default` - default\n* `acceptEdits` - acceptEdits\n* `plan` - plan\n* `bypassPermissions` - bypassPermissions\n* `auto` - auto"
+          }
+        },
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bind a brand-new sandbox conversation to an existing Task so the first message resumes that Task's run. Honored only when this request creates the conversation row; ignored for an already-existing conversation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#SandboxMessageResponse": {
+      "type": "structure",
+      "members": {
+        "task_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The products/tasks Task backing the conversation.",
+            "smithy.api#required": {}
+          }
+        },
+        "run_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Run the frontend opens SSE against.",
+            "smithy.api#required": {}
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Echo of the request trace id, if provided.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "run_status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Current status of the targeted Run (e.g. `queued`, `in_progress`).",
+            "smithy.api#required": {}
+          }
+        },
+        "just_created_run": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when a new Run was created (first message, terminal resume, or fresh warm); false for an in-progress follow-up or a reused warm Run.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for `POST /conversations/{id}/open/` — the IDs the frontend opens SSE against."
+      }
+    },
+    "com.posthog.max#ConversationsOpenCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsOpenCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.max#SandboxMessageResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.max#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/open/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create-or-resume a sandbox conversation — the single sandbox session opener. With `content`, processes the turn (first message, in-progress follow-up, or terminal resume); without `content`, warms a sandbox that idles awaiting the first message. Returns the `(task, run)` handle the frontend opens SSE against. The conversation row is created on first use from the URL id."
+      }
+    },
+    "com.posthog.max#ConversationsQueueRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#ConversationsQueueRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsQueueRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.max#Conversation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/queue/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.max#ConversationsQueueCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#ConversationsQueueCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsQueueCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.max#Conversation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/queue/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.max#ConversationsQueuePartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        },
+        "queue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#ConversationsQueuePartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsQueuePartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.max#Conversation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/queue/{queue_id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.max#ConversationsQueueDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        },
+        "queue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#ConversationsQueueDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsQueueDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/queue/{queue_id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.max#ConversationsQueueClearCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "conversation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this conversation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.max#ConversationsQueueClearCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.max#ConversationsQueueClearCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.max#Conversation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/conversations/{conversation}/queue/clear/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.max#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.posthog.max#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.max#Max": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.max#ConversationsList"
+        },
+        {
+          "target": "com.posthog.max#ConversationsCreate"
+        },
+        {
+          "target": "com.posthog.max#ConversationsRetrieve"
+        },
+        {
+          "target": "com.posthog.max#ConversationsDestroy"
+        },
+        {
+          "target": "com.posthog.max#ConversationsAppendMessageCreate"
+        },
+        {
+          "target": "com.posthog.max#ConversationsCancelPartialUpdate"
+        },
+        {
+          "target": "com.posthog.max#ConversationsOpenCreate"
+        },
+        {
+          "target": "com.posthog.max#ConversationsQueueRetrieve"
+        },
+        {
+          "target": "com.posthog.max#ConversationsQueueCreate"
+        },
+        {
+          "target": "com.posthog.max#ConversationsQueuePartialUpdate"
+        },
+        {
+          "target": "com.posthog.max#ConversationsQueueDestroy"
+        },
+        {
+          "target": "com.posthog.max#ConversationsQueueClearCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

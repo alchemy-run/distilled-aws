@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#ValidateDestinationForZone with distilled cloudflare/logpush destinationValidateForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#ValidateDestinationForZone",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#ValidateDestinationForZoneRequest",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForZone/input/target",
+      "value": "com.cloudflare.logpush#DestinationValidateForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#ValidateDestinationForZoneResponse",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForZone/output/target",
+      "value": "com.cloudflare.logpush#DestinationValidateForZoneResponse"
+    }
+  ]
+}

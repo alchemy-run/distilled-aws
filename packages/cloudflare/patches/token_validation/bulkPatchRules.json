@@ -1,0 +1,38 @@
+{
+  "description": "Align token_validation#RulesBulkEdit with distilled cloudflare/token-validation bulkPatchRules",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.token_validation#RulesBulkEdit",
+      "path": "/shapes/com.cloudflare.token_validation#BulkPatchRules"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.token_validation#RulesBulkEditRequest",
+      "path": "/shapes/com.cloudflare.token_validation#BulkPatchRulesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.token_validation#BulkPatchRules/input/target",
+      "value": "com.cloudflare.token_validation#BulkPatchRulesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.token_validation#RulesBulkEditResponse",
+      "path": "/shapes/com.cloudflare.token_validation#BulkPatchRulesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.token_validation#BulkPatchRules/output/target",
+      "value": "com.cloudflare.token_validation#BulkPatchRulesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.token_validation#BulkPatchRules/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

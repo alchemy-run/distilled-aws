@@ -1,0 +1,835 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.datacatalog#ADCCatalogsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datacatalog#ADCCatalogsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataCatalog/catalogs/{catalogName}",
+          "code": 200,
+          "apiVersion": "2016-03-30"
+        },
+        "smithy.api#documentation": "Delete Azure Data Catalog Service (DELETE Resource)\n\nThe Delete Azure Data Catalog Service operation deletes an existing data catalog.",
+        "com.distilled.openapi#apiVersion": "2016-03-30"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the data catalog in the specified subscription and resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datacatalog#ADCCatalogsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.datacatalog#ADCCatalogsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataCatalog/catalogs/{catalogName}",
+          "code": 200,
+          "apiVersion": "2016-03-30"
+        },
+        "smithy.api#documentation": "Update Azure Data Catalog Service (PATCH Resource)\n\nThe Update Azure Data Catalog Service operation can be used to update the existing deployment. The update call only supports the properties listed in the PATCH body.",
+        "com.distilled.openapi#apiVersion": "2016-03-30"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.datacatalog#ADCCatalogsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "properties": {
+          "target": "com.azure.datacatalog#ADCCatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Data Catalog properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogProperties": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.datacatalog#ADCCatalogPropertiesSku",
+          "traits": {
+            "smithy.api#documentation": "Azure data catalog SKU."
+          }
+        },
+        "units": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Azure data catalog units."
+          }
+        },
+        "admins": {
+          "target": "com.azure.datacatalog#ADCCatalogPropertiesAdminsList",
+          "traits": {
+            "smithy.api#documentation": "Azure data catalog admin list."
+          }
+        },
+        "users": {
+          "target": "com.azure.datacatalog#ADCCatalogPropertiesUsersList",
+          "traits": {
+            "smithy.api#documentation": "Azure data catalog user list."
+          }
+        },
+        "successfullyProvisioned": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Azure data catalog provision status."
+          }
+        },
+        "enableAutomaticUnitAdjustment": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Automatic unit adjustment enabled or not."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the data catalog."
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogPropertiesUsersList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datacatalog#Principals"
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure data catalog user list."
+      }
+    },
+    "com.azure.datacatalog#Principals": {
+      "type": "structure",
+      "members": {
+        "upn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UPN of the user."
+          }
+        },
+        "objectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Object Id for the user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User principals."
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogPropertiesAdminsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datacatalog#Principals"
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure data catalog admin list."
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogPropertiesSku": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure data catalog SKU."
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the data catalog in the specified subscription and resource group."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.datacatalog#ADCCatalogsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "properties": {
+          "target": "com.azure.datacatalog#ADCCatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Data Catalog properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datacatalog#ADCCatalogsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.datacatalog#ADCCatalogsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataCatalog/catalogs/{catalogName}",
+          "code": 200,
+          "apiVersion": "2016-03-30"
+        },
+        "smithy.api#documentation": "Create or Update Azure Data Catalog service (PUT Resource)\n\nThe Create Azure Data Catalog service operation creates a new data catalog service with the specified parameters. If the specific service already exists, then any patchable properties will be updated and any immutable properties will remain unchanged.",
+        "com.distilled.openapi#apiVersion": "2016-03-30"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.datacatalog#ADCCatalogsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "properties": {
+          "target": "com.azure.datacatalog#ADCCatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Data Catalog properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the data catalog in the specified subscription and resource group."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.datacatalog#ADCCatalogsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "properties": {
+          "target": "com.azure.datacatalog#ADCCatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Data Catalog properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datacatalog#ADCCatalogsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.datacatalog#ADCCatalogsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataCatalog/catalogs/{catalogName}",
+          "code": 200,
+          "apiVersion": "2016-03-30"
+        },
+        "smithy.api#documentation": "Get Azure Data Catalog service (GET Resources)\n\nThe Get Azure Data Catalog Service operation retrieves a json representation of the data catalog.",
+        "com.distilled.openapi#apiVersion": "2016-03-30"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.datacatalog#ADCCatalogsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "properties": {
+          "target": "com.azure.datacatalog#ADCCatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Data Catalog properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        },
+        "catalogName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the data catalog in the specified subscription and resource group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsListtByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.datacatalog#ADCCatalogsListtByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.datacatalog#ADCCatalogsListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataCatalog/catalogs",
+          "code": 200,
+          "apiVersion": "2016-03-30"
+        },
+        "smithy.api#documentation": "List catalogs in Resource Group (GET Resources)\n\nThe List catalogs in Resource Group operation lists all the Azure Data Catalogs available under the given resource group.",
+        "com.distilled.openapi#apiVersion": "2016-03-30"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datacatalog#ADCCatalogsListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "the list of Azure Data Catalogs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from the List Azure Data Catalog operation."
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datacatalog#ADCCatalog"
+      },
+      "traits": {
+        "smithy.api#documentation": "the list of Azure Data Catalogs."
+      }
+    },
+    "com.azure.datacatalog#ADCCatalog": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Id"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource location"
+          }
+        },
+        "tags": {
+          "target": "com.azure.datacatalog#ADCCatalogTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource etag"
+          }
+        },
+        "properties": {
+          "target": "com.azure.datacatalog#ADCCatalogProperties",
+          "traits": {
+            "smithy.api#documentation": "Azure Data Catalog properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure Data Catalog."
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.datacatalog#ADCCatalogsListtByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Gets subscription credentials which uniquely identify the Microsoft Azure subscription. The subscription ID forms part of the URI for every service call."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group within the user's subscription. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.datacatalog#ADCOperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.datacatalog#OperationEntityListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DataCatalog/operations",
+          "code": 200,
+          "apiVersion": "2016-03-30"
+        },
+        "smithy.api#documentation": "Lists all the available Azure Data Catalog service operations.",
+        "com.distilled.openapi#apiVersion": "2016-03-30"
+      }
+    },
+    "com.azure.datacatalog#OperationEntityListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.datacatalog#OperationEntityListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Azure data catalog service operation response."
+      }
+    },
+    "com.azure.datacatalog#OperationEntityListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.datacatalog#OperationEntity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of operations."
+      }
+    },
+    "com.azure.datacatalog#OperationEntity": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}."
+          }
+        },
+        "display": {
+          "target": "com.azure.datacatalog#OperationDisplayInfo",
+          "traits": {
+            "smithy.api#documentation": "The operation supported by Azure Data Catalog Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation supported by Azure Data Catalog Service."
+      }
+    },
+    "com.azure.datacatalog#OperationDisplayInfo": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the operation."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The action that users can perform, based on their permission level."
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Azure Data Catalog Service."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The operation supported by Azure Data Catalog Service."
+      }
+    },
+    "com.azure.datacatalog#Datacatalog": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.datacatalog#ADCCatalogsDelete"
+        },
+        {
+          "target": "com.azure.datacatalog#ADCCatalogsUpdate"
+        },
+        {
+          "target": "com.azure.datacatalog#ADCCatalogsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.datacatalog#ADCCatalogsGet"
+        },
+        {
+          "target": "com.azure.datacatalog#ADCCatalogsListtByResourceGroup"
+        },
+        {
+          "target": "com.azure.datacatalog#ADCOperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Datacatalog",
+        "smithy.api#documentation": "Azure Datacatalog API — merged from the datacatalog resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,889 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.saved#SavedListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "created_by",
+            "smithy.api#documentation": "Filter by the creating user's ID."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum saved heatmaps to return."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "Number to skip, for pagination."
+          }
+        },
+        "order": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "order",
+            "smithy.api#documentation": "Field to order by, e.g. '-updated_at' (default) or 'created_at'."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Case-insensitive substring match on URL or name."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter by generation status: 'processing', 'completed', or 'failed'."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "type",
+            "smithy.api#documentation": "Filter by render mode: 'screenshot', 'iframe', or 'recording'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.saved#SavedHeatmapListResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.saved#SavedHeatmapListResponseResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of saved heatmaps matching the filters.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.saved#HeatmapScreenshotResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short, URL-safe identifier used as the lookup key for saved-heatmap routes."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable label for the saved heatmap.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The page URL this saved heatmap renders and overlays data on."
+          }
+        },
+        "data_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL whose heatmap data is overlaid on the screenshot (defaults to 'url').",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "target_widths": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Viewport widths (CSS pixels) the screenshot is rendered at."
+          }
+        },
+        "type": {
+          "target": "com.posthog.saved#HeatmapType",
+          "traits": {
+            "smithy.api#documentation": "Render mode: 'screenshot', 'iframe', or 'recording'.\n\n* `screenshot` - Screenshot\n* `iframe` - Iframe\n* `recording` - Recording"
+          }
+        },
+        "status": {
+          "target": "com.posthog.saved#HeatmapScreenshotResponseStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Screenshot generation status: 'processing', 'completed', or 'failed'.\n\n* `processing` - Processing\n* `completed` - Completed\n* `failed` - Failed"
+          }
+        },
+        "has_content": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether at least one rendered image is ready to fetch."
+          }
+        },
+        "snapshots": {
+          "target": "com.posthog.saved#HeatmapScreenshotResponseSnapshotsList",
+          "traits": {
+            "smithy.api#documentation": "Per-width render metadata. Fetch the actual image bytes for a width from the content endpoint."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Soft-delete flag; deleted heatmaps are hidden from the list."
+          }
+        },
+        "block_consent_modals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the headless browser dismisses cookie/consent banners before capturing the screenshot. Only applies to 'screenshot' heatmaps."
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.saved#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        },
+        "exception": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error detail when screenshot generation failed, otherwise null.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.saved#HeatmapType": {
+      "type": "enum",
+      "members": {
+        "SCREENSHOT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "screenshot"
+          }
+        },
+        "IFRAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "iframe"
+          }
+        },
+        "RECORDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recording"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `screenshot` - Screenshot\n* `iframe` - Iframe\n* `recording` - Recording"
+      }
+    },
+    "com.posthog.saved#HeatmapScreenshotResponseStatusEnum": {
+      "type": "enum",
+      "members": {
+        "PROCESSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "processing"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `processing` - Processing\n* `completed` - Completed\n* `failed` - Failed"
+      }
+    },
+    "com.posthog.saved#HeatmapSnapshotMetadata": {
+      "type": "structure",
+      "members": {
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Viewport width (CSS pixels) this screenshot was rendered at.",
+            "smithy.api#required": {}
+          }
+        },
+        "has_content": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the rendered image for this width is ready to fetch from the content endpoint.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.saved#HeatmapScreenshotResponseSnapshotsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.saved#HeatmapSnapshotMetadata"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-width render metadata. Fetch the actual image bytes for a width from the content endpoint."
+      }
+    },
+    "com.posthog.saved#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.saved#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.saved#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.saved#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.saved#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.saved#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.saved#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.saved#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.saved#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.saved#SavedHeatmapListResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.saved#HeatmapScreenshotResponse"
+      },
+      "traits": {}
+    },
+    "com.posthog.saved#SavedListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.saved#SavedHeatmapListResponse"
+      },
+      "traits": {}
+    },
+    "com.posthog.saved#SavedListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.saved#SavedListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.saved#SavedList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.saved#SavedListRequest"
+      },
+      "output": {
+        "target": "com.posthog.saved#SavedListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.saved#BadRequest"
+        },
+        {
+          "target": "com.posthog.saved#Forbidden"
+        },
+        {
+          "target": "com.posthog.saved#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/saved/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List saved heatmaps for the project. A saved heatmap pins a page URL and a set of viewport widths, and (for type 'screenshot') renders the page so heatmap data can be overlaid on it."
+      }
+    },
+    "com.posthog.saved#SavedCreateRequestWidthsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths."
+      }
+    },
+    "com.posthog.saved#SavedCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable label for the saved heatmap.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Exact page URL to render and overlay heatmap data on. Wildcards are not allowed.",
+            "smithy.api#required": {}
+          }
+        },
+        "data_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL whose heatmap data is overlaid on the screenshot. Defaults to 'url' when omitted.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "widths": {
+          "target": "com.posthog.saved#SavedCreateRequestWidthsList",
+          "traits": {
+            "smithy.api#documentation": "Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths."
+          }
+        },
+        "type": {
+          "target": "com.posthog.saved#HeatmapType",
+          "traits": {
+            "smithy.api#documentation": "Render mode: 'screenshot' (renders the page headlessly, default), 'iframe', or 'recording'. Only 'screenshot' generates image bytes.\n\n* `screenshot` - Screenshot\n* `iframe` - Iframe\n* `recording` - Recording"
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set true to soft-delete the saved heatmap."
+          }
+        },
+        "block_consent_modals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, ask the headless browser to dismiss cookie/consent banners before capturing the screenshot. Off by default: the blocker can stall the render on some sites and time out. Only applies to 'screenshot' heatmaps."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.saved#SavedCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.saved#SavedCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.saved#HeatmapScreenshotResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.saved#BadRequest"
+        },
+        {
+          "target": "com.posthog.saved#Forbidden"
+        },
+        {
+          "target": "com.posthog.saved#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/saved/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a saved heatmap for a page URL. For type 'screenshot' (the default) this enqueues a headless render of the page at each target width; poll the saved heatmap or its content endpoint until status is 'completed'. Provide 'widths' to control which viewport widths are rendered."
+      }
+    },
+    "com.posthog.saved#SavedRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.saved#SavedRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.saved#SavedRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.saved#HeatmapScreenshotResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.saved#Forbidden"
+        },
+        {
+          "target": "com.posthog.saved#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/saved/{short_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a single saved heatmap by its short_id, including per-width render status."
+      }
+    },
+    "com.posthog.saved#SavedPartialUpdateRequestWidthsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths."
+      }
+    },
+    "com.posthog.saved#SavedPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable label for the saved heatmap.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Exact page URL to render and overlay heatmap data on. Wildcards are not allowed."
+          }
+        },
+        "data_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL whose heatmap data is overlaid on the screenshot. Defaults to 'url' when omitted.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "widths": {
+          "target": "com.posthog.saved#SavedPartialUpdateRequestWidthsList",
+          "traits": {
+            "smithy.api#documentation": "Viewport widths (px, 100-3000) to render the heatmap screenshot at — one render per width. Defaults to [320, 375, 425, 768, 1024, 1440, 1920] when omitted. At most 16 widths."
+          }
+        },
+        "type": {
+          "target": "com.posthog.saved#HeatmapType",
+          "traits": {
+            "smithy.api#documentation": "Render mode: 'screenshot' (renders the page headlessly, default), 'iframe', or 'recording'. Only 'screenshot' generates image bytes.\n\n* `screenshot` - Screenshot\n* `iframe` - Iframe\n* `recording` - Recording"
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set true to soft-delete the saved heatmap."
+          }
+        },
+        "block_consent_modals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, ask the headless browser to dismiss cookie/consent banners before capturing the screenshot. Off by default: the blocker can stall the render on some sites and time out. Only applies to 'screenshot' heatmaps."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.saved#SavedPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.saved#SavedPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.saved#HeatmapScreenshotResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.saved#BadRequest"
+        },
+        {
+          "target": "com.posthog.saved#Forbidden"
+        },
+        {
+          "target": "com.posthog.saved#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/saved/{short_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a saved heatmap (e.g. rename, change widths, or soft-delete via 'deleted'). Changing the URL of a 'screenshot' heatmap triggers a re-render."
+      }
+    },
+    "com.posthog.saved#SavedDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.saved#SavedDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.saved#SavedDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.saved#Forbidden"
+        },
+        {
+          "target": "com.posthog.saved#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/saved/{short_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.saved#SavedRegenerateCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "short_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.saved#SavedRegenerateCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.saved#SavedRegenerateCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.saved#HeatmapScreenshotResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.saved#BadRequest"
+        },
+        {
+          "target": "com.posthog.saved#Forbidden"
+        },
+        {
+          "target": "com.posthog.saved#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/saved/{short_id}/regenerate/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Re-run screenshot generation for a saved heatmap of type 'screenshot'. Clears existing renders and re-renders at every target width; status returns to 'processing'."
+      }
+    },
+    "com.posthog.saved#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.saved#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.saved#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.saved#Saved": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.saved#SavedList"
+        },
+        {
+          "target": "com.posthog.saved#SavedCreate"
+        },
+        {
+          "target": "com.posthog.saved#SavedRetrieve"
+        },
+        {
+          "target": "com.posthog.saved#SavedPartialUpdate"
+        },
+        {
+          "target": "com.posthog.saved#SavedDestroy"
+        },
+        {
+          "target": "com.posthog.saved#SavedRegenerateCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

@@ -1,0 +1,1579 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.confidentialledger#LedgerFilesExport": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.confidentialledger#LedgerFilesExportRequest"
+      },
+      "output": {
+        "target": "com.azure.confidentialledger#ConfidentialLedgerFilesExportResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers/{ledgerName}/filesExport",
+          "code": 200,
+          "apiVersion": "2026-02-23"
+        },
+        "smithy.api#documentation": "Copies the ledger files and the service certificate to a customer's storage account of choice.",
+        "com.distilled.openapi#apiVersion": "2026-02-23"
+      }
+    },
+    "com.azure.confidentialledger#ConfidentialLedgerFilesExportResponse": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Response body stating if the ledger files are being exported."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object representing the files export response of a Confidential Ledger Resource."
+      }
+    },
+    "com.azure.confidentialledger#LedgerFilesExportRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "ledgerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Confidential Ledger"
+          }
+        },
+        "restoreRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The region where the exported ledger files will eventually be restored to."
+          }
+        },
+        "uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SAS URI used to access the Fileshare for exporting ledger files.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.confidentialledger#LedgerDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.confidentialledger#LedgerDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers/{ledgerName}",
+          "code": 200,
+          "apiVersion": "2026-02-23"
+        },
+        "smithy.api#documentation": "Deletes an existing Confidential Ledger.",
+        "com.distilled.openapi#apiVersion": "2026-02-23"
+      }
+    },
+    "com.azure.confidentialledger#LedgerDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "ledgerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Confidential Ledger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.confidentialledger#LedgerUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.confidentialledger#LedgerUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.confidentialledger#LedgerUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers/{ledgerName}",
+          "code": 200,
+          "apiVersion": "2026-02-23"
+        },
+        "smithy.api#documentation": "Updates properties of Confidential Ledger",
+        "com.distilled.openapi#apiVersion": "2026-02-23"
+      }
+    },
+    "com.azure.confidentialledger#LedgerUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.confidentialledger#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.confidentialledger#LedgerUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.confidentialledger#LedgerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of Confidential Ledger Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.confidentialledger#LedgerProperties": {
+      "type": "structure",
+      "members": {
+        "ledgerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique name for the Confidential Ledger."
+          }
+        },
+        "ledgerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Endpoint for calling Ledger Service."
+          }
+        },
+        "identityServiceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Endpoint for accessing network identity."
+          }
+        },
+        "ledgerInternalNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal namespace for the Ledger"
+          }
+        },
+        "runningState": {
+          "target": "com.azure.confidentialledger#RunningState",
+          "traits": {
+            "smithy.api#documentation": "Object representing RunningState for Ledger."
+          }
+        },
+        "ledgerType": {
+          "target": "com.azure.confidentialledger#LedgerType",
+          "traits": {
+            "smithy.api#documentation": "Type of Confidential Ledger"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.confidentialledger#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of Ledger Resource"
+          }
+        },
+        "ledgerSku": {
+          "target": "com.azure.confidentialledger#LedgerSku",
+          "traits": {
+            "smithy.api#documentation": "SKU associated with the ledger"
+          }
+        },
+        "aadBasedSecurityPrincipals": {
+          "target": "com.azure.confidentialledger#LedgerPropertiesAadBasedSecurityPrincipalsList",
+          "traits": {
+            "smithy.api#documentation": "Array of all AAD based Security Principals."
+          }
+        },
+        "certBasedSecurityPrincipals": {
+          "target": "com.azure.confidentialledger#LedgerPropertiesCertBasedSecurityPrincipalsList",
+          "traits": {
+            "smithy.api#documentation": "Array of all cert based Security Principals."
+          }
+        },
+        "hostLevel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CCF Property for the logging level for the untrusted host: Trace, Debug, Info, Fail, Fatal."
+          }
+        },
+        "maxBodySizeInMb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "CCF Property for the maximum size of the http request body: 1MB, 5MB, 10MB."
+          }
+        },
+        "subjectName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CCF Property for the subject name to include in the node certificate. Default: CN=CCF Node."
+          }
+        },
+        "nodeCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of CCF nodes in the ACC Ledger."
+          }
+        },
+        "writeLBAddressPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix for the write load balancer. Example: write"
+          }
+        },
+        "workerThreads": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of additional threads processing incoming client requests in the enclave (modify with care!)"
+          }
+        },
+        "enclavePlatform": {
+          "target": "com.azure.confidentialledger#EnclavePlatform",
+          "traits": {
+            "smithy.api#documentation": "Enclave platform of the Confidential Ledger."
+          }
+        },
+        "applicationType": {
+          "target": "com.azure.confidentialledger#ApplicationType",
+          "traits": {
+            "smithy.api#documentation": "Application type of the Confidential Ledger."
+          }
+        },
+        "scittConfiguration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SCITT Configuration that needs to be set for the Confidential Ledger."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional Confidential Ledger properties."
+      }
+    },
+    "com.azure.confidentialledger#ApplicationType": {
+      "type": "enum",
+      "members": {
+        "CONFIDENTIALLEDGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ConfidentialLedger"
+          }
+        },
+        "CODETRANSPARENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CodeTransparency"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object representing the application type of the Confidential Ledger. Defaults to ConfidentialLedger."
+      }
+    },
+    "com.azure.confidentialledger#EnclavePlatform": {
+      "type": "enum",
+      "members": {
+        "INTELSGX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IntelSgx"
+          }
+        },
+        "AMDSEVSNP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AmdSevSnp"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object representing the enclave platform for the Confidential Ledger application. Defaults to IntelSgx."
+      }
+    },
+    "com.azure.confidentialledger#LedgerPropertiesCertBasedSecurityPrincipalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.confidentialledger#CertBasedSecurityPrincipal"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of all cert based Security Principals."
+      }
+    },
+    "com.azure.confidentialledger#CertBasedSecurityPrincipal": {
+      "type": "structure",
+      "members": {
+        "cert": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public key of the user cert (.pem or .cer)"
+          }
+        },
+        "ledgerRoleName": {
+          "target": "com.azure.confidentialledger#LedgerRoleName",
+          "traits": {
+            "smithy.api#documentation": "LedgerRole associated with the Security Principal of Ledger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cert based security principal with Ledger RoleName"
+      }
+    },
+    "com.azure.confidentialledger#LedgerRoleName": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Reader"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Contributor"
+          }
+        },
+        "ADMINISTRATOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Administrator"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "LedgerRole associated with the Security Principal of Ledger"
+      }
+    },
+    "com.azure.confidentialledger#LedgerPropertiesAadBasedSecurityPrincipalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.confidentialledger#AADBasedSecurityPrincipal"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of all AAD based Security Principals."
+      }
+    },
+    "com.azure.confidentialledger#AADBasedSecurityPrincipal": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID/GUID based Principal Id of the Security Principal"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID/GUID based Tenant Id of the Security Principal"
+          }
+        },
+        "ledgerRoleName": {
+          "target": "com.azure.confidentialledger#LedgerRoleName",
+          "traits": {
+            "smithy.api#documentation": "LedgerRole associated with the Security Principal of Ledger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AAD based security principal with associated Ledger RoleName"
+      }
+    },
+    "com.azure.confidentialledger#LedgerSku": {
+      "type": "enum",
+      "members": {
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU associated with the ledger resource"
+      }
+    },
+    "com.azure.confidentialledger#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object representing ProvisioningState for Confidential Ledger."
+      }
+    },
+    "com.azure.confidentialledger#LedgerType": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Public"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Private"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the ledger. Private means transaction data is encrypted."
+      }
+    },
+    "com.azure.confidentialledger#RunningState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Paused"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        },
+        "PAUSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pausing"
+          }
+        },
+        "RESUMING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resuming"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object representing RunningState for Confidential Ledger."
+      }
+    },
+    "com.azure.confidentialledger#LedgerUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.confidentialledger#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.confidentialledger#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.confidentialledger#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.confidentialledger#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.confidentialledger#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.confidentialledger#LedgerUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "ledgerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Confidential Ledger"
+          }
+        },
+        "tags": {
+          "target": "com.azure.confidentialledger#LedgerUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.confidentialledger#LedgerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of Confidential Ledger Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.confidentialledger#LedgerPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "runningState": {
+          "target": "com.azure.confidentialledger#RunningState",
+          "traits": {
+            "smithy.api#documentation": "Object representing RunningState for Ledger."
+          }
+        },
+        "ledgerType": {
+          "target": "com.azure.confidentialledger#LedgerType",
+          "traits": {
+            "smithy.api#documentation": "Type of Confidential Ledger"
+          }
+        },
+        "ledgerSku": {
+          "target": "com.azure.confidentialledger#LedgerSku",
+          "traits": {
+            "smithy.api#documentation": "SKU associated with the ledger"
+          }
+        },
+        "aadBasedSecurityPrincipals": {
+          "target": "com.azure.confidentialledger#LedgerPropertiesInputAadBasedSecurityPrincipalsList",
+          "traits": {
+            "smithy.api#documentation": "Array of all AAD based Security Principals."
+          }
+        },
+        "certBasedSecurityPrincipals": {
+          "target": "com.azure.confidentialledger#LedgerPropertiesInputCertBasedSecurityPrincipalsList",
+          "traits": {
+            "smithy.api#documentation": "Array of all cert based Security Principals."
+          }
+        },
+        "hostLevel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CCF Property for the logging level for the untrusted host: Trace, Debug, Info, Fail, Fatal."
+          }
+        },
+        "maxBodySizeInMb": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "CCF Property for the maximum size of the http request body: 1MB, 5MB, 10MB."
+          }
+        },
+        "subjectName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "CCF Property for the subject name to include in the node certificate. Default: CN=CCF Node."
+          }
+        },
+        "nodeCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of CCF nodes in the ACC Ledger."
+          }
+        },
+        "writeLBAddressPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Prefix for the write load balancer. Example: write"
+          }
+        },
+        "workerThreads": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of additional threads processing incoming client requests in the enclave (modify with care!)"
+          }
+        },
+        "applicationType": {
+          "target": "com.azure.confidentialledger#ApplicationType",
+          "traits": {
+            "smithy.api#documentation": "Application type of the Confidential Ledger."
+          }
+        },
+        "scittConfiguration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SCITT Configuration that needs to be set for the Confidential Ledger."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional Confidential Ledger properties."
+      }
+    },
+    "com.azure.confidentialledger#LedgerPropertiesInputCertBasedSecurityPrincipalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.confidentialledger#CertBasedSecurityPrincipal"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of all cert based Security Principals."
+      }
+    },
+    "com.azure.confidentialledger#LedgerPropertiesInputAadBasedSecurityPrincipalsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.confidentialledger#AADBasedSecurityPrincipal"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of all AAD based Security Principals."
+      }
+    },
+    "com.azure.confidentialledger#LedgerUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.confidentialledger#LedgerCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.confidentialledger#LedgerCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.confidentialledger#LedgerCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers/{ledgerName}",
+          "code": 200,
+          "apiVersion": "2026-02-23"
+        },
+        "smithy.api#documentation": "Creates a  Confidential Ledger with the specified ledger parameters.",
+        "com.distilled.openapi#apiVersion": "2026-02-23"
+      }
+    },
+    "com.azure.confidentialledger#LedgerCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.confidentialledger#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.confidentialledger#LedgerCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.confidentialledger#LedgerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of Confidential Ledger Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.confidentialledger#LedgerCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.confidentialledger#LedgerCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "ledgerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Confidential Ledger"
+          }
+        },
+        "tags": {
+          "target": "com.azure.confidentialledger#LedgerCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.confidentialledger#LedgerPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of Confidential Ledger Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.confidentialledger#LedgerCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.confidentialledger#LedgerGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.confidentialledger#LedgerGetRequest"
+      },
+      "output": {
+        "target": "com.azure.confidentialledger#LedgerGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers/{ledgerName}",
+          "code": 200,
+          "apiVersion": "2026-02-23"
+        },
+        "smithy.api#documentation": "Retrieves the properties of a Confidential Ledger.",
+        "com.distilled.openapi#apiVersion": "2026-02-23"
+      }
+    },
+    "com.azure.confidentialledger#LedgerGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.confidentialledger#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.confidentialledger#LedgerGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.confidentialledger#LedgerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of Confidential Ledger Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.confidentialledger#LedgerGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.confidentialledger#LedgerGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "ledgerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Confidential Ledger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.confidentialledger#LedgerListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.confidentialledger#LedgerListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.confidentialledger#ConfidentialLedgerList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ConfidentialLedger/ledgers",
+          "code": 200,
+          "apiVersion": "2026-02-23"
+        },
+        "smithy.api#documentation": "Retrieves the properties of all Confidential Ledgers.",
+        "com.distilled.openapi#apiVersion": "2026-02-23"
+      }
+    },
+    "com.azure.confidentialledger#ConfidentialLedgerList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.confidentialledger#ConfidentialLedgerListValueList",
+          "traits": {
+            "smithy.api#documentation": "The ConfidentialLedger items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Object that includes an array of Confidential Ledgers and a possible link for next set."
+      }
+    },
+    "com.azure.confidentialledger#ConfidentialLedgerListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.confidentialledger#ConfidentialLedger"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ConfidentialLedger items on this page"
+      }
+    },
+    "com.azure.confidentialledger#ConfidentialLedger": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.confidentialledger#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.confidentialledger#ConfidentialLedgerTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.confidentialledger#LedgerProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of Confidential Ledger Resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Confidential Ledger. Contains the properties of Confidential Ledger Resource."
+      }
+    },
+    "com.azure.confidentialledger#ConfidentialLedgerTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.confidentialledger#LedgerListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.confidentialledger#LedgerListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.confidentialledger#LedgerListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.confidentialledger#ConfidentialLedgerList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ConfidentialLedger/ledgers",
+          "code": 200,
+          "apiVersion": "2026-02-23"
+        },
+        "smithy.api#documentation": "Retrieves the properties of all Confidential Ledgers.",
+        "com.distilled.openapi#apiVersion": "2026-02-23"
+      }
+    },
+    "com.azure.confidentialledger#LedgerListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter to apply on the list operation. eg. $filter=ledgerType eq 'Public'"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.confidentialledger#CheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.confidentialledger#CheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.confidentialledger#CheckNameAvailabilityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ConfidentialLedger/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2026-02-23"
+        },
+        "smithy.api#documentation": "To check whether a resource name is available.",
+        "com.distilled.openapi#apiVersion": "2026-02-23"
+      }
+    },
+    "com.azure.confidentialledger#CheckNameAvailabilityResponse": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the resource name is available."
+          }
+        },
+        "reason": {
+          "target": "com.azure.confidentialledger#CheckNameAvailabilityResponseReason",
+          "traits": {
+            "smithy.api#documentation": "The reason why the given name is not available."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed reason why the given name is available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.confidentialledger#CheckNameAvailabilityResponseReason": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ALREADYEXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlreadyExists"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reason why the given name is not available."
+      }
+    },
+    "com.azure.confidentialledger#CheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource for which availability needs to be checked."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.confidentialledger#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.confidentialledger#ResourceProviderOperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ConfidentialLedger/operations",
+          "code": 200,
+          "apiVersion": "2026-02-23"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2026-02-23"
+      }
+    },
+    "com.azure.confidentialledger#ResourceProviderOperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.confidentialledger#ResourceProviderOperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of operations."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to get the next set of results, if any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List containing this Resource Provider's available operations."
+      }
+    },
+    "com.azure.confidentialledger#ResourceProviderOperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.confidentialledger#ResourceProviderOperationDefinition"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of operations."
+      }
+    },
+    "com.azure.confidentialledger#ResourceProviderOperationDefinition": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource provider operation name."
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is data action or not."
+          }
+        },
+        "display": {
+          "target": "com.azure.confidentialledger#ResourceProviderOperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Details about the operations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the Resource Provider Operation."
+      }
+    },
+    "com.azure.confidentialledger#ResourceProviderOperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource provider."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource type."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource provider operation."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the resource provider operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of the Operation."
+      }
+    },
+    "com.azure.confidentialledger#Confidentialledger": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.confidentialledger#LedgerFilesExport"
+        },
+        {
+          "target": "com.azure.confidentialledger#LedgerDelete"
+        },
+        {
+          "target": "com.azure.confidentialledger#LedgerUpdate"
+        },
+        {
+          "target": "com.azure.confidentialledger#LedgerCreate"
+        },
+        {
+          "target": "com.azure.confidentialledger#LedgerGet"
+        },
+        {
+          "target": "com.azure.confidentialledger#LedgerListByResourceGroup"
+        },
+        {
+          "target": "com.azure.confidentialledger#LedgerListBySubscription"
+        },
+        {
+          "target": "com.azure.confidentialledger#CheckNameAvailability"
+        },
+        {
+          "target": "com.azure.confidentialledger#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Confidentialledger",
+        "smithy.api#documentation": "Azure Confidentialledger API — merged from the confidentialledger resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

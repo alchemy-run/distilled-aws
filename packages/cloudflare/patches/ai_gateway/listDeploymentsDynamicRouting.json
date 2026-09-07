@@ -1,0 +1,30 @@
+{
+  "description": "Align ai_gateway#DynamicRoutingListDeployments with distilled cloudflare/ai-gateway listDeploymentsDynamicRouting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListDeployments",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDeploymentsDynamicRouting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListDeploymentsRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDeploymentsDynamicRoutingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDeploymentsDynamicRouting/input/target",
+      "value": "com.cloudflare.ai_gateway#ListDeploymentsDynamicRoutingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#DynamicRoutingListDeploymentsResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDeploymentsDynamicRoutingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#ListDeploymentsDynamicRouting/output/target",
+      "value": "com.cloudflare.ai_gateway#ListDeploymentsDynamicRoutingResponse"
+    }
+  ]
+}

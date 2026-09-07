@@ -1,0 +1,21 @@
+{
+  "description": "Key dictionary / op aliases for schema_validation (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "createdAt": "created_at",
+        "mitigationAction": "mitigation_action",
+        "operationId": "operation_id",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "schemaId": "schema_id",
+        "totalCount": "total_count",
+        "validationDefaultMitigationAction": "validation_default_mitigation_action",
+        "validationEnabled": "validation_enabled",
+        "validationOverrideMitigationAction": "validation_override_mitigation_action"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#RobotsTxtTopDomainCategories with distilled cloudflare/radar domainCategoriesRobotsTxtTop",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RobotsTxtTopDomainCategories",
+      "path": "/shapes/com.cloudflare.radar#DomainCategoriesRobotsTxtTop"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RobotsTxtTopDomainCategoriesRequest",
+      "path": "/shapes/com.cloudflare.radar#DomainCategoriesRobotsTxtTopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DomainCategoriesRobotsTxtTop/input/target",
+      "value": "com.cloudflare.radar#DomainCategoriesRobotsTxtTopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#RobotsTxtTopDomainCategoriesResponse",
+      "path": "/shapes/com.cloudflare.radar#DomainCategoriesRobotsTxtTopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DomainCategoriesRobotsTxtTop/output/target",
+      "value": "com.cloudflare.radar#DomainCategoriesRobotsTxtTopResponse"
+    }
+  ]
+}

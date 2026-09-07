@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AnnotationsList with distilled cloudflare/radar listAnnotations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AnnotationsList",
+      "path": "/shapes/com.cloudflare.radar#ListAnnotations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AnnotationsListRequest",
+      "path": "/shapes/com.cloudflare.radar#ListAnnotationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListAnnotations/input/target",
+      "value": "com.cloudflare.radar#ListAnnotationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AnnotationsListResponse",
+      "path": "/shapes/com.cloudflare.radar#ListAnnotationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListAnnotations/output/target",
+      "value": "com.cloudflare.radar#ListAnnotationsResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#GatewayPacfilesGet with distilled cloudflare/zero-trust getGatewayPacfile",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayPacfilesGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayPacfile"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayPacfilesGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayPacfileRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayPacfile/input/target",
+      "value": "com.cloudflare.zero_trust#GetGatewayPacfileRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayPacfilesGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayPacfileResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetGatewayPacfile/output/target",
+      "value": "com.cloudflare.zero_trust#GetGatewayPacfileResponse"
+    }
+  ]
+}

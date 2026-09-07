@@ -1,0 +1,38 @@
+{
+  "description": "Align queues#ConsumersDelete with distilled cloudflare/queues deleteConsumer",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#ConsumersDelete",
+      "path": "/shapes/com.cloudflare.queues#DeleteConsumer"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#ConsumersDeleteRequest",
+      "path": "/shapes/com.cloudflare.queues#DeleteConsumerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#DeleteConsumer/input/target",
+      "value": "com.cloudflare.queues#DeleteConsumerRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#DeleteConsumer/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#InvalidRequestBody"
+        },
+        {
+          "target": "com.cloudflare.queues#QueueNotFound"
+        },
+        {
+          "target": "com.cloudflare.queues#ConsumerNotFound"
+        },
+        {
+          "target": "com.cloudflare.queues#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

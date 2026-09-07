@@ -1,0 +1,2548 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.management#TenantBackfillStatus": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.management#TenantBackfillStatusResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Management/tenantBackfillStatus",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Gets tenant backfill status",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#TenantBackfillStatusResult": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD Tenant ID associated with the management group. For example, 00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "status": {
+          "target": "com.azure.management#Status",
+          "traits": {
+            "smithy.api#documentation": "The status of the Tenant Backfill"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The tenant backfill status"
+      }
+    },
+    "com.azure.management#Status": {
+      "type": "enum",
+      "members": {
+        "NOTSTARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotStarted"
+          }
+        },
+        "NOTSTARTEDBUTGROUPSEXIST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotStartedButGroupsExist"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Started"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of the Tenant Backfill"
+      }
+    },
+    "com.azure.management#StartTenantBackfill": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.management#TenantBackfillStatusResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Management/startTenantBackfill",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Starts backfilling subscriptions for the Tenant.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.management#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/operations",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.management#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.management#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.management#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.management#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.management#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.management#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.management#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.management#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.management#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupSubscriptionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/subscriptions/{subscriptionId}",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "De-associates subscription from the management group.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupSubscriptionsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.management#ManagementGroupSubscriptionsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/subscriptions/{subscriptionId}",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Associates existing subscription with the management group.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.management#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#SubscriptionUnderManagementGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of subscription under a management group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.management#SubscriptionUnderManagementGroupProperties": {
+      "type": "structure",
+      "members": {
+        "tenant": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD Tenant ID associated with the subscription. For example, 00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the subscription."
+          }
+        },
+        "parent": {
+          "target": "com.azure.management#DescendantParentGroupInfo",
+          "traits": {
+            "smithy.api#documentation": "The ID of the parent management group.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The state of the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of subscription under a management group."
+      }
+    },
+    "com.azure.management#DescendantParentGroupInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified ID for the parent management group.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ID of the parent management group."
+      }
+    },
+    "com.azure.management#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.management#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.management#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.management#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.management#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsGetSubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupSubscriptionsGetSubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.management#ManagementGroupSubscriptionsGetSubscriptionResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/subscriptions/{subscriptionId}",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Retrieves details about given subscription which is associated with the management group.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsGetSubscriptionResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.management#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#SubscriptionUnderManagementGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of subscription under a management group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsGetSubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsGetSubscriptionsUnderManagementGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupSubscriptionsGetSubscriptionsUnderManagementGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.management#ListSubscriptionUnderManagementGroup"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/subscriptions",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Retrieves details about all subscriptions which are associated with the management group.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#ListSubscriptionUnderManagementGroup": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.management#ListSubscriptionUnderManagementGroupValueList",
+          "traits": {
+            "smithy.api#documentation": "The SubscriptionUnderManagementGroup items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of all subscriptions under management group."
+      }
+    },
+    "com.azure.management#ListSubscriptionUnderManagementGroupValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#SubscriptionUnderManagementGroup"
+      },
+      "traits": {
+        "smithy.api#documentation": "The SubscriptionUnderManagementGroup items on this page"
+      }
+    },
+    "com.azure.management#SubscriptionUnderManagementGroup": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.management#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#SubscriptionUnderManagementGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of subscription under a management group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of subscription under management group."
+      }
+    },
+    "com.azure.management#ManagementGroupSubscriptionsGetSubscriptionsUnderManagementGroupRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "_skiptoken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "Page continuation token is only used if a previous operation returned a partial result.\nIf a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#HierarchySettingsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#HierarchySettingsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/settings/default",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Deletes the hierarchy settings defined at the Management Group level.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#HierarchySettingsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#HierarchySettingsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#HierarchySettingsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.management#HierarchySettingsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/settings/default",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Updates the hierarchy settings defined at the Management Group level.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#HierarchySettingsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.management#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#HierarchySettingsProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of hierarchy settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.management#HierarchySettingsProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD Tenant ID associated with the hierarchy settings. For example, 00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "requireAuthorizationForGroupCreation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether RBAC access is required upon group creation under the root Management Group. If set to true, user will require Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are given access."
+          }
+        },
+        "defaultManagementGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Settings that sets the default Management Group under which new subscriptions get added in this tenant. For example, /providers/Microsoft.Management/managementGroups/defaultGroup"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of hierarchy settings."
+      }
+    },
+    "com.azure.management#HierarchySettingsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#CreateOrUpdateSettingsProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the request to create or update Management Group settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#CreateOrUpdateSettingsProperties": {
+      "type": "structure",
+      "members": {
+        "requireAuthorizationForGroupCreation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether RBAC access is required upon group creation under the root Management Group. If set to true, user will require Microsoft.Management/managementGroups/write action on the root Management Group scope in order to create new Groups directly under the root. This will prevent new users from creating new Management Groups, unless they are given access."
+          }
+        },
+        "defaultManagementGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Settings that sets the default Management Group under which new subscriptions get added in this tenant. For example, /providers/Microsoft.Management/managementGroups/defaultGroup"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties of the request to create or update Management Group settings"
+      }
+    },
+    "com.azure.management#HierarchySettingsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#HierarchySettingsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.management#HierarchySettingsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/settings/default",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Creates or updates the hierarchy settings defined at the Management Group level.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#HierarchySettingsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.management#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#HierarchySettingsProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of hierarchy settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.management#HierarchySettingsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#CreateOrUpdateSettingsProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of the request to create or update Management Group settings"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#HierarchySettingsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#HierarchySettingsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.management#HierarchySettingsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/settings/default",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Gets the hierarchy settings defined at the Management Group level. Settings can only be set on the root Management Group of the hierarchy.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#HierarchySettingsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.management#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#HierarchySettingsProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of hierarchy settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.management#HierarchySettingsGetRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#HierarchySettingsList2": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#HierarchySettingsListRequest"
+      },
+      "output": {
+        "target": "com.azure.management#HierarchySettingsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/settings",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Gets all the hierarchy settings defined at the Management Group level. Settings can only be set on the root Management Group of the hierarchy.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#HierarchySettingsList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.management#HierarchySettingsListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of hierarchy settings."
+          }
+        },
+        "_nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to use for getting the next set of results.",
+            "smithy.api#jsonName": "@nextLink"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Lists all hierarchy settings."
+      }
+    },
+    "com.azure.management#HierarchySettingsListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#HierarchySettingsInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of hierarchy settings."
+      }
+    },
+    "com.azure.management#HierarchySettingsInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified ID for the settings object.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000/settings/default."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource.  For example, Microsoft.Management/managementGroups/settings."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the object. In this case, default."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#HierarchySettingsProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of hierarchy settings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The hierarchy settings resource."
+      }
+    },
+    "com.azure.management#HierarchySettingsListRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#ManagementGroupsGetDescendants": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupsGetDescendantsRequest"
+      },
+      "output": {
+        "target": "com.azure.management#DescendantListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}/descendants",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "List all entities that descend from a management group.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#DescendantListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.management#DescendantListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The DescendantInfo items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of DescendantInfo items"
+      }
+    },
+    "com.azure.management#DescendantListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#DescendantInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The DescendantInfo items on this page"
+      }
+    },
+    "com.azure.management#DescendantInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified ID for the descendant.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000 or /subscriptions/0000000-0000-0000-0000-000000000000",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. For example, Microsoft.Management/managementGroups or /subscriptions",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the descendant. For example, 00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#DescendantInfoProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of an descendant.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The descendant."
+      }
+    },
+    "com.azure.management#DescendantInfoProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the management group.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "parent": {
+          "target": "com.azure.management#DescendantParentGroupInfo",
+          "traits": {
+            "smithy.api#documentation": "The ID of the parent management group.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of an descendant."
+      }
+    },
+    "com.azure.management#ManagementGroupsGetDescendantsRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "_skiptoken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "Page continuation token is only used if a previous operation returned a partial result.\nIf a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "Number of elements to return when retrieving results. Passing this in will override $skipToken."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#ManagementGroupsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Delete management group.\nIf a management group contains child resources, the request will fail.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#ManagementGroupsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#ManagementGroupsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.management#ManagementGroupsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Update a management group.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#ManagementGroupsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.management#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#ManagementGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of a management group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.management#ManagementGroupProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD Tenant ID associated with the management group. For example, 00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the management group."
+          }
+        },
+        "details": {
+          "target": "com.azure.management#ManagementGroupDetails",
+          "traits": {
+            "smithy.api#documentation": "The details of a management group."
+          }
+        },
+        "children": {
+          "target": "com.azure.management#ManagementGroupPropertiesChildrenList",
+          "traits": {
+            "smithy.api#documentation": "The list of children.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of a management group."
+      }
+    },
+    "com.azure.management#ManagementGroupPropertiesChildrenList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#ManagementGroupChildInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of children."
+      }
+    },
+    "com.azure.management#ManagementGroupChildInfo": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.management#ManagementGroupChildType",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified resource type which includes provider namespace (e.g. Microsoft.Management/managementGroups)"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified ID for the child resource (management group or subscription).  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the child entity."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the child resource."
+          }
+        },
+        "children": {
+          "target": "com.azure.management#ManagementGroupChildInfoChildrenList",
+          "traits": {
+            "smithy.api#documentation": "The list of children."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The child information of a management group."
+      }
+    },
+    "com.azure.management#ManagementGroupChildInfoChildrenList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#ManagementGroupChildInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of children."
+      }
+    },
+    "com.azure.management#ManagementGroupChildType": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_MANAGEMENT_MANAGEMENTGROUPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.Management/managementGroups"
+          }
+        },
+        "SUBSCRIPTIONS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "/subscriptions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of child resource."
+      }
+    },
+    "com.azure.management#ManagementGroupDetails": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The version number of the object."
+          }
+        },
+        "updatedTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time when this object was last updated."
+          }
+        },
+        "updatedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity of the principal or process that updated the object."
+          }
+        },
+        "parent": {
+          "target": "com.azure.management#ParentGroupInfo",
+          "traits": {
+            "smithy.api#documentation": "(Optional) The ID of the parent management group."
+          }
+        },
+        "path": {
+          "target": "com.azure.management#ManagementGroupDetailsPathList",
+          "traits": {
+            "smithy.api#documentation": "The path from the root to the current group."
+          }
+        },
+        "managementGroupAncestors": {
+          "target": "com.azure.management#ManagementGroupDetailsManagementGroupAncestorsList",
+          "traits": {
+            "smithy.api#documentation": "The ancestors of the management group.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "managementGroupAncestorsChain": {
+          "target": "com.azure.management#ManagementGroupDetailsManagementGroupAncestorsChainList",
+          "traits": {
+            "smithy.api#documentation": "The ancestors of the management group displayed in reversed order, from immediate parent to the root."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of a management group."
+      }
+    },
+    "com.azure.management#ManagementGroupDetailsManagementGroupAncestorsChainList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#ManagementGroupPathElement"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ancestors of the management group displayed in reversed order, from immediate parent to the root."
+      }
+    },
+    "com.azure.management#ManagementGroupPathElement": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the group."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A path element of a management group ancestors."
+      }
+    },
+    "com.azure.management#ManagementGroupDetailsManagementGroupAncestorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ancestors of the management group."
+      }
+    },
+    "com.azure.management#ManagementGroupDetailsPathList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#ManagementGroupPathElement"
+      },
+      "traits": {
+        "smithy.api#documentation": "The path from the root to the current group."
+      }
+    },
+    "com.azure.management#ParentGroupInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified ID for the parent management group.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the parent management group"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the parent management group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "(Optional) The ID of the parent management group."
+      }
+    },
+    "com.azure.management#ManagementGroupsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the management group."
+          }
+        },
+        "parentGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "(Optional) The fully qualified ID for the parent management group.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#ManagementGroupsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.management#ManagementGroupsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Create or update a management group.\nIf a management group is already created and a subsequent create request is issued with different properties, the management group properties will be updated.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#ManagementGroupsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.management#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#ManagementGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of a management group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.management#ManagementGroupsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the management group. For example, 00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#CreateManagementGroupPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of a management group used during creation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#CreateManagementGroupPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the management group. If no value is passed then this  field will be set to the groupId.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "details": {
+          "target": "com.azure.management#CreateManagementGroupDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "The details of a management group used during creation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of a management group used during creation."
+      }
+    },
+    "com.azure.management#CreateManagementGroupDetailsInput": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "com.azure.management#CreateParentGroupInfoInput",
+          "traits": {
+            "smithy.api#documentation": "(Optional) The ID of the parent management group used during creation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The details of a management group used during creation."
+      }
+    },
+    "com.azure.management#CreateParentGroupInfoInput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified ID for the parent management group.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "(Optional) The ID of the parent management group used during creation."
+      }
+    },
+    "com.azure.management#ManagementGroupsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.management#ManagementGroupsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{groupId}",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Get the details of the management group.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#ManagementGroupsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.management#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#ManagementGroupProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of a management group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.management#ManagementGroupsGetRequest": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group ID."
+          }
+        },
+        "_expand": {
+          "target": "com.azure.management#ManagementGroupsGetRequestExpand",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "The $expand=children query string parameter allows clients to request inclusion of children in the response payload.  $expand=path includes the path from the root group to the current group.  $expand=ancestors includes the ancestor Ids of the current group."
+          }
+        },
+        "_recurse": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "$recurse",
+            "smithy.api#documentation": "The $recurse=true query string parameter allows clients to request inclusion of entire hierarchy in the response payload. Note that  $expand=children must be passed up if $recurse is set to true."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "A filter which allows the exclusion of subscriptions from results (i.e. '$filter=children.childType ne Subscription')"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#ManagementGroupsGetRequestExpand": {
+      "type": "enum",
+      "members": {
+        "CHILDREN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "children"
+          }
+        },
+        "PATH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "path"
+          }
+        },
+        "ANCESTORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ancestors"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.management#ManagementGroupsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#ManagementGroupsListRequest"
+      },
+      "output": {
+        "target": "com.azure.management#ManagementGroupListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "List management groups for the authenticated user.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#ManagementGroupListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.management#ManagementGroupListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of management groups."
+          }
+        },
+        "_nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to use for getting the next set of results.",
+            "smithy.api#jsonName": "@nextLink"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the result of the request to list management groups."
+      }
+    },
+    "com.azure.management#ManagementGroupListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#ManagementGroupInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of management groups."
+      }
+    },
+    "com.azure.management#ManagementGroupInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified ID for the management group.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. For example, Microsoft.Management/managementGroups"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the management group. For example, 00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#ManagementGroupInfoProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of a management group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The management group resource."
+      }
+    },
+    "com.azure.management#ManagementGroupInfoProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD Tenant ID associated with the management group. For example, 00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the management group."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of a management group."
+      }
+    },
+    "com.azure.management#ManagementGroupsListRequest": {
+      "type": "structure",
+      "members": {
+        "_skiptoken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "Page continuation token is only used if a previous operation returned a partial result.\nIf a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#EntitiesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#EntitiesListRequest"
+      },
+      "output": {
+        "target": "com.azure.management#EntityListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Management/getEntities",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "List all entities (Management Groups, Subscriptions, etc.) for the authenticated user.",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#EntityListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.management#EntityListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The EntityInfo items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total count of records that match the filter."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the result of the request to view entities."
+      }
+    },
+    "com.azure.management#EntityListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.management#EntityInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The EntityInfo items on this page"
+      }
+    },
+    "com.azure.management#EntityInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified ID for the entity.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. For example, Microsoft.Management/managementGroups",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the entity. For example, 00000000-0000-0000-0000-000000000000"
+          }
+        },
+        "properties": {
+          "target": "com.azure.management#EntityInfoProperties",
+          "traits": {
+            "smithy.api#documentation": "The generic properties of an entity.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The entity."
+      }
+    },
+    "com.azure.management#EntityInfoProperties": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The AAD Tenant ID associated with the entity. For example, 00000000-0000-0000-0000-000000000000",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the management group.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "parent": {
+          "target": "com.azure.management#EntityParentGroupInfo",
+          "traits": {
+            "smithy.api#documentation": "(Optional) The ID of the parent management group.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permissions": {
+          "target": "com.azure.management#Permissions",
+          "traits": {
+            "smithy.api#documentation": "The users specific permissions to this item.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "inheritedPermissions": {
+          "target": "com.azure.management#Permissions",
+          "traits": {
+            "smithy.api#documentation": "The users specific permissions to this item.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "numberOfDescendants": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of Descendants",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "numberOfChildren": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of children is the number of Groups and Subscriptions that are exactly one level underneath the current Group.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "numberOfChildGroups": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of children is the number of Groups that are exactly one level underneath the current Group.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "parentDisplayNameChain": {
+          "target": "com.azure.management#EntityInfoPropertiesParentDisplayNameChainList",
+          "traits": {
+            "smithy.api#documentation": "The parent display name chain from the root group to the immediate parent",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "parentNameChain": {
+          "target": "com.azure.management#EntityInfoPropertiesParentNameChainList",
+          "traits": {
+            "smithy.api#documentation": "The parent name chain from the root group to the immediate parent",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The generic properties of an entity."
+      }
+    },
+    "com.azure.management#EntityInfoPropertiesParentNameChainList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The parent name chain from the root group to the immediate parent"
+      }
+    },
+    "com.azure.management#EntityInfoPropertiesParentDisplayNameChainList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The parent display name chain from the root group to the immediate parent"
+      }
+    },
+    "com.azure.management#Permissions": {
+      "type": "enum",
+      "members": {
+        "NOACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "noaccess"
+          }
+        },
+        "VIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "view"
+          }
+        },
+        "EDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edit"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "delete"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The users specific permissions to this item."
+      }
+    },
+    "com.azure.management#EntityParentGroupInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The fully qualified ID for the parent management group.  For example, /providers/Microsoft.Management/managementGroups/0000000-0000-0000-0000-000000000000"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "(Optional) The ID of the parent management group."
+      }
+    },
+    "com.azure.management#EntitiesListRequest": {
+      "type": "structure",
+      "members": {
+        "_skiptoken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "Page continuation token is only used if a previous operation returned a partial result.\nIf a previous response contains a nextLink element, the value of the nextLink element will include a token parameter that specifies a starting point to use for subsequent calls."
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$skip",
+            "smithy.api#documentation": "Number of entities to skip over when retrieving results. Passing this in will override $skipToken."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "Number of elements to return when retrieving results. Passing this in will override $skipToken."
+          }
+        },
+        "_select": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$select",
+            "smithy.api#documentation": "This parameter specifies the fields to include in the response. Can include any combination of Name,DisplayName,Type,ParentDisplayNameChain,ParentChain, e.g. '$select=Name,DisplayName,Type,ParentDisplayNameChain,ParentNameChain'. When specified the $select parameter can override select in $skipToken."
+          }
+        },
+        "_search": {
+          "target": "com.azure.management#EntitiesListRequestSearch",
+          "traits": {
+            "smithy.api#httpQuery": "$search",
+            "smithy.api#documentation": "The $search parameter is used in conjunction with the $filter parameter to return three different outputs depending on the parameter passed in.\nWith $search=AllowedParents the API will return the entity info of all groups that the requested entity will be able to reparent to as determined by the user's permissions.\nWith $search=AllowedChildren the API will return the entity info of all entities that can be added as children of the requested entity.\nWith $search=ParentAndFirstLevelChildren the API will return the parent and  first level of children that the user has either direct access to or indirect access via one of their descendants.\nWith $search=ParentOnly the API will return only the group if the user has access to at least one of the descendants of the group.\nWith $search=ChildrenOnly the API will return only the first level of children of the group entity info specified in $filter.  The user must have direct access to the children entities or one of it's descendants for it to show up in the results."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "The filter parameter allows you to filter on the the name or display name fields. You can check for equality on the name field (e.g. name eq '{entityName}')  and you can check for substrings on either the name or display name fields(e.g. contains(name, '{substringToSearch}'), contains(displayName, '{substringToSearch')). Note that the '{entityName}' and '{substringToSearch}' fields are checked case insensitively."
+          }
+        },
+        "_view": {
+          "target": "com.azure.management#EntitiesListRequestView",
+          "traits": {
+            "smithy.api#httpQuery": "$view",
+            "smithy.api#documentation": "The view parameter allows clients to filter the type of data that is returned by the getEntities call."
+          }
+        },
+        "groupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "groupName",
+            "smithy.api#documentation": "A filter which allows the get entities call to focus on a particular group (i.e. \"$filter=name eq 'groupName'\")"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#EntitiesListRequestView": {
+      "type": "enum",
+      "members": {
+        "FULLHIERARCHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FullHierarchy"
+          }
+        },
+        "GROUPSONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GroupsOnly"
+          }
+        },
+        "SUBSCRIPTIONSONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SubscriptionsOnly"
+          }
+        },
+        "AUDIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Audit"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.management#EntitiesListRequestSearch": {
+      "type": "enum",
+      "members": {
+        "ALLOWEDPARENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AllowedParents"
+          }
+        },
+        "ALLOWEDCHILDREN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AllowedChildren"
+          }
+        },
+        "PARENTANDFIRSTLEVELCHILDREN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ParentAndFirstLevelChildren"
+          }
+        },
+        "PARENTONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ParentOnly"
+          }
+        },
+        "CHILDRENONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ChildrenOnly"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.management#CheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.management#CheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.management#CheckNameAvailabilityResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Management/checkNameAvailability",
+          "code": 200,
+          "apiVersion": "2023-04-01"
+        },
+        "smithy.api#documentation": "Checks if the specified management group name is valid and unique",
+        "com.distilled.openapi#apiVersion": "2023-04-01"
+      }
+    },
+    "com.azure.management#CheckNameAvailabilityResult": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Required. True indicates name is valid and available. False indicates the name is invalid, unavailable, or both."
+          }
+        },
+        "reason": {
+          "target": "com.azure.management#Reason",
+          "traits": {
+            "smithy.api#documentation": "Required if nameAvailable == false. Invalid indicates the name provided does not match the resource provider's naming requirements (incorrect length, unsupported characters, etc.) AlreadyExists indicates that the name is already in use and is therefore unavailable."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required if nameAvailable == false. Localized. If reason == invalid, provide the user with the reason why the given name is invalid, and provide the resource naming requirements so that the user can select a valid name. If reason == AlreadyExists, explain that is already in use, and direct them to select a different name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the result of the request to check management group name availability."
+      }
+    },
+    "com.azure.management#Reason": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ALREADYEXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlreadyExists"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Required if nameAvailable == false. Invalid indicates the name provided does not match the resource provider's naming requirements (incorrect length, unsupported characters, etc.) AlreadyExists indicates that the name is already in use and is therefore unavailable."
+      }
+    },
+    "com.azure.management#CheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the name to check for availability"
+          }
+        },
+        "type": {
+          "target": "com.azure.management#CheckNameAvailabilityRequestType",
+          "traits": {
+            "smithy.api#documentation": "fully qualified resource type which includes provider namespace"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.management#CheckNameAvailabilityRequestType": {
+      "type": "enum",
+      "members": {
+        "MICROSOFT_MANAGEMENT_MANAGEMENTGROUPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Microsoft.Management/managementGroups"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "fully qualified resource type which includes provider namespace"
+      }
+    },
+    "com.azure.management#Management": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.management#TenantBackfillStatus"
+        },
+        {
+          "target": "com.azure.management#StartTenantBackfill"
+        },
+        {
+          "target": "com.azure.management#OperationsList"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupSubscriptionsDelete"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupSubscriptionsCreate"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupSubscriptionsGetSubscription"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupSubscriptionsGetSubscriptionsUnderManagementGroup"
+        },
+        {
+          "target": "com.azure.management#HierarchySettingsDelete"
+        },
+        {
+          "target": "com.azure.management#HierarchySettingsUpdate"
+        },
+        {
+          "target": "com.azure.management#HierarchySettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.management#HierarchySettingsGet"
+        },
+        {
+          "target": "com.azure.management#HierarchySettingsList2"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupsGetDescendants"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupsDelete"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupsUpdate"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupsGet"
+        },
+        {
+          "target": "com.azure.management#ManagementGroupsList"
+        },
+        {
+          "target": "com.azure.management#EntitiesList"
+        },
+        {
+          "target": "com.azure.management#CheckNameAvailability"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Management",
+        "smithy.api#documentation": "Azure Management API — merged from the management resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,5416 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.deviceupdate#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DeviceUpdate/operations",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Returns list of operations for Microsoft.DeviceUpdate resource provider.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.deviceupdate#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.deviceupdate#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.deviceupdate#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.deviceupdate#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.deviceupdate#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.deviceupdate#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.deviceupdate#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.deviceupdate#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnectionProxies/{privateEndpointConnectionProxyId}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "(INTERNAL - DO NOT USE) Deletes the specified private endpoint connection proxy associated with the device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "privateEndpointConnectionProxyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the private endpoint connection proxy object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnectionProxies/{privateEndpointConnectionProxyId}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "(INTERNAL - DO NOT USE) Creates or updates the specified private endpoint connection proxy resource associated with the device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "eTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ETag from NRP."
+          }
+        },
+        "remotePrivateEndpoint": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Remote private endpoint details."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdateResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdateResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxyProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the private endpoint connection proxy resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxyProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Remote endpoint resource ID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM location of the remote private endpoint."
+          }
+        },
+        "immutableSubscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Original subscription ID needed by Microsoft.Network."
+          }
+        },
+        "immutableResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Original resource ID needed by Microsoft.Network."
+          }
+        },
+        "vnetTrafficTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual network traffic tag."
+          }
+        },
+        "manualPrivateLinkServiceConnections": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointManualPrivateLinkServiceConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of private link service connections that need manual approval."
+          }
+        },
+        "privateLinkServiceConnections": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointPrivateLinkServiceConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of automatically approved private link service connections."
+          }
+        },
+        "privateLinkServiceProxies": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointPrivateLinkServiceProxiesList",
+          "traits": {
+            "smithy.api#documentation": "List of private link service proxies."
+          }
+        },
+        "connectionDetails": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointConnectionDetailsList",
+          "traits": {
+            "smithy.api#documentation": "List of connection details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Remote private endpoint details."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointConnectionDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#ConnectionDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of connection details."
+      }
+    },
+    "com.azure.deviceupdate#ConnectionDetails": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Connection details ID."
+          }
+        },
+        "privateIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private IP address."
+          }
+        },
+        "linkIdentifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link ID."
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Group ID."
+          }
+        },
+        "memberName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Member name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connection proxy object properties."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointPrivateLinkServiceProxiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#PrivateLinkServiceProxy"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private link service proxies."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkServiceProxy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NRP resource ID."
+          }
+        },
+        "remotePrivateLinkServiceConnectionState": {
+          "target": "com.azure.deviceupdate#PrivateLinkServiceProxyRemotePrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+          }
+        },
+        "remotePrivateEndpointConnection": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointConnection",
+          "traits": {
+            "smithy.api#documentation": "Remote private endpoint connection details."
+          }
+        },
+        "groupConnectivityInformation": {
+          "target": "com.azure.deviceupdate#PrivateLinkServiceProxyGroupConnectivityInformationList",
+          "traits": {
+            "smithy.api#documentation": "Group connectivity information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private link service proxy details."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkServiceProxyGroupConnectivityInformationList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#GroupConnectivityInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "Group connectivity information."
+      }
+    },
+    "com.azure.deviceupdate#GroupConnectivityInformation": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Group ID."
+          }
+        },
+        "memberName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Member name."
+          }
+        },
+        "customerVisibleFqdns": {
+          "target": "com.azure.deviceupdate#GroupConnectivityInformationCustomerVisibleFqdnsList",
+          "traits": {
+            "smithy.api#documentation": "List of customer visible FQDNs."
+          }
+        },
+        "internalFqdn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal FQDN."
+          }
+        },
+        "redirectMapId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Redirect map ID."
+          }
+        },
+        "privateLinkServiceArmRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "PrivateLinkService ARM region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group connectivity details."
+      }
+    },
+    "com.azure.deviceupdate#GroupConnectivityInformationCustomerVisibleFqdnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of customer visible FQDNs."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointConnection": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Remote private endpoint connection ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Remote private endpoint connection details."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkServiceProxyRemotePrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.deviceupdate#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval/rejection of the connection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointServiceConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection status."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointPrivateLinkServiceConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#PrivateLinkServiceConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of automatically approved private link service connections."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkServiceConnection": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private link service connection name."
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.deviceupdate#PrivateLinkServiceConnectionGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of group IDs."
+          }
+        },
+        "requestMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Request message."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private link service connection details."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkServiceConnectionGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of group IDs."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointManualPrivateLinkServiceConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#PrivateLinkServiceConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private link service connections that need manual approval."
+      }
+    },
+    "com.azure.deviceupdate#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.deviceupdate#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.deviceupdate#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.deviceupdate#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.deviceupdate#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "privateEndpointConnectionProxyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the private endpoint connection proxy object."
+          }
+        },
+        "remotePrivateEndpoint": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointInput",
+          "traits": {
+            "smithy.api#documentation": "Remote private endpoint details."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdateRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdateRequestProperties": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointInput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Remote endpoint resource ID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM location of the remote private endpoint."
+          }
+        },
+        "immutableSubscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Original subscription ID needed by Microsoft.Network."
+          }
+        },
+        "immutableResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Original resource ID needed by Microsoft.Network."
+          }
+        },
+        "vnetTrafficTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual network traffic tag."
+          }
+        },
+        "manualPrivateLinkServiceConnections": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointInputManualPrivateLinkServiceConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of private link service connections that need manual approval."
+          }
+        },
+        "privateLinkServiceConnections": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointInputPrivateLinkServiceConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of automatically approved private link service connections."
+          }
+        },
+        "privateLinkServiceProxies": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointInputPrivateLinkServiceProxiesList",
+          "traits": {
+            "smithy.api#documentation": "List of private link service proxies."
+          }
+        },
+        "connectionDetails": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointInputConnectionDetailsList",
+          "traits": {
+            "smithy.api#documentation": "List of connection details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Remote private endpoint details."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointInputConnectionDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#ConnectionDetailsInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of connection details."
+      }
+    },
+    "com.azure.deviceupdate#ConnectionDetailsInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connection proxy object properties."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointInputPrivateLinkServiceProxiesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#PrivateLinkServiceProxyInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private link service proxies."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkServiceProxyInput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "NRP resource ID."
+          }
+        },
+        "remotePrivateLinkServiceConnectionState": {
+          "target": "com.azure.deviceupdate#PrivateLinkServiceProxyInputRemotePrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+          }
+        },
+        "remotePrivateEndpointConnection": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointConnectionInput",
+          "traits": {
+            "smithy.api#documentation": "Remote private endpoint connection details."
+          }
+        },
+        "groupConnectivityInformation": {
+          "target": "com.azure.deviceupdate#PrivateLinkServiceProxyInputGroupConnectivityInformationList",
+          "traits": {
+            "smithy.api#documentation": "Group connectivity information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private link service proxy details."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkServiceProxyInputGroupConnectivityInformationList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#GroupConnectivityInformationInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Group connectivity information."
+      }
+    },
+    "com.azure.deviceupdate#GroupConnectivityInformationInput": {
+      "type": "structure",
+      "members": {
+        "customerVisibleFqdns": {
+          "target": "com.azure.deviceupdate#GroupConnectivityInformationInputCustomerVisibleFqdnsList",
+          "traits": {
+            "smithy.api#documentation": "List of customer visible FQDNs."
+          }
+        },
+        "redirectMapId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Redirect map ID."
+          }
+        },
+        "privateLinkServiceArmRegion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "PrivateLinkService ARM region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group connectivity details."
+      }
+    },
+    "com.azure.deviceupdate#GroupConnectivityInformationInputCustomerVisibleFqdnsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of customer visible FQDNs."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointConnectionInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Remote private endpoint connection details."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkServiceProxyInputRemotePrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.deviceupdate#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval/rejection of the connection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointInputPrivateLinkServiceConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#PrivateLinkServiceConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of automatically approved private link service connections."
+      }
+    },
+    "com.azure.deviceupdate#RemotePrivateEndpointInputManualPrivateLinkServiceConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#PrivateLinkServiceConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private link service connections that need manual approval."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnectionProxies/{privateEndpointConnectionProxyId}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "(INTERNAL - DO NOT USE) Get the specified private endpoint connection proxy associated with the device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "eTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ETag from NRP."
+          }
+        },
+        "remotePrivateEndpoint": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Remote private endpoint details."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesGetResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesGetResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxyProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the private endpoint connection proxy resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "privateEndpointConnectionProxyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the private endpoint connection proxy object."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesUpdatePrivateEndpointProperties": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesUpdatePrivateEndpointPropertiesRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnectionProxies/{privateEndpointConnectionProxyId}/updatePrivateEndpointProperties",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "(INTERNAL - DO NOT USE) Updates a private endpoint inside the private endpoint connection proxy object.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesUpdatePrivateEndpointPropertiesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "privateEndpointConnectionProxyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the private endpoint connection proxy object."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Remote endpoint resource ID."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM location of the remote private endpoint."
+          }
+        },
+        "immutableSubscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Original subscription ID needed by Microsoft.Network."
+          }
+        },
+        "immutableResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Original resource ID needed by Microsoft.Network."
+          }
+        },
+        "vnetTrafficTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual network traffic tag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesValidate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesValidateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnectionProxies/{privateEndpointConnectionProxyId}/validate",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "(INTERNAL - DO NOT USE) Validates a private endpoint connection proxy object.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesValidateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "privateEndpointConnectionProxyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the private endpoint connection proxy object."
+          }
+        },
+        "remotePrivateEndpoint": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpointInput",
+          "traits": {
+            "smithy.api#documentation": "Remote private endpoint details."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesValidateRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesValidateRequestProperties": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxyListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnectionProxies",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "(INTERNAL - DO NOT USE) List all private endpoint connection proxies in a device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxyListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxyListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of available private endpoint connection proxies for an Account"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI that can be used to request the next list of private endpoint connection proxies."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The available private endpoint connection proxies for an Account (not to be used by anyone, here because of ARM requirements)"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxyListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxy"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of available private endpoint connection proxies for an Account"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxy": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "eTag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ETag from NRP."
+          }
+        },
+        "remotePrivateEndpoint": {
+          "target": "com.azure.deviceupdate#RemotePrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "Remote private endpoint details."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation status."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxyProperties",
+          "traits": {
+            "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connection proxy details."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxyProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxyProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the private endpoint connection proxy resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private endpoint connection proxy object property bag."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProxiesListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkResourcesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateLinkResourcesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#PrivateLinkResourcesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateLinkResources/{groupId}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Get the specified private link resource associated with the device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkResourcesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#GroupInformationProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties for a group information object",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#GroupInformationProperties": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource group id."
+          }
+        },
+        "requiredMembers": {
+          "target": "com.azure.deviceupdate#GroupInformationPropertiesRequiredMembersList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource required member names."
+          }
+        },
+        "requiredZoneNames": {
+          "target": "com.azure.deviceupdate#GroupInformationPropertiesRequiredZoneNamesList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource Private link DNS zone name."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#GroupInformationPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of private link group ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The properties for a group information object"
+      }
+    },
+    "com.azure.deviceupdate#GroupInformationPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state of private link group ID."
+      }
+    },
+    "com.azure.deviceupdate#GroupInformationPropertiesRequiredZoneNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource Private link DNS zone name."
+      }
+    },
+    "com.azure.deviceupdate#GroupInformationPropertiesRequiredMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource required member names."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkResourcesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The group ID of the private link resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkResourcesListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateLinkResourcesListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#PrivateLinkResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateLinkResources",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "List all private link resources in a device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.deviceupdate#PrivateLinkResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of available private link resources for an Account"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI that can be used to request the next list of private link resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The available private link resources for an Account"
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#GroupInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of available private link resources for an Account"
+      }
+    },
+    "com.azure.deviceupdate#GroupInformation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#GroupInformationProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties for a group information object",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The group information for creating a private endpoint on an Account"
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkResourcesListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Deletes the specified private endpoint connection associated with the device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection associated with the Azure resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Update the state of specified private endpoint connection associated with the device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProperties": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.deviceupdate#PrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The resource of private end point."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.deviceupdate#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionPropertiesGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "Array of group IDs."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the private endpoint connection resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the PrivateEndpointConnectProperties."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionPropertiesGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of group IDs."
+      }
+    },
+    "com.azure.deviceupdate#PrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.deviceupdate#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval/rejection of the connection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ARM identifier for Private Endpoint"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint resource."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection associated with the Azure resource"
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.deviceupdate#PrivateEndpointInput",
+          "traits": {
+            "smithy.api#documentation": "The resource of private end point."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.deviceupdate#PrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionPropertiesInputGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "Array of group IDs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the PrivateEndpointConnectProperties."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionPropertiesInputGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of group IDs."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint resource."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnections/{privateEndpointConnectionName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Get the specified private endpoint connection associated with the device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "privateEndpointConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the private endpoint connection associated with the Azure resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionsListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnectionsListByAccountResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/privateEndpointConnections",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "List all private endpoint connections in a device update account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsListByAccountResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionsListByAccountResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Array of private endpoint connections"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsListByAccountResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of private endpoint connections"
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnection": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint Connection resource."
+      }
+    },
+    "com.azure.deviceupdate#PrivateEndpointConnectionsListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#InstancesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#InstancesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/instances/{instanceName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Deletes instance.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#InstancesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "instanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#InstancesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#InstancesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#InstancesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/instances/{instanceName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Updates instance's tags.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#InstancesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#InstancesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#InstancesUpdateResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update instance properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#InstancesUpdateResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#InstancesUpdateResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Parent Device Update Account name which Instance belongs to."
+          }
+        },
+        "iotHubs": {
+          "target": "com.azure.deviceupdate#InstancesUpdateResponsePropertiesIotHubsList",
+          "traits": {
+            "smithy.api#documentation": "List of IoT Hubs associated with the account."
+          }
+        },
+        "enableDiagnostics": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables or Disables the diagnostic logs collection"
+          }
+        },
+        "diagnosticStorageProperties": {
+          "target": "com.azure.deviceupdate#DiagnosticStorageProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update instance properties."
+      }
+    },
+    "com.azure.deviceupdate#DiagnosticStorageProperties": {
+      "type": "structure",
+      "members": {
+        "authenticationType": {
+          "target": "com.azure.deviceupdate#DiagnosticStoragePropertiesAuthenticationType",
+          "traits": {
+            "smithy.api#documentation": "Authentication Type",
+            "smithy.api#required": {}
+          }
+        },
+        "connectionString": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ConnectionString of the diagnostic storage account",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ResourceId of the diagnostic storage account",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Customer-initiated diagnostic log collection storage properties"
+      }
+    },
+    "com.azure.deviceupdate#DiagnosticStoragePropertiesAuthenticationType": {
+      "type": "enum",
+      "members": {
+        "KEYBASED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KeyBased"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Authentication Type"
+      }
+    },
+    "com.azure.deviceupdate#InstancesUpdateResponsePropertiesIotHubsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#IotHubSettings"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of IoT Hubs associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#IotHubSettings": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IoTHub resource ID",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account integration with IoT Hub settings."
+      }
+    },
+    "com.azure.deviceupdate#InstancesUpdateResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#InstancesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#InstancesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "instanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#InstancesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "List of key value pairs that describe the resource. This will overwrite the existing tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#InstancesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of key value pairs that describe the resource. This will overwrite the existing tags."
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#InstancesCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#InstancesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/instances/{instanceName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Creates or updates instance.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#InstancesCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#InstancesCreateResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update instance properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreateResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#InstancesCreateResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Parent Device Update Account name which Instance belongs to."
+          }
+        },
+        "iotHubs": {
+          "target": "com.azure.deviceupdate#InstancesCreateResponsePropertiesIotHubsList",
+          "traits": {
+            "smithy.api#documentation": "List of IoT Hubs associated with the account."
+          }
+        },
+        "enableDiagnostics": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables or Disables the diagnostic logs collection"
+          }
+        },
+        "diagnosticStorageProperties": {
+          "target": "com.azure.deviceupdate#DiagnosticStorageProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update instance properties."
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreateResponsePropertiesIotHubsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#IotHubSettings"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of IoT Hubs associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreateResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "instanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#InstancesCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#InstancesCreateRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update instance properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreateRequestProperties": {
+      "type": "structure",
+      "members": {
+        "iotHubs": {
+          "target": "com.azure.deviceupdate#InstancesCreateRequestPropertiesIotHubsList",
+          "traits": {
+            "smithy.api#documentation": "List of IoT Hubs associated with the account."
+          }
+        },
+        "enableDiagnostics": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables or Disables the diagnostic logs collection"
+          }
+        },
+        "diagnosticStorageProperties": {
+          "target": "com.azure.deviceupdate#DiagnosticStorageProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update instance properties."
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreateRequestPropertiesIotHubsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#IotHubSettings"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of IoT Hubs associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#InstancesCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#InstancesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#InstancesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#InstancesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/instances/{instanceName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Returns instance details for the given instance and account name.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#InstancesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#InstancesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#InstancesGetResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update instance properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#InstancesGetResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#InstancesGetResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Parent Device Update Account name which Instance belongs to."
+          }
+        },
+        "iotHubs": {
+          "target": "com.azure.deviceupdate#InstancesGetResponsePropertiesIotHubsList",
+          "traits": {
+            "smithy.api#documentation": "List of IoT Hubs associated with the account."
+          }
+        },
+        "enableDiagnostics": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables or Disables the diagnostic logs collection"
+          }
+        },
+        "diagnosticStorageProperties": {
+          "target": "com.azure.deviceupdate#DiagnosticStorageProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update instance properties."
+      }
+    },
+    "com.azure.deviceupdate#InstancesGetResponsePropertiesIotHubsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#IotHubSettings"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of IoT Hubs associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#InstancesGetResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#InstancesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#InstancesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "instanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Instance name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#InstancesListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#InstancesListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#InstanceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}/instances",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Returns instances for the given account name.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#InstanceList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link used to get the next page of Instances list."
+          }
+        },
+        "value": {
+          "target": "com.azure.deviceupdate#InstanceListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Instances."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Instances."
+      }
+    },
+    "com.azure.deviceupdate#InstanceListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#Instance"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Instances."
+      }
+    },
+    "com.azure.deviceupdate#Instance": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#InstanceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#InstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update instance properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update instance details."
+      }
+    },
+    "com.azure.deviceupdate#InstanceProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#InstancePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Parent Device Update Account name which Instance belongs to."
+          }
+        },
+        "iotHubs": {
+          "target": "com.azure.deviceupdate#InstancePropertiesIotHubsList",
+          "traits": {
+            "smithy.api#documentation": "List of IoT Hubs associated with the account."
+          }
+        },
+        "enableDiagnostics": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Enables or Disables the diagnostic logs collection"
+          }
+        },
+        "diagnosticStorageProperties": {
+          "target": "com.azure.deviceupdate#DiagnosticStorageProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update instance properties."
+      }
+    },
+    "com.azure.deviceupdate#InstancePropertiesIotHubsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#IotHubSettings"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of IoT Hubs associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#InstancePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#InstanceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#InstancesListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#AccountsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#AccountsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Deletes account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#AccountsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#AccountsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#AccountsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Updates account's patchable properties",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#AccountsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#AccountsUpdateResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update account properties."
+          }
+        },
+        "identity": {
+          "target": "com.azure.deviceupdate#AccountsUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.deviceupdate#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.deviceupdate#UserAssignedIdentities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.deviceupdate#UserAssignedIdentities": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.deviceupdate#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.deviceupdate#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.deviceupdate#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#AccountsUpdateResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "hostName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API host name."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.deviceupdate#AccountsUpdateResponsePropertiesPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.deviceupdate#AccountsUpdateResponsePropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of private endpoint connections associated with the account."
+          }
+        },
+        "sku": {
+          "target": "com.azure.deviceupdate#AccountsUpdateResponsePropertiesSku",
+          "traits": {
+            "smithy.api#documentation": "Device Update Sku"
+          }
+        },
+        "encryption": {
+          "target": "com.azure.deviceupdate#Encryption",
+          "traits": {
+            "smithy.api#documentation": "CMK encryption at rest properties"
+          }
+        },
+        "locations": {
+          "target": "com.azure.deviceupdate#AccountsUpdateResponsePropertiesLocationsList",
+          "traits": {
+            "smithy.api#documentation": "Device Update account primary and failover location details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account properties."
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponsePropertiesLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#Location"
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account primary and failover location details"
+      }
+    },
+    "com.azure.deviceupdate#Location": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "role": {
+          "target": "com.azure.deviceupdate#LocationRole",
+          "traits": {
+            "smithy.api#documentation": "Whether the location is primary or failover"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.deviceupdate#LocationRole": {
+      "type": "enum",
+      "members": {
+        "PRIMARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Primary"
+          }
+        },
+        "FAILOVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failover"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether the location is primary or failover"
+      }
+    },
+    "com.azure.deviceupdate#Encryption": {
+      "type": "structure",
+      "members": {
+        "keyVaultKeyUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URI of the key vault"
+          }
+        },
+        "userAssignedIdentity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The full resourceId of the user assigned identity to be used for key vault access. Identity has to be also assigned to the Account"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The CMK encryption settings on the Device Update account."
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponsePropertiesSku": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update Sku"
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponsePropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#AccountsUpdateResponsePropertiesPrivateEndpointConnectionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private endpoint connections associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponsePropertiesPrivateEndpointConnectionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint Connection resource."
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponsePropertiesPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#AccountsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "List of key value pairs that describe the resource. This will overwrite the existing tags."
+          }
+        },
+        "identity": {
+          "target": "com.azure.deviceupdate#AccountsUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.deviceupdate#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.deviceupdate#UserAssignedIdentitiesInput",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.deviceupdate#UserAssignedIdentitiesInput": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.deviceupdate#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.deviceupdate#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.deviceupdate#AccountsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of key value pairs that describe the resource. This will overwrite the existing tags."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#AccountsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#AccountsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Creates or updates Account.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#AccountsCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#AccountsCreateResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update account properties."
+          }
+        },
+        "identity": {
+          "target": "com.azure.deviceupdate#AccountsCreateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.deviceupdate#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.deviceupdate#UserAssignedIdentities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#AccountsCreateResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "hostName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API host name."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.deviceupdate#AccountsCreateResponsePropertiesPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.deviceupdate#AccountsCreateResponsePropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of private endpoint connections associated with the account."
+          }
+        },
+        "sku": {
+          "target": "com.azure.deviceupdate#AccountsCreateResponsePropertiesSku",
+          "traits": {
+            "smithy.api#documentation": "Device Update Sku"
+          }
+        },
+        "encryption": {
+          "target": "com.azure.deviceupdate#Encryption",
+          "traits": {
+            "smithy.api#documentation": "CMK encryption at rest properties"
+          }
+        },
+        "locations": {
+          "target": "com.azure.deviceupdate#AccountsCreateResponsePropertiesLocationsList",
+          "traits": {
+            "smithy.api#documentation": "Device Update account primary and failover location details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account properties."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponsePropertiesLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#Location"
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account primary and failover location details"
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponsePropertiesSku": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update Sku"
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponsePropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private endpoint connections associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponsePropertiesPrivateEndpointConnectionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint Connection resource."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponsePropertiesPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#AccountsCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#AccountsCreateRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update account properties."
+          }
+        },
+        "identity": {
+          "target": "com.azure.deviceupdate#AccountsCreateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.deviceupdate#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.deviceupdate#UserAssignedIdentitiesInput",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateRequestProperties": {
+      "type": "structure",
+      "members": {
+        "publicNetworkAccess": {
+          "target": "com.azure.deviceupdate#AccountsCreateRequestPropertiesPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.deviceupdate#AccountsCreateRequestPropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of private endpoint connections associated with the account."
+          }
+        },
+        "sku": {
+          "target": "com.azure.deviceupdate#AccountsCreateRequestPropertiesSku",
+          "traits": {
+            "smithy.api#documentation": "Device Update Sku"
+          }
+        },
+        "encryption": {
+          "target": "com.azure.deviceupdate#Encryption",
+          "traits": {
+            "smithy.api#documentation": "CMK encryption at rest properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account properties."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateRequestPropertiesSku": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update Sku"
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateRequestPropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#AccountsCreateRequestPropertiesPrivateEndpointConnectionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private endpoint connections associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateRequestPropertiesPrivateEndpointConnectionsItem": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint Connection resource."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateRequestPropertiesPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#AccountsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#AccountsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#AccountsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Returns account details for the given account name.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#AccountsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#AccountsGetResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update account properties."
+          }
+        },
+        "identity": {
+          "target": "com.azure.deviceupdate#AccountsGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.deviceupdate#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.deviceupdate#UserAssignedIdentities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponseProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#AccountsGetResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "hostName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API host name."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.deviceupdate#AccountsGetResponsePropertiesPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.deviceupdate#AccountsGetResponsePropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of private endpoint connections associated with the account."
+          }
+        },
+        "sku": {
+          "target": "com.azure.deviceupdate#AccountsGetResponsePropertiesSku",
+          "traits": {
+            "smithy.api#documentation": "Device Update Sku"
+          }
+        },
+        "encryption": {
+          "target": "com.azure.deviceupdate#Encryption",
+          "traits": {
+            "smithy.api#documentation": "CMK encryption at rest properties"
+          }
+        },
+        "locations": {
+          "target": "com.azure.deviceupdate#AccountsGetResponsePropertiesLocationsList",
+          "traits": {
+            "smithy.api#documentation": "Device Update account primary and failover location details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account properties."
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponsePropertiesLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#Location"
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account primary and failover location details"
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponsePropertiesSku": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update Sku"
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponsePropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#AccountsGetResponsePropertiesPrivateEndpointConnectionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private endpoint connections associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponsePropertiesPrivateEndpointConnectionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint Connection resource."
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponsePropertiesPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#AccountsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Account name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#AccountsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#AccountsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#AccountList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DeviceUpdate/accounts",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Returns list of Accounts.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#AccountList": {
+      "type": "structure",
+      "members": {
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link used to get the next page of Accounts list."
+          }
+        },
+        "value": {
+          "target": "com.azure.deviceupdate#AccountListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Accounts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Accounts."
+      }
+    },
+    "com.azure.deviceupdate#AccountListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#Account"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Accounts."
+      }
+    },
+    "com.azure.deviceupdate#Account": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.deviceupdate#AccountTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#AccountProperties",
+          "traits": {
+            "smithy.api#documentation": "Device Update account properties."
+          }
+        },
+        "identity": {
+          "target": "com.azure.deviceupdate#AccountIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account details."
+      }
+    },
+    "com.azure.deviceupdate#AccountIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.deviceupdate#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.deviceupdate#UserAssignedIdentities",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.deviceupdate#AccountProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.deviceupdate#AccountPropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        },
+        "hostName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API host name."
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.deviceupdate#AccountPropertiesPublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.deviceupdate#AccountPropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of private endpoint connections associated with the account."
+          }
+        },
+        "sku": {
+          "target": "com.azure.deviceupdate#AccountPropertiesSku",
+          "traits": {
+            "smithy.api#documentation": "Device Update Sku"
+          }
+        },
+        "encryption": {
+          "target": "com.azure.deviceupdate#Encryption",
+          "traits": {
+            "smithy.api#documentation": "CMK encryption at rest properties"
+          }
+        },
+        "locations": {
+          "target": "com.azure.deviceupdate#AccountPropertiesLocationsList",
+          "traits": {
+            "smithy.api#documentation": "Device Update account primary and failover location details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account properties."
+      }
+    },
+    "com.azure.deviceupdate#AccountPropertiesLocationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#Location"
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update account primary and failover location details"
+      }
+    },
+    "com.azure.deviceupdate#AccountPropertiesSku": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device Update Sku"
+      }
+    },
+    "com.azure.deviceupdate#AccountPropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.deviceupdate#AccountPropertiesPrivateEndpointConnectionsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private endpoint connections associated with the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountPropertiesPrivateEndpointConnectionsItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.deviceupdate#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Private Endpoint Connection resource."
+      }
+    },
+    "com.azure.deviceupdate#AccountPropertiesPublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether or not public network access is allowed for the account."
+      }
+    },
+    "com.azure.deviceupdate#AccountPropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleted"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.deviceupdate#AccountTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.deviceupdate#AccountsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource group name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#AccountsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#AccountsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#AccountList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DeviceUpdate/accounts",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Returns list of Accounts.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#AccountsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#CheckNameAvailability": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.deviceupdate#CheckNameAvailabilityRequest"
+      },
+      "output": {
+        "target": "com.azure.deviceupdate#CheckNameAvailabilityResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DeviceUpdate/checknameavailability",
+          "code": 200,
+          "apiVersion": "2023-07-01"
+        },
+        "smithy.api#documentation": "Checks ADU resource name availability.",
+        "com.distilled.openapi#apiVersion": "2023-07-01"
+      }
+    },
+    "com.azure.deviceupdate#CheckNameAvailabilityResponse": {
+      "type": "structure",
+      "members": {
+        "nameAvailable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the resource name is available."
+          }
+        },
+        "reason": {
+          "target": "com.azure.deviceupdate#CheckNameAvailabilityResponseReason",
+          "traits": {
+            "smithy.api#documentation": "The reason why the given name is not available."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Detailed reason why the given name is available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.deviceupdate#CheckNameAvailabilityResponseReason": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "ALREADYEXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AlreadyExists"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The reason why the given name is not available."
+      }
+    },
+    "com.azure.deviceupdate#CheckNameAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Azure subscription ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource for which availability needs to be checked."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.deviceupdate#Deviceupdate": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.deviceupdate#OperationsList"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesDelete"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesGet"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesUpdatePrivateEndpointProperties"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesValidate"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionProxiesListByAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateLinkResourcesGet"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateLinkResourcesListByAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionsDelete"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionsGet"
+        },
+        {
+          "target": "com.azure.deviceupdate#PrivateEndpointConnectionsListByAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#InstancesDelete"
+        },
+        {
+          "target": "com.azure.deviceupdate#InstancesUpdate"
+        },
+        {
+          "target": "com.azure.deviceupdate#InstancesCreate"
+        },
+        {
+          "target": "com.azure.deviceupdate#InstancesGet"
+        },
+        {
+          "target": "com.azure.deviceupdate#InstancesListByAccount"
+        },
+        {
+          "target": "com.azure.deviceupdate#AccountsDelete"
+        },
+        {
+          "target": "com.azure.deviceupdate#AccountsUpdate"
+        },
+        {
+          "target": "com.azure.deviceupdate#AccountsCreate"
+        },
+        {
+          "target": "com.azure.deviceupdate#AccountsGet"
+        },
+        {
+          "target": "com.azure.deviceupdate#AccountsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.deviceupdate#AccountsListBySubscription"
+        },
+        {
+          "target": "com.azure.deviceupdate#CheckNameAvailability"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Deviceupdate",
+        "smithy.api#documentation": "Azure Deviceupdate API — merged from the deviceupdate resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

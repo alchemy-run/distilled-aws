@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer3SummaryV2 with distilled cloudflare/radar summaryV2AttackLayer3",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryV2",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2AttackLayer3"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryV2Request",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2AttackLayer3Request"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2AttackLayer3/input/target",
+      "value": "com.cloudflare.radar#SummaryV2AttackLayer3Request"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryV2Response",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2AttackLayer3Response"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryV2AttackLayer3/output/target",
+      "value": "com.cloudflare.radar#SummaryV2AttackLayer3Response"
+    }
+  ]
+}

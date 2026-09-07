@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpAsesOsGet with distilled cloudflare/radar getHttpAsOs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesOsGet",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsOs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesOsGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsOsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsOs/input/target",
+      "value": "com.cloudflare.radar#GetHttpAsOsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpAsesOsGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsOsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetHttpAsOs/output/target",
+      "value": "com.cloudflare.radar#GetHttpAsOsResponse"
+    }
+  ]
+}

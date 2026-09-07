@@ -1,0 +1,116 @@
+## Update Zone Hold
+
+**patch** `/zones/{zone_id}/hold`
+
+Update the `hold_after` and/or `include_subdomains` values on an existing zone hold.
+The hold is enabled if the `hold_after` date-time value is in the past.
+Existing zone holds can be removed from CDN-only zones by setting `hold_after` to `null`.
+Other zone hold updates cannot be made on CDN-only zones.
+Active holds are automatically disabled when a zone transitions to CDN-only mode.
+
+### Path Parameters
+
+- `zone_id: string`
+
+  Identifier.
+
+### Body Parameters
+
+- `hold_after: optional string`
+
+  If `hold_after` is provided and future-dated, the hold will be temporarily disabled,
+  then automatically re-enabled by the system at the time specified
+  in this RFC3339-formatted timestamp. A past-dated `hold_after` value will have
+  no effect on an existing, enabled hold. Providing an empty string will set its value
+  to the current time. Providing `null` will disable the hold indefinitely.
+
+- `include_subdomains: optional boolean`
+
+  If `true`, the zone hold will extend to block any subdomain of the given zone, as well
+  as SSL4SaaS Custom Hostnames. For example, a zone hold on a zone with the hostname
+  'example.com' and include_subdomains=true will block 'example.com',
+  'staging.example.com', 'api.staging.example.com', etc.
+
+### Returns
+
+- `errors: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+    - `pointer: optional string`
+
+- `messages: array of ResponseInfo`
+
+  - `code: number`
+
+  - `message: string`
+
+  - `documentation_url: optional string`
+
+  - `source: optional object { pointer }`
+
+- `result: ZoneHold`
+
+  - `hold: optional boolean`
+
+  - `hold_after: optional string`
+
+  - `include_subdomains: optional string`
+
+- `success: true`
+
+  Whether the API call was successful
+
+  - `true`
+
+### Example
+
+```http
+curl https://api.cloudflare.com/client/v4/zones/$ZONE_ID/hold \
+    -X PATCH \
+    -H 'Content-Type: application/json' \
+    -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+    -d '{
+          "hold_after": "2023-01-31T15:56:36+00:00",
+          "include_subdomains": true
+        }'
+```
+
+#### Response
+
+```json
+{
+  "errors": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "messages": [
+    {
+      "code": 1000,
+      "message": "message",
+      "documentation_url": "documentation_url",
+      "source": {
+        "pointer": "pointer"
+      }
+    }
+  ],
+  "result": {
+    "hold": true,
+    "hold_after": "2023-01-31T15:56:36+00:00",
+    "include_subdomains": "include_subdomains"
+  },
+  "success": true
+}
+```

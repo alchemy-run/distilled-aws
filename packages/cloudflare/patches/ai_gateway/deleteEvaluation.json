@@ -1,0 +1,39 @@
+{
+  "description": "Align ai_gateway#EvaluationsDelete with distilled cloudflare/ai-gateway deleteEvaluation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#EvaluationsDelete",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteEvaluation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#EvaluationsDeleteRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteEvaluationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteEvaluation/input/target",
+      "value": "com.cloudflare.ai_gateway#DeleteEvaluationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#EvaluationsDeleteResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteEvaluationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteEvaluation/output/target",
+      "value": "com.cloudflare.ai_gateway#DeleteEvaluationResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteEvaluation/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#EvaluationNotFound"
+        }
+      ]
+    }
+  ]
+}

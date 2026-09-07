@@ -1,0 +1,385 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.customer_journeys#CustomerJourneysListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_journeys#PaginatedCustomerJourneyList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.customer_journeys#PaginatedCustomerJourneyListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_journeys#CustomerJourney": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "insight": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_journeys#PaginatedCustomerJourneyListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.customer_journeys#CustomerJourney"
+      },
+      "traits": {}
+    },
+    "com.posthog.customer_journeys#CustomerJourneysList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_journeys#CustomerJourneysListRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_journeys#PaginatedCustomerJourneyList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/customer_journeys/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_journeys#CustomerJourneysCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_journeys#CustomerJourney"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/customer_journeys/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_journeys#CustomerJourneysRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_journeys#CustomerJourney"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/customer_journeys/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_journeys#CustomerJourneysUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_journeys#CustomerJourney"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/customer_journeys/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "insight": {
+          "target": "smithy.api#Integer"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_journeys#CustomerJourneysPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.customer_journeys#CustomerJourney"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/customer_journeys/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneysDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.customer_journeys#CustomerJourneysDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/customer_journeys/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.customer_journeys#CustomerJourneys": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.customer_journeys#CustomerJourneysList"
+        },
+        {
+          "target": "com.posthog.customer_journeys#CustomerJourneysCreate"
+        },
+        {
+          "target": "com.posthog.customer_journeys#CustomerJourneysRetrieve"
+        },
+        {
+          "target": "com.posthog.customer_journeys#CustomerJourneysUpdate"
+        },
+        {
+          "target": "com.posthog.customer_journeys#CustomerJourneysPartialUpdate"
+        },
+        {
+          "target": "com.posthog.customer_journeys#CustomerJourneysDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

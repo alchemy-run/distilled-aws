@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpSummaryHttpVersion with distilled cloudflare/radar httpVersionHttpSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpSummaryHttpVersion",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionHttpSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpSummaryHttpVersionRequest",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionHttpSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionHttpSummary/input/target",
+      "value": "com.cloudflare.radar#HttpVersionHttpSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpSummaryHttpVersionResponse",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionHttpSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpVersionHttpSummary/output/target",
+      "value": "com.cloudflare.radar#HttpVersionHttpSummaryResponse"
+    }
+  ]
+}

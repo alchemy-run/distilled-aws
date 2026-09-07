@@ -1,0 +1,508 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.enterprise_team_organizations#GetAssignmentsRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_organizations#OrganizationSimple": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub organization."
+      }
+    },
+    "com.github.enterprise_team_organizations#GetAssignmentsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.enterprise_team_organizations#OrganizationSimple"
+      },
+      "traits": {}
+    },
+    "com.github.enterprise_team_organizations#GetAssignmentsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.enterprise_team_organizations#GetAssignmentsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.enterprise_team_organizations#GetAssignments": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_organizations#GetAssignmentsRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_team_organizations#GetAssignmentsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/organizations",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get organization assignments\n\nGet all organizations assigned to an enterprise team"
+      }
+    },
+    "com.github.enterprise_team_organizations#BulkAddRequestOrganizationSlugsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization slug to assign the team to."
+      }
+    },
+    "com.github.enterprise_team_organizations#BulkAddRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "organization_slugs": {
+          "target": "com.github.enterprise_team_organizations#BulkAddRequestOrganizationSlugsList",
+          "traits": {
+            "smithy.api#documentation": "Organization slug to assign the team to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_organizations#BulkAddResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.enterprise_team_organizations#OrganizationSimple"
+      },
+      "traits": {}
+    },
+    "com.github.enterprise_team_organizations#BulkAddResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.enterprise_team_organizations#BulkAddResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.enterprise_team_organizations#BulkAdd": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_organizations#BulkAddRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_team_organizations#BulkAddResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/organizations/add",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add organization assignments\n\nAssign an enterprise team to multiple organizations."
+      }
+    },
+    "com.github.enterprise_team_organizations#BulkRemoveRequestOrganizationSlugsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Organization slug to unassign the team from."
+      }
+    },
+    "com.github.enterprise_team_organizations#BulkRemoveRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "organization_slugs": {
+          "target": "com.github.enterprise_team_organizations#BulkRemoveRequestOrganizationSlugsList",
+          "traits": {
+            "smithy.api#documentation": "Organization slug to unassign the team from.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_organizations#BulkRemove": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_organizations#BulkRemoveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/organizations/remove",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove organization assignments\n\nUnassign an enterprise team from multiple organizations."
+      }
+    },
+    "com.github.enterprise_team_organizations#GetAssignmentRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_organizations#GetAssignment": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_organizations#GetAssignmentRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_team_organizations#OrganizationSimple"
+      },
+      "errors": [
+        {
+          "target": "com.github.enterprise_team_organizations#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/organizations/{org}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get organization assignment\n\nCheck if an enterprise team is assigned to an organization"
+      }
+    },
+    "com.github.enterprise_team_organizations#AddRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_organizations#Add": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_organizations#AddRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_team_organizations#OrganizationSimple"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/organizations/{org}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add an organization assignment\n\nAssign an enterprise team to an organization."
+      }
+    },
+    "com.github.enterprise_team_organizations#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "enterprise_team": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise team name. You can also substitute this value with the enterprise team id."
+          }
+        },
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_team_organizations#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_team_organizations#DeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/enterprises/{enterprise}/teams/{enterprise_team}/organizations/{org}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an organization assignment\n\nUnassign an enterprise team from an organization."
+      }
+    },
+    "com.github.enterprise_team_organizations#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.enterprise_team_organizations#EnterpriseTeamOrganizations": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.enterprise_team_organizations#GetAssignments"
+        },
+        {
+          "target": "com.github.enterprise_team_organizations#BulkAdd"
+        },
+        {
+          "target": "com.github.enterprise_team_organizations#BulkRemove"
+        },
+        {
+          "target": "com.github.enterprise_team_organizations#GetAssignment"
+        },
+        {
+          "target": "com.github.enterprise_team_organizations#Add"
+        },
+        {
+          "target": "com.github.enterprise_team_organizations#Delete"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

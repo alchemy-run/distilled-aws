@@ -1,0 +1,39 @@
+{
+  "description": "Align alerting#DestinationsPagerdutyLink with distilled cloudflare/alerting linkDestinationPagerduty",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsPagerdutyLink",
+      "path": "/shapes/com.cloudflare.alerting#LinkDestinationPagerduty"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsPagerdutyLinkRequest",
+      "path": "/shapes/com.cloudflare.alerting#LinkDestinationPagerdutyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#LinkDestinationPagerduty/input/target",
+      "value": "com.cloudflare.alerting#LinkDestinationPagerdutyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#DestinationsPagerdutyLinkResponse",
+      "path": "/shapes/com.cloudflare.alerting#LinkDestinationPagerdutyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#LinkDestinationPagerduty/output/target",
+      "value": "com.cloudflare.alerting#LinkDestinationPagerdutyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#LinkDestinationPagerduty/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

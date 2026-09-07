@@ -1,0 +1,32 @@
+{
+  "description": "Align stream#LiveInputsOutputsDelete with distilled cloudflare/stream deleteLiveInputOutput",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsOutputsDelete",
+      "path": "/shapes/com.cloudflare.stream#DeleteLiveInputOutput"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsOutputsDeleteRequest",
+      "path": "/shapes/com.cloudflare.stream#DeleteLiveInputOutputRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteLiveInputOutput/input/target",
+      "value": "com.cloudflare.stream#DeleteLiveInputOutputRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#DeleteLiveInputOutput/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.stream#OutputNotFound"
+        },
+        {
+          "target": "com.cloudflare.stream#Forbidden"
+        }
+      ]
+    }
+  ]
+}

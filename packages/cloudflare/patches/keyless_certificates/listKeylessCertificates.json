@@ -1,0 +1,47 @@
+{
+  "description": "Align keyless_certificates#List with distilled cloudflare/keyless-certificates listKeylessCertificates",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.keyless_certificates#List",
+      "path": "/shapes/com.cloudflare.keyless_certificates#ListKeylessCertificates"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.keyless_certificates#ListRequest",
+      "path": "/shapes/com.cloudflare.keyless_certificates#ListKeylessCertificatesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.keyless_certificates#ListKeylessCertificates/input/target",
+      "value": "com.cloudflare.keyless_certificates#ListKeylessCertificatesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.keyless_certificates#ListResponse",
+      "path": "/shapes/com.cloudflare.keyless_certificates#ListKeylessCertificatesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.keyless_certificates#ListKeylessCertificates/output/target",
+      "value": "com.cloudflare.keyless_certificates#ListKeylessCertificatesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.keyless_certificates#ListKeylessCertificates/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.keyless_certificates#ListKeylessCertificates/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.keyless_certificates#Forbidden"
+        }
+      ]
+    }
+  ]
+}

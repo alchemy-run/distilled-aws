@@ -1,0 +1,38 @@
+{
+  "description": "Align ai#FinetunesPublicList with distilled cloudflare/ai listFinetunePublics",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#FinetunesPublicList",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunePublics"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#FinetunesPublicListRequest",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunePublicsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunePublics/input/target",
+      "value": "com.cloudflare.ai#ListFinetunePublicsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#FinetunesPublicListResponse",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunePublicsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunePublics/output/target",
+      "value": "com.cloudflare.ai#ListFinetunePublicsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai#ListFinetunePublics/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

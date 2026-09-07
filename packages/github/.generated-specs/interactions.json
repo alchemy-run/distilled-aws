@@ -1,0 +1,1272 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.interactions#GetRestrictionsForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#InteractionLimitResponse": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "com.github.interactions#InteractionGroup",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Interaction limit settings."
+      }
+    },
+    "com.github.interactions#InteractionGroup": {
+      "type": "enum",
+      "members": {
+        "EXISTING_USERS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "existing_users"
+          }
+        },
+        "CONTRIBUTORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contributors_only"
+          }
+        },
+        "COLLABORATORS_ONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "collaborators_only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of GitHub user that can comment, open issues, or create pull requests while the interaction limit is in effect."
+      }
+    },
+    "com.github.interactions#GetRestrictionsForOrgResponseBody": {
+      "type": "union",
+      "members": {
+        "InteractionLimitResponse": {
+          "target": "com.github.interactions#InteractionLimitResponse"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.interactions#GetRestrictionsForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.interactions#GetRestrictionsForOrgResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.interactions#GetRestrictionsForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#GetRestrictionsForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#GetRestrictionsForOrgResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/interaction-limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get interaction restrictions for an organization\n\nShows which type of GitHub user can interact with this organization and when the restriction expires. If there is no restrictions, you will see an empty response."
+      }
+    },
+    "com.github.interactions#InteractionExpiry": {
+      "type": "enum",
+      "members": {
+        "ONE_DAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "one_day"
+          }
+        },
+        "THREE_DAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "three_days"
+          }
+        },
+        "ONE_WEEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "one_week"
+          }
+        },
+        "ONE_MONTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "one_month"
+          }
+        },
+        "SIX_MONTHS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "six_months"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The duration of the interaction restriction. Default: `one_day`."
+      }
+    },
+    "com.github.interactions#SetRestrictionsForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "limit": {
+          "target": "com.github.interactions#InteractionGroup",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expiry": {
+          "target": "com.github.interactions#InteractionExpiry"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#SetRestrictionsForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#SetRestrictionsForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#InteractionLimitResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/interaction-limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set interaction restrictions for an organization\n\nTemporarily restricts interactions to a certain type of GitHub user in any public repository in the given organization. You must be an organization owner to set these restrictions. Setting the interaction limit at the organization level will overwrite any interaction limits that are set for individual repositories owned by the organization."
+      }
+    },
+    "com.github.interactions#RemoveRestrictionsForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#RemoveRestrictionsForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#RemoveRestrictionsForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/interaction-limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove interaction restrictions for an organization\n\nRemoves all interaction restrictions from public repositories in the given organization. You must be an organization owner to remove restrictions."
+      }
+    },
+    "com.github.interactions#GetPullRequestCreationCapForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#GetPullRequestCreationCapForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the pull request creation cap is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "max_open_pull_requests": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of open pull requests a user can have at one time",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.interactions#GetPullRequestCreationCapForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#GetPullRequestCreationCapForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#GetPullRequestCreationCapForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#Forbidden"
+        },
+        {
+          "target": "com.github.interactions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/interaction-limits/pulls/creation-cap",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get pull request creation cap for an org\n\nGets the pull request creation cap configuration for an organization.\nThe cap limits the total number of open pull requests a user can have across all public\nrepositories in the organization at one time.\n\nOnly users with admin access to the organization can view the cap configuration."
+      }
+    },
+    "com.github.interactions#UpdatePullRequestCreationCapForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the pull request creation cap is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "max_open_pull_requests": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of open pull requests a user can have at one time"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#UpdatePullRequestCreationCapForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the pull request creation cap is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "max_open_pull_requests": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of open pull requests a user can have at one time",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.interactions#UpdatePullRequestCreationCapForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#UpdatePullRequestCreationCapForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#UpdatePullRequestCreationCapForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#Forbidden"
+        },
+        {
+          "target": "com.github.interactions#NotFound"
+        },
+        {
+          "target": "com.github.interactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/orgs/{org}/interaction-limits/pulls/creation-cap",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update pull request creation cap for an org\n\nUpdates the pull request creation cap for an organization. The cap limits the total number\nof open pull requests a user can have across all public repositories in the organization\nat one time.\n\nOnly users with admin access to the organization can configure the cap."
+      }
+    },
+    "com.github.interactions#GetRestrictionsForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#GetRestrictionsForRepoResponseBody": {
+      "type": "union",
+      "members": {
+        "InteractionLimitResponse": {
+          "target": "com.github.interactions#InteractionLimitResponse"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.interactions#GetRestrictionsForRepoResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.interactions#GetRestrictionsForRepoResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.interactions#GetRestrictionsForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#GetRestrictionsForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#GetRestrictionsForRepoResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/interaction-limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get interaction restrictions for a repository\n\nShows which type of GitHub user can interact with this repository and when the restriction expires. If there are no restrictions, you will see an empty response."
+      }
+    },
+    "com.github.interactions#SetRestrictionsForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "limit": {
+          "target": "com.github.interactions#InteractionGroup",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expiry": {
+          "target": "com.github.interactions#InteractionExpiry"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#SetRestrictionsForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#SetRestrictionsForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#InteractionLimitResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/repos/{owner}/{repo}/interaction-limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set interaction restrictions for a repository\n\nTemporarily restricts interactions to a certain type of GitHub user within the given repository. You must have owner or admin access to set these restrictions. If an interaction limit is set for the user or organization that owns this repository, you will receive a `409 Conflict` response and will not be able to use this endpoint to change the interaction limit for a single repository."
+      }
+    },
+    "com.github.interactions#RemoveRestrictionsForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#RemoveRestrictionsForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#RemoveRestrictionsForRepoRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/interaction-limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove interaction restrictions for a repository\n\nRemoves all interaction restrictions from the given repository. You must have owner or admin access to remove restrictions. If the interaction limit is set for the user or organization that owns this repository, you will receive a `409 Conflict` response and will not be able to use this endpoint to change the interaction limit for a single repository."
+      }
+    },
+    "com.github.interactions#GetPullRequestBypassListForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.interactions#GetPullRequestBypassListForRepoResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.interactions#SimpleUser"
+      },
+      "traits": {}
+    },
+    "com.github.interactions#GetPullRequestBypassListForRepoResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.interactions#GetPullRequestBypassListForRepoResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.interactions#GetPullRequestBypassListForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#GetPullRequestBypassListForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#GetPullRequestBypassListForRepoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#Forbidden"
+        },
+        {
+          "target": "com.github.interactions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/interaction-limits/pulls/bypass-list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get pull request creation cap bypass list for a repository\n\nLists the users that are on the pull request creation cap bypass list for a\nrepository. Users on this list can create pull requests regardless of any\nconfigured pull request creation cap.\n\nOnly users with maintainer permissions can view the bypass list."
+      }
+    },
+    "com.github.interactions#SetPullRequestBypassListForRepoRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of user logins to add or remove from the bypass list."
+      }
+    },
+    "com.github.interactions#SetPullRequestBypassListForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "users": {
+          "target": "com.github.interactions#SetPullRequestBypassListForRepoRequestUsersList",
+          "traits": {
+            "smithy.api#documentation": "A list of user logins to add or remove from the bypass list.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#SetPullRequestBypassListForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#SetPullRequestBypassListForRepoRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#Forbidden"
+        },
+        {
+          "target": "com.github.interactions#NotFound"
+        },
+        {
+          "target": "com.github.interactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/repos/{owner}/{repo}/interaction-limits/pulls/bypass-list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add users to the pull request creation cap bypass list for a repository\n\nAdds users to the pull request creation cap bypass list for a repository.\nUsers on this list can create pull requests regardless of any configured\npull request creation cap.\n\nOnly users with maintainer permissions can modify the bypass list.\nYou can add a maximum of 100 users per request.\nThe bypass list can only hold a maximum of 100 users."
+      }
+    },
+    "com.github.interactions#RemovePullRequestBypassListForRepoRequestUsersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of user logins to add or remove from the bypass list."
+      }
+    },
+    "com.github.interactions#RemovePullRequestBypassListForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "users": {
+          "target": "com.github.interactions#RemovePullRequestBypassListForRepoRequestUsersList",
+          "traits": {
+            "smithy.api#documentation": "A list of user logins to add or remove from the bypass list.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#RemovePullRequestBypassListForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#RemovePullRequestBypassListForRepoRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#Forbidden"
+        },
+        {
+          "target": "com.github.interactions#NotFound"
+        },
+        {
+          "target": "com.github.interactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/repos/{owner}/{repo}/interaction-limits/pulls/bypass-list",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove users from the pull request creation cap bypass list for a repository\n\nRemoves users from the pull request creation cap bypass list for a repository.\nRemoved users will be subject to any configured pull request creation cap.\n\nOnly users with maintainer permissions can modify the bypass list.\nYou can remove a maximum of 100 users per request."
+      }
+    },
+    "com.github.interactions#GetPullRequestCreationCapForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#GetPullRequestCreationCapForRepoResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the pull request creation cap is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "max_open_pull_requests": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of open pull requests a user can have at one time",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.interactions#GetPullRequestCreationCapForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#GetPullRequestCreationCapForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#GetPullRequestCreationCapForRepoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#Forbidden"
+        },
+        {
+          "target": "com.github.interactions#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/repos/{owner}/{repo}/interaction-limits/pulls/creation-cap",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get pull request creation cap for a repository\n\nGets the pull request creation cap configuration for a repository.\nThe cap limits the number of open pull requests a user can have at one time.\n\nOnly users with admin access to the repository can view the cap configuration."
+      }
+    },
+    "com.github.interactions#UpdatePullRequestCreationCapForRepoRequest": {
+      "type": "structure",
+      "members": {
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The account owner of the repository. The name is not case sensitive."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the repository without the `.git` extension. The name is not case sensitive."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the pull request creation cap is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "max_open_pull_requests": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of open pull requests a user can have at one time"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#UpdatePullRequestCreationCapForRepoResponse": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the pull request creation cap is enabled",
+            "smithy.api#required": {}
+          }
+        },
+        "max_open_pull_requests": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of open pull requests a user can have at one time",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.interactions#UpdatePullRequestCreationCapForRepo": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#UpdatePullRequestCreationCapForRepoRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#UpdatePullRequestCreationCapForRepoResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#Forbidden"
+        },
+        {
+          "target": "com.github.interactions#NotFound"
+        },
+        {
+          "target": "com.github.interactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/repos/{owner}/{repo}/interaction-limits/pulls/creation-cap",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update pull request creation cap for a repository\n\nUpdates the pull request creation cap for a repository. The cap limits the number\nof open pull requests a user can have at one time.\n\nOnly users with admin access to the repository can configure the cap."
+      }
+    },
+    "com.github.interactions#GetRestrictionsForAuthenticatedUserResponseBody": {
+      "type": "union",
+      "members": {
+        "InteractionLimitResponse": {
+          "target": "com.github.interactions#InteractionLimitResponse"
+        },
+        "Case1": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.interactions#GetRestrictionsForAuthenticatedUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.interactions#GetRestrictionsForAuthenticatedUserResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.interactions#GetRestrictionsForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.github.interactions#GetRestrictionsForAuthenticatedUserResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/user/interaction-limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get interaction restrictions for your public repositories\n\nShows which type of GitHub user can interact with your public repositories and when the restriction expires."
+      }
+    },
+    "com.github.interactions#SetRestrictionsForAuthenticatedUserRequest": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "com.github.interactions#InteractionGroup",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expiry": {
+          "target": "com.github.interactions#InteractionExpiry"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.interactions#SetRestrictionsForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.interactions#SetRestrictionsForAuthenticatedUserRequest"
+      },
+      "output": {
+        "target": "com.github.interactions#InteractionLimitResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.interactions#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/user/interaction-limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set interaction restrictions for your public repositories\n\nTemporarily restricts which type of GitHub user can interact with your public repositories. Setting the interaction limit at the user level will overwrite any interaction limits that are set for individual repositories owned by the user."
+      }
+    },
+    "com.github.interactions#RemoveRestrictionsForAuthenticatedUser": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/user/interaction-limits",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove interaction restrictions from your public repositories\n\nRemoves any interaction restrictions from your public repositories."
+      }
+    },
+    "com.github.interactions#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.interactions#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.interactions#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.interactions#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.github.interactions#Interactions": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.interactions#GetRestrictionsForOrg"
+        },
+        {
+          "target": "com.github.interactions#SetRestrictionsForOrg"
+        },
+        {
+          "target": "com.github.interactions#RemoveRestrictionsForOrg"
+        },
+        {
+          "target": "com.github.interactions#GetPullRequestCreationCapForOrg"
+        },
+        {
+          "target": "com.github.interactions#UpdatePullRequestCreationCapForOrg"
+        },
+        {
+          "target": "com.github.interactions#GetRestrictionsForRepo"
+        },
+        {
+          "target": "com.github.interactions#SetRestrictionsForRepo"
+        },
+        {
+          "target": "com.github.interactions#RemoveRestrictionsForRepo"
+        },
+        {
+          "target": "com.github.interactions#GetPullRequestBypassListForRepo"
+        },
+        {
+          "target": "com.github.interactions#SetPullRequestBypassListForRepo"
+        },
+        {
+          "target": "com.github.interactions#RemovePullRequestBypassListForRepo"
+        },
+        {
+          "target": "com.github.interactions#GetPullRequestCreationCapForRepo"
+        },
+        {
+          "target": "com.github.interactions#UpdatePullRequestCreationCapForRepo"
+        },
+        {
+          "target": "com.github.interactions#GetRestrictionsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.interactions#SetRestrictionsForAuthenticatedUser"
+        },
+        {
+          "target": "com.github.interactions#RemoveRestrictionsForAuthenticatedUser"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

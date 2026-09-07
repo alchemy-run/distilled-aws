@@ -1,0 +1,30 @@
+{
+  "description": "Align custom_hostnames#CertificatePackCertificatesDelete with distilled cloudflare/custom-hostnames deleteCertificatePackCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#CertificatePackCertificatesDelete",
+      "path": "/shapes/com.cloudflare.custom_hostnames#DeleteCertificatePackCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#CertificatePackCertificatesDeleteRequest",
+      "path": "/shapes/com.cloudflare.custom_hostnames#DeleteCertificatePackCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#DeleteCertificatePackCertificate/input/target",
+      "value": "com.cloudflare.custom_hostnames#DeleteCertificatePackCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_hostnames#CertificatePackCertificatesDeleteResponse",
+      "path": "/shapes/com.cloudflare.custom_hostnames#DeleteCertificatePackCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_hostnames#DeleteCertificatePackCertificate/output/target",
+      "value": "com.cloudflare.custom_hostnames#DeleteCertificatePackCertificateResponse"
+    }
+  ]
+}

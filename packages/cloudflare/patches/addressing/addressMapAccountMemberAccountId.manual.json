@@ -1,0 +1,35 @@
+{
+  "description": "The address-map membership URIs take TWO account ids: the owning account and the account being added/removed as a member. The docs name both path params `account_id`, so the converter dedup produced the meaningless member `account_id_2` — and left the URI with `{account_id}` twice, which the runtime's first-occurrence label substitution can never fill. Rename the member to `member_account_id` and point the second URI placeholder at it.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#PutAddressMapAccountRequest/members/account_id_2",
+      "path": "/shapes/com.cloudflare.addressing#PutAddressMapAccountRequest/members/member_account_id"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#PutAddressMapAccountRequest/members/member_account_id/traits/smithy.api#documentation",
+      "value": "Identifier of the Cloudflare account to add as a member of the address map."
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#PutAddressMapAccount/traits/smithy.api#http/uri",
+      "value": "/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{member_account_id}"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#DeleteAddressMapAccountRequest/members/account_id_2",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapAccountRequest/members/member_account_id"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapAccountRequest/members/member_account_id/traits/smithy.api#documentation",
+      "value": "Identifier of the Cloudflare account to remove from the address map."
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#DeleteAddressMapAccount/traits/smithy.api#http/uri",
+      "value": "/accounts/{account_id}/addressing/address_maps/{address_map_id}/accounts/{member_account_id}"
+    }
+  ]
+}

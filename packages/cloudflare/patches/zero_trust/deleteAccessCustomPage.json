@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessCustomPagesDelete with distilled cloudflare/zero-trust deleteAccessCustomPage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCustomPagesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCustomPage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCustomPagesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCustomPageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCustomPage/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessCustomPageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCustomPagesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCustomPageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCustomPage/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteAccessCustomPageResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteAccessCustomPage/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessCustomPageNotFound"
+        }
+      ]
+    }
+  ]
+}

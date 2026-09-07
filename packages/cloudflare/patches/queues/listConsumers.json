@@ -1,0 +1,53 @@
+{
+  "description": "Align queues#ConsumersList with distilled cloudflare/queues listConsumers",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#ConsumersList",
+      "path": "/shapes/com.cloudflare.queues#ListConsumers"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#ConsumersListRequest",
+      "path": "/shapes/com.cloudflare.queues#ListConsumersRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#ListConsumers/input/target",
+      "value": "com.cloudflare.queues#ListConsumersRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.queues#ConsumersListResponse",
+      "path": "/shapes/com.cloudflare.queues#ListConsumersResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.queues#ListConsumers/output/target",
+      "value": "com.cloudflare.queues#ListConsumersResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#ListConsumers/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.queues#ListConsumers/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.queues#InvalidRequestBody"
+        },
+        {
+          "target": "com.cloudflare.queues#QueueNotFound"
+        },
+        {
+          "target": "com.cloudflare.queues#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

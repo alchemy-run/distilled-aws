@@ -1,0 +1,20 @@
+{
+  "description": "Key dictionary / op aliases for browser_rendering (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "browser": "Browser",
+        "customAi": "custom_ai",
+        "jobId": "job_id",
+        "jsonSchema": "json_schema",
+        "protocolVersion": "Protocol-Version",
+        "responseFormat": "response_format",
+        "userAgent": "User-Agent",
+        "v8Version": "V8-Version",
+        "webKitVersion": "WebKit-Version"
+      }
+    }
+  ]
+}

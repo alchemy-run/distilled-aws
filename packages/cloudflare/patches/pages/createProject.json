@@ -1,0 +1,42 @@
+{
+  "description": "Align pages#ProjectsCreate with distilled cloudflare/pages createProject",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsCreate",
+      "path": "/shapes/com.cloudflare.pages#CreateProject"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsCreateRequest",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#CreateProject/input/target",
+      "value": "com.cloudflare.pages#CreateProjectRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.pages#ProjectsCreateResponse",
+      "path": "/shapes/com.cloudflare.pages#CreateProjectResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.pages#CreateProject/output/target",
+      "value": "com.cloudflare.pages#CreateProjectResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.pages#CreateProject/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.pages#ProjectAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.pages#Forbidden"
+        }
+      ]
+    }
+  ]
+}

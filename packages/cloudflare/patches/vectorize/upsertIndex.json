@@ -1,0 +1,30 @@
+{
+  "description": "Align vectorize#IndexesUpsert with distilled cloudflare/vectorize upsertIndex",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesUpsert",
+      "path": "/shapes/com.cloudflare.vectorize#UpsertIndex"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesUpsertRequest",
+      "path": "/shapes/com.cloudflare.vectorize#UpsertIndexRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#UpsertIndex/input/target",
+      "value": "com.cloudflare.vectorize#UpsertIndexRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.vectorize#IndexesUpsertResponse",
+      "path": "/shapes/com.cloudflare.vectorize#UpsertIndexResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.vectorize#UpsertIndex/output/target",
+      "value": "com.cloudflare.vectorize#UpsertIndexResponse"
+    }
+  ]
+}

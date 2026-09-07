@@ -1,0 +1,4582 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.quota#QuotaOperationList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.quota#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Quota/operations",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#OperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#OperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of connected cluster API operations.",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to fetch the next page of connected cluster API operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The paginated list of connected cluster API operations."
+      }
+    },
+    "com.azure.quota#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#OperationResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of connected cluster API operations."
+      }
+    },
+    "com.azure.quota#OperationResponse": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "display": {
+          "target": "com.azure.quota#OperationDisplay"
+        },
+        "origin": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider name."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation description."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/quotaAllocations/{location}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Request to assign quota from group quota to a specific Subscription. The assign GroupQuota to subscriptions or reduce the quota allocated to subscription to give back the unused quota ( quota >= usages) to the groupQuota. So, this API can be used to assign Quota to subscriptions and assign back unused quota to group quota, which can be assigned to another subscriptions in the GroupQuota. User can collect unused quotas from multiple subscriptions within the groupQuota and assign the groupQuota to the subscription, where it's needed.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#SubscriptionQuotaAllocationsListProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#SubscriptionQuotaAllocationsListProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.quota#RequestState",
+          "traits": {
+            "smithy.api#documentation": "Request status."
+          }
+        },
+        "value": {
+          "target": "com.azure.quota#SubscriptionQuotaAllocationsListPropertiesValueList",
+          "traits": {
+            "smithy.api#documentation": "Subscription quota list."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to use for getting the next set of results."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#SubscriptionQuotaAllocationsListPropertiesValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#SubscriptionQuotaAllocations"
+      },
+      "traits": {
+        "smithy.api#documentation": "Subscription quota list."
+      }
+    },
+    "com.azure.quota#SubscriptionQuotaAllocations": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.quota#SubscriptionQuotaDetails",
+          "traits": {
+            "smithy.api#documentation": "Quota properties for the specified resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota allocated to a subscription for the specific Resource Provider, Location, ResourceName. This will include the GroupQuota and total quota allocated to the subscription. Only the Group quota allocated to the subscription can be allocated back to the MG Group Quota."
+      }
+    },
+    "com.azure.quota#SubscriptionQuotaDetails": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name, such as SKU name."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total quota limit for the subscription."
+          }
+        },
+        "shareableQuota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The shareable quota for the subscription."
+          }
+        },
+        "name": {
+          "target": "com.azure.quota#SubscriptionQuotaDetailsName",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Subscription Quota details."
+      }
+    },
+    "com.azure.quota#SubscriptionQuotaDetailsName": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+      }
+    },
+    "com.azure.quota#RequestState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Created"
+          }
+        },
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "ESCALATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Escalated"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InProgress"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request status."
+      }
+    },
+    "com.azure.quota#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.quota#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.quota#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.quota#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.quota#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#SubscriptionQuotaAllocationsListPropertiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#SubscriptionQuotaAllocationsListPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#SubscriptionQuotaAllocationsListPropertiesInputValueList",
+          "traits": {
+            "smithy.api#documentation": "Subscription quota list."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#SubscriptionQuotaAllocationsListPropertiesInputValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#SubscriptionQuotaAllocationsInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Subscription quota list."
+      }
+    },
+    "com.azure.quota#SubscriptionQuotaAllocationsInput": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.quota#SubscriptionQuotaDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "Quota properties for the specified resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota allocated to a subscription for the specific Resource Provider, Location, ResourceName. This will include the GroupQuota and total quota allocated to the subscription. Only the Group quota allocated to the subscription can be allocated back to the MG Group Quota."
+      }
+    },
+    "com.azure.quota#SubscriptionQuotaDetailsInput": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name, such as SKU name."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total quota limit for the subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Subscription Quota details."
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/quotaAllocations/{location}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Gets all the quota allocated to a subscription for the specified resource provider and location for resource names passed in $filter=resourceName eq {SKU}. This will include the GroupQuota and total quota allocated to the subscription. Only the Group quota allocated to the subscription can be allocated back to the MG Group Quota.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationListResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#SubscriptionQuotaAllocationsListProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationListRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGetRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/quotaAllocationRequests/{allocationId}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get the quota allocation request status for the subscriptionId by allocationId.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaAllocationRequestStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#QuotaAllocationRequestStatusProperties": {
+      "type": "structure",
+      "members": {
+        "requestedResource": {
+          "target": "com.azure.quota#QuotaAllocationRequestBase",
+          "traits": {
+            "smithy.api#documentation": "The new quota request allocated to subscription."
+          }
+        },
+        "requestSubmitTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.quota#RequestState",
+          "traits": {
+            "smithy.api#documentation": "Request status."
+          }
+        },
+        "faultCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Details of the failure."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#QuotaAllocationRequestBase": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.quota#QuotaAllocationRequestBaseProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The new quota request allocated to subscription."
+      }
+    },
+    "com.azure.quota#QuotaAllocationRequestBaseProperties": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The new quota limit for the subscription. The incremental quota will be allocated from pre-approved group quota."
+          }
+        },
+        "name": {
+          "target": "com.azure.quota#QuotaAllocationRequestBasePropertiesName",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location for which the subscription is allocated"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#QuotaAllocationRequestBasePropertiesName": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGetRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "allocationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Request Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#QuotaAllocationRequestStatusList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/subscriptions/{subscriptionId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/quotaAllocationRequests",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get all the quotaAllocationRequests for a resourceProvider/location. The filter paramter for location is required.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#QuotaAllocationRequestStatusList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#QuotaAllocationRequestStatusListValueList",
+          "traits": {
+            "smithy.api#documentation": "The QuotaAllocationRequestStatus items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of QuotaAllocation Request Status"
+      }
+    },
+    "com.azure.quota#QuotaAllocationRequestStatusListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#QuotaAllocationRequestStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "The QuotaAllocationRequestStatus items on this page"
+      }
+    },
+    "com.azure.quota#QuotaAllocationRequestStatus": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaAllocationRequestStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The subscription quota allocation status."
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionAllocationRequestListRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "| Field | Supported operators\n|---------------------|------------------------\n\nlocation eq {location}\nExample: $filter=location eq eastus"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Removes the subscription from GroupQuotas. The request's TenantId is validated against the subscription's TenantId.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Updates the GroupQuotas with the subscription to add to the subscriptions list. The subscriptions will be validated if additionalAttributes are defined in the GroupQuota. The request's TenantId is validated against the subscription's TenantId.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaSubscriptionIdProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionIdProperties": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An Azure subscriptionId."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.quota#RequestState",
+          "traits": {
+            "smithy.api#documentation": "Status of this subscriptionId being associated with the GroupQuotasEntity."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group Id."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Adds a subscription to GroupQuotas. The subscriptions will be validated based on the additionalAttributes defined in the GroupQuota. The additionalAttributes works as filter for the subscriptions, which can be included in the GroupQuotas. The request's TenantId is validated against the subscription's TenantId.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaSubscriptionIdProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Management Group Id."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions/{subscriptionId}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Returns the subscriptionIds along with its provisioning state for being associated with the GroupQuota. If the subscription is not a member of GroupQuota, it will return 404, else 200.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaSubscriptionIdProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionsListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionIdList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptions",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Returns a list of the subscriptionIds associated with the GroupQuotas.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionIdList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#GroupQuotaSubscriptionIdListValueList",
+          "traits": {
+            "smithy.api#documentation": "The GroupQuotaSubscriptionId items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of GroupQuotaSubscriptionIds"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionIdListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionId"
+      },
+      "traits": {
+        "smithy.api#documentation": "The GroupQuotaSubscriptionId items on this page"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionId": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaSubscriptionIdProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This represents a Azure subscriptionId that is associated with a GroupQuotasEntity."
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionsListRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionRequestsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionRequestsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionRequestsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptionRequests/{requestId}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get API to check the status of a subscriptionIds request by requestId.  Use the polling API - OperationsStatus URI specified in Azure-AsyncOperation header field, with retry-after duration in seconds to check the intermediate status. This API provides the finals status with the request details and status.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionRequestsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaSubscriptionRequestStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionRequestStatusProperties": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The subscription Id"
+          }
+        },
+        "requestSubmitTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.quota#RequestState",
+          "traits": {
+            "smithy.api#documentation": "Status of this subscriptionId being associated with the GroupQuotasEntity."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#GroupQuotaSubscriptionRequestsGetRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Request Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionRequestsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionRequestsListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionRequestStatusList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/subscriptionRequests",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "List API to check the status of a subscriptionId requests by requestId. Request history is maintained for 1 year.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionRequestStatusList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#GroupQuotaSubscriptionRequestStatusListValueList",
+          "traits": {
+            "smithy.api#documentation": "The GroupQuotaSubscriptionRequestStatus items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of GroupQuotaSubscriptionRequests Status"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionRequestStatusListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#GroupQuotaSubscriptionRequestStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "The GroupQuotaSubscriptionRequestStatus items on this page"
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionRequestStatus": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaSubscriptionRequestStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The new quota limit request status."
+      }
+    },
+    "com.azure.quota#GroupQuotaSubscriptionRequestsListRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaUsagesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaUsagesListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#ResourceUsageList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationUsages/{location}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Gets the GroupQuotas usages and limits(quota). Location is required paramter.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#ResourceUsageList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#ResourceUsageListValueList",
+          "traits": {
+            "smithy.api#documentation": "The ResourceUsages items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of resource usages and quotas for GroupQuota."
+      }
+    },
+    "com.azure.quota#ResourceUsageListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#ResourceUsages"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ResourceUsages items on this page"
+      }
+    },
+    "com.azure.quota#ResourceUsages": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaUsagesBase",
+          "traits": {
+            "smithy.api#documentation": "Resource details with usages and GroupQuota."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource details with usages and GroupQuota."
+      }
+    },
+    "com.azure.quota#GroupQuotaUsagesBase": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.quota#GroupQuotaUsagesBaseName",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Quota/limits for the resource."
+          }
+        },
+        "usages": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Usages for the resource."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Representing the units of the usage quota. Possible values are: Count, Bytes, Seconds, Percent, CountPerSecond, BytesPerSecond. Based on - https://armwiki.azurewebsites.net/api_contracts/UsagesAPIContract.html?q=usages . Different RPs may have different units, Count, type as int64 should work for most of the integer values."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource details with usages and GroupQuota."
+      }
+    },
+    "com.azure.quota#GroupQuotaUsagesBaseName": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+      }
+    },
+    "com.azure.quota#GroupQuotaUsagesListRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLocationSettingsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaLocationSettingsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaLocationSettingsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationSettings/{location}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Enables the GroupQuotas enforcement for the resource provider and the location specified. The resource provider will start using the group quotas as the overall quota for the subscriptions included in the GroupQuota.  The subscriptions cannot request quota at subscription level since it is now part of an enforced group.\nThe subscriptions share the GroupQuotaLimits assigned to the GroupQuota. If the GroupQuotaLimits is used, then submit a groupQuotaLimit request for the specific resource - provider/location/resource.\nOnce the GroupQuota Enforcement is enabled then, it cannot be deleted or reverted back. To disable GroupQuota Enforcement -\n1. Remove all the subscriptions from the groupQuota using the delete API for Subscriptions (Check the example - GroupQuotaSubscriptions_Delete).\n2. Ten delete the GroupQuota (Check the example - GroupQuotas_Delete).",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaLocationSettingsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEnforcementStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasEnforcementStatusProperties": {
+      "type": "structure",
+      "members": {
+        "enforcementEnabled": {
+          "target": "com.azure.quota#EnforcementState",
+          "traits": {
+            "smithy.api#documentation": "Is the GroupQuota Enforcement enabled for the Azure region."
+          }
+        },
+        "enforcedGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the group that is enforced."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.quota#RequestState",
+          "traits": {
+            "smithy.api#documentation": "Request status."
+          }
+        },
+        "faultCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Details of the failure."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#EnforcementState": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "NOTAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotAvailable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enforcement status."
+      }
+    },
+    "com.azure.quota#GroupQuotaLocationSettingsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEnforcementStatusPropertiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasEnforcementStatusPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "enforcementEnabled": {
+          "target": "com.azure.quota#EnforcementState",
+          "traits": {
+            "smithy.api#documentation": "Is the GroupQuota Enforcement enabled for the Azure region."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationSettings/{location}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Enables the GroupQuotas enforcement for the resource provider and the location specified. The resource provider will start using the group quotas as the overall quota for the subscriptions included in the GroupQuota. The subscriptions cannot request quota at subscription level since it is now part of an enforced group.\nThe subscriptions share the GroupQuotaLimits assigned to the GroupQuota. If the GroupQuotaLimits is used, then submit a groupQuotaLimit request for the specific resource - provider/location/resource.\nOnce the GroupQuota Enforcement is enabled then, it cannot be deleted or reverted back. To disable GroupQuota Enforcement -\n1. Remove all the subscriptions from the groupQuota using the delete API for Subscriptions (Check the example - GroupQuotaSubscriptions_Delete).\n2. Then delete the GroupQuota (Check the example - GroupQuotas_Delete).",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEnforcementStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEnforcementStatusPropertiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLocationSettingsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaLocationSettingsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaLocationSettingsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/locationSettings/{location}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Gets the GroupQuotas enforcement settings for the ResourceProvider/location. The locations, where GroupQuota enforcement is not enabled will return Not Found.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaLocationSettingsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEnforcementStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLocationSettingsGetRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsRequestList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaLimitsRequestListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#SubmittedResourceRequestStatusList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/groupQuotaRequests",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get API to check the status of a GroupQuota request by requestId.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#SubmittedResourceRequestStatusList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#SubmittedResourceRequestStatusListValueList",
+          "traits": {
+            "smithy.api#documentation": "The SubmittedResourceRequestStatus items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Share Quota Entity list."
+      }
+    },
+    "com.azure.quota#SubmittedResourceRequestStatusListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#SubmittedResourceRequestStatus"
+      },
+      "traits": {
+        "smithy.api#documentation": "The SubmittedResourceRequestStatus items on this page"
+      }
+    },
+    "com.azure.quota#SubmittedResourceRequestStatus": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#SubmittedResourceRequestStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of a single GroupQuota request."
+      }
+    },
+    "com.azure.quota#SubmittedResourceRequestStatusProperties": {
+      "type": "structure",
+      "members": {
+        "requestedResource": {
+          "target": "com.azure.quota#GroupQuotaRequestBase",
+          "traits": {
+            "smithy.api#documentation": "Requested Resource."
+          }
+        },
+        "requestSubmitTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.quota#RequestState",
+          "traits": {
+            "smithy.api#documentation": "Request status."
+          }
+        },
+        "faultCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Details of the failure."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#GroupQuotaRequestBase": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaRequestBaseProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The new GroupQuota limit requested."
+      }
+    },
+    "com.azure.quota#GroupQuotaRequestBaseProperties": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The new quota limit for the subscription. The incremental quota will be allocated from pre-approved group quota."
+          }
+        },
+        "name": {
+          "target": "com.azure.quota#GroupQuotaRequestBasePropertiesName",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location/Azure region for the quota requested for resource."
+          }
+        },
+        "comments": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GroupQuota Request comments and details for request. This is optional paramter to provide more details related to the requested resource."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#GroupQuotaRequestBasePropertiesName": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsRequestListRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "| Field | Supported operators  \\r\\n|---------------------|------------------------\\n\\r\\n location eq {location} and resource eq {resourceName}\\n Example: $filter=location eq eastus and resourceName eq cores"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsRequestUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaLimitsRequestUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaLimitsRequestUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/groupQuotaLimits/{location}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Create the GroupQuota requests for a specific ResourceProvider/Location/Resource. The resourceName properties are specified in the request body. Only 1 resource quota can be requested. Please note that patch request creates a new groupQuota request.\nUse the polling API - OperationsStatus URI specified in Azure-AsyncOperation header field, with retry-after duration in seconds to check the intermediate status. This API provides the finals status with the request details and status.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsRequestUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaLimitListProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitListProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.quota#RequestState",
+          "traits": {
+            "smithy.api#documentation": "Request status."
+          }
+        },
+        "value": {
+          "target": "com.azure.quota#GroupQuotaLimitListPropertiesValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Group Quota Limit details."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to use for getting the next set of results."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#GroupQuotaLimitListPropertiesValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#GroupQuotaLimit"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Group Quota Limit details."
+      }
+    },
+    "com.azure.quota#GroupQuotaLimit": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaDetails",
+          "traits": {
+            "smithy.api#documentation": "Group Quota properties for the specified resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group Quota limit."
+      }
+    },
+    "com.azure.quota#GroupQuotaDetails": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name, such as SKU name."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current Group Quota Limit at the parentId level."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any comment related to quota request."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The usages units, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation."
+          }
+        },
+        "name": {
+          "target": "com.azure.quota#GroupQuotaDetailsName",
+          "traits": {
+            "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+          }
+        },
+        "availableLimit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The available Group Quota Limit at the MG level. This Group quota can be allocated to subscription(s)."
+          }
+        },
+        "allocatedToSubscriptions": {
+          "target": "com.azure.quota#AllocatedQuotaToSubscriptionList",
+          "traits": {
+            "smithy.api#documentation": "Quota allocated to subscriptions"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group Quota details."
+      }
+    },
+    "com.azure.quota#AllocatedQuotaToSubscriptionList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#AllocatedQuotaToSubscriptionListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Group Quota Limit allocated to subscriptions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota allocated to subscriptions"
+      }
+    },
+    "com.azure.quota#AllocatedQuotaToSubscriptionListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#AllocatedToSubscription"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Group Quota Limit allocated to subscriptions."
+      }
+    },
+    "com.azure.quota#AllocatedToSubscription": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An Azure subscriptionId."
+          }
+        },
+        "quotaAllocated": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The amount of quota allocated to this subscriptionId from the GroupQuotasEntity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SubscriptionIds and quota allocated to subscriptions from the GroupQuota."
+      }
+    },
+    "com.azure.quota#GroupQuotaDetailsName": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the resource provided by the resource provider. This property is already included in the request URI, so it is a readonly property returned in the response."
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsRequestUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaLimitListPropertiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitListPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#GroupQuotaLimitListPropertiesInputValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Group Quota Limit details."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.quota#GroupQuotaLimitListPropertiesInputValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#GroupQuotaLimitInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Group Quota Limit details."
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitInput": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "Group Quota properties for the specified resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group Quota limit."
+      }
+    },
+    "com.azure.quota#GroupQuotaDetailsInput": {
+      "type": "structure",
+      "members": {
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource name, such as SKU name."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The current Group Quota Limit at the parentId level."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Any comment related to quota request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group Quota details."
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaLimitsListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaLimitsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/resourceProviders/{resourceProviderName}/groupQuotaLimits/{location}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Gets the GroupQuotaLimits for the specified resource provider and location for resource names passed in $filter=resourceName eq {SKU}.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsListResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotaLimitListProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsListRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "resourceProviderName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The resource provider name, such as - Microsoft.Compute. Currently only Microsoft.Compute resource provider supports this API."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Azure region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsRequestGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotaLimitsRequestGetRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaLimitsRequestGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}/groupQuotaRequests/{requestId}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get API to check the status of a GroupQuota request by requestId.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsRequestGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#SubmittedResourceRequestStatusProperties"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotaLimitsRequestGetRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Request Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotasDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Deletes the GroupQuotas for the name passed. All the remaining shareQuota in the GroupQuotas will be lost.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotasDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotasUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotasUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Updates the GroupQuotas for the name passed. A GroupQuotas RequestId will be returned by the Service. The status can be polled periodically. The status Async polling is using standards defined at - https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/async-api-reference.md#asynchronous-operations. Use the OperationsStatus URI provided in Azure-AsyncOperation header, the duration will be specified in retry-after header. Once the operation gets to terminal state - Succeeded | Failed, then the URI will change to Get URI and full details can be checked.\nAny change in the filters will be applicable to the future quota assignments, existing quota allocated to subscriptions from the GroupQuotas remains unchanged.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotasUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEntityBase",
+          "traits": {
+            "smithy.api#documentation": "Properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasEntityBase": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the GroupQuota entity."
+          }
+        },
+        "groupType": {
+          "target": "com.azure.quota#GroupType",
+          "traits": {
+            "smithy.api#documentation": "Type of the group."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.quota#RequestState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified."
+      }
+    },
+    "com.azure.quota#GroupType": {
+      "type": "enum",
+      "members": {
+        "ALLOCATIONGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AllocationGroup"
+          }
+        },
+        "ENFORCEDGROUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EnforcedGroup"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the group."
+      }
+    },
+    "com.azure.quota#GroupQuotasUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEntityBasePatchInput",
+          "traits": {
+            "smithy.api#documentation": "Properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasEntityBasePatchInput": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the GroupQuota entity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified."
+      }
+    },
+    "com.azure.quota#GroupQuotasCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotasCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotasCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Creates a new GroupQuota for the name passed. A RequestId will be returned by the Service. The status can be polled periodically. The status Async polling is using standards defined at - https://github.com/Azure/azure-resource-manager-rpc/blob/master/v1.0/async-api-reference.md#asynchronous-operations. Use the OperationsStatus URI provided in Azure-AsyncOperation header, the duration will be specified in retry-after header. Once the operation gets to terminal state - Succeeded | Failed, then the URI will change to Get URI and full details can be checked.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotasCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEntityBase",
+          "traits": {
+            "smithy.api#documentation": "Properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEntityBaseInput",
+          "traits": {
+            "smithy.api#documentation": "Properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasEntityBaseInput": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the GroupQuota entity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified."
+      }
+    },
+    "com.azure.quota#GroupQuotasGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotasGetRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotasGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas/{groupQuotaName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Gets the GroupQuotas for the name passed. It will return the GroupQuotas properties only. The details on group quota can be access from the group quota APIs.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotasGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEntityBase",
+          "traits": {
+            "smithy.api#documentation": "Properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasGetRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        },
+        "groupQuotaName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The GroupQuota name. The name should be unique for the provided context tenantId/MgId."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#GroupQuotasList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#GroupQuotasListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#GroupQuotaList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Management/managementGroups/{managementGroupId}/providers/Microsoft.Quota/groupQuotas",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Lists GroupQuotas for the scope passed. It will return the GroupQuotas QuotaEntity properties only.The details on group quota can be access from the group quota APIs.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#GroupQuotaList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#GroupQuotaListValueList",
+          "traits": {
+            "smithy.api#documentation": "The GroupQuotasEntity items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Group Quotas at MG level."
+      }
+    },
+    "com.azure.quota#GroupQuotaListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#GroupQuotasEntity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The GroupQuotasEntity items on this page"
+      }
+    },
+    "com.azure.quota#GroupQuotasEntity": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#GroupQuotasEntityBase",
+          "traits": {
+            "smithy.api#documentation": "Properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties and filters for ShareQuota. The request parameter is optional, if there are no filters specified."
+      }
+    },
+    "com.azure.quota#GroupQuotasListRequest": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The management group ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#UsagesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#UsagesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#UsagesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Quota/usages/{resourceName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get the current usage of a resource.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#UsagesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#UsagesProperties",
+          "traits": {
+            "smithy.api#documentation": "Usage properties for the specified resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#UsagesProperties": {
+      "type": "structure",
+      "members": {
+        "usages": {
+          "target": "com.azure.quota#UsagesObject",
+          "traits": {
+            "smithy.api#documentation": "The quota limit properties for this resource."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The units for the quota usage, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation."
+          }
+        },
+        "name": {
+          "target": "com.azure.quota#ResourceName",
+          "traits": {
+            "smithy.api#documentation": "Resource name provided by the resource provider. Use this property name when requesting quota."
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource type. Optional field."
+          }
+        },
+        "quotaPeriod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time period for the summary of the quota usage values. For example:\n*P1D (per one day)\n*PT1M (per one minute)\n*PT1S (per one second).\nThis parameter is optional because it is not relevant for all resources such as compute."
+          }
+        },
+        "isQuotaApplicable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "States if quota can be requested for this resource."
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Additional properties for the specific resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Usage properties for the specified resource."
+      }
+    },
+    "com.azure.quota#ResourceName": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "localizedValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource display name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the resource provided by the resource Provider. When requesting quota, use this property name."
+      }
+    },
+    "com.azure.quota#UsagesObject": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The usages value.",
+            "smithy.api#required": {}
+          }
+        },
+        "usagesType": {
+          "target": "com.azure.quota#UsagesTypes",
+          "traits": {
+            "smithy.api#documentation": "The quota or usages limit types."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource usages value."
+      }
+    },
+    "com.azure.quota#UsagesTypes": {
+      "type": "enum",
+      "members": {
+        "INDIVIDUAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Individual"
+          }
+        },
+        "COMBINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Combined"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The quota or usages limit types."
+      }
+    },
+    "com.azure.quota#UsagesGetRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource name for a given resource provider. For example:\n- SKU name for Microsoft.Compute\n- SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices\n For Microsoft.Network PublicIPAddresses."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#UsagesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#UsagesListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#UsagesLimits"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Quota/usages",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get a list of current usage for all resources for the scope specified.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#UsagesLimits": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#UsagesLimitsValueList",
+          "traits": {
+            "smithy.api#documentation": "The CurrentUsagesBase items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota limits."
+      }
+    },
+    "com.azure.quota#UsagesLimitsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#CurrentUsagesBase"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CurrentUsagesBase items on this page"
+      }
+    },
+    "com.azure.quota#CurrentUsagesBase": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#UsagesProperties",
+          "traits": {
+            "smithy.api#documentation": "Usage properties for the specified resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource usage."
+      }
+    },
+    "com.azure.quota#UsagesListRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#QuotaUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#QuotaUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#QuotaUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/{scope}/providers/Microsoft.Quota/quotas/{resourceName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Update the quota limit for a specific resource to the specified value:\n1. Use the Usages-GET and Quota-GET operations to determine the remaining quota for the specific resource and to calculate the new quota limit. These steps are detailed in [this example](https://techcommunity.microsoft.com/t5/azure-governance-and-management/using-the-new-quota-rest-api/ba-p/2183670).\n2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed status of the request.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#QuotaUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaProperties",
+          "traits": {
+            "smithy.api#documentation": "Quota properties for the specified resource, based on the API called, Quotas or Usages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#QuotaProperties": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "com.azure.quota#LimitJsonObject",
+          "traits": {
+            "smithy.api#documentation": "Resource quota limit properties."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quota units, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation."
+          }
+        },
+        "name": {
+          "target": "com.azure.quota#ResourceName",
+          "traits": {
+            "smithy.api#documentation": "Resource name provided by the resource provider. Use this property name when requesting quota."
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource type. Optional field."
+          }
+        },
+        "quotaPeriod": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time period over which the quota usage values are summarized. For example:\n*P1D (per one day)\n*PT1M (per one minute)\n*PT1S (per one second).\nThis parameter is optional because, for some resources like compute, the period is irrelevant."
+          }
+        },
+        "isQuotaApplicable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "States if quota can be requested for this resource."
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Additional properties for the specific resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota properties for the specified resource."
+      }
+    },
+    "com.azure.quota#LimitJsonObject": {
+      "type": "structure",
+      "members": {
+        "limitObjectType": {
+          "target": "com.azure.quota#LimitType",
+          "traits": {
+            "smithy.api#documentation": "The limit object type.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "LimitJson abstract class."
+      }
+    },
+    "com.azure.quota#LimitType": {
+      "type": "enum",
+      "members": {
+        "LIMITVALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LimitValue"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The limit object type."
+      }
+    },
+    "com.azure.quota#QuotaUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource name for a given resource provider. For example:\n- SKU name for Microsoft.Compute\n- SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices\n For Microsoft.Network PublicIPAddresses."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Quota properties for the specified resource, based on the API called, Quotas or Usages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#QuotaPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "limit": {
+          "target": "com.azure.quota#LimitJsonObject",
+          "traits": {
+            "smithy.api#documentation": "Resource quota limit properties."
+          }
+        },
+        "name": {
+          "target": "com.azure.quota#ResourceNameInput",
+          "traits": {
+            "smithy.api#documentation": "Resource name provided by the resource provider. Use this property name when requesting quota."
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource type. Optional field."
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Additional properties for the specific resource provider."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota properties for the specified resource."
+      }
+    },
+    "com.azure.quota#ResourceNameInput": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the resource provided by the resource Provider. When requesting quota, use this property name."
+      }
+    },
+    "com.azure.quota#QuotaCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#QuotaCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#QuotaCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/{scope}/providers/Microsoft.Quota/quotas/{resourceName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Create or update the quota limit for the specified resource with the requested value. To update the quota, follow these steps:\n1. Use the GET operation for quotas and usages to determine how much quota remains for the specific resource and to calculate the new quota limit. These steps are detailed in [this example](https://techcommunity.microsoft.com/t5/azure-governance-and-management/using-the-new-quota-rest-api/ba-p/2183670).\n2. Use this PUT operation to update the quota limit. Please check the URI in location header for the detailed status of the request.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#QuotaCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaProperties",
+          "traits": {
+            "smithy.api#documentation": "Quota properties for the specified resource, based on the API called, Quotas or Usages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#QuotaCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource name for a given resource provider. For example:\n- SKU name for Microsoft.Compute\n- SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices\n For Microsoft.Network PublicIPAddresses."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Quota properties for the specified resource, based on the API called, Quotas or Usages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#QuotaGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#QuotaGetRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#QuotaGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Quota/quotas/{resourceName}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get the quota limit of a resource. The response can be used to determine the remaining quota to calculate a new quota limit that can be submitted with a PUT request.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#QuotaGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaProperties",
+          "traits": {
+            "smithy.api#documentation": "Quota properties for the specified resource, based on the API called, Quotas or Usages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#QuotaGetRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Resource name for a given resource provider. For example:\n- SKU name for Microsoft.Compute\n- SKU or TotalLowPriorityCores for Microsoft.MachineLearningServices\n For Microsoft.Network PublicIPAddresses."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#QuotaList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#QuotaListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#QuotaLimits"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Quota/quotas",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get a list of current quota limits of all resources for the specified scope. The response from this GET operation can be leveraged to submit requests to update a quota.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#QuotaLimits": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#QuotaLimitsValueList",
+          "traits": {
+            "smithy.api#documentation": "The CurrentQuotaLimitBase items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota limits."
+      }
+    },
+    "com.azure.quota#QuotaLimitsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#CurrentQuotaLimitBase"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CurrentQuotaLimitBase items on this page"
+      }
+    },
+    "com.azure.quota#CurrentQuotaLimitBase": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaProperties",
+          "traits": {
+            "smithy.api#documentation": "Quota properties for the specified resource, based on the API called, Quotas or Usages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota limit."
+      }
+    },
+    "com.azure.quota#QuotaListRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#QuotaRequestStatusGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#QuotaRequestStatusGetRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#QuotaRequestStatusGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Quota/quotaRequests/{id}",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "Get the quota request details and status by quota request ID for the resources of the resource provider at a specific location. The quota request ID **id** is returned in the response of the PUT operation.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#QuotaRequestStatusGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Quota request details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.quota#QuotaRequestProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.quota#QuotaRequestState",
+          "traits": {
+            "smithy.api#documentation": "The quota request status."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-friendly status message."
+          }
+        },
+        "error": {
+          "target": "com.azure.quota#ServiceErrorDetail",
+          "traits": {
+            "smithy.api#documentation": "Error details of the quota request."
+          }
+        },
+        "requestSubmitTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The quota request submission time. The date conforms to the following format specified by the ISO 8601 standard: yyyy-MM-ddTHH:mm:ssZ"
+          }
+        },
+        "value": {
+          "target": "com.azure.quota#QuotaRequestPropertiesValueList",
+          "traits": {
+            "smithy.api#documentation": "Quota request details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota request properties."
+      }
+    },
+    "com.azure.quota#QuotaRequestPropertiesValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#SubRequest"
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota request details."
+      }
+    },
+    "com.azure.quota#SubRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.quota#ResourceName",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "resourceType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type for which the quota properties were requested."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Quota limit units, such as Count and Bytes. When requesting quota, use the **unit** value returned in the GET response in the request body of your PUT operation."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.quota#QuotaRequestState",
+          "traits": {
+            "smithy.api#documentation": "The quota request status."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-friendly status message."
+          }
+        },
+        "subRequestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Quota request ID."
+          }
+        },
+        "limit": {
+          "target": "com.azure.quota#LimitJsonObject",
+          "traits": {
+            "smithy.api#documentation": "Resource quota limit properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request property."
+      }
+    },
+    "com.azure.quota#QuotaRequestState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InProgress"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota request status."
+      }
+    },
+    "com.azure.quota#ServiceErrorDetail": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error message."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error details."
+      }
+    },
+    "com.azure.quota#QuotaRequestStatusGetRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Quota request ID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#QuotaRequestStatusList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.quota#QuotaRequestStatusListRequest"
+      },
+      "output": {
+        "target": "com.azure.quota#QuotaRequestDetailsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/{scope}/providers/Microsoft.Quota/quotaRequests",
+          "code": 200,
+          "apiVersion": "2025-09-01"
+        },
+        "smithy.api#documentation": "For the specified scope, get the current quota requests for a one year period ending at the time is made. Use the **oData** filter to select quota requests.",
+        "com.distilled.openapi#apiVersion": "2025-09-01"
+      }
+    },
+    "com.azure.quota#QuotaRequestDetailsList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.quota#QuotaRequestDetailsListValueList",
+          "traits": {
+            "smithy.api#documentation": "The QuotaRequestDetails items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota request information."
+      }
+    },
+    "com.azure.quota#QuotaRequestDetailsListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.quota#QuotaRequestDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "The QuotaRequestDetails items on this page"
+      }
+    },
+    "com.azure.quota#QuotaRequestDetails": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.quota#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.quota#QuotaRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Quota request details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of quota requests with details."
+      }
+    },
+    "com.azure.quota#QuotaRequestStatusListRequest": {
+      "type": "structure",
+      "members": {
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The fully qualified Azure Resource manager identifier of the resource."
+          }
+        },
+        "_filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$filter",
+            "smithy.api#documentation": "| Field                    | Supported operators\n|---------------------|------------------------\n\n|requestSubmitTime | ge, le, eq, gt, lt\n|provisioningState eq {QuotaRequestState}\n|resourceName eq {resourceName}"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "Number of records to return."
+          }
+        },
+        "_skiptoken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "The **Skiptoken** parameter is used only if a previous operation returned a partial result. If a previous response contains a **nextLink** element, its value includes a **skiptoken** parameter that specifies a starting point to use for subsequent calls."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.quota#Quota": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.quota#QuotaOperationList"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionAllocationList"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestGet"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionAllocationRequestList"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionsDelete"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionsUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionsGet"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionsList"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionRequestsGet"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaSubscriptionRequestsList"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaUsagesList"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaLocationSettingsUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaLocationSettingsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaLocationSettingsGet"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaLimitsRequestList"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaLimitsRequestUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaLimitsList"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotaLimitsRequestGet"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotasDelete"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotasUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotasCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotasGet"
+        },
+        {
+          "target": "com.azure.quota#GroupQuotasList"
+        },
+        {
+          "target": "com.azure.quota#UsagesGet"
+        },
+        {
+          "target": "com.azure.quota#UsagesList"
+        },
+        {
+          "target": "com.azure.quota#QuotaUpdate"
+        },
+        {
+          "target": "com.azure.quota#QuotaCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.quota#QuotaGet"
+        },
+        {
+          "target": "com.azure.quota#QuotaList"
+        },
+        {
+          "target": "com.azure.quota#QuotaRequestStatusGet"
+        },
+        {
+          "target": "com.azure.quota#QuotaRequestStatusList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Quota",
+        "smithy.api#documentation": "Azure Quota API — merged from the quota resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

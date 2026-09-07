@@ -1,0 +1,42 @@
+{
+  "description": "Align workers#AccountSettingsUpdate with distilled cloudflare/workers putAccountSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#AccountSettingsUpdate",
+      "path": "/shapes/com.cloudflare.workers#PutAccountSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#AccountSettingsUpdateRequest",
+      "path": "/shapes/com.cloudflare.workers#PutAccountSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutAccountSetting/input/target",
+      "value": "com.cloudflare.workers#PutAccountSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#AccountSettingsUpdateResponse",
+      "path": "/shapes/com.cloudflare.workers#PutAccountSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutAccountSetting/output/target",
+      "value": "com.cloudflare.workers#PutAccountSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#PutAccountSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.workers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

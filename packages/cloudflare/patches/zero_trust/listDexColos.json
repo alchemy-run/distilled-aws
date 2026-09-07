@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#DexColosList with distilled cloudflare/zero-trust listDexColos",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexColosList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexColos"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexColosListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexColosRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexColos/input/target",
+      "value": "com.cloudflare.zero_trust#ListDexColosRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexColosListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexColosResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexColos/output/target",
+      "value": "com.cloudflare.zero_trust#ListDexColosResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexColos/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

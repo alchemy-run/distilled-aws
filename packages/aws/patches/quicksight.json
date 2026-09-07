@@ -1,0 +1,93 @@
+{
+  "structures": {
+    "CredentialPair": {
+      "members": {
+        "Password": {
+          "sensitive": true
+        }
+      }
+    },
+    "WebProxyCredentials": {
+      "members": {
+        "WebProxyPassword": {
+          "sensitive": true
+        }
+      }
+    },
+    "AssetBundleImportJobDataSourceCredentialPair": {
+      "members": {
+        "Password": {
+          "sensitive": true
+        }
+      }
+    },
+    "DataSource": {
+      "members": {
+        "DataSourceId": {
+          "optional": false
+        },
+        "Arn": {
+          "optional": false
+        },
+        "Name": {
+          "optional": false
+        },
+        "Type": {
+          "optional": false
+        },
+        "Status": {
+          "optional": false
+        }
+      }
+    }
+  },
+  "operations": {
+    "createDataSource": {
+      "syntheticErrors": [
+        {
+          "name": "QuickSightSubscriptionRequired",
+          "from": "ResourceNotFoundException",
+          "message": {
+            "includes": "Directory information"
+          }
+        }
+      ]
+    },
+    "createDataSet": {
+      "syntheticErrors": [
+        {
+          "name": "QuickSightSubscriptionRequired",
+          "from": "ResourceNotFoundException",
+          "message": {
+            "includes": "Directory information"
+          }
+        }
+      ]
+    },
+    "createDashboard": {
+      "syntheticErrors": [
+        {
+          "name": "QuickSightSubscriptionRequired",
+          "from": "ResourceNotFoundException",
+          "message": {
+            "includes": "Directory information"
+          }
+        }
+      ]
+    },
+    "createAnalysis": {
+      "syntheticErrors": [
+        {
+          "name": "QuickSightSubscriptionRequired",
+          "from": "ResourceNotFoundException",
+          "message": {
+            "includes": "Directory information"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "QuickSightSubscriptionRequired": ["NotFoundError"]
+  }
+}

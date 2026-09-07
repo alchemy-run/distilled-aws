@@ -1,0 +1,30 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionStatusGet with distilled cloudflare/ddos-protection getAdvancedTcpProtectionStatus",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGet",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionStatus"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGetRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionStatusRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionStatus/input/target",
+      "value": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionStatusRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionStatusGetResponse",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionStatusResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#GetAdvancedTcpProtectionStatus/output/target",
+      "value": "com.cloudflare.ddos_protection#GetAdvancedTcpProtectionStatusResponse"
+    }
+  ]
+}

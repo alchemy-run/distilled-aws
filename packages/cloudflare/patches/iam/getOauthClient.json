@@ -1,0 +1,30 @@
+{
+  "description": "Align iam#OauthClientsGet with distilled cloudflare/iam getOauthClient",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsGet",
+      "path": "/shapes/com.cloudflare.iam#GetOauthClient"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsGetRequest",
+      "path": "/shapes/com.cloudflare.iam#GetOauthClientRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#GetOauthClient/input/target",
+      "value": "com.cloudflare.iam#GetOauthClientRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#OauthClientsGetResponse",
+      "path": "/shapes/com.cloudflare.iam#GetOauthClientResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#GetOauthClient/output/target",
+      "value": "com.cloudflare.iam#GetOauthClientResponse"
+    }
+  ]
+}

@@ -1,0 +1,3999 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.copilot_spaces#ListForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100)."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results before this cursor."
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpace": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the space.",
+            "smithy.api#required": {}
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number that identifies the space within its owner.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the space.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of the space.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "general_instructions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "General instructions for the Copilot Space.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "base_role": {
+          "target": "com.github.copilot_spaces#CopilotSpaceBaseRole",
+          "traits": {
+            "smithy.api#documentation": "The base role that determines default permissions.\n- `no_access`: No default access\n- `reader`: Default read permissions\n- `writer`: Default write permissions (organization spaces only)\n- `admin`: Default admin permissions (organization spaces only)",
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "com.github.copilot_spaces#CopilotSpaceOwner",
+          "traits": {
+            "smithy.api#documentation": "The user or organization that owns this space.",
+            "smithy.api#required": {}
+          }
+        },
+        "creator": {
+          "target": "com.github.copilot_spaces#SimpleUser",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the space was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the space was last updated.",
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The HTML URL of the space.",
+            "smithy.api#required": {}
+          }
+        },
+        "api_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The API URL of the space.",
+            "smithy.api#required": {}
+          }
+        },
+        "resources_attributes": {
+          "target": "com.github.copilot_spaces#CopilotSpaceResourcesAttributesList",
+          "traits": {
+            "smithy.api#documentation": "Resources attached to the space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub Copilot Space represents an interactive AI workspace where users can ask questions and get assistance."
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceBaseRole": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The base role that determines default permissions.\n- `no_access`: No default access\n- `reader`: Default read permissions\n- `writer`: Default write permissions (organization spaces only)\n- `admin`: Default admin permissions (organization spaces only)"
+      }
+    },
+    "com.github.copilot_spaces#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.copilot_spaces#OrganizationSimple": {
+      "type": "structure",
+      "members": {
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "hooks_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "issues_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "public_members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub organization."
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceOwner": {
+      "type": "union",
+      "members": {
+        "SimpleUser": {
+          "target": "com.github.copilot_spaces#SimpleUser"
+        },
+        "OrganizationSimple": {
+          "target": "com.github.copilot_spaces#OrganizationSimple"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The user or organization that owns this space."
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceResourcesAttributesItemResourceType": {
+      "type": "enum",
+      "members": {
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "GITHUB_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_file"
+          }
+        },
+        "FREE_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free_text"
+          }
+        },
+        "GITHUB_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_issue"
+          }
+        },
+        "GITHUB_PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_pull_request"
+          }
+        },
+        "MEDIA_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "media_content"
+          }
+        },
+        "UPLOADED_TEXT_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded_text_file"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource."
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceResourcesAttributesItemMetadata": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Repository ID for repository or file resources."
+          }
+        },
+        "file_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File path for file resources."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text content for free text resources."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the resource."
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Issue or PR number."
+          }
+        },
+        "copilot_chat_attachment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Chat attachment ID for uploaded files or media."
+          }
+        },
+        "media_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Media type for media content resources."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for media content resources."
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Height for media content resources."
+          }
+        },
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Width for media content resources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata specific to the resource type."
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceResourcesAttributesItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the resource."
+          }
+        },
+        "resource_type": {
+          "target": "com.github.copilot_spaces#CopilotSpaceResourcesAttributesItemResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "copilot_chat_attachment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the chat attachment for uploaded files or media content.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the resource was created."
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the resource was last updated."
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#CopilotSpaceResourcesAttributesItemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata specific to the resource type."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#CopilotSpaceResourcesAttributesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#CopilotSpaceResourcesAttributesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources attached to the space."
+      }
+    },
+    "com.github.copilot_spaces#ListForOrgResponseSpacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#CopilotSpace"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Copilot Spaces on this page of results."
+      }
+    },
+    "com.github.copilot_spaces#ListForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "spaces": {
+          "target": "com.github.copilot_spaces#ListForOrgResponseSpacesList",
+          "traits": {
+            "smithy.api#documentation": "The list of Copilot Spaces on this page of results.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#ListForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#ListForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#ListForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot-spaces",
+          "code": 200
+        },
+        "smithy.api#documentation": "List organization Copilot Spaces\n\nLists Copilot Spaces owned by an organization. The authenticated user must have read access to the organization's Copilot Spaces.\n\nOnly Spaces that are readable by the authenticated user are returned. This includes public Spaces and internal Spaces if the user is a member of the organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in a space; spaces with inaccessible resources are omitted from the response."
+      }
+    },
+    "com.github.copilot_spaces#CreateForOrgRequestBaseRole": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The base role that determines default permissions for organization members.\n- `no_access`: No default access (default)\n- `reader`: Organization members can read the space\n- `writer`: Organization members can read and edit the space\n- `admin`: Organization members have full admin access to the space"
+      }
+    },
+    "com.github.copilot_spaces#CreateForOrgRequestResourcesAttributesItemResourceType": {
+      "type": "enum",
+      "members": {
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "GITHUB_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_file"
+          }
+        },
+        "FREE_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free_text"
+          }
+        },
+        "GITHUB_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_issue"
+          }
+        },
+        "GITHUB_PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_pull_request"
+          }
+        },
+        "MEDIA_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "media_content"
+          }
+        },
+        "UPLOADED_TEXT_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded_text_file"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource."
+      }
+    },
+    "com.github.copilot_spaces#CreateForOrgRequestResourcesAttributesItemMetadata": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Repository ID for repository or file resources."
+          }
+        },
+        "file_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File path for file resources."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text content for free text resources."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the resource."
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Issue or PR number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata specific to the resource type."
+      }
+    },
+    "com.github.copilot_spaces#CreateForOrgRequestResourcesAttributesItem": {
+      "type": "structure",
+      "members": {
+        "resource_type": {
+          "target": "com.github.copilot_spaces#CreateForOrgRequestResourcesAttributesItemResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#CreateForOrgRequestResourcesAttributesItemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata specific to the resource type."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#CreateForOrgRequestResourcesAttributesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#CreateForOrgRequestResourcesAttributesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources to attach to the space."
+      }
+    },
+    "com.github.copilot_spaces#CreateForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Copilot Space.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of the Copilot Space."
+          }
+        },
+        "general_instructions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "General instructions for the Copilot Space."
+          }
+        },
+        "base_role": {
+          "target": "com.github.copilot_spaces#CreateForOrgRequestBaseRole",
+          "traits": {
+            "smithy.api#documentation": "The base role that determines default permissions for organization members.\n- `no_access`: No default access (default)\n- `reader`: Organization members can read the space\n- `writer`: Organization members can read and edit the space\n- `admin`: Organization members have full admin access to the space"
+          }
+        },
+        "resources_attributes": {
+          "target": "com.github.copilot_spaces#CreateForOrgRequestResourcesAttributesList",
+          "traits": {
+            "smithy.api#documentation": "Resources to attach to the space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#CreateForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#CreateForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpace"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/copilot-spaces",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an organization Copilot Space\n\nCreates a new Copilot Space owned by an organization. The authenticated user must have permissions to create spaces in the organization.\n\nOrganization members with appropriate permissions can create Copilot Spaces to be shared within their organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by the submitted resources."
+      }
+    },
+    "com.github.copilot_spaces#GetForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#GetForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#GetForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpace"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an organization Copilot Space\n\nGets details about a specific Copilot Space owned by an organization. The authenticated user must have read access to the Space.\n\nInternal Spaces require the authenticated user to be a member of the organization or have been granted read permissions.\n\nOAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space."
+      }
+    },
+    "com.github.copilot_spaces#UpdateForOrgRequestBaseRole": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The base role that determines default permissions for organization members. Changing this field requires admin permissions.\n- `no_access`: No default access (default)\n- `reader`: Organization members can read the space\n- `writer`: Organization members can read and edit the space\n- `admin`: Organization members have full admin access to the space"
+      }
+    },
+    "com.github.copilot_spaces#UpdateForOrgRequestResourcesAttributesItemResourceType": {
+      "type": "enum",
+      "members": {
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "GITHUB_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_file"
+          }
+        },
+        "FREE_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free_text"
+          }
+        },
+        "GITHUB_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_issue"
+          }
+        },
+        "GITHUB_PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_pull_request"
+          }
+        },
+        "MEDIA_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "media_content"
+          }
+        },
+        "UPLOADED_TEXT_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded_text_file"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource."
+      }
+    },
+    "com.github.copilot_spaces#UpdateForOrgRequestResourcesAttributesItemMetadata": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Repository ID for repository or file resources."
+          }
+        },
+        "file_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File path for file resources."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text content for free text resources."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the resource."
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Issue or PR number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata specific to the resource type."
+      }
+    },
+    "com.github.copilot_spaces#UpdateForOrgRequestResourcesAttributesItem": {
+      "type": "structure",
+      "members": {
+        "resource_type": {
+          "target": "com.github.copilot_spaces#UpdateForOrgRequestResourcesAttributesItemResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#UpdateForOrgRequestResourcesAttributesItemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata specific to the resource type."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#UpdateForOrgRequestResourcesAttributesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#UpdateForOrgRequestResourcesAttributesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources to attach to the space."
+      }
+    },
+    "com.github.copilot_spaces#UpdateForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Copilot Space."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of the Copilot Space."
+          }
+        },
+        "general_instructions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "General instructions for the Copilot Space."
+          }
+        },
+        "base_role": {
+          "target": "com.github.copilot_spaces#UpdateForOrgRequestBaseRole",
+          "traits": {
+            "smithy.api#documentation": "The base role that determines default permissions for organization members. Changing this field requires admin permissions.\n- `no_access`: No default access (default)\n- `reader`: Organization members can read the space\n- `writer`: Organization members can read and edit the space\n- `admin`: Organization members have full admin access to the space"
+          }
+        },
+        "resources_attributes": {
+          "target": "com.github.copilot_spaces#UpdateForOrgRequestResourcesAttributesList",
+          "traits": {
+            "smithy.api#documentation": "Resources to attach to the space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#UpdateForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#UpdateForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpace"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set an organization Copilot Space\n\nUpdates a Copilot Space owned by an organization. The authenticated user must have permissions to update spaces in the organization.\n\nOrganization members with appropriate permissions can update Copilot Spaces owned by their organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space, including any being added or updated."
+      }
+    },
+    "com.github.copilot_spaces#DeleteForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#DeleteForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#DeleteForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an organization Copilot Space\n\nDeletes a Copilot Space owned by an organization. The authenticated user must have permissions to delete spaces in the organization.\n\n**Warning:** This action is permanent and cannot be undone. Deleting a Copilot Space will remove all associated resources and configurations.\n\nOrganization members with appropriate permissions can delete Copilot Spaces owned by their organization.\n\nOAuth app tokens and personal access tokens (classic) need both the `read:org` and `repo` scopes to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space."
+      }
+    },
+    "com.github.copilot_spaces#ListCollaboratorsForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceCollaborator": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaboratorCase0"
+        },
+        "Case1": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaboratorCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collaborator (user or team) of a Copilot Space"
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceCollaboratorCase0ActorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The collaborator actor type."
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceCollaboratorCase0Role": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role granted to the collaborator"
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceCollaboratorCase0": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        },
+        "actor_type": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaboratorCase0ActorType",
+          "traits": {
+            "smithy.api#documentation": "The collaborator actor type.",
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaboratorCase0Role",
+          "traits": {
+            "smithy.api#documentation": "The role granted to the collaborator",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#CopilotSpaceCollaboratorCase1ActorType": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Team"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The collaborator actor type."
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceCollaboratorCase1Role": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role granted to the collaborator"
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceCollaboratorCase1Type": {
+      "type": "enum",
+      "members": {
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Team"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#CopilotSpaceCollaboratorCase1": {
+      "type": "structure",
+      "members": {
+        "actor_type": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaboratorCase1ActorType",
+          "traits": {
+            "smithy.api#documentation": "The collaborator actor type.",
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaboratorCase1Role",
+          "traits": {
+            "smithy.api#documentation": "The role granted to the collaborator",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaboratorCase1Type",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#String"
+        },
+        "notification_setting": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "html_url": {
+          "target": "smithy.api#String"
+        },
+        "members_url": {
+          "target": "smithy.api#String"
+        },
+        "repositories_url": {
+          "target": "smithy.api#String"
+        },
+        "organization_id": {
+          "target": "smithy.api#Integer"
+        },
+        "parent": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#ListCollaboratorsForOrgResponseCollaboratorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#CopilotSpaceCollaborator"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of collaborators for this Copilot Space."
+      }
+    },
+    "com.github.copilot_spaces#ListCollaboratorsForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "collaborators": {
+          "target": "com.github.copilot_spaces#ListCollaboratorsForOrgResponseCollaboratorsList",
+          "traits": {
+            "smithy.api#documentation": "The list of collaborators for this Copilot Space.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#ListCollaboratorsForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#ListCollaboratorsForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#ListCollaboratorsForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}/collaborators",
+          "code": 200
+        },
+        "smithy.api#documentation": "List collaborators for an organization Copilot Space\n\nLists all collaborators for a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to view collaborators.\n\nEach collaborator entry specifies which user or team has access to the space and at what level (reader, writer, or admin). The space owner (organization) is excluded from this list.\n\n**Note:** Team collaborators listed here are teams that are defined in the organization.\n\nOAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space."
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForOrgRequestActorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Team"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of actor (user or team)."
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForOrgRequestRole": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role to grant to the collaborator."
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "actor_type": {
+          "target": "com.github.copilot_spaces#AddCollaboratorForOrgRequestActorType",
+          "traits": {
+            "smithy.api#documentation": "The type of actor (user or team).",
+            "smithy.api#required": {}
+          }
+        },
+        "actor_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username (for users) or team slug (for teams). The numeric ID of a user or team is also accepted.",
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.github.copilot_spaces#AddCollaboratorForOrgRequestRole",
+          "traits": {
+            "smithy.api#documentation": "The role to grant to the collaborator.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaborator",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#AddCollaboratorForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#AddCollaboratorForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}/collaborators",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a collaborator to an organization Copilot Space\n\nAdds a collaborator (user or team) to a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to manage collaborators.\n\n**Note:** When adding users as collaborators, they must already be members of the organization.\nWhen adding teams as collaborators, they must be defined in the organization.\n\nOAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space."
+      }
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForOrgRequestActorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Team"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForOrgRequestRole": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The new role to grant to the collaborator. Use `no_access` to remove the collaborator."
+      }
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "actor_type": {
+          "target": "com.github.copilot_spaces#UpdateCollaboratorForOrgRequestActorType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of actor (user or team)."
+          }
+        },
+        "actor_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The username (for users) or team slug (for teams). The numeric ID of a user or team is also accepted."
+          }
+        },
+        "role": {
+          "target": "com.github.copilot_spaces#UpdateCollaboratorForOrgRequestRole",
+          "traits": {
+            "smithy.api#documentation": "The new role to grant to the collaborator. Use `no_access` to remove the collaborator.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaborator",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#UpdateCollaboratorForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#UpdateCollaboratorForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}/collaborators/{actor_type}/{actor_identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set a collaborator role for an organization Copilot Space\n\nUpdates the role of a collaborator for a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to manage collaborators.\n\nOAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space."
+      }
+    },
+    "com.github.copilot_spaces#RemoveCollaboratorForOrgRequestActorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Team"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#RemoveCollaboratorForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "actor_type": {
+          "target": "com.github.copilot_spaces#RemoveCollaboratorForOrgRequestActorType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of actor (user or team)."
+          }
+        },
+        "actor_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The username (for users) or team slug (for teams). The numeric ID of a user or team is also accepted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#RemoveCollaboratorForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#RemoveCollaboratorForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}/collaborators/{actor_type}/{actor_identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a collaborator from an organization Copilot Space\n\nRemoves a collaborator from a specific Copilot Space owned by an organization. The authenticated user must have appropriate permissions to manage collaborators.\n\nOAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space."
+      }
+    },
+    "com.github.copilot_spaces#ListResourcesForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "resource_type": {
+          "target": "com.github.copilot_spaces#CopilotSpaceResourceResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "copilot_chat_attachment_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The ID of the associated chat attachment, if any.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#CopilotSpaceResourceMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Resource-specific metadata. The keys and values depend on the resource type.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the resource was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the resource was last updated.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource attached to a Copilot Space."
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceResourceResourceType": {
+      "type": "enum",
+      "members": {
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "GITHUB_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_file"
+          }
+        },
+        "FREE_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free_text"
+          }
+        },
+        "GITHUB_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_issue"
+          }
+        },
+        "GITHUB_PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_pull_request"
+          }
+        },
+        "MEDIA_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "media_content"
+          }
+        },
+        "UPLOADED_TEXT_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded_text_file"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of the resource."
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaceResourceMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource-specific metadata. The keys and values depend on the resource type."
+      }
+    },
+    "com.github.copilot_spaces#ListResourcesForOrgResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#CopilotSpaceResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of resources attached to this Copilot Space."
+      }
+    },
+    "com.github.copilot_spaces#ListResourcesForOrgResponse": {
+      "type": "structure",
+      "members": {
+        "resources": {
+          "target": "com.github.copilot_spaces#ListResourcesForOrgResponseResourcesList",
+          "traits": {
+            "smithy.api#documentation": "The list of resources attached to this Copilot Space.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#ListResourcesForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#ListResourcesForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#ListResourcesForOrgResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}/resources",
+          "code": 200
+        },
+        "smithy.api#documentation": "List resources for an organization Copilot Space\n\nLists all resources attached to a specific Copilot Space owned by an organization.\nThe authenticated user must have appropriate permissions to view the space.\n\nOAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space."
+      }
+    },
+    "com.github.copilot_spaces#CreateResourceForOrgRequestResourceType": {
+      "type": "enum",
+      "members": {
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "GITHUB_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_file"
+          }
+        },
+        "FREE_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free_text"
+          }
+        },
+        "GITHUB_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_issue"
+          }
+        },
+        "GITHUB_PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_pull_request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource to create."
+      }
+    },
+    "com.github.copilot_spaces#CreateResourceForOrgRequestMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource-specific metadata."
+      }
+    },
+    "com.github.copilot_spaces#CreateResourceForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "resource_type": {
+          "target": "com.github.copilot_spaces#CreateResourceForOrgRequestResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource to create.",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#CreateResourceForOrgRequestMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Resource-specific metadata.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#CreateResourceForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#CreateResourceForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpaceResource"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}/resources",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a resource for an organization Copilot Space\n\nCreates a new resource in a specific Copilot Space owned by an organization.\nThe authenticated user must have write permissions on the space.\n\nThe following resource types are supported: `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`.\nThe `uploaded_text_file` and `media_content` types are not supported via this endpoint.\n\nFor `github_file` resources, if a resource with the same repository, file path, and SHA already exists, the existing resource is returned with a `200` status.\n\nOAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space, including the resource being created."
+      }
+    },
+    "com.github.copilot_spaces#GetResourceForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "space_resource_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#GetResourceForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#GetResourceForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpaceResource"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}/resources/{space_resource_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a resource for an organization Copilot Space\n\nGets a specific resource attached to a Copilot Space owned by an organization.\nThe authenticated user must have appropriate permissions to view the space.\n\nOAuth app tokens and personal access tokens (classic) need the `read:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space."
+      }
+    },
+    "com.github.copilot_spaces#UpdateResourceForOrgRequestMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Updated resource-specific metadata."
+      }
+    },
+    "com.github.copilot_spaces#UpdateResourceForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "space_resource_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the resource."
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#UpdateResourceForOrgRequestMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Updated resource-specific metadata."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#UpdateResourceForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#UpdateResourceForOrgRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpaceResource"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}/resources/{space_resource_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set a resource for an organization Copilot Space\n\nUpdates the metadata of a resource in a specific Copilot Space owned by an organization.\nThe authenticated user must have write permissions on the space.\n\nOAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space, including the resource being updated."
+      }
+    },
+    "com.github.copilot_spaces#DeleteResourceForOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "space_resource_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#DeleteResourceForOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#DeleteResourceForOrgRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/copilot-spaces/{space_number}/resources/{space_resource_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a resource from an organization Copilot Space\n\nDeletes a resource from a specific Copilot Space owned by an organization.\nThe authenticated user must have write permissions on the space.\n\nOAuth app tokens and personal access tokens (classic) need the `write:org` scope to use this endpoint.\n\nFine-grained tokens and GitHub App user access tokens must have been granted access to the organization that owns the space. They must also have been granted access to every repository referenced by resources in the space."
+      }
+    },
+    "com.github.copilot_spaces#ListForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100)."
+          }
+        },
+        "before": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "before",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results before this cursor."
+          }
+        },
+        "after": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "after",
+            "smithy.api#documentation": "A cursor, as given in the [Link header](https://docs.github.com/rest/guides/using-pagination-in-the-rest-api#using-link-headers). If specified, the query only searches for results after this cursor."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#ListForUserResponseSpacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#CopilotSpace"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Copilot Spaces on this page of results."
+      }
+    },
+    "com.github.copilot_spaces#ListForUserResponse": {
+      "type": "structure",
+      "members": {
+        "spaces": {
+          "target": "com.github.copilot_spaces#ListForUserResponseSpacesList",
+          "traits": {
+            "smithy.api#documentation": "The list of Copilot Spaces on this page of results.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#ListForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#ListForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#ListForUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/copilot-spaces",
+          "code": 200
+        },
+        "smithy.api#documentation": "List Copilot Spaces for a user\n\nLists Copilot Spaces owned by a user. The authenticated user must have read access to the user's Copilot Spaces.\n\nOnly Spaces that are readable by the authenticated user are returned. This includes the user's own spaces, and public user spaces when accessing another user's spaces.\n\nOAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#CreateForUserRequestBaseRole": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The base role that determines default permissions for the space.\n- `no_access`: No default access (default)\n- `reader`: Makes the space publicly readable\nNote: User spaces do not support writer or admin base roles."
+      }
+    },
+    "com.github.copilot_spaces#CreateForUserRequestResourcesAttributesItemResourceType": {
+      "type": "enum",
+      "members": {
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "GITHUB_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_file"
+          }
+        },
+        "FREE_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free_text"
+          }
+        },
+        "GITHUB_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_issue"
+          }
+        },
+        "GITHUB_PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_pull_request"
+          }
+        },
+        "MEDIA_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "media_content"
+          }
+        },
+        "UPLOADED_TEXT_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded_text_file"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource."
+      }
+    },
+    "com.github.copilot_spaces#CreateForUserRequestResourcesAttributesItemMetadata": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Repository ID for repository or file resources."
+          }
+        },
+        "file_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File path for file resources."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text content for free text resources."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the resource."
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Issue or PR number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata specific to the resource type."
+      }
+    },
+    "com.github.copilot_spaces#CreateForUserRequestResourcesAttributesItem": {
+      "type": "structure",
+      "members": {
+        "resource_type": {
+          "target": "com.github.copilot_spaces#CreateForUserRequestResourcesAttributesItemResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#CreateForUserRequestResourcesAttributesItemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata specific to the resource type."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#CreateForUserRequestResourcesAttributesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#CreateForUserRequestResourcesAttributesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources to attach to the space."
+      }
+    },
+    "com.github.copilot_spaces#CreateForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Copilot Space.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of the Copilot Space."
+          }
+        },
+        "general_instructions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "General instructions for the Copilot Space."
+          }
+        },
+        "base_role": {
+          "target": "com.github.copilot_spaces#CreateForUserRequestBaseRole",
+          "traits": {
+            "smithy.api#documentation": "The base role that determines default permissions for the space.\n- `no_access`: No default access (default)\n- `reader`: Makes the space publicly readable\nNote: User spaces do not support writer or admin base roles."
+          }
+        },
+        "resources_attributes": {
+          "target": "com.github.copilot_spaces#CreateForUserRequestResourcesAttributesList",
+          "traits": {
+            "smithy.api#documentation": "Resources to attach to the space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#CreateForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#CreateForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpace"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users/{username}/copilot-spaces",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a Copilot Space for a user\n\nCreates a new Copilot Space owned by a user. Only the authenticated user can create spaces for their own account.\n\nUsers can create personal Copilot Spaces for their individual use.\n\nOAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#GetForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#GetForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#GetForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpace"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/copilot-spaces/{space_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a Copilot Space for a user\n\nGets details about a specific Copilot Space owned by a user. The authenticated user must have read access to the Space.\n\nPrivate user spaces require the authenticated user to be the owner of the space.\nPublic user spaces are accessible to any authenticated user.\n\nOAuth app tokens and personal access tokens (classic) need the `repo` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#UpdateForUserRequestBaseRole": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The base role that determines default permissions for the space. Changing this field requires admin permissions.\n- `no_access`: No default access (default)\n- `reader`: Makes the space publicly readable\nNote: User spaces do not support writer or admin base roles."
+      }
+    },
+    "com.github.copilot_spaces#UpdateForUserRequestResourcesAttributesItemResourceType": {
+      "type": "enum",
+      "members": {
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "GITHUB_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_file"
+          }
+        },
+        "FREE_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free_text"
+          }
+        },
+        "GITHUB_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_issue"
+          }
+        },
+        "GITHUB_PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_pull_request"
+          }
+        },
+        "MEDIA_CONTENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "media_content"
+          }
+        },
+        "UPLOADED_TEXT_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "uploaded_text_file"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource."
+      }
+    },
+    "com.github.copilot_spaces#UpdateForUserRequestResourcesAttributesItemMetadata": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Repository ID for repository or file resources."
+          }
+        },
+        "file_path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File path for file resources."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text content for free text resources."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the resource."
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Issue or PR number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata specific to the resource type."
+      }
+    },
+    "com.github.copilot_spaces#UpdateForUserRequestResourcesAttributesItem": {
+      "type": "structure",
+      "members": {
+        "resource_type": {
+          "target": "com.github.copilot_spaces#UpdateForUserRequestResourcesAttributesItemResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource."
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#UpdateForUserRequestResourcesAttributesItemMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata specific to the resource type."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#UpdateForUserRequestResourcesAttributesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#UpdateForUserRequestResourcesAttributesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resources to attach to the space."
+      }
+    },
+    "com.github.copilot_spaces#UpdateForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the Copilot Space."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of the Copilot Space."
+          }
+        },
+        "general_instructions": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "General instructions for the Copilot Space."
+          }
+        },
+        "base_role": {
+          "target": "com.github.copilot_spaces#UpdateForUserRequestBaseRole",
+          "traits": {
+            "smithy.api#documentation": "The base role that determines default permissions for the space. Changing this field requires admin permissions.\n- `no_access`: No default access (default)\n- `reader`: Makes the space publicly readable\nNote: User spaces do not support writer or admin base roles."
+          }
+        },
+        "resources_attributes": {
+          "target": "com.github.copilot_spaces#UpdateForUserRequestResourcesAttributesList",
+          "traits": {
+            "smithy.api#documentation": "Resources to attach to the space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#UpdateForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#UpdateForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpace"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/users/{username}/copilot-spaces/{space_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set a Copilot Space for a user\n\nUpdates a Copilot Space owned by a user. Only the authenticated user can update spaces for their own account.\n\nUsers can update their personal Copilot Spaces.\n\nOAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#DeleteForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#DeleteForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#DeleteForUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/users/{username}/copilot-spaces/{space_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a Copilot Space for a user\n\nDeletes a Copilot Space owned by a user. The authenticated user must be the owner of the space.\n\n**Warning:** This action is permanent and cannot be undone. Deleting a space will remove all associated resources and configurations.\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#ListCollaboratorsForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#ListCollaboratorsForUserResponseCollaboratorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#CopilotSpaceCollaborator"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of collaborators for this Copilot Space."
+      }
+    },
+    "com.github.copilot_spaces#ListCollaboratorsForUserResponse": {
+      "type": "structure",
+      "members": {
+        "collaborators": {
+          "target": "com.github.copilot_spaces#ListCollaboratorsForUserResponseCollaboratorsList",
+          "traits": {
+            "smithy.api#documentation": "The list of collaborators for this Copilot Space.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#ListCollaboratorsForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#ListCollaboratorsForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#ListCollaboratorsForUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/copilot-spaces/{space_number}/collaborators",
+          "code": 200
+        },
+        "smithy.api#documentation": "List collaborators for a Copilot Space for a user\n\nLists all collaborators for a specific Copilot Space owned by a user. The authenticated user must be the owner of the space or have admin access to the space.\n\nEach collaborator entry specifies which user has access to the space and at what level (reader, writer, or admin). The space owner is excluded from this list.\n\nTeam collaborators are not supported for user-owned Copilot Spaces.\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForUserRequestActorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Team"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of actor (must be `User` for user-owned spaces; `Team` will be rejected)."
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForUserRequestRole": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role to grant to the collaborator."
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "actor_type": {
+          "target": "com.github.copilot_spaces#AddCollaboratorForUserRequestActorType",
+          "traits": {
+            "smithy.api#documentation": "The type of actor (must be `User` for user-owned spaces; `Team` will be rejected).",
+            "smithy.api#required": {}
+          }
+        },
+        "actor_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the collaborator. The numeric user ID is also accepted.",
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.github.copilot_spaces#AddCollaboratorForUserRequestRole",
+          "traits": {
+            "smithy.api#documentation": "The role to grant to the collaborator.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaborator",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#AddCollaboratorForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#AddCollaboratorForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#AddCollaboratorForUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users/{username}/copilot-spaces/{space_number}/collaborators",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a collaborator to a Copilot Space for a user\n\nAdds a collaborator to a specific Copilot Space owned by a user. The authenticated user must be the owner of the space or have admin access to the space.\n\nTeam collaborators are not supported for user-owned Copilot Spaces.\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForUserRequestActorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Team"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForUserRequestRole": {
+      "type": "enum",
+      "members": {
+        "READER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "reader"
+          }
+        },
+        "WRITER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "writer"
+          }
+        },
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "admin"
+          }
+        },
+        "NO_ACCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "no_access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The new role to grant to the collaborator. Use `no_access` to remove the collaborator."
+      }
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "actor_type": {
+          "target": "com.github.copilot_spaces#UpdateCollaboratorForUserRequestActorType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of actor (must be `User` for user-owned spaces; `Team` will be rejected)."
+          }
+        },
+        "actor_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The username of the collaborator. The numeric user ID is also accepted."
+          }
+        },
+        "role": {
+          "target": "com.github.copilot_spaces#UpdateCollaboratorForUserRequestRole",
+          "traits": {
+            "smithy.api#documentation": "The new role to grant to the collaborator. Use `no_access` to remove the collaborator.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForUserResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.copilot_spaces#CopilotSpaceCollaborator",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#UpdateCollaboratorForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#UpdateCollaboratorForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#UpdateCollaboratorForUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/users/{username}/copilot-spaces/{space_number}/collaborators/{actor_type}/{actor_identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set a collaborator role for a Copilot Space for a user\n\nUpdates the role of a collaborator for a specific Copilot Space owned by a user. The authenticated user must be the owner of the space or have admin access to the space.\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#RemoveCollaboratorForUserRequestActorType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "TEAM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Team"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.copilot_spaces#RemoveCollaboratorForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "actor_type": {
+          "target": "com.github.copilot_spaces#RemoveCollaboratorForUserRequestActorType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The type of actor (must be `User` for user-owned spaces; `Team` will be rejected)."
+          }
+        },
+        "actor_identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The username of the collaborator. The numeric user ID is also accepted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#RemoveCollaboratorForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#RemoveCollaboratorForUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/users/{username}/copilot-spaces/{space_number}/collaborators/{actor_type}/{actor_identifier}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a collaborator from a Copilot Space for a user\n\nRemoves a collaborator from a specific Copilot Space owned by a user. The authenticated user must be the owner of the space or have admin access to the space.\n\nOAuth app tokens and personal access tokens (classic) need the `user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#ListResourcesForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#ListResourcesForUserResponseResourcesList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.copilot_spaces#CopilotSpaceResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of resources attached to this Copilot Space."
+      }
+    },
+    "com.github.copilot_spaces#ListResourcesForUserResponse": {
+      "type": "structure",
+      "members": {
+        "resources": {
+          "target": "com.github.copilot_spaces#ListResourcesForUserResponseResourcesList",
+          "traits": {
+            "smithy.api#documentation": "The list of resources attached to this Copilot Space.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.copilot_spaces#ListResourcesForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#ListResourcesForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#ListResourcesForUserResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/copilot-spaces/{space_number}/resources",
+          "code": 200
+        },
+        "smithy.api#documentation": "List resources for a Copilot Space for a user\n\nLists all resources attached to a specific Copilot Space owned by a user.\nThe authenticated user must have appropriate permissions to view the space.\n\nOAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#CreateResourceForUserRequestResourceType": {
+      "type": "enum",
+      "members": {
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "GITHUB_FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_file"
+          }
+        },
+        "FREE_TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "free_text"
+          }
+        },
+        "GITHUB_ISSUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_issue"
+          }
+        },
+        "GITHUB_PULL_REQUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "github_pull_request"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of resource to create."
+      }
+    },
+    "com.github.copilot_spaces#CreateResourceForUserRequestMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource-specific metadata."
+      }
+    },
+    "com.github.copilot_spaces#CreateResourceForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "resource_type": {
+          "target": "com.github.copilot_spaces#CreateResourceForUserRequestResourceType",
+          "traits": {
+            "smithy.api#documentation": "The type of resource to create.",
+            "smithy.api#required": {}
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#CreateResourceForUserRequestMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Resource-specific metadata.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#CreateResourceForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#CreateResourceForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpaceResource"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/users/{username}/copilot-spaces/{space_number}/resources",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a resource for a Copilot Space for a user\n\nCreates a new resource in a specific Copilot Space owned by a user.\nThe authenticated user must have write permissions on the space.\n\nThe following resource types are supported: `repository`, `github_file`, `free_text`, `github_issue`, `github_pull_request`.\nThe `uploaded_text_file` and `media_content` types are not supported via this endpoint.\n\nFor `github_file` resources, if a resource with the same repository, file path, and SHA already exists, the existing resource is returned with a `200` status.\n\nOAuth app tokens and personal access tokens (classic) need the `write:user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#GetResourceForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "space_resource_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#GetResourceForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#GetResourceForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpaceResource"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/copilot-spaces/{space_number}/resources/{space_resource_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a resource for a Copilot Space for a user\n\nGets a specific resource attached to a Copilot Space owned by a user.\nThe authenticated user must have appropriate permissions to view the space.\n\nOAuth app tokens and personal access tokens (classic) need the `read:user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#UpdateResourceForUserRequestMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Updated resource-specific metadata."
+      }
+    },
+    "com.github.copilot_spaces#UpdateResourceForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "space_resource_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the resource."
+          }
+        },
+        "metadata": {
+          "target": "com.github.copilot_spaces#UpdateResourceForUserRequestMetadataMap",
+          "traits": {
+            "smithy.api#documentation": "Updated resource-specific metadata."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#UpdateResourceForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#UpdateResourceForUserRequest"
+      },
+      "output": {
+        "target": "com.github.copilot_spaces#CopilotSpaceResource"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        },
+        {
+          "target": "com.github.copilot_spaces#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/users/{username}/copilot-spaces/{space_number}/resources/{space_resource_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set a resource for a Copilot Space for a user\n\nUpdates the metadata of a resource in a specific Copilot Space owned by a user.\nThe authenticated user must have write permissions on the space.\n\nOAuth app tokens and personal access tokens (classic) need the `write:user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#DeleteResourceForUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "space_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the Copilot Space."
+          }
+        },
+        "space_resource_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The unique identifier of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.copilot_spaces#DeleteResourceForUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.copilot_spaces#DeleteResourceForUserRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.copilot_spaces#Forbidden"
+        },
+        {
+          "target": "com.github.copilot_spaces#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/users/{username}/copilot-spaces/{space_number}/resources/{space_resource_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a resource from a Copilot Space for a user\n\nDeletes a resource from a specific Copilot Space owned by a user.\nThe authenticated user must have write permissions on the space.\n\nOAuth app tokens and personal access tokens (classic) need the `write:user` scope to use this endpoint."
+      }
+    },
+    "com.github.copilot_spaces#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.copilot_spaces#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.copilot_spaces#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.copilot_spaces#CopilotSpaces": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.copilot_spaces#ListForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#CreateForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#GetForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#DeleteForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListCollaboratorsForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#AddCollaboratorForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateCollaboratorForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#RemoveCollaboratorForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListResourcesForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#CreateResourceForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#GetResourceForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateResourceForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#DeleteResourceForOrg"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#CreateForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#GetForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#DeleteForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListCollaboratorsForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#AddCollaboratorForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateCollaboratorForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#RemoveCollaboratorForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#ListResourcesForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#CreateResourceForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#GetResourceForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#UpdateResourceForUser"
+        },
+        {
+          "target": "com.github.copilot_spaces#DeleteResourceForUser"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

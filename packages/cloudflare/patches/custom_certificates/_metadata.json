@@ -1,0 +1,27 @@
+{
+  "description": "Key dictionary / op aliases for custom_certificates (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "bundleMethod": "bundle_method",
+        "createdOn": "created_on",
+        "customCsrId": "custom_csr_id",
+        "expiresOn": "expires_on",
+        "geoRestrictions": "geo_restrictions",
+        "keylessServer": "keyless_server",
+        "modifiedOn": "modified_on",
+        "perPage": "per_page",
+        "policyRestrictions": "policy_restrictions",
+        "privateIp": "private_ip",
+        "privateKey": "private_key",
+        "resultInfo": "result_info",
+        "totalCount": "total_count",
+        "uploadedOn": "uploaded_on",
+        "vnetId": "vnet_id",
+        "zoneId": "zone_id"
+      }
+    }
+  ]
+}

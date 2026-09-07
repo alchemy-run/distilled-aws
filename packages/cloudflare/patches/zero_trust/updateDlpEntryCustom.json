@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#DlpEntriesCustomUpdate with distilled cloudflare/zero-trust updateDlpEntryCustom",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesCustomUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpEntryCustom"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesCustomUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpEntryCustomRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpEntryCustom/input/target",
+      "value": "com.cloudflare.zero_trust#UpdateDlpEntryCustomRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesCustomUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpEntryCustomResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpEntryCustom/output/target",
+      "value": "com.cloudflare.zero_trust#UpdateDlpEntryCustomResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateDlpEntryCustom/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#DlpEntryNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

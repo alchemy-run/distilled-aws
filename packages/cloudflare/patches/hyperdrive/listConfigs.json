@@ -1,0 +1,50 @@
+{
+  "description": "Align hyperdrive#ConfigsList with distilled cloudflare/hyperdrive listConfigs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hyperdrive#ConfigsList",
+      "path": "/shapes/com.cloudflare.hyperdrive#ListConfigs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hyperdrive#ConfigsListRequest",
+      "path": "/shapes/com.cloudflare.hyperdrive#ListConfigsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hyperdrive#ListConfigs/input/target",
+      "value": "com.cloudflare.hyperdrive#ListConfigsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hyperdrive#ConfigsListResponse",
+      "path": "/shapes/com.cloudflare.hyperdrive#ListConfigsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hyperdrive#ListConfigs/output/target",
+      "value": "com.cloudflare.hyperdrive#ListConfigsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.hyperdrive#ListConfigs/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.hyperdrive#ListConfigs/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.hyperdrive#PrivateHostNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.hyperdrive#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

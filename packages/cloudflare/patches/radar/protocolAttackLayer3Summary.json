@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer3SummaryProtocol with distilled cloudflare/radar protocolAttackLayer3Summary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryProtocol",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAttackLayer3Summary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryProtocolRequest",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAttackLayer3SummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAttackLayer3Summary/input/target",
+      "value": "com.cloudflare.radar#ProtocolAttackLayer3SummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3SummaryProtocolResponse",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAttackLayer3SummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ProtocolAttackLayer3Summary/output/target",
+      "value": "com.cloudflare.radar#ProtocolAttackLayer3SummaryResponse"
+    }
+  ]
+}

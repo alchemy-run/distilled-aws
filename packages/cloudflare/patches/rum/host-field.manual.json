@@ -1,0 +1,45 @@
+{
+  "description": "Docs drift: RUM site responses carry a top-level `host` (the measured hostname of gray-clouded sites) on the live wire — distilled models it — but the docs omit it, so alchemy's Site provider read undefined. Add it to create/get/update/list-item responses. Targets the docs-derived shape names; the rename patches only move op-level Request/Response shapes, and these run before manual patches so Get/Update/Create responses are addressed post-rename.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#CreateSiteInfoResponse/members/host",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The hostname the site measures (gray-clouded sites)."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#GetSiteInfoResponse/members/host",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The hostname the site measures (gray-clouded sites)."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#UpdateSiteInfoResponse/members/host",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The hostname the site measures (gray-clouded sites)."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#SiteInfoListResultItem/members/host",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The hostname the site measures (gray-clouded sites)."
+        }
+      }
+    }
+  ]
+}

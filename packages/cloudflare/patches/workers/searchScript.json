@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#ScriptsSearch with distilled cloudflare/workers searchScript",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSearch",
+      "path": "/shapes/com.cloudflare.workers#SearchScript"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSearchRequest",
+      "path": "/shapes/com.cloudflare.workers#SearchScriptRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#SearchScript/input/target",
+      "value": "com.cloudflare.workers#SearchScriptRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsSearchResponse",
+      "path": "/shapes/com.cloudflare.workers#SearchScriptResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#SearchScript/output/target",
+      "value": "com.cloudflare.workers#SearchScriptResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#SearchScript/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

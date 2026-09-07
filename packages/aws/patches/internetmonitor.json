@@ -1,0 +1,22 @@
+{
+  "errorCategories": {
+    "ResourceNotFoundException": ["NotFoundError"]
+  },
+  "structures": {
+    "GetQueryResultsOutput": {
+      "members": {
+        "Data": {
+          "optional": true
+        }
+      }
+    }
+  },
+  "operations": {
+    "getMonitor": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "deleteMonitor": {
+      "errors": ["ResourceNotFoundException"]
+    }
+  }
+}

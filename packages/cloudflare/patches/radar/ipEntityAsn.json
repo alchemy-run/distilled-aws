@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EntitiesAsnsIp with distilled cloudflare/radar ipEntityAsn",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesAsnsIp",
+      "path": "/shapes/com.cloudflare.radar#IpEntityAsn"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesAsnsIpRequest",
+      "path": "/shapes/com.cloudflare.radar#IpEntityAsnRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpEntityAsn/input/target",
+      "value": "com.cloudflare.radar#IpEntityAsnRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesAsnsIpResponse",
+      "path": "/shapes/com.cloudflare.radar#IpEntityAsnResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#IpEntityAsn/output/target",
+      "value": "com.cloudflare.radar#IpEntityAsnResponse"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "description": "Key dictionary / op aliases for workflows (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "catchBlock": "catch_block",
+        "className": "class_name",
+        "createdOn": "created_on",
+        "endedOn": "ended_on",
+        "errorRetention": "error_retention",
+        "eventType": "event_type",
+        "finallyBlock": "finally_block",
+        "hasDag": "has_dag",
+        "instanceId": "instance_id",
+        "instanceRetention": "instance_retention",
+        "isDeleted": "is_deleted",
+        "modifiedOn": "modified_on",
+        "nextInstance": "next_instance",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "scriptName": "script_name",
+        "startedOn": "started_on",
+        "stepCount": "step_count",
+        "successRetention": "success_retention",
+        "terminatorRunning": "terminator_running",
+        "totalCount": "total_count",
+        "triggerSource": "trigger_source",
+        "triggeredOn": "triggered_on",
+        "tryBlock": "try_block",
+        "versionId": "version_id",
+        "workflowId": "workflow_id"
+      }
+    }
+  ]
+}

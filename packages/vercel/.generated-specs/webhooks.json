@@ -1,0 +1,4530 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.webhooks#GetWebhooksRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "projectId"
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemProjectsMetadataItemFramework": {
+      "type": "enum",
+      "members": {
+        "ACTIX_WEB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "actix-web"
+          }
+        },
+        "ANGULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "angular"
+          }
+        },
+        "ASH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ash"
+          }
+        },
+        "ASTRO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "astro"
+          }
+        },
+        "AXUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "axum"
+          }
+        },
+        "BLITZJS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "blitzjs"
+          }
+        },
+        "BRUNCH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "brunch"
+          }
+        },
+        "BUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "bun"
+          }
+        },
+        "CONTAINER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "container"
+          }
+        },
+        "CREATE_REACT_APP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "create-react-app"
+          }
+        },
+        "DJANGO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "django"
+          }
+        },
+        "DOCUSAURUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docusaurus"
+          }
+        },
+        "DOCUSAURUS_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "docusaurus-2"
+          }
+        },
+        "DOJO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dojo"
+          }
+        },
+        "ELEVENTY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eleventy"
+          }
+        },
+        "ELYSIA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "elysia"
+          }
+        },
+        "EMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ember"
+          }
+        },
+        "EVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "eve"
+          }
+        },
+        "EXPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "express"
+          }
+        },
+        "FASTAPI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fastapi"
+          }
+        },
+        "FASTHTML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fasthtml"
+          }
+        },
+        "FASTIFY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fastify"
+          }
+        },
+        "FLASK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flask"
+          }
+        },
+        "GATSBY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gatsby"
+          }
+        },
+        "GO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "go"
+          }
+        },
+        "GRIDSOME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gridsome"
+          }
+        },
+        "H3": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "h3"
+          }
+        },
+        "HEXO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hexo"
+          }
+        },
+        "HONO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hono"
+          }
+        },
+        "HUGO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hugo"
+          }
+        },
+        "HYDROGEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "hydrogen"
+          }
+        },
+        "IONIC_ANGULAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ionic-angular"
+          }
+        },
+        "IONIC_REACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ionic-react"
+          }
+        },
+        "JEKYLL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "jekyll"
+          }
+        },
+        "KOA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "koa"
+          }
+        },
+        "MASTRA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "mastra"
+          }
+        },
+        "MIDDLEMAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "middleman"
+          }
+        },
+        "NESTJS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nestjs"
+          }
+        },
+        "NEXTJS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nextjs"
+          }
+        },
+        "NITRO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nitro"
+          }
+        },
+        "NODE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "node"
+          }
+        },
+        "NUXTJS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nuxtjs"
+          }
+        },
+        "PARCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "parcel"
+          }
+        },
+        "POLYMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "polymer"
+          }
+        },
+        "PREACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "preact"
+          }
+        },
+        "PYTHON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "python"
+          }
+        },
+        "REACT_ROUTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "react-router"
+          }
+        },
+        "REDWOODJS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "redwoodjs"
+          }
+        },
+        "REMIX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "remix"
+          }
+        },
+        "RUBY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ruby"
+          }
+        },
+        "RUST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "rust"
+          }
+        },
+        "SABER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "saber"
+          }
+        },
+        "SANITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sanity"
+          }
+        },
+        "SANITY_V2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sanity-v2"
+          }
+        },
+        "SAPPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sapper"
+          }
+        },
+        "SCULLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scully"
+          }
+        },
+        "SERVICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "services"
+          }
+        },
+        "SOLIDSTART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "solidstart"
+          }
+        },
+        "SOLIDSTART_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "solidstart-1"
+          }
+        },
+        "STENCIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stencil"
+          }
+        },
+        "STORYBOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "storybook"
+          }
+        },
+        "SVELTE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "svelte"
+          }
+        },
+        "SVELTEKIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sveltekit"
+          }
+        },
+        "SVELTEKIT_1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sveltekit-1"
+          }
+        },
+        "TANSTACK_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tanstack-start"
+          }
+        },
+        "TANSTACK_START_LOVABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "tanstack-start-lovable"
+          }
+        },
+        "UMIJS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "umijs"
+          }
+        },
+        "VITE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vite"
+          }
+        },
+        "VITEPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vitepress"
+          }
+        },
+        "VUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vue"
+          }
+        },
+        "VUEPRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "vuepress"
+          }
+        },
+        "XMCP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "xmcp"
+          }
+        },
+        "ZOLA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "zola"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemProjectsMetadataItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "framework": {
+          "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemProjectsMetadataItemFramework",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latestDeployment": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemProjectsMetadataList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemProjectsMetadataItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemEventsItem": {
+      "type": "enum",
+      "members": {
+        "AI_GATEWAY_AUTO_RELOAD_LIMIT_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.auto-reload.limit-reached"
+          }
+        },
+        "AI_GATEWAY_BALANCE_DEPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.balance-depleted"
+          }
+        },
+        "ALERTS_TRIGGERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alerts.triggered"
+          }
+        },
+        "BOTID_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "botid.anomaly"
+          }
+        },
+        "BUDGET_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "budget.reached"
+          }
+        },
+        "COMMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.created"
+          }
+        },
+        "COMMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.deleted"
+          }
+        },
+        "COMMENT_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.mentioned"
+          }
+        },
+        "COMMENT_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-added"
+          }
+        },
+        "COMMENT_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-removed"
+          }
+        },
+        "COMMENT_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.resolved"
+          }
+        },
+        "COMMENT_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.unresolved"
+          }
+        },
+        "COMMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.updated"
+          }
+        },
+        "DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment"
+          }
+        },
+        "DEPLOYMENT_CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-canceled"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-check-rerequested"
+          }
+        },
+        "DEPLOYMENT_CHECKS_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-checks-completed"
+          }
+        },
+        "DEPLOYMENT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-error"
+          }
+        },
+        "DEPLOYMENT_PREPARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-prepared"
+          }
+        },
+        "DEPLOYMENT_READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-ready"
+          }
+        },
+        "DEPLOYMENT_BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.blocked"
+          }
+        },
+        "DEPLOYMENT_BUILD_REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.build-requested"
+          }
+        },
+        "DEPLOYMENT_CANCELED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.canceled"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.check-rerequested"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.cancel"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.start"
+          }
+        },
+        "DEPLOYMENT_CHECKS_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.failed"
+          }
+        },
+        "DEPLOYMENT_CHECKS_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.succeeded"
+          }
+        },
+        "DEPLOYMENT_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.cleanup"
+          }
+        },
+        "DEPLOYMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.created"
+          }
+        },
+        "DEPLOYMENT_ERROR_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.error"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cancel"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cleanup"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.start"
+          }
+        },
+        "DEPLOYMENT_PROMOTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.promoted"
+          }
+        },
+        "DEPLOYMENT_READY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.ready"
+          }
+        },
+        "DEPLOYMENT_ROLLBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.rollback"
+          }
+        },
+        "DEPLOYMENT_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.succeeded"
+          }
+        },
+        "DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain-created"
+          }
+        },
+        "DOMAIN_AUTO_RENEW_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.auto-renew.changed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add.failed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.deleted"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew.failed"
+          }
+        },
+        "DOMAIN_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.created"
+          }
+        },
+        "DOMAIN_DNS_RECORDS_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.dns.records.changed"
+          }
+        },
+        "DOMAIN_RENEWAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal"
+          }
+        },
+        "DOMAIN_RENEWAL_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal.failed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.completed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.failed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.started"
+          }
+        },
+        "EDGE_CONFIG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.created"
+          }
+        },
+        "EDGE_CONFIG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.deleted"
+          }
+        },
+        "EDGE_CONFIG_ITEMS_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.items.updated"
+          }
+        },
+        "FIREWALL_ATTACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.attack"
+          }
+        },
+        "FIREWALL_CUSTOM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.custom-rule-anomaly"
+          }
+        },
+        "FIREWALL_SYSTEM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.system-rule-anomaly"
+          }
+        },
+        "FLAG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.created"
+          }
+        },
+        "FLAG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.deleted"
+          }
+        },
+        "FLAG_SEGMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.created"
+          }
+        },
+        "FLAG_SEGMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.deleted"
+          }
+        },
+        "FLAG_SEGMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.updated"
+          }
+        },
+        "FLAG_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.updated"
+          }
+        },
+        "FUNCTION_ARCHIVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.archival-required"
+          }
+        },
+        "FUNCTION_REMOVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.removal-required"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-permission-updated"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-scope-change-confirmed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.permission-upgraded"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.scope-change-confirmed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_TRANSFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.transferred"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-connected"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-disconnected"
+          }
+        },
+        "MARKETPLACE_INVOICE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.created"
+          }
+        },
+        "MARKETPLACE_INVOICE_NOTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.notpaid"
+          }
+        },
+        "MARKETPLACE_INVOICE_OVERDUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.overdue"
+          }
+        },
+        "MARKETPLACE_INVOICE_PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.paid"
+          }
+        },
+        "MARKETPLACE_INVOICE_REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.refunded"
+          }
+        },
+        "MARKETPLACE_MEMBER_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.member.changed"
+          }
+        },
+        "MESSAGE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.created"
+          }
+        },
+        "MESSAGE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.deleted"
+          }
+        },
+        "MESSAGE_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.mentioned"
+          }
+        },
+        "MESSAGE_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-added"
+          }
+        },
+        "MESSAGE_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-removed"
+          }
+        },
+        "MESSAGE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.updated"
+          }
+        },
+        "OBSERVABILITY_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly"
+          }
+        },
+        "OBSERVABILITY_ANOMALY_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly-error"
+          }
+        },
+        "OBSERVABILITY_ERROR_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.error-anomaly"
+          }
+        },
+        "OBSERVABILITY_USAGE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.usage-anomaly"
+          }
+        },
+        "PROJECT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-created"
+          }
+        },
+        "PROJECT_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-removed"
+          }
+        },
+        "PROJECT_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.created"
+          }
+        },
+        "PROJECT_DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.created"
+          }
+        },
+        "PROJECT_DOMAIN_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.deleted"
+          }
+        },
+        "PROJECT_DOMAIN_MOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.moved"
+          }
+        },
+        "PROJECT_DOMAIN_UNVERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.unverified"
+          }
+        },
+        "PROJECT_DOMAIN_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.updated"
+          }
+        },
+        "PROJECT_DOMAIN_VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.verified"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.created"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.deleted"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.updated"
+          }
+        },
+        "PROJECT_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.removed"
+          }
+        },
+        "PROJECT_RENAMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.renamed"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.aborted"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.approved"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.completed"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.started"
+          }
+        },
+        "TEST_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test-webhook"
+          }
+        },
+        "THREAD_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.resolved"
+          }
+        },
+        "THREAD_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.unresolved"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The webhooks events"
+      }
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemEventsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The webhooks events"
+      }
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemProjectIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ID of the projects the webhook is associated with"
+      }
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase0Item": {
+      "type": "structure",
+      "members": {
+        "projectsMetadata": {
+          "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemProjectsMetadataList",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "events": {
+          "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemEventsList",
+          "traits": {
+            "smithy.api#documentation": "The webhooks events",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The webhook id",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the URL of the webhook",
+            "smithy.api#required": {}
+          }
+        },
+        "ownerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the team the webhook belongs to",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the webhook was created in in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the webhook was updated in in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "projectIds": {
+          "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase0ItemProjectIdsList",
+          "traits": {
+            "smithy.api#documentation": "The ID of the projects the webhook is associated with"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase0List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase0Item"
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase1ItemEventsItem": {
+      "type": "enum",
+      "members": {
+        "AI_GATEWAY_AUTO_RELOAD_LIMIT_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.auto-reload.limit-reached"
+          }
+        },
+        "AI_GATEWAY_BALANCE_DEPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.balance-depleted"
+          }
+        },
+        "ALERTS_TRIGGERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alerts.triggered"
+          }
+        },
+        "BOTID_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "botid.anomaly"
+          }
+        },
+        "BUDGET_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "budget.reached"
+          }
+        },
+        "COMMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.created"
+          }
+        },
+        "COMMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.deleted"
+          }
+        },
+        "COMMENT_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.mentioned"
+          }
+        },
+        "COMMENT_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-added"
+          }
+        },
+        "COMMENT_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-removed"
+          }
+        },
+        "COMMENT_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.resolved"
+          }
+        },
+        "COMMENT_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.unresolved"
+          }
+        },
+        "COMMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.updated"
+          }
+        },
+        "DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment"
+          }
+        },
+        "DEPLOYMENT_CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-canceled"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-check-rerequested"
+          }
+        },
+        "DEPLOYMENT_CHECKS_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-checks-completed"
+          }
+        },
+        "DEPLOYMENT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-error"
+          }
+        },
+        "DEPLOYMENT_PREPARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-prepared"
+          }
+        },
+        "DEPLOYMENT_READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-ready"
+          }
+        },
+        "DEPLOYMENT_BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.blocked"
+          }
+        },
+        "DEPLOYMENT_BUILD_REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.build-requested"
+          }
+        },
+        "DEPLOYMENT_CANCELED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.canceled"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.check-rerequested"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.cancel"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.start"
+          }
+        },
+        "DEPLOYMENT_CHECKS_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.failed"
+          }
+        },
+        "DEPLOYMENT_CHECKS_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.succeeded"
+          }
+        },
+        "DEPLOYMENT_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.cleanup"
+          }
+        },
+        "DEPLOYMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.created"
+          }
+        },
+        "DEPLOYMENT_ERROR_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.error"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cancel"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cleanup"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.start"
+          }
+        },
+        "DEPLOYMENT_PROMOTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.promoted"
+          }
+        },
+        "DEPLOYMENT_READY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.ready"
+          }
+        },
+        "DEPLOYMENT_ROLLBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.rollback"
+          }
+        },
+        "DEPLOYMENT_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.succeeded"
+          }
+        },
+        "DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain-created"
+          }
+        },
+        "DOMAIN_AUTO_RENEW_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.auto-renew.changed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add.failed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.deleted"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew.failed"
+          }
+        },
+        "DOMAIN_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.created"
+          }
+        },
+        "DOMAIN_DNS_RECORDS_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.dns.records.changed"
+          }
+        },
+        "DOMAIN_RENEWAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal"
+          }
+        },
+        "DOMAIN_RENEWAL_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal.failed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.completed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.failed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.started"
+          }
+        },
+        "EDGE_CONFIG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.created"
+          }
+        },
+        "EDGE_CONFIG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.deleted"
+          }
+        },
+        "EDGE_CONFIG_ITEMS_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.items.updated"
+          }
+        },
+        "FIREWALL_ATTACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.attack"
+          }
+        },
+        "FIREWALL_CUSTOM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.custom-rule-anomaly"
+          }
+        },
+        "FIREWALL_SYSTEM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.system-rule-anomaly"
+          }
+        },
+        "FLAG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.created"
+          }
+        },
+        "FLAG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.deleted"
+          }
+        },
+        "FLAG_SEGMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.created"
+          }
+        },
+        "FLAG_SEGMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.deleted"
+          }
+        },
+        "FLAG_SEGMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.updated"
+          }
+        },
+        "FLAG_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.updated"
+          }
+        },
+        "FUNCTION_ARCHIVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.archival-required"
+          }
+        },
+        "FUNCTION_REMOVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.removal-required"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-permission-updated"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-scope-change-confirmed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.permission-upgraded"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.scope-change-confirmed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_TRANSFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.transferred"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-connected"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-disconnected"
+          }
+        },
+        "MARKETPLACE_INVOICE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.created"
+          }
+        },
+        "MARKETPLACE_INVOICE_NOTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.notpaid"
+          }
+        },
+        "MARKETPLACE_INVOICE_OVERDUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.overdue"
+          }
+        },
+        "MARKETPLACE_INVOICE_PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.paid"
+          }
+        },
+        "MARKETPLACE_INVOICE_REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.refunded"
+          }
+        },
+        "MARKETPLACE_MEMBER_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.member.changed"
+          }
+        },
+        "MESSAGE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.created"
+          }
+        },
+        "MESSAGE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.deleted"
+          }
+        },
+        "MESSAGE_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.mentioned"
+          }
+        },
+        "MESSAGE_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-added"
+          }
+        },
+        "MESSAGE_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-removed"
+          }
+        },
+        "MESSAGE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.updated"
+          }
+        },
+        "OBSERVABILITY_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly"
+          }
+        },
+        "OBSERVABILITY_ANOMALY_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly-error"
+          }
+        },
+        "OBSERVABILITY_ERROR_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.error-anomaly"
+          }
+        },
+        "OBSERVABILITY_USAGE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.usage-anomaly"
+          }
+        },
+        "PROJECT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-created"
+          }
+        },
+        "PROJECT_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-removed"
+          }
+        },
+        "PROJECT_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.created"
+          }
+        },
+        "PROJECT_DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.created"
+          }
+        },
+        "PROJECT_DOMAIN_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.deleted"
+          }
+        },
+        "PROJECT_DOMAIN_MOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.moved"
+          }
+        },
+        "PROJECT_DOMAIN_UNVERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.unverified"
+          }
+        },
+        "PROJECT_DOMAIN_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.updated"
+          }
+        },
+        "PROJECT_DOMAIN_VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.verified"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.created"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.deleted"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.updated"
+          }
+        },
+        "PROJECT_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.removed"
+          }
+        },
+        "PROJECT_RENAMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.renamed"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.aborted"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.approved"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.completed"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.started"
+          }
+        },
+        "TEST_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test-webhook"
+          }
+        },
+        "THREAD_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.resolved"
+          }
+        },
+        "THREAD_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.unresolved"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The webhooks events"
+      }
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase1ItemEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase1ItemEventsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The webhooks events"
+      }
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase1ItemProjectIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ID of the projects the webhook is associated with"
+      }
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase1Item": {
+      "type": "structure",
+      "members": {
+        "events": {
+          "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase1ItemEventsList",
+          "traits": {
+            "smithy.api#documentation": "The webhooks events",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The webhook id",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the URL of the webhook",
+            "smithy.api#required": {}
+          }
+        },
+        "ownerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the team the webhook belongs to",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the webhook was created in in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the webhook was updated in in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "projectIds": {
+          "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase1ItemProjectIdsList",
+          "traits": {
+            "smithy.api#documentation": "The ID of the projects the webhook is associated with"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBodyCase1List": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase1Item"
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#GetWebhooksResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase0List"
+        },
+        "Case1": {
+          "target": "com.vercel.webhooks#GetWebhooksResponseBodyCase1List"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#GetWebhooksResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.webhooks#GetWebhooksResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.webhooks#GetWebhooks": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.webhooks#GetWebhooksRequest"
+      },
+      "output": {
+        "target": "com.vercel.webhooks#GetWebhooksResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.webhooks#BadRequest"
+        },
+        {
+          "target": "com.vercel.webhooks#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/webhooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a list of webhooks\n\nGet a list of webhooks"
+      }
+    },
+    "com.vercel.webhooks#CreateWebhookRequestEventsItem": {
+      "type": "enum",
+      "members": {
+        "BUDGET_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "budget.reached"
+          }
+        },
+        "DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.created"
+          }
+        },
+        "DOMAIN_DNS_RECORDS_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.dns.records.changed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.started"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.completed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.failed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add.failed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew.failed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.deleted"
+          }
+        },
+        "DOMAIN_RENEWAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal"
+          }
+        },
+        "DOMAIN_RENEWAL_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal.failed"
+          }
+        },
+        "DOMAIN_AUTO_RENEW_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.auto-renew.changed"
+          }
+        },
+        "DEPLOYMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.created"
+          }
+        },
+        "DEPLOYMENT_BUILD_REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.build-requested"
+          }
+        },
+        "DEPLOYMENT_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.cleanup"
+          }
+        },
+        "DEPLOYMENT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.error"
+          }
+        },
+        "DEPLOYMENT_BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.blocked"
+          }
+        },
+        "DEPLOYMENT_CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.canceled"
+          }
+        },
+        "DEPLOYMENT_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.succeeded"
+          }
+        },
+        "DEPLOYMENT_READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.ready"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.check-rerequested"
+          }
+        },
+        "DEPLOYMENT_PROMOTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.promoted"
+          }
+        },
+        "DEPLOYMENT_ROLLBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.rollback"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.start"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cancel"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cleanup"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.start"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.cancel"
+          }
+        },
+        "EDGE_CONFIG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.created"
+          }
+        },
+        "EDGE_CONFIG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.deleted"
+          }
+        },
+        "EDGE_CONFIG_ITEMS_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.items.updated"
+          }
+        },
+        "FIREWALL_ATTACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.attack"
+          }
+        },
+        "FIREWALL_SYSTEM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.system-rule-anomaly"
+          }
+        },
+        "FIREWALL_CUSTOM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.custom-rule-anomaly"
+          }
+        },
+        "FUNCTION_ARCHIVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.archival-required"
+          }
+        },
+        "FUNCTION_REMOVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.removal-required"
+          }
+        },
+        "ALERTS_TRIGGERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alerts.triggered"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.permission-upgraded"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.scope-change-confirmed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_TRANSFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.transferred"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-connected"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-disconnected"
+          }
+        },
+        "PROJECT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.created"
+          }
+        },
+        "PROJECT_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.removed"
+          }
+        },
+        "PROJECT_RENAMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.renamed"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.created"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.updated"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.deleted"
+          }
+        },
+        "PROJECT_DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.created"
+          }
+        },
+        "PROJECT_DOMAIN_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.updated"
+          }
+        },
+        "PROJECT_DOMAIN_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.deleted"
+          }
+        },
+        "PROJECT_DOMAIN_VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.verified"
+          }
+        },
+        "PROJECT_DOMAIN_UNVERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.unverified"
+          }
+        },
+        "PROJECT_DOMAIN_MOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.moved"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.started"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.aborted"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.completed"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.approved"
+          }
+        },
+        "DEPLOYMENT_CHECKS_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.failed"
+          }
+        },
+        "DEPLOYMENT_CHECKS_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.succeeded"
+          }
+        },
+        "DEPLOYMENT_CHECKS_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-checks-completed"
+          }
+        },
+        "DEPLOYMENT_READY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-ready"
+          }
+        },
+        "DEPLOYMENT_PREPARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-prepared"
+          }
+        },
+        "DEPLOYMENT_ERROR_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-error"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-check-rerequested"
+          }
+        },
+        "DEPLOYMENT_CANCELED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-canceled"
+          }
+        },
+        "PROJECT_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-created"
+          }
+        },
+        "PROJECT_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-removed"
+          }
+        },
+        "DOMAIN_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain-created"
+          }
+        },
+        "DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-permission-updated"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-scope-change-confirmed"
+          }
+        },
+        "MARKETPLACE_MEMBER_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.member.changed"
+          }
+        },
+        "MARKETPLACE_INVOICE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.created"
+          }
+        },
+        "MARKETPLACE_INVOICE_PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.paid"
+          }
+        },
+        "MARKETPLACE_INVOICE_NOTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.notpaid"
+          }
+        },
+        "MARKETPLACE_INVOICE_OVERDUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.overdue"
+          }
+        },
+        "MARKETPLACE_INVOICE_REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.refunded"
+          }
+        },
+        "AI_GATEWAY_BALANCE_DEPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.balance-depleted"
+          }
+        },
+        "AI_GATEWAY_AUTO_RELOAD_LIMIT_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.auto-reload.limit-reached"
+          }
+        },
+        "OBSERVABILITY_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly"
+          }
+        },
+        "OBSERVABILITY_ANOMALY_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly-error"
+          }
+        },
+        "OBSERVABILITY_USAGE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.usage-anomaly"
+          }
+        },
+        "OBSERVABILITY_ERROR_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.error-anomaly"
+          }
+        },
+        "BOTID_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "botid.anomaly"
+          }
+        },
+        "FLAG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.created"
+          }
+        },
+        "FLAG_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.updated"
+          }
+        },
+        "FLAG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.deleted"
+          }
+        },
+        "FLAG_SEGMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.created"
+          }
+        },
+        "FLAG_SEGMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.updated"
+          }
+        },
+        "FLAG_SEGMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.deleted"
+          }
+        },
+        "TEST_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test-webhook"
+          }
+        },
+        "MESSAGE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.created"
+          }
+        },
+        "MESSAGE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.updated"
+          }
+        },
+        "MESSAGE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.deleted"
+          }
+        },
+        "THREAD_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.resolved"
+          }
+        },
+        "THREAD_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.unresolved"
+          }
+        },
+        "MESSAGE_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-added"
+          }
+        },
+        "MESSAGE_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-removed"
+          }
+        },
+        "MESSAGE_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.mentioned"
+          }
+        },
+        "COMMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.created"
+          }
+        },
+        "COMMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.updated"
+          }
+        },
+        "COMMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.deleted"
+          }
+        },
+        "COMMENT_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.resolved"
+          }
+        },
+        "COMMENT_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.unresolved"
+          }
+        },
+        "COMMENT_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-added"
+          }
+        },
+        "COMMENT_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-removed"
+          }
+        },
+        "COMMENT_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.mentioned"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#CreateWebhookRequestEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.webhooks#CreateWebhookRequestEventsItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#CreateWebhookRequestProjectIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.vercel.webhooks#CreateWebhookRequest": {
+      "type": "structure",
+      "members": {
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events": {
+          "target": "com.vercel.webhooks#CreateWebhookRequestEventsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "projectIds": {
+          "target": "com.vercel.webhooks#CreateWebhookRequestProjectIdsList"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.webhooks#CreateWebhookResponseEventsItem": {
+      "type": "enum",
+      "members": {
+        "AI_GATEWAY_AUTO_RELOAD_LIMIT_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.auto-reload.limit-reached"
+          }
+        },
+        "AI_GATEWAY_BALANCE_DEPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.balance-depleted"
+          }
+        },
+        "ALERTS_TRIGGERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alerts.triggered"
+          }
+        },
+        "BOTID_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "botid.anomaly"
+          }
+        },
+        "BUDGET_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "budget.reached"
+          }
+        },
+        "COMMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.created"
+          }
+        },
+        "COMMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.deleted"
+          }
+        },
+        "COMMENT_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.mentioned"
+          }
+        },
+        "COMMENT_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-added"
+          }
+        },
+        "COMMENT_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-removed"
+          }
+        },
+        "COMMENT_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.resolved"
+          }
+        },
+        "COMMENT_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.unresolved"
+          }
+        },
+        "COMMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.updated"
+          }
+        },
+        "DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment"
+          }
+        },
+        "DEPLOYMENT_CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-canceled"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-check-rerequested"
+          }
+        },
+        "DEPLOYMENT_CHECKS_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-checks-completed"
+          }
+        },
+        "DEPLOYMENT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-error"
+          }
+        },
+        "DEPLOYMENT_PREPARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-prepared"
+          }
+        },
+        "DEPLOYMENT_READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-ready"
+          }
+        },
+        "DEPLOYMENT_BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.blocked"
+          }
+        },
+        "DEPLOYMENT_BUILD_REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.build-requested"
+          }
+        },
+        "DEPLOYMENT_CANCELED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.canceled"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.check-rerequested"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.cancel"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.start"
+          }
+        },
+        "DEPLOYMENT_CHECKS_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.failed"
+          }
+        },
+        "DEPLOYMENT_CHECKS_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.succeeded"
+          }
+        },
+        "DEPLOYMENT_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.cleanup"
+          }
+        },
+        "DEPLOYMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.created"
+          }
+        },
+        "DEPLOYMENT_ERROR_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.error"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cancel"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cleanup"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.start"
+          }
+        },
+        "DEPLOYMENT_PROMOTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.promoted"
+          }
+        },
+        "DEPLOYMENT_READY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.ready"
+          }
+        },
+        "DEPLOYMENT_ROLLBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.rollback"
+          }
+        },
+        "DEPLOYMENT_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.succeeded"
+          }
+        },
+        "DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain-created"
+          }
+        },
+        "DOMAIN_AUTO_RENEW_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.auto-renew.changed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add.failed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.deleted"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew.failed"
+          }
+        },
+        "DOMAIN_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.created"
+          }
+        },
+        "DOMAIN_DNS_RECORDS_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.dns.records.changed"
+          }
+        },
+        "DOMAIN_RENEWAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal"
+          }
+        },
+        "DOMAIN_RENEWAL_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal.failed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.completed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.failed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.started"
+          }
+        },
+        "EDGE_CONFIG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.created"
+          }
+        },
+        "EDGE_CONFIG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.deleted"
+          }
+        },
+        "EDGE_CONFIG_ITEMS_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.items.updated"
+          }
+        },
+        "FIREWALL_ATTACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.attack"
+          }
+        },
+        "FIREWALL_CUSTOM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.custom-rule-anomaly"
+          }
+        },
+        "FIREWALL_SYSTEM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.system-rule-anomaly"
+          }
+        },
+        "FLAG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.created"
+          }
+        },
+        "FLAG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.deleted"
+          }
+        },
+        "FLAG_SEGMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.created"
+          }
+        },
+        "FLAG_SEGMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.deleted"
+          }
+        },
+        "FLAG_SEGMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.updated"
+          }
+        },
+        "FLAG_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.updated"
+          }
+        },
+        "FUNCTION_ARCHIVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.archival-required"
+          }
+        },
+        "FUNCTION_REMOVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.removal-required"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-permission-updated"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-scope-change-confirmed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.permission-upgraded"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.scope-change-confirmed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_TRANSFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.transferred"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-connected"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-disconnected"
+          }
+        },
+        "MARKETPLACE_INVOICE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.created"
+          }
+        },
+        "MARKETPLACE_INVOICE_NOTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.notpaid"
+          }
+        },
+        "MARKETPLACE_INVOICE_OVERDUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.overdue"
+          }
+        },
+        "MARKETPLACE_INVOICE_PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.paid"
+          }
+        },
+        "MARKETPLACE_INVOICE_REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.refunded"
+          }
+        },
+        "MARKETPLACE_MEMBER_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.member.changed"
+          }
+        },
+        "MESSAGE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.created"
+          }
+        },
+        "MESSAGE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.deleted"
+          }
+        },
+        "MESSAGE_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.mentioned"
+          }
+        },
+        "MESSAGE_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-added"
+          }
+        },
+        "MESSAGE_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-removed"
+          }
+        },
+        "MESSAGE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.updated"
+          }
+        },
+        "OBSERVABILITY_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly"
+          }
+        },
+        "OBSERVABILITY_ANOMALY_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly-error"
+          }
+        },
+        "OBSERVABILITY_ERROR_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.error-anomaly"
+          }
+        },
+        "OBSERVABILITY_USAGE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.usage-anomaly"
+          }
+        },
+        "PROJECT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-created"
+          }
+        },
+        "PROJECT_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-removed"
+          }
+        },
+        "PROJECT_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.created"
+          }
+        },
+        "PROJECT_DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.created"
+          }
+        },
+        "PROJECT_DOMAIN_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.deleted"
+          }
+        },
+        "PROJECT_DOMAIN_MOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.moved"
+          }
+        },
+        "PROJECT_DOMAIN_UNVERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.unverified"
+          }
+        },
+        "PROJECT_DOMAIN_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.updated"
+          }
+        },
+        "PROJECT_DOMAIN_VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.verified"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.created"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.deleted"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.updated"
+          }
+        },
+        "PROJECT_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.removed"
+          }
+        },
+        "PROJECT_RENAMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.renamed"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.aborted"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.approved"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.completed"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.started"
+          }
+        },
+        "TEST_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test-webhook"
+          }
+        },
+        "THREAD_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.resolved"
+          }
+        },
+        "THREAD_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.unresolved"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The webhooks events"
+      }
+    },
+    "com.vercel.webhooks#CreateWebhookResponseEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.webhooks#CreateWebhookResponseEventsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The webhooks events"
+      }
+    },
+    "com.vercel.webhooks#CreateWebhookResponseProjectIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ID of the projects the webhook is associated with"
+      }
+    },
+    "com.vercel.webhooks#CreateWebhookResponse": {
+      "type": "structure",
+      "members": {
+        "secret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The webhook secret used to sign the payload",
+            "smithy.api#required": {},
+            "smithy.api#sensitive": {}
+          }
+        },
+        "events": {
+          "target": "com.vercel.webhooks#CreateWebhookResponseEventsList",
+          "traits": {
+            "smithy.api#documentation": "The webhooks events",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The webhook id",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the URL of the webhook",
+            "smithy.api#required": {}
+          }
+        },
+        "ownerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the team the webhook belongs to",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the webhook was created in in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the webhook was updated in in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "projectIds": {
+          "target": "com.vercel.webhooks#CreateWebhookResponseProjectIdsList",
+          "traits": {
+            "smithy.api#documentation": "The ID of the projects the webhook is associated with"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.webhooks#CreateWebhook": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.webhooks#CreateWebhookRequest"
+      },
+      "output": {
+        "target": "com.vercel.webhooks#CreateWebhookResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.webhooks#BadRequest"
+        },
+        {
+          "target": "com.vercel.webhooks#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/webhooks",
+          "code": 200
+        },
+        "smithy.api#documentation": "Creates a webhook\n\nCreates a webhook"
+      }
+    },
+    "com.vercel.webhooks#GetWebhookRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.webhooks#GetWebhookResponseEventsItem": {
+      "type": "enum",
+      "members": {
+        "AI_GATEWAY_AUTO_RELOAD_LIMIT_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.auto-reload.limit-reached"
+          }
+        },
+        "AI_GATEWAY_BALANCE_DEPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ai-gateway.balance-depleted"
+          }
+        },
+        "ALERTS_TRIGGERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "alerts.triggered"
+          }
+        },
+        "BOTID_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "botid.anomaly"
+          }
+        },
+        "BUDGET_REACHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "budget.reached"
+          }
+        },
+        "COMMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.created"
+          }
+        },
+        "COMMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.deleted"
+          }
+        },
+        "COMMENT_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.mentioned"
+          }
+        },
+        "COMMENT_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-added"
+          }
+        },
+        "COMMENT_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.reaction-removed"
+          }
+        },
+        "COMMENT_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.resolved"
+          }
+        },
+        "COMMENT_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.unresolved"
+          }
+        },
+        "COMMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "comment.updated"
+          }
+        },
+        "DEPLOYMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment"
+          }
+        },
+        "DEPLOYMENT_CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-canceled"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-check-rerequested"
+          }
+        },
+        "DEPLOYMENT_CHECKS_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-checks-completed"
+          }
+        },
+        "DEPLOYMENT_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-error"
+          }
+        },
+        "DEPLOYMENT_PREPARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-prepared"
+          }
+        },
+        "DEPLOYMENT_READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment-ready"
+          }
+        },
+        "DEPLOYMENT_BLOCKED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.blocked"
+          }
+        },
+        "DEPLOYMENT_BUILD_REQUESTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.build-requested"
+          }
+        },
+        "DEPLOYMENT_CANCELED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.canceled"
+          }
+        },
+        "DEPLOYMENT_CHECK_REREQUESTED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.check-rerequested"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.cancel"
+          }
+        },
+        "DEPLOYMENT_CHECKRUN_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checkrun.start"
+          }
+        },
+        "DEPLOYMENT_CHECKS_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.failed"
+          }
+        },
+        "DEPLOYMENT_CHECKS_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.checks.succeeded"
+          }
+        },
+        "DEPLOYMENT_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.cleanup"
+          }
+        },
+        "DEPLOYMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.created"
+          }
+        },
+        "DEPLOYMENT_ERROR_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.error"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CANCEL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cancel"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_CLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.cleanup"
+          }
+        },
+        "DEPLOYMENT_INTEGRATION_ACTION_START": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.integration.action.start"
+          }
+        },
+        "DEPLOYMENT_PROMOTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.promoted"
+          }
+        },
+        "DEPLOYMENT_READY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.ready"
+          }
+        },
+        "DEPLOYMENT_ROLLBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.rollback"
+          }
+        },
+        "DEPLOYMENT_SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "deployment.succeeded"
+          }
+        },
+        "DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain-created"
+          }
+        },
+        "DOMAIN_AUTO_RENEW_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.auto-renew.changed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add"
+          }
+        },
+        "DOMAIN_CERTIFICATE_ADD_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.add.failed"
+          }
+        },
+        "DOMAIN_CERTIFICATE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.deleted"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew"
+          }
+        },
+        "DOMAIN_CERTIFICATE_RENEW_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.certificate.renew.failed"
+          }
+        },
+        "DOMAIN_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.created"
+          }
+        },
+        "DOMAIN_DNS_RECORDS_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.dns.records.changed"
+          }
+        },
+        "DOMAIN_RENEWAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal"
+          }
+        },
+        "DOMAIN_RENEWAL_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.renewal.failed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.completed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.failed"
+          }
+        },
+        "DOMAIN_TRANSFER_IN_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "domain.transfer-in.started"
+          }
+        },
+        "EDGE_CONFIG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.created"
+          }
+        },
+        "EDGE_CONFIG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.deleted"
+          }
+        },
+        "EDGE_CONFIG_ITEMS_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "edge-config.items.updated"
+          }
+        },
+        "FIREWALL_ATTACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.attack"
+          }
+        },
+        "FIREWALL_CUSTOM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.custom-rule-anomaly"
+          }
+        },
+        "FIREWALL_SYSTEM_RULE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "firewall.system-rule-anomaly"
+          }
+        },
+        "FLAG_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.created"
+          }
+        },
+        "FLAG_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.deleted"
+          }
+        },
+        "FLAG_SEGMENT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.created"
+          }
+        },
+        "FLAG_SEGMENT_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.deleted"
+          }
+        },
+        "FLAG_SEGMENT_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.segment.updated"
+          }
+        },
+        "FLAG_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "flag.updated"
+          }
+        },
+        "FUNCTION_ARCHIVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.archival-required"
+          }
+        },
+        "FUNCTION_REMOVAL_REQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "function.removal-required"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-permission-updated"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration-scope-change-confirmed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_PERMISSION_UPGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.permission-upgraded"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.removed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_SCOPE_CHANGE_CONFIRMED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.scope-change-confirmed"
+          }
+        },
+        "INTEGRATION_CONFIGURATION_TRANSFERRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-configuration.transferred"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-connected"
+          }
+        },
+        "INTEGRATION_RESOURCE_PROJECT_DISCONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "integration-resource.project-disconnected"
+          }
+        },
+        "MARKETPLACE_INVOICE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.created"
+          }
+        },
+        "MARKETPLACE_INVOICE_NOTPAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.notpaid"
+          }
+        },
+        "MARKETPLACE_INVOICE_OVERDUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.overdue"
+          }
+        },
+        "MARKETPLACE_INVOICE_PAID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.paid"
+          }
+        },
+        "MARKETPLACE_INVOICE_REFUNDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.invoice.refunded"
+          }
+        },
+        "MARKETPLACE_MEMBER_CHANGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketplace.member.changed"
+          }
+        },
+        "MESSAGE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.created"
+          }
+        },
+        "MESSAGE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.deleted"
+          }
+        },
+        "MESSAGE_MENTIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.mentioned"
+          }
+        },
+        "MESSAGE_REACTION_ADDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-added"
+          }
+        },
+        "MESSAGE_REACTION_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.reaction-removed"
+          }
+        },
+        "MESSAGE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "message.updated"
+          }
+        },
+        "OBSERVABILITY_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly"
+          }
+        },
+        "OBSERVABILITY_ANOMALY_ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.anomaly-error"
+          }
+        },
+        "OBSERVABILITY_ERROR_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.error-anomaly"
+          }
+        },
+        "OBSERVABILITY_USAGE_ANOMALY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "observability.usage-anomaly"
+          }
+        },
+        "PROJECT_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-created"
+          }
+        },
+        "PROJECT_REMOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project-removed"
+          }
+        },
+        "PROJECT_CREATED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.created"
+          }
+        },
+        "PROJECT_DOMAIN_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.created"
+          }
+        },
+        "PROJECT_DOMAIN_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.deleted"
+          }
+        },
+        "PROJECT_DOMAIN_MOVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.moved"
+          }
+        },
+        "PROJECT_DOMAIN_UNVERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.unverified"
+          }
+        },
+        "PROJECT_DOMAIN_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.updated"
+          }
+        },
+        "PROJECT_DOMAIN_VERIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.domain.verified"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.created"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.deleted"
+          }
+        },
+        "PROJECT_ENV_VARIABLE_UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.env-variable.updated"
+          }
+        },
+        "PROJECT_REMOVED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.removed"
+          }
+        },
+        "PROJECT_RENAMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.renamed"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.aborted"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.approved"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.completed"
+          }
+        },
+        "PROJECT_ROLLING_RELEASE_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "project.rolling-release.started"
+          }
+        },
+        "TEST_WEBHOOK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test-webhook"
+          }
+        },
+        "THREAD_RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.resolved"
+          }
+        },
+        "THREAD_UNRESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "thread.unresolved"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The webhooks events"
+      }
+    },
+    "com.vercel.webhooks#GetWebhookResponseEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.webhooks#GetWebhookResponseEventsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The webhooks events"
+      }
+    },
+    "com.vercel.webhooks#GetWebhookResponseProjectIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ID of the projects the webhook is associated with"
+      }
+    },
+    "com.vercel.webhooks#GetWebhookResponse": {
+      "type": "structure",
+      "members": {
+        "events": {
+          "target": "com.vercel.webhooks#GetWebhookResponseEventsList",
+          "traits": {
+            "smithy.api#documentation": "The webhooks events",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The webhook id",
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A string with the URL of the webhook",
+            "smithy.api#required": {}
+          }
+        },
+        "ownerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique ID of the team the webhook belongs to",
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the webhook was created in in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "updatedAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A number containing the date when the webhook was updated in in milliseconds",
+            "smithy.api#required": {}
+          }
+        },
+        "projectIds": {
+          "target": "com.vercel.webhooks#GetWebhookResponseProjectIdsList",
+          "traits": {
+            "smithy.api#documentation": "The ID of the projects the webhook is associated with"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.webhooks#GetWebhook": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.webhooks#GetWebhookRequest"
+      },
+      "output": {
+        "target": "com.vercel.webhooks#GetWebhookResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.webhooks#BadRequest"
+        },
+        {
+          "target": "com.vercel.webhooks#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/webhooks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a webhook\n\nGet a webhook"
+      }
+    },
+    "com.vercel.webhooks#DeleteWebhookRequest": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.webhooks#DeleteWebhook": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.webhooks#DeleteWebhookRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.webhooks#BadRequest"
+        },
+        {
+          "target": "com.vercel.webhooks#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/webhooks/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deletes a webhook\n\nDeletes a webhook"
+      }
+    },
+    "com.vercel.webhooks#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.webhooks#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.webhooks#Webhooks": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.webhooks#GetWebhooks"
+        },
+        {
+          "target": "com.vercel.webhooks#CreateWebhook"
+        },
+        {
+          "target": "com.vercel.webhooks#GetWebhook"
+        },
+        {
+          "target": "com.vercel.webhooks#DeleteWebhook"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

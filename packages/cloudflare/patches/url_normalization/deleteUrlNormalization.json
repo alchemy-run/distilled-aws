@@ -1,0 +1,29 @@
+{
+  "description": "Align url_normalization#Delete with distilled cloudflare/url-normalization deleteUrlNormalization",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_normalization#Delete",
+      "path": "/shapes/com.cloudflare.url_normalization#DeleteUrlNormalization"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.url_normalization#DeleteRequest",
+      "path": "/shapes/com.cloudflare.url_normalization#DeleteUrlNormalizationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.url_normalization#DeleteUrlNormalization/input/target",
+      "value": "com.cloudflare.url_normalization#DeleteUrlNormalizationRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.url_normalization#DeleteUrlNormalization/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.url_normalization#Forbidden"
+        }
+      ]
+    }
+  ]
+}

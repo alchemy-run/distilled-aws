@@ -1,0 +1,45 @@
+{
+  "description": "Align load_balancers#PoolsUpdate with distilled cloudflare/load-balancers updatePool",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsUpdate",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdatePool"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsUpdateRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdatePoolRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdatePool/input/target",
+      "value": "com.cloudflare.load_balancers#UpdatePoolRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsUpdateResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdatePoolResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdatePool/output/target",
+      "value": "com.cloudflare.load_balancers#UpdatePoolResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdatePool/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#PoolNotFound"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#PoolAccessFailed"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

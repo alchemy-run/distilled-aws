@@ -1,0 +1,42 @@
+{
+  "description": "Align page_rules#Update with distilled cloudflare/page-rules updatePageRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#Update",
+      "path": "/shapes/com.cloudflare.page_rules#UpdatePageRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#UpdateRequest",
+      "path": "/shapes/com.cloudflare.page_rules#UpdatePageRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_rules#UpdatePageRule/input/target",
+      "value": "com.cloudflare.page_rules#UpdatePageRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.page_rules#UpdateResponse",
+      "path": "/shapes/com.cloudflare.page_rules#UpdatePageRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.page_rules#UpdatePageRule/output/target",
+      "value": "com.cloudflare.page_rules#UpdatePageRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.page_rules#UpdatePageRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.page_rules#PageRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.page_rules#Forbidden"
+        }
+      ]
+    }
+  ]
+}

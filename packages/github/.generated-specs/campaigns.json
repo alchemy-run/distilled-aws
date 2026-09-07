@@ -1,0 +1,1201 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.campaigns#ListOrgCampaignsRequestDirection": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.campaigns#CampaignState": {
+      "type": "enum",
+      "members": {
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates whether a campaign is open or closed"
+      }
+    },
+    "com.github.campaigns#ListOrgCampaignsRequestSort": {
+      "type": "enum",
+      "members": {
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created"
+          }
+        },
+        "UPDATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated"
+          }
+        },
+        "ENDS_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ends_at"
+          }
+        },
+        "PUBLISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "published"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.campaigns#ListOrgCampaignsRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "direction": {
+          "target": "com.github.campaigns#ListOrgCampaignsRequestDirection",
+          "traits": {
+            "smithy.api#httpQuery": "direction",
+            "smithy.api#documentation": "The direction to sort the results by."
+          }
+        },
+        "state": {
+          "target": "com.github.campaigns#CampaignState",
+          "traits": {
+            "smithy.api#httpQuery": "state",
+            "smithy.api#documentation": "If specified, only campaigns with this state will be returned."
+          }
+        },
+        "sort": {
+          "target": "com.github.campaigns#ListOrgCampaignsRequestSort",
+          "traits": {
+            "smithy.api#httpQuery": "sort",
+            "smithy.api#documentation": "The property by which to sort the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.campaigns#CampaignSummary": {
+      "type": "structure",
+      "members": {
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of the newly created campaign",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the campaign was created, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the campaign was last updated, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The campaign name"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The campaign description",
+            "smithy.api#required": {}
+          }
+        },
+        "managers": {
+          "target": "com.github.campaigns#CampaignSummaryManagersList",
+          "traits": {
+            "smithy.api#documentation": "The campaign managers",
+            "smithy.api#required": {}
+          }
+        },
+        "team_managers": {
+          "target": "com.github.campaigns#CampaignSummaryTeamManagersList",
+          "traits": {
+            "smithy.api#documentation": "The campaign team managers"
+          }
+        },
+        "published_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the campaign was published, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ."
+          }
+        },
+        "ends_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the campaign has ended, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ.",
+            "smithy.api#required": {}
+          }
+        },
+        "closed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date and time the campaign was closed, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ. Will be null if the campaign is still open.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.github.campaigns#CampaignState",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "contact_link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact link of the campaign.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "alert_stats": {
+          "target": "com.github.campaigns#CampaignSummaryAlertStats"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The campaign metadata and alert stats."
+      }
+    },
+    "com.github.campaigns#SimpleUser": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "login": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gravatar_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "followers_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "following_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "gists_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "subscriptions_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organizations_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repos_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "received_events_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "site_admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "starred_at": {
+          "target": "smithy.api#String"
+        },
+        "user_view_type": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GitHub user."
+      }
+    },
+    "com.github.campaigns#CampaignSummaryManagersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.campaigns#SimpleUser"
+      },
+      "traits": {
+        "smithy.api#documentation": "The campaign managers"
+      }
+    },
+    "com.github.campaigns#Team": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#String"
+        },
+        "notification_setting": {
+          "target": "smithy.api#String"
+        },
+        "permission": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "permissions": {
+          "target": "com.github.campaigns#TeamPermissions"
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "type": {
+          "target": "com.github.campaigns#TeamType",
+          "traits": {
+            "smithy.api#documentation": "The ownership type of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "access_source": {
+          "target": "com.github.campaigns#TeamAccessSource",
+          "traits": {
+            "smithy.api#documentation": "How the team's access to the repository was granted. This property is only\npresent when the team is returned in a repository context, such as\n`GET /repos/{owner}/{repo}/teams`."
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the organization to which this team belongs"
+          }
+        },
+        "enterprise_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the enterprise to which this team belongs"
+          }
+        },
+        "parent": {
+          "target": "com.github.campaigns#NullableTeamSimple",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Groups of organization members that gives permissions on specified repositories."
+      }
+    },
+    "com.github.campaigns#TeamPermissions": {
+      "type": "structure",
+      "members": {
+        "pull": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "triage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "push": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "maintain": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "admin": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.campaigns#TeamType": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ownership type of the team"
+      }
+    },
+    "com.github.campaigns#TeamAccessSource": {
+      "type": "enum",
+      "members": {
+        "DIRECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "direct"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "How the team's access to the repository was granted. This property is only\npresent when the team is returned in a repository context, such as\n`GET /repos/{owner}/{repo}/teams`."
+      }
+    },
+    "com.github.campaigns#NullableTeamSimple": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "node_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL for the team",
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the team",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "permission": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Permission that the team will have for its repositories",
+            "smithy.api#required": {}
+          }
+        },
+        "privacy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The level of privacy this team should have"
+          }
+        },
+        "notification_setting": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The notification setting the team has set"
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repositories_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "ldap_dn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Distinguished Name (DN) that team maps to within LDAP environment"
+          }
+        },
+        "type": {
+          "target": "com.github.campaigns#NullableTeamSimpleType",
+          "traits": {
+            "smithy.api#documentation": "The ownership type of the team",
+            "smithy.api#required": {}
+          }
+        },
+        "organization_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the organization to which this team belongs"
+          }
+        },
+        "enterprise_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier of the enterprise to which this team belongs"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Groups of organization members that gives permissions on specified repositories."
+      }
+    },
+    "com.github.campaigns#NullableTeamSimpleType": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ownership type of the team"
+      }
+    },
+    "com.github.campaigns#CampaignSummaryTeamManagersList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.campaigns#Team"
+      },
+      "traits": {
+        "smithy.api#documentation": "The campaign team managers"
+      }
+    },
+    "com.github.campaigns#CampaignSummaryAlertStats": {
+      "type": "structure",
+      "members": {
+        "open_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of open alerts",
+            "smithy.api#required": {}
+          }
+        },
+        "closed_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of closed alerts",
+            "smithy.api#required": {}
+          }
+        },
+        "in_progress_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of in-progress alerts",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.campaigns#ListOrgCampaignsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.campaigns#CampaignSummary"
+      },
+      "traits": {}
+    },
+    "com.github.campaigns#ListOrgCampaignsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.campaigns#ListOrgCampaignsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.campaigns#ListOrgCampaigns": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.campaigns#ListOrgCampaignsRequest"
+      },
+      "output": {
+        "target": "com.github.campaigns#ListOrgCampaignsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.campaigns#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/campaigns",
+          "code": 200
+        },
+        "smithy.api#documentation": "List campaigns for an organization\n\nLists campaigns in an organization.\n\nThe authenticated user must be an owner or security manager for the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint."
+      }
+    },
+    "com.github.campaigns#CreateCampaignRequestManagersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The logins of the users to set as the campaign managers. At this time, only a single manager can be supplied."
+      }
+    },
+    "com.github.campaigns#CreateCampaignRequestTeamManagersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The slugs of the teams to set as the campaign managers."
+      }
+    },
+    "com.github.campaigns#CreateCampaignRequestCodeScanningAlertsItemAlertNumbersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "The alert numbers"
+      }
+    },
+    "com.github.campaigns#CreateCampaignRequestCodeScanningAlertsItem": {
+      "type": "structure",
+      "members": {
+        "repository_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The repository id",
+            "smithy.api#required": {}
+          }
+        },
+        "alert_numbers": {
+          "target": "com.github.campaigns#CreateCampaignRequestCodeScanningAlertsItemAlertNumbersList",
+          "traits": {
+            "smithy.api#documentation": "The alert numbers",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.campaigns#CreateCampaignRequestCodeScanningAlertsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.campaigns#CreateCampaignRequestCodeScanningAlertsItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "The code scanning alerts to include in this campaign"
+      }
+    },
+    "com.github.campaigns#CreateCampaignRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the campaign",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description for the campaign",
+            "smithy.api#required": {}
+          }
+        },
+        "managers": {
+          "target": "com.github.campaigns#CreateCampaignRequestManagersList",
+          "traits": {
+            "smithy.api#documentation": "The logins of the users to set as the campaign managers. At this time, only a single manager can be supplied."
+          }
+        },
+        "team_managers": {
+          "target": "com.github.campaigns#CreateCampaignRequestTeamManagersList",
+          "traits": {
+            "smithy.api#documentation": "The slugs of the teams to set as the campaign managers."
+          }
+        },
+        "ends_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end date and time of the campaign. The date must be in the future.",
+            "smithy.api#required": {}
+          }
+        },
+        "contact_link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact link of the campaign. Must be a URI.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "code_scanning_alerts": {
+          "target": "com.github.campaigns#CreateCampaignRequestCodeScanningAlertsList",
+          "traits": {
+            "smithy.api#documentation": "The code scanning alerts to include in this campaign",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "generate_issues": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, will automatically generate issues for the campaign. The default is false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.campaigns#CreateCampaign": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.campaigns#CreateCampaignRequest"
+      },
+      "output": {
+        "target": "com.github.campaigns#CampaignSummary"
+      },
+      "errors": [
+        {
+          "target": "com.github.campaigns#BadRequest"
+        },
+        {
+          "target": "com.github.campaigns#NotFound"
+        },
+        {
+          "target": "com.github.campaigns#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/orgs/{org}/campaigns",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a campaign for an organization\n\nCreate a campaign for an organization.\n\nThe authenticated user must be an owner or security manager for the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint.\n\nFine-grained tokens must have the \"Code scanning alerts\" repository permissions (read) on all repositories included\nin the campaign."
+      }
+    },
+    "com.github.campaigns#GetCampaignSummaryRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "campaign_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The campaign number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.campaigns#GetCampaignSummary": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.campaigns#GetCampaignSummaryRequest"
+      },
+      "output": {
+        "target": "com.github.campaigns#CampaignSummary"
+      },
+      "errors": [
+        {
+          "target": "com.github.campaigns#NotFound"
+        },
+        {
+          "target": "com.github.campaigns#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/orgs/{org}/campaigns/{campaign_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a campaign for an organization\n\nGets a campaign for an organization.\n\nThe authenticated user must be an owner or security manager for the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint."
+      }
+    },
+    "com.github.campaigns#UpdateCampaignRequestManagersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The logins of the users to set as the campaign managers. At this time, only a single manager can be supplied."
+      }
+    },
+    "com.github.campaigns#UpdateCampaignRequestTeamManagersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The slugs of the teams to set as the campaign managers."
+      }
+    },
+    "com.github.campaigns#UpdateCampaignRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "campaign_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The campaign number."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the campaign"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description for the campaign"
+          }
+        },
+        "managers": {
+          "target": "com.github.campaigns#UpdateCampaignRequestManagersList",
+          "traits": {
+            "smithy.api#documentation": "The logins of the users to set as the campaign managers. At this time, only a single manager can be supplied."
+          }
+        },
+        "team_managers": {
+          "target": "com.github.campaigns#UpdateCampaignRequestTeamManagersList",
+          "traits": {
+            "smithy.api#documentation": "The slugs of the teams to set as the campaign managers."
+          }
+        },
+        "ends_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end date and time of the campaign, in ISO 8601 format':' YYYY-MM-DDTHH:MM:SSZ."
+          }
+        },
+        "contact_link": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The contact link of the campaign. Must be a URI.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "state": {
+          "target": "com.github.campaigns#CampaignState"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.campaigns#UpdateCampaign": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.campaigns#UpdateCampaignRequest"
+      },
+      "output": {
+        "target": "com.github.campaigns#CampaignSummary"
+      },
+      "errors": [
+        {
+          "target": "com.github.campaigns#BadRequest"
+        },
+        {
+          "target": "com.github.campaigns#NotFound"
+        },
+        {
+          "target": "com.github.campaigns#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/orgs/{org}/campaigns/{campaign_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a campaign\n\nUpdates a campaign in an organization.\n\nThe authenticated user must be an owner or security manager for the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint."
+      }
+    },
+    "com.github.campaigns#DeleteCampaignRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "campaign_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The campaign number."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.campaigns#DeleteCampaign": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.campaigns#DeleteCampaignRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.campaigns#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/orgs/{org}/campaigns/{campaign_number}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a campaign for an organization\n\nDeletes a campaign in an organization.\n\nThe authenticated user must be an owner or security manager for the organization to use this endpoint.\n\nOAuth app tokens and personal access tokens (classic) need the `security_events` scope to use this endpoint."
+      }
+    },
+    "com.github.campaigns#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.campaigns#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.github.campaigns#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.campaigns#Campaigns": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.campaigns#ListOrgCampaigns"
+        },
+        {
+          "target": "com.github.campaigns#CreateCampaign"
+        },
+        {
+          "target": "com.github.campaigns#GetCampaignSummary"
+        },
+        {
+          "target": "com.github.campaigns#UpdateCampaign"
+        },
+        {
+          "target": "com.github.campaigns#DeleteCampaign"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

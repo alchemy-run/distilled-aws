@@ -1,0 +1,30 @@
+{
+  "description": "Align logs#LogExplorerDatasetsUpdateForAccount with distilled cloudflare/logs updateLogExplorerDatasetForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsUpdateForAccount",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsUpdateForAccountRequest",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForAccount/input/target",
+      "value": "com.cloudflare.logs#UpdateLogExplorerDatasetForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#LogExplorerDatasetsUpdateForAccountResponse",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#UpdateLogExplorerDatasetForAccount/output/target",
+      "value": "com.cloudflare.logs#UpdateLogExplorerDatasetForAccountResponse"
+    }
+  ]
+}

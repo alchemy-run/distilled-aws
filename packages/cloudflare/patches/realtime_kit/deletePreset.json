@@ -1,0 +1,42 @@
+{
+  "description": "Align realtime_kit#PresetsDelete with distilled cloudflare/realtime-kit deletePreset",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#PresetsDelete",
+      "path": "/shapes/com.cloudflare.realtime_kit#DeletePreset"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#PresetsDeleteRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#DeletePresetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#DeletePreset/input/target",
+      "value": "com.cloudflare.realtime_kit#DeletePresetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#PresetsDeleteResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#DeletePresetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#DeletePreset/output/target",
+      "value": "com.cloudflare.realtime_kit#DeletePresetResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.realtime_kit#DeletePreset/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.realtime_kit#RealtimeKitPresetNotFound"
+        },
+        {
+          "target": "com.cloudflare.realtime_kit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

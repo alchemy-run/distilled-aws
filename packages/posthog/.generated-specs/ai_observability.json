@@ -1,0 +1,1367 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.ai_observability#LlmAnalyticsPersonalSpendListRequest": {
+      "type": "structure",
+      "members": {
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Start of the spend window. Accepts absolute dates (`2026-04-23`) or relative strings (`-7d`, `-1m`, etc.) — same parser used elsewhere in PostHog. Defaults to `-30d`. The window between `date_from` and `date_to` cannot exceed 90 days."
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "End of the spend window. Accepts the same formats as `date_from`. Defaults to `now` when omitted."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Maximum number of rows to return per breakdown (1-200, defaults to 50). Each breakdown returns up to this many rows ordered by cost descending. Per-breakdown `truncated: true` indicates more rows exist beyond the limit."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "product",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Required `ai_product` key to scope the tool / model / trace breakdowns to a single product. Only the following products are currently supported: posthog_code."
+          }
+        },
+        "refresh": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "refresh",
+            "smithy.api#documentation": "If true, bypass the result cache and re-run the underlying queries against ClickHouse."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.ai_observability#PersonalSpendAnalysisResponse": {
+      "type": "structure",
+      "members": {
+        "summary": {
+          "target": "com.posthog.ai_observability#Summary",
+          "traits": {
+            "smithy.api#documentation": "High-level totals for the lookback window.",
+            "smithy.api#required": {}
+          }
+        },
+        "by_product": {
+          "target": "com.posthog.ai_observability#ProductBreakdown",
+          "traits": {
+            "smithy.api#documentation": "Spend grouped by the `ai_product` property — always across all products, never filtered.",
+            "smithy.api#required": {}
+          }
+        },
+        "by_tool": {
+          "target": "com.posthog.ai_observability#ToolBreakdown",
+          "traits": {
+            "smithy.api#documentation": "Spend grouped by tool. Scoped to `product` when set.",
+            "smithy.api#required": {}
+          }
+        },
+        "by_model": {
+          "target": "com.posthog.ai_observability#ModelBreakdown",
+          "traits": {
+            "smithy.api#documentation": "Spend grouped by `$ai_model`. Scoped to `product` when set.",
+            "smithy.api#required": {}
+          }
+        },
+        "top_traces": {
+          "target": "com.posthog.ai_observability#TopTraces",
+          "traits": {
+            "smithy.api#documentation": "Deprecated — always returns `{items: [], truncated: false}`. Trace IDs are opaque strings that aren't actionable in the UI. Kept in the response shape so existing consumers don't crash; remove your rendering of this field and we'll drop it from the response entirely in a follow-up.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Structured personal LLM spend analysis for the requesting user."
+      }
+    },
+    "com.posthog.ai_observability#Summary": {
+      "type": "structure",
+      "members": {
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Inclusive UTC start of the spend window resolved from the request.",
+            "smithy.api#required": {}
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Exclusive UTC end of the spend window resolved from the request.",
+            "smithy.api#required": {}
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The `ai_product` filter applied to tool / model / trace breakdowns — echoes the request `product`.",
+            "smithy.api#required": {}
+          }
+        },
+        "total_cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total LLM cost in USD across every `ai_product` for the user — independent of the `product` filter.",
+            "smithy.api#required": {}
+          }
+        },
+        "event_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total $ai_generation + $ai_embedding events captured across every product.",
+            "smithy.api#required": {}
+          }
+        },
+        "scoped_cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total cost in USD for the product filter. Matches the cost summed across `by_tool` / `by_model` for the scoped slice.",
+            "smithy.api#required": {}
+          }
+        },
+        "scoped_event_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total $ai_generation + $ai_embedding events for the scoped slice.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#ProductBreakdown": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.posthog.ai_observability#ProductBreakdownItemsList",
+          "traits": {
+            "smithy.api#documentation": "Rows of spend by product, ordered by cost descending.",
+            "smithy.api#required": {}
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when more rows exist beyond the requested `limit`. Re-request with a larger `limit` to retrieve them.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#ProductBreakdownRow": {
+      "type": "structure",
+      "members": {
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the `ai_product` property on the event (e.g. `posthog_code`, `background_agents`). Null when unset.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "event_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of $ai_generation + $ai_embedding events for this product.",
+            "smithy.api#required": {}
+          }
+        },
+        "cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total cost in USD for this product over the lookback window.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#ProductBreakdownItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#ProductBreakdownRow"
+      },
+      "traits": {
+        "smithy.api#documentation": "Rows of spend by product, ordered by cost descending."
+      }
+    },
+    "com.posthog.ai_observability#ToolBreakdown": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.posthog.ai_observability#ToolBreakdownItemsList",
+          "traits": {
+            "smithy.api#documentation": "Rows of spend by tool, ordered by cost descending.",
+            "smithy.api#required": {}
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when more rows exist beyond the requested `limit`. Re-request with a larger `limit` to retrieve them.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#ToolBreakdownRow": {
+      "type": "structure",
+      "members": {
+        "tool": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Individual tool name from `$ai_tools_called` (split on `,` since multi-tool generations store a comma-separated list). Null = pure text response with no tool call.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "generation_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of $ai_generation events whose tool list includes this tool.",
+            "smithy.api#required": {}
+          }
+        },
+        "cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sum of `$ai_total_cost_usd` for generations whose tool list includes this tool. Multi-tool generations contribute their full cost to every tool they invoked, so this sum can exceed `summary.scoped_cost_usd`. Prefer `share_of_scoped` for headline percentages — it's computed per row and doesn't require the totals to reconcile.",
+            "smithy.api#required": {}
+          }
+        },
+        "share_of_scoped": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "This tool's share of `summary.scoped_cost_usd`, expressed as a float in `[0, 1]`. Independent per row, so co-occurring tools can each show a substantial share — the headline number to present (e.g. `'Bash drove 47% of your spend'`).",
+            "smithy.api#required": {}
+          }
+        },
+        "avg_input_tokens": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Average `$ai_input_tokens` across these generations — high values signal context bloat per call.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#ToolBreakdownItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#ToolBreakdownRow"
+      },
+      "traits": {
+        "smithy.api#documentation": "Rows of spend by tool, ordered by cost descending."
+      }
+    },
+    "com.posthog.ai_observability#ModelBreakdown": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.posthog.ai_observability#ModelBreakdownItemsList",
+          "traits": {
+            "smithy.api#documentation": "Rows of spend by model, ordered by cost descending.",
+            "smithy.api#required": {}
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when more rows exist beyond the requested `limit`. Re-request with a larger `limit` to retrieve them.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#ModelBreakdownRow": {
+      "type": "structure",
+      "members": {
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Value of the `$ai_model` property.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "generation_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of $ai_generation + $ai_embedding events.",
+            "smithy.api#required": {}
+          }
+        },
+        "cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total cost in USD for this model.",
+            "smithy.api#required": {}
+          }
+        },
+        "input_tokens": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Sum of `$ai_input_tokens` for this model.",
+            "smithy.api#required": {}
+          }
+        },
+        "output_tokens": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Sum of `$ai_output_tokens` for this model.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#ModelBreakdownItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#ModelBreakdownRow"
+      },
+      "traits": {
+        "smithy.api#documentation": "Rows of spend by model, ordered by cost descending."
+      }
+    },
+    "com.posthog.ai_observability#TopTraces": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.posthog.ai_observability#TopTracesItemsList",
+          "traits": {
+            "smithy.api#documentation": "Rows of top traces by cost, ordered by cost descending.",
+            "smithy.api#required": {}
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when more rows exist beyond the requested `limit`. Re-request with a larger `limit` to retrieve them.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#TopTraceRow": {
+      "type": "structure",
+      "members": {
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`$ai_trace_id` of the session — opaque string scoped to the originating product. Format is not stable: most are UUIDs but some SDK wrappers emit JSON-shaped strings like `{\"device_id\":\"...\",\"session_id\":\"...\"}`. Callers should treat this as an opaque identifier (URL-encode before linking to a trace view).",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "generation_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of $ai_generation events in this trace.",
+            "smithy.api#required": {}
+          }
+        },
+        "cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Total cost in USD for this trace.",
+            "smithy.api#required": {}
+          }
+        },
+        "started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the earliest event in this trace.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#TopTracesItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#TopTraceRow"
+      },
+      "traits": {
+        "smithy.api#documentation": "Rows of top traces by cost, ordered by cost descending."
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsPersonalSpendListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#PersonalSpendAnalysisResponse"
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#LlmAnalyticsPersonalSpendListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.ai_observability#LlmAnalyticsPersonalSpendListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsPersonalSpendList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.ai_observability#LlmAnalyticsPersonalSpendListRequest"
+      },
+      "output": {
+        "target": "com.posthog.ai_observability#LlmAnalyticsPersonalSpendListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.ai_observability#BadRequest"
+        },
+        {
+          "target": "com.posthog.ai_observability#Forbidden"
+        },
+        {
+          "target": "com.posthog.ai_observability#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/llm_analytics/@me/spend/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return a structured personal LLM spend analysis for the requesting user. Pass `date_from` / `date_to` (absolute like `2026-04-23` or relative like `-7d`) to bound the window — defaults to the last 30 days, max 90 days. The `product=<ai_product>` query param is required and scopes the tool / model / trace breakdowns to a single product; supported values: posthog_code. `by_product` is always returned for cross-product visibility. Use `refresh=true` to bypass the 5-minute response cache."
+      }
+    },
+    "com.posthog.ai_observability#FilterEnum": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "PASS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pass"
+          }
+        },
+        "FAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fail"
+          }
+        },
+        "NA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "na"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `all` - all\n* `pass` - pass\n* `fail` - fail\n* `na` - na"
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsEvaluationSummaryCreateRequestGenerationIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional: specific generation IDs to include in summary (max 250)"
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsEvaluationSummaryCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "evaluation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the evaluation config to summarize"
+          }
+        },
+        "filter": {
+          "target": "com.posthog.ai_observability#FilterEnum",
+          "traits": {
+            "smithy.api#documentation": "Filter type to apply ('all', 'pass', 'fail', or 'na')\n\n* `all` - all\n* `pass` - pass\n* `fail` - fail\n* `na` - na"
+          }
+        },
+        "generation_ids": {
+          "target": "com.posthog.ai_observability#LlmAnalyticsEvaluationSummaryCreateRequestGenerationIdsList",
+          "traits": {
+            "smithy.api#documentation": "Optional: specific generation IDs to include in summary (max 250)"
+          }
+        },
+        "force_refresh": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If true, bypass cache and generate a fresh summary"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.ai_observability#EvaluationSummaryResponse": {
+      "type": "structure",
+      "members": {
+        "overall_assessment": {
+          "target": "smithy.api#String"
+        },
+        "pass_patterns": {
+          "target": "com.posthog.ai_observability#EvaluationSummaryResponsePassPatternsList"
+        },
+        "fail_patterns": {
+          "target": "com.posthog.ai_observability#EvaluationSummaryResponseFailPatternsList"
+        },
+        "na_patterns": {
+          "target": "com.posthog.ai_observability#EvaluationSummaryResponseNaPatternsList"
+        },
+        "recommendations": {
+          "target": "com.posthog.ai_observability#EvaluationSummaryResponseRecommendationsList"
+        },
+        "statistics": {
+          "target": "com.posthog.ai_observability#EvaluationSummaryStatistics"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#EvaluationPattern": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "frequency": {
+          "target": "smithy.api#String"
+        },
+        "example_generation_ids": {
+          "target": "com.posthog.ai_observability#EvaluationPatternExampleGenerationIdsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#EvaluationPatternExampleGenerationIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#EvaluationSummaryResponsePassPatternsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#EvaluationPattern"
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#EvaluationSummaryResponseFailPatternsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#EvaluationPattern"
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#EvaluationSummaryResponseNaPatternsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#EvaluationPattern"
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#EvaluationSummaryResponseRecommendationsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#EvaluationSummaryStatistics": {
+      "type": "structure",
+      "members": {
+        "total_analyzed": {
+          "target": "smithy.api#Integer"
+        },
+        "pass_count": {
+          "target": "smithy.api#Integer"
+        },
+        "fail_count": {
+          "target": "smithy.api#Integer"
+        },
+        "na_count": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#LlmAnalyticsEvaluationSummaryCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.ai_observability#LlmAnalyticsEvaluationSummaryCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.ai_observability#EvaluationSummaryResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.ai_observability#BadRequest"
+        },
+        {
+          "target": "com.posthog.ai_observability#Forbidden"
+        },
+        {
+          "target": "com.posthog.ai_observability#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_summary/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate an AI-powered summary of evaluation results.\n\nThis endpoint analyzes evaluation runs and identifies patterns in passing\nand failing evaluations, providing actionable recommendations.\n\nData is fetched server-side by evaluation ID to ensure data integrity.\n\n**Use Cases:**\n- Understand why evaluations are passing or failing\n- Identify systematic issues in LLM responses\n- Get recommendations for improving response quality\n- Review patterns across many evaluation runs at once"
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsOfflineEvaluationsExperimentItemsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "experiment_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`$ai_experiment_id` whose offline-evaluation items to return.",
+            "smithy.api#required": {}
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Lower bound on `timestamp` (ISO-8601). Omit to leave the lower bound open.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Upper bound on `timestamp` (ISO-8601). Omit to leave the upper bound open.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.ai_observability#OfflineExperimentItemsResponse": {
+      "type": "structure",
+      "members": {
+        "results": {
+          "target": "com.posthog.ai_observability#OfflineExperimentItemsResponseResultsList",
+          "traits": {
+            "smithy.api#documentation": "Tuple-positional rows; positions match `RawOfflineExperimentMetricRow` in the frontend.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#OfflineExperimentItemsResponseResultsItemList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#OfflineExperimentItemsResponseResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#OfflineExperimentItemsResponseResultsItemList"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tuple-positional rows; positions match `RawOfflineExperimentMetricRow` in the frontend."
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsOfflineEvaluationsExperimentItemsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.ai_observability#LlmAnalyticsOfflineEvaluationsExperimentItemsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.ai_observability#OfflineExperimentItemsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.ai_observability#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/offline_evaluations/experiment_items/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.ai_observability#SummarizeTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TRACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trace"
+          }
+        },
+        "EVENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "event"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `trace` - trace\n* `event` - event"
+      }
+    },
+    "com.posthog.ai_observability#DetailModeValueEnum": {
+      "type": "enum",
+      "members": {
+        "MINIMAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "minimal"
+          }
+        },
+        "DETAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "detailed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `minimal` - minimal\n* `detailed` - detailed"
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsSummarizationCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "summarize_type": {
+          "target": "com.posthog.ai_observability#SummarizeTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of entity to summarize. Inferred automatically when using trace_id or generation_id.\n\n* `trace` - trace\n* `event` - event"
+          }
+        },
+        "mode": {
+          "target": "com.posthog.ai_observability#DetailModeValueEnum",
+          "traits": {
+            "smithy.api#documentation": "Summary detail level: 'minimal' for 3-5 points, 'detailed' for 5-10 points\n\n* `minimal` - minimal\n* `detailed` - detailed"
+          }
+        },
+        "data": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Data to summarize. For traces: {trace, hierarchy}. For events: {event}. Not required when using trace_id or generation_id."
+          }
+        },
+        "force_refresh": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Force regenerate summary, bypassing cache"
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "LLM model to use (defaults based on provider)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trace ID to summarize. The backend fetches the trace data automatically. Requires date_from for efficient lookup."
+          }
+        },
+        "generation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Generation event UUID to summarize. The backend fetches the event data automatically. Requires date_from for efficient lookup."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start of date range for ID-based lookup (e.g. '-7d' or '2026-01-01'). Defaults to -30d.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End of date range for ID-based lookup. Defaults to now.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.ai_observability#SummarizeResponse": {
+      "type": "structure",
+      "members": {
+        "summary": {
+          "target": "com.posthog.ai_observability#StructuredSummary",
+          "traits": {
+            "smithy.api#documentation": "Structured AI-generated summary with flow, bullets, and optional notes"
+          }
+        },
+        "text_repr": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Line-numbered text representation that the summary references"
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the summarization"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#StructuredSummary": {
+      "type": "structure",
+      "members": {
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Concise title (no longer than 10 words) summarizing the trace/event"
+          }
+        },
+        "flow_diagram": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mermaid flowchart code showing the main flow"
+          }
+        },
+        "summary_bullets": {
+          "target": "com.posthog.ai_observability#StructuredSummarySummaryBulletsList",
+          "traits": {
+            "smithy.api#documentation": "Main summary bullets"
+          }
+        },
+        "interesting_notes": {
+          "target": "com.posthog.ai_observability#StructuredSummaryInterestingNotesList",
+          "traits": {
+            "smithy.api#documentation": "Interesting notes (0-2 for minimal, more for detailed)"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#SummaryBullet": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String"
+        },
+        "line_refs": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#StructuredSummarySummaryBulletsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#SummaryBullet"
+      },
+      "traits": {
+        "smithy.api#documentation": "Main summary bullets"
+      }
+    },
+    "com.posthog.ai_observability#InterestingNote": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String"
+        },
+        "line_refs": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#StructuredSummaryInterestingNotesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#InterestingNote"
+      },
+      "traits": {
+        "smithy.api#documentation": "Interesting notes (0-2 for minimal, more for detailed)"
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsSummarizationCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.ai_observability#LlmAnalyticsSummarizationCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.ai_observability#SummarizeResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.ai_observability#BadRequest"
+        },
+        {
+          "target": "com.posthog.ai_observability#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/summarization/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate an AI-powered summary of an LLM trace or event.\n\nThis endpoint analyzes the provided trace/event, generates a line-numbered text\nrepresentation, and uses an LLM to create a concise summary with line references.\n\n**Two ways to use this endpoint:**\n\n1. **By ID (recommended):** Pass `trace_id` or `generation_id` with an optional `date_from`/`date_to`.\n   The backend fetches the data automatically. `summarize_type` is inferred.\n2. **By data:** Pass the full trace/event data blob in `data` with `summarize_type`.\n   This is how the frontend uses it.\n\n**Summary Format:**\n- Title (concise, max 10 words)\n- Mermaid flow diagram showing the main flow\n- 3-10 summary bullets with line references\n- \"Interesting Notes\" section for failures, successes, or unusual patterns\n- Line references in [L45] or [L45-52] format pointing to relevant sections\n\nThe response includes the structured summary, the text representation, and metadata."
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsSummarizationBatchCheckCreateRequestTraceIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of trace IDs to check for cached summaries"
+      }
+    },
+    "com.posthog.ai_observability#LlmAnalyticsSummarizationBatchCheckCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "trace_ids": {
+          "target": "com.posthog.ai_observability#LlmAnalyticsSummarizationBatchCheckCreateRequestTraceIdsList",
+          "traits": {
+            "smithy.api#documentation": "List of trace IDs to check for cached summaries"
+          }
+        },
+        "mode": {
+          "target": "com.posthog.ai_observability#DetailModeValueEnum",
+          "traits": {
+            "smithy.api#documentation": "Summary detail level to check for\n\n* `minimal` - minimal\n* `detailed` - detailed"
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "LLM model used for cached summaries",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.ai_observability#BatchCheckResponse": {
+      "type": "structure",
+      "members": {
+        "summaries": {
+          "target": "com.posthog.ai_observability#BatchCheckResponseSummariesList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#CachedSummary": {
+      "type": "structure",
+      "members": {
+        "trace_id": {
+          "target": "smithy.api#String"
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "cached": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#BatchCheckResponseSummariesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.ai_observability#CachedSummary"
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#LlmAnalyticsSummarizationBatchCheckCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.ai_observability#LlmAnalyticsSummarizationBatchCheckCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.ai_observability#BatchCheckResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.ai_observability#BadRequest"
+        },
+        {
+          "target": "com.posthog.ai_observability#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/summarization/batch_check/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check which traces have cached summaries available.\n\nThis endpoint allows batch checking of multiple trace IDs to see which ones\nhave cached summaries. Returns only the traces that have cached summaries\nwith their titles.\n\n**Use Cases:**\n- Load cached summaries on session view load\n- Avoid unnecessary LLM calls for already-summarized traces\n- Display summary previews without generating new summaries"
+      }
+    },
+    "com.posthog.ai_observability#EventTypeEnum": {
+      "type": "enum",
+      "members": {
+        "AI_GENERATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$ai_generation"
+          }
+        },
+        "AI_SPAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$ai_span"
+          }
+        },
+        "AI_EMBEDDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$ai_embedding"
+          }
+        },
+        "AI_TRACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "$ai_trace"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `$ai_generation` - $ai_generation\n* `$ai_span` - $ai_span\n* `$ai_embedding` - $ai_embedding\n* `$ai_trace` - $ai_trace"
+      }
+    },
+    "com.posthog.ai_observability#TextReprOptions": {
+      "type": "structure",
+      "members": {
+        "max_length": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum length of generated text (default: 2000000)"
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use truncation for long content within events (default: true)"
+          }
+        },
+        "truncate_buffer": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Characters to show at start/end when truncating (default: 1000)"
+          }
+        },
+        "include_markers": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Use interactive markers for frontend vs plain text for backend/LLM (default: true)"
+          }
+        },
+        "collapsed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Show summary vs full tree hierarchy for traces (default: false)"
+          }
+        },
+        "include_metadata": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include metadata in response"
+          }
+        },
+        "include_hierarchy": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Include hierarchy information (for traces)"
+          }
+        },
+        "max_depth": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum depth for hierarchical rendering"
+          }
+        },
+        "tools_collapse_threshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of tools before collapsing the list (default: 5)"
+          }
+        },
+        "include_line_numbers": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Prefix each line with line number (default: false)"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#LlmAnalyticsTextReprCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "event_type": {
+          "target": "com.posthog.ai_observability#EventTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of LLM event to stringify\n\n* `$ai_generation` - $ai_generation\n* `$ai_span` - $ai_span\n* `$ai_embedding` - $ai_embedding\n* `$ai_trace` - $ai_trace"
+          }
+        },
+        "data": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Event data to stringify. For traces, should include 'trace' and 'hierarchy' fields."
+          }
+        },
+        "options": {
+          "target": "com.posthog.ai_observability#TextReprOptions",
+          "traits": {
+            "smithy.api#documentation": "Optional configuration for text generation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.ai_observability#TextReprResponse": {
+      "type": "structure",
+      "members": {
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Generated text representation of the event"
+          }
+        },
+        "metadata": {
+          "target": "com.posthog.ai_observability#TextReprMetadata",
+          "traits": {
+            "smithy.api#documentation": "Metadata about the text representation"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#TextReprMetadata": {
+      "type": "structure",
+      "members": {
+        "event_type": {
+          "target": "smithy.api#String"
+        },
+        "event_id": {
+          "target": "smithy.api#String"
+        },
+        "trace_id": {
+          "target": "smithy.api#String"
+        },
+        "rendering": {
+          "target": "smithy.api#String"
+        },
+        "char_count": {
+          "target": "smithy.api#Integer"
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean"
+        },
+        "error": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.ai_observability#LlmAnalyticsTextReprCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.ai_observability#LlmAnalyticsTextReprCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.ai_observability#TextReprResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.ai_observability#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/text_repr/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Generate a human-readable text representation of an LLM trace event.\n\nThis endpoint converts AI observability events ($ai_generation, $ai_span, $ai_embedding, or $ai_trace)\ninto formatted text representations suitable for display, logging, or analysis.\n\n**Supported Event Types:**\n- `$ai_generation`: Individual LLM API calls with input/output messages\n- `$ai_span`: Logical spans with state transitions\n- `$ai_embedding`: Embedding generation events (text input → vector)\n- `$ai_trace`: Full traces with hierarchical structure\n\n**Options:**\n- `max_length`: Maximum character count (default: 2000000)\n- `truncated`: Enable middle-content truncation within events (default: true)\n- `truncate_buffer`: Characters at start/end when truncating (default: 1000)\n- `include_markers`: Use interactive markers vs plain text indicators (default: true)\n  - Frontend: set true for `<<<TRUNCATED|base64|...>>>` markers\n  - Backend/LLM: set false for `... (X chars truncated) ...` text\n- `collapsed`: Show summary vs full trace tree (default: false)\n- `include_hierarchy`: Include tree structure for traces (default: true)\n- `max_depth`: Maximum depth for hierarchical rendering (default: unlimited)\n- `tools_collapse_threshold`: Number of tools before auto-collapsing list (default: 5)\n  - Tool lists >5 items show `<<<TOOLS_EXPANDABLE|...>>>` marker for frontend\n  - Or `[+] AVAILABLE TOOLS: N` for backend when `include_markers: false`\n- `include_line_numbers`: Prefix each line with line number like L001:, L010: (default: false)\n\n**Use Cases:**\n- Frontend display: `truncated: true, include_markers: true, include_line_numbers: true`\n- Backend LLM context (summary): `truncated: true, include_markers: false, collapsed: true`\n- Backend LLM context (full): `truncated: false`\n\nThe response includes the formatted text and metadata about the rendering."
+      }
+    },
+    "com.posthog.ai_observability#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.ai_observability#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.ai_observability#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.ai_observability#AiObservability": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.ai_observability#LlmAnalyticsPersonalSpendList"
+        },
+        {
+          "target": "com.posthog.ai_observability#LlmAnalyticsEvaluationSummaryCreate"
+        },
+        {
+          "target": "com.posthog.ai_observability#LlmAnalyticsOfflineEvaluationsExperimentItemsCreate"
+        },
+        {
+          "target": "com.posthog.ai_observability#LlmAnalyticsSummarizationCreate"
+        },
+        {
+          "target": "com.posthog.ai_observability#LlmAnalyticsSummarizationBatchCheckCreate"
+        },
+        {
+          "target": "com.posthog.ai_observability#LlmAnalyticsTextReprCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

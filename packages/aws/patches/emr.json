@@ -1,0 +1,155 @@
+{
+  "structures": {
+    "UsernamePassword": {
+      "members": {
+        "Password": {
+          "sensitive": true
+        }
+      }
+    },
+    "KerberosAttributes": {
+      "members": {
+        "KdcAdminPassword": {
+          "sensitive": true
+        },
+        "CrossRealmTrustPrincipalPassword": {
+          "sensitive": true
+        },
+        "ADDomainJoinPassword": {
+          "sensitive": true
+        }
+      }
+    }
+  },
+  "operations": {
+    "describeCluster": {
+      "syntheticErrors": [
+        {
+          "name": "ClusterNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^Cluster id .* is not valid"
+          }
+        }
+      ]
+    },
+    "terminateJobFlows": {
+      "syntheticErrors": [
+        {
+          "name": "JobFlowNotFound",
+          "from": "ValidationException",
+          "message": {
+            "includes": "Specified job flow ID not valid"
+          }
+        }
+      ]
+    },
+    "setTerminationProtection": {
+      "syntheticErrors": [
+        {
+          "name": "JobFlowNotFound",
+          "from": "ValidationException",
+          "message": {
+            "includes": "Specified job flow ID not valid"
+          }
+        }
+      ]
+    },
+    "createSecurityConfiguration": {
+      "syntheticErrors": [
+        {
+          "name": "SecurityConfigurationAlreadyExists",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^SecurityConfiguration with name .* already exists"
+          }
+        }
+      ]
+    },
+    "describeSecurityConfiguration": {
+      "syntheticErrors": [
+        {
+          "name": "SecurityConfigurationNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^Security configuration with name .* does not exist"
+          }
+        }
+      ]
+    },
+    "deleteSecurityConfiguration": {
+      "syntheticErrors": [
+        {
+          "name": "SecurityConfigurationNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": "^Security configuration with name .* does not exist"
+          }
+        }
+      ]
+    },
+    "createStudio": {
+      "syntheticErrors": [
+        {
+          "name": "StudioServiceRoleNotAssumable",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "does not have permissions to assume role"
+          }
+        },
+        {
+          "name": "StudioServiceRoleMissingS3Access",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "does not have permission to access the 'S3 Location'"
+          }
+        }
+      ]
+    },
+    "describeStudio": {
+      "syntheticErrors": [
+        {
+          "name": "StudioNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "Studio does not exist"
+          }
+        }
+      ]
+    },
+    "deleteStudio": {
+      "syntheticErrors": [
+        {
+          "name": "StudioNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "Studio does not exist"
+          }
+        }
+      ]
+    },
+    "updateStudio": {
+      "syntheticErrors": [
+        {
+          "name": "StudioNotFound",
+          "from": "InvalidRequestException",
+          "message": {
+            "includes": "Studio does not exist"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "ClusterNotFound": ["NotFoundError"],
+    "SecurityConfigurationNotFound": ["NotFoundError"],
+    "SecurityConfigurationAlreadyExists": [
+      "AlreadyExistsError",
+      "ConflictError"
+    ],
+    "StudioNotFound": ["NotFoundError"],
+    "StudioServiceRoleNotAssumable": ["RetryableError"],
+    "StudioServiceRoleMissingS3Access": ["RetryableError"],
+    "JobFlowNotFound": ["NotFoundError"]
+  }
+}

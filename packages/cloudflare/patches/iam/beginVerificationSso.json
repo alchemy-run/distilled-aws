@@ -1,0 +1,20 @@
+{
+  "description": "Align iam#SsoBeginVerification with distilled cloudflare/iam beginVerificationSso",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoBeginVerification",
+      "path": "/shapes/com.cloudflare.iam#BeginVerificationSso"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoBeginVerificationRequest",
+      "path": "/shapes/com.cloudflare.iam#BeginVerificationSsoRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#BeginVerificationSso/input/target",
+      "value": "com.cloudflare.iam#BeginVerificationSsoRequest"
+    }
+  ]
+}

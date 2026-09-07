@@ -1,0 +1,1431 @@
+{
+  "__schema": {
+    "queryType": {
+      "name": "Queries"
+    },
+    "mutationType": {
+      "name": "Mutations"
+    },
+    "types": [
+      {
+        "kind": "SCALAR",
+        "name": "String"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ID"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Int"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "Boolean"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "JSON"
+      },
+      {
+        "kind": "SCALAR",
+        "name": "ISO8601DateTime"
+      },
+      {
+        "kind": "ENUM",
+        "name": "AddOnType",
+        "enumValues": [
+          {
+            "name": "arcjet"
+          },
+          {
+            "name": "enveloop"
+          },
+          {
+            "name": "fly_mysql"
+          },
+          {
+            "name": "kubernetes"
+          },
+          {
+            "name": "redis"
+          },
+          {
+            "name": "sentry"
+          },
+          {
+            "name": "supabase"
+          },
+          {
+            "name": "tigris"
+          },
+          {
+            "name": "upstash_kafka"
+          },
+          {
+            "name": "upstash_redis"
+          },
+          {
+            "name": "upstash_vector"
+          },
+          {
+            "name": "wafris"
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "PageInfo",
+        "fields": [
+          {
+            "name": "hasNextPage",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "hasPreviousPage",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "startCursor",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "endCursor",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AddOnPlan",
+        "fields": [
+          {
+            "name": "id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "displayName",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "description",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "maxDataSize",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "pricePerMonth",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "Int"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AddOnPlanEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          },
+          {
+            "name": "node",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AddOnPlan"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AddOnPlanConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOnPlanEdge"
+              }
+            }
+          },
+          {
+            "name": "nodes",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOnPlan"
+              }
+            }
+          },
+          {
+            "name": "pageInfo",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PageInfo"
+              }
+            }
+          },
+          {
+            "name": "totalCount",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AddOnProvider",
+        "fields": [
+          {
+            "name": "id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "displayName",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "tosUrl",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "tosAgreement",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "asyncProvisioning",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "autoProvision",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "beta",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "internal",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "selectName",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "selectRegion",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "selectReplicaRegions",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "detectPlatform",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "resourceName",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          },
+          {
+            "name": "nameSuffix",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "provisioningInstructions",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "App",
+        "fields": [
+          {
+            "name": "id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Organization",
+        "fields": [
+          {
+            "name": "id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "slug",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "rawSlug",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          },
+          {
+            "name": "paidPlan",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "billable",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "provisionsBetaExtensions",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Boolean"
+              }
+            }
+          },
+          {
+            "name": "addOns",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOnConnection"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AddOn",
+        "fields": [
+          {
+            "name": "id",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ID"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "primaryRegion",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "readRegions",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            }
+          },
+          {
+            "name": "status",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "errorMessage",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "publicUrl",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "privateIp",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "password",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "ssoLink",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "environment",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON"
+            }
+          },
+          {
+            "name": "options",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON"
+            }
+          },
+          {
+            "name": "metadata",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON"
+            }
+          },
+          {
+            "name": "createdAt",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime"
+              }
+            }
+          },
+          {
+            "name": "updatedAt",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "ISO8601DateTime"
+              }
+            }
+          },
+          {
+            "name": "addOnPlan",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AddOnPlan"
+            }
+          },
+          {
+            "name": "addOnPlanName",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "addOnProvider",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AddOnProvider"
+            }
+          },
+          {
+            "name": "organization",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "Organization"
+              }
+            }
+          },
+          {
+            "name": "app",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "App"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AddOnEdge",
+        "fields": [
+          {
+            "name": "cursor",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          },
+          {
+            "name": "node",
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AddOn"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "AddOnConnection",
+        "fields": [
+          {
+            "name": "edges",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOnEdge"
+              }
+            }
+          },
+          {
+            "name": "nodes",
+            "args": [],
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOn"
+              }
+            }
+          },
+          {
+            "name": "pageInfo",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "PageInfo"
+              }
+            }
+          },
+          {
+            "name": "totalCount",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "Int"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "CreateAddOnInput",
+        "inputFields": [
+          {
+            "name": "type",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "ENUM",
+                "name": "AddOnType"
+              }
+            }
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "organizationId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            }
+          },
+          {
+            "name": "appId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            }
+          },
+          {
+            "name": "planId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            }
+          },
+          {
+            "name": "primaryRegion",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "readRegions",
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            }
+          },
+          {
+            "name": "options",
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON"
+            }
+          },
+          {
+            "name": "organizationPlanId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "clientMutationId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "UpdateAddOnInput",
+        "inputFields": [
+          {
+            "name": "addOnId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            }
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "provider",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "planId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            }
+          },
+          {
+            "name": "readRegions",
+            "type": {
+              "kind": "LIST",
+              "ofType": {
+                "kind": "NON_NULL",
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            }
+          },
+          {
+            "name": "options",
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON"
+            }
+          },
+          {
+            "name": "metadata",
+            "type": {
+              "kind": "SCALAR",
+              "name": "JSON"
+            }
+          },
+          {
+            "name": "prodPack",
+            "type": {
+              "kind": "SCALAR",
+              "name": "Boolean"
+            }
+          },
+          {
+            "name": "clientMutationId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "DeleteAddOnInput",
+        "inputFields": [
+          {
+            "name": "addOnId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            }
+          },
+          {
+            "name": "name",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "provider",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "clientMutationId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "CreateExtensionTosAgreementInput",
+        "inputFields": [
+          {
+            "name": "addOnProviderName",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          },
+          {
+            "name": "organizationId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "ID"
+            }
+          },
+          {
+            "name": "clientMutationId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "INPUT_OBJECT",
+        "name": "ResetAddOnPasswordInput",
+        "inputFields": [
+          {
+            "name": "name",
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "SCALAR",
+                "name": "String"
+              }
+            }
+          },
+          {
+            "name": "clientMutationId",
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CreateAddOnPayload",
+        "fields": [
+          {
+            "name": "addOn",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOn"
+              }
+            }
+          },
+          {
+            "name": "clientMutationId",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "UpdateAddOnPayload",
+        "fields": [
+          {
+            "name": "addOn",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOn"
+              }
+            }
+          },
+          {
+            "name": "clientMutationId",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "DeleteAddOnPayload",
+        "fields": [
+          {
+            "name": "deletedAddOnName",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          },
+          {
+            "name": "clientMutationId",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "CreateExtensionTosAgreementPayload",
+        "fields": [
+          {
+            "name": "clientMutationId",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "ResetAddOnPasswordPayload",
+        "fields": [
+          {
+            "name": "addOn",
+            "args": [],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOn"
+              }
+            }
+          },
+          {
+            "name": "clientMutationId",
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Queries",
+        "fields": [
+          {
+            "name": "addOn",
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              },
+              {
+                "name": "name",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "provider",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "AddOn"
+            }
+          },
+          {
+            "name": "addOns",
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "type",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "AddOnType"
+                }
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOnConnection"
+              }
+            }
+          },
+          {
+            "name": "addOnPlans",
+            "args": [
+              {
+                "name": "after",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "before",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "first",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "last",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "Int"
+                }
+              },
+              {
+                "name": "type",
+                "type": {
+                  "kind": "ENUM",
+                  "name": "AddOnType"
+                }
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOnPlanConnection"
+              }
+            }
+          },
+          {
+            "name": "addOnProvider",
+            "args": [
+              {
+                "name": "name",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "SCALAR",
+                    "name": "String"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "kind": "NON_NULL",
+              "ofType": {
+                "kind": "OBJECT",
+                "name": "AddOnProvider"
+              }
+            }
+          },
+          {
+            "name": "organization",
+            "args": [
+              {
+                "name": "id",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "ID"
+                }
+              },
+              {
+                "name": "name",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              },
+              {
+                "name": "slug",
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String"
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "Organization"
+            }
+          }
+        ]
+      },
+      {
+        "kind": "OBJECT",
+        "name": "Mutations",
+        "fields": [
+          {
+            "name": "createAddOn",
+            "args": [
+              {
+                "name": "input",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CreateAddOnInput"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CreateAddOnPayload"
+            }
+          },
+          {
+            "name": "updateAddOn",
+            "args": [
+              {
+                "name": "input",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "UpdateAddOnInput"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "UpdateAddOnPayload"
+            }
+          },
+          {
+            "name": "deleteAddOn",
+            "args": [
+              {
+                "name": "input",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "DeleteAddOnInput"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "DeleteAddOnPayload"
+            }
+          },
+          {
+            "name": "createExtensionTosAgreement",
+            "args": [
+              {
+                "name": "input",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "CreateExtensionTosAgreementInput"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "CreateExtensionTosAgreementPayload"
+            }
+          },
+          {
+            "name": "resetAddOnPassword",
+            "args": [
+              {
+                "name": "input",
+                "type": {
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "kind": "INPUT_OBJECT",
+                    "name": "ResetAddOnPasswordInput"
+                  }
+                }
+              }
+            ],
+            "type": {
+              "kind": "OBJECT",
+              "name": "ResetAddOnPasswordPayload"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

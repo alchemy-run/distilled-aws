@@ -1,0 +1,45 @@
+{
+  "description": "Align email_routing#RulesCatchAllsUpdate with distilled cloudflare/email-routing putRuleCatchAll",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesCatchAllsUpdate",
+      "path": "/shapes/com.cloudflare.email_routing#PutRuleCatchAll"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesCatchAllsUpdateRequest",
+      "path": "/shapes/com.cloudflare.email_routing#PutRuleCatchAllRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#PutRuleCatchAll/input/target",
+      "value": "com.cloudflare.email_routing#PutRuleCatchAllRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesCatchAllsUpdateResponse",
+      "path": "/shapes/com.cloudflare.email_routing#PutRuleCatchAllResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#PutRuleCatchAll/output/target",
+      "value": "com.cloudflare.email_routing#PutRuleCatchAllResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#PutRuleCatchAll/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_routing#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.email_routing#DestinationNotVerified"
+        },
+        {
+          "target": "com.cloudflare.email_routing#WorkerScriptNotFound"
+        }
+      ]
+    }
+  ]
+}

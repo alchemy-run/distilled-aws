@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ThreatEventsCategoriesEdit with distilled cloudflare/cloudforce-one patchThreatEventCategory",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsCategoriesEdit",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchThreatEventCategory"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsCategoriesEditRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchThreatEventCategoryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchThreatEventCategory/input/target",
+      "value": "com.cloudflare.cloudforce_one#PatchThreatEventCategoryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsCategoriesEditResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchThreatEventCategoryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#PatchThreatEventCategory/output/target",
+      "value": "com.cloudflare.cloudforce_one#PatchThreatEventCategoryResponse"
+    }
+  ]
+}

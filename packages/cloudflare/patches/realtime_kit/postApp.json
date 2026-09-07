@@ -1,0 +1,39 @@
+{
+  "description": "Align realtime_kit#AppsPost with distilled cloudflare/realtime-kit postApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#AppsPost",
+      "path": "/shapes/com.cloudflare.realtime_kit#PostApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#AppsPostRequest",
+      "path": "/shapes/com.cloudflare.realtime_kit#PostAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PostApp/input/target",
+      "value": "com.cloudflare.realtime_kit#PostAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.realtime_kit#AppsPostResponse",
+      "path": "/shapes/com.cloudflare.realtime_kit#PostAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.realtime_kit#PostApp/output/target",
+      "value": "com.cloudflare.realtime_kit#PostAppResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.realtime_kit#PostApp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.realtime_kit#Forbidden"
+        }
+      ]
+    }
+  ]
+}

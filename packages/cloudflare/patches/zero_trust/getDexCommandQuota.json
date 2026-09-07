@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DexCommandsQuotaGet with distilled cloudflare/zero-trust getDexCommandQuota",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexCommandsQuotaGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexCommandQuota"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexCommandsQuotaGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexCommandQuotaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexCommandQuota/input/target",
+      "value": "com.cloudflare.zero_trust#GetDexCommandQuotaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexCommandsQuotaGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexCommandQuotaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetDexCommandQuota/output/target",
+      "value": "com.cloudflare.zero_trust#GetDexCommandQuotaResponse"
+    }
+  ]
+}

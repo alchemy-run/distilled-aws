@@ -1,0 +1,45 @@
+{
+  "description": "Align addressing#AddressMapsEdit with distilled cloudflare/addressing patchAddressMap",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsEdit",
+      "path": "/shapes/com.cloudflare.addressing#PatchAddressMap"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsEditRequest",
+      "path": "/shapes/com.cloudflare.addressing#PatchAddressMapRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#PatchAddressMap/input/target",
+      "value": "com.cloudflare.addressing#PatchAddressMapRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.addressing#AddressMapsEditResponse",
+      "path": "/shapes/com.cloudflare.addressing#PatchAddressMapResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.addressing#PatchAddressMap/output/target",
+      "value": "com.cloudflare.addressing#PatchAddressMapResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.addressing#PatchAddressMap/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.addressing#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.addressing#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.addressing#InvalidAccountId"
+        }
+      ]
+    }
+  ]
+}

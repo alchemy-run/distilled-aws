@@ -1,0 +1,30 @@
+{
+  "description": "Align custom_csrs#GetForZone with distilled cloudflare/custom-csrs getCustomCsrForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#GetForZone",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#GetForZoneRequest",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForZone/input/target",
+      "value": "com.cloudflare.custom_csrs#GetCustomCsrForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.custom_csrs#GetForZoneResponse",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.custom_csrs#GetCustomCsrForZone/output/target",
+      "value": "com.cloudflare.custom_csrs#GetCustomCsrForZoneResponse"
+    }
+  ]
+}

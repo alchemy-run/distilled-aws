@@ -1,0 +1,39 @@
+{
+  "description": "Align accounts#TokensPermissionGroupsGet with distilled cloudflare/accounts getTokenPermissionGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensPermissionGroupsGet",
+      "path": "/shapes/com.cloudflare.accounts#GetTokenPermissionGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensPermissionGroupsGetRequest",
+      "path": "/shapes/com.cloudflare.accounts#GetTokenPermissionGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetTokenPermissionGroup/input/target",
+      "value": "com.cloudflare.accounts#GetTokenPermissionGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensPermissionGroupsGetResponse",
+      "path": "/shapes/com.cloudflare.accounts#GetTokenPermissionGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#GetTokenPermissionGroup/output/target",
+      "value": "com.cloudflare.accounts#GetTokenPermissionGroupResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#GetTokenPermissionGroup/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

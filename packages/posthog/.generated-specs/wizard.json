@@ -1,0 +1,617 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.wizard#WizardSessionsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "skill_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "skill_id",
+            "smithy.api#documentation": "Filter to a single skill within the workflow (e.g. 'nextjs')."
+          }
+        },
+        "workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "workflow_id",
+            "smithy.api#documentation": "Filter to a single workflow (e.g. 'onboarding')."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.wizard#PaginatedWizardSessionDTOList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.wizard#PaginatedWizardSessionDTOListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.wizard#WizardSessionDTO": {
+      "type": "structure",
+      "members": {
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "team_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "skill_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "run_phase": {
+          "target": "com.posthog.wizard#RunPhaseEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tasks": {
+          "target": "com.posthog.wizard#WizardSessionDTOTasksList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "event_plan": {
+          "target": "com.posthog.wizard#WizardSessionDTOEventPlanMap",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "error": {
+          "target": "com.posthog.wizard#WizardSessionDTOErrorMap",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_stale": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Output: serialises a WizardSessionDTO returned by the facade."
+      }
+    },
+    "com.posthog.wizard#RunPhaseEnum": {
+      "type": "enum",
+      "members": {
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "idle"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `idle` - IDLE\n* `running` - RUNNING\n* `completed` - COMPLETED\n* `error` - ERROR"
+      }
+    },
+    "com.posthog.wizard#WizardTaskDTO": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.wizard#WizardTaskDTOStatusEnum",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.wizard#WizardTaskDTOStatusEnum": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_progress"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `pending` - PENDING\n* `in_progress` - IN_PROGRESS\n* `completed` - COMPLETED\n* `failed` - FAILED\n* `canceled` - CANCELED"
+      }
+    },
+    "com.posthog.wizard#WizardSessionDTOTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.wizard#WizardTaskDTO"
+      },
+      "traits": {}
+    },
+    "com.posthog.wizard#WizardSessionDTOEventPlanMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.wizard#WizardSessionDTOErrorMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.wizard#PaginatedWizardSessionDTOListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.wizard#WizardSessionDTO"
+      },
+      "traits": {}
+    },
+    "com.posthog.wizard#WizardSessionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.wizard#WizardSessionsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.wizard#PaginatedWizardSessionDTOList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/wizard/sessions/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List wizard sessions for the project, ordered by started_at desc. This should only be called by the PostHog Wizard. Optional filters: ?workflow_id=<id> and ?skill_id=<id>."
+      }
+    },
+    "com.posthog.wizard#WizardSessionsCreateRequestTasksList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.wizard#WizardTaskDTO"
+      },
+      "traits": {}
+    },
+    "com.posthog.wizard#WizardSessionsCreateRequestEventPlanMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional structured plan of events the wizard intends to instrument. Schema is workflow-specific."
+      }
+    },
+    "com.posthog.wizard#WizardSessionsCreateRequestErrorMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Populated when run_phase='error'. Shape: { type: string, message: string }."
+      }
+    },
+    "com.posthog.wizard#WizardSessionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable identifier the wizard mints for this run (format: '{workflow_id}-{skill_id}-{started_at_iso}'). Reposting with the same session_id upserts the existing row.",
+            "smithy.api#required": {}
+          }
+        },
+        "workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "High-level workflow being run, e.g. 'onboarding', 'migration', 'audit'.",
+            "smithy.api#required": {}
+          }
+        },
+        "skill_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specific skill within the workflow, e.g. 'nextjs', 'django', 'laravel'.",
+            "smithy.api#required": {}
+          }
+        },
+        "started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UTC timestamp when the wizard started this run. Matches the timestamp encoded in session_id.",
+            "smithy.api#required": {}
+          }
+        },
+        "run_phase": {
+          "target": "com.posthog.wizard#RunPhaseEnum",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle stage of the wizard run.\n\n* `idle` - IDLE\n* `running` - RUNNING\n* `completed` - COMPLETED\n* `error` - ERROR",
+            "smithy.api#required": {}
+          }
+        },
+        "tasks": {
+          "target": "com.posthog.wizard#WizardSessionsCreateRequestTasksList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "event_plan": {
+          "target": "com.posthog.wizard#WizardSessionsCreateRequestEventPlanMap",
+          "traits": {
+            "smithy.api#documentation": "Optional structured plan of events the wizard intends to instrument. Schema is workflow-specific.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "error": {
+          "target": "com.posthog.wizard#WizardSessionsCreateRequestErrorMap",
+          "traits": {
+            "smithy.api#documentation": "Populated when run_phase='error'. Shape: { type: string, message: string }.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.wizard#WizardSessionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.wizard#WizardSessionsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.wizard#WizardSessionDTO"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/wizard/sessions/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Upsert a wizard session. The `session_id` key is the idempotency anchor — reposting the same `session_id` replaces the existing row. Returns 201 on create, 200 on update."
+      }
+    },
+    "com.posthog.wizard#WizardSessionsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.wizard#WizardSessionsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.wizard#WizardSessionsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.wizard#WizardSessionDTO"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.wizard#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/wizard/sessions/{session_id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Retrieve a single wizard session by its session_id."
+      }
+    },
+    "com.posthog.wizard#WizardSessionsLatestRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "skill_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "skill_id",
+            "smithy.api#documentation": "Filter to a single skill within the workflow (e.g. 'nextjs')."
+          }
+        },
+        "workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "workflow_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Filter to a single workflow (e.g. 'posthog-integration')."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.wizard#WizardSessionsLatestRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.wizard#WizardSessionsLatestRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.wizard#WizardSessionDTO"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/wizard/sessions/latest/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Return the single most-recent wizard session for a workflow (and optional skill), or 204 if none exists. Unlike `list`, this is a point lookup the app shell uses to decide whether to open the live SSE stream — it never returns a collection, and 'no run' is a 204 rather than a 404 so clients don't conflate it with a missing endpoint."
+      }
+    },
+    "com.posthog.wizard#WizardSessionsStreamRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "skill_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "skill_id"
+          }
+        },
+        "workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "workflow_id",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.wizard#WizardSessionsStreamRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.wizard#WizardSessionsStreamRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/wizard/sessions/stream/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Server-Sent Events stream of wizard session updates for a (workflow_id, skill_id) pair. On connect, the current latest session (if any) is emitted as the first event; subsequent upserts are streamed in real time. The server closes the connection after 900 seconds with an `event: end` line so the client (EventSource) can reconnect.\n\n**SDK consumers**: do not call the generated fetch wrapper for this path — it will buffer the entire infinite stream. Use the URL builder (`getWizardSessionsStreamRetrieveUrl`) with the browser's `EventSource` API instead."
+      }
+    },
+    "com.posthog.wizard#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.wizard#Wizard": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.wizard#WizardSessionsList"
+        },
+        {
+          "target": "com.posthog.wizard#WizardSessionsCreate"
+        },
+        {
+          "target": "com.posthog.wizard#WizardSessionsRetrieve"
+        },
+        {
+          "target": "com.posthog.wizard#WizardSessionsLatestRetrieve"
+        },
+        {
+          "target": "com.posthog.wizard#WizardSessionsStreamRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

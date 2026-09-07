@@ -1,0 +1,1909 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.resourceconnector#AppliancesGetUpgradeGraph": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesGetUpgradeGraphRequest"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#UpgradeGraph"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector/appliances/{resourceName}/upgradeGraphs/{upgradeGraph}",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Gets an Appliance upgrade graph.\n\nGets the upgrade graph of an Appliance with a specified resource group and name and specific release train.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#UpgradeGraph": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The appliance resource path"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The release train name."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourceconnector#UpgradeGraphProperties",
+          "traits": {
+            "smithy.api#documentation": "The properties of supported version"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Upgrade Graph for appliance."
+      }
+    },
+    "com.azure.resourceconnector#UpgradeGraphProperties": {
+      "type": "structure",
+      "members": {
+        "applianceVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current appliance version"
+          }
+        },
+        "supportedVersions": {
+          "target": "com.azure.resourceconnector#UpgradeGraphPropertiesSupportedVersionsList",
+          "traits": {
+            "smithy.api#documentation": "This contains the current version and supported upgrade versions."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Upgrade Graph Properties for appliance."
+      }
+    },
+    "com.azure.resourceconnector#UpgradeGraphPropertiesSupportedVersionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourceconnector#SupportedVersion"
+      },
+      "traits": {
+        "smithy.api#documentation": "This contains the current version and supported upgrade versions."
+      }
+    },
+    "com.azure.resourceconnector#SupportedVersion": {
+      "type": "structure",
+      "members": {
+        "metadata": {
+          "target": "com.azure.resourceconnector#SupportedVersionMetadata",
+          "traits": {
+            "smithy.api#documentation": "This is the metadata of the supported newer version."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The newer version available for upgrade."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SupportedVersion object for appliance."
+      }
+    },
+    "com.azure.resourceconnector#SupportedVersionMetadata": {
+      "type": "structure",
+      "members": {
+        "catalogVersion": {
+          "target": "com.azure.resourceconnector#SupportedVersionCatalogVersion",
+          "traits": {
+            "smithy.api#documentation": "The newer supported version catalog version."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SupportedVersionMetadata object for appliance."
+      }
+    },
+    "com.azure.resourceconnector#SupportedVersionCatalogVersion": {
+      "type": "structure",
+      "members": {
+        "data": {
+          "target": "com.azure.resourceconnector#SupportedVersionCatalogVersionData",
+          "traits": {
+            "smithy.api#documentation": "The newer supported version catalog version data."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The catalog version name for the version available for upgrade."
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The catalog version namespace for the version available for upgrade."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SupportedVersionCatalogVersion object for appliance."
+      }
+    },
+    "com.azure.resourceconnector#SupportedVersionCatalogVersionData": {
+      "type": "structure",
+      "members": {
+        "audience": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image audience name for the version available for upgrade."
+          }
+        },
+        "catalog": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image catalog name for the version available for upgrade."
+          }
+        },
+        "offer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image offer name for the version available for upgrade."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The image version for the version available for upgrade."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SupportedVersionCatalogVersionData object for appliance."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesGetUpgradeGraphRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Appliances name."
+          }
+        },
+        "upgradeGraph": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Upgrade graph version, ex - stable"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesListKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesListKeysRequest"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#ApplianceListKeysResults"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector/appliances/{resourceName}/listkeys",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Gets the management config.\n\nReturns the cluster customer credentials for the dedicated appliance.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#ApplianceListKeysResults": {
+      "type": "structure",
+      "members": {
+        "artifactProfiles": {
+          "target": "com.azure.resourceconnector#ApplianceListKeysResultsArtifactProfilesMap",
+          "traits": {
+            "smithy.api#documentation": "Map of artifacts that contains a list of ArtifactProfile used to upload artifacts such as logs."
+          }
+        },
+        "kubeconfigs": {
+          "target": "com.azure.resourceconnector#ApplianceListKeysResultsKubeconfigsList",
+          "traits": {
+            "smithy.api#documentation": "The list of appliance kubeconfigs."
+          }
+        },
+        "sshKeys": {
+          "target": "com.azure.resourceconnector#ApplianceListKeysResultsSshKeysMap",
+          "traits": {
+            "smithy.api#documentation": "Map of Customer User Public, Private SSH Keys and Certificate when available."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The List Cluster Keys Results appliance."
+      }
+    },
+    "com.azure.resourceconnector#ApplianceListKeysResultsSshKeysMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.resourceconnector#SSHKey"
+      },
+      "traits": {
+        "smithy.api#documentation": "Map of Customer User Public, Private SSH Keys and Certificate when available."
+      }
+    },
+    "com.azure.resourceconnector#SSHKey": {
+      "type": "structure",
+      "members": {
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificate associated with the public key if the key is signed."
+          }
+        },
+        "creationTimeStamp": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Certificate creation timestamp (Unix)."
+          }
+        },
+        "expirationTimeStamp": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Certificate expiration timestamp (Unix)."
+          }
+        },
+        "privateKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private Key.",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "publicKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Public Key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Appliance SSHKey definition."
+      }
+    },
+    "com.azure.resourceconnector#ApplianceListKeysResultsKubeconfigsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourceconnector#ApplianceCredentialKubeconfig"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of appliance kubeconfigs."
+      }
+    },
+    "com.azure.resourceconnector#ApplianceCredentialKubeconfig": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.resourceconnector#AccessProfileType",
+          "traits": {
+            "smithy.api#documentation": "Name which contains the role of the kubeconfig."
+          }
+        },
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contains the kubeconfig value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cluster User Credential appliance."
+      }
+    },
+    "com.azure.resourceconnector#AccessProfileType": {
+      "type": "enum",
+      "members": {
+        "CLUSTERUSER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterUser"
+          }
+        },
+        "CLUSTERCUSTOMERUSER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clusterCustomerUser"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name which contains the role of the kubeconfig."
+      }
+    },
+    "com.azure.resourceconnector#ApplianceListKeysResultsArtifactProfilesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.resourceconnector#ArtifactProfile"
+      },
+      "traits": {
+        "smithy.api#documentation": "Map of artifacts that contains a list of ArtifactProfile used to upload artifacts such as logs."
+      }
+    },
+    "com.azure.resourceconnector#ArtifactProfile": {
+      "type": "structure",
+      "members": {
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Endpoint is the URL to upload artifacts to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Appliance ArtifactProfile definition."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesListKeysRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Appliances name."
+          }
+        },
+        "artifactType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "artifactType",
+            "smithy.api#documentation": "This sets the type of artifact being returned, when empty no artifact endpoint is returned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesListClusterUserCredential": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesListClusterUserCredentialRequest"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#ApplianceListCredentialResults"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector/appliances/{resourceName}/listClusterUserCredential",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Returns the cluster user credential.\n\nReturns the cluster user credentials for the dedicated appliance.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#ApplianceListCredentialResults": {
+      "type": "structure",
+      "members": {
+        "hybridConnectionConfig": {
+          "target": "com.azure.resourceconnector#HybridConnectionConfig",
+          "traits": {
+            "smithy.api#documentation": "Contains the REP (rendezvous endpoint) and “Listener” access token from notification service (NS)."
+          }
+        },
+        "kubeconfigs": {
+          "target": "com.azure.resourceconnector#ApplianceListCredentialResultsKubeconfigsList",
+          "traits": {
+            "smithy.api#documentation": "The list of appliance kubeconfigs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The List Cluster User Credential appliance."
+      }
+    },
+    "com.azure.resourceconnector#ApplianceListCredentialResultsKubeconfigsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourceconnector#ApplianceCredentialKubeconfig"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of appliance kubeconfigs."
+      }
+    },
+    "com.azure.resourceconnector#HybridConnectionConfig": {
+      "type": "structure",
+      "members": {
+        "expirationTime": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when this token will be expired."
+          }
+        },
+        "hybridConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the connection"
+          }
+        },
+        "relay": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the notification service."
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Listener access token"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains the REP (rendezvous endpoint) and “Listener” access token from notification service (NS)."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesListClusterUserCredentialRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Appliances name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector/appliances/{resourceName}",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Deletes an Appliance.\n\nDeletes an Appliance with the specified Resource Name, Resource Group, and Subscription Id.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#AppliancesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Appliances name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#AppliancesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector/appliances/{resourceName}",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Updates an Appliance.\n\nUpdates an Appliance with the specified Resource Name in the specified Resource Group and Subscription.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#AppliancesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourceconnector#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourceconnector#AppliancesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourceconnector#ApplianceProperties",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to an Appliance"
+          }
+        },
+        "identity": {
+          "target": "com.azure.resourceconnector#Identity",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourceconnector#Identity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of resource identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of resource."
+          }
+        },
+        "type": {
+          "target": "com.azure.resourceconnector#ResourceIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The identity type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the resource."
+      }
+    },
+    "com.azure.resourceconnector#ResourceIdentityType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The identity type."
+      }
+    },
+    "com.azure.resourceconnector#ApplianceProperties": {
+      "type": "structure",
+      "members": {
+        "distro": {
+          "target": "com.azure.resourceconnector#AppliancePropertiesDistro",
+          "traits": {
+            "smithy.api#documentation": "Represents a supported Fabric/Infra. (AKSEdge etc...)."
+          }
+        },
+        "infrastructureConfig": {
+          "target": "com.azure.resourceconnector#AppliancePropertiesInfrastructureConfig",
+          "traits": {
+            "smithy.api#documentation": "Contains infrastructure information about the Appliance"
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The current deployment or provisioning state, which only appears in the response."
+          }
+        },
+        "publicKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificates pair used to download MSI certificate from HIS. Can only be set once."
+          }
+        },
+        "status": {
+          "target": "com.azure.resourceconnector#Status",
+          "traits": {
+            "smithy.api#documentation": "Appliance’s health and state of connection to on-prem. This list of values is not exhaustive."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the Appliance"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for an appliance."
+      }
+    },
+    "com.azure.resourceconnector#Status": {
+      "type": "enum",
+      "members": {
+        "WAITINGFORHEARTBEAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WaitingForHeartbeat"
+          }
+        },
+        "VALIDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Validating"
+          }
+        },
+        "CONNECTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Connecting"
+          }
+        },
+        "CONNECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Connected"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Running"
+          }
+        },
+        "PREPARINGFORUPGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PreparingForUpgrade"
+          }
+        },
+        "ETCDSNAPSHOTFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ETCDSnapshotFailed"
+          }
+        },
+        "UPGRADEPREREQUISITESCOMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpgradePrerequisitesCompleted"
+          }
+        },
+        "VALIDATINGSFSCONNECTIVITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidatingSFSConnectivity"
+          }
+        },
+        "VALIDATINGIMAGEDOWNLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidatingImageDownload"
+          }
+        },
+        "VALIDATINGIMAGEUPLOAD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidatingImageUpload"
+          }
+        },
+        "VALIDATINGETCDHEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidatingETCDHealth"
+          }
+        },
+        "PREUPGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PreUpgrade"
+          }
+        },
+        "UPGRADINGKVAIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpgradingKVAIO"
+          }
+        },
+        "WAITINGFORKVAIO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WaitingForKVAIO"
+          }
+        },
+        "IMAGEPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ImagePending"
+          }
+        },
+        "IMAGEPROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ImageProvisioning"
+          }
+        },
+        "IMAGEPROVISIONED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ImageProvisioned"
+          }
+        },
+        "IMAGEDOWNLOADING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ImageDownloading"
+          }
+        },
+        "IMAGEDOWNLOADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ImageDownloaded"
+          }
+        },
+        "IMAGEDEPROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ImageDeprovisioning"
+          }
+        },
+        "IMAGEUNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ImageUnknown"
+          }
+        },
+        "UPDATINGCLOUDOPERATOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpdatingCloudOperator"
+          }
+        },
+        "WAITINGFORCLOUDOPERATOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WaitingForCloudOperator"
+          }
+        },
+        "UPDATINGCAPI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpdatingCAPI"
+          }
+        },
+        "UPDATINGCLUSTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpdatingCluster"
+          }
+        },
+        "POSTUPGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PostUpgrade"
+          }
+        },
+        "UPGRADECOMPLETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpgradeComplete"
+          }
+        },
+        "UPGRADECLUSTEREXTENSIONFAILEDTODELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpgradeClusterExtensionFailedToDelete"
+          }
+        },
+        "UPGRADEFAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UpgradeFailed"
+          }
+        },
+        "OFFLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Offline"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Appliance’s health and state of connection to on-prem. This list of values is not exhaustive."
+      }
+    },
+    "com.azure.resourceconnector#AppliancePropertiesInfrastructureConfig": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "com.azure.resourceconnector#Provider",
+          "traits": {
+            "smithy.api#documentation": "Information about the connected appliance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contains infrastructure information about the Appliance"
+      }
+    },
+    "com.azure.resourceconnector#Provider": {
+      "type": "enum",
+      "members": {
+        "VMWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VMWare"
+          }
+        },
+        "HCI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HCI"
+          }
+        },
+        "SCVMM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCVMM"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about the connected appliance."
+      }
+    },
+    "com.azure.resourceconnector#AppliancePropertiesDistro": {
+      "type": "enum",
+      "members": {
+        "AKSEDGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AKSEdge"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a supported Fabric/Infra. (AKSEdge etc...)."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourceconnector#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.resourceconnector#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.resourceconnector#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.resourceconnector#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.resourceconnector#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Appliances name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourceconnector#AppliancesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.resourceconnector#AppliancesCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#AppliancesCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector/appliances/{resourceName}",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Creates or updates an Appliance.\n\nCreates or updates an Appliance in the specified Subscription and Resource Group.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#AppliancesCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourceconnector#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourceconnector#AppliancesCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourceconnector#ApplianceProperties",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to an Appliance"
+          }
+        },
+        "identity": {
+          "target": "com.azure.resourceconnector#Identity",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Appliances name."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourceconnector#AppliancesCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourceconnector#AppliancePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to an Appliance"
+          }
+        },
+        "identity": {
+          "target": "com.azure.resourceconnector#IdentityInput",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#IdentityInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.resourceconnector#ResourceIdentityType",
+          "traits": {
+            "smithy.api#documentation": "The identity type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identity for the resource."
+      }
+    },
+    "com.azure.resourceconnector#AppliancePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "distro": {
+          "target": "com.azure.resourceconnector#AppliancePropertiesInputDistro",
+          "traits": {
+            "smithy.api#documentation": "Represents a supported Fabric/Infra. (AKSEdge etc...)."
+          }
+        },
+        "infrastructureConfig": {
+          "target": "com.azure.resourceconnector#AppliancePropertiesInfrastructureConfig",
+          "traits": {
+            "smithy.api#documentation": "Contains infrastructure information about the Appliance"
+          }
+        },
+        "publicKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Certificates pair used to download MSI certificate from HIS. Can only be set once."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the Appliance"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties for an appliance."
+      }
+    },
+    "com.azure.resourceconnector#AppliancePropertiesInputDistro": {
+      "type": "enum",
+      "members": {
+        "AKSEDGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AKSEdge"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a supported Fabric/Infra. (AKSEdge etc...)."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#AppliancesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector/appliances/{resourceName}",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Gets an Appliance.\n\nGets the details of an Appliance with a specified resource group and name.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#AppliancesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourceconnector#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourceconnector#AppliancesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourceconnector#ApplianceProperties",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to an Appliance"
+          }
+        },
+        "identity": {
+          "target": "com.azure.resourceconnector#Identity",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Appliances name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#ApplianceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceConnector/appliances",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Gets a list of Appliances in the specified subscription and resource group.\n\nGets a list of Appliances in the specified subscription and resource group. The operation returns properties of each Appliance.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#ApplianceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourceconnector#ApplianceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Appliance items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of Appliance items"
+      }
+    },
+    "com.azure.resourceconnector#ApplianceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourceconnector#Appliance"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Appliance items on this page"
+      }
+    },
+    "com.azure.resourceconnector#Appliance": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourceconnector#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourceconnector#ApplianceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourceconnector#ApplianceProperties",
+          "traits": {
+            "smithy.api#documentation": "The set of properties specific to an Appliance"
+          }
+        },
+        "identity": {
+          "target": "com.azure.resourceconnector#Identity",
+          "traits": {
+            "smithy.api#documentation": "Identity for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Appliances definition."
+      }
+    },
+    "com.azure.resourceconnector#ApplianceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesGetTelemetryConfig": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesGetTelemetryConfigRequest"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#ApplianceGetTelemetryConfigResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceConnector/telemetryconfig",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Gets the telemetry config.\n\nGets the telemetry config.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#ApplianceGetTelemetryConfigResult": {
+      "type": "structure",
+      "members": {
+        "telemetryInstrumentationKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Telemetry instrumentation key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Get Telemetry Config Result appliance."
+      }
+    },
+    "com.azure.resourceconnector#AppliancesGetTelemetryConfigRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourceconnector#AppliancesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#ApplianceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceConnector/appliances",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Gets a list of Appliances in a subscription.\n\nGets a list of Appliances in the specified subscription. The operation returns properties of each Appliance",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#AppliancesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourceconnector#AppliancesListOperations": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.resourceconnector#ApplianceOperationsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceConnector/operations",
+          "code": 200,
+          "apiVersion": "2022-10-27"
+        },
+        "smithy.api#documentation": "Lists all available Appliances operations.",
+        "com.distilled.openapi#apiVersion": "2022-10-27"
+      }
+    },
+    "com.azure.resourceconnector#ApplianceOperationsList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourceconnector#ApplianceOperationsListValueList",
+          "traits": {
+            "smithy.api#documentation": "The ApplianceOperation items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of ApplianceOperation items"
+      }
+    },
+    "com.azure.resourceconnector#ApplianceOperationsListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourceconnector#ApplianceOperation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The ApplianceOperation items on this page"
+      }
+    },
+    "com.azure.resourceconnector#ApplianceOperation": {
+      "type": "structure",
+      "members": {
+        "display": {
+          "target": "com.azure.resourceconnector#ApplianceOperationValueDisplay",
+          "traits": {
+            "smithy.api#documentation": "Describes the properties of an Appliances Operation Value Display."
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is this Operation a data plane operation"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the compute operation."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The origin of the compute operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Appliances operation."
+      }
+    },
+    "com.azure.resourceconnector#ApplianceOperationValueDisplay": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the operation."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the compute operation."
+          }
+        },
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource provider for the operation."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the resource the operation applies to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of an Appliances Operation Value Display."
+      }
+    },
+    "com.azure.resourceconnector#Resourceconnector": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.resourceconnector#AppliancesGetUpgradeGraph"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesListKeys"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesListClusterUserCredential"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesDelete"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesUpdate"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesGet"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesGetTelemetryConfig"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesListBySubscription"
+        },
+        {
+          "target": "com.azure.resourceconnector#AppliancesListOperations"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Resourceconnector",
+        "smithy.api#documentation": "Azure Resourceconnector API — merged from the resourceconnector resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "description": "Align workers#BetaWorkersVersionsList with distilled cloudflare/workers listBetaWorkerVersions",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersVersionsList",
+      "path": "/shapes/com.cloudflare.workers#ListBetaWorkerVersions"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersVersionsListRequest",
+      "path": "/shapes/com.cloudflare.workers#ListBetaWorkerVersionsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListBetaWorkerVersions/input/target",
+      "value": "com.cloudflare.workers#ListBetaWorkerVersionsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#BetaWorkersVersionsListResponse",
+      "path": "/shapes/com.cloudflare.workers#ListBetaWorkerVersionsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListBetaWorkerVersions/output/target",
+      "value": "com.cloudflare.workers#ListBetaWorkerVersionsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListBetaWorkerVersions/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListBetaWorkerVersions/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        }
+      ]
+    }
+  ]
+}

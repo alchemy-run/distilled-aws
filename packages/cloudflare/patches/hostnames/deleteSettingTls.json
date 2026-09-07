@@ -1,0 +1,45 @@
+{
+  "description": "Align hostnames#SettingsTlsDelete with distilled cloudflare/hostnames deleteSettingTls",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hostnames#SettingsTlsDelete",
+      "path": "/shapes/com.cloudflare.hostnames#DeleteSettingTls"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hostnames#SettingsTlsDeleteRequest",
+      "path": "/shapes/com.cloudflare.hostnames#DeleteSettingTlsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hostnames#DeleteSettingTls/input/target",
+      "value": "com.cloudflare.hostnames#DeleteSettingTlsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.hostnames#SettingsTlsDeleteResponse",
+      "path": "/shapes/com.cloudflare.hostnames#DeleteSettingTlsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.hostnames#DeleteSettingTls/output/target",
+      "value": "com.cloudflare.hostnames#DeleteSettingTlsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.hostnames#DeleteSettingTls/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.hostnames#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.hostnames#HostnameTlsSettingNotFound"
+        },
+        {
+          "target": "com.cloudflare.hostnames#Forbidden"
+        }
+      ]
+    }
+  ]
+}

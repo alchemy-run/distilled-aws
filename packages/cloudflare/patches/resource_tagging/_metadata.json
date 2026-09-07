@@ -1,0 +1,17 @@
+{
+  "description": "Key dictionary / op aliases for resource_tagging (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "accessApplicationId": "access_application_id",
+        "resourceId": "resource_id",
+        "resourceType": "resource_type",
+        "resultInfo": "result_info",
+        "workerId": "worker_id",
+        "zoneId": "zone_id"
+      }
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecuritySummaryDkim with distilled cloudflare/radar dkimEmailSecuritySummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryDkim",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailSecuritySummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryDkimRequest",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailSecuritySummary/input/target",
+      "value": "com.cloudflare.radar#DkimEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummaryDkimResponse",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailSecuritySummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#DkimEmailSecuritySummary/output/target",
+      "value": "com.cloudflare.radar#DkimEmailSecuritySummaryResponse"
+    }
+  ]
+}

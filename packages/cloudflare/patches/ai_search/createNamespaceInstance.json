@@ -1,0 +1,63 @@
+{
+  "description": "Align ai_search#NamespacesInstancesCreate with distilled cloudflare/aisearch createNamespaceInstance",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesCreate",
+      "path": "/shapes/com.cloudflare.ai_search#CreateNamespaceInstance"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesCreateRequest",
+      "path": "/shapes/com.cloudflare.ai_search#CreateNamespaceInstanceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#CreateNamespaceInstance/input/target",
+      "value": "com.cloudflare.ai_search#CreateNamespaceInstanceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#NamespacesInstancesCreateResponse",
+      "path": "/shapes/com.cloudflare.ai_search#CreateNamespaceInstanceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#CreateNamespaceInstance/output/target",
+      "value": "com.cloudflare.ai_search#CreateNamespaceInstanceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#CreateNamespaceInstance/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_search#ValidationError"
+        },
+        {
+          "target": "com.cloudflare.ai_search#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.ai_search#AiSearchInstanceNotFound"
+        },
+        {
+          "target": "com.cloudflare.ai_search#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.ai_search#InstanceAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.ai_search#InvalidTokenCredentials"
+        },
+        {
+          "target": "com.cloudflare.ai_search#WebCrawlerDomainNotOwned"
+        },
+        {
+          "target": "com.cloudflare.ai_search#MissingSitemap"
+        },
+        {
+          "target": "com.cloudflare.ai_search#Forbidden"
+        }
+      ]
+    }
+  ]
+}

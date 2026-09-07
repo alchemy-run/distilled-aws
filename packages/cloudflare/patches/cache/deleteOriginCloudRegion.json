@@ -1,0 +1,42 @@
+{
+  "description": "Align cache#OriginCloudRegionsDelete with distilled cloudflare/cache deleteOriginCloudRegion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsDelete",
+      "path": "/shapes/com.cloudflare.cache#DeleteOriginCloudRegion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsDeleteRequest",
+      "path": "/shapes/com.cloudflare.cache#DeleteOriginCloudRegionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#DeleteOriginCloudRegion/input/target",
+      "value": "com.cloudflare.cache#DeleteOriginCloudRegionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#OriginCloudRegionsDeleteResponse",
+      "path": "/shapes/com.cloudflare.cache#DeleteOriginCloudRegionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#DeleteOriginCloudRegion/output/target",
+      "value": "com.cloudflare.cache#DeleteOriginCloudRegionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#DeleteOriginCloudRegion/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cache#OriginCloudRegionNotFound"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    }
+  ]
+}

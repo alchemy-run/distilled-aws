@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#ObservabilityTelemetryQuery with distilled cloudflare/workers queryObservabilityTelemetry",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryQuery",
+      "path": "/shapes/com.cloudflare.workers#QueryObservabilityTelemetry"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryQueryRequest",
+      "path": "/shapes/com.cloudflare.workers#QueryObservabilityTelemetryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#QueryObservabilityTelemetry/input/target",
+      "value": "com.cloudflare.workers#QueryObservabilityTelemetryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityTelemetryQueryResponse",
+      "path": "/shapes/com.cloudflare.workers#QueryObservabilityTelemetryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#QueryObservabilityTelemetry/output/target",
+      "value": "com.cloudflare.workers#QueryObservabilityTelemetryResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#QueryObservabilityTelemetry/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

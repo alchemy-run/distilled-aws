@@ -1,0 +1,4379 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.hardwaresecuritymodules#DedicatedHsmListOutboundNetworkDependenciesEndpoints": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#OutboundEnvironmentEndpointCollection"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}/outboundNetworkDependenciesEndpoints",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Gets a list of egress endpoints (network endpoints of all outbound dependencies) in the specified dedicated hsm resource. The operation returns properties of each egress endpoint.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OutboundEnvironmentEndpointCollection": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hardwaresecuritymodules#OutboundEnvironmentEndpointCollectionValueList",
+          "traits": {
+            "smithy.api#documentation": "The OutboundEnvironmentEndpoint items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Collection of OutboundEnvironmentEndpoint"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OutboundEnvironmentEndpointCollectionValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#OutboundEnvironmentEndpoint"
+      },
+      "traits": {
+        "smithy.api#documentation": "The OutboundEnvironmentEndpoint items on this page"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OutboundEnvironmentEndpoint": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The category of endpoints accessed by the dedicated hsm service, e.g. azure-resource-management, apiserver, etc."
+          }
+        },
+        "endpoints": {
+          "target": "com.azure.hardwaresecuritymodules#OutboundEnvironmentEndpointEndpointsList",
+          "traits": {
+            "smithy.api#documentation": "The endpoints that dedicated hsm service connects to"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Egress endpoints which dedicated hsm service connects to for common purpose."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OutboundEnvironmentEndpointEndpointsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#EndpointDependency"
+      },
+      "traits": {
+        "smithy.api#documentation": "The endpoints that dedicated hsm service connects to"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#EndpointDependency": {
+      "type": "structure",
+      "members": {
+        "domainName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The domain name of the dependency."
+          }
+        },
+        "endpointDetails": {
+          "target": "com.azure.hardwaresecuritymodules#EndpointDependencyEndpointDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The Ports and Protocols used when connecting to domainName."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A domain name that dedicated hsm services are reaching at."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#EndpointDependencyEndpointDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#EndpointDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Ports and Protocols used when connecting to domainName."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#EndpointDetail": {
+      "type": "structure",
+      "members": {
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An IP Address that Domain Name currently resolves to."
+          }
+        },
+        "port": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The port an endpoint is connected to."
+          }
+        },
+        "protocol": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The protocol used for connection"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the detail"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Connect information from the dedicated hsm service to a single endpoint."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmListOutboundNetworkDependenciesEndpointsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the dedicated Hsm"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Deletes the specified Azure Dedicated HSM.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the dedicated Hsm"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Update a dedicated HSM in the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the dedicated HSM",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU details",
+            "smithy.api#required": {}
+          }
+        },
+        "zones": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponseZonesList",
+          "traits": {
+            "smithy.api#documentation": "The availability zones."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponseZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The availability zones."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.hardwaresecuritymodules#SkuName",
+          "traits": {
+            "smithy.api#documentation": "SKU of the dedicated HSM"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU of the dedicated HSM"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#SkuName": {
+      "type": "enum",
+      "members": {
+        "SAFENET_LUNA_NETWORK_HSM_A790": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SafeNet Luna Network HSM A790"
+          }
+        },
+        "PAYSHIELD10K_LMK1_CPS60": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "payShield10K_LMK1_CPS60"
+          }
+        },
+        "PAYSHIELD10K_LMK1_CPS250": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "payShield10K_LMK1_CPS250"
+          }
+        },
+        "PAYSHIELD10K_LMK1_CPS2500": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "payShield10K_LMK1_CPS2500"
+          }
+        },
+        "PAYSHIELD10K_LMK2_CPS60": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "payShield10K_LMK2_CPS60"
+          }
+        },
+        "PAYSHIELD10K_LMK2_CPS250": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "payShield10K_LMK2_CPS250"
+          }
+        },
+        "PAYSHIELD10K_LMK2_CPS2500": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "payShield10K_LMK2_CPS2500"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU of the dedicated HSM"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmProperties": {
+      "type": "structure",
+      "members": {
+        "networkProfile": {
+          "target": "com.azure.hardwaresecuritymodules#NetworkProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the network interfaces of the dedicated hsm."
+          }
+        },
+        "managementNetworkProfile": {
+          "target": "com.azure.hardwaresecuritymodules#NetworkProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the management network interfaces of the dedicated hsm."
+          }
+        },
+        "stampId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This field will be used when RP does not support Availability zones."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource Status Message."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.hardwaresecuritymodules#JsonWebKeyType",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the dedicated hsm"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#JsonWebKeyType": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "ALLOCATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Allocating"
+          }
+        },
+        "CONNECTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Connecting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CHECKINGQUOTA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CheckingQuota"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provisioning state."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#NetworkProfile": {
+      "type": "structure",
+      "members": {
+        "subnet": {
+          "target": "com.azure.hardwaresecuritymodules#ApiEntityReference",
+          "traits": {
+            "smithy.api#documentation": "Specifies the identifier of the subnet."
+          }
+        },
+        "networkInterfaces": {
+          "target": "com.azure.hardwaresecuritymodules#NetworkProfileNetworkInterfacesList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the list of resource Ids for the network interfaces associated with the dedicated HSM."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The network profile definition."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#NetworkProfileNetworkInterfacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#NetworkInterface"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the list of resource Ids for the network interfaces associated with the dedicated HSM."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#NetworkInterface": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure resource id in the form of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/..."
+          }
+        },
+        "privateIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private Ip address of the interface"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The network interface definition."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#ApiEntityReference": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure resource id in the form of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/..."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The API entity reference."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.hardwaresecuritymodules#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.hardwaresecuritymodules#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the dedicated Hsm"
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Create or Update a dedicated HSM in the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the dedicated HSM",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU details",
+            "smithy.api#required": {}
+          }
+        },
+        "zones": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateResponseZonesList",
+          "traits": {
+            "smithy.api#documentation": "The availability zones."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateResponseZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The availability zones."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the dedicated Hsm"
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the dedicated HSM",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU details",
+            "smithy.api#required": {}
+          }
+        },
+        "zones": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateRequestZonesList",
+          "traits": {
+            "smithy.api#documentation": "The availability zones."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateRequestZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The availability zones."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "networkProfile": {
+          "target": "com.azure.hardwaresecuritymodules#NetworkProfileInput",
+          "traits": {
+            "smithy.api#documentation": "Specifies the network interfaces of the dedicated hsm."
+          }
+        },
+        "managementNetworkProfile": {
+          "target": "com.azure.hardwaresecuritymodules#NetworkProfileInput",
+          "traits": {
+            "smithy.api#documentation": "Specifies the management network interfaces of the dedicated hsm."
+          }
+        },
+        "stampId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This field will be used when RP does not support Availability zones."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the dedicated hsm"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#NetworkProfileInput": {
+      "type": "structure",
+      "members": {
+        "subnet": {
+          "target": "com.azure.hardwaresecuritymodules#ApiEntityReference",
+          "traits": {
+            "smithy.api#documentation": "Specifies the identifier of the subnet."
+          }
+        },
+        "networkInterfaces": {
+          "target": "com.azure.hardwaresecuritymodules#NetworkProfileInputNetworkInterfacesList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the list of resource Ids for the network interfaces associated with the dedicated HSM."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The network profile definition."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#NetworkProfileInputNetworkInterfacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#NetworkInterfaceInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the list of resource Ids for the network interfaces associated with the dedicated HSM."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#NetworkInterfaceInput": {
+      "type": "structure",
+      "members": {
+        "privateIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Private Ip address of the interface"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The network interface definition."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs/{name}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Gets the specified Azure dedicated HSM.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the dedicated HSM",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU details",
+            "smithy.api#required": {}
+          }
+        },
+        "zones": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponseZonesList",
+          "traits": {
+            "smithy.api#documentation": "The availability zones."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponseZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The availability zones."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the dedicated Hsm"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "The List operation gets information about the dedicated HSMs associated with the subscription and within the specified resource group.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The DedicatedHsm items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a DedicatedHsm list operation."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsm"
+      },
+      "traits": {
+        "smithy.api#documentation": "The DedicatedHsm items on this page"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsm": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the dedicated HSM",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#Sku",
+          "traits": {
+            "smithy.api#documentation": "SKU details",
+            "smithy.api#required": {}
+          }
+        },
+        "zones": {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmZonesList",
+          "traits": {
+            "smithy.api#documentation": "The availability zones."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource information with extended details."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmZonesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The availability zones."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "Maximum number of results to return."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestoreProperties": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestorePropertiesRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#RestoreResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/validateRestoreProperties",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Queued validating pre restore operation",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#RestoreResult": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#BackupRestoreBaseResultProperties",
+          "traits": {
+            "smithy.api#documentation": "Backup and Restore operation common properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Restore operation properties"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupRestoreBaseResultProperties": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.hardwaresecuritymodules#BackupRestoreOperationStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the backup/restore operation"
+          }
+        },
+        "statusDetails": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status details of backup/restore operation"
+          }
+        },
+        "error": {
+          "target": "com.azure.hardwaresecuritymodules#BackupRestoreBaseResultPropertiesError",
+          "traits": {
+            "smithy.api#documentation": "The error detail."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the backup/restore operation in UTC"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the backup/restore operation in UTC",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the backup/restore operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Backup and Restore operation common properties"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupRestoreBaseResultPropertiesError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        },
+        "details": {
+          "target": "com.azure.hardwaresecuritymodules#BackupRestoreBaseResultPropertiesErrorDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.azure.hardwaresecuritymodules#BackupRestoreBaseResultPropertiesErrorAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error detail."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupRestoreBaseResultPropertiesErrorAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#ErrorAdditionalInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#ErrorAdditionalInfo": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The additional info type."
+          }
+        },
+        "info": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource management error additional info."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupRestoreBaseResultPropertiesErrorDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#ErrorDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#ErrorDetail": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        },
+        "details": {
+          "target": "com.azure.hardwaresecuritymodules#ErrorDetailDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.azure.hardwaresecuritymodules#ErrorDetailAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error detail."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#ErrorDetailAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#ErrorAdditionalInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#ErrorDetailDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#ErrorDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupRestoreOperationStatus": {
+      "type": "enum",
+      "members": {
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InProgress"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of the backup/restore operation"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestorePropertiesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "azureStorageBlobContainerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure blob storage container Uri which contains the backup",
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service."
+          }
+        },
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An autogenerated unique string ID for labeling the backup. It contains both a UUID and a date timestamp.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateBackupProperties": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateBackupPropertiesRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#BackupResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/validateBackupProperties",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Pre Backup operation to validate whether the customer can perform a backup on the Cloud HSM Cluster resource in the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupResult": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#BackupResultProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Cloud HSM Cluster"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Backup operation Result"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupResultProperties": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.hardwaresecuritymodules#BackupRestoreOperationStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the backup/restore operation"
+          }
+        },
+        "statusDetails": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The status details of backup/restore operation"
+          }
+        },
+        "error": {
+          "target": "com.azure.hardwaresecuritymodules#BackupResultPropertiesError",
+          "traits": {
+            "smithy.api#documentation": "The error detail."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The start time of the backup/restore operation in UTC"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The end time of the backup/restore operation in UTC",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the backup/restore operation."
+          }
+        },
+        "azureStorageBlobContainerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure blob storage container Uri which contains the backup"
+          }
+        },
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the backup."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the Cloud HSM Cluster"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupResultPropertiesError": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error target."
+          }
+        },
+        "details": {
+          "target": "com.azure.hardwaresecuritymodules#BackupResultPropertiesErrorDetailsList",
+          "traits": {
+            "smithy.api#documentation": "The error details."
+          }
+        },
+        "additionalInfo": {
+          "target": "com.azure.hardwaresecuritymodules#BackupResultPropertiesErrorAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "The error additional info."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The error detail."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupResultPropertiesErrorAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#ErrorAdditionalInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error additional info."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#BackupResultPropertiesErrorDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#ErrorDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "The error details."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateBackupPropertiesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "azureStorageBlobContainerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure blob storage container Uri which contains the backup",
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterRestoreStatusGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterRestoreStatusGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#RestoreResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/restoreOperationStatus/{jobId}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Gets the restore operation status of the specified Cloud HSM Cluster",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterRestoreStatusGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Identifier for the restore operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersRestore": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersRestoreRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#RestoreResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/restore",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Restores all key materials of a specified Cloud HSM Cluster",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersRestoreRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "azureStorageBlobContainerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure blob storage container Uri which contains the backup",
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service."
+          }
+        },
+        "backupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An autogenerated unique string ID for labeling the backup. It contains both a UUID and a date timestamp.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmCluster": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateLinkResources",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Gets the private link resources supported for the Cloud Hsm Cluster.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "Array of private link resources"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#PrivateLinkResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of private link resources"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateLinkResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateLinkResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A private link resource."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateLinkResourceProperties": {
+      "type": "structure",
+      "members": {
+        "groupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The private link resource group id."
+          }
+        },
+        "requiredMembers": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateLinkResourcePropertiesRequiredMembersList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource required member names."
+          }
+        },
+        "requiredZoneNames": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateLinkResourcePropertiesRequiredZoneNamesList",
+          "traits": {
+            "smithy.api#documentation": "The private link resource private link DNS zone name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a private link resource."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateLinkResourcePropertiesRequiredZoneNamesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource private link DNS zone name."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateLinkResourcePropertiesRequiredMembersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The private link resource required member names."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmClusterRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Deletes the private endpoint connection for the Cloud Hsm Cluster.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "peConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the private endpoint connection associated with the Cloud HSM Cluster."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Creates or updates the private endpoint connection for the Cloud Hsm Cluster.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Modified whenever there is a change in the state of private endpoint connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionProperties": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesPrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint resource."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the private endpoint connection resource."
+          }
+        },
+        "groupIds": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesGroupIdsList",
+          "traits": {
+            "smithy.api#documentation": "The group ids for the private endpoint resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the private endpoint connection."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesGroupIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The group ids for the private endpoint resource."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "INTERNALERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InternalError"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The current provisioning state."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesPrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval/rejection of the connection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointServiceConnectionStatus": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "APPROVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Approved"
+          }
+        },
+        "REJECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Rejected"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection status."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesPrivateEndpoint": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ARM identifier for private endpoint."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint resource."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "peConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the private endpoint connection associated with the Cloud HSM Cluster."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Modified whenever there is a change in the state of private endpoint connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "privateEndpoint": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesInputPrivateEndpoint",
+          "traits": {
+            "smithy.api#documentation": "The private endpoint resource."
+          }
+        },
+        "privateLinkServiceConnectionState": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState",
+          "traits": {
+            "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the private endpoint connection."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesInputPrivateLinkServiceConnectionState": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointServiceConnectionStatus",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the connection has been Approved/Rejected/Removed by the owner of the service."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The reason for approval/rejection of the connection."
+          }
+        },
+        "actionsRequired": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating if changes on the service provider require any updates on the consumer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of information about the state of the connection between service consumer and provider."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionPropertiesInputPrivateEndpoint": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The private endpoint resource."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections/{peConnectionName}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Gets the private endpoint connection for the Cloud Hsm Cluster.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Modified whenever there is a change in the state of private endpoint connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "peConnectionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the private endpoint connection associated with the Cloud HSM Cluster."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionsListByCloudHsmCluster": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionsListByCloudHsmClusterRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/privateEndpointConnections",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "The List operation gets information about the private endpoint connections associated with the Cloud HSM Cluster",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The PrivateEndpointConnection items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a PrivateEndpointConnection list operation."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "The PrivateEndpointConnection items on this page"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnection": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionProperties",
+          "traits": {
+            "smithy.api#documentation": "Resource properties."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Modified whenever there is a change in the state of private endpoint connection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The private endpoint connection resource."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionsListByCloudHsmClusterRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterBackupStatusGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterBackupStatusGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#BackupResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backupOperationStatus/{jobId}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Gets the backup operation status of the specified Cloud HSM Cluster",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterBackupStatusGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "jobId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Identifier for the backup operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersBackup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersBackupRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#BackupResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backup",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Create a backup of the Cloud HSM Cluster in the specified subscription",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersBackupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "azureStorageBlobContainerUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Azure blob storage container Uri which contains the backup",
+            "smithy.api#required": {}
+          }
+        },
+        "token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Deletes the specified Cloud HSM Cluster",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Update a Cloud HSM Cluster in the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Cloud HSM Cluster"
+          }
+        },
+        "identity": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterSku",
+          "traits": {
+            "smithy.api#documentation": "SKU details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterSku": {
+      "type": "structure",
+      "members": {
+        "family": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterSkuFamily",
+          "traits": {
+            "smithy.api#documentation": "Sku family of the Cloud HSM Cluster",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterSkuName",
+          "traits": {
+            "smithy.api#documentation": "Sku name of the Cloud HSM Cluster",
+            "smithy.api#required": {}
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Sku capacity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Cloud Hsm Cluster SKU information"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterSkuName": {
+      "type": "enum",
+      "members": {
+        "STANDARD_B1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard_B1"
+          }
+        },
+        "STANDARD_B10": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard B10"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sku name of the Cloud HSM Cluster"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterSkuFamily": {
+      "type": "enum",
+      "members": {
+        "B": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "B"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sku family of the Cloud HSM Cluster"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.hardwaresecuritymodules#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.hardwaresecuritymodules#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned,UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterProperties": {
+      "type": "structure",
+      "members": {
+        "activationState": {
+          "target": "com.azure.hardwaresecuritymodules#ActivationState",
+          "traits": {
+            "smithy.api#documentation": "State of security domain activation"
+          }
+        },
+        "autoGeneratedDomainNameLabelScope": {
+          "target": "com.azure.hardwaresecuritymodules#AutoGeneratedDomainNameLabelScope",
+          "traits": {
+            "smithy.api#documentation": "The Cloud HSM Cluster's auto-generated Domain Name Label Scope"
+          }
+        },
+        "hsms": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPropertiesHsmsList",
+          "traits": {
+            "smithy.api#documentation": "An array of Cloud HSM Cluster's HSMs"
+          }
+        },
+        "privateEndpointConnections": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPropertiesPrivateEndpointConnectionsList",
+          "traits": {
+            "smithy.api#documentation": "List of private endpoint connection resources"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.hardwaresecuritymodules#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The Cloud HSM Cluster's provisioningState"
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.hardwaresecuritymodules#PublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "The Cloud HSM Cluster public network access"
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Cloud HSM Cluster status message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a Cloud HSM Cluster."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#PublicNetworkAccess": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Cloud HSM Cluster public network access"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Provisioning"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Cloud HSM Cluster's provisioningState"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPropertiesPrivateEndpointConnectionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnection"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of private endpoint connection resources"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPropertiesHsmsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmProperties"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of Cloud HSM Cluster's HSMs"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmProperties": {
+      "type": "structure",
+      "members": {
+        "fqdn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "FQDN of the Cloud HSM"
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloud HSM State. Values are: Deploying, ConfiguringSlb, Starting, Starting, Failed, Failed, Deleting, DeletingSlbEntry, InitialProvisioning, Updating"
+          }
+        },
+        "stateMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Cloud HSM State message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Cloud HSM Properties"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#AutoGeneratedDomainNameLabelScope": {
+      "type": "enum",
+      "members": {
+        "TENANTREUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TenantReuse"
+          }
+        },
+        "SUBSCRIPTIONREUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SubscriptionReuse"
+          }
+        },
+        "RESOURCEGROUPREUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ResourceGroupReuse"
+          }
+        },
+        "NOREUSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NoReuse"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Cloud HSM Cluster's auto-generated Domain Name Label Scope"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#ActivationState": {
+      "type": "enum",
+      "members": {
+        "NOTDEFINED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotDefined"
+          }
+        },
+        "NOTACTIVATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotActivated"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of security domain activation"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The Cloud HSM Cluster's tags"
+          }
+        },
+        "identity": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.hardwaresecuritymodules#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.hardwaresecuritymodules#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Cloud HSM Cluster's tags"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Create or Update a Cloud HSM Cluster in the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Cloud HSM Cluster"
+          }
+        },
+        "identity": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterSku",
+          "traits": {
+            "smithy.api#documentation": "SKU details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.hardwaresecuritymodules#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateResponseIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.hardwaresecuritymodules#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Cloud HSM Cluster"
+          }
+        },
+        "identity": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterSku",
+          "traits": {
+            "smithy.api#documentation": "SKU details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.hardwaresecuritymodules#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateRequestIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.hardwaresecuritymodules#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "autoGeneratedDomainNameLabelScope": {
+          "target": "com.azure.hardwaresecuritymodules#AutoGeneratedDomainNameLabelScope",
+          "traits": {
+            "smithy.api#documentation": "The Cloud HSM Cluster's auto-generated Domain Name Label Scope"
+          }
+        },
+        "publicNetworkAccess": {
+          "target": "com.azure.hardwaresecuritymodules#PublicNetworkAccess",
+          "traits": {
+            "smithy.api#documentation": "The Cloud HSM Cluster public network access"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a Cloud HSM Cluster."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersGetRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "Gets the specified Cloud HSM Cluster",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Cloud HSM Cluster"
+          }
+        },
+        "identity": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterSku",
+          "traits": {
+            "smithy.api#documentation": "SKU details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.hardwaresecuritymodules#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.hardwaresecuritymodules#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "cloudHsmClusterName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "The List operation gets information about the Cloud HSM Clusters associated with the subscription and within the specified resource group.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The CloudHsmCluster items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a CloudHsmCluster list operation."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmCluster"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CloudHsmCluster items on this page"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmCluster": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.hardwaresecuritymodules#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the Cloud HSM Cluster"
+          }
+        },
+        "identity": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "sku": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterSku",
+          "traits": {
+            "smithy.api#documentation": "SKU details"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource information with extended details."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.hardwaresecuritymodules#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.hardwaresecuritymodules#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClusterTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "_skiptoken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "The page-continuation token to use with a paged version of this API"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#DedicatedHsmListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.HardwareSecurityModules/dedicatedHSMs",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "The List operation gets information about the dedicated HSMs associated with the subscription.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#DedicatedHsmListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "$top",
+            "smithy.api#documentation": "Maximum number of results to return."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "The List operation gets information about the Cloud HSM Clusters associated with the subscription.",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#CloudHsmClustersListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "_skiptoken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skiptoken",
+            "smithy.api#documentation": "The page-continuation token to use with a paged version of this API"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.hardwaresecuritymodules#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.HardwareSecurityModules/operations",
+          "code": 200,
+          "apiVersion": "2025-03-31"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-03-31"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.hardwaresecuritymodules#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.hardwaresecuritymodules#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.hardwaresecuritymodules#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.hardwaresecuritymodules#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.hardwaresecuritymodules#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.hardwaresecuritymodules#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.hardwaresecuritymodules#Hardwaresecuritymodules": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmListOutboundNetworkDependenciesEndpoints"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmDelete"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmUpdate"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmGet"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmListByResourceGroup"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateRestoreProperties"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersValidateBackupProperties"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterRestoreStatusGet"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersRestore"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateLinkResourcesListByCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsDelete"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsCreate"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterPrivateEndpointConnectionsGet"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#PrivateEndpointConnectionsListByCloudHsmCluster"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClusterBackupStatusGet"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersBackup"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersDelete"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersUpdate"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersGet"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersListByResourceGroup"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#DedicatedHsmListBySubscription"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#CloudHsmClustersListBySubscription"
+        },
+        {
+          "target": "com.azure.hardwaresecuritymodules#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Hardwaresecuritymodules",
+        "smithy.api#documentation": "Azure Hardwaresecuritymodules API — merged from the hardwaresecuritymodules resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

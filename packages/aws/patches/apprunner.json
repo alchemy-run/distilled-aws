@@ -1,0 +1,10 @@
+{
+  "enums": {
+    "AutoScalingConfigurationStatus": {
+      "add": ["active", "inactive"]
+    },
+    "VpcConnectorStatus": {
+      "add": ["active", "inactive"]
+    }
+  }
+}

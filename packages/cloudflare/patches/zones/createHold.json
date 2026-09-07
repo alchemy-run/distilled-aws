@@ -1,0 +1,45 @@
+{
+  "description": "Align zones#HoldsCreate with distilled cloudflare/zones createHold",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#HoldsCreate",
+      "path": "/shapes/com.cloudflare.zones#CreateHold"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#HoldsCreateRequest",
+      "path": "/shapes/com.cloudflare.zones#CreateHoldRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#CreateHold/input/target",
+      "value": "com.cloudflare.zones#CreateHoldRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zones#HoldsCreateResponse",
+      "path": "/shapes/com.cloudflare.zones#CreateHoldResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zones#CreateHold/output/target",
+      "value": "com.cloudflare.zones#CreateHoldResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zones#CreateHold/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zones#ZoneHoldsRequireEnterprise"
+        },
+        {
+          "target": "com.cloudflare.zones#InvalidZoneIdentifier"
+        },
+        {
+          "target": "com.cloudflare.zones#Forbidden"
+        }
+      ]
+    }
+  ]
+}

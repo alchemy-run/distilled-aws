@@ -1,0 +1,31 @@
+{
+  "description": "Key dictionary / op aliases for registrar (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "acceptFoa": "accept_foa",
+        "approveTransfer": "approve_transfer",
+        "autoRenew": "auto_renew",
+        "canCancelTransfer": "can_cancel_transfer",
+        "canRegister": "can_register",
+        "createdAt": "created_at",
+        "currentRegistrar": "current_registrar",
+        "disablePrivacy": "disable_privacy",
+        "enterAuthCode": "enter_auth_code",
+        "expiresAt": "expires_at",
+        "firstName": "first_name",
+        "lastName": "last_name",
+        "registrantContact": "registrant_contact",
+        "registrationCost": "registration_cost",
+        "registryStatuses": "registry_statuses",
+        "renewalCost": "renewal_cost",
+        "supportedTld": "supported_tld",
+        "transferIn": "transfer_in",
+        "unlockDomain": "unlock_domain",
+        "updatedAt": "updated_at"
+      }
+    }
+  ]
+}

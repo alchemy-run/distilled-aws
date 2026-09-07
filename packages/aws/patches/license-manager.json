@@ -1,0 +1,66 @@
+{
+  "structures": {
+    "CreateTokenResponse": {
+      "members": {
+        "Token": { "sensitive": true }
+      }
+    },
+    "GetAccessTokenRequest": {
+      "members": {
+        "Token": { "sensitive": true }
+      }
+    },
+    "GetAccessTokenResponse": {
+      "members": {
+        "AccessToken": { "sensitive": true }
+      }
+    }
+  },
+  "operations": {
+    "getAccessToken": {
+      "errors": ["InvalidParameterValueException"]
+    },
+    "getLicense": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "getGrant": {
+      "errors": ["ResourceNotFoundException"]
+    },
+    "getLicenseConfiguration": {
+      "syntheticErrors": [
+        {
+          "name": "LicenseConfigurationNotFound",
+          "from": "InvalidParameterValueException",
+          "message": {
+            "includes": "Invalid license configuration ARN"
+          }
+        }
+      ]
+    },
+    "updateLicenseConfiguration": {
+      "syntheticErrors": [
+        {
+          "name": "LicenseConfigurationNotFound",
+          "from": "InvalidParameterValueException",
+          "message": {
+            "includes": "Invalid license configuration ARN"
+          }
+        }
+      ]
+    },
+    "deleteLicenseConfiguration": {
+      "syntheticErrors": [
+        {
+          "name": "LicenseConfigurationNotFound",
+          "from": "InvalidParameterValueException",
+          "message": {
+            "includes": "Invalid license configuration ARN"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "LicenseConfigurationNotFound": ["NotFoundError"]
+  }
+}

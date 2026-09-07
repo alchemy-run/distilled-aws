@@ -1,0 +1,2274 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.engineering_analytics#EngineeringAnalyticsCiCardsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#CICardSummary": {
+      "type": "structure",
+      "members": {
+        "open_prs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of open pull requests.",
+            "smithy.api#required": {}
+          }
+        },
+        "repos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Distinct repositories with at least one open pull request.",
+            "smithy.api#required": {}
+          }
+        },
+        "stuck": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Open, non-draft, non-bot pull requests older than 7 days.",
+            "smithy.api#required": {}
+          }
+        },
+        "failing_ci": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Open pull requests with at least one failing latest CI run. May lag until the workflow_run webhook settles late completions.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsCiCards": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsCiCardsRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#CICardSummary"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/ci_cards/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Headline counts for the open-PR backlog: open PRs, distinct repos, stuck PRs (open, non-draft, non-bot, older than 7 days), and PRs with failing CI. The failing-CI count rests on the head-SHA join and can lag until late CI completions settle."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPrCostRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "pr_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "pr_number",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pull request number to estimate cost for."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repo",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "'owner/name' repository the pull request belongs to."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#PRCostSummary": {
+      "type": "structure",
+      "members": {
+        "by_workflow": {
+          "target": "com.posthog.engineering_analytics#PRCostSummaryByWorkflowList",
+          "traits": {
+            "smithy.api#documentation": "Same spend broken down per workflow.",
+            "smithy.api#required": {}
+          }
+        },
+        "by_run": {
+          "target": "com.posthog.engineering_analytics#PRCostSummaryByRunList",
+          "traits": {
+            "smithy.api#documentation": "Same spend broken down per workflow run, keyed by (run_id, run_attempt).",
+            "smithy.api#required": {}
+          }
+        },
+        "jobs_available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "False when the job-level source (github_workflow_jobs) isn't synced — every figure is then zero/null and the cost cards should be hidden.",
+            "smithy.api#required": {}
+          }
+        },
+        "billable_minutes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Wall-clock minutes consumed on billable (self-hosted) runners, summed across costed jobs.",
+            "smithy.api#required": {}
+          }
+        },
+        "estimated_cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Estimated dollar cost (sum of per-job estimates: elapsed x tier multiplier x reference rate). Null when no job was costable.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "costed_jobs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Jobs counted in the estimate (billable Linux runner, finished).",
+            "smithy.api#required": {}
+          }
+        },
+        "unsettled_jobs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Billable Linux jobs still queued/running (no elapsed) — excluded from the estimate.",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded_jobs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Jobs on provider-hosted (GitHub-hosted, free) or non-Linux runners — outside the estimate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#WorkflowCost": {
+      "type": "structure",
+      "members": {
+        "workflow_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub Actions workflow name this cost is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "billable_minutes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Billable (self-hosted) minutes for this workflow within the scope.",
+            "smithy.api#required": {}
+          }
+        },
+        "estimated_cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Estimated dollar cost for this workflow, or null when nothing was costable.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "costed_jobs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Costed jobs for this workflow (billable Linux runner, finished).",
+            "smithy.api#required": {}
+          }
+        },
+        "unsettled_jobs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Billable Linux jobs still queued/running for this workflow.",
+            "smithy.api#required": {}
+          }
+        },
+        "excluded_jobs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Provider-hosted/non-Linux jobs for this workflow, outside the estimate.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#PRCostSummaryByWorkflowList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#WorkflowCost"
+      },
+      "traits": {
+        "smithy.api#documentation": "Same spend broken down per workflow."
+      }
+    },
+    "com.posthog.engineering_analytics#RunCost": {
+      "type": "structure",
+      "members": {
+        "run_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub Actions run id this cost is for.",
+            "smithy.api#required": {}
+          }
+        },
+        "run_attempt": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Re-run attempt number; 1 for the first attempt.",
+            "smithy.api#required": {}
+          }
+        },
+        "billable_minutes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Billable (self-hosted) minutes for this run attempt.",
+            "smithy.api#required": {}
+          }
+        },
+        "estimated_cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Estimated dollar cost for this run attempt, or null when nothing was costable.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#PRCostSummaryByRunList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#RunCost"
+      },
+      "traits": {
+        "smithy.api#documentation": "Same spend broken down per workflow run, keyed by (run_id, run_attempt)."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPrCost": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPrCostRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#PRCostSummary"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/pr_cost/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Estimated CI cost for a pull request, summed over the jobs of all its workflow runs. Billable self-hosted Linux runners only — provider-hosted (free GitHub-hosted) and non-Linux jobs are excluded. Every figure is zero/null with `jobs_available` false when the job-level source isn't synced yet."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPrLifecycleRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "pr_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "pr_number",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pull request number to inspect."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repo",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "'owner/name' repository the pull request belongs to."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#PRLifecycle": {
+      "type": "structure",
+      "members": {
+        "pull_request": {
+          "target": "com.posthog.engineering_analytics#PullRequest",
+          "traits": {
+            "smithy.api#documentation": "The pull request header.",
+            "smithy.api#required": {}
+          }
+        },
+        "events": {
+          "target": "com.posthog.engineering_analytics#PRLifecycleEventsList",
+          "traits": {
+            "smithy.api#documentation": "Lifecycle events ordered by time.",
+            "smithy.api#required": {}
+          }
+        },
+        "metric_quality": {
+          "target": "com.posthog.engineering_analytics#MetricQualityEnum",
+          "traits": {
+            "smithy.api#documentation": "Always 'partial' — CI events only; reviews and comments are not yet available.\n\n* `precise` - PRECISE\n* `coarse` - COARSE\n* `partial` - PARTIAL"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#PullRequest": {
+      "type": "structure",
+      "members": {
+        "author": {
+          "target": "com.posthog.engineering_analytics#Author",
+          "traits": {
+            "smithy.api#documentation": "The pull request author.",
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "com.posthog.engineering_analytics#RepoRef",
+          "traits": {
+            "smithy.api#documentation": "Repository the pull request belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub pull request id.",
+            "smithy.api#required": {}
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pull request number within the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pull request title.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPRStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Derived state: 'open', 'closed', or 'merged'.\n\n* `open` - OPEN\n* `closed` - CLOSED\n* `merged` - MERGED",
+            "smithy.api#required": {}
+          }
+        },
+        "is_draft": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the pull request is a draft.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the pull request was opened.",
+            "smithy.api#required": {}
+          }
+        },
+        "merged_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the pull request was merged, or null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "closed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the pull request was closed, or null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#Author": {
+      "type": "structure",
+      "members": {
+        "handle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Login handle of the pull request author.",
+            "smithy.api#required": {}
+          }
+        },
+        "display_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name; equals the handle in v1.",
+            "smithy.api#required": {}
+          }
+        },
+        "avatar_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the author's avatar image.",
+            "smithy.api#required": {}
+          }
+        },
+        "is_bot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the author is a bot (handle ends in [bot] or is a known bot).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#RepoRef": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Code host provider, e.g. 'github'.",
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository owner or organization.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Repository name.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPRStateEnum": {
+      "type": "enum",
+      "members": {
+        "OPEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "open"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        },
+        "MERGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "merged"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `open` - OPEN\n* `closed` - CLOSED\n* `merged` - MERGED"
+      }
+    },
+    "com.posthog.engineering_analytics#PRLifecycleEvent": {
+      "type": "structure",
+      "members": {
+        "kind": {
+          "target": "com.posthog.engineering_analytics#PRLifecycleEventKindEnum",
+          "traits": {
+            "smithy.api#documentation": "Event kind: opened, ci_started, ci_finished, merged, or closed.\n\n* `opened` - OPENED\n* `ci_started` - CI_STARTED\n* `ci_finished` - CI_FINISHED\n* `merged` - MERGED\n* `closed` - CLOSED",
+            "smithy.api#required": {}
+          }
+        },
+        "at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the event occurred.",
+            "smithy.api#required": {}
+          }
+        },
+        "detail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional detail, e.g. workflow name and conclusion for CI events.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "run_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub Actions run id for ci_started/ci_finished events, null otherwise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#PRLifecycleEventKindEnum": {
+      "type": "enum",
+      "members": {
+        "OPENED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "opened"
+          }
+        },
+        "CI_STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ci_started"
+          }
+        },
+        "CI_FINISHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ci_finished"
+          }
+        },
+        "MERGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "merged"
+          }
+        },
+        "CLOSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "closed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `opened` - OPENED\n* `ci_started` - CI_STARTED\n* `ci_finished` - CI_FINISHED\n* `merged` - MERGED\n* `closed` - CLOSED"
+      }
+    },
+    "com.posthog.engineering_analytics#PRLifecycleEventsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#PRLifecycleEvent"
+      },
+      "traits": {
+        "smithy.api#documentation": "Lifecycle events ordered by time."
+      }
+    },
+    "com.posthog.engineering_analytics#MetricQualityEnum": {
+      "type": "enum",
+      "members": {
+        "PRECISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "precise"
+          }
+        },
+        "COARSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "coarse"
+          }
+        },
+        "PARTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "partial"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `precise` - PRECISE\n* `coarse` - COARSE\n* `partial` - PARTIAL"
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPrLifecycle": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPrLifecycleRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#PRLifecycle"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/pr_lifecycle/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The timeline of a single pull request: header plus ordered events (opened, CI started/finished, merged or closed). Use this to answer 'where is this PR stuck and what happened to it'. This is a partial view: review and comment events are not yet available."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPrRunsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "pr_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "pr_number",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Pull request number whose runs to list."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repo",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "'owner/name' repository the pull request belongs to."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#WorkflowRunDetail": {
+      "type": "structure",
+      "members": {
+        "repo": {
+          "target": "com.posthog.engineering_analytics#RepoRef",
+          "traits": {
+            "smithy.api#documentation": "Repository the run belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub Actions run id.",
+            "smithy.api#required": {}
+          }
+        },
+        "workflow_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub Actions workflow name.",
+            "smithy.api#required": {}
+          }
+        },
+        "head_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Commit SHA the run was triggered on.",
+            "smithy.api#required": {}
+          }
+        },
+        "head_branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Git branch the run was triggered on.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Raw run status: 'queued', 'in_progress', 'completed', etc.",
+            "smithy.api#required": {}
+          }
+        },
+        "conclusion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Run conclusion ('success', 'failure', 'timed_out', 'cancelled', 'skipped', 'action_required', ...), or null while still in progress.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "run_started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the run started, or null for a queued/barely-started run.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the run was last updated (its finish time once completed), or null when unstarted.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "duration_seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Wall-clock duration in seconds; null until the run completes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "run_attempt": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Re-run attempt number; 1 for the first attempt.",
+            "smithy.api#required": {}
+          }
+        },
+        "pr_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Attributed pull request number, or 0 when unattributed.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPrRunsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#WorkflowRunDetail"
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPrRunsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPrRunsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPrRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPrRunsRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPrRunsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/pr_runs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Every workflow run attributed to a pull request, across all its commits (grouped by head SHA client-side), newest first. Run-level only."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPullRequestsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "author": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "author",
+            "smithy.api#documentation": "Optional GitHub login to scope the list to one author's pull requests."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Window start: relative ('-30d', '-8w') or ISO8601. Defaults to -30d."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#PullRequestList": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.posthog.engineering_analytics#PullRequestListItemsList",
+          "traits": {
+            "smithy.api#documentation": "Pull requests, newest first, capped at `limit`.",
+            "smithy.api#required": {}
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when more pull requests match than the cap; `items` is the newest `limit` rows and the aggregate counts in ci_cards can exceed it.",
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of pull requests returned in `items`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#PullRequestListItem": {
+      "type": "structure",
+      "members": {
+        "author": {
+          "target": "com.posthog.engineering_analytics#Author",
+          "traits": {
+            "smithy.api#documentation": "The pull request author.",
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "com.posthog.engineering_analytics#RepoRef",
+          "traits": {
+            "smithy.api#documentation": "Repository the pull request belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "ci": {
+          "target": "com.posthog.engineering_analytics#CIStatusRollup",
+          "traits": {
+            "smithy.api#documentation": "CI status from the latest workflow runs on the head SHA.",
+            "smithy.api#required": {}
+          }
+        },
+        "number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Pull request number within the repository.",
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Pull request title.",
+            "smithy.api#required": {}
+          }
+        },
+        "state": {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPRStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Derived state: 'open', 'closed', or 'merged'.\n\n* `open` - OPEN\n* `closed` - CLOSED\n* `merged` - MERGED",
+            "smithy.api#required": {}
+          }
+        },
+        "is_draft": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the pull request is a draft.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the pull request was opened.",
+            "smithy.api#required": {}
+          }
+        },
+        "merged_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the pull request was merged, or null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "open_to_merge_seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Coarse open-to-merge time in seconds (merged_at - created_at; fuses draft and ready-for-review time). Null until merged.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "labels": {
+          "target": "com.posthog.engineering_analytics#PullRequestListItemLabelsList",
+          "traits": {
+            "smithy.api#documentation": "GitHub label names on the pull request.",
+            "smithy.api#required": {}
+          }
+        },
+        "pushes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "CI triggers attributed to this PR: distinct head SHAs across its workflow runs. Fork-PR runs are unattributed.",
+            "smithy.api#required": {}
+          }
+        },
+        "rerun_cycles": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Workflow runs attributed to this PR that were a 2nd+ attempt (a re-run).",
+            "smithy.api#required": {}
+          }
+        },
+        "estimated_cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Estimated CI cost in USD summed over this PR's jobs (billable runners only). Null when nothing was costable or the job-level source isn't synced.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "billable_minutes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Billable (self-hosted) minutes summed over this PR's jobs. Null when the job source isn't synced.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#CIStatusRollup": {
+      "type": "structure",
+      "members": {
+        "runs": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Distinct workflows run on the PR's head SHA.",
+            "smithy.api#required": {}
+          }
+        },
+        "passing": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Latest runs that completed with conclusion 'success'.",
+            "smithy.api#required": {}
+          }
+        },
+        "failing": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Latest runs that completed with conclusion 'failure' or 'timed_out'.",
+            "smithy.api#required": {}
+          }
+        },
+        "pending": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Latest runs not yet completed (queued or in progress).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#PullRequestListItemLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "GitHub label names on the pull request."
+      }
+    },
+    "com.posthog.engineering_analytics#PullRequestListItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#PullRequestListItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Pull requests, newest first, capped at `limit`."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsPullRequests": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPullRequestsRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#PullRequestList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/pull_requests/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Open pull requests plus any merged or closed since date_from (default -30d), newest first, each with its head-SHA CI rollup. The list is capped; when more match, `truncated` is true and the ci_cards counts can exceed it. open_to_merge_seconds is coarse — it fuses draft and ready-for-review time; CI counts can lag until late completions settle."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsQuarantineRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repo",
+            "smithy.api#documentation": "Optional 'owner/name' repository to read the quarantine file from. Defaults to the connected GitHub source's most active repo over the last 30 days."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#QuarantineFile": {
+      "type": "structure",
+      "members": {
+        "entries": {
+          "target": "com.posthog.engineering_analytics#QuarantineFileEntriesList",
+          "traits": {
+            "smithy.api#documentation": "Quarantined selectors, most urgent first (overdue, in_grace, expiring_soon, active), then by soonest expiry.",
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "com.posthog.engineering_analytics#RepoRef",
+          "traits": {
+            "smithy.api#documentation": "Repository the file was read from. Null in local-dev mode, where the server's own checkout is read.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "False when the repository has no quarantine file (not an error) or it could not be fetched.",
+            "smithy.api#required": {}
+          }
+        },
+        "parse_errors": {
+          "target": "com.posthog.engineering_analytics#QuarantineFileParseErrorsList",
+          "traits": {
+            "smithy.api#documentation": "Contract violations (malformed JSON, bad entries) or fetch failures. Malformed entries are dropped; well-formed ones are kept.",
+            "smithy.api#required": {}
+          }
+        },
+        "parse_warnings": {
+          "target": "com.posthog.engineering_analytics#QuarantineFileParseWarningsList",
+          "traits": {
+            "smithy.api#documentation": "Forward-compatibility notices, e.g. unknown entry fields.",
+            "smithy.api#required": {}
+          }
+        },
+        "source_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub blob URL of the quarantine file, or empty when read locally or unavailable.",
+            "smithy.api#required": {}
+          }
+        },
+        "generated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this snapshot was computed (UTC); expiry math uses this clock.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#QuarantineEntry": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Test selector: an exact test id, a file, a directory, a class prefix, or 'product:<dashed-name>'.",
+            "smithy.api#required": {}
+          }
+        },
+        "runner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Test runner the selector targets, e.g. 'pytest' or 'jest'.",
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why the test was quarantined.",
+            "smithy.api#required": {}
+          }
+        },
+        "owner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub team or user handle responsible for the fix.",
+            "smithy.api#required": {}
+          }
+        },
+        "issue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tracking issue URL, or empty when none was filed.",
+            "smithy.api#required": {}
+          }
+        },
+        "added": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO date the entry was added.",
+            "smithy.api#required": {}
+          }
+        },
+        "expires": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO date the quarantine expires; past it the test blocks CI normally again.",
+            "smithy.api#required": {}
+          }
+        },
+        "mode": {
+          "target": "com.posthog.engineering_analytics#QuarantineModeEnum",
+          "traits": {
+            "smithy.api#documentation": "'run' (the test still executes but cannot fail the suite) or 'skip' (not run at all).\n\n* `run` - RUN\n* `skip` - SKIP",
+            "smithy.api#required": {}
+          }
+        },
+        "lifecycle": {
+          "target": "com.posthog.engineering_analytics#LifecycleEnum",
+          "traits": {
+            "smithy.api#documentation": "Expiry classification: 'active' (>7 days left), 'expiring_soon' (0-7 days left), 'in_grace' (expired up to 7 days ago), 'overdue' (expired beyond the grace period).\n\n* `active` - ACTIVE\n* `expiring_soon` - EXPIRING_SOON\n* `in_grace` - IN_GRACE\n* `overdue` - OVERDUE",
+            "smithy.api#required": {}
+          }
+        },
+        "days_until_expiry": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Days until the entry expires; negative once past expiry.",
+            "smithy.api#required": {}
+          }
+        },
+        "selector_kind": {
+          "target": "com.posthog.engineering_analytics#SelectorKindEnum",
+          "traits": {
+            "smithy.api#documentation": "What the selector covers: 'test' (contains '::'), 'file', 'directory', or 'product'.\n\n* `product` - PRODUCT\n* `file` - FILE\n* `directory` - DIRECTORY\n* `test` - TEST",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#QuarantineModeEnum": {
+      "type": "enum",
+      "members": {
+        "RUN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "run"
+          }
+        },
+        "SKIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skip"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `run` - RUN\n* `skip` - SKIP"
+      }
+    },
+    "com.posthog.engineering_analytics#LifecycleEnum": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "active"
+          }
+        },
+        "EXPIRING_SOON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "expiring_soon"
+          }
+        },
+        "IN_GRACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "in_grace"
+          }
+        },
+        "OVERDUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "overdue"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `active` - ACTIVE\n* `expiring_soon` - EXPIRING_SOON\n* `in_grace` - IN_GRACE\n* `overdue` - OVERDUE"
+      }
+    },
+    "com.posthog.engineering_analytics#SelectorKindEnum": {
+      "type": "enum",
+      "members": {
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "file"
+          }
+        },
+        "DIRECTORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "directory"
+          }
+        },
+        "TEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "test"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `product` - PRODUCT\n* `file` - FILE\n* `directory` - DIRECTORY\n* `test` - TEST"
+      }
+    },
+    "com.posthog.engineering_analytics#QuarantineFileEntriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#QuarantineEntry"
+      },
+      "traits": {
+        "smithy.api#documentation": "Quarantined selectors, most urgent first (overdue, in_grace, expiring_soon, active), then by soonest expiry."
+      }
+    },
+    "com.posthog.engineering_analytics#QuarantineFileParseErrorsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Contract violations (malformed JSON, bad entries) or fetch failures. Malformed entries are dropped; well-formed ones are kept."
+      }
+    },
+    "com.posthog.engineering_analytics#QuarantineFileParseWarningsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Forward-compatibility notices, e.g. unknown entry fields."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsQuarantine": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsQuarantineRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#QuarantineFile"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/quarantine/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Flaky-test quarantine file\n\nThe repository's checked-in .test_quarantine.json: flaky tests temporarily quarantined with a hard expiry, classified by urgency (overdue, in grace, expiring soon, active). `available` is false when the repo has no quarantine file — that is not an error. Parsing is fail-open: malformed entries are reported in parse_errors while well-formed ones are kept."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsSourcesRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#GitHubSource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source id — pass as `source_id` to the other endpoints to read this source.",
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Connected repository as 'owner/name', or '' if unknown.",
+            "smithy.api#required": {}
+          }
+        },
+        "prefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-chosen warehouse table-name prefix for this source, or '' when none.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsSourcesResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#GitHubSource"
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsSourcesResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsSourcesResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsSources": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsSourcesRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsSourcesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/sources/",
+          "code": 200
+        },
+        "smithy.api#documentation": "The team's connected GitHub data warehouse sources, oldest first. Populate a source picker from this and pass a chosen `id` back as `source_id` to the other endpoints. A team can connect GitHub more than once (e.g. one source per repository); this lists them all, including any whose tables aren't fully synced yet."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowHealthRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "branch",
+            "smithy.api#documentation": "Optional exact git branch (head_branch) to scope workflow health to, e.g. 'main'. Omit or leave blank to aggregate across all branches."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Window start: relative ('-24h', '-7d') or ISO8601. Defaults to -24h."
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "Window end: relative or ISO8601. Defaults to now."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#WorkflowHealthItem": {
+      "type": "structure",
+      "members": {
+        "repo": {
+          "target": "com.posthog.engineering_analytics#RepoRef",
+          "traits": {
+            "smithy.api#documentation": "Repository the workflow runs in.",
+            "smithy.api#required": {}
+          }
+        },
+        "buckets": {
+          "target": "com.posthog.engineering_analytics#WorkflowHealthItemBucketsList",
+          "traits": {
+            "smithy.api#documentation": "Run history across the whole window, oldest first, zero-filled, bucketed by granularity.",
+            "smithy.api#required": {}
+          }
+        },
+        "workflow_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "GitHub Actions workflow name.",
+            "smithy.api#required": {}
+          }
+        },
+        "run_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total runs started in the window.",
+            "smithy.api#required": {}
+          }
+        },
+        "success_rate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Fraction of completed runs that succeeded (0-1). Null if no completed runs.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "p50_seconds": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Median duration of completed runs, in seconds. Null if none completed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "p95_seconds": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "95th-percentile duration of completed runs, in seconds. Null if none completed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_failure_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the most recent failing run (conclusion 'failure' or 'timed_out') started, or null.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latest_run_failed": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the most recent completed run was a decisive failure (conclusion 'failure' or 'timed_out'). Null when no run has completed in the window. Powers the OK/RED status badge.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "latest_run_conclusion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Raw conclusion of the most recent completed run ('success', 'cancelled', 'skipped', ...), so a real pass can be told from a non-failure non-success. Null when none completed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "granularity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bucket width of the `buckets` series, chosen to fit the window: 'hour', 'day', or 'week'.",
+            "smithy.api#required": {}
+          }
+        },
+        "billable_minutes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Billable (self-hosted) minutes over this workflow's jobs in the window. Null when the job-level source isn't synced.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "estimated_cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Estimated cost in USD over this workflow's jobs in the window. Null when nothing was costable or the job source isn't synced.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#WorkflowHealthBucket": {
+      "type": "structure",
+      "members": {
+        "bucket_start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bucket start, aligned to the item's granularity (top of hour, midnight, or Monday).",
+            "smithy.api#required": {}
+          }
+        },
+        "run_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Runs started in this bucket.",
+            "smithy.api#required": {}
+          }
+        },
+        "completed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Runs that completed in this bucket.",
+            "smithy.api#required": {}
+          }
+        },
+        "successes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Completed runs with conclusion 'success' in this bucket.",
+            "smithy.api#required": {}
+          }
+        },
+        "failures": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Completed runs that failed in this bucket (conclusion 'failure' or 'timed_out'); excludes skipped, cancelled, and action_required runs.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#WorkflowHealthItemBucketsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#WorkflowHealthBucket"
+      },
+      "traits": {
+        "smithy.api#documentation": "Run history across the whole window, oldest first, zero-filled, bucketed by granularity."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowHealthResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#WorkflowHealthItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowHealthResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowHealthResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowHealth": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowHealthRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowHealthResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/workflow_health/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Per-workflow CI health over a window (default last 24 hours, maximum 366 days): run count, success rate, p50/p95 duration over completed runs, last failure time, latest-run status, and a zero-filled run history bucketed by hour/day/week to fit the window. Optionally scope to a single git branch via `branch`. Use this for 'is CI getting slower' and 'which workflow is the long pole'; compare two windows to get a trend."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "run_attempt": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "run_attempt",
+            "smithy.api#documentation": "Which re-run attempt to scope jobs to. Omit to use the run's latest attempt; pass an explicit attempt to avoid mixing jobs across a re-run's attempts."
+          }
+        },
+        "run_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "run_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Workflow run id to list jobs for."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#WorkflowJob": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "GitHub Actions job id.",
+            "smithy.api#required": {}
+          }
+        },
+        "run_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The workflow run id this job belongs to.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Job name.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Raw job status: 'queued', 'in_progress', 'completed', etc.",
+            "smithy.api#required": {}
+          }
+        },
+        "conclusion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Job conclusion ('success', 'failure', 'cancelled', 'skipped', ...), or null while running.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the job started, or null while still queued.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "completed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When the job completed, or null while still running.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "duration_seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Wall-clock duration in seconds; null until the job completes.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "runner_provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Where the job ran: 'github_hosted' (free for open source), 'self_hosted' (billable), or 'unknown'.",
+            "smithy.api#required": {}
+          }
+        },
+        "runner_label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Runner tier the job ran on (e.g. '16-core' or 'ubuntu-latest'), or '' when unknown.",
+            "smithy.api#required": {}
+          }
+        },
+        "estimated_cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Estimated cost in USD from runner tier + elapsed time; null when the tier is unknown or the job hasn't finished.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#WorkflowJob"
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobsRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/workflow_jobs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Jobs of a single workflow run attempt, with per-job duration, runner tier, and estimated cost. Scoped to one run_attempt (the latest unless specified) so a re-run's attempts don't merge. Returns an empty list when the job-level source isn't synced yet."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "run_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "run_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "GitHub Actions run id to inspect."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRun": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#WorkflowRunDetail"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/workflow_run/",
+          "code": 200
+        },
+        "smithy.api#documentation": "A single workflow run: status, conclusion, duration, branch, attempt, and the attributed pull request. Run-level only — per-job and per-step detail are not tracked yet."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCostsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Window start: relative ('-30d', '-8w') or ISO8601. Defaults to -30d."
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "Window end: relative or ISO8601. Defaults to now."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repo",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "'owner/name' repository the workflow belongs to."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        },
+        "workflow_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "workflow_name",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Workflow name to break down cost for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#WorkflowRunnerCost": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "'self_hosted' (billable), 'github_hosted' (free), or 'unknown'.",
+            "smithy.api#required": {}
+          }
+        },
+        "runner_label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Runner tier, e.g. '16-core' or 'ubuntu-latest'.",
+            "smithy.api#required": {}
+          }
+        },
+        "job_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Jobs that ran on this tier for the workflow.",
+            "smithy.api#required": {}
+          }
+        },
+        "billable_minutes": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Billable minutes on this tier.",
+            "smithy.api#required": {}
+          }
+        },
+        "estimated_cost_usd": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Estimated cost in USD on this tier; null for non-billable (github-hosted/non-Linux).",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCostsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#WorkflowRunnerCost"
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCostsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCostsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCosts": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCostsRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCostsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/workflow_runner_costs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "A workflow's estimated CI cost broken down by runner tier over a window (date_from default -30d), highest spend first. Returns an empty list when the job-level source isn't synced."
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunsRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "date_from": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_from",
+            "smithy.api#documentation": "Window start: relative ('-30d', '-8w') or ISO8601. Defaults to -30d."
+          }
+        },
+        "date_to": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "date_to",
+            "smithy.api#documentation": "Window end: relative or ISO8601. Defaults to now."
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repo",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "'owner/name' repository the workflow belongs to."
+          }
+        },
+        "source_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "source_id",
+            "smithy.api#documentation": "Connected GitHub data warehouse source to read from. Defaults to the oldest connected GitHub source when the team has more than one."
+          }
+        },
+        "workflow_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "workflow_name",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Workflow name to list runs for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunsResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.engineering_analytics#WorkflowRunDetail"
+      },
+      "traits": {}
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunsResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunsResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRuns": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunsRequest"
+      },
+      "output": {
+        "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.engineering_analytics#BadRequest"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/engineering_analytics/workflow_runs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Runs of a single workflow within a repo over a window (date_from default -30d), newest first. Each row is run-level — per-job and per-step detail are not tracked yet. Use this as the GitHub 'workflow' page between the workflow list and a single run."
+      }
+    },
+    "com.posthog.engineering_analytics#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.engineering_analytics#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.engineering_analytics#EngineeringAnalytics": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsCiCards"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPrCost"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPrLifecycle"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPrRuns"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsPullRequests"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsQuarantine"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsSources"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowHealth"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowJobs"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRun"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRunnerCosts"
+        },
+        {
+          "target": "com.posthog.engineering_analytics#EngineeringAnalyticsWorkflowRuns"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

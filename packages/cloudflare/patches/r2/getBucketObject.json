@@ -1,0 +1,40 @@
+{
+  "description": "Align r2#BucketsObjectsGet with distilled cloudflare/r2 getBucketObject",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsGet",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObject"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsGetRequest",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObjectRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObject/input/target",
+      "value": "com.cloudflare.r2#GetBucketObjectRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#GetBucketObjectRequest/members/If_Modified_Since",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObjectRequest/members/ifModifiedSince"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#GetBucketObjectRequest/members/If_None_Match",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObjectRequest/members/ifNoneMatch"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#GetBucketObjectRequest/members/object_key",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObjectRequest/members/object_name"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#GetBucketObject/traits/smithy.api#http/uri",
+      "value": "/accounts/{account_id}/r2/buckets/{bucket_name}/objects/{object_name}"
+    }
+  ]
+}

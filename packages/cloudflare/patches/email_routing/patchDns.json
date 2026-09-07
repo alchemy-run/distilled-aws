@@ -1,0 +1,30 @@
+{
+  "description": "Align email_routing#DnsEdit with distilled cloudflare/email-routing patchDns",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsEdit",
+      "path": "/shapes/com.cloudflare.email_routing#PatchDns"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsEditRequest",
+      "path": "/shapes/com.cloudflare.email_routing#PatchDnsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#PatchDns/input/target",
+      "value": "com.cloudflare.email_routing#PatchDnsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#DnsEditResponse",
+      "path": "/shapes/com.cloudflare.email_routing#PatchDnsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#PatchDns/output/target",
+      "value": "com.cloudflare.email_routing#PatchDnsResponse"
+    }
+  ]
+}

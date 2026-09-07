@@ -1,0 +1,38 @@
+{
+  "description": "Align logpush#DatasetsJobsGetForAccount with distilled cloudflare/logpush getDatasetJobForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsJobsGetForAccount",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetJobForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsJobsGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetJobForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetJobForAccount/input/target",
+      "value": "com.cloudflare.logpush#GetDatasetJobForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#DatasetsJobsGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetJobForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetJobForAccount/output/target",
+      "value": "com.cloudflare.logpush#GetDatasetJobForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#GetDatasetJobForAccount/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

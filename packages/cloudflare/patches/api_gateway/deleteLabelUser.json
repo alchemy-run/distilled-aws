@@ -1,0 +1,42 @@
+{
+  "description": "Align api_gateway#LabelsUserDelete with distilled cloudflare/api-gateway deleteLabelUser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserDelete",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteLabelUser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserDeleteRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteLabelUserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteLabelUser/input/target",
+      "value": "com.cloudflare.api_gateway#DeleteLabelUserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#LabelsUserDeleteResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteLabelUserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteLabelUser/output/target",
+      "value": "com.cloudflare.api_gateway#DeleteLabelUserResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#DeleteLabelUser/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#LabelNotFound"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#Forbidden"
+        }
+      ]
+    }
+  ]
+}

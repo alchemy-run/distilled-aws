@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ThreatEventsCountriesList with distilled cloudflare/cloudforce-one listThreatEventCountries",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsCountriesList",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventCountries"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsCountriesListRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventCountriesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventCountries/input/target",
+      "value": "com.cloudflare.cloudforce_one#ListThreatEventCountriesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsCountriesListResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventCountriesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventCountries/output/target",
+      "value": "com.cloudflare.cloudforce_one#ListThreatEventCountriesResponse"
+    }
+  ]
+}

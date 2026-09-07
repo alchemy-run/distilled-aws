@@ -1,0 +1,30 @@
+{
+  "description": "Align flagship#AppsCreate with distilled cloudflare/flagship createApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsCreate",
+      "path": "/shapes/com.cloudflare.flagship#CreateApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsCreateRequest",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#CreateApp/input/target",
+      "value": "com.cloudflare.flagship#CreateAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsCreateResponse",
+      "path": "/shapes/com.cloudflare.flagship#CreateAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#CreateApp/output/target",
+      "value": "com.cloudflare.flagship#CreateAppResponse"
+    }
+  ]
+}

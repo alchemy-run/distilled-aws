@@ -1,0 +1,5 @@
+{
+  "errorHttpStatus": {
+    "ResourceNotFoundException": 404
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Align magic_cloud_networking#ResourcesExport with distilled cloudflare/magic-cloud-networking exportResource",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesExport",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ExportResource"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#ResourcesExportRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ExportResourceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#ExportResource/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#ExportResourceRequest"
+    }
+  ]
+}

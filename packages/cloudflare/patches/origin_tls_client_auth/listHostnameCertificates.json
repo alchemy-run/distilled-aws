@@ -1,0 +1,47 @@
+{
+  "description": "Align origin_tls_client_auth#HostnameCertificatesList with distilled cloudflare/origin-tls-client-auth listHostnameCertificates",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnameCertificatesList",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListHostnameCertificates"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnameCertificatesListRequest",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListHostnameCertificatesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListHostnameCertificates/input/target",
+      "value": "com.cloudflare.origin_tls_client_auth#ListHostnameCertificatesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.origin_tls_client_auth#HostnameCertificatesListResponse",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListHostnameCertificatesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListHostnameCertificates/output/target",
+      "value": "com.cloudflare.origin_tls_client_auth#ListHostnameCertificatesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListHostnameCertificates/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.origin_tls_client_auth#ListHostnameCertificates/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.origin_tls_client_auth#Forbidden"
+        }
+      ]
+    }
+  ]
+}

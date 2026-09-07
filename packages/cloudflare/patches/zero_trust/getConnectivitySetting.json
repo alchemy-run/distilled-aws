@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#ConnectivitySettingsGet with distilled cloudflare/zero-trust getConnectivitySetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ConnectivitySettingsGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetConnectivitySetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ConnectivitySettingsGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetConnectivitySettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetConnectivitySetting/input/target",
+      "value": "com.cloudflare.zero_trust#GetConnectivitySettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ConnectivitySettingsGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetConnectivitySettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetConnectivitySetting/output/target",
+      "value": "com.cloudflare.zero_trust#GetConnectivitySettingResponse"
+    }
+  ]
+}

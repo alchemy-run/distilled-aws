@@ -1,0 +1,45 @@
+{
+  "description": "Align client_certificates#Delete with distilled cloudflare/client-certificates deleteClientCertificate",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.client_certificates#Delete",
+      "path": "/shapes/com.cloudflare.client_certificates#DeleteClientCertificate"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.client_certificates#DeleteRequest",
+      "path": "/shapes/com.cloudflare.client_certificates#DeleteClientCertificateRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.client_certificates#DeleteClientCertificate/input/target",
+      "value": "com.cloudflare.client_certificates#DeleteClientCertificateRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.client_certificates#DeleteResponse",
+      "path": "/shapes/com.cloudflare.client_certificates#DeleteClientCertificateResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.client_certificates#DeleteClientCertificate/output/target",
+      "value": "com.cloudflare.client_certificates#DeleteClientCertificateResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.client_certificates#DeleteClientCertificate/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.client_certificates#ClientCertificateNotFound"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#ClientCertificateAlreadyRevoked"
+        },
+        {
+          "target": "com.cloudflare.client_certificates#Forbidden"
+        }
+      ]
+    }
+  ]
+}

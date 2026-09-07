@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#GeolocationsGet with distilled cloudflare/radar getGeolocation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#GeolocationsGet",
+      "path": "/shapes/com.cloudflare.radar#GetGeolocation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#GeolocationsGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetGeolocationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetGeolocation/input/target",
+      "value": "com.cloudflare.radar#GetGeolocationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#GeolocationsGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetGeolocationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetGeolocation/output/target",
+      "value": "com.cloudflare.radar#GetGeolocationResponse"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "structures": {
+    "Credentials": {
+      "members": {
+        "secretAccessKey": { "sensitive": true },
+        "sessionToken": { "sensitive": true }
+      }
+    }
+  }
+}

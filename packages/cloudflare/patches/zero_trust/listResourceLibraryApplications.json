@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#ResourceLibraryApplicationsList with distilled cloudflare/zero-trust listResourceLibraryApplications",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ResourceLibraryApplicationsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListResourceLibraryApplications"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ResourceLibraryApplicationsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListResourceLibraryApplicationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListResourceLibraryApplications/input/target",
+      "value": "com.cloudflare.zero_trust#ListResourceLibraryApplicationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ResourceLibraryApplicationsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListResourceLibraryApplicationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListResourceLibraryApplications/output/target",
+      "value": "com.cloudflare.zero_trust#ListResourceLibraryApplicationsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListResourceLibraryApplications/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

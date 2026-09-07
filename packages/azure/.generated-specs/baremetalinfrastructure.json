@@ -1,0 +1,2692 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances/{azureBareMetalStorageInstanceName}",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Delete an AzureBareMetalStorageInstance.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureBareMetalStorageInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureBareMetalStorage on Azure instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances/{azureBareMetalStorageInstanceName}",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Patches the Tags field of a Azure BareMetalStorage instance.\n\nPatches the Tags field of a Azure BareMetalStorage instance for the specified subscription, resource group, and instance name.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "AzureBareMetalStorageInstance properties"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceProperties": {
+      "type": "structure",
+      "members": {
+        "azureBareMetalStorageInstanceUniqueIdentifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the AzureBareMetaStorageInstance unique ID."
+          }
+        },
+        "storageProperties": {
+          "target": "com.azure.baremetalinfrastructure#StorageProperties",
+          "traits": {
+            "smithy.api#documentation": "Specifies the storage properties for the AzureBareMetalStorage instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of an AzureBareMetalStorageInstance."
+      }
+    },
+    "com.azure.baremetalinfrastructure#StorageProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.baremetalinfrastructure#StoragePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "State of provisioning of the AzureBareMetalStorageInstance"
+          }
+        },
+        "offeringType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the offering type for which the resource is getting provisioned"
+          }
+        },
+        "storageType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the storage protocol for which the resource is getting provisioned"
+          }
+        },
+        "generation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the kind of storage instance"
+          }
+        },
+        "hardwareType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the hardware type of the storage instance"
+          }
+        },
+        "workloadType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the workload for which the resource is getting provisioned"
+          }
+        },
+        "storageBillingProperties": {
+          "target": "com.azure.baremetalinfrastructure#StorageBillingProperties",
+          "traits": {
+            "smithy.api#documentation": "the billing related information for the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "described the storage properties of the azure baremetalstorage instance"
+      }
+    },
+    "com.azure.baremetalinfrastructure#StorageBillingProperties": {
+      "type": "structure",
+      "members": {
+        "billingMode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the billing mode for the storage instance"
+          }
+        },
+        "azureBareMetalStorageInstanceSize": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "the SKU type that is provisioned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the billing related details of the AzureBareMetalStorageInstance."
+      }
+    },
+    "com.azure.baremetalinfrastructure#StoragePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "MIGRATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Migrating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of provisioning of the AzureBareMetalStorageInstance"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureBareMetalStorageInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureBareMetalStorage on Azure instance."
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags field of the AzureBareMetal/AzureBareMetaStorage instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags field of the AzureBareMetal/AzureBareMetaStorage instance."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances/{azureBareMetalStorageInstanceName}",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Create an azure baremetal storage resource.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "AzureBareMetalStorageInstance properties"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureBareMetalStorageInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureBareMetalStorage on Azure instance."
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "AzureBareMetalStorageInstance properties"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances/{azureBareMetalStorageInstanceName}",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Gets an Azure BareMetal Storage instance.\n\nGets an Azure BareMetal Storage instance for the specified subscription, resource group, and instance name.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "AzureBareMetalStorageInstance properties"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureBareMetalStorageInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the AzureBareMetalStorage on Azure instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Gets a list of Azure BareMetalStorage instances in the specified subscription and resource group.\n\nGets a list of AzureBareMetalStorage instances in the specified subscription and resource group. The operations returns various properties of each Azure BareMetal instance.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of AzureBareMetalStorage instances."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to get the next set of AzureBareMetalStorage instances."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from the Get AzureBareMetalStorageInstances operation."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstance"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of AzureBareMetalStorage instances."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstance": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "AzureBareMetalStorageInstance properties"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AzureBareMetalStorageInstance info on Azure (ARM properties and AzureBareMetalStorage properties)"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstanceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.BareMetalInfrastructure/bareMetalStorageInstances",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Gets a list of Azure BareMetalStorage instances in the specified subscription.\n\nGets a list of AzureBareMetalStorage instances in the specified subscription. The operations returns various properties of each Azure BareMetal instance.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Patches the Tags field of a Azure BareMetal instance.\n\nPatches the Tags field of a Azure BareMetal instance for the specified subscription, resource group, and instance name.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "AzureBareMetal instance properties"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstanceProperties": {
+      "type": "structure",
+      "members": {
+        "hardwareProfile": {
+          "target": "com.azure.baremetalinfrastructure#HardwareProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the hardware settings for the AzureBareMetal instance."
+          }
+        },
+        "storageProfile": {
+          "target": "com.azure.baremetalinfrastructure#StorageProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the storage settings for the AzureBareMetal instance disks."
+          }
+        },
+        "osProfile": {
+          "target": "com.azure.baremetalinfrastructure#OSProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the operating system settings for the AzureBareMetal instance."
+          }
+        },
+        "networkProfile": {
+          "target": "com.azure.baremetalinfrastructure#NetworkProfile",
+          "traits": {
+            "smithy.api#documentation": "Specifies the network settings for the AzureBareMetal instance."
+          }
+        },
+        "azureBareMetalInstanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the AzureBareMetal instance unique ID."
+          }
+        },
+        "powerState": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancePropertiesPowerState",
+          "traits": {
+            "smithy.api#documentation": "Resource power state"
+          }
+        },
+        "proximityPlacementGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource proximity placement group"
+          }
+        },
+        "hwRevision": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hardware revision of an AzureBareMetal instance"
+          }
+        },
+        "partnerNodeId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM ID of another AzureBareMetalInstance that will share a network with this AzureBareMetalInstance"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "State of provisioning of the AzureBareMetalInstance"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the properties of an AzureBareMetal instance."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Creating"
+          }
+        },
+        "UPDATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Updating"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Deleting"
+          }
+        },
+        "MIGRATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Migrating"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "State of provisioning of the AzureBareMetalInstance"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancePropertiesPowerState": {
+      "type": "enum",
+      "members": {
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "starting"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started"
+          }
+        },
+        "STOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopping"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "stopped"
+          }
+        },
+        "RESTARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "restarting"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource power state"
+      }
+    },
+    "com.azure.baremetalinfrastructure#NetworkProfile": {
+      "type": "structure",
+      "members": {
+        "networkInterfaces": {
+          "target": "com.azure.baremetalinfrastructure#NetworkProfileNetworkInterfacesList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the network interfaces for the AzureBareMetal instance."
+          }
+        },
+        "circuitId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the circuit id for connecting to express route."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the network settings for the AzureBareMetal instance disks."
+      }
+    },
+    "com.azure.baremetalinfrastructure#NetworkProfileNetworkInterfacesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.baremetalinfrastructure#IpAddress"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the network interfaces for the AzureBareMetal instance."
+      }
+    },
+    "com.azure.baremetalinfrastructure#IpAddress": {
+      "type": "structure",
+      "members": {
+        "ipAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the IP address of the network interface."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the IP address of the network interface."
+      }
+    },
+    "com.azure.baremetalinfrastructure#OSProfile": {
+      "type": "structure",
+      "members": {
+        "computerName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the host OS name of the AzureBareMetal instance."
+          }
+        },
+        "osType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This property allows you to specify the type of the OS."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies version of operating system."
+          }
+        },
+        "sshPublicKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the SSH public key used to access the operating system."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the operating system settings for the AzureBareMetal instance."
+      }
+    },
+    "com.azure.baremetalinfrastructure#StorageProfile": {
+      "type": "structure",
+      "members": {
+        "nfsIpAddress": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IP Address to connect to storage."
+          }
+        },
+        "osDisks": {
+          "target": "com.azure.baremetalinfrastructure#StorageProfileOsDisksList",
+          "traits": {
+            "smithy.api#documentation": "Specifies information about the operating system disk used by baremetal instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the storage settings for the AzureBareMetal instance disks."
+      }
+    },
+    "com.azure.baremetalinfrastructure#StorageProfileOsDisksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.baremetalinfrastructure#Disk"
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies information about the operating system disk used by baremetal instance."
+      }
+    },
+    "com.azure.baremetalinfrastructure#Disk": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The disk name."
+          }
+        },
+        "diskSizeGB": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the size of an empty data disk in gigabytes."
+          }
+        },
+        "lun": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the disk information fo the AzureBareMetal instance"
+      }
+    },
+    "com.azure.baremetalinfrastructure#HardwareProfile": {
+      "type": "structure",
+      "members": {
+        "hardwareType": {
+          "target": "com.azure.baremetalinfrastructure#HardwareProfileHardwareType",
+          "traits": {
+            "smithy.api#documentation": "Name of the hardware type (vendor and/or their product name)"
+          }
+        },
+        "azureBareMetalInstanceSize": {
+          "target": "com.azure.baremetalinfrastructure#HardwareProfileAzureBareMetalInstanceSize",
+          "traits": {
+            "smithy.api#documentation": "Specifies the AzureBareMetal instance SKU."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the hardware settings for the AzureBareMetal instance."
+      }
+    },
+    "com.azure.baremetalinfrastructure#HardwareProfileAzureBareMetalInstanceSize": {
+      "type": "enum",
+      "members": {
+        "S72M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S72m"
+          }
+        },
+        "S144M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S144m"
+          }
+        },
+        "S72": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S72"
+          }
+        },
+        "S144": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S144"
+          }
+        },
+        "S192": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S192"
+          }
+        },
+        "S192M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S192m"
+          }
+        },
+        "S192XM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S192xm"
+          }
+        },
+        "S96": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S96"
+          }
+        },
+        "S112": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S112"
+          }
+        },
+        "S224": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224"
+          }
+        },
+        "S224M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224m"
+          }
+        },
+        "S224OM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224om"
+          }
+        },
+        "S224OO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224oo"
+          }
+        },
+        "S224OOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224oom"
+          }
+        },
+        "S224OOO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S224ooo"
+          }
+        },
+        "S384": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S384"
+          }
+        },
+        "S384M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S384m"
+          }
+        },
+        "S384XM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S384xm"
+          }
+        },
+        "S384XXM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S384xxm"
+          }
+        },
+        "S448": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448"
+          }
+        },
+        "S448M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448m"
+          }
+        },
+        "S448OM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448om"
+          }
+        },
+        "S448OO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448oo"
+          }
+        },
+        "S448OOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448oom"
+          }
+        },
+        "S448OOO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S448ooo"
+          }
+        },
+        "S576M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S576m"
+          }
+        },
+        "S576XM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S576xm"
+          }
+        },
+        "S672": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672"
+          }
+        },
+        "S672M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672m"
+          }
+        },
+        "S672OM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672om"
+          }
+        },
+        "S672OO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672oo"
+          }
+        },
+        "S672OOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672oom"
+          }
+        },
+        "S672OOO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S672ooo"
+          }
+        },
+        "S768": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S768"
+          }
+        },
+        "S768M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S768m"
+          }
+        },
+        "S768XM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S768xm"
+          }
+        },
+        "S896": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896"
+          }
+        },
+        "S896M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896m"
+          }
+        },
+        "S896OM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896om"
+          }
+        },
+        "S896OO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896oo"
+          }
+        },
+        "S896OOM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896oom"
+          }
+        },
+        "S896OOO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S896ooo"
+          }
+        },
+        "S960M": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S960m"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the AzureBareMetal instance SKU."
+      }
+    },
+    "com.azure.baremetalinfrastructure#HardwareProfileHardwareType": {
+      "type": "enum",
+      "members": {
+        "CISCO_UCS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cisco_UCS"
+          }
+        },
+        "HPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HPE"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the hardware type (vendor and/or their product name)"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureBareMetalInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure BareMetal on Azure instance."
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags field of the AzureBareMetal/AzureBareMetaStorage instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags field of the AzureBareMetal/AzureBareMetaStorage instance."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances/{azureBareMetalInstanceName}",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Gets an Azure BareMetal instance.\n\nGets an Azure BareMetal instance for the specified subscription, resource group, and instance name.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "AzureBareMetal instance properties"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "azureBareMetalInstanceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Name of the Azure BareMetal on Azure instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.BareMetalInfrastructure/operations",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Gets a list of AzureBareMetal management operations.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#OperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.baremetalinfrastructure#OperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "List of AzureBareMetal operations"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of AzureBareMetal operations"
+      }
+    },
+    "com.azure.baremetalinfrastructure#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.baremetalinfrastructure#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of AzureBareMetal operations"
+      }
+    },
+    "com.azure.baremetalinfrastructure#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation being performed on this particular object. This name should match the action name that appears in RBAC / the event service."
+          }
+        },
+        "display": {
+          "target": "com.azure.baremetalinfrastructure#Display",
+          "traits": {
+            "smithy.api#documentation": "Displayed AzureBareMetal operation information"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "indicates whether an operation is a data action or not."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AzureBareMetal operation information"
+      }
+    },
+    "com.azure.baremetalinfrastructure#Display": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource type related to this action/operation."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name for the operation as shown to the user."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly description for the operation as shown to the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Detailed BareMetal operation information"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Gets a list of Azure BareMetal instances in the specified subscription and resource group.\n\nGets a list of AzureBareMetal instances in the specified subscription and resource group. The operations returns various properties of each Azure BareMetal instance.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of Azure BareMetal instances."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The URL to get the next set of AzureBareMetal instances."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response from the List AzureBareMetal Instances operation."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstance"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of Azure BareMetal instances."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstance": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstanceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstanceProperties",
+          "traits": {
+            "smithy.api#documentation": "AzureBareMetal instance properties"
+          }
+        },
+        "systemData": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstanceSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AzureBareMetal instance info on Azure (ARM properties and AzureBareMetal properties)"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstanceSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstanceSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstanceSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstanceSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstanceSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstanceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.BareMetalInfrastructure/bareMetalInstances",
+          "code": 200,
+          "apiVersion": "2023-04-06"
+        },
+        "smithy.api#documentation": "Gets a list of Azure BareMetal instances in the specified subscription.\n\nGets a list of AzureBareMetal instances in the specified subscription. The operations returns various properties of each Azure BareMetal instance.",
+        "com.distilled.openapi#apiVersion": "2023-04-06"
+      }
+    },
+    "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.baremetalinfrastructure#Baremetalinfrastructure": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesDelete"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesUpdate"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesCreate"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesGet"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalStorageInstancesListBySubscription"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesUpdate"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesGet"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#OperationsList"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.baremetalinfrastructure#AzureBareMetalInstancesListBySubscription"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Baremetalinfrastructure",
+        "smithy.api#documentation": "Azure Baremetalinfrastructure API — merged from the baremetalinfrastructure resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align alerting#PoliciesGet with distilled cloudflare/alerting getPolicy",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesGet",
+      "path": "/shapes/com.cloudflare.alerting#GetPolicy"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesGetRequest",
+      "path": "/shapes/com.cloudflare.alerting#GetPolicyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#GetPolicy/input/target",
+      "value": "com.cloudflare.alerting#GetPolicyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#PoliciesGetResponse",
+      "path": "/shapes/com.cloudflare.alerting#GetPolicyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#GetPolicy/output/target",
+      "value": "com.cloudflare.alerting#GetPolicyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#GetPolicy/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.alerting#PolicyNotFound"
+        }
+      ]
+    }
+  ]
+}

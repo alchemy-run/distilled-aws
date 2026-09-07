@@ -1,0 +1,39 @@
+{
+  "description": "Align email_routing#RulesDelete with distilled cloudflare/email-routing deleteRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesDelete",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesDeleteRequest",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteRule/input/target",
+      "value": "com.cloudflare.email_routing#DeleteRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.email_routing#RulesDeleteResponse",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteRule/output/target",
+      "value": "com.cloudflare.email_routing#DeleteRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_routing#EmailRoutingRuleNotFound"
+        }
+      ]
+    }
+  ]
+}

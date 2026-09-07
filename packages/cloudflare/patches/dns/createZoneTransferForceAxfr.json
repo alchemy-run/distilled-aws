@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#ZoneTransfersForceAxfrCreate with distilled cloudflare/dns createZoneTransferForceAxfr",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersForceAxfrCreate",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferForceAxfr"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersForceAxfrCreateRequest",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferForceAxfrRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferForceAxfr/input/target",
+      "value": "com.cloudflare.dns#CreateZoneTransferForceAxfrRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersForceAxfrCreateResponse",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferForceAxfrResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferForceAxfr/output/target",
+      "value": "com.cloudflare.dns#CreateZoneTransferForceAxfrResponse"
+    }
+  ]
+}

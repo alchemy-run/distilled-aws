@@ -1,0 +1,30 @@
+{
+  "description": "Align r2#SuperSlurperJobsProgress with distilled cloudflare/r2 progressSuperSlurperJob",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperJobsProgress",
+      "path": "/shapes/com.cloudflare.r2#ProgressSuperSlurperJob"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperJobsProgressRequest",
+      "path": "/shapes/com.cloudflare.r2#ProgressSuperSlurperJobRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#ProgressSuperSlurperJob/input/target",
+      "value": "com.cloudflare.r2#ProgressSuperSlurperJobRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperJobsProgressResponse",
+      "path": "/shapes/com.cloudflare.r2#ProgressSuperSlurperJobResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#ProgressSuperSlurperJob/output/target",
+      "value": "com.cloudflare.r2#ProgressSuperSlurperJobResponse"
+    }
+  ]
+}

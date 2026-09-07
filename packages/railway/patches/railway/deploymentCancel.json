@@ -1,0 +1,10 @@
+{
+  "description": "deploymentCancel returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#DeploymentCancelRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation deploymentCancel($id: String!) {\n  deploymentCancel(id: $id)\n}"
+    }
+  ]
+}

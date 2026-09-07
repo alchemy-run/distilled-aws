@@ -1,0 +1,42 @@
+{
+  "description": "Align zero_trust#DevicesPostureDelete with distilled cloudflare/zero-trust deleteDevicePosture",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPostureDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDevicePosture"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPostureDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDevicePostureRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDevicePosture/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDevicePostureRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesPostureDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDevicePostureResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDevicePosture/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDevicePostureResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDevicePosture/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#PostureRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

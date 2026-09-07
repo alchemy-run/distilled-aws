@@ -1,0 +1,43 @@
+{
+  "description": "Key dictionary / op aliases for pipelines (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "accessKeyId": "access_key_id",
+        "accountId": "account_id",
+        "createdAt": "created_at",
+        "decimalEncoding": "decimal_encoding",
+        "destId": "dest_id",
+        "edgeType": "edge_type",
+        "failureReason": "failure_reason",
+        "fileNaming": "file_naming",
+        "fileSizeBytes": "file_size_bytes",
+        "inactivitySeconds": "inactivity_seconds",
+        "intervalSeconds": "interval_seconds",
+        "keyType": "key_type",
+        "maxBytes": "max_bytes",
+        "maxDurationS": "max_duration_s",
+        "maxRows": "max_rows",
+        "metadataKey": "metadata_key",
+        "modifiedAt": "modified_at",
+        "nodeId": "node_id",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "results": "result",
+        "rollingPolicy": "rolling_policy",
+        "rowGroupBytes": "row_group_bytes",
+        "secretAccessKey": "secret_access_key",
+        "sqlName": "sql_name",
+        "srcId": "src_id",
+        "tableName": "table_name",
+        "timePattern": "time_pattern",
+        "timestampFormat": "timestamp_format",
+        "totalCount": "total_count",
+        "valueType": "value_type",
+        "workerBinding": "worker_binding"
+      }
+    }
+  ]
+}

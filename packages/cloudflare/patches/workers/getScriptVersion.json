@@ -1,0 +1,42 @@
+{
+  "description": "Align workers#ScriptsVersionsGet with distilled cloudflare/workers getScriptVersion",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsVersionsGet",
+      "path": "/shapes/com.cloudflare.workers#GetScriptVersion"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsVersionsGetRequest",
+      "path": "/shapes/com.cloudflare.workers#GetScriptVersionRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetScriptVersion/input/target",
+      "value": "com.cloudflare.workers#GetScriptVersionRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsVersionsGetResponse",
+      "path": "/shapes/com.cloudflare.workers#GetScriptVersionResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#GetScriptVersion/output/target",
+      "value": "com.cloudflare.workers#GetScriptVersionResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#GetScriptVersion/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#VersionNotFound"
+        }
+      ]
+    }
+  ]
+}

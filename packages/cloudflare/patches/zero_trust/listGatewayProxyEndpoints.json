@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#GatewayProxyEndpointsList with distilled cloudflare/zero-trust listGatewayProxyEndpoints",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayProxyEndpoints"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayProxyEndpointsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayProxyEndpoints/input/target",
+      "value": "com.cloudflare.zero_trust#ListGatewayProxyEndpointsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayProxyEndpointsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayProxyEndpointsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayProxyEndpoints/output/target",
+      "value": "com.cloudflare.zero_trust#ListGatewayProxyEndpointsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListGatewayProxyEndpoints/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

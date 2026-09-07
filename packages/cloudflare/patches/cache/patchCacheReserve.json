@@ -1,0 +1,42 @@
+{
+  "description": "Align cache#CacheReserveEdit with distilled cloudflare/cache patchCacheReserve",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#CacheReserveEdit",
+      "path": "/shapes/com.cloudflare.cache#PatchCacheReserve"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#CacheReserveEditRequest",
+      "path": "/shapes/com.cloudflare.cache#PatchCacheReserveRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#PatchCacheReserve/input/target",
+      "value": "com.cloudflare.cache#PatchCacheReserveRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#CacheReserveEditResponse",
+      "path": "/shapes/com.cloudflare.cache#PatchCacheReserveResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#PatchCacheReserve/output/target",
+      "value": "com.cloudflare.cache#PatchCacheReserveResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.cache#PatchCacheReserve/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.cache#SettingUnavailableForPlan"
+        },
+        {
+          "target": "com.cloudflare.cache#Forbidden"
+        }
+      ]
+    }
+  ]
+}

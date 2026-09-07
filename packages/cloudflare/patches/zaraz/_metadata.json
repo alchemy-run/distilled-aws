@@ -1,0 +1,14 @@
+{
+  "description": "Key dictionary / op aliases for zaraz (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "acceptAll": "accept_all",
+        "confirmMyChoices": "confirm_my_choices",
+        "rejectAll": "reject_all"
+      }
+    }
+  ]
+}

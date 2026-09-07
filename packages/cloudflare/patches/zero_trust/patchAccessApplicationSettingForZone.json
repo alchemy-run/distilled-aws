@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessApplicationsSettingsEditForZone with distilled cloudflare/zero-trust patchAccessApplicationSettingForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsSettingsEditForZone",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchAccessApplicationSettingForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsSettingsEditForZoneRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchAccessApplicationSettingForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchAccessApplicationSettingForZone/input/target",
+      "value": "com.cloudflare.zero_trust#PatchAccessApplicationSettingForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsSettingsEditForZoneResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchAccessApplicationSettingForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchAccessApplicationSettingForZone/output/target",
+      "value": "com.cloudflare.zero_trust#PatchAccessApplicationSettingForZoneResponse"
+    }
+  ]
+}

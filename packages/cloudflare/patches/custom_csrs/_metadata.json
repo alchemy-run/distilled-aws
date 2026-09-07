@@ -1,0 +1,19 @@
+{
+  "description": "Key dictionary / op aliases for custom_csrs (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "accountTag": "account_tag",
+        "commonName": "common_name",
+        "createdAt": "created_at",
+        "keyType": "key_type",
+        "organizationalUnit": "organizational_unit",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

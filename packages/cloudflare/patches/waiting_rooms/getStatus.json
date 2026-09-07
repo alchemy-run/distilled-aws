@@ -1,0 +1,30 @@
+{
+  "description": "Align waiting_rooms#StatusesGet with distilled cloudflare/waiting-rooms getStatus",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#StatusesGet",
+      "path": "/shapes/com.cloudflare.waiting_rooms#GetStatus"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#StatusesGetRequest",
+      "path": "/shapes/com.cloudflare.waiting_rooms#GetStatusRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#GetStatus/input/target",
+      "value": "com.cloudflare.waiting_rooms#GetStatusRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.waiting_rooms#StatusesGetResponse",
+      "path": "/shapes/com.cloudflare.waiting_rooms#GetStatusResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.waiting_rooms#GetStatus/output/target",
+      "value": "com.cloudflare.waiting_rooms#GetStatusResponse"
+    }
+  ]
+}

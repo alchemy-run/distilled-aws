@@ -1,0 +1,47 @@
+{
+  "description": "Align workers#ScriptsList with distilled cloudflare/workers listScripts",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsList",
+      "path": "/shapes/com.cloudflare.workers#ListScripts"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsListRequest",
+      "path": "/shapes/com.cloudflare.workers#ListScriptsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListScripts/input/target",
+      "value": "com.cloudflare.workers#ListScriptsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsListResponse",
+      "path": "/shapes/com.cloudflare.workers#ListScriptsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListScripts/output/target",
+      "value": "com.cloudflare.workers#ListScriptsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListScripts/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListScripts/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

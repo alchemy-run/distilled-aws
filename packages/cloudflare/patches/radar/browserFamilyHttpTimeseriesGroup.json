@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#HttpTimeseriesGroupsBrowserFamily with distilled cloudflare/radar browserFamilyHttpTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsBrowserFamily",
+      "path": "/shapes/com.cloudflare.radar#BrowserFamilyHttpTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsBrowserFamilyRequest",
+      "path": "/shapes/com.cloudflare.radar#BrowserFamilyHttpTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#BrowserFamilyHttpTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#BrowserFamilyHttpTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#HttpTimeseriesGroupsBrowserFamilyResponse",
+      "path": "/shapes/com.cloudflare.radar#BrowserFamilyHttpTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#BrowserFamilyHttpTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#BrowserFamilyHttpTimeseriesGroupResponse"
+    }
+  ]
+}

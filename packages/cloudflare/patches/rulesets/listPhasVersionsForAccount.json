@@ -1,0 +1,38 @@
+{
+  "description": "Align rulesets#PhasesVersionsListForAccount with distilled cloudflare/rulesets listPhasVersionsForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#PhasesVersionsListForAccount",
+      "path": "/shapes/com.cloudflare.rulesets#ListPhasVersionsForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#PhasesVersionsListForAccountRequest",
+      "path": "/shapes/com.cloudflare.rulesets#ListPhasVersionsForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#ListPhasVersionsForAccount/input/target",
+      "value": "com.cloudflare.rulesets#ListPhasVersionsForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rulesets#PhasesVersionsListForAccountResponse",
+      "path": "/shapes/com.cloudflare.rulesets#ListPhasVersionsForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rulesets#ListPhasVersionsForAccount/output/target",
+      "value": "com.cloudflare.rulesets#ListPhasVersionsForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rulesets#ListPhasVersionsForAccount/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

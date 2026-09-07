@@ -1,0 +1,5 @@
+{
+  "operations": {
+    "disassociateWebACL": { "errors": ["WAFUnavailableEntityException"] }
+  }
+}

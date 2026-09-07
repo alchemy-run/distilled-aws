@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpEntriesPredefinedCreate with distilled cloudflare/zero-trust createDlpEntryPredefined",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesPredefinedCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEntryPredefined"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesPredefinedCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEntryPredefinedRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEntryPredefined/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpEntryPredefinedRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpEntriesPredefinedCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEntryPredefinedResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDlpEntryPredefined/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDlpEntryPredefinedResponse"
+    }
+  ]
+}

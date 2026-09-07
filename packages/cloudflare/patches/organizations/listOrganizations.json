@@ -1,0 +1,47 @@
+{
+  "description": "Align organizations#List with distilled cloudflare/organizations listOrganizations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#List",
+      "path": "/shapes/com.cloudflare.organizations#ListOrganizations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#ListRequest",
+      "path": "/shapes/com.cloudflare.organizations#ListOrganizationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.organizations#ListOrganizations/input/target",
+      "value": "com.cloudflare.organizations#ListOrganizationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.organizations#ListResponse",
+      "path": "/shapes/com.cloudflare.organizations#ListOrganizationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.organizations#ListOrganizations/output/target",
+      "value": "com.cloudflare.organizations#ListOrganizationsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.organizations#ListOrganizations/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.organizations#ListOrganizations/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.organizations#Forbidden"
+        }
+      ]
+    }
+  ]
+}

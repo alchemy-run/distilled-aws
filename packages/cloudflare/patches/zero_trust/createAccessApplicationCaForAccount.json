@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessApplicationsCasCreateForAccount with distilled cloudflare/zero-trust createAccessApplicationCaForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsCasCreateForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationCaForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsCasCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationCaForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationCaForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessApplicationCaForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsCasCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationCaForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessApplicationCaForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessApplicationCaForAccountResponse"
+    }
+  ]
+}

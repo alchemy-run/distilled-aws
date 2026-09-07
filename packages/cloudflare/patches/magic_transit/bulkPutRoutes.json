@@ -1,0 +1,30 @@
+{
+  "description": "Align magic_transit#RoutesBulkUpdate with distilled cloudflare/magic-transit bulkPutRoutes",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#RoutesBulkUpdate",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutRoutes"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#RoutesBulkUpdateRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutRoutesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutRoutes/input/target",
+      "value": "com.cloudflare.magic_transit#BulkPutRoutesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#RoutesBulkUpdateResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutRoutesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#BulkPutRoutes/output/target",
+      "value": "com.cloudflare.magic_transit#BulkPutRoutesResponse"
+    }
+  ]
+}

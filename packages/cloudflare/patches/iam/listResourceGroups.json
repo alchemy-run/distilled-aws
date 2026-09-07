@@ -1,0 +1,38 @@
+{
+  "description": "Align iam#ResourceGroupsList with distilled cloudflare/iam listResourceGroups",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsList",
+      "path": "/shapes/com.cloudflare.iam#ListResourceGroups"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsListRequest",
+      "path": "/shapes/com.cloudflare.iam#ListResourceGroupsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListResourceGroups/input/target",
+      "value": "com.cloudflare.iam#ListResourceGroupsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsListResponse",
+      "path": "/shapes/com.cloudflare.iam#ListResourceGroupsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListResourceGroups/output/target",
+      "value": "com.cloudflare.iam#ListResourceGroupsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#ListResourceGroups/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

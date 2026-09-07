@@ -1,0 +1,35 @@
+{
+  "description": "Type the GraphQL ToS-agreement authorization rejection on createExtensionTosAgreement.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.flyio.addons#CreateExtensionTosAgreementNotAuthorized",
+      "value": {
+        "type": "structure",
+        "members": {
+          "code": { "target": "smithy.api#Integer" },
+          "message": { "target": "smithy.api#String" }
+        },
+        "traits": {
+          "smithy.api#error": "client",
+          "com.distilled.openapi#errorMatchers": [
+            {
+              "message": {
+                "matches": "[Nn]ot authorized to access this createextensiontosagreement"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.flyio.addons#CreateExtensionTosAgreement/errors",
+      "value": [
+        {
+          "target": "com.flyio.addons#CreateExtensionTosAgreementNotAuthorized"
+        }
+      ]
+    }
+  ]
+}

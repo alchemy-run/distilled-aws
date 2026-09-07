@@ -1,0 +1,30 @@
+{
+  "description": "Align brand_protection#LogosCreate with distilled cloudflare/brand-protection createLogo",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#LogosCreate",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateLogo"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#LogosCreateRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateLogoRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateLogo/input/target",
+      "value": "com.cloudflare.brand_protection#CreateLogoRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#LogosCreateResponse",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateLogoResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#CreateLogo/output/target",
+      "value": "com.cloudflare.brand_protection#CreateLogoResponse"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "description": "Align images#V1KeysUpdate with distilled cloudflare/images putV1Key",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1KeysUpdate",
+      "path": "/shapes/com.cloudflare.images#PutV1Key"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1KeysUpdateRequest",
+      "path": "/shapes/com.cloudflare.images#PutV1KeyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#PutV1Key/input/target",
+      "value": "com.cloudflare.images#PutV1KeyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.images#V1KeysUpdateResponse",
+      "path": "/shapes/com.cloudflare.images#PutV1KeyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.images#PutV1Key/output/target",
+      "value": "com.cloudflare.images#PutV1KeyResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.images#PutV1Key/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.images#ImagesAccessNotEnabled"
+        }
+      ]
+    }
+  ]
+}

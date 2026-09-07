@@ -1,0 +1,30 @@
+{
+  "description": "Align logs#RayidGet with distilled cloudflare/logs getRayid",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#RayidGet",
+      "path": "/shapes/com.cloudflare.logs#GetRayid"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#RayidGetRequest",
+      "path": "/shapes/com.cloudflare.logs#GetRayidRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#GetRayid/input/target",
+      "value": "com.cloudflare.logs#GetRayidRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logs#RayidGetResponse",
+      "path": "/shapes/com.cloudflare.logs#GetRayidResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logs#GetRayid/output/target",
+      "value": "com.cloudflare.logs#GetRayidResponse"
+    }
+  ]
+}

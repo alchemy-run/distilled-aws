@@ -1,0 +1,35 @@
+{
+  "description": "Align kv#NamespacesValuesGet with distilled cloudflare/kv getNamespaceValue",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesValuesGet",
+      "path": "/shapes/com.cloudflare.kv#GetNamespaceValue"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.kv#NamespacesValuesGetRequest",
+      "path": "/shapes/com.cloudflare.kv#GetNamespaceValueRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.kv#GetNamespaceValue/input/target",
+      "value": "com.cloudflare.kv#GetNamespaceValueRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.kv#GetNamespaceValue/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.kv#KeyNotFound"
+        },
+        {
+          "target": "com.cloudflare.kv#NamespaceNotFound"
+        },
+        {
+          "target": "com.cloudflare.kv#InvalidObjectIdentifier"
+        }
+      ]
+    }
+  ]
+}

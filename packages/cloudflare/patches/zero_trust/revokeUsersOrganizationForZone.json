@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#OrganizationsRevokeUsersForZone with distilled cloudflare/zero-trust revokeUsersOrganizationForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsRevokeUsersForZone",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeUsersOrganizationForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsRevokeUsersForZoneRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeUsersOrganizationForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeUsersOrganizationForZone/input/target",
+      "value": "com.cloudflare.zero_trust#RevokeUsersOrganizationForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsRevokeUsersForZoneResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeUsersOrganizationForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#RevokeUsersOrganizationForZone/output/target",
+      "value": "com.cloudflare.zero_trust#RevokeUsersOrganizationForZoneResponse"
+    }
+  ]
+}

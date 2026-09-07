@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AnnotationsOutagesGet with distilled cloudflare/radar getAnnotationOutage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AnnotationsOutagesGet",
+      "path": "/shapes/com.cloudflare.radar#GetAnnotationOutage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AnnotationsOutagesGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetAnnotationOutageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetAnnotationOutage/input/target",
+      "value": "com.cloudflare.radar#GetAnnotationOutageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AnnotationsOutagesGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetAnnotationOutageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetAnnotationOutage/output/target",
+      "value": "com.cloudflare.radar#GetAnnotationOutageResponse"
+    }
+  ]
+}

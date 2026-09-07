@@ -1,0 +1,30 @@
+{
+  "description": "Align firewall#WafPackagesRulesEdit with distilled cloudflare/firewall patchWafPackageRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafPackagesRulesEdit",
+      "path": "/shapes/com.cloudflare.firewall#PatchWafPackageRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafPackagesRulesEditRequest",
+      "path": "/shapes/com.cloudflare.firewall#PatchWafPackageRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#PatchWafPackageRule/input/target",
+      "value": "com.cloudflare.firewall#PatchWafPackageRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#WafPackagesRulesEditResponse",
+      "path": "/shapes/com.cloudflare.firewall#PatchWafPackageRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#PatchWafPackageRule/output/target",
+      "value": "com.cloudflare.firewall#PatchWafPackageRuleResponse"
+    }
+  ]
+}

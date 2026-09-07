@@ -1,0 +1,12 @@
+{
+  "description": "Type Conflict (409) on appCertificatesAcmeCreate so hostname-taken races are catchable.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1apps~1{app_name}~1certificates~1acme/post/responses/409",
+      "value": {
+        "description": "Conflict"
+      }
+    }
+  ]
+}

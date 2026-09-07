@@ -1,0 +1,42 @@
+{
+  "description": "Align spectrum#AppsDelete with distilled cloudflare/spectrum deleteApp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsDelete",
+      "path": "/shapes/com.cloudflare.spectrum#DeleteApp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsDeleteRequest",
+      "path": "/shapes/com.cloudflare.spectrum#DeleteAppRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#DeleteApp/input/target",
+      "value": "com.cloudflare.spectrum#DeleteAppRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.spectrum#AppsDeleteResponse",
+      "path": "/shapes/com.cloudflare.spectrum#DeleteAppResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.spectrum#DeleteApp/output/target",
+      "value": "com.cloudflare.spectrum#DeleteAppResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.spectrum#DeleteApp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.spectrum#SpectrumAppNotFound"
+        },
+        {
+          "target": "com.cloudflare.spectrum#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,622 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.enterprise_teams#ListRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100). For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch. For more information, see \"[Using pagination in the REST API](https://docs.github.com/rest/using-the-rest-api/using-pagination-in-the-rest-api).\""
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_teams#EnterpriseTeam": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sync_to_organizations": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Retired: this field will not be returned with GHEC enterprise teams."
+          }
+        },
+        "organization_selection_type": {
+          "target": "smithy.api#String"
+        },
+        "group_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "group_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Retired: this field will not be returned with GHEC enterprise teams.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "html_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "members_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "notification_setting": {
+          "target": "com.github.enterprise_teams#EnterpriseTeamNotificationSetting",
+          "traits": {
+            "smithy.api#documentation": "Whether team members will receive notifications when the team is mentioned."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Group of enterprise owners and/or members"
+      }
+    },
+    "com.github.enterprise_teams#EnterpriseTeamNotificationSetting": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATIONS_ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notifications_enabled"
+          }
+        },
+        "NOTIFICATIONS_DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notifications_disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether team members will receive notifications when the team is mentioned."
+      }
+    },
+    "com.github.enterprise_teams#ListResponseBodyList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.enterprise_teams#EnterpriseTeam"
+      },
+      "traits": {}
+    },
+    "com.github.enterprise_teams#ListResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.github.enterprise_teams#ListResponseBodyList",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.github.enterprise_teams#List": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_teams#ListRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_teams#ListResponse"
+      },
+      "errors": [
+        {
+          "target": "com.github.enterprise_teams#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/teams",
+          "code": 200
+        },
+        "smithy.api#documentation": "List enterprise teams\n\nList all teams in the enterprise for the authenticated user"
+      }
+    },
+    "com.github.enterprise_teams#CreateRequestSyncToOrganizations": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Retired: this field is no longer supported.\nWhether the enterprise team should be reflected in each organization.\nThis value cannot be set.\n"
+      }
+    },
+    "com.github.enterprise_teams#CreateRequestOrganizationSelectionType": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies which organizations in the enterprise should have access to this team. Can be one of `disabled`, `selected`, or `all`.\n`disabled`: The team is not assigned to any organizations. This is the default when you create a new team.\n`selected`: The team is assigned to specific organizations. You can then use the [add organization assignments API](https://docs.github.com/rest/enterprise-teams/enterprise-team-organizations#add-organization-assignments) endpoint.\n`all`: The team is assigned to all current and future organizations in the enterprise.\n"
+      }
+    },
+    "com.github.enterprise_teams#CreateRequestNotificationSetting": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATIONS_ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notifications_enabled"
+          }
+        },
+        "NOTIFICATIONS_DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notifications_disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The notification setting the team is set to. The options are:\n\n* `notifications_enabled` - team members receive notifications when the team is @mentioned.\n* `notifications_disabled` - no one receives notifications.\n\nDefault: `notifications_enabled`\n"
+      }
+    },
+    "com.github.enterprise_teams#CreateRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description of the team.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "sync_to_organizations": {
+          "target": "com.github.enterprise_teams#CreateRequestSyncToOrganizations",
+          "traits": {
+            "smithy.api#documentation": "Retired: this field is no longer supported.\nWhether the enterprise team should be reflected in each organization.\nThis value cannot be set.\n"
+          }
+        },
+        "organization_selection_type": {
+          "target": "com.github.enterprise_teams#CreateRequestOrganizationSelectionType",
+          "traits": {
+            "smithy.api#documentation": "Specifies which organizations in the enterprise should have access to this team. Can be one of `disabled`, `selected`, or `all`.\n`disabled`: The team is not assigned to any organizations. This is the default when you create a new team.\n`selected`: The team is assigned to specific organizations. You can then use the [add organization assignments API](https://docs.github.com/rest/enterprise-teams/enterprise-team-organizations#add-organization-assignments) endpoint.\n`all`: The team is assigned to all current and future organizations in the enterprise.\n"
+          }
+        },
+        "group_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the IdP group to assign team membership with. You can get this value from the [REST API endpoints for SCIM](https://docs.github.com/rest/scim#list-provisioned-scim-groups-for-an-enterprise).",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "notification_setting": {
+          "target": "com.github.enterprise_teams#CreateRequestNotificationSetting",
+          "traits": {
+            "smithy.api#documentation": "The notification setting the team is set to. The options are:\n\n* `notifications_enabled` - team members receive notifications when the team is @mentioned.\n* `notifications_disabled` - no one receives notifications.\n\nDefault: `notifications_enabled`\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_teams#Create": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_teams#CreateRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_teams#EnterpriseTeam"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/enterprises/{enterprise}/teams",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create an enterprise team\n\nTo create an enterprise team, the authenticated user must be an owner of the enterprise."
+      }
+    },
+    "com.github.enterprise_teams#GetRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "team_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the team name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_teams#Get": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_teams#GetRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_teams#EnterpriseTeam"
+      },
+      "errors": [
+        {
+          "target": "com.github.enterprise_teams#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/enterprises/{enterprise}/teams/{team_slug}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get an enterprise team\n\nGets a team using the team's slug. To create the slug, GitHub replaces special characters in the name string, changes all words to lowercase, and replaces spaces with a `-` separator and adds the \"ent:\" prefix. For example, \"My TEam Näme\" would become `ent:my-team-name`."
+      }
+    },
+    "com.github.enterprise_teams#UpdateRequestSyncToOrganizations": {
+      "type": "enum",
+      "members": {
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Retired: this field is no longer supported.\nWhether the enterprise team should be reflected in each organization.\nThis value cannot be changed.\n"
+      }
+    },
+    "com.github.enterprise_teams#UpdateRequestOrganizationSelectionType": {
+      "type": "enum",
+      "members": {
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        },
+        "SELECTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "selected"
+          }
+        },
+        "ALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "all"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies which organizations in the enterprise should have access to this team. Can be one of `disabled`, `selected`, or `all`.\n`disabled`: The team is not assigned to any organizations. This is the default when you create a new team.\n`selected`: The team is assigned to specific organizations. You can then use the [add organization assignments API](https://docs.github.com/rest/enterprise-teams/enterprise-team-organizations#add-organization-assignments).\n`all`: The team is assigned to all current and future organizations in the enterprise.\n"
+      }
+    },
+    "com.github.enterprise_teams#UpdateRequestNotificationSetting": {
+      "type": "enum",
+      "members": {
+        "NOTIFICATIONS_ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notifications_enabled"
+          }
+        },
+        "NOTIFICATIONS_DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "notifications_disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The notification setting the team is set to. The options are:\n\n* `notifications_enabled` - team members receive notifications when the team is @mentioned.\n* `notifications_disabled` - no one receives notifications.\n"
+      }
+    },
+    "com.github.enterprise_teams#UpdateRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "team_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the team name."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A new name for the team.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A new description for the team.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "sync_to_organizations": {
+          "target": "com.github.enterprise_teams#UpdateRequestSyncToOrganizations",
+          "traits": {
+            "smithy.api#documentation": "Retired: this field is no longer supported.\nWhether the enterprise team should be reflected in each organization.\nThis value cannot be changed.\n"
+          }
+        },
+        "organization_selection_type": {
+          "target": "com.github.enterprise_teams#UpdateRequestOrganizationSelectionType",
+          "traits": {
+            "smithy.api#documentation": "Specifies which organizations in the enterprise should have access to this team. Can be one of `disabled`, `selected`, or `all`.\n`disabled`: The team is not assigned to any organizations. This is the default when you create a new team.\n`selected`: The team is assigned to specific organizations. You can then use the [add organization assignments API](https://docs.github.com/rest/enterprise-teams/enterprise-team-organizations#add-organization-assignments).\n`all`: The team is assigned to all current and future organizations in the enterprise.\n"
+          }
+        },
+        "group_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the IdP group to assign team membership with. The new IdP group will replace the existing one, or replace existing direct members if the team isn't currently linked to an IdP group.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "notification_setting": {
+          "target": "com.github.enterprise_teams#UpdateRequestNotificationSetting",
+          "traits": {
+            "smithy.api#documentation": "The notification setting the team is set to. The options are:\n\n* `notifications_enabled` - team members receive notifications when the team is @mentioned.\n* `notifications_disabled` - no one receives notifications.\n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_teams#Update": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_teams#UpdateRequest"
+      },
+      "output": {
+        "target": "com.github.enterprise_teams#EnterpriseTeam"
+      },
+      "errors": [
+        {
+          "target": "com.github.enterprise_teams#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/enterprises/{enterprise}/teams/{team_slug}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update an enterprise team\n\nTo edit a team, the authenticated user must be an enterprise owner."
+      }
+    },
+    "com.github.enterprise_teams#DeleteRequest": {
+      "type": "structure",
+      "members": {
+        "enterprise": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug version of the enterprise name."
+          }
+        },
+        "team_slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The slug of the team name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.enterprise_teams#Delete": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.enterprise_teams#DeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.github.enterprise_teams#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/enterprises/{enterprise}/teams/{team_slug}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete an enterprise team\n\nTo delete an enterprise team, the authenticated user must be an enterprise owner.\n\nIf you are an enterprise owner, deleting an enterprise team will delete all of its IdP mappings as well."
+      }
+    },
+    "com.github.enterprise_teams#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.enterprise_teams#EnterpriseTeams": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.enterprise_teams#List"
+        },
+        {
+          "target": "com.github.enterprise_teams#Create"
+        },
+        {
+          "target": "com.github.enterprise_teams#Get"
+        },
+        {
+          "target": "com.github.enterprise_teams#Update"
+        },
+        {
+          "target": "com.github.enterprise_teams#Delete"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

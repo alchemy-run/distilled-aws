@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EntitiesLocationsList with distilled cloudflare/radar listEntityLocations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesLocationsList",
+      "path": "/shapes/com.cloudflare.radar#ListEntityLocations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesLocationsListRequest",
+      "path": "/shapes/com.cloudflare.radar#ListEntityLocationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListEntityLocations/input/target",
+      "value": "com.cloudflare.radar#ListEntityLocationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EntitiesLocationsListResponse",
+      "path": "/shapes/com.cloudflare.radar#ListEntityLocationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ListEntityLocations/output/target",
+      "value": "com.cloudflare.radar#ListEntityLocationsResponse"
+    }
+  ]
+}

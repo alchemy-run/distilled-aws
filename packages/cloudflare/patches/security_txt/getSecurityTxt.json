@@ -1,0 +1,39 @@
+{
+  "description": "Align security_txt#Get with distilled cloudflare/security-txt getSecurityTxt",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_txt#Get",
+      "path": "/shapes/com.cloudflare.security_txt#GetSecurityTxt"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_txt#GetRequest",
+      "path": "/shapes/com.cloudflare.security_txt#GetSecurityTxtRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_txt#GetSecurityTxt/input/target",
+      "value": "com.cloudflare.security_txt#GetSecurityTxtRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.security_txt#GetResponse",
+      "path": "/shapes/com.cloudflare.security_txt#GetSecurityTxtResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.security_txt#GetSecurityTxt/output/target",
+      "value": "com.cloudflare.security_txt#GetSecurityTxtResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.security_txt#GetSecurityTxt/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.security_txt#Forbidden"
+        }
+      ]
+    }
+  ]
+}

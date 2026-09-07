@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#CaptionsLanguageUpdate with distilled cloudflare/stream updateCaptionLanguage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsLanguageUpdate",
+      "path": "/shapes/com.cloudflare.stream#UpdateCaptionLanguage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsLanguageUpdateRequest",
+      "path": "/shapes/com.cloudflare.stream#UpdateCaptionLanguageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#UpdateCaptionLanguage/input/target",
+      "value": "com.cloudflare.stream#UpdateCaptionLanguageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#CaptionsLanguageUpdateResponse",
+      "path": "/shapes/com.cloudflare.stream#UpdateCaptionLanguageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#UpdateCaptionLanguage/output/target",
+      "value": "com.cloudflare.stream#UpdateCaptionLanguageResponse"
+    }
+  ]
+}

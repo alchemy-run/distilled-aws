@@ -1,0 +1,42 @@
+{
+  "description": "Align web3#HostnamesGet with distilled cloudflare/web3 getHostname",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesGet",
+      "path": "/shapes/com.cloudflare.web3#GetHostname"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesGetRequest",
+      "path": "/shapes/com.cloudflare.web3#GetHostnameRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#GetHostname/input/target",
+      "value": "com.cloudflare.web3#GetHostnameRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.web3#HostnamesGetResponse",
+      "path": "/shapes/com.cloudflare.web3#GetHostnameResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.web3#GetHostname/output/target",
+      "value": "com.cloudflare.web3#GetHostnameResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.web3#GetHostname/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.web3#Web3HostnameNotFound"
+        },
+        {
+          "target": "com.cloudflare.web3#Forbidden"
+        }
+      ]
+    }
+  ]
+}

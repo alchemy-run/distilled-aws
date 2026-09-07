@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#SeatsEdit with distilled cloudflare/zero-trust patchSeat",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#SeatsEdit",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchSeat"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#SeatsEditRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchSeatRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchSeat/input/target",
+      "value": "com.cloudflare.zero_trust#PatchSeatRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#SeatsEditResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchSeatResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchSeat/output/target",
+      "value": "com.cloudflare.zero_trust#PatchSeatResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchSeat/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

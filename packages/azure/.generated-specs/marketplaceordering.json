@@ -1,0 +1,1092 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.marketplaceordering#MarketplaceAgreementsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsListRequest"
+      },
+      "output": {
+        "target": "com.azure.marketplaceordering#OldAgreementTermsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.MarketplaceOrdering/agreements",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "List marketplace agreements in the subscription.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.marketplaceordering#OldAgreementTermsList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.marketplaceordering#OldAgreementTermsListValueList"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Agreement Terms definition list"
+      }
+    },
+    "com.azure.marketplaceordering#OldAgreementTermsListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.marketplaceordering#OldAgreementTerms"
+      },
+      "traits": {}
+    },
+    "com.azure.marketplaceordering#OldAgreementTerms": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.marketplaceordering#OldAgreementProperties",
+          "traits": {
+            "smithy.api#documentation": "Represents the properties of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Terms properties for provided Publisher/Offer/Plan tuple"
+      }
+    },
+    "com.azure.marketplaceordering#OldAgreementProperties": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier of the agreement."
+          }
+        },
+        "publisher": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Publisher identifier string of image being deployed."
+          }
+        },
+        "offer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Offer identifier string of image being deployed."
+          }
+        },
+        "signDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date and time in UTC of when the terms were accepted. This is empty if state is cancelled."
+          }
+        },
+        "cancelDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date and time in UTC of when the terms were cancelled. This is empty if state is active."
+          }
+        },
+        "state": {
+          "target": "com.azure.marketplaceordering#OldAgreementPropertiesState",
+          "traits": {
+            "smithy.api#documentation": "Whether the agreement is active or cancelled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Old Agreement Terms definition"
+      }
+    },
+    "com.azure.marketplaceordering#OldAgreementPropertiesState": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether the agreement is active or cancelled"
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID that identifies an Azure subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGetAgreement": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetAgreementRequest"
+      },
+      "output": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetAgreementResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.MarketplaceOrdering/agreements/{publisherId}/offers/{offerId}/plans/{planId}",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Get marketplace agreement.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGetAgreementResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.marketplaceordering#OldAgreementProperties",
+          "traits": {
+            "smithy.api#documentation": "Represents the properties of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGetAgreementRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID that identifies an Azure subscription."
+          }
+        },
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Publisher identifier string of image being deployed."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Offer identifier string of image being deployed."
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Plan identifier string of image being deployed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCancel": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsCancelRequest"
+      },
+      "output": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsCancelResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.MarketplaceOrdering/agreements/{publisherId}/offers/{offerId}/plans/{planId}/cancel",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Cancel marketplace terms.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCancelResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.marketplaceordering#OldAgreementProperties",
+          "traits": {
+            "smithy.api#documentation": "Represents the properties of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCancelRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID that identifies an Azure subscription."
+          }
+        },
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Publisher identifier string of image being deployed."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Offer identifier string of image being deployed."
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Plan identifier string of image being deployed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsSign": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsSignRequest"
+      },
+      "output": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsSignResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.MarketplaceOrdering/agreements/{publisherId}/offers/{offerId}/plans/{planId}/sign",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Sign marketplace terms.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsSignResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.marketplaceordering#OldAgreementProperties",
+          "traits": {
+            "smithy.api#documentation": "Represents the properties of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsSignRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID that identifies an Azure subscription."
+          }
+        },
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Publisher identifier string of image being deployed."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Offer identifier string of image being deployed."
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Plan identifier string of image being deployed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.marketplaceordering#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.marketplaceordering#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.MarketplaceOrdering/operations",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Lists all of the available Microsoft.MarketplaceOrdering REST API operations.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.marketplaceordering#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.marketplaceordering#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of Microsoft.MarketplaceOrdering operations supported by the Microsoft.MarketplaceOrdering resource provider."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the request to list MarketplaceOrdering operations. It contains a list of operations and a URL link to get the next set of results."
+      }
+    },
+    "com.azure.marketplaceordering#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.marketplaceordering#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Microsoft.MarketplaceOrdering operations supported by the Microsoft.MarketplaceOrdering resource provider."
+      }
+    },
+    "com.azure.marketplaceordering#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}"
+          }
+        },
+        "display": {
+          "target": "com.azure.marketplaceordering#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "The object that represents the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Microsoft.MarketplaceOrdering REST API operation"
+      }
+    },
+    "com.azure.marketplaceordering#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Microsoft.MarketplaceOrdering"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed: Agreement, virtualmachine, etc."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation type: Get Agreement, Sign Agreement, Cancel Agreement etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation description."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that represents the operation."
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.MarketplaceOrdering/offerTypes/{offerType}/publishers/{publisherId}/offers/{offerId}/plans/{planId}/agreements/current",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Save marketplace terms.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.marketplaceordering#AgreementProperties",
+          "traits": {
+            "smithy.api#documentation": "Represents the properties of the resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCreateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.marketplaceordering#AgreementProperties": {
+      "type": "structure",
+      "members": {
+        "publisher": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Publisher identifier string of image being deployed."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Offer identifier string of image being deployed."
+          }
+        },
+        "plan": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Plan identifier string of image being deployed."
+          }
+        },
+        "licenseTextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to HTML with Microsoft and Publisher terms."
+          }
+        },
+        "privacyPolicyLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to the privacy policy of the publisher."
+          }
+        },
+        "marketplaceTermsLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Link to HTML with Azure Marketplace terms."
+          }
+        },
+        "retrieveDatetime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date and time in UTC of when the terms were accepted. This is empty if Accepted is false."
+          }
+        },
+        "signature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Terms signature."
+          }
+        },
+        "accepted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If any version of the terms have been accepted, otherwise false."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Agreement Terms definition"
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID that identifies an Azure subscription."
+          }
+        },
+        "offerType": {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreateRequestOfferType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Offer Type, currently only virtualmachine type is supported."
+          }
+        },
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Publisher identifier string of image being deployed."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Offer identifier string of image being deployed."
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Plan identifier string of image being deployed."
+          }
+        },
+        "properties": {
+          "target": "com.azure.marketplaceordering#AgreementProperties",
+          "traits": {
+            "smithy.api#documentation": "Represents the properties of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsCreateRequestOfferType": {
+      "type": "enum",
+      "members": {
+        "VIRTUALMACHINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "virtualmachine"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.MarketplaceOrdering/offerTypes/{offerType}/publishers/{publisherId}/offers/{offerId}/plans/{planId}/agreements/current",
+          "code": 200,
+          "apiVersion": "2021-01-01"
+        },
+        "smithy.api#documentation": "Get marketplace terms.",
+        "com.distilled.openapi#apiVersion": "2021-01-01"
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource ID."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.marketplaceordering#AgreementProperties",
+          "traits": {
+            "smithy.api#documentation": "Represents the properties of the resource."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The subscription ID that identifies an Azure subscription."
+          }
+        },
+        "offerType": {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetRequestOfferType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Offer Type, currently only virtualmachine type is supported."
+          }
+        },
+        "publisherId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Publisher identifier string of image being deployed."
+          }
+        },
+        "offerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Offer identifier string of image being deployed."
+          }
+        },
+        "planId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Plan identifier string of image being deployed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.marketplaceordering#MarketplaceAgreementsGetRequestOfferType": {
+      "type": "enum",
+      "members": {
+        "VIRTUALMACHINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "virtualmachine"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.marketplaceordering#Marketplaceordering": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsList"
+        },
+        {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGetAgreement"
+        },
+        {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCancel"
+        },
+        {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsSign"
+        },
+        {
+          "target": "com.azure.marketplaceordering#OperationsList"
+        },
+        {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsCreate"
+        },
+        {
+          "target": "com.azure.marketplaceordering#MarketplaceAgreementsGet"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Marketplaceordering",
+        "smithy.api#documentation": "Azure Marketplaceordering API — merged from the marketplaceordering resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

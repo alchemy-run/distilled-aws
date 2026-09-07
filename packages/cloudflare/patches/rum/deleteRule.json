@@ -1,0 +1,45 @@
+{
+  "description": "Align rum#RulesDelete with distilled cloudflare/rum deleteRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#RulesDelete",
+      "path": "/shapes/com.cloudflare.rum#DeleteRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#RulesDeleteRequest",
+      "path": "/shapes/com.cloudflare.rum#DeleteRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#DeleteRule/input/target",
+      "value": "com.cloudflare.rum#DeleteRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rum#RulesDeleteResponse",
+      "path": "/shapes/com.cloudflare.rum#DeleteRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rum#DeleteRule/output/target",
+      "value": "com.cloudflare.rum#DeleteRuleResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rum#DeleteRule/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rum#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.rum#RulesetNotFound"
+        },
+        {
+          "target": "com.cloudflare.rum#RuleNotFound"
+        }
+      ]
+    }
+  ]
+}

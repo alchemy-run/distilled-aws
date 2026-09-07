@@ -1,0 +1,39 @@
+{
+  "description": "Align ai#Run with distilled cloudflare/ai runAi",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#Run",
+      "path": "/shapes/com.cloudflare.ai#RunAi"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#RunRequest",
+      "path": "/shapes/com.cloudflare.ai#RunAiRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#RunAi/input/target",
+      "value": "com.cloudflare.ai#RunAiRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai#RunResponse",
+      "path": "/shapes/com.cloudflare.ai#RunAiResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai#RunAi/output/target",
+      "value": "com.cloudflare.ai#RunAiResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai#RunAi/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai#ModelNotFound"
+        }
+      ]
+    }
+  ]
+}

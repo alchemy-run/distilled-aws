@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#GatewayCreate with distilled cloudflare/zero-trust createGateway",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateGateway"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateGatewayRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateGateway/input/target",
+      "value": "com.cloudflare.zero_trust#CreateGatewayRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#GatewayCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateGatewayResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateGateway/output/target",
+      "value": "com.cloudflare.zero_trust#CreateGatewayResponse"
+    }
+  ]
+}

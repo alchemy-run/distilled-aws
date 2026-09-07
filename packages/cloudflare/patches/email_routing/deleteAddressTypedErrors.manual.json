@@ -1,0 +1,17 @@
+{
+  "description": "typed errors for destination-address deletes: 2015 gone, 2032 created too recently (port of distilled#392)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.email_routing#DeleteAddress/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.email_routing#EmailAddressNotFound"
+        },
+        {
+          "target": "com.cloudflare.email_routing#EmailAddressCreatedTooRecently"
+        }
+      ]
+    }
+  ]
+}

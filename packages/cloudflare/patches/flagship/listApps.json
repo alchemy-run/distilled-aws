@@ -1,0 +1,38 @@
+{
+  "description": "Align flagship#AppsList with distilled cloudflare/flagship listApps",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsList",
+      "path": "/shapes/com.cloudflare.flagship#ListApps"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsListRequest",
+      "path": "/shapes/com.cloudflare.flagship#ListAppsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#ListApps/input/target",
+      "value": "com.cloudflare.flagship#ListAppsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.flagship#AppsListResponse",
+      "path": "/shapes/com.cloudflare.flagship#ListAppsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.flagship#ListApps/output/target",
+      "value": "com.cloudflare.flagship#ListAppsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.flagship#ListApps/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

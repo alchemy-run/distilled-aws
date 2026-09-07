@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessIdpFederationGrantsCreate with distilled cloudflare/zero-trust createAccessIdpFederationGrant",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessIdpFederationGrantsCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessIdpFederationGrant"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessIdpFederationGrantsCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessIdpFederationGrantRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessIdpFederationGrant/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessIdpFederationGrantRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessIdpFederationGrantsCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessIdpFederationGrantResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessIdpFederationGrant/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessIdpFederationGrantResponse"
+    }
+  ]
+}

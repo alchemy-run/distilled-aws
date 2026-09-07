@@ -1,0 +1,20 @@
+{
+  "description": "Key dictionary / op aliases for cache (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "endTs": "end_ts",
+        "modifiedOn": "modified_on",
+        "obtainedCodes": "obtained_codes",
+        "originIp": "origin_ip",
+        "perPage": "per_page",
+        "purgeEverything": "purge_everything",
+        "resultInfo": "result_info",
+        "startTs": "start_ts",
+        "totalCount": "total_count"
+      }
+    }
+  ]
+}

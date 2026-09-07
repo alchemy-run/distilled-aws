@@ -1,0 +1,30 @@
+{
+  "description": "Align stream#KeysCreate with distilled cloudflare/stream createKey",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#KeysCreate",
+      "path": "/shapes/com.cloudflare.stream#CreateKey"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#KeysCreateRequest",
+      "path": "/shapes/com.cloudflare.stream#CreateKeyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateKey/input/target",
+      "value": "com.cloudflare.stream#CreateKeyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#KeysCreateResponse",
+      "path": "/shapes/com.cloudflare.stream#CreateKeyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#CreateKey/output/target",
+      "value": "com.cloudflare.stream#CreateKeyResponse"
+    }
+  ]
+}

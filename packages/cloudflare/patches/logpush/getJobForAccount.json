@@ -1,0 +1,42 @@
+{
+  "description": "Align logpush#JobsGetForAccount with distilled cloudflare/logpush getJobForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsGetForAccount",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForAccount/input/target",
+      "value": "com.cloudflare.logpush#GetJobForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForAccount/output/target",
+      "value": "com.cloudflare.logpush#GetJobForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.logpush#GetJobForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.logpush#JobNotFound"
+        },
+        {
+          "target": "com.cloudflare.logpush#Forbidden"
+        }
+      ]
+    }
+  ]
+}

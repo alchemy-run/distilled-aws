@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsTimeseriesGroupsMatchingAnswer with distilled cloudflare/radar matchingAnswerDnsTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsMatchingAnswer",
+      "path": "/shapes/com.cloudflare.radar#MatchingAnswerDnsTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsMatchingAnswerRequest",
+      "path": "/shapes/com.cloudflare.radar#MatchingAnswerDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#MatchingAnswerDnsTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#MatchingAnswerDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsMatchingAnswerResponse",
+      "path": "/shapes/com.cloudflare.radar#MatchingAnswerDnsTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#MatchingAnswerDnsTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#MatchingAnswerDnsTimeseriesGroupResponse"
+    }
+  ]
+}

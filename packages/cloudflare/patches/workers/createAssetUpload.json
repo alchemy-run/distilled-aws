@@ -1,0 +1,39 @@
+{
+  "description": "Align workers#AssetsUploadCreate with distilled cloudflare/workers createAssetUpload",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#AssetsUploadCreate",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUpload"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#AssetsUploadCreateRequest",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUploadRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUpload/input/target",
+      "value": "com.cloudflare.workers#CreateAssetUploadRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#AssetsUploadCreateResponse",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUploadResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUpload/output/target",
+      "value": "com.cloudflare.workers#CreateAssetUploadResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#CreateAssetUpload/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

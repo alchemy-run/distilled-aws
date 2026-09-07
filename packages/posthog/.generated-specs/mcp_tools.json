@@ -1,0 +1,98 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.mcp_tools#McpToolsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "tool_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.mcp_tools#McpToolsCreateResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.mcp_tools#McpToolsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.mcp_tools#McpToolsCreateResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.mcp_tools#McpToolsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.mcp_tools#McpToolsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.mcp_tools#McpToolsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/mcp_tools/{tool_name}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Invoke an MCP tool by name.\n\nThis endpoint allows MCP callers to invoke Max AI tools directly\nwithout going through the full LangChain conversation flow.\n\nScopes are resolved dynamically per tool via dangerously_get_required_scopes."
+      }
+    },
+    "com.posthog.mcp_tools#McpTools": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.mcp_tools#McpToolsCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

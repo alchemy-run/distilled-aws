@@ -1,0 +1,38 @@
+{
+  "description": "Align load_balancers#PoolsReferencesGet with distilled cloudflare/load-balancers getPoolReference",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsReferencesGet",
+      "path": "/shapes/com.cloudflare.load_balancers#GetPoolReference"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsReferencesGetRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#GetPoolReferenceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetPoolReference/input/target",
+      "value": "com.cloudflare.load_balancers#GetPoolReferenceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#PoolsReferencesGetResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#GetPoolReferenceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#GetPoolReference/output/target",
+      "value": "com.cloudflare.load_balancers#GetPoolReferenceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#GetPoolReference/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

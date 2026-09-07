@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#QualitySpeedSummary with distilled cloudflare/radar summaryQualitySpeed",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualitySpeedSummary",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualitySpeed"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualitySpeedSummaryRequest",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualitySpeedRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualitySpeed/input/target",
+      "value": "com.cloudflare.radar#SummaryQualitySpeedRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#QualitySpeedSummaryResponse",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualitySpeedResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SummaryQualitySpeed/output/target",
+      "value": "com.cloudflare.radar#SummaryQualitySpeedResponse"
+    }
+  ]
+}

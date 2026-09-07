@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsSummaryCacheHit with distilled cloudflare/radar cacheHitDnsSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryCacheHit",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryCacheHitRequest",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsSummary/input/target",
+      "value": "com.cloudflare.radar#CacheHitDnsSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsSummaryCacheHitResponse",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#CacheHitDnsSummary/output/target",
+      "value": "com.cloudflare.radar#CacheHitDnsSummaryResponse"
+    }
+  ]
+}

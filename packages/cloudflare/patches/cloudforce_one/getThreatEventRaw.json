@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ThreatEventsRawGet with distilled cloudflare/cloudforce-one getThreatEventRaw",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsRawGet",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetThreatEventRaw"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsRawGetRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetThreatEventRawRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetThreatEventRaw/input/target",
+      "value": "com.cloudflare.cloudforce_one#GetThreatEventRawRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsRawGetResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetThreatEventRawResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetThreatEventRaw/output/target",
+      "value": "com.cloudflare.cloudforce_one#GetThreatEventRawResponse"
+    }
+  ]
+}

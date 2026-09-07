@@ -1,0 +1,88 @@
+bypass-alias-check-accounts:
+  - "391965393224"
+
+regions:
+  - us-east-1
+  - us-east-2
+  - us-west-1
+  - us-west-2
+  - af-south-1
+  - ap-east-1
+  - ap-south-1
+  - ap-south-2
+  - ap-southeast-1
+  - ap-southeast-2
+  - ap-southeast-3
+  - ap-southeast-4
+  - ap-northeast-1
+  - ap-northeast-2
+  - ap-northeast-3
+  - ca-central-1
+  - ca-west-1
+  - eu-central-1
+  - eu-central-2
+  - eu-west-1
+  - eu-west-2
+  - eu-west-3
+  - eu-south-1
+  - eu-south-2
+  - eu-north-1
+  - il-central-1
+  - me-south-1
+  - me-central-1
+  - sa-east-1
+  - global
+
+blocklist:
+  - "000000000000"
+
+presets:
+  identity-center:
+    filters:
+      IAMSAMLProvider:
+        - type: "glob"
+          value: "*AWSSSO_*_DO_NOT_DELETE"
+      IAMRole:
+        - type: "glob"
+          value: "AWSReservedSSO_*"
+        - type: "glob"
+          value: "AWSServiceRoleForSSO*"
+        - type: "glob"
+          value: "AWSServiceRoleForIdentityStore*"
+        - property: "tag:ManagedBy"
+          value: "AWS-SSO"
+      IAMRolePolicy:
+        - type: "glob"
+          value: "AWSReservedSSO_* -> *"
+        - type: "glob"
+          value: "AWSServiceRoleForSSO* -> *"
+        - type: "glob"
+          value: "AWSServiceRoleForIdentityStore* -> *"
+      IAMRolePolicyAttachment:
+        - type: "glob"
+          value: "AWSReservedSSO_* -> *"
+        - type: "glob"
+          value: "AWSServiceRoleForSSO* -> *"
+        - type: "glob"
+          value: "AWSServiceRoleForIdentityStore* -> *"
+      IAMServiceLinkedRole:
+        - type: "glob"
+          value: "AWSServiceRoleForSSO*"
+        - type: "glob"
+          value: "AWSServiceRoleForIdentityStore*"
+
+accounts:
+  "391965393224":
+    presets:
+      - identity-center
+    filters:
+      IAMRole:
+        - "distilled-github-oidc-role"
+      IAMRolePolicy:
+        - type: "glob"
+          value: "distilled-github-oidc-role *"
+      IAMRolePolicyAttachment:
+        - type: "glob"
+          value: "distilled-github-oidc-role *"
+      IAMOpenIDConnectProvider:
+        - "arn:aws:iam::391965393224:oidc-provider/token.actions.githubusercontent.com"

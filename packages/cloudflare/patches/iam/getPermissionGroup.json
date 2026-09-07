@@ -1,0 +1,30 @@
+{
+  "description": "Align iam#PermissionGroupsGet with distilled cloudflare/iam getPermissionGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#PermissionGroupsGet",
+      "path": "/shapes/com.cloudflare.iam#GetPermissionGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#PermissionGroupsGetRequest",
+      "path": "/shapes/com.cloudflare.iam#GetPermissionGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#GetPermissionGroup/input/target",
+      "value": "com.cloudflare.iam#GetPermissionGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#PermissionGroupsGetResponse",
+      "path": "/shapes/com.cloudflare.iam#GetPermissionGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#GetPermissionGroup/output/target",
+      "value": "com.cloudflare.iam#GetPermissionGroupResponse"
+    }
+  ]
+}

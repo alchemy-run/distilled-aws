@@ -1,0 +1,3049 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "storagetransfer",
+    "version": "v1",
+    "title": "Storage Transfer API",
+    "baseUrl": "https://storagetransfer.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.storagetransfer_v1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.storagetransfer_v1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.storagetransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.storagetransfer_v1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagetransfer_v1#Operation"
+      }
+    },
+    "com.gcp.storagetransfer_v1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.storagetransfer_v1#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned unique name. The format of `name` is `transferOperations/some/unique/name`."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.storagetransfer_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Represents the transfer operation object. To request a TransferOperation object, use transferOperations.get."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "error": {
+          "target": "com.gcp.storagetransfer_v1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "response": {
+          "target": "com.gcp.storagetransfer_v1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.storagetransfer_v1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.storagetransfer_v1#Status": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.storagetransfer_v1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.storagetransfer_v1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagetransfer_v1#DocumentMap"
+      }
+    },
+    "com.gcp.storagetransfer_v1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.storagetransfer_v1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.storagetransfer_v1#GoogleServiceAccount": {
+      "type": "structure",
+      "members": {
+        "accountEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the service account."
+          }
+        },
+        "subjectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the service account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Google service account"
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferJob": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique name (within the transfer project) assigned when the job is created. If this field is empty in a CreateTransferJobRequest, Storage Transfer Service assigns a unique name. Otherwise, the specified name is used as the unique name for this job. If the specified name is in use by a job, the creation request fails with an ALREADY_EXISTS error. This name must start with `\"transferJobs/\"` prefix and end with a letter or a number, and should be no more than 128 characters. For transfers involving PosixFilesystem, this name must start with `transferJobs/OPI` specifically. For all other transfer types, this name must not start with `transferJobs/OPI`. Non-PosixFilesystem example: `\"transferJobs/^(?!OPI)[A-Za-z0-9-._~]*[A-Za-z0-9]$\"` PosixFilesystem example: `\"transferJobs/OPI^[A-Za-z0-9-._~]*[A-Za-z0-9]$\"` Applications must not rely on the enforcement of naming requirements involving OPI. Invalid job names fail with an INVALID_ARGUMENT error."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description provided by the user for the job. Its max length is 1024 bytes when Unicode-encoded."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the Google Cloud project that owns the job."
+          }
+        },
+        "serviceAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The user-managed service account to which to delegate service agent permissions. You can grant Cloud Storage bucket permissions to this service account instead of to the Transfer Service service agent. Either the service account email (`SERVICE_ACCOUNT_NAME@PROJECT_ID.iam.gserviceaccount.com`) or the unique ID (`123456789012345678901`) are accepted. See https://docs.cloud.google.com/storage-transfer/docs/delegate-service-agent-permissions for required permissions."
+          }
+        },
+        "transferSpec": {
+          "target": "com.gcp.storagetransfer_v1#TransferSpec",
+          "traits": {
+            "smithy.api#documentation": "Transfer specification."
+          }
+        },
+        "replicationSpec": {
+          "target": "com.gcp.storagetransfer_v1#ReplicationSpec",
+          "traits": {
+            "smithy.api#documentation": "Replication specification."
+          }
+        },
+        "notificationConfig": {
+          "target": "com.gcp.storagetransfer_v1#NotificationConfig",
+          "traits": {
+            "smithy.api#documentation": "Notification configuration."
+          }
+        },
+        "loggingConfig": {
+          "target": "com.gcp.storagetransfer_v1#LoggingConfig",
+          "traits": {
+            "smithy.api#documentation": "Logging configuration."
+          }
+        },
+        "schedule": {
+          "target": "com.gcp.storagetransfer_v1#Schedule",
+          "traits": {
+            "smithy.api#documentation": "Specifies schedule for the transfer job. This is an optional field. When the field is not set, the job never executes a transfer, unless you invoke RunTransferJob or update the job to have a non-empty schedule."
+          }
+        },
+        "eventStream": {
+          "target": "com.gcp.storagetransfer_v1#EventStream",
+          "traits": {
+            "smithy.api#documentation": "Specifies the event stream for the transfer job for event-driven transfers. When EventStream is specified, the Schedule fields are ignored."
+          }
+        },
+        "status": {
+          "target": "com.gcp.storagetransfer_v1#TransferJobStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the job. This value MUST be specified for `CreateTransferJobRequests`. **Note:** The effect of the new job status takes place during a subsequent job run. For example, if you change the job status from ENABLED to DISABLED, and an operation spawned by the transfer is running, the status change would not affect the current operation."
+          }
+        },
+        "creationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the transfer job was created."
+          }
+        },
+        "lastModificationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the transfer job was last modified."
+          }
+        },
+        "deletionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time that the transfer job was deleted."
+          }
+        },
+        "latestOperationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the most recently started TransferOperation of this JobConfig. Present if a TransferOperation has been created for this JobConfig."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents the configuration of a transfer job that runs periodically."
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferJobStatusEnum": {
+      "type": "enum",
+      "members": {
+        "STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS_UNSPECIFIED"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ENABLED"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISABLED"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferSpec": {
+      "type": "structure",
+      "members": {
+        "gcsDataSink": {
+          "target": "com.gcp.storagetransfer_v1#GcsData",
+          "traits": {
+            "smithy.api#documentation": "Optional. A Cloud Storage data sink."
+          }
+        },
+        "posixDataSink": {
+          "target": "com.gcp.storagetransfer_v1#PosixFilesystem",
+          "traits": {
+            "smithy.api#documentation": "Optional. A POSIX Filesystem data sink."
+          }
+        },
+        "gcsDataSource": {
+          "target": "com.gcp.storagetransfer_v1#GcsData",
+          "traits": {
+            "smithy.api#documentation": "Optional. A Cloud Storage data source."
+          }
+        },
+        "awsS3DataSource": {
+          "target": "com.gcp.storagetransfer_v1#AwsS3Data",
+          "traits": {
+            "smithy.api#documentation": "Optional. An AWS S3 data source."
+          }
+        },
+        "httpDataSource": {
+          "target": "com.gcp.storagetransfer_v1#HttpData",
+          "traits": {
+            "smithy.api#documentation": "Optional. An HTTP URL data source."
+          }
+        },
+        "posixDataSource": {
+          "target": "com.gcp.storagetransfer_v1#PosixFilesystem",
+          "traits": {
+            "smithy.api#documentation": "Optional. A POSIX Filesystem data source."
+          }
+        },
+        "azureBlobStorageDataSource": {
+          "target": "com.gcp.storagetransfer_v1#AzureBlobStorageData",
+          "traits": {
+            "smithy.api#documentation": "Optional. An Azure Blob Storage data source."
+          }
+        },
+        "awsS3CompatibleDataSource": {
+          "target": "com.gcp.storagetransfer_v1#AwsS3CompatibleData",
+          "traits": {
+            "smithy.api#documentation": "Optional. An AWS S3 compatible data source."
+          }
+        },
+        "hdfsDataSource": {
+          "target": "com.gcp.storagetransfer_v1#HdfsData",
+          "traits": {
+            "smithy.api#documentation": "Optional. An HDFS cluster data source."
+          }
+        },
+        "gcsIntermediateDataLocation": {
+          "target": "com.gcp.storagetransfer_v1#GcsData",
+          "traits": {
+            "smithy.api#documentation": "For transfers between file systems, specifies a Cloud Storage bucket to be used as an intermediate location through which to transfer data. See [Transfer data between file systems](https://cloud.google.com/storage-transfer/docs/file-to-file) for more information."
+          }
+        },
+        "objectConditions": {
+          "target": "com.gcp.storagetransfer_v1#ObjectConditions",
+          "traits": {
+            "smithy.api#documentation": "Only objects that satisfy these object conditions are included in the set of data source and data sink objects. Object conditions based on objects' \"last modification time\" do not exclude objects in a data sink."
+          }
+        },
+        "transferOptions": {
+          "target": "com.gcp.storagetransfer_v1#TransferOptions",
+          "traits": {
+            "smithy.api#documentation": "If the option delete_objects_unique_in_sink is `true` and time-based object conditions such as 'last modification time' are specified, the request fails with an INVALID_ARGUMENT error."
+          }
+        },
+        "transferManifest": {
+          "target": "com.gcp.storagetransfer_v1#TransferManifest",
+          "traits": {
+            "smithy.api#documentation": "A manifest file provides a list of objects to be transferred from the data source. This field points to the location of the manifest file. Otherwise, the entire source bucket is used. ObjectConditions still apply."
+          }
+        },
+        "sourceAgentPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the agent pool name associated with the posix data source. When unspecified, the default name is used."
+          }
+        },
+        "sinkAgentPoolName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the agent pool name associated with the posix data sink. When unspecified, the default name is used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for running a transfer."
+      }
+    },
+    "com.gcp.storagetransfer_v1#GcsData": {
+      "type": "structure",
+      "members": {
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Cloud Storage bucket name. Must meet [Bucket Name Requirements](/storage/docs/naming#requirements)."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'. The root path value must meet [Object Name Requirements](/storage/docs/naming#objectnames)."
+          }
+        },
+        "managedFolderTransferEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Preview. Enables the transfer of managed folders between Cloud Storage buckets. Set this option on the gcs_data_source. If set to true: - Managed folders in the source bucket are transferred to the destination bucket. - Managed folders in the destination bucket are overwritten. Other OVERWRITE options are not supported. See [Transfer Cloud Storage managed folders](/storage-transfer/docs/managed-folders)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "In a GcsData resource, an object's name is the Cloud Storage object's name and its \"last modification time\" refers to the object's `updated` property of Cloud Storage objects, which changes when the content or the metadata of the object is updated."
+      }
+    },
+    "com.gcp.storagetransfer_v1#PosixFilesystem": {
+      "type": "structure",
+      "members": {
+        "rootDirectory": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root directory path to the filesystem."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A POSIX filesystem resource."
+      }
+    },
+    "com.gcp.storagetransfer_v1#AwsS3Data": {
+      "type": "structure",
+      "members": {
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. S3 Bucket name (see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html))."
+          }
+        },
+        "awsAccessKey": {
+          "target": "com.gcp.storagetransfer_v1#AwsAccessKey",
+          "traits": {
+            "smithy.api#documentation": "Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key. For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials)."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'."
+          }
+        },
+        "roleArn": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Amazon Resource Name (ARN) of the role to support temporary credentials via `AssumeRoleWithWebIdentity`. For more information about ARNs, see [IAM ARNs](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_identifiers.html#identifiers-arns). When a role ARN is provided, Transfer Service fetches temporary credentials for the session using a `AssumeRoleWithWebIdentity` call for the provided role using the GoogleServiceAccount for this project."
+          }
+        },
+        "cloudfrontDomain": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The CloudFront distribution domain name pointing to this bucket, to use when fetching. See [Transfer from S3 via CloudFront](https://cloud.google.com/storage-transfer/docs/s3-cloudfront) for more information. Format: `https://{id}.cloudfront.net` or any valid custom domain. Must begin with `https://`."
+          }
+        },
+        "credentialsSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Resource name of a secret in Secret Manager. AWS credentials must be stored in Secret Manager in JSON format: { \"access_key_id\": \"ACCESS_KEY_ID\", \"secret_access_key\": \"SECRET_ACCESS_KEY\" } GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Amazon S3] (https://cloud.google.com/storage-transfer/docs/source-amazon-s3#secret_manager) for more information. If `credentials_secret` is specified, do not specify role_arn or aws_access_key. Format: `projects/{project_number}/secrets/{secret_name}`"
+          }
+        },
+        "managedPrivateNetwork": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Egress bytes over a Google-managed private network. This network is shared between other users of Storage Transfer Service."
+          }
+        },
+        "privateNetworkService": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service Directory Service to be used as the endpoint for transfers from a custom VPC. Format: `projects/{project_id}/locations/{location}/namespaces/{namespace}/services/{service}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An AwsS3Data resource can be a data source, but not a data sink. In an AwsS3Data resource, an object's name is the S3 object's key name."
+      }
+    },
+    "com.gcp.storagetransfer_v1#AwsAccessKey": {
+      "type": "structure",
+      "members": {
+        "accessKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. AWS access key ID."
+          }
+        },
+        "secretAccessKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. AWS secret access key. This field is not returned in RPC responses."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)). For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials)."
+      }
+    },
+    "com.gcp.storagetransfer_v1#HttpData": {
+      "type": "structure",
+      "members": {
+        "listUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The URL that points to the file that stores the object list entries. This file must allow public access. The URL is either an HTTP/HTTPS address (e.g. `https://example.com/urllist.tsv`) or a Cloud Storage path (e.g. `gs://my-bucket/urllist.tsv`)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An HttpData resource specifies a list of objects on the web to be transferred over HTTP. The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be `\"TsvHttpData-1.0\"`, which specifies the format of the file. Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields: * **HTTP URL** — The location of the object. * **Length** — The size of the object in bytes. * **MD5** — The base64-encoded MD5 hash of the object. For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage-transfer/docs/create-url-list). When transferring data based on a URL list, keep the following in mind: * When an object located at `http(s)://hostname:port/` is transferred to a data sink, the name of the object at the data sink is `/`. * If the specified size of an object does not match the actual size of the object fetched, the object is not transferred. * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer fails. * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (/storage/docs/cloud-console#_sharingdata) and get a link to it. * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response. * ObjectConditions have no effect when filtering objects to transfer."
+      }
+    },
+    "com.gcp.storagetransfer_v1#AzureBlobStorageData": {
+      "type": "structure",
+      "members": {
+        "storageAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Azure Storage account."
+          }
+        },
+        "azureCredentials": {
+          "target": "com.gcp.storagetransfer_v1#AzureCredentials",
+          "traits": {
+            "smithy.api#documentation": "Required. Input only. Credentials used to authenticate API requests to Azure. For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials)."
+          }
+        },
+        "container": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The container to transfer from the Azure Storage account."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'."
+          }
+        },
+        "credentialsSecret": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Resource name of a secret in Secret Manager. The Azure SAS token must be stored in Secret Manager in JSON format: { \"sas_token\" : \"SAS_TOKEN\" } GoogleServiceAccount must be granted `roles/secretmanager.secretAccessor` for the resource. See [Configure access to a source: Microsoft Azure Blob Storage] (https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#secret_manager) for more information. If `credentials_secret` is specified, do not specify azure_credentials. Format: `projects/{project_number}/secrets/{secret_name}`"
+          }
+        },
+        "federatedIdentityConfig": {
+          "target": "com.gcp.storagetransfer_v1#FederatedIdentityConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Federated identity config of a user registered Azure application. If `federated_identity_config` is specified, do not specify azure_credentials or credentials_secret."
+          }
+        },
+        "privateNetworkService": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service Directory Service to be used as the endpoint for transfers from a custom VPC. Format: `projects/{project_id}/locations/{location}/namespaces/{namespace}/services/{service}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An AzureBlobStorageData resource can be a data source, but not a data sink. An AzureBlobStorageData resource represents one Azure container. The storage account determines the [Azure endpoint](https://docs.microsoft.com/en-us/azure/storage/common/storage-create-storage-account#storage-account-endpoints). In an AzureBlobStorageData resource, a blobs's name is the [Azure Blob Storage blob's key name](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#blob-names)."
+      }
+    },
+    "com.gcp.storagetransfer_v1#AzureCredentials": {
+      "type": "structure",
+      "members": {
+        "sasToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Azure shared access signature (SAS). For more information about SAS, see [Grant limited access to Azure Storage resources using shared access signatures (SAS)](https://docs.microsoft.com/en-us/azure/storage/common/storage-sas-overview)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure credentials For information on our data retention policy for user credentials, see [User credentials](/storage-transfer/docs/data-retention#user-credentials)."
+      }
+    },
+    "com.gcp.storagetransfer_v1#FederatedIdentityConfig": {
+      "type": "structure",
+      "members": {
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The client (application) ID of the application with federated credentials."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The tenant (directory) ID of the application with federated credentials."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The identity of an Azure application through which Storage Transfer Service can authenticate requests using Azure workload identity federation. Storage Transfer Service can issue requests to Azure Storage through registered Azure applications, eliminating the need to pass credentials to Storage Transfer Service directly. To configure federated identity, see [Configure access to Microsoft Azure Storage](https://cloud.google.com/storage-transfer/docs/source-microsoft-azure#option_3_authenticate_using_federated_identity)."
+      }
+    },
+    "com.gcp.storagetransfer_v1#AwsS3CompatibleData": {
+      "type": "structure",
+      "members": {
+        "bucketName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the name of the bucket."
+          }
+        },
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the root path to transfer objects. Must be an empty string or full path name that ends with a '/'. This field is treated as an object prefix. As such, it should generally not begin with a '/'."
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the endpoint of the storage service."
+          }
+        },
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the region to sign requests with. This can be left blank if requests should be signed with an empty region."
+          }
+        },
+        "s3Metadata": {
+          "target": "com.gcp.storagetransfer_v1#S3CompatibleMetadata",
+          "traits": {
+            "smithy.api#documentation": "A S3 compatible metadata."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An AwsS3CompatibleData resource."
+      }
+    },
+    "com.gcp.storagetransfer_v1#S3CompatibleMetadata": {
+      "type": "structure",
+      "members": {
+        "authMethod": {
+          "target": "com.gcp.storagetransfer_v1#S3CompatibleMetadataAuthMethodEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies the authentication and authorization method used by the storage service. When not specified, Transfer Service will attempt to determine right auth method to use."
+          }
+        },
+        "requestModel": {
+          "target": "com.gcp.storagetransfer_v1#S3CompatibleMetadataRequestModelEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies the API request model used to call the storage service. When not specified, the default value of RequestModel REQUEST_MODEL_VIRTUAL_HOSTED_STYLE is used."
+          }
+        },
+        "protocol": {
+          "target": "com.gcp.storagetransfer_v1#S3CompatibleMetadataProtocolEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies the network protocol of the agent. When not specified, the default value of NetworkProtocol NETWORK_PROTOCOL_HTTPS is used."
+          }
+        },
+        "listApi": {
+          "target": "com.gcp.storagetransfer_v1#S3CompatibleMetadataListApiEnum",
+          "traits": {
+            "smithy.api#documentation": "The Listing API to use for discovering objects. When not specified, Transfer Service will attempt to determine the right API to use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "S3CompatibleMetadata contains the metadata fields that apply to the basic types of S3-compatible data providers."
+      }
+    },
+    "com.gcp.storagetransfer_v1#S3CompatibleMetadataAuthMethodEnum": {
+      "type": "enum",
+      "members": {
+        "AUTH_METHOD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTH_METHOD_UNSPECIFIED"
+          }
+        },
+        "AUTH_METHOD_AWS_SIGNATURE_V4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTH_METHOD_AWS_SIGNATURE_V4"
+          }
+        },
+        "AUTH_METHOD_AWS_SIGNATURE_V2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTH_METHOD_AWS_SIGNATURE_V2"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#S3CompatibleMetadataRequestModelEnum": {
+      "type": "enum",
+      "members": {
+        "REQUEST_MODEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUEST_MODEL_UNSPECIFIED"
+          }
+        },
+        "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUEST_MODEL_VIRTUAL_HOSTED_STYLE"
+          }
+        },
+        "REQUEST_MODEL_PATH_STYLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REQUEST_MODEL_PATH_STYLE"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#S3CompatibleMetadataProtocolEnum": {
+      "type": "enum",
+      "members": {
+        "NETWORK_PROTOCOL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NETWORK_PROTOCOL_UNSPECIFIED"
+          }
+        },
+        "NETWORK_PROTOCOL_HTTPS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NETWORK_PROTOCOL_HTTPS"
+          }
+        },
+        "NETWORK_PROTOCOL_HTTP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NETWORK_PROTOCOL_HTTP"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#S3CompatibleMetadataListApiEnum": {
+      "type": "enum",
+      "members": {
+        "LIST_API_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIST_API_UNSPECIFIED"
+          }
+        },
+        "LIST_OBJECTS_V2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIST_OBJECTS_V2"
+          }
+        },
+        "LIST_OBJECTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LIST_OBJECTS"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#HdfsData": {
+      "type": "structure",
+      "members": {
+        "path": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root path to transfer files."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An HdfsData resource specifies a path within an HDFS entity (e.g. a cluster). All cluster-specific settings, such as namenodes and ports, are configured on the transfer agents servicing requests, so HdfsData only contains the root path to the data in our transfer."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ObjectConditions": {
+      "type": "structure",
+      "members": {
+        "minTimeElapsedSinceLastModification": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ensures that objects are not transferred until a specific minimum time has elapsed after the \"last modification time\". When a TransferOperation begins, objects with a \"last modification time\" are transferred only if the elapsed time between the start_time of the `TransferOperation` and the \"last modification time\" of the object is equal to or greater than the value of min_time_elapsed_since_last_modification`. Objects that do not have a \"last modification time\" are also transferred."
+          }
+        },
+        "maxTimeElapsedSinceLastModification": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Ensures that objects are not transferred if a specific maximum time has elapsed since the \"last modification time\". When a TransferOperation begins, objects with a \"last modification time\" are transferred only if the elapsed time between the start_time of the `TransferOperation`and the \"last modification time\" of the object is less than the value of max_time_elapsed_since_last_modification`. Objects that do not have a \"last modification time\" are also transferred."
+          }
+        },
+        "includePrefixes": {
+          "target": "com.gcp.storagetransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "If you specify `include_prefixes`, Storage Transfer Service uses the items in the `include_prefixes` array to determine which objects to include in a transfer. Objects must start with one of the matching `include_prefixes` for inclusion in the transfer. If exclude_prefixes is specified, objects must not start with any of the `exclude_prefixes` specified for inclusion in the transfer. The following are requirements of `include_prefixes`: * Each include-prefix can contain any sequence of Unicode characters, to a max length of 1024 bytes when UTF8-encoded, and must not contain Carriage Return or Line Feed characters. Wildcard matching and regular expression matching are not supported. * Each include-prefix must omit the leading slash. For example, to include the object `s3://my-aws-bucket/logs/y=2015/requests.gz`, specify the include-prefix as `logs/y=2015/requests.gz`. * None of the include-prefix values can be empty, if specified. * Each include-prefix must include a distinct portion of the object namespace. No include-prefix may be a prefix of another include-prefix. The max size of `include_prefixes` is 1000. For more information, see [Filtering objects from transfers](/storage-transfer/docs/filtering-objects-from-transfers)."
+          }
+        },
+        "excludePrefixes": {
+          "target": "com.gcp.storagetransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "If you specify `exclude_prefixes`, Storage Transfer Service uses the items in the `exclude_prefixes` array to determine which objects to exclude from a transfer. Objects must not start with one of the matching `exclude_prefixes` for inclusion in a transfer. The following are requirements of `exclude_prefixes`: * Each exclude-prefix can contain any sequence of Unicode characters, to a max length of 1024 bytes when UTF8-encoded, and must not contain Carriage Return or Line Feed characters. Wildcard matching and regular expression matching are not supported. * Each exclude-prefix must omit the leading slash. For example, to exclude the object `s3://my-aws-bucket/logs/y=2015/requests.gz`, specify the exclude-prefix as `logs/y=2015/requests.gz`. * None of the exclude-prefix values can be empty, if specified. * Each exclude-prefix must exclude a distinct portion of the object namespace. No exclude-prefix may be a prefix of another exclude-prefix. * If include_prefixes is specified, then each exclude-prefix must start with the value of a path explicitly included by `include_prefixes`. The max size of `exclude_prefixes` is 1000. For more information, see [Filtering objects from transfers](/storage-transfer/docs/filtering-objects-from-transfers)."
+          }
+        },
+        "lastModifiedSince": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, only objects with a \"last modification time\" on or after this timestamp and objects that don't have a \"last modification time\" are transferred. The `last_modified_since` and `last_modified_before` fields can be used together for chunked data processing. For example, consider a script that processes each day's worth of data at a time. For that you'd set each of the fields as follows: * `last_modified_since` to the start of the day * `last_modified_before` to the end of the day"
+          }
+        },
+        "lastModifiedBefore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If specified, only objects with a \"last modification time\" before this timestamp and objects that don't have a \"last modification time\" are transferred."
+          }
+        },
+        "matchGlob": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If specified, only objects matching this glob are transferred."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Conditions that determine which objects are transferred. Applies only to Cloud Data Sources such as S3, Azure, and Cloud Storage. The \"last modification time\" refers to the time of the last change to the object's content or metadata — specifically, this is the `updated` property of Cloud Storage objects, the `LastModified` field of S3 objects, and the `Last-Modified` header of Azure blobs. For S3 objects, the `LastModified` value is the time the object begins uploading. If the object meets your \"last modification time\" criteria, but has not finished uploading, the object is not transferred. See [Transfer from Amazon S3 to Cloud Storage](https://cloud.google.com/storage-transfer/docs/create-transfers/agentless/s3#transfer_options) for more information. Transfers with a PosixFilesystem source or destination don't support `ObjectConditions`."
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferOptions": {
+      "type": "structure",
+      "members": {
+        "overwriteObjectsAlreadyExistingInSink": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When to overwrite objects that already exist in the sink. The default is that only objects that are different from the source are overwritten. If true, all objects in the sink whose name matches an object in the source are overwritten with the source object."
+          }
+        },
+        "deleteObjectsUniqueInSink": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether objects that exist only in the sink should be deleted. **Note:** This option and delete_objects_from_source_after_transfer are mutually exclusive."
+          }
+        },
+        "deleteObjectsFromSourceAfterTransfer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether objects should be deleted from the source after they are transferred to the sink. **Note:** This option and delete_objects_unique_in_sink are mutually exclusive."
+          }
+        },
+        "overwriteWhen": {
+          "target": "com.gcp.storagetransfer_v1#TransferOptionsOverwriteWhenEnum",
+          "traits": {
+            "smithy.api#documentation": "When to overwrite objects that already exist in the sink. If not set, overwrite behavior is determined by overwrite_objects_already_existing_in_sink."
+          }
+        },
+        "metadataOptions": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptions",
+          "traits": {
+            "smithy.api#documentation": "Represents the selected metadata options for a transfer job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "TransferOptions define the actions to be performed on objects in a transfer."
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferOptionsOverwriteWhenEnum": {
+      "type": "enum",
+      "members": {
+        "OVERWRITE_WHEN_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OVERWRITE_WHEN_UNSPECIFIED"
+          }
+        },
+        "DIFFERENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DIFFERENT"
+          }
+        },
+        "NEVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NEVER"
+          }
+        },
+        "ALWAYS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALWAYS"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptions": {
+      "type": "structure",
+      "members": {
+        "symlink": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptionsSymlinkEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how symlinks should be handled by the transfer. By default, symlinks are not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers."
+          }
+        },
+        "mode": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptionsModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how each file's mode attribute should be handled by the transfer. By default, mode is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers."
+          }
+        },
+        "gid": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptionsGidEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how each file's POSIX group ID (GID) attribute should be handled by the transfer. By default, GID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers."
+          }
+        },
+        "uid": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptionsUidEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how each file's POSIX user ID (UID) attribute should be handled by the transfer. By default, UID is not preserved. Only applicable to transfers involving POSIX file systems, and ignored for other transfers."
+          }
+        },
+        "acl": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptionsAclEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how each object's ACLs should be preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as ACL_DESTINATION_BUCKET_DEFAULT."
+          }
+        },
+        "storageClass": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptionsStorageClassEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies the storage class to set on objects being transferred to Google Cloud Storage buckets. If unspecified, the default behavior is the same as STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT."
+          }
+        },
+        "temporaryHold": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptionsTemporaryHoldEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how each object's temporary hold status should be preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as TEMPORARY_HOLD_PRESERVE."
+          }
+        },
+        "kmsKey": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptionsKmsKeyEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how each object's Cloud KMS customer-managed encryption key (CMEK) is preserved for transfers between Google Cloud Storage buckets. If unspecified, the default behavior is the same as KMS_KEY_DESTINATION_BUCKET_DEFAULT."
+          }
+        },
+        "timeCreated": {
+          "target": "com.gcp.storagetransfer_v1#MetadataOptionsTimeCreatedEnum",
+          "traits": {
+            "smithy.api#documentation": "Specifies how each object's `timeCreated` metadata is preserved for transfers. If unspecified, the default behavior is the same as TIME_CREATED_SKIP. This behavior is supported for transfers to Cloud Storage buckets from Cloud Storage, Amazon S3, S3-compatible storage, and Azure sources."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the metadata options for running a transfer."
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptionsSymlinkEnum": {
+      "type": "enum",
+      "members": {
+        "SYMLINK_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYMLINK_UNSPECIFIED"
+          }
+        },
+        "SYMLINK_SKIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYMLINK_SKIP"
+          }
+        },
+        "SYMLINK_PRESERVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYMLINK_PRESERVE"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptionsModeEnum": {
+      "type": "enum",
+      "members": {
+        "MODE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MODE_UNSPECIFIED"
+          }
+        },
+        "MODE_SKIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MODE_SKIP"
+          }
+        },
+        "MODE_PRESERVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MODE_PRESERVE"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptionsGidEnum": {
+      "type": "enum",
+      "members": {
+        "GID_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GID_UNSPECIFIED"
+          }
+        },
+        "GID_SKIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GID_SKIP"
+          }
+        },
+        "GID_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GID_NUMBER"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptionsUidEnum": {
+      "type": "enum",
+      "members": {
+        "UID_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UID_UNSPECIFIED"
+          }
+        },
+        "UID_SKIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UID_SKIP"
+          }
+        },
+        "UID_NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UID_NUMBER"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptionsAclEnum": {
+      "type": "enum",
+      "members": {
+        "ACL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACL_UNSPECIFIED"
+          }
+        },
+        "ACL_DESTINATION_BUCKET_DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACL_DESTINATION_BUCKET_DEFAULT"
+          }
+        },
+        "ACL_PRESERVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACL_PRESERVE"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptionsStorageClassEnum": {
+      "type": "enum",
+      "members": {
+        "STORAGE_CLASS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORAGE_CLASS_UNSPECIFIED"
+          }
+        },
+        "STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORAGE_CLASS_DESTINATION_BUCKET_DEFAULT"
+          }
+        },
+        "STORAGE_CLASS_PRESERVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORAGE_CLASS_PRESERVE"
+          }
+        },
+        "STORAGE_CLASS_STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORAGE_CLASS_STANDARD"
+          }
+        },
+        "STORAGE_CLASS_NEARLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORAGE_CLASS_NEARLINE"
+          }
+        },
+        "STORAGE_CLASS_COLDLINE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORAGE_CLASS_COLDLINE"
+          }
+        },
+        "STORAGE_CLASS_ARCHIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STORAGE_CLASS_ARCHIVE"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptionsTemporaryHoldEnum": {
+      "type": "enum",
+      "members": {
+        "TEMPORARY_HOLD_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEMPORARY_HOLD_UNSPECIFIED"
+          }
+        },
+        "TEMPORARY_HOLD_SKIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEMPORARY_HOLD_SKIP"
+          }
+        },
+        "TEMPORARY_HOLD_PRESERVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TEMPORARY_HOLD_PRESERVE"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptionsKmsKeyEnum": {
+      "type": "enum",
+      "members": {
+        "KMS_KEY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KMS_KEY_UNSPECIFIED"
+          }
+        },
+        "KMS_KEY_DESTINATION_BUCKET_DEFAULT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KMS_KEY_DESTINATION_BUCKET_DEFAULT"
+          }
+        },
+        "KMS_KEY_PRESERVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KMS_KEY_PRESERVE"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#MetadataOptionsTimeCreatedEnum": {
+      "type": "enum",
+      "members": {
+        "TIME_CREATED_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIME_CREATED_UNSPECIFIED"
+          }
+        },
+        "TIME_CREATED_SKIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIME_CREATED_SKIP"
+          }
+        },
+        "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIME_CREATED_PRESERVE_AS_CUSTOM_TIME"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferManifest": {
+      "type": "structure",
+      "members": {
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the path to the manifest in Cloud Storage. The Google-managed service account for the transfer must have `storage.objects.get` permission for this object. An example path is `gs://bucket_name/path/manifest.csv`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies where the manifest is located."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ReplicationSpec": {
+      "type": "structure",
+      "members": {
+        "gcsDataSource": {
+          "target": "com.gcp.storagetransfer_v1#GcsData",
+          "traits": {
+            "smithy.api#documentation": "The Cloud Storage bucket from which to replicate objects."
+          }
+        },
+        "gcsDataSink": {
+          "target": "com.gcp.storagetransfer_v1#GcsData",
+          "traits": {
+            "smithy.api#documentation": "The Cloud Storage bucket to which to replicate objects."
+          }
+        },
+        "objectConditions": {
+          "target": "com.gcp.storagetransfer_v1#ObjectConditions",
+          "traits": {
+            "smithy.api#documentation": "Object conditions that determine which objects are transferred. For replication jobs, only `include_prefixes` and `exclude_prefixes` are supported."
+          }
+        },
+        "transferOptions": {
+          "target": "com.gcp.storagetransfer_v1#TransferOptions",
+          "traits": {
+            "smithy.api#documentation": "Specifies the metadata options to be applied during replication. Delete options are not supported. If a delete option is specified, the request fails with an INVALID_ARGUMENT error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the configuration for a cross-bucket replication job. Cross-bucket replication copies new or updated objects from a source Cloud Storage bucket to a destination Cloud Storage bucket. Existing objects in the source bucket are not copied by a new cross-bucket replication job."
+      }
+    },
+    "com.gcp.storagetransfer_v1#NotificationConfig": {
+      "type": "structure",
+      "members": {
+        "pubsubTopic": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The `Topic.name` of the Pub/Sub topic to which to publish notifications. Must be of the format: `projects/{project}/topics/{topic}`. Not matching this format results in an INVALID_ARGUMENT error."
+          }
+        },
+        "eventTypes": {
+          "target": "com.gcp.storagetransfer_v1#NotificationConfigEventTypesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Event types for which a notification is desired. If empty, send notifications for all event types."
+          }
+        },
+        "payloadFormat": {
+          "target": "com.gcp.storagetransfer_v1#NotificationConfigPayloadFormatEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. The desired format of the notification message payloads."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specification to configure notifications published to Pub/Sub. Notifications are published to the customer-provided topic using the following `PubsubMessage.attributes`: * `\"eventType\"`: one of the EventType values * `\"payloadFormat\"`: one of the PayloadFormat values * `\"projectId\"`: the project_id of the `TransferOperation` * `\"transferJobName\"`: the transfer_job_name of the `TransferOperation` * `\"transferOperationName\"`: the name of the `TransferOperation` The `PubsubMessage.data` contains a TransferOperation resource formatted according to the specified `PayloadFormat`."
+      }
+    },
+    "com.gcp.storagetransfer_v1#NotificationConfigEventTypesItemEnum": {
+      "type": "enum",
+      "members": {
+        "EVENT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EVENT_TYPE_UNSPECIFIED"
+          }
+        },
+        "TRANSFER_OPERATION_SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_OPERATION_SUCCESS"
+          }
+        },
+        "TRANSFER_OPERATION_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_OPERATION_FAILED"
+          }
+        },
+        "TRANSFER_OPERATION_ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRANSFER_OPERATION_ABORTED"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#NotificationConfigEventTypesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagetransfer_v1#NotificationConfigEventTypesItemEnum"
+      }
+    },
+    "com.gcp.storagetransfer_v1#NotificationConfigPayloadFormatEnum": {
+      "type": "enum",
+      "members": {
+        "PAYLOAD_FORMAT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAYLOAD_FORMAT_UNSPECIFIED"
+          }
+        },
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NONE"
+          }
+        },
+        "JSON": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JSON"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#LoggingConfig": {
+      "type": "structure",
+      "members": {
+        "logActions": {
+          "target": "com.gcp.storagetransfer_v1#LoggingConfigLogActionsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the actions to be logged. If empty, no logs are generated."
+          }
+        },
+        "logActionStates": {
+          "target": "com.gcp.storagetransfer_v1#LoggingConfigLogActionStatesItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "States in which `log_actions` are logged. If empty, no logs are generated."
+          }
+        },
+        "enableOnpremGcsTransferLogs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "For PosixFilesystem transfers, enables [file system transfer logs](https://cloud.google.com/storage-transfer/docs/on-prem-transfer-log-format) instead of, or in addition to, Cloud Logging. This option ignores [LoggableAction] and [LoggableActionState]. If these are set, Cloud Logging will also be enabled for this transfer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the logging behavior for transfer operations. Logs can be sent to Cloud Logging for all transfer types. See [Read transfer logs](https://cloud.google.com/storage-transfer/docs/read-transfer-logs) for details."
+      }
+    },
+    "com.gcp.storagetransfer_v1#LoggingConfigLogActionsItemEnum": {
+      "type": "enum",
+      "members": {
+        "LOGGABLE_ACTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOGGABLE_ACTION_UNSPECIFIED"
+          }
+        },
+        "FIND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FIND"
+          }
+        },
+        "DELETE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETE"
+          }
+        },
+        "COPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COPY"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#LoggingConfigLogActionsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagetransfer_v1#LoggingConfigLogActionsItemEnum"
+      }
+    },
+    "com.gcp.storagetransfer_v1#LoggingConfigLogActionStatesItemEnum": {
+      "type": "enum",
+      "members": {
+        "LOGGABLE_ACTION_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LOGGABLE_ACTION_STATE_UNSPECIFIED"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SKIPPED"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#LoggingConfigLogActionStatesItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagetransfer_v1#LoggingConfigLogActionStatesItemEnum"
+      }
+    },
+    "com.gcp.storagetransfer_v1#Schedule": {
+      "type": "structure",
+      "members": {
+        "scheduleStartDate": {
+          "target": "com.gcp.storagetransfer_v1#Storagetransfer_Date",
+          "traits": {
+            "smithy.api#documentation": "Required. The start date of a transfer. Date boundaries are determined relative to UTC time. If `schedule_start_date` and start_time_of_day are in the past relative to the job's creation time, the transfer starts the day after you schedule the transfer request. **Note:** When starting jobs at or near midnight UTC it is possible that a job starts later than expected. For example, if you send an outbound request on June 1 one millisecond prior to midnight UTC and the Storage Transfer Service server receives the request on June 2, then it creates a TransferJob with `schedule_start_date` set to June 2 and a `start_time_of_day` set to midnight UTC. The first scheduled TransferOperation takes place on June 3 at midnight UTC."
+          }
+        },
+        "scheduleEndDate": {
+          "target": "com.gcp.storagetransfer_v1#Storagetransfer_Date",
+          "traits": {
+            "smithy.api#documentation": "The last day a transfer runs. Date boundaries are determined relative to UTC time. A job runs once per 24 hours within the following guidelines: * If `schedule_end_date` and schedule_start_date are the same and in the future relative to UTC, the transfer is executed only one time. * If `schedule_end_date` is later than `schedule_start_date` and `schedule_end_date` is in the future relative to UTC, the job runs each day at start_time_of_day through `schedule_end_date`."
+          }
+        },
+        "startTimeOfDay": {
+          "target": "com.gcp.storagetransfer_v1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "The time in UTC that a transfer job is scheduled to run. Transfers may start later than this time. If `start_time_of_day` is not specified: * One-time transfers run immediately. * Recurring transfers run immediately, and each day at midnight UTC, through schedule_end_date. If `start_time_of_day` is specified: * One-time transfers run at the specified time. * Recurring transfers run at the specified time each day, through `schedule_end_date`."
+          }
+        },
+        "endTimeOfDay": {
+          "target": "com.gcp.storagetransfer_v1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "The time in UTC that no further transfer operations are scheduled. Combined with schedule_end_date, `end_time_of_day` specifies the end date and time for starting new transfer operations. This field must be greater than or equal to the timestamp corresponding to the combination of schedule_start_date and start_time_of_day, and is subject to the following: * If `end_time_of_day` is not set and `schedule_end_date` is set, then a default value of `23:59:59` is used for `end_time_of_day`. * If `end_time_of_day` is set and `schedule_end_date` is not set, then INVALID_ARGUMENT is returned."
+          }
+        },
+        "repeatInterval": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Interval between the start of each scheduled TransferOperation. If unspecified, the default value is 24 hours. This value may not be less than 1 hour."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transfers can be scheduled to recur or to run just once."
+      }
+    },
+    "com.gcp.storagetransfer_v1#Storagetransfer_Date": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.storagetransfer_v1#TimeOfDay": {
+      "type": "structure",
+      "members": {
+        "hours": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time."
+          }
+        },
+        "minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59."
+          }
+        },
+        "seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`."
+      }
+    },
+    "com.gcp.storagetransfer_v1#EventStream": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies a unique name of the resource such as AWS SQS ARN in the form 'arn:aws:sqs:region:account_id:queue_name', or Pub/Sub subscription resource name in the form 'projects/{project}/subscriptions/{sub}'."
+          }
+        },
+        "eventStreamStartTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the date and time that Storage Transfer Service starts listening for events from this stream. If no start time is specified or start time is in the past, Storage Transfer Service starts listening immediately."
+          }
+        },
+        "eventStreamExpirationTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the data and time at which Storage Transfer Service stops listening for events from this stream. After this time, any transfers in progress will complete, but no new transfers are initiated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the Event-driven transfer options. Event-driven transfers listen to an event stream to transfer updated files."
+      }
+    },
+    "com.gcp.storagetransfer_v1#UpdateTransferJobRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Google Cloud project that owns the job."
+          }
+        },
+        "transferJob": {
+          "target": "com.gcp.storagetransfer_v1#TransferJob",
+          "traits": {
+            "smithy.api#documentation": "Required. The job to update. `transferJob` is expected to specify one or more of five fields: description, transfer_spec, notification_config, logging_config, and status. An `UpdateTransferJobRequest` that specifies other fields are rejected with the error INVALID_ARGUMENT. Updating a job status to DELETED requires `storagetransfer.jobs.delete` permission."
+          }
+        },
+        "updateTransferJobFieldMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field mask of the fields in `transferJob` that are to be updated in this request. Fields in `transferJob` that can be updated are: description, transfer_spec, notification_config, logging_config, and status. To update the `transfer_spec` of the job, a complete transfer specification must be provided. An incomplete specification missing any required fields is rejected with the error INVALID_ARGUMENT."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request passed to UpdateTransferJob."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ListTransferJobsResponse": {
+      "type": "structure",
+      "members": {
+        "transferJobs": {
+          "target": "com.gcp.storagetransfer_v1#TransferJobList",
+          "traits": {
+            "smithy.api#documentation": "A list of transfer jobs."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list next page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response from ListTransferJobs."
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferJobList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagetransfer_v1#TransferJob"
+      }
+    },
+    "com.gcp.storagetransfer_v1#PauseTransferOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request passed to PauseTransferOperation."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ResumeTransferOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request passed to ResumeTransferOperation."
+      }
+    },
+    "com.gcp.storagetransfer_v1#RunTransferJobRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Google Cloud project that owns the transfer job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request passed to RunTransferJob."
+      }
+    },
+    "com.gcp.storagetransfer_v1#AgentPool": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id}/agentPools/{agent_pool_id}`"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the client-specified AgentPool description."
+          }
+        },
+        "state": {
+          "target": "com.gcp.storagetransfer_v1#AgentPoolStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Specifies the state of the AgentPool."
+          }
+        },
+        "bandwidthLimit": {
+          "target": "com.gcp.storagetransfer_v1#BandwidthLimit",
+          "traits": {
+            "smithy.api#documentation": "Specifies the bandwidth limit details. If this field is unspecified, the default value is set as 'No Limit'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an agent pool."
+      }
+    },
+    "com.gcp.storagetransfer_v1#AgentPoolStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "CREATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATING"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CREATED"
+          }
+        },
+        "DELETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETING"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#BandwidthLimit": {
+      "type": "structure",
+      "members": {
+        "limitMbps": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bandwidth rate in megabytes per second, distributed across all the agents in the pool."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies a bandwidth limit for an agent pool."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ListAgentPoolsResponse": {
+      "type": "structure",
+      "members": {
+        "agentPools": {
+          "target": "com.gcp.storagetransfer_v1#AgentPoolList",
+          "traits": {
+            "smithy.api#documentation": "A list of agent pools."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list next page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response from ListAgentPools."
+      }
+    },
+    "com.gcp.storagetransfer_v1#AgentPoolList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagetransfer_v1#AgentPool"
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferOperation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A globally unique ID assigned by the system."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the Google Cloud project that owns the operation."
+          }
+        },
+        "transferSpec": {
+          "target": "com.gcp.storagetransfer_v1#TransferSpec",
+          "traits": {
+            "smithy.api#documentation": "Transfer specification."
+          }
+        },
+        "notificationConfig": {
+          "target": "com.gcp.storagetransfer_v1#NotificationConfig",
+          "traits": {
+            "smithy.api#documentation": "Notification configuration."
+          }
+        },
+        "loggingConfig": {
+          "target": "com.gcp.storagetransfer_v1#LoggingConfig",
+          "traits": {
+            "smithy.api#documentation": "Cloud Logging configuration."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start time of this transfer execution."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End time of this transfer execution."
+          }
+        },
+        "status": {
+          "target": "com.gcp.storagetransfer_v1#TransferOperationStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Status of the transfer operation."
+          }
+        },
+        "counters": {
+          "target": "com.gcp.storagetransfer_v1#TransferCounters",
+          "traits": {
+            "smithy.api#documentation": "Information about the progress of the transfer operation."
+          }
+        },
+        "errorBreakdowns": {
+          "target": "com.gcp.storagetransfer_v1#ErrorSummaryList",
+          "traits": {
+            "smithy.api#documentation": "Summarizes errors encountered with sample error log entries."
+          }
+        },
+        "transferJobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the transfer job that triggers this transfer operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A description of the execution of a transfer."
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferOperationStatusEnum": {
+      "type": "enum",
+      "members": {
+        "STATUS_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATUS_UNSPECIFIED"
+          }
+        },
+        "IN_PROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IN_PROGRESS"
+          }
+        },
+        "PAUSED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAUSED"
+          }
+        },
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCESS"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        },
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORTED"
+          }
+        },
+        "QUEUED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "QUEUED"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDING"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#ErrorSummaryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagetransfer_v1#ErrorSummary"
+      }
+    },
+    "com.gcp.storagetransfer_v1#TransferCounters": {
+      "type": "structure",
+      "members": {
+        "objectsFoundFromSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Objects found in the data source that are scheduled to be transferred, excluding any that are filtered based on object conditions or skipped due to sync."
+          }
+        },
+        "bytesFoundFromSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bytes found in the data source that are scheduled to be transferred, excluding any that are filtered based on object conditions or skipped due to sync."
+          }
+        },
+        "objectsFoundOnlyFromSink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Objects found only in the data sink that are scheduled to be deleted."
+          }
+        },
+        "bytesFoundOnlyFromSink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bytes found only in the data sink that are scheduled to be deleted."
+          }
+        },
+        "objectsFromSourceSkippedBySync": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Objects in the data source that are not transferred because they already exist in the data sink."
+          }
+        },
+        "bytesFromSourceSkippedBySync": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bytes in the data source that are not transferred because they already exist in the data sink."
+          }
+        },
+        "objectsCopiedToSink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Objects that are copied to the data sink."
+          }
+        },
+        "bytesCopiedToSink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bytes that are copied to the data sink."
+          }
+        },
+        "objectsDeletedFromSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Objects that are deleted from the data source."
+          }
+        },
+        "bytesDeletedFromSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bytes that are deleted from the data source."
+          }
+        },
+        "objectsDeletedFromSink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Objects that are deleted from the data sink."
+          }
+        },
+        "bytesDeletedFromSink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bytes that are deleted from the data sink."
+          }
+        },
+        "objectsFromSourceFailed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Objects in the data source that failed to be transferred or that failed to be deleted after being transferred."
+          }
+        },
+        "bytesFromSourceFailed": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bytes in the data source that failed to be transferred or that failed to be deleted after being transferred."
+          }
+        },
+        "objectsFailedToDeleteFromSink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Objects that failed to be deleted from the data sink."
+          }
+        },
+        "bytesFailedToDeleteFromSink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bytes that failed to be deleted from the data sink."
+          }
+        },
+        "directoriesFoundFromSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For transfers involving PosixFilesystem only. Number of directories found while listing. For example, if the root directory of the transfer is `base/` and there are two other directories, `a/` and `b/` under this directory, the count after listing `base/`, `base/a/` and `base/b/` is 3."
+          }
+        },
+        "directoriesFailedToListFromSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For transfers involving PosixFilesystem only. Number of listing failures for each directory found at the source. Potential failures when listing a directory include permission failure or block failure. If listing a directory fails, no files in the directory are transferred."
+          }
+        },
+        "directoriesSuccessfullyListedFromSource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "For transfers involving PosixFilesystem only. Number of successful listings for each directory found at the source."
+          }
+        },
+        "intermediateObjectsCleanedUp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of successfully cleaned up intermediate objects."
+          }
+        },
+        "intermediateObjectsFailedCleanedUp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of intermediate objects failed cleaned up."
+          }
+        },
+        "unrestoredDeepArchiveObjectsSkippedCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of unrestored deep archive objects skipped."
+          }
+        },
+        "unsupportedS3GlacierObjectsSkippedCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Number of glacier objects skipped, glacier objects are unsupported by default regardless of the restore status. Allowlist the project to copy glacier objects if needed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of counters that report the progress of a transfer operation."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ErrorSummary": {
+      "type": "structure",
+      "members": {
+        "errorCode": {
+          "target": "com.gcp.storagetransfer_v1#ErrorSummaryErrorCodeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required."
+          }
+        },
+        "errorCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Count of this type of error."
+          }
+        },
+        "errorLogEntries": {
+          "target": "com.gcp.storagetransfer_v1#ErrorLogEntryList",
+          "traits": {
+            "smithy.api#documentation": "Error samples. At most 5 error log entries are recorded for a given error code for a single transfer operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A summary of errors by error code, plus a count and sample error log entries."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ErrorSummaryErrorCodeEnum": {
+      "type": "enum",
+      "members": {
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OK"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CANCELLED"
+          }
+        },
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNKNOWN"
+          }
+        },
+        "INVALID_ARGUMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INVALID_ARGUMENT"
+          }
+        },
+        "DEADLINE_EXCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEADLINE_EXCEEDED"
+          }
+        },
+        "NOT_FOUND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NOT_FOUND"
+          }
+        },
+        "ALREADY_EXISTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ALREADY_EXISTS"
+          }
+        },
+        "PERMISSION_DENIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERMISSION_DENIED"
+          }
+        },
+        "UNAUTHENTICATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAUTHENTICATED"
+          }
+        },
+        "RESOURCE_EXHAUSTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESOURCE_EXHAUSTED"
+          }
+        },
+        "FAILED_PRECONDITION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED_PRECONDITION"
+          }
+        },
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ABORTED"
+          }
+        },
+        "OUT_OF_RANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OUT_OF_RANGE"
+          }
+        },
+        "UNIMPLEMENTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNIMPLEMENTED"
+          }
+        },
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNAL"
+          }
+        },
+        "UNAVAILABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNAVAILABLE"
+          }
+        },
+        "DATA_LOSS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DATA_LOSS"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#ErrorLogEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.storagetransfer_v1#ErrorLogEntry"
+      }
+    },
+    "com.gcp.storagetransfer_v1#ErrorLogEntry": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A URL that refers to the target (a data source, a data sink, or an object) with which the error is associated."
+          }
+        },
+        "errorDetails": {
+          "target": "com.gcp.storagetransfer_v1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of messages that carry the error details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "LINT.IfChange An entry describing an error that has occurred."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ListTransferOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the type being listed; must be `transferOperations`.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A list of query parameters specified as JSON text in the form of: `{\"projectId\":\"my_project_id\", \"jobNames\":[\"jobid1\",\"jobid2\",...], \"jobNamePattern\": \"job_name_pattern\", \"operationNames\":[\"opid1\",\"opid2\",...], \"operationNamePattern\": \"operation_name_pattern\", \"minCreationTime\": \"min_creation_time\", \"maxCreationTime\": \"max_creation_time\", \"transferStatuses\":[\"status1\",\"status2\",...]}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is the only argument that is required. If specified, `jobNamePattern` and `operationNamePattern` must match the full job or operation name respectively. '*' is a wildcard matching 0 or more characters. `minCreationTime` and `maxCreationTime` should be timestamps encoded as a string in the [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) format. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.",
+            "smithy.api#httpQuery": "filter",
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The list page size. The max allowed value is 256.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.storagetransfer_v1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.storagetransfer_v1#ListTransferOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#ListTransferOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Lists transfer operations. Operations are ordered by their creation time in reverse chronological order.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#GetTransferOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#GetTransferOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#GetTransferOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.storagetransfer_v1#CancelTransferOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagetransfer_v1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.storagetransfer_v1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.storagetransfer_v1#CancelTransferOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#CancelTransferOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Cancels a transfer. Use the transferOperations.get method to check if the cancellation succeeded or if the operation completed despite the `cancel` request. When you cancel an operation, the currently running transfer is interrupted. For recurring transfer jobs, the next instance of the transfer job will still run. For example, if your job is configured to run every day at 1pm and you cancel Monday's operation at 1:05pm, Monday's transfer will stop. However, a transfer job will still be attempted on Tuesday. This applies only to currently running operations. If an operation is not currently running, `cancel` does nothing. *Caution:* Canceling a transfer job can leave your data in an unknown state. We recommend that you restore the state at both the destination and the source after the `cancel` request completes so that your data is in a consistent state. When you cancel a job, the next job computes a delta of files and may repair any inconsistent state. For instance, if you run a job every day, and today's job found 10 new files and transferred five files before you canceled the job, tomorrow's transfer operation will compute a new delta with the five files that were not copied today plus any new files discovered tomorrow."
+      }
+    },
+    "com.gcp.storagetransfer_v1#PauseTransferOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the transfer operation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagetransfer_v1#PauseTransferOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#PauseTransferOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#PauseTransferOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:pause"
+        },
+        "smithy.api#documentation": "Pauses a transfer operation."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ResumeTransferOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the transfer operation.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagetransfer_v1#ResumeTransferOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#ResumeTransferOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#ResumeTransferOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+name}:resume"
+        },
+        "smithy.api#documentation": "Resumes a transfer operation that is paused."
+      }
+    },
+    "com.gcp.storagetransfer_v1#GetGoogleServiceAccountsRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Google Cloud project that the Google service account is associated with.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#GetGoogleServiceAccounts": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#GetGoogleServiceAccountsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#GoogleServiceAccount"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/googleServiceAccounts/{projectId}"
+        },
+        "smithy.api#documentation": "Returns the Google service account that is used by Storage Transfer Service to access buckets in the project where transfers run or in other projects. Each Google service account is associated with one Google Cloud project. Users should add this service account to the Google Cloud Storage bucket ACLs to grant access to Storage Transfer Service. This service account is created and owned by Storage Transfer Service and can only be used by Storage Transfer Service."
+      }
+    },
+    "com.gcp.storagetransfer_v1#CreateTransferJobsRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.storagetransfer_v1#TransferJob",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#CreateTransferJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#CreateTransferJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#TransferJob"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/transferJobs"
+        },
+        "smithy.api#documentation": "Creates a transfer job that runs periodically."
+      }
+    },
+    "com.gcp.storagetransfer_v1#PatchTransferJobsRequest": {
+      "type": "structure",
+      "members": {
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of job to update.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagetransfer_v1#UpdateTransferJobRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#PatchTransferJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#PatchTransferJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#TransferJob"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+jobName}"
+        },
+        "smithy.api#documentation": "Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. **Note:** The job's status field can be modified using this RPC (for example, to set a job's status to DELETED, DISABLED, or ENABLED)."
+      }
+    },
+    "com.gcp.storagetransfer_v1#GetTransferJobsRequest": {
+      "type": "structure",
+      "members": {
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The job to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Google Cloud project that owns the job.",
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#GetTransferJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#GetTransferJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#TransferJob"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+jobName}"
+        },
+        "smithy.api#documentation": "Gets a transfer job."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ListTransferJobsRequest": {
+      "type": "structure",
+      "members": {
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A list of query parameters specified as JSON text in the form of: ``` { \"projectId\":\"my_project_id\", \"jobNames\":[\"jobid1\",\"jobid2\",...], \"jobStatuses\":[\"status1\",\"status2\",...], \"dataBackend\":\"QUERY_REPLICATION_CONFIGS\", \"sourceBucket\":\"source-bucket-name\", \"sinkBucket\":\"sink-bucket-name\", } ``` The JSON formatting in the example is for display only; provide the query parameters without spaces or line breaks. * `projectId` is required. * Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `jobNames` and `jobStatuses` are optional. Valid values are case-insensitive: * ENABLED * DISABLED * DELETED * Specify `\"dataBackend\":\"QUERY_REPLICATION_CONFIGS\"` to return a list of cross-bucket replication jobs. * Limit the results to jobs from a particular bucket with `sourceBucket` and/or to a particular bucket with `sinkBucket`.",
+            "smithy.api#httpQuery": "filter",
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The list page size. The max allowed value is 256.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#ListTransferJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#ListTransferJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#ListTransferJobsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/transferJobs"
+        },
+        "smithy.api#documentation": "Lists transfer jobs.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#RunTransferJobsRequest": {
+      "type": "structure",
+      "members": {
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the transfer job.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagetransfer_v1#RunTransferJobRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#RunTransferJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#RunTransferJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/{+jobName}:run"
+        },
+        "smithy.api#documentation": "Starts a new operation for the specified transfer job. A `TransferJob` has a maximum of one active `TransferOperation`. If this method is called while a `TransferOperation` is active, an error is returned."
+      }
+    },
+    "com.gcp.storagetransfer_v1#DeleteTransferJobsRequest": {
+      "type": "structure",
+      "members": {
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The job to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Google Cloud project that owns the job.",
+            "smithy.api#httpQuery": "projectId",
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#DeleteTransferJobs": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#DeleteTransferJobsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+jobName}"
+        },
+        "smithy.api#documentation": "Deletes a transfer job. Deleting a transfer job sets its status to DELETED."
+      }
+    },
+    "com.gcp.storagetransfer_v1#CreateProjectsAgentPoolsRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Google Cloud project that owns the agent pool.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "agentPoolId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the agent pool to create. The `agent_pool_id` must meet the following requirements: * Length of 128 characters or less. * Not start with the string `goog`. * Start with a lowercase ASCII character, followed by: * Zero or more: lowercase Latin alphabet characters, numerals, hyphens (`-`), periods (`.`), underscores (`_`), or tildes (`~`). * One or more numerals or lowercase ASCII characters. As expressed by the regular expression: `^(?!goog)[a-z]([a-z0-9-._~]*[a-z0-9])?$`.",
+            "smithy.api#httpQuery": "agentPoolId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagetransfer_v1#AgentPool",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#CreateProjectsAgentPools": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#CreateProjectsAgentPoolsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#AgentPool"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1/projects/{+projectId}/agentPools"
+        },
+        "smithy.api#documentation": "Creates an agent pool resource."
+      }
+    },
+    "com.gcp.storagetransfer_v1#PatchProjectsAgentPoolsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies a unique string that identifies the agent pool. Format: `projects/{project_id}/agentPools/{agent_pool_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The [field mask] (https://developers.google.com/protocol-buffers/docs/reference/google.protobuf) of the fields in `agentPool` to update in this request. The following `agentPool` fields can be updated: * display_name * bandwidth_limit",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.storagetransfer_v1#AgentPool",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#PatchProjectsAgentPools": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#PatchProjectsAgentPoolsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#AgentPool"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Updates an existing agent pool resource."
+      }
+    },
+    "com.gcp.storagetransfer_v1#GetProjectsAgentPoolsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the agent pool to get.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#GetProjectsAgentPools": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#GetProjectsAgentPoolsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#AgentPool"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Gets an agent pool."
+      }
+    },
+    "com.gcp.storagetransfer_v1#ListProjectsAgentPoolsRequest": {
+      "type": "structure",
+      "members": {
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the Google Cloud project that owns the job.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An optional list of query parameters specified as JSON text in the form of: `{\"agentPoolNames\":[\"agentpool1\",\"agentpool2\",...]}` Since `agentPoolNames` support multiple values, its values must be specified with array notation. When the filter is either empty or not provided, the list returns all agent pools for the project.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The list page size. The max allowed value is `256`.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#ListProjectsAgentPools": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#ListProjectsAgentPoolsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#ListAgentPoolsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1/projects/{+projectId}/agentPools"
+        },
+        "smithy.api#documentation": "Lists agent pools.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#DeleteProjectsAgentPoolsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the agent pool to delete.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.storagetransfer_v1#DeleteProjectsAgentPools": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.storagetransfer_v1#DeleteProjectsAgentPoolsRequest"
+      },
+      "output": {
+        "target": "com.gcp.storagetransfer_v1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.storagetransfer_v1#NotFound"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Forbidden"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#BadRequest"
+        },
+        {
+          "target": "com.gcp.storagetransfer_v1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes an agent pool."
+      }
+    }
+  }
+}

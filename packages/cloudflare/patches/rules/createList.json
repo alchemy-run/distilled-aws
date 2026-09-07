@@ -1,0 +1,42 @@
+{
+  "description": "Align rules#ListsCreate with distilled cloudflare/rules createList",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsCreate",
+      "path": "/shapes/com.cloudflare.rules#CreateList"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsCreateRequest",
+      "path": "/shapes/com.cloudflare.rules#CreateListRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#CreateList/input/target",
+      "value": "com.cloudflare.rules#CreateListRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.rules#ListsCreateResponse",
+      "path": "/shapes/com.cloudflare.rules#CreateListResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.rules#CreateList/output/target",
+      "value": "com.cloudflare.rules#CreateListResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.rules#CreateList/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.rules#ListAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.rules#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "description": "The v1-edge-query.json spec describes the Axiom Query API for regional edge deployments; most endpoints have no counterpart on the canonical Axiom Cloud API (api.axiom.co). Only queryApl maps cleanly (/v1/datasets/_apl). Drop the rest so they don't get generated as broken operations — the metrics-info endpoints under /v1/datasets/{dataset}/metrics on api.axiom.co are the OTLP metrics ingest endpoint and have an incompatible request/response shape. Note: patches run after the generate script prefixes every path with /v1/, so the JSON Pointer targets reflect that.",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/paths/~1v1~1query~1_apl?format=tabular",
+      "path": "/paths/~1v1~1datasets~1_apl?format=tabular"
+    },
+    {
+      "op": "remove",
+      "path": "/paths/~1v1~1query~1batch"
+    },
+    {
+      "op": "remove",
+      "path": "/paths/~1v1~1query~1_mpl"
+    },
+    {
+      "op": "remove",
+      "path": "/paths/~1v1~1query~1metrics~1info~1datasets~1{dataset}~1metrics"
+    },
+    {
+      "op": "remove",
+      "path": "/paths/~1v1~1query~1metrics~1info~1datasets~1{dataset}~1metrics~1{metric}~1tags"
+    },
+    {
+      "op": "remove",
+      "path": "/paths/~1v1~1query~1metrics~1info~1datasets~1{dataset}~1metrics~1{metric}~1tags~1{tag}~1values"
+    },
+    {
+      "op": "remove",
+      "path": "/paths/~1v1~1query~1metrics~1info~1datasets~1{dataset}~1tags"
+    },
+    {
+      "op": "remove",
+      "path": "/paths/~1v1~1query~1metrics~1info~1datasets~1{dataset}~1tags~1{tag}~1values"
+    }
+  ]
+}

@@ -1,0 +1,3616 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.maps#CreatorsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#CreatorsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}/creators/{creatorName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Delete a Maps Creator resource.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#CreatorsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        },
+        "creatorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Creator instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#CreatorsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#CreatorsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#CreatorsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}/creators/{creatorName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Updates the Maps Creator resource. Only a subset of the parameters may be updated after creation, such as Tags.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#CreatorsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#CreatorsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#CreatorProperties",
+          "traits": {
+            "smithy.api#documentation": "The Creator resource properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "systemData": {
+          "target": "com.azure.maps#CreatorsUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.maps#CreatorsUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.maps#CreatorsUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.maps#CreatorsUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.maps#CreatorsUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.maps#CreatorsUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.maps#CreatorProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The state of the resource provisioning, terminal states: Succeeded, Failed, Canceled"
+          }
+        },
+        "storageUnits": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The storage units to be allocated. Integer values from 1 to 100, inclusive.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Creator resource properties"
+      }
+    },
+    "com.azure.maps#CreatorsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#CreatorsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        },
+        "creatorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Creator instance."
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#CreatorsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters."
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#CreatorPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Creator resource properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#CreatorPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "storageUnits": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The storage units to be allocated. Integer values from 1 to 100, inclusive.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Creator resource properties"
+      }
+    },
+    "com.azure.maps#CreatorsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters."
+      }
+    },
+    "com.azure.maps#CreatorsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#CreatorsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#CreatorsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}/creators/{creatorName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Create or update a Maps Creator resource. Creator resource will manage Azure resources required to populate a custom set of mapping data. It requires an account to exist before it can be created.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#CreatorsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#CreatorsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#CreatorProperties",
+          "traits": {
+            "smithy.api#documentation": "The Creator resource properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "systemData": {
+          "target": "com.azure.maps#CreatorsCreateOrUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.maps#CreatorsCreateOrUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.maps#CreatorsCreateOrUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.maps#CreatorsCreateOrUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.maps#CreatorsCreateOrUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.maps#CreatorsCreateOrUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.maps#CreatorsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#CreatorsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        },
+        "creatorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Creator instance."
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#CreatorsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#CreatorPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The Creator resource properties.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#CreatorsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#CreatorsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#CreatorsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#CreatorsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}/creators/{creatorName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Get a Maps Creator resource.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#CreatorsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#CreatorsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#CreatorProperties",
+          "traits": {
+            "smithy.api#documentation": "The Creator resource properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "systemData": {
+          "target": "com.azure.maps#CreatorsGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.maps#CreatorsGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.maps#CreatorsGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.maps#CreatorsGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.maps#CreatorsGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.maps#CreatorsGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.maps#CreatorsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#CreatorsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        },
+        "creatorName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Creator instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#CreatorsListByAccount": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#CreatorsListByAccountRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#CreatorList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}/creators",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Get all Creator instances for an Azure Maps Account",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#CreatorList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.maps#CreatorListValueList",
+          "traits": {
+            "smithy.api#documentation": "a Creator account."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL client should use to fetch the next page (per server side paging).\r\nIt's null for now, added for future use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of Creator resources."
+      }
+    },
+    "com.azure.maps#CreatorListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.maps#Creator"
+      },
+      "traits": {
+        "smithy.api#documentation": "a Creator account."
+      }
+    },
+    "com.azure.maps#Creator": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#CreatorTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#CreatorProperties",
+          "traits": {
+            "smithy.api#documentation": "The Creator resource properties.",
+            "smithy.api#required": {}
+          }
+        },
+        "systemData": {
+          "target": "com.azure.maps#CreatorSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Azure resource which represents Maps Creator product and provides ability to manage private location data."
+      }
+    },
+    "com.azure.maps#CreatorSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.maps#CreatorSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.maps#CreatorSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.maps#CreatorSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.maps#CreatorSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.maps#CreatorTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#CreatorsListByAccountRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#MapsListSubscriptionOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#MapsListSubscriptionOperationsRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#MapsOperations"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Maps/operations",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "List operations available for the Maps Resource Provider",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#MapsOperations": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.maps#MapsOperationsValueList",
+          "traits": {
+            "smithy.api#documentation": "An operation available for Maps."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL client should use to fetch the next page (per server side paging).\r\nIt's null for now, added for future use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of operations available for Maps."
+      }
+    },
+    "com.azure.maps#MapsOperationsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.maps#OperationDetail"
+      },
+      "traits": {
+        "smithy.api#documentation": "An operation available for Maps."
+      }
+    },
+    "com.azure.maps#OperationDetail": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is a data action"
+          }
+        },
+        "display": {
+          "target": "com.azure.maps#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Display of the operation"
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin of the operation"
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#OperationProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation detail payload"
+      }
+    },
+    "com.azure.maps#OperationProperties": {
+      "type": "structure",
+      "members": {
+        "serviceSpecification": {
+          "target": "com.azure.maps#ServiceSpecification",
+          "traits": {
+            "smithy.api#documentation": "One property of operation, include metric specifications."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of operation, include metric specifications."
+      }
+    },
+    "com.azure.maps#ServiceSpecification": {
+      "type": "structure",
+      "members": {
+        "metricSpecifications": {
+          "target": "com.azure.maps#ServiceSpecificationMetricSpecificationsList",
+          "traits": {
+            "smithy.api#documentation": "Metric specifications of operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One property of operation, include metric specifications."
+      }
+    },
+    "com.azure.maps#ServiceSpecificationMetricSpecificationsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.maps#MetricSpecification"
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric specifications of operation."
+      }
+    },
+    "com.azure.maps#MetricSpecification": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of metric specification."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of metric specification."
+          }
+        },
+        "displayDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display description of metric specification."
+          }
+        },
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit could be Count."
+          }
+        },
+        "dimensions": {
+          "target": "com.azure.maps#MetricSpecificationDimensionsList",
+          "traits": {
+            "smithy.api#documentation": "Dimensions of map account."
+          }
+        },
+        "aggregationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Aggregation type could be Average."
+          }
+        },
+        "fillGapWithZero": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The property to decide fill gap with zero or not."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The category this metric specification belong to, could be Capacity."
+          }
+        },
+        "resourceIdDimensionNameOverride": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Account Resource Id."
+          }
+        },
+        "sourceMdmAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source metrics account."
+          }
+        },
+        "internalMetricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal metric name."
+          }
+        },
+        "lockAggregationType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Lock aggregation type for metrics."
+          }
+        },
+        "sourceMdmNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Metrics namespace."
+          }
+        },
+        "supportedAggregationTypes": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Allowed aggregation types for metrics."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metric specification of operation."
+      }
+    },
+    "com.azure.maps#MetricSpecificationDimensionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.maps#Dimension"
+      },
+      "traits": {
+        "smithy.api#documentation": "Dimensions of map account."
+      }
+    },
+    "com.azure.maps#Dimension": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of dimension."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of dimension."
+          }
+        },
+        "internalName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal name of the dimension."
+          }
+        },
+        "internalMetricName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Internal metric name of the dimension."
+          }
+        },
+        "sourceMdmNamespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source Mdm Namespace of the dimension."
+          }
+        },
+        "toBeExportedToShoebox": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to indicate exporting to Azure Monitor."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dimension of map account, for example API Category, Api Name, Result Type, and Response Code."
+      }
+    },
+    "com.azure.maps#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource provider of the operation"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource of the operation"
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly name for the operation"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly description for the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation display payload"
+      }
+    },
+    "com.azure.maps#MapsListSubscriptionOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#MapsListOperations": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.maps#MapsOperations"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Maps/operations",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "List operations available for the Maps Resource Provider",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#AccountsRegenerateKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#AccountsRegenerateKeysRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#MapsAccountKeys"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}/regenerateKey",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Regenerate either the primary or secondary key for use with the Maps APIs. The old key will stop working immediately.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#MapsAccountKeys": {
+      "type": "structure",
+      "members": {
+        "primaryKeyLastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last updated date and time of the primary key."
+          }
+        },
+        "primaryKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The primary key for accessing the Maps REST APIs."
+          }
+        },
+        "secondaryKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The secondary key for accessing the Maps REST APIs."
+          }
+        },
+        "secondaryKeyLastUpdated": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The last updated date and time of the secondary key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of keys which can be used to access the Maps REST APIs. Two keys are provided for key rotation without interruption."
+      }
+    },
+    "com.azure.maps#AccountsRegenerateKeysRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        },
+        "keyType": {
+          "target": "com.azure.maps#AccountsRegenerateKeysRequestKeyType",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation refers to the primary or secondary key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#AccountsRegenerateKeysRequestKeyType": {
+      "type": "enum",
+      "members": {
+        "PRIMARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "primary"
+          }
+        },
+        "SECONDARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "secondary"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Whether the operation refers to the primary or secondary key."
+      }
+    },
+    "com.azure.maps#AccountsListKeys": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#AccountsListKeysRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#MapsAccountKeys"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}/listKeys",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Get the keys to use with the Maps APIs. A key is used to authenticate and authorize access to the Maps REST APIs. Only one key is needed at a time; two are given to provide seamless key regeneration.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#AccountsListKeysRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#AccountsListSas": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#AccountsListSasRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#MapsAccountSasToken"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}/listSas",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Create and list an account shared access signature token. Use this SAS token for authentication to Azure Maps REST APIs through various Azure Maps SDKs. As prerequisite to create a SAS Token. \n\nPrerequisites:\n1. Create or have an existing User Assigned Managed Identity in the same Azure region as the account. \n2. Create or update an Azure Map account with the same Azure region as the User Assigned Managed Identity is placed.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#MapsAccountSasToken": {
+      "type": "structure",
+      "members": {
+        "accountSasToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The shared access signature access token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A new Sas token which can be used to access the Maps REST APIs and is controlled by the specified Managed identity permissions on Azure (IAM) Role Based Access Control."
+      }
+    },
+    "com.azure.maps#AccountsListSasRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        },
+        "signingKey": {
+          "target": "com.azure.maps#AccountsListSasRequestSigningKey",
+          "traits": {
+            "smithy.api#documentation": "The Map account key to use for signing. Picking `primaryKey` or `secondaryKey` will use the Map account Shared Keys, and using `managedIdentity` will use the auto-renewed private key to sign the SAS.",
+            "smithy.api#required": {}
+          }
+        },
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal Id also known as the object Id of a User Assigned Managed Identity currently assigned to the Map Account. To assign a Managed Identity of the account, use operation Create or Update an assign a User Assigned Identity resource Id.",
+            "smithy.api#required": {}
+          }
+        },
+        "regions": {
+          "target": "com.azure.maps#AccountsListSasRequestRegionsList",
+          "traits": {
+            "smithy.api#documentation": "Optional, allows control of which region locations are permitted access to Azure Maps REST APIs with the SAS token. Example: \"eastus\", \"westus2\". Omitting this parameter will allow all region locations to be accessible."
+          }
+        },
+        "maxRatePerSecond": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required parameter which represents the desired maximum request per second to allowed for the given SAS token. This does not guarantee perfect accuracy in measurements but provides application safe guards of abuse with eventual enforcement.",
+            "smithy.api#required": {}
+          }
+        },
+        "start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date time offset of when the token validity begins. For example \"2017-05-24T10:42:03.1567373Z\". Maximum duration allowed is 24 hours between `start` and `expiry`.",
+            "smithy.api#required": {}
+          }
+        },
+        "expiry": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The date time offset of when the token validity expires. For example \"2017-05-24T10:42:03.1567373Z\". Maximum duration allowed is 24 hours between `start` and `expiry`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#AccountsListSasRequestRegionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Optional, allows control of which region locations are permitted access to Azure Maps REST APIs with the SAS token. Example: \"eastus\", \"westus2\". Omitting this parameter will allow all region locations to be accessible."
+      }
+    },
+    "com.azure.maps#AccountsListSasRequestSigningKey": {
+      "type": "enum",
+      "members": {
+        "PRIMARYKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "primaryKey"
+          }
+        },
+        "SECONDARYKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "secondaryKey"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "managedIdentity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Map account key to use for signing. Picking `primaryKey` or `secondaryKey` will use the Map account Shared Keys, and using `managedIdentity` will use the auto-renewed private key to sign the SAS."
+      }
+    },
+    "com.azure.maps#AccountsListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#AccountsListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#MapsAccounts"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Maps/accounts",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Get all Maps Accounts in a Subscription",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#MapsAccounts": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.maps#MapsAccountsValueList",
+          "traits": {
+            "smithy.api#documentation": "a Maps Account."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL client should use to fetch the next page (per server side paging).\r\nIt's null for now, added for future use."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of Maps Accounts."
+      }
+    },
+    "com.azure.maps#MapsAccountsValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.maps#MapsAccount"
+      },
+      "traits": {
+        "smithy.api#documentation": "a Maps Account."
+      }
+    },
+    "com.azure.maps#MapsAccount": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#MapsAccountTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.maps#Sku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of this account.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.maps#Kind",
+          "traits": {
+            "smithy.api#documentation": "Get or Set Kind property."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.maps#MapsAccountSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.maps#MapsAccountIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#MapsAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The map account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Azure resource which represents access to a suite of Maps REST APIs."
+      }
+    },
+    "com.azure.maps#MapsAccountProperties": {
+      "type": "structure",
+      "members": {
+        "uniqueId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique identifier for the maps account"
+          }
+        },
+        "disableLocalAuth": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Allows toggle functionality on Azure Policy to disable Azure Maps local authentication support. This will disable Shared Keys and Shared Access Signature Token authentication from any usage."
+          }
+        },
+        "provisioningState": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the Map account resource, Account updates can only be performed on terminal states. Terminal states: `Succeeded` and `Failed`"
+          }
+        },
+        "linkedResources": {
+          "target": "com.azure.maps#LinkedResources"
+        },
+        "cors": {
+          "target": "com.azure.maps#CorsRules",
+          "traits": {
+            "smithy.api#documentation": "Specifies CORS rules for the Blob service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for the Blob service."
+          }
+        },
+        "encryption": {
+          "target": "com.azure.maps#MapsAccountPropertiesEncryption",
+          "traits": {
+            "smithy.api#documentation": "(Optional) Discouraged to include in resource definition. Only needed where it is possible to disable platform (AKA infrastructure) encryption. Azure SQL TDE is an example of this. Values are enabled and disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional Map account properties"
+      }
+    },
+    "com.azure.maps#MapsAccountPropertiesEncryption": {
+      "type": "structure",
+      "members": {
+        "infrastructureEncryption": {
+          "target": "com.azure.maps#MapsAccountPropertiesEncryptionInfrastructureEncryption",
+          "traits": {
+            "smithy.api#documentation": "Values are enabled and disabled."
+          }
+        },
+        "customerManagedKeyEncryption": {
+          "target": "com.azure.maps#CustomerManagedKeyEncryption",
+          "traits": {
+            "smithy.api#documentation": "All Customer-managed key encryption properties for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "(Optional) Discouraged to include in resource definition. Only needed where it is possible to disable platform (AKA infrastructure) encryption. Azure SQL TDE is an example of this. Values are enabled and disabled."
+      }
+    },
+    "com.azure.maps#CustomerManagedKeyEncryption": {
+      "type": "structure",
+      "members": {
+        "keyEncryptionKeyIdentity": {
+          "target": "com.azure.maps#CustomerManagedKeyEncryptionKeyEncryptionKeyIdentity",
+          "traits": {
+            "smithy.api#documentation": "All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault."
+          }
+        },
+        "keyEncryptionKeyUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "key encryption key Url, versioned or non-versioned. Ex: https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78 or https://contosovault.vault.azure.net/keys/contosokek."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All Customer-managed key encryption properties for the resource."
+      }
+    },
+    "com.azure.maps#CustomerManagedKeyEncryptionKeyEncryptionKeyIdentity": {
+      "type": "structure",
+      "members": {
+        "identityType": {
+          "target": "com.azure.maps#CustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType",
+          "traits": {
+            "smithy.api#documentation": "Values can be systemAssignedIdentity or userAssignedIdentity"
+          }
+        },
+        "userAssignedIdentityResourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "user assigned identity to use for accessing key encryption key Url. Ex: /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/<resource group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId. Mutually exclusive with identityType systemAssignedIdentity and delegatedResourceIdentity."
+          }
+        },
+        "delegatedIdentityClientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "delegated identity to use for accessing key encryption key Url. Ex: /subscriptions/fa5fc227-a624-475e-b696-cdd604c735bc/resourceGroups/<resource group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId. Mutually exclusive with identityType systemAssignedIdentity and userAssignedIdentity - internal use only."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault."
+      }
+    },
+    "com.azure.maps#CustomerManagedKeyEncryptionKeyEncryptionKeyIdentityIdentityType": {
+      "type": "enum",
+      "members": {
+        "SYSTEMASSIGNEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "systemAssignedIdentity"
+          }
+        },
+        "USERASSIGNEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "userAssignedIdentity"
+          }
+        },
+        "DELEGATEDRESOURCEIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "delegatedResourceIdentity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Values can be systemAssignedIdentity or userAssignedIdentity"
+      }
+    },
+    "com.azure.maps#MapsAccountPropertiesEncryptionInfrastructureEncryption": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Values are enabled and disabled."
+      }
+    },
+    "com.azure.maps#CorsRules": {
+      "type": "structure",
+      "members": {
+        "corsRules": {
+          "target": "com.azure.maps#CorsRulesCorsRulesList",
+          "traits": {
+            "smithy.api#documentation": "The list of CORS rules. You can include up to five CorsRule elements in the request. "
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Sets the CORS rules. You can include up to five CorsRule elements in the request. "
+      }
+    },
+    "com.azure.maps#CorsRulesCorsRulesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.maps#CorsRule"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of CORS rules. You can include up to five CorsRule elements in the request. "
+      }
+    },
+    "com.azure.maps#CorsRule": {
+      "type": "structure",
+      "members": {
+        "allowedOrigins": {
+          "target": "com.azure.maps#CorsRuleAllowedOriginsList",
+          "traits": {
+            "smithy.api#documentation": "Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or \"*\" to allow all domains",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies a CORS rule for the Map Account."
+      }
+    },
+    "com.azure.maps#CorsRuleAllowedOriginsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Required if CorsRule element is present. A list of origin domains that will be allowed via CORS, or \"*\" to allow all domains"
+      }
+    },
+    "com.azure.maps#LinkedResources": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.maps#LinkedResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The array of associated resources to the Map account. Linked resource in the array cannot individually update, you must update all linked resources in the array together. These resources may be used on operations on the Azure Maps REST API. Access is controlled by the Map Account Managed Identity(s) permissions to those resource(s)."
+      }
+    },
+    "com.azure.maps#LinkedResource": {
+      "type": "structure",
+      "members": {
+        "uniqueName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A provided name which uniquely identifies the linked resource.",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ARM resource id in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/accounts/{storageName}'.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Linked resource is reference to a resource deployed in an Azure subscription, add the linked resource `uniqueName` value as an optional parameter for operations on Azure Maps Geospatial REST APIs."
+      }
+    },
+    "com.azure.maps#MapsAccountIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.maps#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.maps#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.maps#UserAssignedIdentities": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.maps#UserAssignedIdentity"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.maps#UserAssignedIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.maps#ManagedServiceIdentityType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "SYSTEMASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned"
+          }
+        },
+        "USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UserAssigned"
+          }
+        },
+        "SYSTEMASSIGNED_USERASSIGNED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SystemAssigned, UserAssigned"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."
+      }
+    },
+    "com.azure.maps#MapsAccountSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.maps#MapsAccountSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.maps#MapsAccountSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.maps#MapsAccountSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.maps#MapsAccountSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.maps#Kind": {
+      "type": "enum",
+      "members": {
+        "GEN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen1"
+          }
+        },
+        "GEN2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Gen2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Kind of the Maps Account."
+      }
+    },
+    "com.azure.maps#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.maps#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU, in standard format (such as S0).",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets the sku tier. This is based on the SKU name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SKU of the Maps Account."
+      }
+    },
+    "com.azure.maps#SkuName": {
+      "type": "enum",
+      "members": {
+        "S0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S0"
+          }
+        },
+        "S1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S1"
+          }
+        },
+        "G2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "G2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the SKU, in standard format (such as S0)."
+      }
+    },
+    "com.azure.maps#MapsAccountTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#AccountsListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#AccountsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#AccountsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#MapsAccounts"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Get all Maps Accounts in a Resource Group",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#AccountsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#AccountsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#AccountsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Delete a Maps Account.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#AccountsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#AccountsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#AccountsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#AccountsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Updates a Maps Account. Only a subset of the parameters may be updated after creation, such as Sku, Tags, Properties.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#AccountsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#AccountsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.maps#Sku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of this account.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.maps#Kind",
+          "traits": {
+            "smithy.api#documentation": "Get or Set Kind property."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.maps#AccountsUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.maps#AccountsUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#MapsAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The map account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.maps#AccountsUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.maps#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.maps#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.maps#AccountsUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.maps#AccountsUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.maps#AccountsUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.maps#AccountsUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.maps#AccountsUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.maps#AccountsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#AccountsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#AccountsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters."
+          }
+        },
+        "kind": {
+          "target": "com.azure.maps#Kind",
+          "traits": {
+            "smithy.api#documentation": "Get or Set Kind property."
+          }
+        },
+        "sku": {
+          "target": "com.azure.maps#SkuInput",
+          "traits": {
+            "smithy.api#documentation": "The SKU of this account."
+          }
+        },
+        "identity": {
+          "target": "com.azure.maps#AccountsUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#MapsAccountPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The map account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#MapsAccountPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "disableLocalAuth": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Allows toggle functionality on Azure Policy to disable Azure Maps local authentication support. This will disable Shared Keys and Shared Access Signature Token authentication from any usage."
+          }
+        },
+        "linkedResources": {
+          "target": "com.azure.maps#LinkedResources"
+        },
+        "cors": {
+          "target": "com.azure.maps#CorsRules",
+          "traits": {
+            "smithy.api#documentation": "Specifies CORS rules for the Blob service. You can include up to five CorsRule elements in the request. If no CorsRule elements are included in the request body, all CORS rules will be deleted, and CORS will be disabled for the Blob service."
+          }
+        },
+        "encryption": {
+          "target": "com.azure.maps#MapsAccountPropertiesInputEncryption",
+          "traits": {
+            "smithy.api#documentation": "(Optional) Discouraged to include in resource definition. Only needed where it is possible to disable platform (AKA infrastructure) encryption. Azure SQL TDE is an example of this. Values are enabled and disabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional Map account properties"
+      }
+    },
+    "com.azure.maps#MapsAccountPropertiesInputEncryption": {
+      "type": "structure",
+      "members": {
+        "infrastructureEncryption": {
+          "target": "com.azure.maps#MapsAccountPropertiesInputEncryptionInfrastructureEncryption",
+          "traits": {
+            "smithy.api#documentation": "Values are enabled and disabled."
+          }
+        },
+        "customerManagedKeyEncryption": {
+          "target": "com.azure.maps#CustomerManagedKeyEncryption",
+          "traits": {
+            "smithy.api#documentation": "All Customer-managed key encryption properties for the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "(Optional) Discouraged to include in resource definition. Only needed where it is possible to disable platform (AKA infrastructure) encryption. Azure SQL TDE is an example of this. Values are enabled and disabled."
+      }
+    },
+    "com.azure.maps#MapsAccountPropertiesInputEncryptionInfrastructureEncryption": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Values are enabled and disabled."
+      }
+    },
+    "com.azure.maps#AccountsUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.maps#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.maps#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.maps#UserAssignedIdentitiesInput": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.maps#UserAssignedIdentityInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."
+      }
+    },
+    "com.azure.maps#UserAssignedIdentityInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.maps#SkuInput": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.maps#SkuInputName",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU, in standard format (such as S0).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The SKU of the Maps Account."
+      }
+    },
+    "com.azure.maps#SkuInputName": {
+      "type": "enum",
+      "members": {
+        "S0": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S0"
+          }
+        },
+        "S1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "S1"
+          }
+        },
+        "G2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "G2"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The name of the SKU, in standard format (such as S0)."
+      }
+    },
+    "com.azure.maps#AccountsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater than 128 characters and value no greater than 256 characters."
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#AccountsCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#AccountsCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Create or update a Maps Account. A Maps Account holds the keys which allow access to the Maps REST APIs.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#AccountsCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.maps#Sku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of this account.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.maps#Kind",
+          "traits": {
+            "smithy.api#documentation": "Get or Set Kind property."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.maps#AccountsCreateOrUpdateResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.maps#AccountsCreateOrUpdateResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#MapsAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The map account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdateResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.maps#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.maps#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdateResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.maps#AccountsCreateOrUpdateResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.maps#AccountsCreateOrUpdateResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdateResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdateResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#AccountsCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.maps#SkuInput",
+          "traits": {
+            "smithy.api#documentation": "The SKU of this account.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.maps#Kind",
+          "traits": {
+            "smithy.api#documentation": "Get or Set Kind property."
+          }
+        },
+        "identity": {
+          "target": "com.azure.maps#AccountsCreateOrUpdateRequestIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#MapsAccountPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The map account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdateRequestIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.azure.maps#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.maps#UserAssignedIdentitiesInput"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.maps#AccountsCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#AccountsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.maps#AccountsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.maps#AccountsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Maps/accounts/{accountName}",
+          "code": 200,
+          "apiVersion": "2023-06-01"
+        },
+        "smithy.api#documentation": "Get a Maps Account.",
+        "com.distilled.openapi#apiVersion": "2023-06-01"
+      }
+    },
+    "com.azure.maps#AccountsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "tags": {
+          "target": "com.azure.maps#AccountsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.maps#Sku",
+          "traits": {
+            "smithy.api#documentation": "The SKU of this account.",
+            "smithy.api#required": {}
+          }
+        },
+        "kind": {
+          "target": "com.azure.maps#Kind",
+          "traits": {
+            "smithy.api#documentation": "Get or Set Kind property."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.maps#AccountsGetResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        },
+        "identity": {
+          "target": "com.azure.maps#AccountsGetResponseIdentity",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+          }
+        },
+        "properties": {
+          "target": "com.azure.maps#MapsAccountProperties",
+          "traits": {
+            "smithy.api#documentation": "The map account properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.maps#AccountsGetResponseIdentity": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The service principal ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tenant ID of the system assigned identity. This property will only be provided for a system assigned identity."
+          }
+        },
+        "type": {
+          "target": "com.azure.maps#ManagedServiceIdentityType",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.maps#UserAssignedIdentities"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed service identity (system assigned and/or user assigned identities)"
+      }
+    },
+    "com.azure.maps#AccountsGetResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.maps#AccountsGetResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.maps#AccountsGetResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.maps#AccountsGetResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.maps#AccountsGetResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.maps#AccountsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.maps#AccountsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "accountName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Maps Account."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.maps#Maps": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.maps#CreatorsDelete"
+        },
+        {
+          "target": "com.azure.maps#CreatorsUpdate"
+        },
+        {
+          "target": "com.azure.maps#CreatorsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maps#CreatorsGet"
+        },
+        {
+          "target": "com.azure.maps#CreatorsListByAccount"
+        },
+        {
+          "target": "com.azure.maps#MapsListSubscriptionOperations"
+        },
+        {
+          "target": "com.azure.maps#MapsListOperations"
+        },
+        {
+          "target": "com.azure.maps#AccountsRegenerateKeys"
+        },
+        {
+          "target": "com.azure.maps#AccountsListKeys"
+        },
+        {
+          "target": "com.azure.maps#AccountsListSas"
+        },
+        {
+          "target": "com.azure.maps#AccountsListBySubscription"
+        },
+        {
+          "target": "com.azure.maps#AccountsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.maps#AccountsDelete"
+        },
+        {
+          "target": "com.azure.maps#AccountsUpdate"
+        },
+        {
+          "target": "com.azure.maps#AccountsCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.maps#AccountsGet"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Maps",
+        "smithy.api#documentation": "Azure Maps API — merged from the maps resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

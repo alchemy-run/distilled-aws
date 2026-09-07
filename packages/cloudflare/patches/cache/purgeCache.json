@@ -1,0 +1,30 @@
+{
+  "description": "Align cache#Purge with distilled cloudflare/cache purgeCache",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#Purge",
+      "path": "/shapes/com.cloudflare.cache#PurgeCache"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#PurgeRequest",
+      "path": "/shapes/com.cloudflare.cache#PurgeCacheRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#PurgeCache/input/target",
+      "value": "com.cloudflare.cache#PurgeCacheRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cache#PurgeResponse",
+      "path": "/shapes/com.cloudflare.cache#PurgeCacheResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cache#PurgeCache/output/target",
+      "value": "com.cloudflare.cache#PurgeCacheResponse"
+    }
+  ]
+}

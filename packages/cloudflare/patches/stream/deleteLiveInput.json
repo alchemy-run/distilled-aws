@@ -1,0 +1,32 @@
+{
+  "description": "Align stream#LiveInputsDelete with distilled cloudflare/stream deleteLiveInput",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsDelete",
+      "path": "/shapes/com.cloudflare.stream#DeleteLiveInput"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.stream#LiveInputsDeleteRequest",
+      "path": "/shapes/com.cloudflare.stream#DeleteLiveInputRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.stream#DeleteLiveInput/input/target",
+      "value": "com.cloudflare.stream#DeleteLiveInputRequest"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.stream#DeleteLiveInput/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.stream#LiveInputNotFound"
+        },
+        {
+          "target": "com.cloudflare.stream#Forbidden"
+        }
+      ]
+    }
+  ]
+}

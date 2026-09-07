@@ -1,0 +1,3555 @@
+{
+  "description": "Add 422 UnprocessableEntity responses to create, replace, and patch operations",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1bindings/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1configmaps/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1configmaps~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1configmaps~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1endpoints/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1endpoints~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1endpoints~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1events/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1events~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1events~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1limitranges/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1limitranges~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1limitranges~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1persistentvolumeclaims/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1persistentvolumeclaims~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1persistentvolumeclaims~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1persistentvolumeclaims~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1persistentvolumeclaims~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}~1binding/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}~1ephemeralcontainers/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}~1ephemeralcontainers/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}~1eviction/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}~1resize/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}~1resize/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1pods~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1podtemplates/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1podtemplates~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1podtemplates~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1replicationcontrollers/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1replicationcontrollers~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1replicationcontrollers~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1replicationcontrollers~1{name}~1scale/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1replicationcontrollers~1{name}~1scale/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1replicationcontrollers~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1replicationcontrollers~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1resourcequotas/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1resourcequotas~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1resourcequotas~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1resourcequotas~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1resourcequotas~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1secrets/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1secrets~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1secrets~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1serviceaccounts/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1serviceaccounts~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1serviceaccounts~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1serviceaccounts~1{name}~1token/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1services/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1services~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1services~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1services~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{namespace}~1services~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{name}~1finalize/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1namespaces~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1nodes/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1nodes~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1nodes~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1nodes~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1nodes~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1persistentvolumes/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1persistentvolumes~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1persistentvolumes~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1persistentvolumes~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1api~1v1~1persistentvolumes~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1mutatingadmissionpolicies/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1mutatingadmissionpolicies~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1mutatingadmissionpolicies~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1mutatingadmissionpolicybindings/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1mutatingadmissionpolicybindings~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1mutatingadmissionpolicybindings~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1mutatingwebhookconfigurations/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1mutatingwebhookconfigurations~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1mutatingwebhookconfigurations~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingadmissionpolicies/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingadmissionpolicies~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingadmissionpolicies~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingadmissionpolicies~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingadmissionpolicies~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingadmissionpolicybindings/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingadmissionpolicybindings~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingadmissionpolicybindings~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingwebhookconfigurations/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingwebhookconfigurations~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1~1validatingwebhookconfigurations~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1alpha1~1mutatingadmissionpolicies/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1alpha1~1mutatingadmissionpolicies~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1alpha1~1mutatingadmissionpolicies~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1alpha1~1mutatingadmissionpolicybindings/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1alpha1~1mutatingadmissionpolicybindings~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1alpha1~1mutatingadmissionpolicybindings~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1beta1~1mutatingadmissionpolicies/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1beta1~1mutatingadmissionpolicies~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1beta1~1mutatingadmissionpolicies~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1beta1~1mutatingadmissionpolicybindings/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1beta1~1mutatingadmissionpolicybindings~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1admissionregistration.k8s.io~1v1beta1~1mutatingadmissionpolicybindings~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiextensions.k8s.io~1v1~1customresourcedefinitions/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiextensions.k8s.io~1v1~1customresourcedefinitions~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiextensions.k8s.io~1v1~1customresourcedefinitions~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiextensions.k8s.io~1v1~1customresourcedefinitions~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiextensions.k8s.io~1v1~1customresourcedefinitions~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiregistration.k8s.io~1v1~1apiservices/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiregistration.k8s.io~1v1~1apiservices~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiregistration.k8s.io~1v1~1apiservices~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiregistration.k8s.io~1v1~1apiservices~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apiregistration.k8s.io~1v1~1apiservices~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1controllerrevisions/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1controllerrevisions~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1controllerrevisions~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1daemonsets/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1daemonsets~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1daemonsets~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1daemonsets~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1daemonsets~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1deployments/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1deployments~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1deployments~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1deployments~1{name}~1scale/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1deployments~1{name}~1scale/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1deployments~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1deployments~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1replicasets/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1replicasets~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1replicasets~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1replicasets~1{name}~1scale/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1replicasets~1{name}~1scale/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1replicasets~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1replicasets~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1statefulsets/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1statefulsets~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1statefulsets~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1statefulsets~1{name}~1scale/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1statefulsets~1{name}~1scale/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1statefulsets~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1apps~1v1~1namespaces~1{namespace}~1statefulsets~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1authentication.k8s.io~1v1~1selfsubjectreviews/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1authentication.k8s.io~1v1~1tokenreviews/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1authorization.k8s.io~1v1~1namespaces~1{namespace}~1localsubjectaccessreviews/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1authorization.k8s.io~1v1~1selfsubjectaccessreviews/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1authorization.k8s.io~1v1~1selfsubjectrulesreviews/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1authorization.k8s.io~1v1~1subjectaccessreviews/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v1~1namespaces~1{namespace}~1horizontalpodautoscalers/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v1~1namespaces~1{namespace}~1horizontalpodautoscalers~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v1~1namespaces~1{namespace}~1horizontalpodautoscalers~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v1~1namespaces~1{namespace}~1horizontalpodautoscalers~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v1~1namespaces~1{namespace}~1horizontalpodautoscalers~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v2~1namespaces~1{namespace}~1horizontalpodautoscalers/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v2~1namespaces~1{namespace}~1horizontalpodautoscalers~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v2~1namespaces~1{namespace}~1horizontalpodautoscalers~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v2~1namespaces~1{namespace}~1horizontalpodautoscalers~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1autoscaling~1v2~1namespaces~1{namespace}~1horizontalpodautoscalers~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1cronjobs/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1cronjobs~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1cronjobs~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1cronjobs~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1cronjobs~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1jobs/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1jobs~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1jobs~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1jobs~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1batch~1v1~1namespaces~1{namespace}~1jobs~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1~1certificatesigningrequests/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1~1certificatesigningrequests~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1~1certificatesigningrequests~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1~1certificatesigningrequests~1{name}~1approval/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1~1certificatesigningrequests~1{name}~1approval/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1~1certificatesigningrequests~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1~1certificatesigningrequests~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1alpha1~1clustertrustbundles/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1alpha1~1clustertrustbundles~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1alpha1~1clustertrustbundles~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1beta1~1clustertrustbundles/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1beta1~1clustertrustbundles~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1beta1~1clustertrustbundles~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1beta1~1namespaces~1{namespace}~1podcertificaterequests/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1beta1~1namespaces~1{namespace}~1podcertificaterequests~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1beta1~1namespaces~1{namespace}~1podcertificaterequests~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1beta1~1namespaces~1{namespace}~1podcertificaterequests~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1certificates.k8s.io~1v1beta1~1namespaces~1{namespace}~1podcertificaterequests~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1coordination.k8s.io~1v1~1namespaces~1{namespace}~1leases/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1coordination.k8s.io~1v1~1namespaces~1{namespace}~1leases~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1coordination.k8s.io~1v1~1namespaces~1{namespace}~1leases~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1coordination.k8s.io~1v1alpha2~1namespaces~1{namespace}~1leasecandidates/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1coordination.k8s.io~1v1alpha2~1namespaces~1{namespace}~1leasecandidates~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1coordination.k8s.io~1v1alpha2~1namespaces~1{namespace}~1leasecandidates~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1coordination.k8s.io~1v1beta1~1namespaces~1{namespace}~1leasecandidates/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1coordination.k8s.io~1v1beta1~1namespaces~1{namespace}~1leasecandidates~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1coordination.k8s.io~1v1beta1~1namespaces~1{namespace}~1leasecandidates~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1discovery.k8s.io~1v1~1namespaces~1{namespace}~1endpointslices/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1discovery.k8s.io~1v1~1namespaces~1{namespace}~1endpointslices~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1discovery.k8s.io~1v1~1namespaces~1{namespace}~1endpointslices~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1events.k8s.io~1v1~1namespaces~1{namespace}~1events/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1events.k8s.io~1v1~1namespaces~1{namespace}~1events~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1events.k8s.io~1v1~1namespaces~1{namespace}~1events~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1flowschemas/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1flowschemas~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1flowschemas~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1flowschemas~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1flowschemas~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1prioritylevelconfigurations/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1prioritylevelconfigurations~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1prioritylevelconfigurations~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1prioritylevelconfigurations~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1flowcontrol.apiserver.k8s.io~1v1~1prioritylevelconfigurations~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1internal.apiserver.k8s.io~1v1alpha1~1storageversions/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1internal.apiserver.k8s.io~1v1alpha1~1storageversions~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1internal.apiserver.k8s.io~1v1alpha1~1storageversions~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1internal.apiserver.k8s.io~1v1alpha1~1storageversions~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1internal.apiserver.k8s.io~1v1alpha1~1storageversions~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1ingressclasses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1ingressclasses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1ingressclasses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1ipaddresses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1ipaddresses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1ipaddresses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1namespaces~1{namespace}~1ingresses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1namespaces~1{namespace}~1ingresses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1namespaces~1{namespace}~1ingresses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1namespaces~1{namespace}~1ingresses~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1namespaces~1{namespace}~1ingresses~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1namespaces~1{namespace}~1networkpolicies/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1namespaces~1{namespace}~1networkpolicies~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1namespaces~1{namespace}~1networkpolicies~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1servicecidrs/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1servicecidrs~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1servicecidrs~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1servicecidrs~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1~1servicecidrs~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1beta1~1ipaddresses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1beta1~1ipaddresses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1beta1~1ipaddresses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1beta1~1servicecidrs/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1beta1~1servicecidrs~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1beta1~1servicecidrs~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1beta1~1servicecidrs~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1networking.k8s.io~1v1beta1~1servicecidrs~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1node.k8s.io~1v1~1runtimeclasses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1node.k8s.io~1v1~1runtimeclasses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1node.k8s.io~1v1~1runtimeclasses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1policy~1v1~1namespaces~1{namespace}~1poddisruptionbudgets/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1policy~1v1~1namespaces~1{namespace}~1poddisruptionbudgets~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1policy~1v1~1namespaces~1{namespace}~1poddisruptionbudgets~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1policy~1v1~1namespaces~1{namespace}~1poddisruptionbudgets~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1policy~1v1~1namespaces~1{namespace}~1poddisruptionbudgets~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1clusterrolebindings/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1clusterrolebindings~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1clusterrolebindings~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1clusterroles/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1clusterroles~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1clusterroles~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1namespaces~1{namespace}~1rolebindings/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1namespaces~1{namespace}~1rolebindings~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1namespaces~1{namespace}~1rolebindings~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1namespaces~1{namespace}~1roles/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1namespaces~1{namespace}~1roles~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1rbac.authorization.k8s.io~1v1~1namespaces~1{namespace}~1roles~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1deviceclasses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1deviceclasses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1deviceclasses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1namespaces~1{namespace}~1resourceclaims/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1namespaces~1{namespace}~1resourceclaims~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1namespaces~1{namespace}~1resourceclaims~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1namespaces~1{namespace}~1resourceclaims~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1namespaces~1{namespace}~1resourceclaims~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1namespaces~1{namespace}~1resourceclaimtemplates/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1namespaces~1{namespace}~1resourceclaimtemplates~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1namespaces~1{namespace}~1resourceclaimtemplates~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1resourceslices/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1resourceslices~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1~1resourceslices~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1alpha3~1devicetaintrules/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1alpha3~1devicetaintrules~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1alpha3~1devicetaintrules~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1alpha3~1devicetaintrules~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1alpha3~1devicetaintrules~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1deviceclasses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1deviceclasses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1deviceclasses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1namespaces~1{namespace}~1resourceclaims/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1namespaces~1{namespace}~1resourceclaims~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1namespaces~1{namespace}~1resourceclaims~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1namespaces~1{namespace}~1resourceclaims~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1namespaces~1{namespace}~1resourceclaims~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1namespaces~1{namespace}~1resourceclaimtemplates/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1namespaces~1{namespace}~1resourceclaimtemplates~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1namespaces~1{namespace}~1resourceclaimtemplates~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1resourceslices/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1resourceslices~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta1~1resourceslices~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1deviceclasses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1deviceclasses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1deviceclasses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1devicetaintrules/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1devicetaintrules~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1devicetaintrules~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1devicetaintrules~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1devicetaintrules~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1namespaces~1{namespace}~1resourceclaims/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1namespaces~1{namespace}~1resourceclaims~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1namespaces~1{namespace}~1resourceclaims~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1namespaces~1{namespace}~1resourceclaims~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1namespaces~1{namespace}~1resourceclaims~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1namespaces~1{namespace}~1resourceclaimtemplates/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1namespaces~1{namespace}~1resourceclaimtemplates~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1namespaces~1{namespace}~1resourceclaimtemplates~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1resourceslices/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1resourceslices~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1resource.k8s.io~1v1beta2~1resourceslices~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1~1priorityclasses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1~1priorityclasses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1~1priorityclasses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1alpha2~1namespaces~1{namespace}~1podgroups/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1alpha2~1namespaces~1{namespace}~1podgroups~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1alpha2~1namespaces~1{namespace}~1podgroups~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1alpha2~1namespaces~1{namespace}~1podgroups~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1alpha2~1namespaces~1{namespace}~1podgroups~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1alpha2~1namespaces~1{namespace}~1workloads/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1alpha2~1namespaces~1{namespace}~1workloads~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1scheduling.k8s.io~1v1alpha2~1namespaces~1{namespace}~1workloads~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1csidrivers/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1csidrivers~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1csidrivers~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1csinodes/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1csinodes~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1csinodes~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1namespaces~1{namespace}~1csistoragecapacities/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1namespaces~1{namespace}~1csistoragecapacities~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1namespaces~1{namespace}~1csistoragecapacities~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1storageclasses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1storageclasses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1storageclasses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1volumeattachments/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1volumeattachments~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1volumeattachments~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1volumeattachments~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1volumeattachments~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1volumeattributesclasses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1volumeattributesclasses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1~1volumeattributesclasses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1beta1~1volumeattributesclasses/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1beta1~1volumeattributesclasses~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storage.k8s.io~1v1beta1~1volumeattributesclasses~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storagemigration.k8s.io~1v1beta1~1storageversionmigrations/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storagemigration.k8s.io~1v1beta1~1storageversionmigrations~1{name}/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storagemigration.k8s.io~1v1beta1~1storageversionmigrations~1{name}/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storagemigration.k8s.io~1v1beta1~1storageversionmigrations~1{name}~1status/put/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apis~1storagemigration.k8s.io~1v1beta1~1storageversionmigrations~1{name}~1status/patch/responses/422",
+      "value": {
+        "description": "Unprocessable Entity",
+        "schema": {
+          "$ref": "#/definitions/io.k8s.apimachinery.pkg.apis.meta.v1.Status"
+        }
+      }
+    }
+  ]
+}

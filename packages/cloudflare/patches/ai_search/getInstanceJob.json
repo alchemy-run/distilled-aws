@@ -1,0 +1,45 @@
+{
+  "description": "Align ai_search#InstancesJobsGet with distilled cloudflare/aisearch getInstanceJob",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#InstancesJobsGet",
+      "path": "/shapes/com.cloudflare.ai_search#GetInstanceJob"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#InstancesJobsGetRequest",
+      "path": "/shapes/com.cloudflare.ai_search#GetInstanceJobRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#GetInstanceJob/input/target",
+      "value": "com.cloudflare.ai_search#GetInstanceJobRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_search#InstancesJobsGetResponse",
+      "path": "/shapes/com.cloudflare.ai_search#GetInstanceJobResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_search#GetInstanceJob/output/target",
+      "value": "com.cloudflare.ai_search#GetInstanceJobResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_search#GetInstanceJob/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_search#ValidationError"
+        },
+        {
+          "target": "com.cloudflare.ai_search#NotFound"
+        },
+        {
+          "target": "com.cloudflare.ai_search#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#BinaryStorageCreate with distilled cloudflare/cloudforce-one createBinaryStorage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#BinaryStorageCreate",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateBinaryStorage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#BinaryStorageCreateRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateBinaryStorageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateBinaryStorage/input/target",
+      "value": "com.cloudflare.cloudforce_one#CreateBinaryStorageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#BinaryStorageCreateResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateBinaryStorageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#CreateBinaryStorage/output/target",
+      "value": "com.cloudflare.cloudforce_one#CreateBinaryStorageResponse"
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "description": "Align workers#ScriptsContentUpdate with distilled cloudflare/workers putScriptContent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsContentUpdate",
+      "path": "/shapes/com.cloudflare.workers#PutScriptContent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsContentUpdateRequest",
+      "path": "/shapes/com.cloudflare.workers#PutScriptContentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutScriptContent/input/target",
+      "value": "com.cloudflare.workers#PutScriptContentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ScriptsContentUpdateResponse",
+      "path": "/shapes/com.cloudflare.workers#PutScriptContentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#PutScriptContent/output/target",
+      "value": "com.cloudflare.workers#PutScriptContentResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#PutScriptContent/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#WorkerNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#InvalidWorkerScript"
+        },
+        {
+          "target": "com.cloudflare.workers#ScriptStartupError"
+        },
+        {
+          "target": "com.cloudflare.workers#ScriptModuleNotFound"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#PutScriptContentRequest/members/CF_WORKER_BODY_PART",
+      "path": "/shapes/com.cloudflare.workers#PutScriptContentRequest/members/cfworkerbodypart"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#PutScriptContentRequest/members/CF_WORKER_MAIN_MODULE_PART",
+      "path": "/shapes/com.cloudflare.workers#PutScriptContentRequest/members/cfworkermainmodulepart"
+    }
+  ]
+}

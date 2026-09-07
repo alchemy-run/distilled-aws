@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer7SummaryHttpMethod with distilled cloudflare/radar httpMethodAttackLayer7Summary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7SummaryHttpMethod",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7Summary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7SummaryHttpMethodRequest",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7SummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7Summary/input/target",
+      "value": "com.cloudflare.radar#HttpMethodAttackLayer7SummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer7SummaryHttpMethodResponse",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7SummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#HttpMethodAttackLayer7Summary/output/target",
+      "value": "com.cloudflare.radar#HttpMethodAttackLayer7SummaryResponse"
+    }
+  ]
+}

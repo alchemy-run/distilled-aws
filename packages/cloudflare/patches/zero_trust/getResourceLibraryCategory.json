@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#ResourceLibraryCategoriesGet with distilled cloudflare/zero-trust getResourceLibraryCategory",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ResourceLibraryCategoriesGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryCategory"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ResourceLibraryCategoriesGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryCategoryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryCategory/input/target",
+      "value": "com.cloudflare.zero_trust#GetResourceLibraryCategoryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#ResourceLibraryCategoriesGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryCategoryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetResourceLibraryCategory/output/target",
+      "value": "com.cloudflare.zero_trust#GetResourceLibraryCategoryResponse"
+    }
+  ]
+}

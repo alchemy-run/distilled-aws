@@ -1,0 +1,50 @@
+{
+  "description": "Align r2#BucketsCreate with distilled cloudflare/r2 createBucket",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsCreate",
+      "path": "/shapes/com.cloudflare.r2#CreateBucket"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsCreateRequest",
+      "path": "/shapes/com.cloudflare.r2#CreateBucketRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#CreateBucket/input/target",
+      "value": "com.cloudflare.r2#CreateBucketRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsCreateResponse",
+      "path": "/shapes/com.cloudflare.r2#CreateBucketResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#CreateBucket/output/target",
+      "value": "com.cloudflare.r2#CreateBucketResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#CreateBucket/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#InvalidBucketName"
+        },
+        {
+          "target": "com.cloudflare.r2#BucketAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.r2#InvalidRoute"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#CreateBucketRequest/members/cf_r2_jurisdiction",
+      "path": "/shapes/com.cloudflare.r2#CreateBucketRequest/members/jurisdiction"
+    }
+  ]
+}

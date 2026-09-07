@@ -1,0 +1,30 @@
+{
+  "description": "Align dns_firewall#AnalyticsReportsGet with distilled cloudflare/dns-firewall getAnalyticReport",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#AnalyticsReportsGet",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetAnalyticReport"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#AnalyticsReportsGetRequest",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetAnalyticReportRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetAnalyticReport/input/target",
+      "value": "com.cloudflare.dns_firewall#GetAnalyticReportRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns_firewall#AnalyticsReportsGetResponse",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetAnalyticReportResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetAnalyticReport/output/target",
+      "value": "com.cloudflare.dns_firewall#GetAnalyticReportResponse"
+    }
+  ]
+}

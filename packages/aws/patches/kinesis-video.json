@@ -1,0 +1,70 @@
+{
+  "operations": {
+    "updateStream": {
+      "syntheticErrors": [
+        {
+          "name": "StreamNotActive",
+          "from": "ResourceNotFoundException",
+          "message": { "includes": "not active" }
+        }
+      ]
+    },
+    "updateDataRetention": {
+      "syntheticErrors": [
+        {
+          "name": "StreamNotActive",
+          "from": "ResourceNotFoundException",
+          "message": { "includes": "not active" }
+        }
+      ]
+    },
+    "tagStream": {
+      "syntheticErrors": [
+        {
+          "name": "StreamNotActive",
+          "from": "ResourceNotFoundException",
+          "message": { "includes": "not active" }
+        }
+      ]
+    },
+    "untagStream": {
+      "syntheticErrors": [
+        {
+          "name": "StreamNotActive",
+          "from": "ResourceNotFoundException",
+          "message": { "includes": "not active" }
+        }
+      ]
+    },
+    "updateSignalingChannel": {
+      "syntheticErrors": [
+        {
+          "name": "StreamNotActive",
+          "from": "ResourceNotFoundException",
+          "message": { "includes": "not active" }
+        }
+      ]
+    },
+    "tagResource": {
+      "syntheticErrors": [
+        {
+          "name": "StreamNotActive",
+          "from": "ResourceNotFoundException",
+          "message": { "includes": "not active" }
+        }
+      ]
+    },
+    "untagResource": {
+      "syntheticErrors": [
+        {
+          "name": "StreamNotActive",
+          "from": "ResourceNotFoundException",
+          "message": { "includes": "not active" }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "StreamNotActive": ["ConflictError", "RetryableError"]
+  }
+}

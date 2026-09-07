@@ -1,0 +1,30 @@
+{
+  "description": "Align dcv_delegation#Get with distilled cloudflare/dcv-delegation getDcvDelegation",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dcv_delegation#Get",
+      "path": "/shapes/com.cloudflare.dcv_delegation#GetDcvDelegation"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dcv_delegation#GetRequest",
+      "path": "/shapes/com.cloudflare.dcv_delegation#GetDcvDelegationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dcv_delegation#GetDcvDelegation/input/target",
+      "value": "com.cloudflare.dcv_delegation#GetDcvDelegationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dcv_delegation#GetResponse",
+      "path": "/shapes/com.cloudflare.dcv_delegation#GetDcvDelegationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dcv_delegation#GetDcvDelegation/output/target",
+      "value": "com.cloudflare.dcv_delegation#GetDcvDelegationResponse"
+    }
+  ]
+}

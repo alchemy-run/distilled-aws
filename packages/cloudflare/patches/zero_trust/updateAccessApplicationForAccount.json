@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessApplicationsUpdateForAccount with distilled cloudflare/zero-trust updateAccessApplicationForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsUpdateForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessApplicationForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsUpdateForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessApplicationForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#UpdateAccessApplicationForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessApplicationsUpdateForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessApplicationForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessApplicationForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#UpdateAccessApplicationForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessApplicationForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessReferenceNotFound"
+        }
+      ]
+    }
+  ]
+}

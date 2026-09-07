@@ -1,0 +1,50 @@
+{
+  "description": "Align alerting#SilencesUpdate with distilled cloudflare/alerting updateSilence",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesUpdate",
+      "path": "/shapes/com.cloudflare.alerting#UpdateSilence"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesUpdateRequest",
+      "path": "/shapes/com.cloudflare.alerting#UpdateSilenceRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#UpdateSilence/input/target",
+      "value": "com.cloudflare.alerting#UpdateSilenceRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.alerting#SilencesUpdateResponse",
+      "path": "/shapes/com.cloudflare.alerting#UpdateSilenceResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.alerting#UpdateSilence/output/target",
+      "value": "com.cloudflare.alerting#UpdateSilenceResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#UpdateSilence/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.alerting#UpdateSilence/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.alerting#SilenceNotFound"
+        },
+        {
+          "target": "com.cloudflare.alerting#InvalidSilence"
+        }
+      ]
+    }
+  ]
+}

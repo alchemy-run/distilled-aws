@@ -1,0 +1,42 @@
+{
+  "description": "Align workflows#Update with distilled cloudflare/workflows putWorkflow",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#Update",
+      "path": "/shapes/com.cloudflare.workflows#PutWorkflow"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#UpdateRequest",
+      "path": "/shapes/com.cloudflare.workflows#PutWorkflowRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#PutWorkflow/input/target",
+      "value": "com.cloudflare.workflows#PutWorkflowRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workflows#UpdateResponse",
+      "path": "/shapes/com.cloudflare.workflows#PutWorkflowResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workflows#PutWorkflow/output/target",
+      "value": "com.cloudflare.workflows#PutWorkflowResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workflows#PutWorkflow/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workflows#WorkflowInternalError"
+        },
+        {
+          "target": "com.cloudflare.workflows#InvalidRoute"
+        }
+      ]
+    }
+  ]
+}

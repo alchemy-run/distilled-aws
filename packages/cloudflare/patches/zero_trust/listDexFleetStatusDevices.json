@@ -1,0 +1,41 @@
+{
+  "description": "Align zero_trust#DexFleetStatusDevicesList with distilled cloudflare/zero-trust listDexFleetStatusDevices",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexFleetStatusDevicesList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexFleetStatusDevices"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexFleetStatusDevicesListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexFleetStatusDevicesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexFleetStatusDevices/input/target",
+      "value": "com.cloudflare.zero_trust#ListDexFleetStatusDevicesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexFleetStatusDevicesListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexFleetStatusDevicesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexFleetStatusDevices/output/target",
+      "value": "com.cloudflare.zero_trust#ListDexFleetStatusDevicesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDexFleetStatusDevices/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

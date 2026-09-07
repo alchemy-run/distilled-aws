@@ -1,0 +1,42 @@
+{
+  "description": "Align firewall#AccessRulesGetForAccount with distilled cloudflare/firewall getAccessRuleForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#AccessRulesGetForAccount",
+      "path": "/shapes/com.cloudflare.firewall#GetAccessRuleForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#AccessRulesGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.firewall#GetAccessRuleForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#GetAccessRuleForAccount/input/target",
+      "value": "com.cloudflare.firewall#GetAccessRuleForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.firewall#AccessRulesGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.firewall#GetAccessRuleForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.firewall#GetAccessRuleForAccount/output/target",
+      "value": "com.cloudflare.firewall#GetAccessRuleForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.firewall#GetAccessRuleForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.firewall#AccessRuleNotFound"
+        },
+        {
+          "target": "com.cloudflare.firewall#Forbidden"
+        }
+      ]
+    }
+  ]
+}

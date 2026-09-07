@@ -1,0 +1,30 @@
+{
+  "description": "Align zaraz#ExportGet with distilled cloudflare/zaraz getExport",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#ExportGet",
+      "path": "/shapes/com.cloudflare.zaraz#GetExport"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#ExportGetRequest",
+      "path": "/shapes/com.cloudflare.zaraz#GetExportRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetExport/input/target",
+      "value": "com.cloudflare.zaraz#GetExportRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#ExportGetResponse",
+      "path": "/shapes/com.cloudflare.zaraz#GetExportResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetExport/output/target",
+      "value": "com.cloudflare.zaraz#GetExportResponse"
+    }
+  ]
+}

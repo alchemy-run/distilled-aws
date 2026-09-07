@@ -1,0 +1,47 @@
+{
+  "description": "Align zero_trust#DevicesNetworksList with distilled cloudflare/zero-trust listDeviceNetworks",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceNetworks"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceNetworksRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceNetworks/input/target",
+      "value": "com.cloudflare.zero_trust#ListDeviceNetworksRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesNetworksListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceNetworksResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceNetworks/output/target",
+      "value": "com.cloudflare.zero_trust#ListDeviceNetworksResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceNetworks/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDeviceNetworks/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

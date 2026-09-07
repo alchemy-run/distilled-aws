@@ -1,0 +1,98 @@
+name: PR Package
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    # Tags persist after close so existing install URLs keep resolving.
+    types: [opened, synchronize, reopened, labeled]
+
+concurrency:
+  group: pr-package-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  pr-package:
+    name: Publish PR preview packages
+    if: >-
+      github.event_name == 'push' ||
+      github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: blacksmith-8vcpu-ubuntu-2404
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm & Bun
+        uses: pnpm/setup@84cb39b217b10273981911c288cd62326dc7c6d2 # v2.0.2
+        with:
+          cache: true
+          install: false
+
+      - name: Install Node 24
+        run: pnpm runtime set node 24 -g
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: bun run build
+
+      - name: Publish packages
+        id: publish
+        uses: alchemy-run/actions/actions/pr-package@098beeda4d3c2ce8850638c4466783893b8f0c23 # actions#11
+        with:
+          packages: |
+            [
+              { "dir": "packages/core",            "name": "@distilled.cloud/core",            "group": "Distilled" },
+              { "dir": "packages/aws",             "name": "@distilled.cloud/aws",             "group": "Distilled" },
+              { "dir": "packages/axiom",           "name": "@distilled.cloud/axiom",           "group": "Distilled" },
+              { "dir": "packages/azure",           "name": "@distilled.cloud/azure",           "group": "Distilled" },
+              { "dir": "packages/cloudflare",      "name": "@distilled.cloud/cloudflare",      "group": "Distilled" },
+              { "dir": "packages/coinbase",        "name": "@distilled.cloud/coinbase",        "group": "Distilled" },
+              { "dir": "packages/discord",         "name": "@distilled.cloud/discord",         "group": "Distilled" },
+              { "dir": "packages/expo-eas",        "name": "@distilled.cloud/expo-eas",        "group": "Distilled" },
+              { "dir": "packages/fly-io",          "name": "@distilled.cloud/fly-io",          "group": "Distilled" },
+              { "dir": "packages/forgejo",         "name": "@distilled.cloud/forgejo",         "group": "Distilled" },
+              { "dir": "packages/gcp",             "name": "@distilled.cloud/gcp",             "group": "Distilled" },
+              { "dir": "packages/github",          "name": "@distilled.cloud/github",          "group": "Distilled" },
+              { "dir": "packages/hetzner",         "name": "@distilled.cloud/hetzner",         "group": "Distilled" },
+              { "dir": "packages/kubernetes",      "name": "@distilled.cloud/kubernetes",      "group": "Distilled" },
+              { "dir": "packages/mongodb-atlas",   "name": "@distilled.cloud/mongodb-atlas",   "group": "Distilled" },
+              { "dir": "packages/neon",            "name": "@distilled.cloud/neon",            "group": "Distilled" },
+              { "dir": "packages/planetscale",     "name": "@distilled.cloud/planetscale",     "group": "Distilled" },
+              { "dir": "packages/posthog",         "name": "@distilled.cloud/posthog",         "group": "Distilled" },
+              { "dir": "packages/prisma-postgres", "name": "@distilled.cloud/prisma-postgres", "group": "Distilled" },
+              { "dir": "packages/railway",         "name": "@distilled.cloud/railway",         "group": "Distilled" },
+              { "dir": "packages/stripe",          "name": "@distilled.cloud/stripe",          "group": "Distilled" },
+              { "dir": "packages/supabase",        "name": "@distilled.cloud/supabase",        "group": "Distilled" },
+              { "dir": "packages/turso",           "name": "@distilled.cloud/turso",           "group": "Distilled" },
+              { "dir": "packages/typesense",       "name": "@distilled.cloud/typesense",       "group": "Distilled" },
+              { "dir": "packages/vercel",          "name": "@distilled.cloud/vercel",          "group": "Distilled" },
+              { "dir": "packages/workos",          "name": "@distilled.cloud/workos",          "group": "Distilled" }
+            ]
+          pr-package-token: ${{ secrets.PR_PACKAGE_TOKEN }}
+
+      - name: Generate bot token
+        if: >-
+          github.event_name == 'pull_request' &&
+          fromJson(steps.publish.outputs.plan).packages[0] != null
+        id: bot-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.ALCHEMY_VERSION_BOT_ID }}
+          private-key: ${{ secrets.ALCHEMY_VERSION_BOT_PRIVATE_KEY }}
+
+      - name: Comment on PR
+        if: >-
+          github.event_name == 'pull_request' &&
+          fromJson(steps.publish.outputs.plan).packages[0] != null
+        uses: alchemy-run/actions/actions/pr-package-comment@098beeda4d3c2ce8850638c4466783893b8f0c23 # actions#11
+        with:
+          plan: ${{ steps.publish.outputs.plan }}
+          token: ${{ steps.bot-token.outputs.token }}

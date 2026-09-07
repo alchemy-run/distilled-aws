@@ -1,0 +1,38 @@
+{
+  "description": "Align magic_transit#ConnectorsList with distilled cloudflare/magic-transit listConnectors",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsList",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectors"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsListRequest",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectorsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectors/input/target",
+      "value": "com.cloudflare.magic_transit#ListConnectorsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_transit#ConnectorsListResponse",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectorsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectors/output/target",
+      "value": "com.cloudflare.magic_transit#ListConnectorsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_transit#ListConnectors/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "operations": {
+    "createGroup": {
+      "syntheticErrors": [
+        {
+          "name": "GroupAlreadyExists",
+          "from": "InvalidRequestException",
+          "message": {
+            "matches": " already exists$"
+          }
+        }
+      ]
+    },
+    "getGroup": {
+      "syntheticErrors": [
+        {
+          "name": "GroupNotFound",
+          "from": "InvalidRequestException",
+          "message": "Group not found"
+        }
+      ]
+    },
+    "updateGroup": {
+      "syntheticErrors": [
+        {
+          "name": "GroupNotFound",
+          "from": "InvalidRequestException",
+          "message": "Group not found"
+        }
+      ]
+    },
+    "deleteGroup": {
+      "syntheticErrors": [
+        {
+          "name": "GroupNotFound",
+          "from": "InvalidRequestException",
+          "message": "Group not found"
+        }
+      ]
+    },
+    "createSamplingRule": {
+      "syntheticErrors": [
+        {
+          "name": "SamplingRuleAlreadyExists",
+          "from": "InvalidRequestException",
+          "message": "Sampling rule already exists"
+        }
+      ]
+    },
+    "updateSamplingRule": {
+      "syntheticErrors": [
+        {
+          "name": "SamplingRuleNotFound",
+          "from": "InvalidRequestException",
+          "message": "Sampling rule does not exist"
+        }
+      ]
+    },
+    "deleteSamplingRule": {
+      "syntheticErrors": [
+        {
+          "name": "SamplingRuleNotFound",
+          "from": "InvalidRequestException",
+          "message": "Sampling rule does not exist"
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "GroupNotFound": ["NotFoundError"],
+    "GroupAlreadyExists": ["AlreadyExistsError", "ConflictError"],
+    "SamplingRuleNotFound": ["NotFoundError"],
+    "SamplingRuleAlreadyExists": ["AlreadyExistsError", "ConflictError"]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#ValidateDestinationForAccount with distilled cloudflare/logpush destinationValidateForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#ValidateDestinationForAccount",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#ValidateDestinationForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForAccount/input/target",
+      "value": "com.cloudflare.logpush#DestinationValidateForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#ValidateDestinationForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#DestinationValidateForAccount/output/target",
+      "value": "com.cloudflare.logpush#DestinationValidateForAccountResponse"
+    }
+  ]
+}

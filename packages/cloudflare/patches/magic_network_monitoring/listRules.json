@@ -1,0 +1,47 @@
+{
+  "description": "Align magic_network_monitoring#RulesList with distilled cloudflare/magic-network-monitoring listRules",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#RulesList",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#ListRules"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#RulesListRequest",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#ListRulesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#ListRules/input/target",
+      "value": "com.cloudflare.magic_network_monitoring#ListRulesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#RulesListResponse",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#ListRulesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#ListRules/output/target",
+      "value": "com.cloudflare.magic_network_monitoring#ListRulesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#ListRules/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#ListRules/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_network_monitoring#Forbidden"
+        }
+      ]
+    }
+  ]
+}

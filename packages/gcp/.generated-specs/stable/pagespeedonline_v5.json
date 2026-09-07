@@ -1,0 +1,1339 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "pagespeedonline",
+    "version": "v5",
+    "title": "PageSpeed Insights API",
+    "baseUrl": "https://pagespeedonline.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.pagespeedonline_v5#PagespeedVersion": {
+      "type": "structure",
+      "members": {
+        "minor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The minor version number of PageSpeed used to generate these results."
+          }
+        },
+        "major": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The major version number of PageSpeed used to generate these results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Pagespeed Version object."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#Environment": {
+      "type": "structure",
+      "members": {
+        "networkUserAgent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user agent string that was sent over the network."
+          }
+        },
+        "hostUserAgent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user agent string of the version of Chrome used."
+          }
+        },
+        "benchmarkIndex": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The benchmark index number that indicates rough device class."
+          }
+        },
+        "credits": {
+          "target": "com.gcp.pagespeedonline_v5#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The version of libraries with which these results were generated. Ex: axe-core."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message containing environment configuration for a Lighthouse run."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#Categories": {
+      "type": "structure",
+      "members": {
+        "accessibility": {
+          "target": "com.gcp.pagespeedonline_v5#LighthouseCategoryV5",
+          "traits": {
+            "smithy.api#documentation": "The accessibility category, containing all accessibility related audits."
+          }
+        },
+        "best-practices": {
+          "target": "com.gcp.pagespeedonline_v5#LighthouseCategoryV5",
+          "traits": {
+            "smithy.api#documentation": "The best practices category, containing all best practices related audits."
+          }
+        },
+        "pwa": {
+          "target": "com.gcp.pagespeedonline_v5#LighthouseCategoryV5",
+          "traits": {
+            "smithy.api#documentation": "The Progressive-Web-App (PWA) category, containing all pwa related audits. This is deprecated in Lighthouse's 12.0 release."
+          }
+        },
+        "performance": {
+          "target": "com.gcp.pagespeedonline_v5#LighthouseCategoryV5",
+          "traits": {
+            "smithy.api#documentation": "The performance category, containing all performance related audits."
+          }
+        },
+        "seo": {
+          "target": "com.gcp.pagespeedonline_v5#LighthouseCategoryV5",
+          "traits": {
+            "smithy.api#documentation": "The Search-Engine-Optimization (SEO) category, containing all seo related audits."
+          }
+        },
+        "agentic-browsing": {
+          "target": "com.gcp.pagespeedonline_v5#LighthouseCategoryV5",
+          "traits": {
+            "smithy.api#documentation": "The agentic browsing category, containing all agentic browsing related audits."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The categories in a Lighthouse run."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#MetricSavings": {
+      "type": "structure",
+      "members": {
+        "CLS": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional numeric value representing the audit's savings for the CLS metric."
+          }
+        },
+        "INP": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional numeric value representing the audit's savings for the INP metric."
+          }
+        },
+        "TBT": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional numeric value representing the audit's savings for the TBT metric."
+          }
+        },
+        "LCP": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional numeric value representing the audit's savings for the LCP metric."
+          }
+        },
+        "FCP": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional. Optional numeric value representing the audit's savings for the FCP metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The metric savings of the audit."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#RuntimeError": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A human readable message explaining the error code."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The enumerated Lighthouse Error code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message containing a runtime error config."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#LighthouseCategoryV5": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The string identifier of the category."
+          }
+        },
+        "auditRefs": {
+          "target": "com.gcp.pagespeedonline_v5#AuditRefsList",
+          "traits": {
+            "smithy.api#documentation": "An array of references to all the audit members of this category."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human-friendly name of the category."
+          }
+        },
+        "score": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The overall score of the category, the weighted average of all its audits. (The category's score, can be null.)"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A more detailed description of the category and its importance."
+          }
+        },
+        "manualDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A description for the manual audits in the category."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A Lighthouse category."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#AuditRefsList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pagespeedonline_v5#AuditRefs"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#ConfigSettings": {
+      "type": "structure",
+      "members": {
+        "emulatedFormFactor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The form factor the emulation should use. This field is deprecated, form_factor should be used instead."
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How Lighthouse was run, e.g. from the Chrome extension or from the npm module."
+          }
+        },
+        "formFactor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "How Lighthouse should interpret this run in regards to scoring performance metrics and skipping mobile-only tests in desktop."
+          }
+        },
+        "onlyCategories": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "List of categories of audits the run should conduct."
+          }
+        },
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The locale setting."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message containing the configuration settings for the Lighthouse run."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#LhrEntity": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the entity."
+          }
+        },
+        "homepage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional homepage URL of the entity."
+          }
+        },
+        "isFirstParty": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional flag indicating if the entity is the first party."
+          }
+        },
+        "isUnrecognized": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional flag indicating if the entity is not recognized."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional category name for the entity."
+          }
+        },
+        "origins": {
+          "target": "com.gcp.pagespeedonline_v5#StringList",
+          "traits": {
+            "smithy.api#documentation": "Required. A list of URL origin strings that belong to this entity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message containing an Entity."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#Bucket": {
+      "type": "structure",
+      "members": {
+        "proportion": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The proportion of data in this bucket."
+          }
+        },
+        "min": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lower bound for a bucket's range."
+          }
+        },
+        "max": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Upper bound for a bucket's range."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A proportion of data in the total distribution, bucketed by a min/max percentage. Each bucket's range is bounded by min <= x < max, In millisecond."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#LighthouseAuditResultV5": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of the audit."
+          }
+        },
+        "explanation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An explanation of the errors in the audit."
+          }
+        },
+        "displayValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The value that should be displayed on the UI for this audit."
+          }
+        },
+        "score": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "The score of the audit, can be null."
+          }
+        },
+        "scoreDisplayMode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The enumerated score display mode."
+          }
+        },
+        "warnings": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Possible warnings that occurred in the audit, can be null."
+          }
+        },
+        "metricSavings": {
+          "target": "com.gcp.pagespeedonline_v5#MetricSavings",
+          "traits": {
+            "smithy.api#documentation": "The metric savings of the audit."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human readable title."
+          }
+        },
+        "errorMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An error message from a thrown error inside the audit."
+          }
+        },
+        "numericUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unit of the numeric_value field. Used to format the numeric value for display."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The audit's id."
+          }
+        },
+        "details": {
+          "target": "com.gcp.pagespeedonline_v5#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Freeform details section of the audit."
+          }
+        },
+        "numericValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "A numeric value that has a meaning specific to the audit, e.g. the number of nodes in the DOM or the timestamp of a specific load event. More information can be found in the audit details, if present."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An audit's result object in a Lighthouse result."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#Timing": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The total duration of Lighthouse's run."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message containing the performance timing data for the Lighthouse run."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#RendererFormattedStrings": {
+      "type": "structure",
+      "members": {
+        "dropdownCopyJSON": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Option in a dropdown menu that copies the Lighthouse JSON object to the system clipboard."
+          }
+        },
+        "errorMissingAuditInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error string shown next to an erroring audit."
+          }
+        },
+        "lsPerformanceCategoryDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The disclaimer shown under performance explaining that the network can vary."
+          }
+        },
+        "crcInitialNavigation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label for the initial request in a critical request chain."
+          }
+        },
+        "runtimeNoEmulation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Descriptive explanation for emulation setting when no device emulation is set."
+          }
+        },
+        "runtimeSettingsNetworkThrottling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that describes the network throttling conditions that were used during a Lighthouse run, if any."
+          }
+        },
+        "runtimeUnknown": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Descriptive explanation for a runtime setting that is set to an unknown value."
+          }
+        },
+        "auditGroupExpandTooltip": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tooltip text on an expandable chevron icon."
+          }
+        },
+        "toplevelWarningsMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label shown preceding important warnings that may have invalidated an entire report."
+          }
+        },
+        "showRelevantAudits": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label preceding a radio control for filtering the list of audits. The radio choices are various performance metrics (FCP, LCP, TBT), and if chosen, the audits in the report are hidden if they are not relevant to the selected metric."
+          }
+        },
+        "runtimeMobileEmulation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Descriptive explanation for emulation setting when emulating a Nexus 5X mobile device."
+          }
+        },
+        "crcLongestDurationLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label for values shown in the summary of critical request chains."
+          }
+        },
+        "runtimeSettingsAxeVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that shows the version of the Axe library used"
+          }
+        },
+        "snippetExpandButtonLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label for the button to show all lines of a snippet"
+          }
+        },
+        "runtimeSettingsUANetwork": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that shows the User Agent that was used to send out all network requests during the Lighthouse run."
+          }
+        },
+        "snippetCollapseButtonLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label for the button to show only a few lines of a snippet"
+          }
+        },
+        "thirdPartyResourcesLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This label is for a filter checkbox above a table of items"
+          }
+        },
+        "dropdownSaveJSON": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Option in a dropdown menu that saves the Lighthouse JSON object to the local system as a '.json' file."
+          }
+        },
+        "runtimeSettingsDevice": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that describes the kind of device that was emulated for the Lighthouse run. Example values for row elements: 'No Emulation', 'Emulated Desktop', etc."
+          }
+        },
+        "varianceDisclaimer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The disclaimer shown below a performance metric value."
+          }
+        },
+        "warningHeader": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label shown above a bulleted list of warnings."
+          }
+        },
+        "runtimeSettingsUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that shows the URL that was audited during a Lighthouse run."
+          }
+        },
+        "dropdownSaveHTML": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Option in a dropdown menu that saves the Lighthouse report HTML locally to the system as a '.html' file."
+          }
+        },
+        "runtimeDesktopEmulation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Descriptive explanation for emulation setting when emulating a generic desktop form factor, as opposed to a mobile-device like form factor."
+          }
+        },
+        "runtimeSettingsUA": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that shows the User Agent that was detected on the Host machine that ran Lighthouse."
+          }
+        },
+        "labDataTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of the lab data performance category."
+          }
+        },
+        "runtimeSettingsBenchmark": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that shows the estimated CPU power of the machine running Lighthouse. Example row values: 532, 1492, 783."
+          }
+        },
+        "dropdownPrintSummary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Option in a dropdown menu that opens a small, summary report in a print dialog."
+          }
+        },
+        "runtimeSettingsFetchTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that shows the time at which a Lighthouse run was conducted; formatted as a timestamp, e.g. Jan 1, 1970 12:00 AM UTC."
+          }
+        },
+        "runtimeSettingsChannel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that shows in what tool Lighthouse is being run (e.g. The lighthouse CLI, Chrome DevTools, Lightrider, WebPageTest, etc)."
+          }
+        },
+        "passedAuditsGroupTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The heading that is shown above a list of audits that are passing."
+          }
+        },
+        "manualAuditsGroupTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The heading shown above a list of audits that were not computerd in the run."
+          }
+        },
+        "dropdownSaveGist": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Option in a dropdown menu that saves the current report as a new GitHub Gist."
+          }
+        },
+        "throttlingProvided": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Descriptive explanation for environment throttling that was provided by the runtime environment instead of provided by Lighthouse throttling."
+          }
+        },
+        "runtimeSettingsTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Title of the Runtime settings table in a Lighthouse report. Runtime settings are the environment configurations that a specific report used at auditing time."
+          }
+        },
+        "viewTreemapLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a button that opens the Treemap App"
+          }
+        },
+        "errorLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label shown next to an audit or metric that has had an error."
+          }
+        },
+        "notApplicableAuditsGroupTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The heading shown above a list of audits that do not apply to a page."
+          }
+        },
+        "dropdownPrintExpanded": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Option in a dropdown menu that opens a full Lighthouse report in a print dialog."
+          }
+        },
+        "warningAuditsGroupTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The heading that is shown above a list of audits that have warnings"
+          }
+        },
+        "footerIssue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for button to create an issue against the Lighthouse GitHub project."
+          }
+        },
+        "runtimeSettingsCPUThrottling": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Label for a row in a table that describes the CPU throttling conditions that were used during a Lighthouse run, if any."
+          }
+        },
+        "dropdownViewer": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Option in a dropdown menu that opens the current report in the Lighthouse Viewer Application."
+          }
+        },
+        "opportunitySavingsColumnLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The heading for the estimated page load savings of opportunity audits."
+          }
+        },
+        "calculatorLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Text link pointing to the Lighthouse scoring calculator. This link immediately follows a sentence stating the performance score is calculated from the perf metrics."
+          }
+        },
+        "opportunityResourceColumnLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The heading for the estimated page load savings opportunity of an audit."
+          }
+        },
+        "scorescaleLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label that explains the score gauges scale (0-49, 50-89, 90-100)."
+          }
+        },
+        "dropdownDarkTheme": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Option in a dropdown menu that toggles the themeing of the report between Light(default) and Dark themes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message holding the formatted strings used in the renderer."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#StackPack": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The stack pack id."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The stack pack title."
+          }
+        },
+        "descriptions": {
+          "target": "com.gcp.pagespeedonline_v5#StringMap",
+          "traits": {
+            "smithy.api#documentation": "The stack pack advice strings."
+          }
+        },
+        "iconDataURL": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The stack pack icon data uri."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message containing Stack Pack information."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#PagespeedApiLoadingExperienceV5": {
+      "type": "structure",
+      "members": {
+        "overall_category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human readable speed \"category\" of the id."
+          }
+        },
+        "origin_fallback": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the result is an origin fallback from a page, false otherwise."
+          }
+        },
+        "initial_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The requested URL, which may differ from the resolved \"id\"."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The url, pattern or origin which the metrics are on."
+          }
+        },
+        "metrics": {
+          "target": "com.gcp.pagespeedonline_v5#UserPageLoadMetricV5Map",
+          "traits": {
+            "smithy.api#documentation": "The map of ."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The CrUX loading experience object that contains CrUX data breakdowns."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#UserPageLoadMetricV5Map": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.pagespeedonline_v5#UserPageLoadMetricV5"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#UserPageLoadMetricV5": {
+      "type": "structure",
+      "members": {
+        "formFactor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the form factor of the metric being collected."
+          }
+        },
+        "distributions": {
+          "target": "com.gcp.pagespeedonline_v5#BucketList",
+          "traits": {
+            "smithy.api#documentation": "Metric distributions. Proportions should sum up to 1."
+          }
+        },
+        "metricId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifies the type of the metric."
+          }
+        },
+        "median": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The median number of the metric, in millisecond."
+          }
+        },
+        "percentile": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "We use this field to store certain percentile value for this metric. For v4, this field contains pc50. For v5, this field contains pc90."
+          }
+        },
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The category of the specific time metric."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A CrUX metric object for a single metric and form factor."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#BucketList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pagespeedonline_v5#Bucket"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#AuditRefs": {
+      "type": "structure",
+      "members": {
+        "relevantAudits": {
+          "target": "com.gcp.pagespeedonline_v5#StringList",
+          "traits": {
+            "smithy.api#documentation": "Any audit IDs closely relevant to this one."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The audit ref id."
+          }
+        },
+        "weight": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The weight this audit's score has on the overall category score."
+          }
+        },
+        "acronym": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The conventional acronym for the audit/metric."
+          }
+        },
+        "group": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The category group that the audit belongs to (optional)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A light reference to an audit by id, used to group and weight audits in a given category."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#LighthouseResultV5": {
+      "type": "structure",
+      "members": {
+        "stackPacks": {
+          "target": "com.gcp.pagespeedonline_v5#StackPackList",
+          "traits": {
+            "smithy.api#documentation": "The Stack Pack advice strings."
+          }
+        },
+        "lighthouseVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The lighthouse version that was used to generate this LHR."
+          }
+        },
+        "categories": {
+          "target": "com.gcp.pagespeedonline_v5#Categories",
+          "traits": {
+            "smithy.api#documentation": "Map of categories in the LHR."
+          }
+        },
+        "fullPageScreenshot": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Screenshot data of the full page, along with node rects relevant to the audit results."
+          }
+        },
+        "mainDocumentUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL of the main document request of the final navigation."
+          }
+        },
+        "fetchTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time that this run was fetched."
+          }
+        },
+        "runWarnings": {
+          "target": "com.gcp.pagespeedonline_v5#DocumentList",
+          "traits": {
+            "smithy.api#documentation": "List of all run warnings in the LHR. Will always output to at least `[]`."
+          }
+        },
+        "environment": {
+          "target": "com.gcp.pagespeedonline_v5#Environment",
+          "traits": {
+            "smithy.api#documentation": "Environment settings that were used when making this LHR."
+          }
+        },
+        "runtimeError": {
+          "target": "com.gcp.pagespeedonline_v5#RuntimeError",
+          "traits": {
+            "smithy.api#documentation": "A top-level error message that, if present, indicates a serious enough problem that this Lighthouse result may need to be discarded."
+          }
+        },
+        "configSettings": {
+          "target": "com.gcp.pagespeedonline_v5#ConfigSettings",
+          "traits": {
+            "smithy.api#documentation": "The configuration settings for this LHR."
+          }
+        },
+        "i18n": {
+          "target": "com.gcp.pagespeedonline_v5#I18n",
+          "traits": {
+            "smithy.api#documentation": "The internationalization strings that are required to render the LHR."
+          }
+        },
+        "requestedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The original requested url."
+          }
+        },
+        "finalUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The final resolved url that was audited."
+          }
+        },
+        "userAgent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user agent that was used to run this LHR."
+          }
+        },
+        "audits": {
+          "target": "com.gcp.pagespeedonline_v5#LighthouseAuditResultV5Map",
+          "traits": {
+            "smithy.api#documentation": "Map of audits in the LHR."
+          }
+        },
+        "timing": {
+          "target": "com.gcp.pagespeedonline_v5#Timing",
+          "traits": {
+            "smithy.api#documentation": "Timing information for this LHR."
+          }
+        },
+        "entities": {
+          "target": "com.gcp.pagespeedonline_v5#LhrEntityList",
+          "traits": {
+            "smithy.api#documentation": "Entity classification data."
+          }
+        },
+        "finalDisplayedUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL displayed on the page after Lighthouse finishes."
+          }
+        },
+        "categoryGroups": {
+          "target": "com.gcp.pagespeedonline_v5#CategoryGroupV5Map",
+          "traits": {
+            "smithy.api#documentation": "Map of category groups in the LHR."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Lighthouse result object."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#StackPackList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pagespeedonline_v5#StackPack"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#DocumentList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#LighthouseAuditResultV5Map": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.pagespeedonline_v5#LighthouseAuditResultV5"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#LhrEntityList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pagespeedonline_v5#LhrEntity"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#CategoryGroupV5Map": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.gcp.pagespeedonline_v5#CategoryGroupV5"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#CategoryGroupV5": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of what the category is grouping"
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The human readable title of the group"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message containing a category"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#PagespeedApiPagespeedResponseV5": {
+      "type": "structure",
+      "members": {
+        "captchaResult": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The captcha verify result"
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Canonicalized and final URL for the document, after following page redirects (if any)."
+          }
+        },
+        "analysisUTCTimestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The UTC timestamp of this analysis."
+          }
+        },
+        "loadingExperience": {
+          "target": "com.gcp.pagespeedonline_v5#PagespeedApiLoadingExperienceV5",
+          "traits": {
+            "smithy.api#documentation": "Metrics of end users' page loading experience."
+          }
+        },
+        "originLoadingExperience": {
+          "target": "com.gcp.pagespeedonline_v5#PagespeedApiLoadingExperienceV5",
+          "traits": {
+            "smithy.api#documentation": "Metrics of the aggregated page loading experience of the origin"
+          }
+        },
+        "version": {
+          "target": "com.gcp.pagespeedonline_v5#PagespeedVersion",
+          "traits": {
+            "smithy.api#documentation": "The version of PageSpeed used to generate these results."
+          }
+        },
+        "lighthouseResult": {
+          "target": "com.gcp.pagespeedonline_v5#LighthouseResultV5",
+          "traits": {
+            "smithy.api#documentation": "Lighthouse response for the audit url as an object."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kind of result."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Pagespeed API response object."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#I18n": {
+      "type": "structure",
+      "members": {
+        "rendererFormattedStrings": {
+          "target": "com.gcp.pagespeedonline_v5#RendererFormattedStrings",
+          "traits": {
+            "smithy.api#documentation": "Internationalized strings that are formatted to the locale in configSettings."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message containing the i18n data for the LHR - Version 1."
+      }
+    },
+    "com.gcp.pagespeedonline_v5#RunpagespeedPagespeedapiStrategyEnum": {
+      "type": "enum",
+      "members": {
+        "STRATEGY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STRATEGY_UNSPECIFIED"
+          }
+        },
+        "DESKTOP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DESKTOP"
+          }
+        },
+        "MOBILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE"
+          }
+        }
+      }
+    },
+    "com.gcp.pagespeedonline_v5#RunpagespeedPagespeedapiCategoryEnum": {
+      "type": "enum",
+      "members": {
+        "CATEGORY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CATEGORY_UNSPECIFIED"
+          }
+        },
+        "ACCESSIBILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCESSIBILITY"
+          }
+        },
+        "BEST_PRACTICES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BEST_PRACTICES"
+          }
+        },
+        "PERFORMANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERFORMANCE"
+          }
+        },
+        "PWA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PWA"
+          }
+        },
+        "SEO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEO"
+          }
+        },
+        "AGENTIC_BROWSING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGENTIC_BROWSING"
+          }
+        }
+      }
+    },
+    "com.gcp.pagespeedonline_v5#RunpagespeedPagespeedapiCategoryEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.pagespeedonline_v5#RunpagespeedPagespeedapiCategoryEnum"
+      }
+    },
+    "com.gcp.pagespeedonline_v5#RunpagespeedPagespeedapiRequest": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The URL to fetch and analyze",
+            "smithy.api#httpQuery": "url",
+            "smithy.api#required": {}
+          }
+        },
+        "utm_campaign": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign name for analytics.",
+            "smithy.api#httpQuery": "utm_campaign"
+          }
+        },
+        "strategy": {
+          "target": "com.gcp.pagespeedonline_v5#RunpagespeedPagespeedapiStrategyEnum",
+          "traits": {
+            "smithy.api#documentation": "The analysis strategy (desktop or mobile) to use, and desktop is the default",
+            "smithy.api#httpQuery": "strategy"
+          }
+        },
+        "captchaToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The captcha token passed when filling out a captcha.",
+            "smithy.api#httpQuery": "captchaToken"
+          }
+        },
+        "category": {
+          "target": "com.gcp.pagespeedonline_v5#RunpagespeedPagespeedapiCategoryEnumList",
+          "traits": {
+            "smithy.api#documentation": "A Lighthouse category to run; if none are given, only Performance category will be run",
+            "smithy.api#httpQuery": "category"
+          }
+        },
+        "locale": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The locale used to localize formatted results",
+            "smithy.api#httpQuery": "locale"
+          }
+        },
+        "utm_source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Campaign source for analytics.",
+            "smithy.api#httpQuery": "utm_source"
+          }
+        }
+      }
+    },
+    "com.gcp.pagespeedonline_v5#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.pagespeedonline_v5#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.pagespeedonline_v5#RunpagespeedPagespeedapi": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.pagespeedonline_v5#RunpagespeedPagespeedapiRequest"
+      },
+      "output": {
+        "target": "com.gcp.pagespeedonline_v5#PagespeedApiPagespeedResponseV5"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.pagespeedonline_v5#NotFound"
+        },
+        {
+          "target": "com.gcp.pagespeedonline_v5#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "pagespeedonline/v5/runPagespeed"
+        },
+        "smithy.api#documentation": "Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information."
+      }
+    }
+  }
+}

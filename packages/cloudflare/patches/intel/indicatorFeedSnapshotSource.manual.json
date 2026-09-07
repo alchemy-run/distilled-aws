@@ -1,0 +1,20 @@
+{
+  "description": "Docs gap: the indicator-feed snapshot PUT is a multipart upload with a `source` file part (plain STIX2/CRDF or gzipped), but the docs list no body parameters — without it the upload has no payload. Transcribed from v0.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#PutIndicatorFeedSnapshot/traits/smithy.api#http/contentType",
+      "value": "multipart"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#PutIndicatorFeedSnapshotRequest/members/source",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#documentation": "The file to upload. Either a plain STIX2/CRDF body or a gzipped one (recognised by 0x1f 0x8b magic bytes or a .gz filename suffix)."
+        }
+      }
+    }
+  ]
+}

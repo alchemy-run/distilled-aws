@@ -1,0 +1,3518 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "notebooks",
+    "version": "v2",
+    "title": "Notebooks API",
+    "baseUrl": "https://notebooks.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.notebooks_v2#CheckInstanceUpgradabilityResponse": {
+      "type": "structure",
+      "members": {
+        "upgradeable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If an instance is upgradeable."
+          }
+        },
+        "upgradeImage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The new image self link this instance will be upgraded to if calling the upgrade endpoint. This field will only be populated if field upgradeable is true."
+          }
+        },
+        "upgradeInfo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Additional information about upgrade."
+          }
+        },
+        "upgradeVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The version this instance will be upgraded to if calling the upgrade endpoint. This field will only be populated if field upgradeable is true."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for checking if a notebook instance is upgradeable."
+      }
+    },
+    "com.gcp.notebooks_v2#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.notebooks_v2#DataDisk": {
+      "type": "structure",
+      "members": {
+        "diskSizeGb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The size of the disk in GB attached to this VM instance, up to a maximum of 64000 GB (64 TB). If not specified, this defaults to 100."
+          }
+        },
+        "diskType": {
+          "target": "com.gcp.notebooks_v2#DataDiskDiskTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Indicates the type of the disk."
+          }
+        },
+        "diskEncryption": {
+          "target": "com.gcp.notebooks_v2#DataDiskDiskEncryptionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Disk encryption method used on the boot and data disks, defaults to GMEK."
+          }
+        },
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}` Learn more about using your own encryption keys."
+          }
+        },
+        "resourcePolicies": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The resource policies to apply to the data disk."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An instance-attached disk resource."
+      }
+    },
+    "com.gcp.notebooks_v2#DataDiskDiskTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DISK_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISK_TYPE_UNSPECIFIED"
+          }
+        },
+        "PD_STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PD_STANDARD"
+          }
+        },
+        "PD_SSD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PD_SSD"
+          }
+        },
+        "PD_BALANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PD_BALANCED"
+          }
+        },
+        "PD_EXTREME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PD_EXTREME"
+          }
+        },
+        "HYPERDISK_BALANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_BALANCED"
+          }
+        },
+        "HYPERDISK_EXTREME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_EXTREME"
+          }
+        },
+        "HYPERDISK_THROUGHPUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_THROUGHPUT"
+          }
+        },
+        "HYPERDISK_BALANCED_HIGH_AVAILABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_BALANCED_HIGH_AVAILABILITY"
+          }
+        },
+        "HYPERDISK_ML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_ML"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#DataDiskDiskEncryptionEnum": {
+      "type": "enum",
+      "members": {
+        "DISK_ENCRYPTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISK_ENCRYPTION_UNSPECIFIED"
+          }
+        },
+        "GMEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMEK"
+          }
+        },
+        "CMEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CMEK"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.notebooks_v2#AcceleratorConfig": {
+      "type": "structure",
+      "members": {
+        "coreCount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Count of cores of this accelerator."
+          }
+        },
+        "type": {
+          "target": "com.gcp.notebooks_v2#AcceleratorConfigTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Type of this accelerator."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An accelerator configuration for a VM instance Definition of a hardware accelerator. Note that there is no check on `type` and `core_count` combinations. TPUs are not supported. See [GPUs on Compute Engine](https://cloud.google.com/compute/docs/gpus/#gpus-list) to find a valid combination."
+      }
+    },
+    "com.gcp.notebooks_v2#AcceleratorConfigTypeEnum": {
+      "type": "enum",
+      "members": {
+        "ACCELERATOR_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACCELERATOR_TYPE_UNSPECIFIED"
+          }
+        },
+        "NVIDIA_TESLA_P100": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_TESLA_P100"
+          }
+        },
+        "NVIDIA_TESLA_V100": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_TESLA_V100"
+          }
+        },
+        "NVIDIA_TESLA_P4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_TESLA_P4"
+          }
+        },
+        "NVIDIA_TESLA_T4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_TESLA_T4"
+          }
+        },
+        "NVIDIA_TESLA_A100": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_TESLA_A100"
+          }
+        },
+        "NVIDIA_A100_80GB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_A100_80GB"
+          }
+        },
+        "NVIDIA_L4": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_L4"
+          }
+        },
+        "NVIDIA_H100_80GB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_H100_80GB"
+          }
+        },
+        "NVIDIA_H100_MEGA_80GB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_H100_MEGA_80GB"
+          }
+        },
+        "NVIDIA_H200_141GB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_H200_141GB"
+          }
+        },
+        "NVIDIA_TESLA_T4_VWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_TESLA_T4_VWS"
+          }
+        },
+        "NVIDIA_TESLA_P100_VWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_TESLA_P100_VWS"
+          }
+        },
+        "NVIDIA_TESLA_P4_VWS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_TESLA_P4_VWS"
+          }
+        },
+        "NVIDIA_B200": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_B200"
+          }
+        },
+        "NVIDIA_RTX6000": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NVIDIA_RTX6000"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeInstanceSystemRequest": {
+      "type": "structure",
+      "members": {
+        "vmId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The VM hardware token for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for upgrading a notebook instance from within the VM"
+      }
+    },
+    "com.gcp.notebooks_v2#CheckAuthorizationRequest": {
+      "type": "structure",
+      "members": {
+        "authorizationDetails": {
+          "target": "com.gcp.notebooks_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. The details of the OAuth authorization response. This may include additional params such as dry_run, version_info, origin, propagate, etc."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for checking authorization for the instance owner."
+      }
+    },
+    "com.gcp.notebooks_v2#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.notebooks_v2#Status": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "details": {
+          "target": "com.gcp.notebooks_v2#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.notebooks_v2#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.notebooks_v2#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#DocumentMap"
+      }
+    },
+    "com.gcp.notebooks_v2#GPUDriverConfig": {
+      "type": "structure",
+      "members": {
+        "enableGpuDriver": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the end user authorizes Google Cloud to install GPU driver on this VM instance. If this field is empty or set to false, the GPU driver won't be installed. Only applicable to instances with GPUs."
+          }
+        },
+        "customGpuDriverPath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specify a custom Cloud Storage path where the GPU driver is stored. If not specified, we'll automatically choose from official GPU drivers."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A GPU driver configuration"
+      }
+    },
+    "com.gcp.notebooks_v2#SupportedValues": {
+      "type": "structure",
+      "members": {
+        "machineTypes": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The machine types supported by WbI."
+          }
+        },
+        "acceleratorTypes": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The accelerator types supported by WbI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SupportedValues represents the values supported by the configuration."
+      }
+    },
+    "com.gcp.notebooks_v2#Policy": {
+      "type": "structure",
+      "members": {
+        "bindings": {
+          "target": "com.gcp.notebooks_v2#BindingList",
+          "traits": {
+            "smithy.api#documentation": "Associates a list of `members`, or principals, with a `role`. Optionally, may specify a `condition` that determines how and when the `bindings` are applied. Each of the `bindings` must contain at least one principal. The `bindings` in a `Policy` can refer to up to 1,500 principals; up to 250 of these principals can be Google groups. Each occurrence of a principal counts towards these limits. For example, if the `bindings` grant 50 different roles to `user:alice@example.com`, and not to any other principal, then you can add another 1,450 principals to the `bindings` in the `Policy`."
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "`etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost."
+          }
+        },
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { \"bindings\": [ { \"role\": \"roles/resourcemanager.organizationAdmin\", \"members\": [ \"user:mike@example.com\", \"group:admins@example.com\", \"domain:google.com\", \"serviceAccount:my-project-id@appspot.gserviceaccount.com\" ] }, { \"role\": \"roles/resourcemanager.organizationViewer\", \"members\": [ \"user:eve@example.com\" ], \"condition\": { \"title\": \"expirable access\", \"description\": \"Does not grant access after Sep 2020\", \"expression\": \"request.time < timestamp('2020-10-01T00:00:00.000Z')\", } } ], \"etag\": \"BwWWja0YfJA=\", \"version\": 3 } ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/)."
+      }
+    },
+    "com.gcp.notebooks_v2#BindingList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#Binding"
+      }
+    },
+    "com.gcp.notebooks_v2#VmImage": {
+      "type": "structure",
+      "members": {
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Use this VM image family to find the image; the newest image in this family will be used."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Use VM image name to find the image."
+          }
+        },
+        "project": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Google Cloud project that this VM image belongs to. Format: `{project_id}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of a custom Compute Engine virtual machine image for starting a notebook instance with the environment installed directly on the VM."
+      }
+    },
+    "com.gcp.notebooks_v2#ShieldedInstanceConfig": {
+      "type": "structure",
+      "members": {
+        "enableSecureBoot": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Defines whether the VM instance has Secure Boot enabled. Secure Boot helps ensure that the system only runs authentic software by verifying the digital signature of all boot components, and halting the boot process if signature verification fails. Disabled by default."
+          }
+        },
+        "enableVtpm": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Defines whether the VM instance has the vTPM enabled."
+          }
+        },
+        "enableIntegrityMonitoring": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Defines whether the VM instance has integrity monitoring enabled. Enables monitoring and attestation of the boot integrity of the VM instance. The attestation is performed against the integrity policy baseline. This baseline is initially derived from the implicitly trusted boot image when the VM instance is created."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of Shielded Instance options. See [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm). Not all combinations are valid."
+      }
+    },
+    "com.gcp.notebooks_v2#ResetInstanceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request for resetting a notebook instance"
+      }
+    },
+    "com.gcp.notebooks_v2#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API version used to start the operation."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable status of the operation, if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation was created."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The time the operation finished running."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Server-defined resource path for the target of the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the verb executed by the operation."
+          }
+        },
+        "endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "API endpoint name of this operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.notebooks_v2#ImageRelease": {
+      "type": "structure",
+      "members": {
+        "imageName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The name of the image of the form workbench-instances-vYYYYmmdd--"
+          }
+        },
+        "imageFamily": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The image family of the image. (ex: workbench-instances or workbench-2603)"
+          }
+        },
+        "releaseName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The release of the image of the form m123"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The description of the image."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "ConfigImage represents an image release available to create a WbI"
+      }
+    },
+    "com.gcp.notebooks_v2#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.notebooks_v2#GceSetup": {
+      "type": "structure",
+      "members": {
+        "machineType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The machine type of the VM instance. https://cloud.google.com/compute/docs/machine-resource"
+          }
+        },
+        "disablePublicIp": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, no external IP will be assigned to this VM instance."
+          }
+        },
+        "networkInterfaces": {
+          "target": "com.gcp.notebooks_v2#NetworkInterfaceList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The network interfaces for the VM. Supports only one interface."
+          }
+        },
+        "tags": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Compute Engine network tags to add to runtime (see [Add network tags](https://cloud.google.com/vpc/docs/add-remove-network-tags))."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.notebooks_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Custom metadata to apply to this instance."
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The unique ID of the Compute Engine instance resource."
+          }
+        },
+        "reservationAffinity": {
+          "target": "com.gcp.notebooks_v2#ReservationAffinity",
+          "traits": {
+            "smithy.api#documentation": "Optional. Specifies the reservations that this instance can consume from."
+          }
+        },
+        "vmImage": {
+          "target": "com.gcp.notebooks_v2#VmImage",
+          "traits": {
+            "smithy.api#documentation": "Optional. Use a Compute Engine VM image to start the notebook instance."
+          }
+        },
+        "bootDisk": {
+          "target": "com.gcp.notebooks_v2#BootDisk",
+          "traits": {
+            "smithy.api#documentation": "Optional. The boot disk for the VM."
+          }
+        },
+        "acceleratorConfigs": {
+          "target": "com.gcp.notebooks_v2#AcceleratorConfigList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The hardware accelerators used on this instance. If you use accelerators, make sure that your configuration has [enough vCPUs and memory to support the `machine_type` you have selected](https://cloud.google.com/compute/docs/gpus/#gpus-list). Currently supports only one accelerator configuration."
+          }
+        },
+        "gpuDriverConfig": {
+          "target": "com.gcp.notebooks_v2#GPUDriverConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Configuration for GPU drivers."
+          }
+        },
+        "containerImage": {
+          "target": "com.gcp.notebooks_v2#ContainerImage",
+          "traits": {
+            "smithy.api#documentation": "Optional. Use a container image to start the notebook instance."
+          }
+        },
+        "serviceAccounts": {
+          "target": "com.gcp.notebooks_v2#ServiceAccountList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The service account that serves as an identity for the VM instance. Currently supports only one service account."
+          }
+        },
+        "confidentialInstanceConfig": {
+          "target": "com.gcp.notebooks_v2#ConfidentialInstanceConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Confidential instance configuration."
+          }
+        },
+        "dataDisks": {
+          "target": "com.gcp.notebooks_v2#DataDiskList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Data disks attached to the VM instance. Currently supports only one data disk."
+          }
+        },
+        "enableIpForwarding": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Flag to enable ip forwarding or not, default false/off. https://cloud.google.com/vpc/docs/using-routes#canipforward"
+          }
+        },
+        "minCpuPlatform": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The minimum CPU platform to use for this instance. The list of valid values can be found in https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform#availablezones"
+          }
+        },
+        "shieldedInstanceConfig": {
+          "target": "com.gcp.notebooks_v2#ShieldedInstanceConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Shielded VM configuration. [Images using supported Shielded VM features](https://cloud.google.com/compute/docs/instances/modifying-shielded-vm)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The definition of how to configure a VM instance outside of Resources and Identity."
+      }
+    },
+    "com.gcp.notebooks_v2#NetworkInterfaceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#NetworkInterface"
+      }
+    },
+    "com.gcp.notebooks_v2#AcceleratorConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#AcceleratorConfig"
+      }
+    },
+    "com.gcp.notebooks_v2#ServiceAccountList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#ServiceAccount"
+      }
+    },
+    "com.gcp.notebooks_v2#DataDiskList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#DataDisk"
+      }
+    },
+    "com.gcp.notebooks_v2#Binding": {
+      "type": "structure",
+      "members": {
+        "condition": {
+          "target": "com.gcp.notebooks_v2#Expr",
+          "traits": {
+            "smithy.api#documentation": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the principals in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
+          }
+        },
+        "members": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Specifies the principals requesting access for a Google Cloud resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. Does not include identities that come from external identity providers (IdPs) through identity federation. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a Google service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `serviceAccount:{projectid}.svc.id.goog[{namespace}/{kubernetes-sa}]`: An identifier for a [Kubernetes service account](https://cloud.google.com/kubernetes-engine/docs/how-to/kubernetes-service-accounts). For example, `my-project.svc.id.goog[my-namespace/my-kubernetes-sa]`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`. * `principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workforce identity pool. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/group/{group_id}`: All workforce identities in a group. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All workforce identities with a specific attribute value. * `principalSet://iam.googleapis.com/locations/global/workforcePools/{pool_id}/*`: All identities in a workforce identity pool. * `principal://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/subject/{subject_attribute_value}`: A single identity in a workload identity pool. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/group/{group_id}`: A workload identity pool group. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/attribute.{attribute_name}/{attribute_value}`: All identities in a workload identity pool with a certain attribute. * `principalSet://iam.googleapis.com/projects/{project_number}/locations/global/workloadIdentityPools/{pool_id}/*`: All identities in a workload identity pool. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `deleted:principal://iam.googleapis.com/locations/global/workforcePools/{pool_id}/subject/{subject_attribute_value}`: Deleted single identity in a workforce identity pool. For example, `deleted:principal://iam.googleapis.com/locations/global/workforcePools/my-pool-id/subject/my-subject-attribute-value`."
+          }
+        },
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role that is assigned to the list of `members`, or principals. For example, `roles/viewer`, `roles/editor`, or `roles/owner`. For an overview of the IAM roles and permissions, see the [IAM documentation](https://cloud.google.com/iam/docs/roles-overview). For a list of the available pre-defined roles, see [here](https://cloud.google.com/iam/docs/understanding-roles)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Associates `members`, or principals, with a `role`."
+      }
+    },
+    "com.gcp.notebooks_v2#Event": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.gcp.notebooks_v2#EventTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Event type."
+          }
+        },
+        "reportTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Event report time."
+          }
+        },
+        "details": {
+          "target": "com.gcp.notebooks_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Event details. This field is used to pass event information."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The definition of an Event for a managed / semi-managed notebook instance."
+      }
+    },
+    "com.gcp.notebooks_v2#EventTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EVENT_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EVENT_TYPE_UNSPECIFIED"
+          }
+        },
+        "IDLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDLE"
+          }
+        },
+        "HEARTBEAT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEARTBEAT"
+          }
+        },
+        "HEALTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTH"
+          }
+        },
+        "MAINTENANCE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAINTENANCE"
+          }
+        },
+        "METADATA_CHANGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "METADATA_CHANGE"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#TestIamPermissionsRequest": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "The set of permissions to check for the `resource`. Permissions with wildcards (such as `*` or `storage.*`) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `TestIamPermissions` method."
+      }
+    },
+    "com.gcp.notebooks_v2#Expr": {
+      "type": "structure",
+      "members": {
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Textual representation of an expression in Common Expression Language syntax."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Title for the expression, i.e. a short string describing its purpose. This can be used e.g. in UIs which allow to enter the expression."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. String indicating the location of the expression for error reporting, e.g. a file name and a position in the file."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Description of the expression. This is a longer text which describes the expression, e.g. when hovered over it in a UI."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information."
+      }
+    },
+    "com.gcp.notebooks_v2#StopInstanceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request for stopping a notebook instance"
+      }
+    },
+    "com.gcp.notebooks_v2#GenerateAccessTokenRequest": {
+      "type": "structure",
+      "members": {
+        "vmToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The VM identity token (a JWT) for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for generating an EUC for the instance owner."
+      }
+    },
+    "com.gcp.notebooks_v2#Location": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.notebooks_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.notebooks_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeHistoryEntry": {
+      "type": "structure",
+      "members": {
+        "containerImage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The container image before this instance upgrade."
+          }
+        },
+        "snapshot": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The snapshot of the boot disk of this notebook instance before upgrade."
+          }
+        },
+        "targetVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Target VM Version, like m63."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The time that this instance upgrade history entry is created."
+          }
+        },
+        "framework": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The framework of this notebook instance."
+          }
+        },
+        "vmImage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The VM image before this instance upgrade."
+          }
+        },
+        "state": {
+          "target": "com.gcp.notebooks_v2#UpgradeHistoryEntryStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of this instance upgrade history entry."
+          }
+        },
+        "action": {
+          "target": "com.gcp.notebooks_v2#UpgradeHistoryEntryActionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Action. Rolloback or Upgrade."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The version of the notebook instance before this upgrade."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The entry of VM image upgrade history."
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeHistoryEntryStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "STARTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTED"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUCCEEDED"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FAILED"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeHistoryEntryActionEnum": {
+      "type": "enum",
+      "members": {
+        "ACTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTION_UNSPECIFIED"
+          }
+        },
+        "UPGRADE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPGRADE"
+          }
+        },
+        "ROLLBACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ROLLBACK"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#SetIamPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "policy": {
+          "target": "com.gcp.notebooks_v2#Policy",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The complete policy to be applied to the `resource`. The size of the policy is limited to a few 10s of KB. An empty policy is a valid policy but certain Google Cloud services (such as Projects) might reject them."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request message for `SetIamPolicy` method."
+      }
+    },
+    "com.gcp.notebooks_v2#NetworkInterface": {
+      "type": "structure",
+      "members": {
+        "nicType": {
+          "target": "com.gcp.notebooks_v2#NetworkInterfaceNicTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The type of vNIC to be used on this interface. This may be gVNIC or VirtioNet."
+          }
+        },
+        "accessConfigs": {
+          "target": "com.gcp.notebooks_v2#AccessConfigList",
+          "traits": {
+            "smithy.api#documentation": "Optional. An array of configurations for this interface. Currently, only one access config, ONE_TO_ONE_NAT, is supported. If no accessConfigs specified, the instance will have an external internet access through an ephemeral external IP address."
+          }
+        },
+        "network": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the VPC that this VM instance is in. Format: `projects/{project_id}/global/networks/{network_id}`"
+          }
+        },
+        "subnet": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The name of the subnet that this VM instance is in. Format: `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The definition of a network interface resource attached to a VM."
+      }
+    },
+    "com.gcp.notebooks_v2#NetworkInterfaceNicTypeEnum": {
+      "type": "enum",
+      "members": {
+        "NIC_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NIC_TYPE_UNSPECIFIED"
+          }
+        },
+        "VIRTIO_NET": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIRTIO_NET"
+          }
+        },
+        "GVNIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GVNIC"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#AccessConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#AccessConfig"
+      }
+    },
+    "com.gcp.notebooks_v2#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.notebooks_v2#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.notebooks_v2#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      }
+    },
+    "com.gcp.notebooks_v2#RestoreInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "snapshot": {
+          "target": "com.gcp.notebooks_v2#Snapshot",
+          "traits": {
+            "smithy.api#documentation": "Snapshot to be used for restore."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for restoring the notebook instance from a BackupSource."
+      }
+    },
+    "com.gcp.notebooks_v2#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "error": {
+          "target": "com.gcp.notebooks_v2#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.notebooks_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "response": {
+          "target": "com.gcp.notebooks_v2#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.notebooks_v2#DiagnosticConfig": {
+      "type": "structure",
+      "members": {
+        "enablePacketCaptureFlag": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Enables flag to capture packets from the instance for 30 seconds"
+          }
+        },
+        "relativePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Defines the relative storage path in the Cloud Storage bucket where the diagnostic logs will be written: Default path will be the root directory of the Cloud Storage bucket (`gs://$GCS_BUCKET/$DATE_$TIME.tar.gz`) Example of full path where Log file will be written: `gs://$GCS_BUCKET/$RELATIVE_PATH/`"
+          }
+        },
+        "enableCopyHomeFilesFlag": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Enables flag to copy all `/home/jupyter` folder contents"
+          }
+        },
+        "gcsBucket": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. User Cloud Storage bucket location (REQUIRED). Must be formatted with path prefix (`gs://$GCS_BUCKET`). Permissions: User Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account attached to VM. Google Managed Notebooks: - storage.buckets.writer: Must be given to the project's service account or user credentials attached to VM depending on authentication mode. Cloud Storage bucket Log file will be written to `gs://$GCS_BUCKET/$RELATIVE_PATH/$VM_DATE_$TIME.tar.gz`"
+          }
+        },
+        "enableRepairFlag": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Enables flag to repair service for instance"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines flags that are used to run the diagnostic tool"
+      }
+    },
+    "com.gcp.notebooks_v2#DefaultValues": {
+      "type": "structure",
+      "members": {
+        "machineType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The default machine type used by the backend if not provided by the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DefaultValues represents the default configuration values."
+      }
+    },
+    "com.gcp.notebooks_v2#RollbackInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "targetSnapshot": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The snapshot for rollback. Example: \"projects/test-project/global/snapshots/krwlzipynril\"."
+          }
+        },
+        "revisionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Output only. Revision Id"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for rollbacking a notebook instance"
+      }
+    },
+    "com.gcp.notebooks_v2#CheckAuthorizationResponse": {
+      "type": "structure",
+      "members": {
+        "success": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Success indicates that the user completed OAuth consent and access tokens can be generated."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp when this Authorization request was created."
+          }
+        },
+        "oauth_uri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the user has not completed OAuth consent, then the oauth_url is returned. Otherwise, this field is not set."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for checking authorization for the instance owner."
+      }
+    },
+    "com.gcp.notebooks_v2#AccessConfig": {
+      "type": "structure",
+      "members": {
+        "externalIp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "An external IP address associated with this instance. Specify an unused static external IP address available to the project or leave this field undefined to use an IP from a shared ephemeral IP address pool. If you specify a static external IP address, it must live in the same region as the zone of the instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An access configuration attached to an instance's network interface."
+      }
+    },
+    "com.gcp.notebooks_v2#Instance": {
+      "type": "structure",
+      "members": {
+        "disableProxyAccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, the notebook instance will not register with the proxy."
+          }
+        },
+        "upgradeHistory": {
+          "target": "com.gcp.notebooks_v2#UpgradeHistoryEntryList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The upgrade history of this instance."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifier. The name of this notebook instance. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`"
+          }
+        },
+        "state": {
+          "target": "com.gcp.notebooks_v2#InstanceStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of this instance."
+          }
+        },
+        "satisfiesPzs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use for Zone Separation."
+          }
+        },
+        "enableDeletionProtection": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true, deletion protection will be enabled for this Workbench Instance. If false, deletion protection will be disabled for this Workbench Instance."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Unique ID of the resource."
+          }
+        },
+        "enableManagedEuc": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Flag to enable managed end user credentials for the instance."
+          }
+        },
+        "creator": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Email address of entity that sent original CreateInstance request."
+          }
+        },
+        "satisfiesPzi": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Reserved for future use for Zone Isolation."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Instance update time."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Instance creation time."
+          }
+        },
+        "proxyUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The proxy endpoint that is used to access the Jupyter notebook."
+          }
+        },
+        "instanceOwners": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The owner of this instance after creation. Format: `alias@example.com` Currently supports one owner only. If not specified, all of the service account users of your VM instance's service account can use the instance."
+          }
+        },
+        "healthInfo": {
+          "target": "com.gcp.notebooks_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Output only. Additional information about instance health. Example: healthInfo\": { \"docker_proxy_agent_status\": \"1\", \"docker_status\": \"1\", \"jupyterlab_api_status\": \"-1\", \"jupyterlab_status\": \"-1\", \"updated\": \"2020-10-18 09:40:03.573409\" }"
+          }
+        },
+        "labels": {
+          "target": "com.gcp.notebooks_v2#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Optional. Labels to apply to this instance. These can be later modified by the UpdateInstance method."
+          }
+        },
+        "thirdPartyProxyUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The workforce pools proxy endpoint that is used to access the Jupyter notebook."
+          }
+        },
+        "enableThirdPartyIdentity": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Flag that specifies that a notebook can be accessed with third party identity provider."
+          }
+        },
+        "gceSetup": {
+          "target": "com.gcp.notebooks_v2#GceSetup",
+          "traits": {
+            "smithy.api#documentation": "Optional. Compute Engine setup for the notebook. Uses notebook-defined fields."
+          }
+        },
+        "healthState": {
+          "target": "com.gcp.notebooks_v2#InstanceHealthStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. Instance health_state."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The definition of a notebook instance."
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeHistoryEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#UpgradeHistoryEntry"
+      }
+    },
+    "com.gcp.notebooks_v2#InstanceStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "STARTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STARTING"
+          }
+        },
+        "PROVISIONING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROVISIONING"
+          }
+        },
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ACTIVE"
+          }
+        },
+        "STOPPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPPING"
+          }
+        },
+        "STOPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STOPPED"
+          }
+        },
+        "DELETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DELETED"
+          }
+        },
+        "UPGRADING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UPGRADING"
+          }
+        },
+        "INITIALIZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INITIALIZING"
+          }
+        },
+        "SUSPENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDING"
+          }
+        },
+        "SUSPENDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUSPENDED"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#InstanceHealthStateEnum": {
+      "type": "enum",
+      "members": {
+        "HEALTH_STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTH_STATE_UNSPECIFIED"
+          }
+        },
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HEALTHY"
+          }
+        },
+        "UNHEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNHEALTHY"
+          }
+        },
+        "AGENT_NOT_INSTALLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGENT_NOT_INSTALLED"
+          }
+        },
+        "AGENT_NOT_RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AGENT_NOT_RUNNING"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#Snapshot": {
+      "type": "structure",
+      "members": {
+        "snapshotId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The ID of the snapshot."
+          }
+        },
+        "projectId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The project ID of the snapshot."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Snapshot represents the snapshot of the data disk used to restore the Workbench Instance from. Refers to: compute/v1/projects/{project_id}/global/snapshots/{snapshot_id}"
+      }
+    },
+    "com.gcp.notebooks_v2#ReservationAffinity": {
+      "type": "structure",
+      "members": {
+        "consumeReservationType": {
+          "target": "com.gcp.notebooks_v2#ReservationAffinityConsumeReservationTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the type of reservation from which this instance can consume resources: RESERVATION_ANY (default), RESERVATION_SPECIFIC, or RESERVATION_NONE. See Consuming reserved instances for examples."
+          }
+        },
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Corresponds to the label key of a reservation resource. To target a RESERVATION_SPECIFIC by name, use compute.googleapis.com/reservation-name as the key and specify the name of your reservation as its value."
+          }
+        },
+        "values": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Corresponds to the label values of a reservation resource. This can be either a name to a reservation in the same project or \"projects/different-project/reservations/some-reservation-name\" to target a shared reservation in the same zone but in a different project."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A reservation that an instance can consume from."
+      }
+    },
+    "com.gcp.notebooks_v2#ReservationAffinityConsumeReservationTypeEnum": {
+      "type": "enum",
+      "members": {
+        "RESERVATION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESERVATION_UNSPECIFIED"
+          }
+        },
+        "RESERVATION_NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESERVATION_NONE"
+          }
+        },
+        "RESERVATION_ANY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESERVATION_ANY"
+          }
+        },
+        "RESERVATION_SPECIFIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "RESERVATION_SPECIFIC"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#DiagnoseInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "diagnosticConfig": {
+          "target": "com.gcp.notebooks_v2#DiagnosticConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Defines flags that are used to run the diagnostic tool"
+          }
+        },
+        "timeoutMinutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum amount of time in minutes before the operation times out."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for creating a notebook instance diagnostic file."
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeInstanceRequest": {
+      "type": "structure",
+      "members": {
+        "imageFamily": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The Compute Engine image family resource name to upgrade to. Format: `projects/{project_id}/global/images/family/{image_family}` If specified, the instance will be upgraded to the latest image in the specified image family, allowing upgrades across image families. If not specified, the instance will be upgraded to the latest image in its current image family."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for upgrading a notebook instance"
+      }
+    },
+    "com.gcp.notebooks_v2#TestIamPermissionsResponse": {
+      "type": "structure",
+      "members": {
+        "permissions": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "A subset of `TestPermissionsRequest.permissions` that the caller is allowed."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for `TestIamPermissions` method."
+      }
+    },
+    "com.gcp.notebooks_v2#ContainerImage": {
+      "type": "structure",
+      "members": {
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The path to the container image repository. For example: `gcr.io/{project_id}/{image_name}`"
+          }
+        },
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The tag of the container image. If not specified, this defaults to the latest tag."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Definition of a container image for starting a notebook instance with the environment installed in a container."
+      }
+    },
+    "com.gcp.notebooks_v2#GenerateAccessTokenResponse": {
+      "type": "structure",
+      "members": {
+        "token_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the returned access token (e.g. \"Bearer\"). It specifies how the token must be used. Bearer tokens may be used by any entity without proof of identity."
+          }
+        },
+        "access_token": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short-lived access token string which may be used to access Google APIs."
+          }
+        },
+        "expires_in": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The time in seconds when the access token expires. Typically that's 3600."
+          }
+        },
+        "scope": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Space-separated list of scopes contained in the returned token. https://cloud.google.com/docs/authentication/token-types#access-contents"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for generating an EUC for the instance owner."
+      }
+    },
+    "com.gcp.notebooks_v2#StartInstanceRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Request for starting a notebook instance"
+      }
+    },
+    "com.gcp.notebooks_v2#Config": {
+      "type": "structure",
+      "members": {
+        "supportedValues": {
+          "target": "com.gcp.notebooks_v2#SupportedValues",
+          "traits": {
+            "smithy.api#documentation": "Output only. The supported values for configuration."
+          }
+        },
+        "defaultValues": {
+          "target": "com.gcp.notebooks_v2#DefaultValues",
+          "traits": {
+            "smithy.api#documentation": "Output only. The default values for configuration."
+          }
+        },
+        "availableImages": {
+          "target": "com.gcp.notebooks_v2#ImageReleaseList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The list of available images to create a WbI."
+          }
+        },
+        "disableWorkbenchLegacyCreation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Flag to disable the creation of legacy Workbench notebooks (User-managed notebooks and Google-managed notebooks)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for getting WbI configurations in a location"
+      }
+    },
+    "com.gcp.notebooks_v2#ImageReleaseList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#ImageRelease"
+      }
+    },
+    "com.gcp.notebooks_v2#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "locations": {
+          "target": "com.gcp.notebooks_v2#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.notebooks_v2#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#Location"
+      }
+    },
+    "com.gcp.notebooks_v2#BootDisk": {
+      "type": "structure",
+      "members": {
+        "diskSizeGb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The size of the boot disk in GB attached to this instance, up to a maximum of 64000 GB (64 TB). If not specified, this defaults to the recommended value of 150GB."
+          }
+        },
+        "diskType": {
+          "target": "com.gcp.notebooks_v2#BootDiskDiskTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Indicates the type of the disk."
+          }
+        },
+        "diskEncryption": {
+          "target": "com.gcp.notebooks_v2#BootDiskDiskEncryptionEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. Disk encryption method used on the boot and data disks, defaults to GMEK."
+          }
+        },
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Input only. The KMS key used to encrypt the disks, only applicable if disk_encryption is CMEK. Format: `projects/{project_id}/locations/{location}/keyRings/{key_ring_id}/cryptoKeys/{key_id}` Learn more about using your own encryption keys."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The definition of a boot disk."
+      }
+    },
+    "com.gcp.notebooks_v2#BootDiskDiskTypeEnum": {
+      "type": "enum",
+      "members": {
+        "DISK_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISK_TYPE_UNSPECIFIED"
+          }
+        },
+        "PD_STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PD_STANDARD"
+          }
+        },
+        "PD_SSD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PD_SSD"
+          }
+        },
+        "PD_BALANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PD_BALANCED"
+          }
+        },
+        "PD_EXTREME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PD_EXTREME"
+          }
+        },
+        "HYPERDISK_BALANCED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_BALANCED"
+          }
+        },
+        "HYPERDISK_EXTREME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_EXTREME"
+          }
+        },
+        "HYPERDISK_THROUGHPUT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_THROUGHPUT"
+          }
+        },
+        "HYPERDISK_BALANCED_HIGH_AVAILABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_BALANCED_HIGH_AVAILABILITY"
+          }
+        },
+        "HYPERDISK_ML": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HYPERDISK_ML"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#BootDiskDiskEncryptionEnum": {
+      "type": "enum",
+      "members": {
+        "DISK_ENCRYPTION_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DISK_ENCRYPTION_UNSPECIFIED"
+          }
+        },
+        "GMEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "GMEK"
+          }
+        },
+        "CMEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CMEK"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#ListInstancesResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token that can be used to continue listing from the last result in the next list call."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Locations that could not be reached. For example, ['projects/{project_id}/locations/us-west1-a', 'projects/{project_id}/locations/us-central1-b']. A ListInstancesResponse will only contain either instances or unreachables,"
+          }
+        },
+        "instances": {
+          "target": "com.gcp.notebooks_v2#InstanceList",
+          "traits": {
+            "smithy.api#documentation": "A list of returned instances."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for listing notebook instances."
+      }
+    },
+    "com.gcp.notebooks_v2#InstanceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.notebooks_v2#Instance"
+      }
+    },
+    "com.gcp.notebooks_v2#ServiceAccount": {
+      "type": "structure",
+      "members": {
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Email address of the service account."
+          }
+        },
+        "scopes": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The list of scopes to be made available for this service account. Set by the CLH to https://www.googleapis.com/auth/cloud-platform"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A service account that acts as an identity."
+      }
+    },
+    "com.gcp.notebooks_v2#ResizeDiskRequest": {
+      "type": "structure",
+      "members": {
+        "dataDisk": {
+          "target": "com.gcp.notebooks_v2#DataDisk",
+          "traits": {
+            "smithy.api#documentation": "Required. The data disk to be resized. Only disk_size_gb will be used."
+          }
+        },
+        "bootDisk": {
+          "target": "com.gcp.notebooks_v2#BootDisk",
+          "traits": {
+            "smithy.api#documentation": "Required. The boot disk to be resized. Only disk_size_gb will be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for resizing the notebook instance disks"
+      }
+    },
+    "com.gcp.notebooks_v2#ConfidentialInstanceConfig": {
+      "type": "structure",
+      "members": {
+        "confidentialInstanceType": {
+          "target": "com.gcp.notebooks_v2#ConfidentialInstanceConfigConfidentialInstanceTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. Defines the type of technology used by the confidential instance."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A set of Confidential Instance options."
+      }
+    },
+    "com.gcp.notebooks_v2#ConfidentialInstanceConfigConfidentialInstanceTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONFIDENTIAL_INSTANCE_TYPE_UNSPECIFIED"
+          }
+        },
+        "SEV": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEV"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#ReportInstanceInfoSystemRequest": {
+      "type": "structure",
+      "members": {
+        "vmId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The VM hardware token for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity"
+          }
+        },
+        "event": {
+          "target": "com.gcp.notebooks_v2#Event",
+          "traits": {
+            "smithy.api#documentation": "Required. The Event to be reported."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for notebook instances to report information to Notebooks API."
+      }
+    },
+    "com.gcp.notebooks_v2#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.notebooks_v2#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.notebooks_v2#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.notebooks_v2#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.notebooks_v2#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.notebooks_v2#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.notebooks_v2#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.notebooks_v2#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.notebooks_v2#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    },
+    "com.gcp.notebooks_v2#StartProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#StartInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#StartProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#StartProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:start"
+        },
+        "smithy.api#documentation": "Starts a notebook instance."
+      }
+    },
+    "com.gcp.notebooks_v2#DeleteProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Idempotent request UUID.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#DeleteProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#DeleteProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single Instance."
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeSystemProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#UpgradeInstanceSystemRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeSystemProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#UpgradeSystemProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:upgradeSystem"
+        },
+        "smithy.api#documentation": "Allows notebook instances to upgrade themselves. Do not use this method directly."
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#UpgradeInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#UpgradeProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#UpgradeProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:upgrade"
+        },
+        "smithy.api#documentation": "Upgrades a notebook instance to the latest version."
+      }
+    },
+    "com.gcp.notebooks_v2#GetIamPolicyProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "options.requestedPolicyVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
+            "smithy.api#httpQuery": "options.requestedPolicyVersion"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#GetIamPolicyProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#GetIamPolicyProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+resource}:getIamPolicy"
+        },
+        "smithy.api#documentation": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set."
+      }
+    },
+    "com.gcp.notebooks_v2#CreateProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `parent=projects/{project_id}/locations/{location}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "instanceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. User-defined unique ID of this instance.",
+            "smithy.api#httpQuery": "instanceId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Idempotent request UUID.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#Instance",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#CreateProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#CreateProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+parent}/instances"
+        },
+        "smithy.api#documentation": "Creates a new Instance in a given project and location."
+      }
+    },
+    "com.gcp.notebooks_v2#StopProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#StopInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#StopProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#StopProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:stop"
+        },
+        "smithy.api#documentation": "Stops a notebook instance."
+      }
+    },
+    "com.gcp.notebooks_v2#GetProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#GetProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#GetProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Instance"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single Instance."
+      }
+    },
+    "com.gcp.notebooks_v2#GenerateAccessTokenProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#GenerateAccessTokenRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#GenerateAccessTokenProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#GenerateAccessTokenProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#GenerateAccessTokenResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:generateAccessToken"
+        },
+        "smithy.api#documentation": "Called by VM to return an EUC for the instance owner. Do not use this method directly. Design doc: go/wbi-euc:dd"
+      }
+    },
+    "com.gcp.notebooks_v2#CheckUpgradabilityProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "notebookInstance": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#CheckUpgradabilityProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#CheckUpgradabilityProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#CheckInstanceUpgradabilityResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+notebookInstance}:checkUpgradability"
+        },
+        "smithy.api#documentation": "Checks whether a notebook instance is upgradable."
+      }
+    },
+    "com.gcp.notebooks_v2#ReportInfoSystemProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#ReportInstanceInfoSystemRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#ReportInfoSystemProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#ReportInfoSystemProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:reportInfoSystem"
+        },
+        "smithy.api#documentation": "Allows notebook instances to report their latest instance information to the Notebooks API server. The server will merge the reported information to the instance metadata store. Do not use this method directly."
+      }
+    },
+    "com.gcp.notebooks_v2#GetConfigProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#GetConfigProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#GetConfigProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Config"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+name}/instances:getConfig"
+        },
+        "smithy.api#documentation": "Returns various configuration parameters."
+      }
+    },
+    "com.gcp.notebooks_v2#CheckAuthorizationProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the Notebook Instance resource. Format: `projects/{project}/locations/{location}/instances/{instance}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#CheckAuthorizationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#CheckAuthorizationProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#CheckAuthorizationProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#CheckAuthorizationResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:checkAuthorization"
+        },
+        "smithy.api#documentation": "Initiated by Cloud Console for Oauth consent flow for Workbench Instances. Do not use this method directly. Design doc: go/wbi-euc:auth-dd"
+      }
+    },
+    "com.gcp.notebooks_v2#ListProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum return size of the list call.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The parent of the instance. Formats: - `projects/{project_id}/locations/{location}` to list instances in a specific zone. - `projects/{project_id}/locations/-` to list instances in all locations.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. List filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. A previous returned page token that can be used to continue listing from the last result.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Sort results. Supported values are \"name\", \"name desc\" or \"\" (unsorted).",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#ListProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#ListProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#ListInstancesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v2/{+parent}/instances"
+        },
+        "smithy.api#documentation": "Lists instances in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#RestoreProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#RestoreInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#RestoreProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#RestoreProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:restore"
+        },
+        "smithy.api#documentation": "RestoreInstance restores an Instance from a BackupSource."
+      }
+    },
+    "com.gcp.notebooks_v2#ResizeDiskProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "notebookInstance": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#ResizeDiskRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#ResizeDiskProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#ResizeDiskProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+notebookInstance}:resizeDisk"
+        },
+        "smithy.api#documentation": "Resize a notebook instance disk to a higher capacity."
+      }
+    },
+    "com.gcp.notebooks_v2#ResetProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#ResetInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#ResetProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#ResetProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:reset"
+        },
+        "smithy.api#documentation": "Resets a notebook instance."
+      }
+    },
+    "com.gcp.notebooks_v2#DiagnoseProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#DiagnoseInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#DiagnoseProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#DiagnoseProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:diagnose"
+        },
+        "smithy.api#documentation": "Creates a Diagnostic File and runs Diagnostic Tool given an Instance."
+      }
+    },
+    "com.gcp.notebooks_v2#SetIamPolicyProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#SetIamPolicyRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#SetIamPolicyProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#SetIamPolicyProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Policy"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+resource}:setIamPolicy"
+        },
+        "smithy.api#documentation": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors."
+      }
+    },
+    "com.gcp.notebooks_v2#PatchProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifier. The name of this notebook instance. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Mask used to update an instance. Updatable fields: * `labels` * `gce_setup.min_cpu_platform` * `gce_setup.metadata` * `gce_setup.machine_type` * `gce_setup.accelerator_configs` * `gce_setup.accelerator_configs.type` * `gce_setup.accelerator_configs.core_count` * `gce_setup.gpu_driver_config` * `gce_setup.gpu_driver_config.enable_gpu_driver` * `gce_setup.gpu_driver_config.custom_gpu_driver_path` * `gce_setup.shielded_instance_config` * `gce_setup.shielded_instance_config.enable_secure_boot` * `gce_setup.shielded_instance_config.enable_vtpm` * `gce_setup.shielded_instance_config.enable_integrity_monitoring` * `gce_setup.reservation_affinity` * `gce_setup.reservation_affinity.consume_reservation_type` * `gce_setup.reservation_affinity.key` * `gce_setup.reservation_affinity.values` * `gce_setup.tags` * `gce_setup.container_image` * `gce_setup.container_image.repository` * `gce_setup.container_image.tag` * `gce_setup.disable_public_ip` * `disable_proxy_access`",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Idempotent request UUID.",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#Instance",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#PatchProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#PatchProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v2/{+name}"
+        },
+        "smithy.api#documentation": "UpdateInstance updates an Instance."
+      }
+    },
+    "com.gcp.notebooks_v2#TestIamPermissionsProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#TestIamPermissionsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#TestIamPermissionsProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#TestIamPermissionsProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#TestIamPermissionsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+resource}:testIamPermissions"
+        },
+        "smithy.api#documentation": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning."
+      }
+    },
+    "com.gcp.notebooks_v2#RollbackProjectsLocationsInstancesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Format: `projects/{project_id}/locations/{location}/instances/{instance_id}`",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.notebooks_v2#RollbackInstanceRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.notebooks_v2#RollbackProjectsLocationsInstances": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.notebooks_v2#RollbackProjectsLocationsInstancesRequest"
+      },
+      "output": {
+        "target": "com.gcp.notebooks_v2#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.notebooks_v2#NotFound"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Forbidden"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#BadRequest"
+        },
+        {
+          "target": "com.gcp.notebooks_v2#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v2/{+name}:rollback"
+        },
+        "smithy.api#documentation": "Rollbacks a notebook instance to the previous version."
+      }
+    }
+  }
+}

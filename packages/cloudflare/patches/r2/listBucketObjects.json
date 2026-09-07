@@ -1,0 +1,50 @@
+{
+  "description": "Align r2#BucketsObjectsList with distilled cloudflare/r2 listBucketObjects, and type the missing-bucket rejection",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsList",
+      "path": "/shapes/com.cloudflare.r2#ListBucketObjects"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsListRequest",
+      "path": "/shapes/com.cloudflare.r2#ListBucketObjectsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#ListBucketObjects/input/target",
+      "value": "com.cloudflare.r2#ListBucketObjectsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#BucketsObjectsListResponse",
+      "path": "/shapes/com.cloudflare.r2#ListBucketObjectsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#ListBucketObjects/output/target",
+      "value": "com.cloudflare.r2#ListBucketObjectsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#ListBucketObjects/traits/smithy.api#paginated",
+      "value": {
+        "mode": "cursor",
+        "inputToken": "cursor",
+        "outputToken": "resultInfo.cursor",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#ListBucketObjects/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.r2#NoSuchBucket"
+        }
+      ]
+    }
+  ]
+}

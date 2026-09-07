@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecurityTimeseriesGroupsMalicious with distilled cloudflare/radar maliciousEmailSecurityTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsMalicious",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecurityTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsMaliciousRequest",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecurityTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecurityTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#MaliciousEmailSecurityTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecurityTimeseriesGroupsMaliciousResponse",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecurityTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#MaliciousEmailSecurityTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#MaliciousEmailSecurityTimeseriesGroupResponse"
+    }
+  ]
+}

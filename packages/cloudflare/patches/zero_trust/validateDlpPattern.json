@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpPatternsValidate with distilled cloudflare/zero-trust validateDlpPattern",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpPatternsValidate",
+      "path": "/shapes/com.cloudflare.zero_trust#ValidateDlpPattern"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpPatternsValidateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ValidateDlpPatternRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ValidateDlpPattern/input/target",
+      "value": "com.cloudflare.zero_trust#ValidateDlpPatternRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpPatternsValidateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ValidateDlpPatternResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ValidateDlpPattern/output/target",
+      "value": "com.cloudflare.zero_trust#ValidateDlpPatternResponse"
+    }
+  ]
+}

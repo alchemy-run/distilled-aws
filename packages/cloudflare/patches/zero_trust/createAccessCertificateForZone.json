@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessCertificatesCreateForZone with distilled cloudflare/zero-trust createAccessCertificateForZone",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesCreateForZone",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCertificateForZone"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesCreateForZoneRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCertificateForZoneRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCertificateForZone/input/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessCertificateForZoneRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesCreateForZoneResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCertificateForZoneResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCertificateForZone/output/target",
+      "value": "com.cloudflare.zero_trust#CreateAccessCertificateForZoneResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateAccessCertificateForZone/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessCertificateQuotaExceeded"
+        }
+      ]
+    }
+  ]
+}

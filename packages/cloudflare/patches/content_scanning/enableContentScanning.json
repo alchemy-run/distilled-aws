@@ -1,0 +1,30 @@
+{
+  "description": "Align content_scanning#Enable with distilled cloudflare/content-scanning enableContentScanning",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.content_scanning#Enable",
+      "path": "/shapes/com.cloudflare.content_scanning#EnableContentScanning"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.content_scanning#EnableRequest",
+      "path": "/shapes/com.cloudflare.content_scanning#EnableContentScanningRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.content_scanning#EnableContentScanning/input/target",
+      "value": "com.cloudflare.content_scanning#EnableContentScanningRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.content_scanning#EnableResponse",
+      "path": "/shapes/com.cloudflare.content_scanning#EnableContentScanningResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.content_scanning#EnableContentScanning/output/target",
+      "value": "com.cloudflare.content_scanning#EnableContentScanningResponse"
+    }
+  ]
+}

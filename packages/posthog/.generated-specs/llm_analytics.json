@@ -1,0 +1,4805 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#ClusteringConfig": {
+      "type": "structure",
+      "members": {
+        "event_filters": {
+          "target": "com.posthog.llm_analytics#ClusteringConfigEventFiltersList",
+          "traits": {
+            "smithy.api#documentation": "PostHog property filters that scope automated clustering jobs. Empty array means no saved filters.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#ClusteringConfigEventFiltersItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#ClusteringConfigEventFiltersList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#ClusteringConfigEventFiltersItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "PostHog property filters that scope automated clustering jobs. Empty array means no saved filters."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ClusteringConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/clustering_config/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Team-level clustering configuration (event filters for automated pipelines)."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigSetEventFiltersCreateRequestEventFiltersItemMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigSetEventFiltersCreateRequestEventFiltersList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigSetEventFiltersCreateRequestEventFiltersItemMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "PostHog property filters to save for automated clustering jobs. Pass an empty array to clear filters."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigSetEventFiltersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "event_filters": {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigSetEventFiltersCreateRequestEventFiltersList",
+          "traits": {
+            "smithy.api#documentation": "PostHog property filters to save for automated clustering jobs. Pass an empty array to clear filters.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigSetEventFiltersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigSetEventFiltersCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ClusteringConfig"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/clustering_config/set_event_filters/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Team-level clustering configuration (event filters for automated pipelines)."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedClusteringJobList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.llm_analytics#PaginatedClusteringJobListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#ClusteringJob": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "analysis_level": {
+          "target": "com.posthog.llm_analytics#AnalysisLevelEnum"
+        },
+        "event_filters": {
+          "target": "smithy.api#Document"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#AnalysisLevelEnum": {
+      "type": "enum",
+      "members": {
+        "TRACE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "trace"
+          }
+        },
+        "GENERATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "generation"
+          }
+        },
+        "EVALUATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "evaluation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `trace` - trace\n* `generation` - generation\n* `evaluation` - evaluation"
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedClusteringJobListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#ClusteringJob"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#PaginatedClusteringJobList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/clustering_jobs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for clustering job configurations (max 10 per team)."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "analysis_level": {
+          "target": "com.posthog.llm_analytics#AnalysisLevelEnum"
+        },
+        "event_filters": {
+          "target": "smithy.api#Document"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ClusteringJob"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/clustering_jobs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for clustering job configurations (max 10 per team)."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this clustering job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ClusteringJob"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/clustering_jobs/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for clustering job configurations (max 10 per team)."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this clustering job."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "analysis_level": {
+          "target": "com.posthog.llm_analytics#AnalysisLevelEnum"
+        },
+        "event_filters": {
+          "target": "smithy.api#Document"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ClusteringJob"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/llm_analytics/clustering_jobs/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for clustering job configurations (max 10 per team)."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this clustering job."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "analysis_level": {
+          "target": "com.posthog.llm_analytics#AnalysisLevelEnum"
+        },
+        "event_filters": {
+          "target": "smithy.api#Document"
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ClusteringJob"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/llm_analytics/clustering_jobs/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for clustering job configurations (max 10 per team)."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this clustering job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/llm_analytics/clustering_jobs/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for clustering job configurations (max 10 per team)."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationConfigRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#EvaluationConfigOutput": {
+      "type": "structure",
+      "members": {
+        "trial_eval_limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Cap on trial runs — a getting-started affordance only, not for ongoing evals (use the team's own key).",
+            "smithy.api#required": {}
+          }
+        },
+        "trial_evals_used": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Trial runs consumed (getting-started affordance only).",
+            "smithy.api#required": {}
+          }
+        },
+        "trial_evals_remaining": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Trial runs remaining — a getting-started affordance only; evals should use the team's own provider key.",
+            "smithy.api#required": {}
+          }
+        },
+        "active_provider_key": {
+          "target": "com.posthog.llm_analytics#LLMProviderKeyOutput",
+          "traits": {
+            "smithy.api#documentation": "Provider key used to run llm_judge evals; null if none configured yet.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the evaluation config row was created.",
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the evaluation config row was last modified.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LLMProviderKeyOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "provider": {
+          "target": "com.posthog.llm_analytics#LLMProviderEnum"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "state": {
+          "target": "com.posthog.llm_analytics#LLMProviderKeyStateEnum"
+        },
+        "error_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "api_key_masked": {
+          "target": "smithy.api#String"
+        },
+        "azure_endpoint_display": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure endpoint (read-only, for display)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "api_version_display": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure API version (read-only, for display)",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "created_by": {
+          "target": "com.posthog.llm_analytics#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_used_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LLMProviderEnum": {
+      "type": "enum",
+      "members": {
+        "OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openai"
+          }
+        },
+        "ANTHROPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "anthropic"
+          }
+        },
+        "GEMINI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gemini"
+          }
+        },
+        "OPENROUTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openrouter"
+          }
+        },
+        "FIREWORKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fireworks"
+          }
+        },
+        "AZURE_OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "azure_openai"
+          }
+        },
+        "TOGETHER_AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "together_ai"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `openai` - Openai\n* `anthropic` - Anthropic\n* `gemini` - Gemini\n* `openrouter` - Openrouter\n* `fireworks` - Fireworks\n* `azure_openai` - Azure OpenAI\n* `together_ai` - Together AI"
+      }
+    },
+    "com.posthog.llm_analytics#LLMProviderKeyStateEnum": {
+      "type": "enum",
+      "members": {
+        "UNKNOWN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "unknown"
+          }
+        },
+        "OK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ok"
+          }
+        },
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "invalid"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `unknown` - Unknown\n* `ok` - Ok\n* `invalid` - Invalid\n* `error` - Error"
+      }
+    },
+    "com.posthog.llm_analytics#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.llm_analytics#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.llm_analytics#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.llm_analytics#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.llm_analytics#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.llm_analytics#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationConfigRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationConfigRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#EvaluationConfigOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_config/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the evaluation config for this team"
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationConfigSetActiveKeyCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of an existing LLM provider key (state must be 'ok') to mark as the active key for running llm_judge evaluations team-wide.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationConfigSetActiveKeyCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationConfigSetActiveKeyCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#EvaluationConfigOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_config/set_active_key/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Set the active provider key for evaluations"
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedEvaluationReportList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.llm_analytics#PaginatedEvaluationReportListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#EvaluationReport": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "evaluation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the evaluation this report config belongs to."
+          }
+        },
+        "frequency": {
+          "target": "com.posthog.llm_analytics#EvaluationReportFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How report generation is triggered. 'every_n' fires once N new evaluation results have accumulated (subject to cooldown_minutes and daily_run_cap). 'scheduled' fires on the cadence defined by rrule + starts_at + timezone_name.\n\n* `scheduled` - Scheduled\n* `every_n` - Every N"
+          }
+        },
+        "rrule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "RFC 5545 recurrence rule string (e.g. 'FREQ=WEEKLY;BYDAY=MO'). Must not contain DTSTART — the anchor is set via starts_at. Required when frequency is 'scheduled'; ignored otherwise."
+          }
+        },
+        "starts_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Anchor datetime for the rrule (ISO 8601, UTC — must end in 'Z'). Local-time interpretation is controlled by timezone_name. Required when frequency is 'scheduled'; ignored otherwise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "timezone_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone name used to expand the rrule in local time so e.g. '9am' stays at 9am across DST transitions (e.g. 'America/New_York'). Defaults to 'UTC'."
+          }
+        },
+        "next_delivery_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "delivery_targets": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "List of delivery targets. Each entry is either {type: 'email', value: 'user@example.com'} or {type: 'slack', integration_id: <int>, channel: '<channel>'}. Slack integration_id must belong to this team."
+          }
+        },
+        "max_sample_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of evaluation runs included in each report. Defaults to 200."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether report delivery is active. Disabled configs do not fire."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete this report config."
+          }
+        },
+        "last_delivered_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "report_prompt_guidance": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional custom instructions appended to the AI report prompt to steer focus, scope, or section choices without modifying the base prompt."
+          }
+        },
+        "trigger_threshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of new evaluation results that triggers a report (every_n mode only). Min 10, max 10000. Defaults to 100. Required when frequency is 'every_n'.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cooldown_minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum minutes between count-triggered reports to prevent spam (every_n mode only). Min 60, max 1440 (24 hours). Defaults to 60."
+          }
+        },
+        "daily_run_cap": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum count-triggered report runs per calendar day (UTC). Min 1, max 24 (one per cooldown window). Defaults to 10."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#EvaluationReportFrequencyEnum": {
+      "type": "enum",
+      "members": {
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scheduled"
+          }
+        },
+        "EVERY_N": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "every_n"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `scheduled` - Scheduled\n* `every_n` - Every N"
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedEvaluationReportListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#EvaluationReport"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#PaginatedEvaluationReportList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_reports/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for evaluation report configurations + report run history."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "evaluation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the evaluation this report config belongs to."
+          }
+        },
+        "frequency": {
+          "target": "com.posthog.llm_analytics#EvaluationReportFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How report generation is triggered. 'every_n' fires once N new evaluation results have accumulated (subject to cooldown_minutes and daily_run_cap). 'scheduled' fires on the cadence defined by rrule + starts_at + timezone_name.\n\n* `scheduled` - Scheduled\n* `every_n` - Every N"
+          }
+        },
+        "rrule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "RFC 5545 recurrence rule string (e.g. 'FREQ=WEEKLY;BYDAY=MO'). Must not contain DTSTART — the anchor is set via starts_at. Required when frequency is 'scheduled'; ignored otherwise."
+          }
+        },
+        "starts_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Anchor datetime for the rrule (ISO 8601, UTC — must end in 'Z'). Local-time interpretation is controlled by timezone_name. Required when frequency is 'scheduled'; ignored otherwise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "timezone_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone name used to expand the rrule in local time so e.g. '9am' stays at 9am across DST transitions (e.g. 'America/New_York'). Defaults to 'UTC'."
+          }
+        },
+        "delivery_targets": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "List of delivery targets. Each entry is either {type: 'email', value: 'user@example.com'} or {type: 'slack', integration_id: <int>, channel: '<channel>'}. Slack integration_id must belong to this team."
+          }
+        },
+        "max_sample_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of evaluation runs included in each report. Defaults to 200."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether report delivery is active. Disabled configs do not fire."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete this report config."
+          }
+        },
+        "report_prompt_guidance": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional custom instructions appended to the AI report prompt to steer focus, scope, or section choices without modifying the base prompt."
+          }
+        },
+        "trigger_threshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of new evaluation results that triggers a report (every_n mode only). Min 10, max 10000. Defaults to 100. Required when frequency is 'every_n'.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cooldown_minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum minutes between count-triggered reports to prevent spam (every_n mode only). Min 60, max 1440 (24 hours). Defaults to 60."
+          }
+        },
+        "daily_run_cap": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum count-triggered report runs per calendar day (UTC). Min 1, max 24 (one per cooldown window). Defaults to 10."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#EvaluationReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_reports/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for evaluation report configurations + report run history."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#EvaluationReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_reports/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for evaluation report configurations + report run history."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation report."
+          }
+        },
+        "evaluation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the evaluation this report config belongs to."
+          }
+        },
+        "frequency": {
+          "target": "com.posthog.llm_analytics#EvaluationReportFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How report generation is triggered. 'every_n' fires once N new evaluation results have accumulated (subject to cooldown_minutes and daily_run_cap). 'scheduled' fires on the cadence defined by rrule + starts_at + timezone_name.\n\n* `scheduled` - Scheduled\n* `every_n` - Every N"
+          }
+        },
+        "rrule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "RFC 5545 recurrence rule string (e.g. 'FREQ=WEEKLY;BYDAY=MO'). Must not contain DTSTART — the anchor is set via starts_at. Required when frequency is 'scheduled'; ignored otherwise."
+          }
+        },
+        "starts_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Anchor datetime for the rrule (ISO 8601, UTC — must end in 'Z'). Local-time interpretation is controlled by timezone_name. Required when frequency is 'scheduled'; ignored otherwise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "timezone_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone name used to expand the rrule in local time so e.g. '9am' stays at 9am across DST transitions (e.g. 'America/New_York'). Defaults to 'UTC'."
+          }
+        },
+        "delivery_targets": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "List of delivery targets. Each entry is either {type: 'email', value: 'user@example.com'} or {type: 'slack', integration_id: <int>, channel: '<channel>'}. Slack integration_id must belong to this team."
+          }
+        },
+        "max_sample_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of evaluation runs included in each report. Defaults to 200."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether report delivery is active. Disabled configs do not fire."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete this report config."
+          }
+        },
+        "report_prompt_guidance": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional custom instructions appended to the AI report prompt to steer focus, scope, or section choices without modifying the base prompt."
+          }
+        },
+        "trigger_threshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of new evaluation results that triggers a report (every_n mode only). Min 10, max 10000. Defaults to 100. Required when frequency is 'every_n'.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cooldown_minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum minutes between count-triggered reports to prevent spam (every_n mode only). Min 60, max 1440 (24 hours). Defaults to 60."
+          }
+        },
+        "daily_run_cap": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum count-triggered report runs per calendar day (UTC). Min 1, max 24 (one per cooldown window). Defaults to 10."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#EvaluationReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_reports/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for evaluation report configurations + report run history."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation report."
+          }
+        },
+        "evaluation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the evaluation this report config belongs to."
+          }
+        },
+        "frequency": {
+          "target": "com.posthog.llm_analytics#EvaluationReportFrequencyEnum",
+          "traits": {
+            "smithy.api#documentation": "How report generation is triggered. 'every_n' fires once N new evaluation results have accumulated (subject to cooldown_minutes and daily_run_cap). 'scheduled' fires on the cadence defined by rrule + starts_at + timezone_name.\n\n* `scheduled` - Scheduled\n* `every_n` - Every N"
+          }
+        },
+        "rrule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "RFC 5545 recurrence rule string (e.g. 'FREQ=WEEKLY;BYDAY=MO'). Must not contain DTSTART — the anchor is set via starts_at. Required when frequency is 'scheduled'; ignored otherwise."
+          }
+        },
+        "starts_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Anchor datetime for the rrule (ISO 8601, UTC — must end in 'Z'). Local-time interpretation is controlled by timezone_name. Required when frequency is 'scheduled'; ignored otherwise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "timezone_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone name used to expand the rrule in local time so e.g. '9am' stays at 9am across DST transitions (e.g. 'America/New_York'). Defaults to 'UTC'."
+          }
+        },
+        "delivery_targets": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "List of delivery targets. Each entry is either {type: 'email', value: 'user@example.com'} or {type: 'slack', integration_id: <int>, channel: '<channel>'}. Slack integration_id must belong to this team."
+          }
+        },
+        "max_sample_size": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of evaluation runs included in each report. Defaults to 200."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether report delivery is active. Disabled configs do not fire."
+          }
+        },
+        "deleted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Set to true to soft-delete this report config."
+          }
+        },
+        "report_prompt_guidance": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional custom instructions appended to the AI report prompt to steer focus, scope, or section choices without modifying the base prompt."
+          }
+        },
+        "trigger_threshold": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of new evaluation results that triggers a report (every_n mode only). Min 10, max 10000. Defaults to 100. Required when frequency is 'every_n'.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cooldown_minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minimum minutes between count-triggered reports to prevent spam (every_n mode only). Min 60, max 1440 (24 hours). Defaults to 60."
+          }
+        },
+        "daily_run_cap": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum count-triggered report runs per calendar day (UTC). Min 1, max 24 (one per cooldown window). Defaults to 10."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#EvaluationReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_reports/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for evaluation report configurations + report run history."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_reports/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Hard delete of this model is not allowed. Use a patch API call to set \"deleted\" to true"
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsGenerateCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation report."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsGenerateCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsGenerateCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_reports/{id}/generate/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Trigger immediate report generation."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsRunsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this evaluation report."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedEvaluationReportRunList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.llm_analytics#PaginatedEvaluationReportRunListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#EvaluationReportRun": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of this report run."
+          }
+        },
+        "report": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the report config that generated this run."
+          }
+        },
+        "content": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Generated report content (markdown or structured text)."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Run metadata including model used, token counts, and generation stats."
+          }
+        },
+        "period_start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Start of the evaluation window covered by this report."
+          }
+        },
+        "period_end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "End of the evaluation window covered by this report."
+          }
+        },
+        "delivery_status": {
+          "target": "com.posthog.llm_analytics#DeliveryStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "'pending', 'delivered', or 'failed'.\n\n* `pending` - Pending\n* `delivered` - Delivered\n* `partial_failure` - Partial Failure\n* `failed` - Failed"
+          }
+        },
+        "delivery_errors": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "List of delivery error messages if delivery failed."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#DeliveryStatusEnum": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "DELIVERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "delivered"
+          }
+        },
+        "PARTIAL_FAILURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "partial_failure"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `pending` - Pending\n* `delivered` - Delivered\n* `partial_failure` - Partial Failure\n* `failed` - Failed"
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedEvaluationReportRunListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#EvaluationReportRun"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsRunsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsRunsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#PaginatedEvaluationReportRunList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/evaluation_reports/{id}/runs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List report runs (history) for this report."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsModelsRetrieveRequestProvider": {
+      "type": "enum",
+      "members": {
+        "ANTHROPIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "anthropic"
+          }
+        },
+        "AZURE_OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "azure_openai"
+          }
+        },
+        "FIREWORKS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "fireworks"
+          }
+        },
+        "GEMINI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gemini"
+          }
+        },
+        "OPENAI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openai"
+          }
+        },
+        "OPENROUTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "openrouter"
+          }
+        },
+        "TOGETHER_AI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "together_ai"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsModelsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "key_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "key_id",
+            "smithy.api#documentation": "Optional provider key UUID. When supplied, models reachable with that specific key are returned (useful for Azure OpenAI, where the deployment list depends on the configured endpoint). Must belong to the same provider as the `provider` parameter."
+          }
+        },
+        "provider": {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsModelsRetrieveRequestProvider",
+          "traits": {
+            "smithy.api#httpQuery": "provider",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "LLM provider to list models for. Must be one of the supported providers."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LLMModelsListResponse": {
+      "type": "structure",
+      "members": {
+        "models": {
+          "target": "com.posthog.llm_analytics#LLMModelsListResponseModelsList",
+          "traits": {
+            "smithy.api#documentation": "Models supported for the requested provider.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LLMModelInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider-specific model identifier (e.g. 'gpt-4o-mini', 'claude-3-5-sonnet-20241022').",
+            "smithy.api#required": {}
+          }
+        },
+        "posthog_available": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the model can run without a provider key — for getting-started testing only; real evals should use the team's own key.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LLMModelsListResponseModelsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#LLMModelInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "Models supported for the requested provider."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsModelsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsModelsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LLMModelsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/models/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List available models for a provider."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedParserRecipeList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.llm_analytics#PaginatedParserRecipeListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#ParserRecipe": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable recipe name shown in the editor.",
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Raw YAML recipe source. Must parse as YAML; recipe semantics are compiled and validated client-side.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.llm_analytics#UserBasic",
+          "traits": {
+            "smithy.api#documentation": "User who created the recipe.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#PaginatedParserRecipeListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#ParserRecipe"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#PaginatedParserRecipeList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/parser_recipes/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable recipe name shown in the editor.",
+            "smithy.api#required": {}
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Raw YAML recipe source. Must parse as YAML; recipe semantics are compiled and validated client-side.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ParserRecipe"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/parser_recipes/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this parser recipe."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ParserRecipe"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/parser_recipes/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this parser recipe."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable recipe name shown in the editor."
+          }
+        },
+        "source": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Raw YAML recipe source. Must parse as YAML; recipe semantics are compiled and validated client-side."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ParserRecipe"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/llm_analytics/parser_recipes/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this parser recipe."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsParserRecipesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/llm_analytics/parser_recipes/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeyValidationsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeyValidationsCreateResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeyValidationsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeyValidationsCreateResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeyValidationsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeyValidationsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeyValidationsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_key_validations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Validate LLM provider API keys without persisting them"
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedLLMProviderKeyListOutput": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.llm_analytics#PaginatedLLMProviderKeyListOutputResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#PaginatedLLMProviderKeyListOutputResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#PaginatedLLMProviderKeyListOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "provider": {
+          "target": "com.posthog.llm_analytics#LLMProviderEnum"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "api_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "azure_endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI endpoint URL"
+          }
+        },
+        "api_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI API version"
+          }
+        },
+        "set_as_active": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this llm provider key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this llm provider key."
+          }
+        },
+        "provider": {
+          "target": "com.posthog.llm_analytics#LLMProviderEnum"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "api_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "azure_endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI endpoint URL"
+          }
+        },
+        "api_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI API version"
+          }
+        },
+        "set_as_active": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this llm provider key."
+          }
+        },
+        "provider": {
+          "target": "com.posthog.llm_analytics#LLMProviderEnum"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "api_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "azure_endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI endpoint URL"
+          }
+        },
+        "api_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI API version"
+          }
+        },
+        "set_as_active": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this llm provider key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysAssignCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this llm provider key."
+          }
+        },
+        "provider": {
+          "target": "com.posthog.llm_analytics#LLMProviderEnum"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "api_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "azure_endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI endpoint URL"
+          }
+        },
+        "api_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI API version"
+          }
+        },
+        "set_as_active": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysAssignCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysAssignCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/{id}/assign/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Assign this key to evaluations and optionally re-enable them."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysDependentConfigsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this llm provider key."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysDependentConfigsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysDependentConfigsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/{id}/dependent_configs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get evaluations using this key and alternative keys for replacement."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysValidateCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this llm provider key."
+          }
+        },
+        "provider": {
+          "target": "com.posthog.llm_analytics#LLMProviderEnum"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "api_key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#sensitive": {}
+          }
+        },
+        "azure_endpoint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI endpoint URL"
+          }
+        },
+        "api_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure OpenAI API version"
+          }
+        },
+        "set_as_active": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysValidateCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysValidateCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/{id}/validate/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysTrialEvaluationsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsProviderKeysTrialEvaluationsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysTrialEvaluationsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LLMProviderKeyOutput"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/provider_keys/trial_evaluations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List enabled evaluations currently using trial credits for a given provider."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "order_by",
+            "smithy.api#documentation": "Order by `created_at` or `updated_at`."
+          }
+        },
+        "queue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "queue_id",
+            "smithy.api#documentation": "Filter by a specific review queue ID."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search pending trace IDs."
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "trace_id",
+            "smithy.api#documentation": "Filter by an exact trace ID."
+          }
+        },
+        "trace_id__in": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "trace_id__in",
+            "smithy.api#documentation": "Filter by multiple trace IDs separated by commas."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedReviewQueueItemList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.llm_analytics#PaginatedReviewQueueItemListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#ReviewQueueItem": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "queue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Review queue ID that currently owns this pending trace."
+          }
+        },
+        "queue_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the queue that currently owns this pending trace."
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trace ID currently pending review."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.llm_analytics#UserBasic",
+          "traits": {
+            "smithy.api#documentation": "User who queued this trace.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "team": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#PaginatedReviewQueueItemListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#ReviewQueueItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#PaginatedReviewQueueItemList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queue_items/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "queue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Review queue ID that should own this pending trace."
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trace ID to add to the selected review queue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ReviewQueueItem"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queue_items/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this review queue item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ReviewQueueItem"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queue_items/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this review queue item."
+          }
+        },
+        "queue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Review queue ID that should own this pending trace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ReviewQueueItem"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queue_items/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this review queue item."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queue_items/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "name"
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "order_by",
+            "smithy.api#documentation": "Order by `name`, `updated_at`, or `created_at`."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search review queue names."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedReviewQueueList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.llm_analytics#PaginatedReviewQueueListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#ReviewQueue": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable queue name."
+          }
+        },
+        "pending_item_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of pending traces currently assigned to this queue."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.llm_analytics#UserBasic",
+          "traits": {
+            "smithy.api#documentation": "User who created this review queue.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "team": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#PaginatedReviewQueueListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#ReviewQueue"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#PaginatedReviewQueueList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queues/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable queue name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ReviewQueue"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queues/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this review queue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ReviewQueue"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queues/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this review queue."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable queue name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ReviewQueue"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queues/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this review queue."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/llm_analytics/review_queues/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "archived",
+            "smithy.api#documentation": "Filter by archived state."
+          }
+        },
+        "kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "kind",
+            "smithy.api#documentation": "Filter by scorer kind."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "order_by",
+            "smithy.api#documentation": "Sort by name, kind, created_at, updated_at, or current_version."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search scorers by name or description."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedScoreDefinitionList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.llm_analytics#PaginatedScoreDefinitionListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#ScoreDefinition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "name": {
+          "target": "smithy.api#String"
+        },
+        "description": {
+          "target": "smithy.api#String"
+        },
+        "kind": {
+          "target": "com.posthog.llm_analytics#ExperimentMetricKindEnum"
+        },
+        "archived": {
+          "target": "smithy.api#Boolean"
+        },
+        "current_version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Current immutable configuration version number."
+          }
+        },
+        "current_version_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the current version row. Matches `system.score_definitions.current_version_id` in HogQL.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "config": {
+          "target": "com.posthog.llm_analytics#ScoreDefinitionConfig",
+          "traits": {
+            "smithy.api#documentation": "Current immutable scorer configuration."
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.llm_analytics#UserBasic",
+          "traits": {
+            "smithy.api#documentation": "User who created the scorer.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "team": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#ExperimentMetricKindEnum": {
+      "type": "enum",
+      "members": {
+        "CATEGORICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "categorical"
+          }
+        },
+        "NUMERIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "numeric"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "boolean"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `categorical` - categorical\n* `numeric` - numeric\n* `boolean` - boolean"
+      }
+    },
+    "com.posthog.llm_analytics#ScoreDefinitionConfig": {
+      "type": "union",
+      "members": {
+        "CategoricalScoreDefinitionConfig": {
+          "target": "com.posthog.llm_analytics#CategoricalScoreDefinitionConfig"
+        },
+        "NumericScoreDefinitionConfig": {
+          "target": "com.posthog.llm_analytics#NumericScoreDefinitionConfig"
+        },
+        "BooleanScoreDefinitionConfig": {
+          "target": "com.posthog.llm_analytics#BooleanScoreDefinitionConfig"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#CategoricalScoreDefinitionConfig": {
+      "type": "structure",
+      "members": {
+        "options": {
+          "target": "com.posthog.llm_analytics#CategoricalScoreDefinitionConfigOptionsList",
+          "traits": {
+            "smithy.api#documentation": "Ordered categorical options available to the scorer."
+          }
+        },
+        "selection_mode": {
+          "target": "com.posthog.llm_analytics#SelectionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether reviewers can select one option or multiple options. Defaults to `single`.\n\n* `single` - single\n* `multiple` - multiple"
+          }
+        },
+        "min_selections": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional minimum number of options that can be selected when `selection_mode` is `multiple`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "max_selections": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional maximum number of options that can be selected when `selection_mode` is `multiple`.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#CategoricalScoreOption": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable option key. Use lowercase letters, numbers, underscores, or hyphens."
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable option label."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#CategoricalScoreDefinitionConfigOptionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#CategoricalScoreOption"
+      },
+      "traits": {
+        "smithy.api#documentation": "Ordered categorical options available to the scorer."
+      }
+    },
+    "com.posthog.llm_analytics#SelectionModeEnum": {
+      "type": "enum",
+      "members": {
+        "SINGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "single"
+          }
+        },
+        "MULTIPLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multiple"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `single` - single\n* `multiple` - multiple"
+      }
+    },
+    "com.posthog.llm_analytics#NumericScoreDefinitionConfig": {
+      "type": "structure",
+      "members": {
+        "min": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional inclusive minimum score.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "max": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional inclusive maximum score.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "step": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Optional increment step for numeric input, for example 1 or 0.5.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#BooleanScoreDefinitionConfig": {
+      "type": "structure",
+      "members": {
+        "true_label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional label for a true value."
+          }
+        },
+        "false_label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional label for a false value."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#PaginatedScoreDefinitionListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#ScoreDefinition"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#PaginatedScoreDefinitionList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/score_definitions/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable scorer name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional human-readable description.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "kind": {
+          "target": "com.posthog.llm_analytics#ExperimentMetricKindEnum",
+          "traits": {
+            "smithy.api#documentation": "Scorer kind. This cannot be changed after creation.\n\n* `categorical` - categorical\n* `numeric` - numeric\n* `boolean` - boolean"
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "New scorers are always created as active."
+          }
+        },
+        "config": {
+          "target": "com.posthog.llm_analytics#ScoreDefinitionConfig",
+          "traits": {
+            "smithy.api#documentation": "Initial immutable scorer configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ScoreDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/score_definitions/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this score definition."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ScoreDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/score_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this score definition."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Updated scorer name."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Updated scorer description.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the scorer is archived."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ScoreDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/llm_analytics/score_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsNewVersionCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this score definition."
+          }
+        },
+        "config": {
+          "target": "com.posthog.llm_analytics#ScoreDefinitionConfig",
+          "traits": {
+            "smithy.api#documentation": "Next immutable scorer configuration."
+          }
+        },
+        "base_version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Version number the caller observed before requesting this bump. If provided and it does not match the scorer's current version, the request fails with 409. Omit to skip the optimistic-concurrency check."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsNewVersionCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsNewVersionCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#ScoreDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/score_definitions/{id}/new_version/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "definition_id",
+            "smithy.api#documentation": "Filter by a stable scorer definition ID."
+          }
+        },
+        "definition_id__in": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "definition_id__in",
+            "smithy.api#documentation": "Filter by multiple scorer definition IDs separated by commas."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "order_by",
+            "smithy.api#documentation": "Order by `updated_at` or `created_at`."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search trace IDs and comments."
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "trace_id",
+            "smithy.api#documentation": "Filter by an exact trace ID."
+          }
+        },
+        "trace_id__in": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "trace_id__in",
+            "smithy.api#documentation": "Filter by multiple trace IDs separated by commas."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedTraceReviewList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.llm_analytics#PaginatedTraceReviewListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#TraceReview": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trace ID for the review."
+          }
+        },
+        "trace_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Absolute URL to the trace this review is attached to."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional comment or reasoning for the review.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.llm_analytics#UserBasic",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reviewed_by": {
+          "target": "com.posthog.llm_analytics#UserBasic",
+          "traits": {
+            "smithy.api#documentation": "User who last saved this review.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scores": {
+          "target": "com.posthog.llm_analytics#TraceReviewScoresList",
+          "traits": {
+            "smithy.api#documentation": "Saved scorer values for this review."
+          }
+        },
+        "team": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#TraceReviewScore": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable scorer definition ID."
+          }
+        },
+        "definition_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable scorer name."
+          }
+        },
+        "definition_kind": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scorer kind for this saved score."
+          }
+        },
+        "definition_archived": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the scorer is currently archived."
+          }
+        },
+        "definition_version_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable scorer version ID used to validate this score."
+          }
+        },
+        "definition_version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Immutable scorer version number used to validate this score."
+          }
+        },
+        "definition_config": {
+          "target": "com.posthog.llm_analytics#ScoreDefinitionConfig",
+          "traits": {
+            "smithy.api#documentation": "Immutable scorer configuration snapshot used to validate this score."
+          }
+        },
+        "categorical_values": {
+          "target": "com.posthog.llm_analytics#TraceReviewScoreCategoricalValuesList",
+          "traits": {
+            "smithy.api#documentation": "Categorical option keys selected for this score.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "numeric_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "boolean_value": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#TraceReviewScoreCategoricalValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Categorical option keys selected for this score."
+      }
+    },
+    "com.posthog.llm_analytics#TraceReviewScoresList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#TraceReviewScore"
+      },
+      "traits": {
+        "smithy.api#documentation": "Saved scorer values for this review."
+      }
+    },
+    "com.posthog.llm_analytics#PaginatedTraceReviewListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#TraceReview"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#PaginatedTraceReviewList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/trace_reviews/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#TraceReviewScoreWrite": {
+      "type": "structure",
+      "members": {
+        "definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stable scorer definition ID."
+          }
+        },
+        "definition_version_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional immutable scorer version ID. Defaults to the scorer's current version.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "categorical_values": {
+          "target": "com.posthog.llm_analytics#TraceReviewScoreWriteCategoricalValuesList",
+          "traits": {
+            "smithy.api#documentation": "Categorical option keys selected for this score.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "numeric_value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Numeric value selected for this score.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "boolean_value": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Boolean value selected for this score.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#TraceReviewScoreWriteCategoricalValuesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Categorical option keys selected for this score."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsCreateRequestScoresList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#TraceReviewScoreWrite"
+      },
+      "traits": {
+        "smithy.api#documentation": "Full desired score set for this review. Omit scorers you want to leave blank."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trace ID for the review. Only one active review can exist per trace and team."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional comment or reasoning for the review.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scores": {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsCreateRequestScoresList",
+          "traits": {
+            "smithy.api#documentation": "Full desired score set for this review. Omit scorers you want to leave blank."
+          }
+        },
+        "queue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional review queue ID for queue-context saves. When provided, the matching pending queue item is cleared after the review is saved. If omitted, any pending queue item for the same trace is cleared.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#TraceReview"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/trace_reviews/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this trace review."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#TraceReview"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/llm_analytics/trace_reviews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsPartialUpdateRequestScoresList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.llm_analytics#TraceReviewScoreWrite"
+      },
+      "traits": {
+        "smithy.api#documentation": "Full desired score set for this review. Omit scorers you want to leave blank."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this trace review."
+          }
+        },
+        "trace_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Trace ID for the review. Only one active review can exist per trace and team."
+          }
+        },
+        "comment": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional comment or reasoning for the review.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scores": {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsPartialUpdateRequestScoresList",
+          "traits": {
+            "smithy.api#documentation": "Full desired score set for this review. Omit scorers you want to leave blank."
+          }
+        },
+        "queue_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional review queue ID for queue-context saves. When provided, the matching pending queue item is cleared after the review is saved. If omitted, any pending queue item for the same trace is cleared.",
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#TraceReview"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/llm_analytics/trace_reviews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this trace review."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/llm_analytics/trace_reviews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTranslateCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "text": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The text to translate"
+          }
+        },
+        "target_language": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Target language code (default: 'en' for English)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTranslateCreateResponseBodyMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTranslateCreateResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsTranslateCreateResponseBodyMap",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalyticsTranslateCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsTranslateCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.llm_analytics#LlmAnalyticsTranslateCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/llm_analytics/translate/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Translate text to target language."
+      }
+    },
+    "com.posthog.llm_analytics#LlmAnalytics": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringConfigSetEventFiltersCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsClusteringJobsDestroy"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationConfigRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationConfigSetActiveKeyCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsDestroy"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsGenerateCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsEvaluationReportsRunsList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsModelsRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsParserRecipesDestroy"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeyValidationsCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysPartialUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysDestroy"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysAssignCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysDependentConfigsRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysValidateCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsProviderKeysTrialEvaluationsRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueueItemsDestroy"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesPartialUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsReviewQueuesDestroy"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsScoreDefinitionsNewVersionCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsList"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsCreate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsRetrieve"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsTraceReviewsDestroy"
+        },
+        {
+          "target": "com.posthog.llm_analytics#LlmAnalyticsTranslateCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

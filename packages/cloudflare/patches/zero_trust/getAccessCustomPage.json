@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessCustomPagesGet with distilled cloudflare/zero-trust getAccessCustomPage",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCustomPagesGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessCustomPage"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCustomPagesGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessCustomPageRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessCustomPage/input/target",
+      "value": "com.cloudflare.zero_trust#GetAccessCustomPageRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCustomPagesGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessCustomPageResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessCustomPage/output/target",
+      "value": "com.cloudflare.zero_trust#GetAccessCustomPageResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessCustomPage/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessCustomPageNotFound"
+        }
+      ]
+    }
+  ]
+}

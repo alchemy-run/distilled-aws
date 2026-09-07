@@ -1,0 +1,39 @@
+{
+  "description": "Align schema_validation#SettingsGet with distilled cloudflare/schema-validation getSetting",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsGet",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSetting"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsGetRequest",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSettingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSetting/input/target",
+      "value": "com.cloudflare.schema_validation#GetSettingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.schema_validation#SettingsGetResponse",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSettingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSetting/output/target",
+      "value": "com.cloudflare.schema_validation#GetSettingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.schema_validation#GetSetting/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.schema_validation#Forbidden"
+        }
+      ]
+    }
+  ]
+}

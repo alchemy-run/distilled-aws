@@ -1,0 +1,10 @@
+{
+  "description": "loginSessionCancel returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#LoginSessionCancelRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation loginSessionCancel($code: String!) {\n  loginSessionCancel(code: $code)\n}"
+    }
+  ]
+}

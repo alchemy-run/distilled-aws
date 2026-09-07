@@ -1,0 +1,42 @@
+{
+  "description": "Align iam#ResourceGroupsGet with distilled cloudflare/iam getResourceGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsGet",
+      "path": "/shapes/com.cloudflare.iam#GetResourceGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsGetRequest",
+      "path": "/shapes/com.cloudflare.iam#GetResourceGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#GetResourceGroup/input/target",
+      "value": "com.cloudflare.iam#GetResourceGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#ResourceGroupsGetResponse",
+      "path": "/shapes/com.cloudflare.iam#GetResourceGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#GetResourceGroup/output/target",
+      "value": "com.cloudflare.iam#GetResourceGroupResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#GetResourceGroup/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.iam#ResourceGroupNotFound"
+        },
+        {
+          "target": "com.cloudflare.iam#Forbidden"
+        }
+      ]
+    }
+  ]
+}

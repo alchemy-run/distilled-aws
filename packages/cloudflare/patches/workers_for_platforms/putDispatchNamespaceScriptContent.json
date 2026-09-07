@@ -1,0 +1,40 @@
+{
+  "description": "Align workers_for_platforms#DispatchNamespacesScriptsContentUpdate with distilled cloudflare/workers-for-platforms putDispatchNamespaceScriptContent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsContentUpdate",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsContentUpdateRequest",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContent/input/target",
+      "value": "com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContentRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#DispatchNamespacesScriptsContentUpdateResponse",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContentResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContent/output/target",
+      "value": "com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContentResponse"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContentRequest/members/CF_WORKER_BODY_PART",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContentRequest/members/cfworkerbodypart"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContentRequest/members/CF_WORKER_MAIN_MODULE_PART",
+      "path": "/shapes/com.cloudflare.workers_for_platforms#PutDispatchNamespaceScriptContentRequest/members/cfworkermainmodulepart"
+    }
+  ]
+}

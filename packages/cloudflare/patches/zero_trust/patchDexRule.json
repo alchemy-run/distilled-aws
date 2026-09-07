@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DexRulesUpdate with distilled cloudflare/zero-trust patchDexRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexRulesUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDexRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexRulesUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDexRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDexRule/input/target",
+      "value": "com.cloudflare.zero_trust#PatchDexRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DexRulesUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDexRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PatchDexRule/output/target",
+      "value": "com.cloudflare.zero_trust#PatchDexRuleResponse"
+    }
+  ]
+}

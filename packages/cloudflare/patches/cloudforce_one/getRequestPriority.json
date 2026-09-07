@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#RequestsPriorityGet with distilled cloudflare/cloudforce-one getRequestPriority",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsPriorityGet",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestPriority"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsPriorityGetRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestPriorityRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestPriority/input/target",
+      "value": "com.cloudflare.cloudforce_one#GetRequestPriorityRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#RequestsPriorityGetResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestPriorityResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#GetRequestPriority/output/target",
+      "value": "com.cloudflare.cloudforce_one#GetRequestPriorityResponse"
+    }
+  ]
+}

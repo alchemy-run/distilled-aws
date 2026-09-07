@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#OwnershipCreateForAccount with distilled cloudflare/logpush createOwnershipForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#OwnershipCreateForAccount",
+      "path": "/shapes/com.cloudflare.logpush#CreateOwnershipForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#OwnershipCreateForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#CreateOwnershipForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#CreateOwnershipForAccount/input/target",
+      "value": "com.cloudflare.logpush#CreateOwnershipForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#OwnershipCreateForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#CreateOwnershipForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#CreateOwnershipForAccount/output/target",
+      "value": "com.cloudflare.logpush#CreateOwnershipForAccountResponse"
+    }
+  ]
+}

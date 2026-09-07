@@ -1,0 +1,47 @@
+{
+  "description": "Align resource_tagging#AccountTagsUpdate with distilled cloudflare/resource-tagging putAccountTag",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#AccountTagsUpdate",
+      "path": "/shapes/com.cloudflare.resource_tagging#PutAccountTag"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#AccountTagsUpdateRequest",
+      "path": "/shapes/com.cloudflare.resource_tagging#PutAccountTagRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_tagging#PutAccountTag/input/target",
+      "value": "com.cloudflare.resource_tagging#PutAccountTagRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#AccountTagsUpdateResponse",
+      "path": "/shapes/com.cloudflare.resource_tagging#PutAccountTagResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.resource_tagging#PutAccountTag/output/target",
+      "value": "com.cloudflare.resource_tagging#PutAccountTagResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.resource_tagging#PutAccountTag/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.resource_tagging#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.resource_tagging#TagPreconditionFailed"
+        }
+      ]
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.resource_tagging#PutAccountTagRequest/members/If_Match",
+      "path": "/shapes/com.cloudflare.resource_tagging#PutAccountTagRequest/members/ifMatch"
+    }
+  ]
+}

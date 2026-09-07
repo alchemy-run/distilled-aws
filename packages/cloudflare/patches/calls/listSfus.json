@@ -1,0 +1,38 @@
+{
+  "description": "Align calls#SfuList with distilled cloudflare/calls listSfus",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#SfuList",
+      "path": "/shapes/com.cloudflare.calls#ListSfus"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#SfuListRequest",
+      "path": "/shapes/com.cloudflare.calls#ListSfusRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#ListSfus/input/target",
+      "value": "com.cloudflare.calls#ListSfusRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.calls#SfuListResponse",
+      "path": "/shapes/com.cloudflare.calls#ListSfusResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.calls#ListSfus/output/target",
+      "value": "com.cloudflare.calls#ListSfusResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.calls#ListSfus/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

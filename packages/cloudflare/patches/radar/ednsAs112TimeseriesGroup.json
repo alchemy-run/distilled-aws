@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#As112TimeseriesGroupsEdns with distilled cloudflare/radar ednsAs112TimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsEdns",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112TimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsEdnsRequest",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112TimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112TimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#EdnsAs112TimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#As112TimeseriesGroupsEdnsResponse",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112TimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#EdnsAs112TimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#EdnsAs112TimeseriesGroupResponse"
+    }
+  ]
+}

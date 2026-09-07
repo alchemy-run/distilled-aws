@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessServiceTokensGetForAccount with distilled cloudflare/zero-trust getAccessServiceTokenForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensGetForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessServiceTokenForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensGetForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessServiceTokenForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessServiceTokenForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#GetAccessServiceTokenForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessServiceTokensGetForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessServiceTokenForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessServiceTokenForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#GetAccessServiceTokenForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessServiceTokenForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessServiceTokenNotFound"
+        }
+      ]
+    }
+  ]
+}

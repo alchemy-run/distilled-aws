@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#DnsTimeseriesGroupsResponseCode with distilled cloudflare/radar responseCodeDnsTimeseriesGroup",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsResponseCode",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsTimeseriesGroup"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsResponseCodeRequest",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsTimeseriesGroup/input/target",
+      "value": "com.cloudflare.radar#ResponseCodeDnsTimeseriesGroupRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#DnsTimeseriesGroupsResponseCodeResponse",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsTimeseriesGroupResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ResponseCodeDnsTimeseriesGroup/output/target",
+      "value": "com.cloudflare.radar#ResponseCodeDnsTimeseriesGroupResponse"
+    }
+  ]
+}

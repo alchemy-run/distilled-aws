@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#DevicesDexTestsCreate with distilled cloudflare/zero-trust createDeviceDexTest",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDexTestsCreate",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceDexTest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDexTestsCreateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceDexTestRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceDexTest/input/target",
+      "value": "com.cloudflare.zero_trust#CreateDeviceDexTestRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DevicesDexTestsCreateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceDexTestResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceDexTest/output/target",
+      "value": "com.cloudflare.zero_trust#CreateDeviceDexTestResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#CreateDeviceDexTest/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#Forbidden"
+        }
+      ]
+    }
+  ]
+}

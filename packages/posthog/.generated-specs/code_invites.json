@@ -1,0 +1,120 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.code_invites#CodeInvitesCheckAccessRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.code_invites#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/code/invites/check-access/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Check access\n\nCheck whether the authenticated user has access to PostHog Code."
+      }
+    },
+    "com.posthog.code_invites#CodeInvitesRedeemCreateRequest": {
+      "type": "structure",
+      "members": {
+        "code": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.code_invites#CodeInvitesRedeemCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.code_invites#CodeInvitesRedeemCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.code_invites#BadRequest"
+        },
+        {
+          "target": "com.posthog.code_invites#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/code/invites/redeem/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Redeem invite code\n\nRedeem a PostHog Code invite code to enable access."
+      }
+    },
+    "com.posthog.code_invites#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.code_invites#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.code_invites#CodeInvites": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.code_invites#CodeInvitesCheckAccessRetrieve"
+        },
+        {
+          "target": "com.posthog.code_invites#CodeInvitesRedeemCreate"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

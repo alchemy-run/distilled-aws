@@ -1,0 +1,30 @@
+{
+  "description": "Align logpush#JobsUpdateForAccount with distilled cloudflare/logpush updateJobForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForAccount",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForAccountRequest",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForAccount/input/target",
+      "value": "com.cloudflare.logpush#UpdateJobForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.logpush#JobsUpdateForAccountResponse",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.logpush#UpdateJobForAccount/output/target",
+      "value": "com.cloudflare.logpush#UpdateJobForAccountResponse"
+    }
+  ]
+}

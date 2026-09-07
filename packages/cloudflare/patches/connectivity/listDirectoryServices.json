@@ -1,0 +1,50 @@
+{
+  "description": "Align connectivity#DirectoryServicesList with distilled cloudflare/connectivity listDirectoryServices",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesList",
+      "path": "/shapes/com.cloudflare.connectivity#ListDirectoryServices"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesListRequest",
+      "path": "/shapes/com.cloudflare.connectivity#ListDirectoryServicesRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#ListDirectoryServices/input/target",
+      "value": "com.cloudflare.connectivity#ListDirectoryServicesRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.connectivity#DirectoryServicesListResponse",
+      "path": "/shapes/com.cloudflare.connectivity#ListDirectoryServicesResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.connectivity#ListDirectoryServices/output/target",
+      "value": "com.cloudflare.connectivity#ListDirectoryServicesResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#ListDirectoryServices/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.connectivity#ListDirectoryServices/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.connectivity#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5551 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.databox#ServiceValidateInputsByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#ServiceValidateInputsByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#ValidationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/locations/{location}/validateInputs",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "This method does all necessary pre-job creation validation under resource group.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#ValidationResponse": {
+      "type": "structure",
+      "members": {
+        "properties": {
+          "target": "com.azure.databox#ValidationResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of pre job creation validation response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response of pre job creation validations."
+      }
+    },
+    "com.azure.databox#ValidationResponseProperties": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.databox#OverallValidationStatus",
+          "traits": {
+            "smithy.api#documentation": "Overall validation status."
+          }
+        },
+        "individualResponseDetails": {
+          "target": "com.azure.databox#ValidationResponsePropertiesIndividualResponseDetailsList",
+          "traits": {
+            "smithy.api#documentation": "List of response details contain validationType and its response as key and value respectively."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of pre job creation validation response."
+      }
+    },
+    "com.azure.databox#ValidationResponsePropertiesIndividualResponseDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#ValidationInputResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of response details contain validationType and its response as key and value respectively."
+      }
+    },
+    "com.azure.databox#ValidationInputResponse": {
+      "type": "structure",
+      "members": {
+        "validationType": {
+          "target": "com.azure.databox#ValidationInputDiscriminator",
+          "traits": {
+            "smithy.api#documentation": "Identifies the type of validation response.",
+            "smithy.api#required": {}
+          }
+        },
+        "error": {
+          "target": "com.azure.databox#CloudError",
+          "traits": {
+            "smithy.api#documentation": "Error code and message of validation response."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Minimum properties that should be present in each individual validation response."
+      }
+    },
+    "com.azure.databox#CloudError": {
+      "type": "structure",
+      "members": {
+        "additionalInfo": {
+          "target": "com.azure.databox#CloudErrorAdditionalInfoList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets additional error info."
+          }
+        },
+        "code": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Error code."
+          }
+        },
+        "details": {
+          "target": "com.azure.databox#CloudErrorDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets details for the error."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error message parsed from the body of the http error response."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Gets or sets the target of the error."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Provides additional information about an http error response."
+      }
+    },
+    "com.azure.databox#CloudErrorDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#CloudError"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets details for the error."
+      }
+    },
+    "com.azure.databox#CloudErrorAdditionalInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#AdditionalErrorInfo"
+      },
+      "traits": {
+        "smithy.api#documentation": "Gets or sets additional error info."
+      }
+    },
+    "com.azure.databox#AdditionalErrorInfo": {
+      "type": "structure",
+      "members": {
+        "info": {
+          "target": "com.azure.databox#AdditionalErrorInfoInfoMap",
+          "traits": {
+            "smithy.api#documentation": "Additional information of the type of error."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of error (e.g. CustomerIntervention, PolicyViolation, SecurityViolation)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This class represents additional info which Resource Providers pass when an error occurs."
+      }
+    },
+    "com.azure.databox#AdditionalErrorInfoInfoMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional information of the type of error."
+      }
+    },
+    "com.azure.databox#ValidationInputDiscriminator": {
+      "type": "enum",
+      "members": {
+        "VALIDATEADDRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidateAddress"
+          }
+        },
+        "VALIDATESUBSCRIPTIONISALLOWEDTOCREATEJOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidateSubscriptionIsAllowedToCreateJob"
+          }
+        },
+        "VALIDATEPREFERENCES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidatePreferences"
+          }
+        },
+        "VALIDATECREATEORDERLIMIT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidateCreateOrderLimit"
+          }
+        },
+        "VALIDATESKUAVAILABILITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidateSkuAvailability"
+          }
+        },
+        "VALIDATEDATATRANSFERDETAILS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ValidateDataTransferDetails"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identifies the type of validation request."
+      }
+    },
+    "com.azure.databox#OverallValidationStatus": {
+      "type": "enum",
+      "members": {
+        "ALLVALIDTOPROCEED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AllValidToProceed"
+          }
+        },
+        "INPUTSREVISITREQUIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InputsRevisitRequired"
+          }
+        },
+        "CERTAININPUTVALIDATIONSSKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CertainInputValidationsSkipped"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Overall validation status."
+      }
+    },
+    "com.azure.databox#ServiceValidateInputsByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "validationCategory": {
+          "target": "com.azure.databox#ServiceValidateInputsByResourceGroupRequestValidationCategory",
+          "traits": {
+            "smithy.api#documentation": "Identify the nature of validation.",
+            "smithy.api#required": {}
+          }
+        },
+        "individualRequestDetails": {
+          "target": "com.azure.databox#ServiceValidateInputsByResourceGroupRequestIndividualRequestDetailsList",
+          "traits": {
+            "smithy.api#documentation": "List of request details contain validationType and its request as key and value respectively.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#ServiceValidateInputsByResourceGroupRequestIndividualRequestDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#ValidationInputRequest"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of request details contain validationType and its request as key and value respectively."
+      }
+    },
+    "com.azure.databox#ValidationInputRequest": {
+      "type": "structure",
+      "members": {
+        "validationType": {
+          "target": "com.azure.databox#ValidationInputDiscriminator",
+          "traits": {
+            "smithy.api#documentation": "Identifies the type of validation request.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Minimum fields that must be present in any type of validation request."
+      }
+    },
+    "com.azure.databox#ServiceValidateInputsByResourceGroupRequestValidationCategory": {
+      "type": "enum",
+      "members": {
+        "JOBCREATIONVALIDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JobCreationValidation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identify the nature of validation."
+      }
+    },
+    "com.azure.databox#ServiceRegionConfigurationByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#ServiceRegionConfigurationByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#RegionConfigurationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/locations/{location}/regionConfiguration",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "This API provides configuration details specific to given region/location at Resource group level.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#RegionConfigurationResponse": {
+      "type": "structure",
+      "members": {
+        "scheduleAvailabilityResponse": {
+          "target": "com.azure.databox#ScheduleAvailabilityResponse",
+          "traits": {
+            "smithy.api#documentation": "Schedule availability for given sku in a region."
+          }
+        },
+        "transportAvailabilityResponse": {
+          "target": "com.azure.databox#TransportAvailabilityResponse",
+          "traits": {
+            "smithy.api#documentation": "Transport options available for given sku in a region."
+          }
+        },
+        "datacenterAddressResponse": {
+          "target": "com.azure.databox#DatacenterAddressResponse",
+          "traits": {
+            "smithy.api#documentation": "Datacenter address for given sku in a region."
+          }
+        },
+        "deviceCapabilityResponse": {
+          "target": "com.azure.databox#DeviceCapabilityResponse",
+          "traits": {
+            "smithy.api#documentation": "Device capabilities available for a given sku in a region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration response specific to a region."
+      }
+    },
+    "com.azure.databox#DeviceCapabilityResponse": {
+      "type": "structure",
+      "members": {
+        "deviceCapabilityDetails": {
+          "target": "com.azure.databox#DeviceCapabilityResponseDeviceCapabilityDetailsList",
+          "traits": {
+            "smithy.api#documentation": "List of device capabilities available for a given region and a given sku"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device capabilities for given sku in a region"
+      }
+    },
+    "com.azure.databox#DeviceCapabilityResponseDeviceCapabilityDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#DeviceCapabilityDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of device capabilities available for a given region and a given sku"
+      }
+    },
+    "com.azure.databox#DeviceCapabilityDetails": {
+      "type": "structure",
+      "members": {
+        "hardwareEncryption": {
+          "target": "com.azure.databox#HardwareEncryption",
+          "traits": {
+            "smithy.api#documentation": "Hardware encryption support for a given sku for a given region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device capability details for a given sku for a given region."
+      }
+    },
+    "com.azure.databox#HardwareEncryption": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Hardware encryption support for a given sku for a given region."
+      }
+    },
+    "com.azure.databox#DatacenterAddressResponse": {
+      "type": "structure",
+      "members": {
+        "datacenterAddressType": {
+          "target": "com.azure.databox#DatacenterAddressType",
+          "traits": {
+            "smithy.api#documentation": "Data center address type",
+            "smithy.api#required": {}
+          }
+        },
+        "supportedCarriersForReturnShipment": {
+          "target": "com.azure.databox#DatacenterAddressResponseSupportedCarriersForReturnShipmentList",
+          "traits": {
+            "smithy.api#documentation": "List of supported carriers for return shipment."
+          }
+        },
+        "dataCenterAzureLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Azure Location where the Data Center serves primarily."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Datacenter address for given storage location."
+      }
+    },
+    "com.azure.databox#DatacenterAddressResponseSupportedCarriersForReturnShipmentList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of supported carriers for return shipment."
+      }
+    },
+    "com.azure.databox#DatacenterAddressType": {
+      "type": "enum",
+      "members": {
+        "DATACENTERADDRESSLOCATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DatacenterAddressLocation"
+          }
+        },
+        "DATACENTERADDRESSINSTRUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DatacenterAddressInstruction"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Data center address type"
+      }
+    },
+    "com.azure.databox#TransportAvailabilityResponse": {
+      "type": "structure",
+      "members": {
+        "transportAvailabilityDetails": {
+          "target": "com.azure.databox#TransportAvailabilityResponseTransportAvailabilityDetailsList",
+          "traits": {
+            "smithy.api#documentation": "List of transport availability details for given region"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transport options available for given sku in a region."
+      }
+    },
+    "com.azure.databox#TransportAvailabilityResponseTransportAvailabilityDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#TransportAvailabilityDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of transport availability details for given region"
+      }
+    },
+    "com.azure.databox#TransportAvailabilityDetails": {
+      "type": "structure",
+      "members": {
+        "shipmentType": {
+          "target": "com.azure.databox#TransportShipmentTypes",
+          "traits": {
+            "smithy.api#documentation": "Transport Shipment Type supported for given region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transport options availability details for given region."
+      }
+    },
+    "com.azure.databox#TransportShipmentTypes": {
+      "type": "enum",
+      "members": {
+        "CUSTOMERMANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CustomerManaged"
+          }
+        },
+        "MICROSOFTMANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MicrosoftManaged"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Transport Shipment Type supported for given region."
+      }
+    },
+    "com.azure.databox#ScheduleAvailabilityResponse": {
+      "type": "structure",
+      "members": {
+        "availableDates": {
+          "target": "com.azure.databox#ScheduleAvailabilityResponseAvailableDatesList",
+          "traits": {
+            "smithy.api#documentation": "List of dates available to schedule"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Schedule availability for given sku in a region."
+      }
+    },
+    "com.azure.databox#ScheduleAvailabilityResponseAvailableDatesList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dates available to schedule"
+      }
+    },
+    "com.azure.databox#ServiceRegionConfigurationByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "scheduleAvailabilityRequest": {
+          "target": "com.azure.databox#ScheduleAvailabilityRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body to get the availability for scheduling orders."
+          }
+        },
+        "transportAvailabilityRequest": {
+          "target": "com.azure.databox#TransportAvailabilityRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body to get the transport availability for given sku."
+          }
+        },
+        "datacenterAddressRequest": {
+          "target": "com.azure.databox#DatacenterAddressRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body to get the datacenter address for given sku."
+          }
+        },
+        "deviceCapabilityRequest": {
+          "target": "com.azure.databox#DeviceCapabilityRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body to get the device capabilities for a given sku."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#DeviceCapabilityRequest": {
+      "type": "structure",
+      "members": {
+        "skuName": {
+          "target": "com.azure.databox#SkuName",
+          "traits": {
+            "smithy.api#documentation": "Type of the device."
+          }
+        },
+        "model": {
+          "target": "com.azure.databox#ModelName",
+          "traits": {
+            "smithy.api#documentation": "The customer friendly name of the combination of version and capacity of the device. This field is necessary only at the time of ordering the newer generation device i.e. AzureDataBox120 and AzureDataBox525 as of Feb/2025"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request body to get the device capabilities for given sku."
+      }
+    },
+    "com.azure.databox#ModelName": {
+      "type": "enum",
+      "members": {
+        "DATABOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBox"
+          }
+        },
+        "DATABOXDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBoxDisk"
+          }
+        },
+        "DATABOXHEAVY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBoxHeavy"
+          }
+        },
+        "DATABOXCUSTOMERDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBoxCustomerDisk"
+          }
+        },
+        "AZUREDATABOX120": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureDataBox120"
+          }
+        },
+        "AZUREDATABOX525": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureDataBox525"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The customer friendly name of the combination of version and capacity of the device. This field is necessary only at the time of ordering the newer generation device i.e. AzureDataBox120 and AzureDataBox525 as of Feb/2025"
+      }
+    },
+    "com.azure.databox#SkuName": {
+      "type": "enum",
+      "members": {
+        "DATABOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBox"
+          }
+        },
+        "DATABOXDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBoxDisk"
+          }
+        },
+        "DATABOXHEAVY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBoxHeavy"
+          }
+        },
+        "DATABOXCUSTOMERDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBoxCustomerDisk"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SKU names."
+      }
+    },
+    "com.azure.databox#DatacenterAddressRequest": {
+      "type": "structure",
+      "members": {
+        "storageLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Storage location. For locations check: https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01",
+            "smithy.api#required": {}
+          }
+        },
+        "skuName": {
+          "target": "com.azure.databox#SkuName",
+          "traits": {
+            "smithy.api#documentation": "Sku Name for which the data center address requested.",
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "com.azure.databox#ModelName",
+          "traits": {
+            "smithy.api#documentation": "The customer friendly name of the combination of version and capacity of the device. This field is necessary only at the time of ordering the newer generation device i.e. AzureDataBox120 and AzureDataBox525 as of Feb/2025"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request body to get the datacenter address."
+      }
+    },
+    "com.azure.databox#TransportAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "skuName": {
+          "target": "com.azure.databox#SkuName",
+          "traits": {
+            "smithy.api#documentation": "Type of the device."
+          }
+        },
+        "model": {
+          "target": "com.azure.databox#ModelName",
+          "traits": {
+            "smithy.api#documentation": "The customer friendly name of the combination of version and capacity of the device. This field is necessary only at the time of ordering the newer generation device i.e. AzureDataBox120 and AzureDataBox525 as of Feb/2025"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request body to get the transport availability for given sku."
+      }
+    },
+    "com.azure.databox#ScheduleAvailabilityRequest": {
+      "type": "structure",
+      "members": {
+        "storageLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location for data transfer. For locations check: https://management.azure.com/subscriptions/SUBSCRIPTIONID/locations?api-version=2018-01-01",
+            "smithy.api#required": {}
+          }
+        },
+        "skuName": {
+          "target": "com.azure.databox#SkuName",
+          "traits": {
+            "smithy.api#documentation": "Sku Name for which the order is to be scheduled.",
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country in which storage location should be supported."
+          }
+        },
+        "model": {
+          "target": "com.azure.databox#ModelName",
+          "traits": {
+            "smithy.api#documentation": "The customer friendly name of the combination of version and capacity of the device. This field is necessary only at the time of ordering the newer generation device i.e. AzureDataBox120 and AzureDataBox525 as of Feb/2025"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request body to get the availability for scheduling orders."
+      }
+    },
+    "com.azure.databox#ServiceListAvailableSkusByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#ServiceListAvailableSkusByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#AvailableSkusResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/locations/{location}/availableSkus",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "This method provides the list of available skus for the given subscription, resource group and location.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#AvailableSkusResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databox#AvailableSkusResultValueList",
+          "traits": {
+            "smithy.api#documentation": "[Placeholder] Description for page model",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "[Placeholder] Description for nextLink property"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The available skus operation response."
+      }
+    },
+    "com.azure.databox#AvailableSkusResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#SkuInformation"
+      },
+      "traits": {
+        "smithy.api#documentation": "[Placeholder] Description for page model"
+      }
+    },
+    "com.azure.databox#SkuInformation": {
+      "type": "structure",
+      "members": {
+        "sku": {
+          "target": "com.azure.databox#Sku",
+          "traits": {
+            "smithy.api#documentation": "The Sku."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The sku is enabled or not."
+          }
+        },
+        "properties": {
+          "target": "com.azure.databox#SkuProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of the sku."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information of the sku."
+      }
+    },
+    "com.azure.databox#SkuProperties": {
+      "type": "structure",
+      "members": {
+        "dataLocationToServiceLocationMap": {
+          "target": "com.azure.databox#SkuPropertiesDataLocationToServiceLocationMapList",
+          "traits": {
+            "smithy.api#documentation": "The map of data location to service location."
+          }
+        },
+        "capacity": {
+          "target": "com.azure.databox#SkuCapacity",
+          "traits": {
+            "smithy.api#documentation": "Capacity of the Sku."
+          }
+        },
+        "costs": {
+          "target": "com.azure.databox#SkuPropertiesCostsList",
+          "traits": {
+            "smithy.api#documentation": "Cost of the Sku."
+          }
+        },
+        "apiVersions": {
+          "target": "com.azure.databox#SkuPropertiesApiVersionsList",
+          "traits": {
+            "smithy.api#documentation": "Api versions that support this Sku."
+          }
+        },
+        "disabledReason": {
+          "target": "com.azure.databox#SkuDisabledReason",
+          "traits": {
+            "smithy.api#documentation": "Reason why the Sku is disabled."
+          }
+        },
+        "disabledReasonMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Message for why the Sku is disabled."
+          }
+        },
+        "requiredFeature": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required feature to access the sku."
+          }
+        },
+        "countriesWithinCommerceBoundary": {
+          "target": "com.azure.databox#SkuPropertiesCountriesWithinCommerceBoundaryList",
+          "traits": {
+            "smithy.api#documentation": "List of all the Countries in the SKU specific commerce boundary"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of the sku."
+      }
+    },
+    "com.azure.databox#SkuPropertiesCountriesWithinCommerceBoundaryList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of all the Countries in the SKU specific commerce boundary"
+      }
+    },
+    "com.azure.databox#SkuDisabledReason": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "COUNTRY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Country"
+          }
+        },
+        "REGION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Region"
+          }
+        },
+        "FEATURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Feature"
+          }
+        },
+        "OFFERTYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OfferType"
+          }
+        },
+        "NOSUBSCRIPTIONINFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NoSubscriptionInfo"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reason why the Sku is disabled."
+      }
+    },
+    "com.azure.databox#SkuPropertiesApiVersionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Api versions that support this Sku."
+      }
+    },
+    "com.azure.databox#SkuPropertiesCostsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#SkuCost"
+      },
+      "traits": {
+        "smithy.api#documentation": "Cost of the Sku."
+      }
+    },
+    "com.azure.databox#SkuCost": {
+      "type": "structure",
+      "members": {
+        "meterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Meter id of the Sku."
+          }
+        },
+        "meterType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the meter."
+          }
+        },
+        "multiplier": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Multiplier specifies the region specific value to be multiplied with 1$ guid. Eg: Our new regions will be using 1$ shipping guid with appropriate multiplier specific to region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes metadata for retrieving price info."
+      }
+    },
+    "com.azure.databox#SkuCapacity": {
+      "type": "structure",
+      "members": {
+        "usable": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Usable capacity in TB."
+          }
+        },
+        "maximum": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Maximum capacity in TB."
+          }
+        },
+        "individualSkuUsable": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Maximum capacity per device in TB."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Capacity of the sku."
+      }
+    },
+    "com.azure.databox#SkuPropertiesDataLocationToServiceLocationMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#DataLocationToServiceLocationMap"
+      },
+      "traits": {
+        "smithy.api#documentation": "The map of data location to service location."
+      }
+    },
+    "com.azure.databox#DataLocationToServiceLocationMap": {
+      "type": "structure",
+      "members": {
+        "dataLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the data."
+          }
+        },
+        "serviceLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Location of the service."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map of data location to service location"
+      }
+    },
+    "com.azure.databox#Sku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "com.azure.databox#SkuName",
+          "traits": {
+            "smithy.api#documentation": "The sku name.",
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the sku."
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The sku family."
+          }
+        },
+        "model": {
+          "target": "com.azure.databox#ModelName",
+          "traits": {
+            "smithy.api#documentation": "The customer friendly name of the combination of version and capacity of the device. This field is necessary only at the time of ordering the newer generation device i.e. AzureDataBox120 and AzureDataBox525 as of Feb/2025"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Sku."
+      }
+    },
+    "com.azure.databox#ServiceListAvailableSkusByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "transferType": {
+          "target": "com.azure.databox#TransferType",
+          "traits": {
+            "smithy.api#documentation": "Type of the transfer.",
+            "smithy.api#required": {}
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO country code. Country for hardware shipment. For codes check: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements",
+            "smithy.api#required": {}
+          }
+        },
+        "skuNames": {
+          "target": "com.azure.databox#ServiceListAvailableSkusByResourceGroupRequestSkuNamesList",
+          "traits": {
+            "smithy.api#documentation": "Sku Names to filter for available skus"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#ServiceListAvailableSkusByResourceGroupRequestSkuNamesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#SkuName"
+      },
+      "traits": {
+        "smithy.api#documentation": "Sku Names to filter for available skus"
+      }
+    },
+    "com.azure.databox#TransferType": {
+      "type": "enum",
+      "members": {
+        "IMPORTTOAZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ImportToAzure"
+          }
+        },
+        "EXPORTFROMAZURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ExportFromAzure"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the transfer."
+      }
+    },
+    "com.azure.databox#Mitigate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#MitigateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}/mitigate",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "Request to mitigate for a given job",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#MitigateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"
+          }
+        },
+        "customerResolutionCode": {
+          "target": "com.azure.databox#CustomerResolutionCode",
+          "traits": {
+            "smithy.api#documentation": "Resolution code for the job"
+          }
+        },
+        "serialNumberCustomerResolutionMap": {
+          "target": "com.azure.databox#MitigateRequestSerialNumberCustomerResolutionMapMap",
+          "traits": {
+            "smithy.api#documentation": "Serial number and the customer resolution code corresponding to each serial number"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#MitigateRequestSerialNumberCustomerResolutionMapMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.databox#CustomerResolutionCode"
+      },
+      "traits": {
+        "smithy.api#documentation": "Serial number and the customer resolution code corresponding to each serial number"
+      }
+    },
+    "com.azure.databox#CustomerResolutionCode": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "MOVETOCLEANUPDEVICE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MoveToCleanUpDevice"
+          }
+        },
+        "RESUME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resume"
+          }
+        },
+        "RESTART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Restart"
+          }
+        },
+        "REACHOUTTOOPERATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReachOutToOperation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resolution code provided by customer."
+      }
+    },
+    "com.azure.databox#JobsMarkDevicesShipped": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsMarkDevicesShippedRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}/markDevicesShipped",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "Request to mark devices for a given job as shipped",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#JobsMarkDevicesShippedRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"
+          }
+        },
+        "deliverToDcPackageDetails": {
+          "target": "com.azure.databox#PackageCarrierInfo",
+          "traits": {
+            "smithy.api#documentation": "Delivery package details",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#PackageCarrierInfo": {
+      "type": "structure",
+      "members": {
+        "carrierName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the carrier."
+          }
+        },
+        "trackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tracking Id of shipment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "package carrier info"
+      }
+    },
+    "com.azure.databox#JobsListCredentials": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsListCredentialsRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#UnencryptedCredentialsList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}/listCredentials",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "This method gets the unencrypted secrets related to the job.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#UnencryptedCredentialsList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databox#UnencryptedCredentialsListValueList",
+          "traits": {
+            "smithy.api#documentation": "The UnencryptedCredentials items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of unencrypted credentials for accessing device."
+      }
+    },
+    "com.azure.databox#UnencryptedCredentialsListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#UnencryptedCredentials"
+      },
+      "traits": {
+        "smithy.api#documentation": "The UnencryptedCredentials items on this page"
+      }
+    },
+    "com.azure.databox#UnencryptedCredentials": {
+      "type": "structure",
+      "members": {
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the job."
+          }
+        },
+        "jobSecrets": {
+          "target": "com.azure.databox#JobSecrets",
+          "traits": {
+            "smithy.api#documentation": "Secrets related to this job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Unencrypted credentials for accessing device."
+      }
+    },
+    "com.azure.databox#JobSecrets": {
+      "type": "structure",
+      "members": {
+        "jobSecretsType": {
+          "target": "com.azure.databox#ClassDiscriminator",
+          "traits": {
+            "smithy.api#documentation": "Used to indicate what type of job secrets object.",
+            "smithy.api#required": {}
+          }
+        },
+        "dcAccessSecurityCode": {
+          "target": "com.azure.databox#DcAccessSecurityCode",
+          "traits": {
+            "smithy.api#documentation": "Dc Access Security Code for Customer Managed Shipping"
+          }
+        },
+        "error": {
+          "target": "com.azure.databox#CloudError",
+          "traits": {
+            "smithy.api#documentation": "Error while fetching the secrets."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The base class for the secrets"
+      }
+    },
+    "com.azure.databox#DcAccessSecurityCode": {
+      "type": "structure",
+      "members": {
+        "reverseDCAccessCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reverse Dc access security code."
+          }
+        },
+        "forwardDCAccessCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Forward Dc access security code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Dc access security code"
+      }
+    },
+    "com.azure.databox#ClassDiscriminator": {
+      "type": "enum",
+      "members": {
+        "DATABOX": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBox"
+          }
+        },
+        "DATABOXDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBoxDisk"
+          }
+        },
+        "DATABOXHEAVY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBoxHeavy"
+          }
+        },
+        "DATABOXCUSTOMERDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataBoxCustomerDisk"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates the type of job details."
+      }
+    },
+    "com.azure.databox#JobsListCredentialsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#JobsCancel": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsCancelRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}/cancel",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "CancelJob.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#JobsCancelRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reason for cancellation.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#JobsBookShipmentPickUp": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsBookShipmentPickUpRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#ShipmentPickUpResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}/bookShipmentPickUp",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "Book shipment pick up.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#ShipmentPickUpResponse": {
+      "type": "structure",
+      "members": {
+        "confirmationNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Confirmation number for the pick up request."
+          }
+        },
+        "readyByTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time by which shipment should be ready for pick up, this is in local time of pick up area."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Shipment pick up response."
+      }
+    },
+    "com.azure.databox#JobsBookShipmentPickUpRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Minimum date after which the pick up should commence, this must be in local time of pick up area.",
+            "smithy.api#required": {}
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Maximum date before which the pick up should commence, this must be in local time of pick up area.",
+            "smithy.api#required": {}
+          }
+        },
+        "shipmentLocation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shipment Location in the pickup place. Eg.front desk",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#JobsDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "Deletes a job.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#JobsDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#JobsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#JobsUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "Updates the properties of an existing job.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#JobsUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databox#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databox#JobsUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databox#JobProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a job.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databox#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku type.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.databox#ResourceIdentity",
+          "traits": {
+            "smithy.api#documentation": "Msi identity of the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databox#ResourceIdentity": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identity type"
+          }
+        },
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service Principal Id backing the Msi"
+          }
+        },
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Home Tenant Id"
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databox#ResourceIdentityUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "User Assigned Identities"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Msi identity details of the resource"
+      }
+    },
+    "com.azure.databox#ResourceIdentityUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.databox#ResourceIdentityUserAssignedIdentitiesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "User Assigned Identities"
+      }
+    },
+    "com.azure.databox#ResourceIdentityUserAssignedIdentitiesValue": {
+      "type": "structure",
+      "members": {
+        "principalId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The principal ID of the assigned identity."
+          }
+        },
+        "clientId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The client ID of the assigned identity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.databox#JobProperties": {
+      "type": "structure",
+      "members": {
+        "transferType": {
+          "target": "com.azure.databox#TransferType",
+          "traits": {
+            "smithy.api#documentation": "Type of the data transfer.",
+            "smithy.api#required": {}
+          }
+        },
+        "isCancellable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Describes whether the job is cancellable or not."
+          }
+        },
+        "isDeletable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Describes whether the job is deletable or not."
+          }
+        },
+        "isShippingAddressEditable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Describes whether the shipping address is editable or not."
+          }
+        },
+        "reverseShippingDetailsUpdate": {
+          "target": "com.azure.databox#ReverseShippingDetailsEditStatus",
+          "traits": {
+            "smithy.api#documentation": "The Editable status for Reverse Shipping Address and Contact Info"
+          }
+        },
+        "reverseTransportPreferenceUpdate": {
+          "target": "com.azure.databox#ReverseTransportPreferenceEditStatus",
+          "traits": {
+            "smithy.api#documentation": "The Editable status for Reverse Transport preferences"
+          }
+        },
+        "isPrepareToShipEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Is Prepare To Ship Enabled on this job"
+          }
+        },
+        "status": {
+          "target": "com.azure.databox#StageName",
+          "traits": {
+            "smithy.api#documentation": "Name of the stage which is in progress."
+          }
+        },
+        "delayedStage": {
+          "target": "com.azure.databox#StageName",
+          "traits": {
+            "smithy.api#documentation": "Name of the stage where delay might be present."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time at which the job was started in UTC ISO 8601 format."
+          }
+        },
+        "error": {
+          "target": "com.azure.databox#CloudError",
+          "traits": {
+            "smithy.api#documentation": "Top level error for the job."
+          }
+        },
+        "details": {
+          "target": "com.azure.databox#JobDetails",
+          "traits": {
+            "smithy.api#documentation": "Details of a job run. This field will only be sent for expand details filter."
+          }
+        },
+        "cancellationReason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reason for cancellation."
+          }
+        },
+        "deliveryType": {
+          "target": "com.azure.databox#JobPropertiesDeliveryType",
+          "traits": {
+            "smithy.api#documentation": "Delivery type of Job."
+          }
+        },
+        "deliveryInfo": {
+          "target": "com.azure.databox#JobDeliveryInfo",
+          "traits": {
+            "smithy.api#documentation": "Delivery Info of Job."
+          }
+        },
+        "isCancellableWithoutFee": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to indicate cancellation of scheduled job."
+          }
+        },
+        "allDevicesLost": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to indicate if all devices associated with the job are lost."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job Properties"
+      }
+    },
+    "com.azure.databox#JobDeliveryInfo": {
+      "type": "structure",
+      "members": {
+        "scheduledDateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scheduled date time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional delivery info."
+      }
+    },
+    "com.azure.databox#JobPropertiesDeliveryType": {
+      "type": "enum",
+      "members": {
+        "NONSCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NonScheduled"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Scheduled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Delivery type of Job."
+      }
+    },
+    "com.azure.databox#JobDetails": {
+      "type": "structure",
+      "members": {
+        "jobStages": {
+          "target": "com.azure.databox#JobDetailsJobStagesList",
+          "traits": {
+            "smithy.api#documentation": "List of stages that run in the job."
+          }
+        },
+        "contactDetails": {
+          "target": "com.azure.databox#ContactDetails",
+          "traits": {
+            "smithy.api#documentation": "Contact details for notification and shipping.",
+            "smithy.api#required": {}
+          }
+        },
+        "shippingAddress": {
+          "target": "com.azure.databox#ShippingAddress",
+          "traits": {
+            "smithy.api#documentation": "Shipping address of the customer."
+          }
+        },
+        "deliveryPackage": {
+          "target": "com.azure.databox#PackageShippingDetails",
+          "traits": {
+            "smithy.api#documentation": "Delivery package shipping details."
+          }
+        },
+        "returnPackage": {
+          "target": "com.azure.databox#PackageShippingDetails",
+          "traits": {
+            "smithy.api#documentation": "Return package shipping details."
+          }
+        },
+        "dataImportDetails": {
+          "target": "com.azure.databox#JobDetailsDataImportDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Details of the data to be imported into azure."
+          }
+        },
+        "dataExportDetails": {
+          "target": "com.azure.databox#JobDetailsDataExportDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Details of the data to be exported from azure."
+          }
+        },
+        "jobDetailsType": {
+          "target": "com.azure.databox#ClassDiscriminator",
+          "traits": {
+            "smithy.api#documentation": "Indicates the type of job details.",
+            "smithy.api#required": {}
+          }
+        },
+        "preferences": {
+          "target": "com.azure.databox#Preferences",
+          "traits": {
+            "smithy.api#documentation": "Preferences for the order."
+          }
+        },
+        "reverseShippingDetails": {
+          "target": "com.azure.databox#ReverseShippingDetails",
+          "traits": {
+            "smithy.api#documentation": "Optional Reverse Shipping details for order."
+          }
+        },
+        "copyLogDetails": {
+          "target": "com.azure.databox#JobDetailsCopyLogDetailsList",
+          "traits": {
+            "smithy.api#documentation": "List of copy log details."
+          }
+        },
+        "reverseShipmentLabelSasKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shared access key to download the return shipment label"
+          }
+        },
+        "chainOfCustodySasKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shared access key to download the chain of custody logs"
+          }
+        },
+        "deviceErasureDetails": {
+          "target": "com.azure.databox#DeviceErasureDetails",
+          "traits": {
+            "smithy.api#documentation": "Holds device data erasure details"
+          }
+        },
+        "keyEncryptionKey": {
+          "target": "com.azure.databox#KeyEncryptionKey",
+          "traits": {
+            "smithy.api#documentation": "Details about which key encryption type is being used."
+          }
+        },
+        "expectedDataSizeInTeraBytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The expected size of the data, which needs to be transferred in this job, in terabytes."
+          }
+        },
+        "actions": {
+          "target": "com.azure.databox#JobDetailsActionsList",
+          "traits": {
+            "smithy.api#documentation": "Available actions on the job."
+          }
+        },
+        "lastMitigationActionOnJob": {
+          "target": "com.azure.databox#LastMitigationActionOnJob",
+          "traits": {
+            "smithy.api#documentation": "Last mitigation action performed on the job."
+          }
+        },
+        "datacenterAddress": {
+          "target": "com.azure.databox#DatacenterAddressResponse",
+          "traits": {
+            "smithy.api#documentation": "Datacenter address to ship to, for the given sku and storage location."
+          }
+        },
+        "dataCenterCode": {
+          "target": "com.azure.databox#DataCenterCode",
+          "traits": {
+            "smithy.api#documentation": "DataCenter code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job details."
+      }
+    },
+    "com.azure.databox#DataCenterCode": {
+      "type": "enum",
+      "members": {
+        "INVALID": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Invalid"
+          }
+        },
+        "BY2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY2"
+          }
+        },
+        "BY1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY1"
+          }
+        },
+        "ORK70": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ORK70"
+          }
+        },
+        "AM2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AM2"
+          }
+        },
+        "AMS20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMS20"
+          }
+        },
+        "BY21": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY21"
+          }
+        },
+        "BY24": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BY24"
+          }
+        },
+        "MWH01": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MWH01"
+          }
+        },
+        "AMS06": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMS06"
+          }
+        },
+        "SSE90": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSE90"
+          }
+        },
+        "SYD03": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYD03"
+          }
+        },
+        "SYD23": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SYD23"
+          }
+        },
+        "CBR20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CBR20"
+          }
+        },
+        "YTO20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YTO20"
+          }
+        },
+        "CWL20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CWL20"
+          }
+        },
+        "LON24": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LON24"
+          }
+        },
+        "BOM01": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BOM01"
+          }
+        },
+        "BL20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BL20"
+          }
+        },
+        "BL7": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BL7"
+          }
+        },
+        "SEL20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEL20"
+          }
+        },
+        "TYO01": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYO01"
+          }
+        },
+        "BN1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BN1"
+          }
+        },
+        "SN5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SN5"
+          }
+        },
+        "CYS04": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CYS04"
+          }
+        },
+        "TYO22": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYO22"
+          }
+        },
+        "YTO21": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YTO21"
+          }
+        },
+        "YQB20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "YQB20"
+          }
+        },
+        "FRA22": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRA22"
+          }
+        },
+        "MAA01": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MAA01"
+          }
+        },
+        "CPQ02": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CPQ02"
+          }
+        },
+        "CPQ20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CPQ20"
+          }
+        },
+        "SIN20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SIN20"
+          }
+        },
+        "HKG20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HKG20"
+          }
+        },
+        "SG2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SG2"
+          }
+        },
+        "MEL23": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEL23"
+          }
+        },
+        "SEL21": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEL21"
+          }
+        },
+        "OSA20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OSA20"
+          }
+        },
+        "SHA03": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SHA03"
+          }
+        },
+        "BJB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BJB"
+          }
+        },
+        "JNB22": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JNB22"
+          }
+        },
+        "JNB21": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JNB21"
+          }
+        },
+        "MNZ21": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MNZ21"
+          }
+        },
+        "SN8": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SN8"
+          }
+        },
+        "AUH20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUH20"
+          }
+        },
+        "ZRH20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ZRH20"
+          }
+        },
+        "PUS20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUS20"
+          }
+        },
+        "ADHOC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AdHoc"
+          }
+        },
+        "CH1": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CH1"
+          }
+        },
+        "DSM05": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DSM05"
+          }
+        },
+        "DUB07": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DUB07"
+          }
+        },
+        "PNQ01": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PNQ01"
+          }
+        },
+        "SVG20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SVG20"
+          }
+        },
+        "OSA02": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OSA02"
+          }
+        },
+        "OSA22": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OSA22"
+          }
+        },
+        "PAR22": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PAR22"
+          }
+        },
+        "BN7": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BN7"
+          }
+        },
+        "SN6": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SN6"
+          }
+        },
+        "BJS20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BJS20"
+          }
+        },
+        "BL24": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BL24"
+          }
+        },
+        "IDC5": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "IDC5"
+          }
+        },
+        "TYO23": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYO23"
+          }
+        },
+        "NTG20": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NTG20"
+          }
+        },
+        "DXB23": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DXB23"
+          }
+        },
+        "DSM11": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DSM11"
+          }
+        },
+        "AMS25": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AMS25"
+          }
+        },
+        "CPQ21": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CPQ21"
+          }
+        },
+        "OSA23": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OSA23"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "DataCenter code."
+      }
+    },
+    "com.azure.databox#LastMitigationActionOnJob": {
+      "type": "structure",
+      "members": {
+        "actionDateTimeInUtc": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Action performed date time"
+          }
+        },
+        "isPerformedByCustomer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Action performed by customer,\npossibility is that mitigation might happen by customer or service or by ops"
+          }
+        },
+        "customerResolution": {
+          "target": "com.azure.databox#CustomerResolutionCode",
+          "traits": {
+            "smithy.api#documentation": "Resolution code provided by customer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Last Mitigation Action Performed On Job"
+      }
+    },
+    "com.azure.databox#JobDetailsActionsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#CustomerResolutionCode"
+      },
+      "traits": {
+        "smithy.api#documentation": "Available actions on the job."
+      }
+    },
+    "com.azure.databox#KeyEncryptionKey": {
+      "type": "structure",
+      "members": {
+        "kekType": {
+          "target": "com.azure.databox#KeyEncryptionKeyKekType",
+          "traits": {
+            "smithy.api#documentation": "Type of encryption key used for key encryption.",
+            "smithy.api#required": {}
+          }
+        },
+        "identityProperties": {
+          "target": "com.azure.databox#IdentityProperties",
+          "traits": {
+            "smithy.api#documentation": "Managed identity properties used for key encryption."
+          }
+        },
+        "kekUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key encryption key. It is required in case of Customer managed KekType."
+          }
+        },
+        "kekVaultResourceID": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Kek vault resource id. It is required in case of Customer managed KekType."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encryption key containing details about key to encrypt different keys."
+      }
+    },
+    "com.azure.databox#IdentityProperties": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Managed service identity type."
+          }
+        },
+        "userAssigned": {
+          "target": "com.azure.databox#UserAssignedProperties",
+          "traits": {
+            "smithy.api#documentation": "User assigned identity properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Managed identity properties."
+      }
+    },
+    "com.azure.databox#UserAssignedProperties": {
+      "type": "structure",
+      "members": {
+        "resourceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Arm resource id for user assigned identity to be used to fetch MSI token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties."
+      }
+    },
+    "com.azure.databox#KeyEncryptionKeyKekType": {
+      "type": "enum",
+      "members": {
+        "MICROSOFTMANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MicrosoftManaged"
+          }
+        },
+        "CUSTOMERMANAGED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CustomerManaged"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of encryption key used for key encryption."
+      }
+    },
+    "com.azure.databox#DeviceErasureDetails": {
+      "type": "structure",
+      "members": {
+        "deviceErasureStatus": {
+          "target": "com.azure.databox#StageStatus",
+          "traits": {
+            "smithy.api#documentation": "Holds the device erasure completion status"
+          }
+        },
+        "erasureOrDestructionCertificateSasKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shared access key to download cleanup or destruction certificate for device"
+          }
+        },
+        "secureErasureCertificateSasKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shared access key to download secure erasure certificate for the device"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Device erasure details with erasure completion status, secure erasure sas key and erasureordestructionlog sas key"
+      }
+    },
+    "com.azure.databox#StageStatus": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "INPROGRESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InProgress"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "CANCELLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelling"
+          }
+        },
+        "SUCCEEDEDWITHERRORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SucceededWithErrors"
+          }
+        },
+        "WAITINGFORCUSTOMERACTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WaitingForCustomerAction"
+          }
+        },
+        "SUCCEEDEDWITHWARNINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SucceededWithWarnings"
+          }
+        },
+        "WAITINGFORCUSTOMERACTIONFORKEK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WaitingForCustomerActionForKek"
+          }
+        },
+        "WAITINGFORCUSTOMERACTIONFORCLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WaitingForCustomerActionForCleanUp"
+          }
+        },
+        "CUSTOMERACTIONPERFORMEDFORCLEANUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CustomerActionPerformedForCleanUp"
+          }
+        },
+        "CUSTOMERACTIONPERFORMED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CustomerActionPerformed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Holds the device erasure completion status"
+      }
+    },
+    "com.azure.databox#JobDetailsCopyLogDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#CopyLogDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of copy log details."
+      }
+    },
+    "com.azure.databox#CopyLogDetails": {
+      "type": "structure",
+      "members": {
+        "copyLogDetailsType": {
+          "target": "com.azure.databox#ClassDiscriminator",
+          "traits": {
+            "smithy.api#documentation": "Indicates the type of job details.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details for log generated during copy."
+      }
+    },
+    "com.azure.databox#ReverseShippingDetails": {
+      "type": "structure",
+      "members": {
+        "contactDetails": {
+          "target": "com.azure.databox#ContactInfo",
+          "traits": {
+            "smithy.api#documentation": "Contact Info."
+          }
+        },
+        "shippingAddress": {
+          "target": "com.azure.databox#ShippingAddress",
+          "traits": {
+            "smithy.api#documentation": "Shipping address where customer wishes to receive the device."
+          }
+        },
+        "isUpdated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "A flag to indicate whether Reverse Shipping details are updated or not after device has been prepared.\nRead only field"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reverse Shipping Address and contact details for a job."
+      }
+    },
+    "com.azure.databox#ShippingAddress": {
+      "type": "structure",
+      "members": {
+        "streetAddress1": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Street Address line 1.",
+            "smithy.api#required": {}
+          }
+        },
+        "streetAddress2": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Street Address line 2."
+          }
+        },
+        "streetAddress3": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Street Address line 3."
+          }
+        },
+        "city": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the City."
+          }
+        },
+        "stateOrProvince": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the State or Province."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the Country.",
+            "smithy.api#required": {}
+          }
+        },
+        "postalCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Postal code."
+          }
+        },
+        "zipExtendedCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Extended Zip Code."
+          }
+        },
+        "companyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the company."
+          }
+        },
+        "addressType": {
+          "target": "com.azure.databox#ShippingAddressAddressType",
+          "traits": {
+            "smithy.api#documentation": "Type of address."
+          }
+        },
+        "skipAddressValidation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag to indicate if customer has chosen to skip default address validation"
+          }
+        },
+        "taxIdentificationNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tax Identification Number"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Shipping address where customer wishes to receive the device."
+      }
+    },
+    "com.azure.databox#ShippingAddressAddressType": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "None"
+          }
+        },
+        "RESIDENTIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Residential"
+          }
+        },
+        "COMMERCIAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Commercial"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of address."
+      }
+    },
+    "com.azure.databox#ContactInfo": {
+      "type": "structure",
+      "members": {
+        "contactName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact name of the person.",
+            "smithy.api#required": {}
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone number of the contact person.",
+            "smithy.api#required": {}
+          }
+        },
+        "phoneExtension": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone extension number of the contact person."
+          }
+        },
+        "mobile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mobile number of the contact person."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contact Info."
+      }
+    },
+    "com.azure.databox#Preferences": {
+      "type": "structure",
+      "members": {
+        "preferredDataCenterRegion": {
+          "target": "com.azure.databox#PreferencesPreferredDataCenterRegionList",
+          "traits": {
+            "smithy.api#documentation": "Preferred data center region."
+          }
+        },
+        "transportPreferences": {
+          "target": "com.azure.databox#TransportPreferences",
+          "traits": {
+            "smithy.api#documentation": "Preferences related to the shipment logistics of the sku."
+          }
+        },
+        "reverseTransportPreferences": {
+          "target": "com.azure.databox#TransportPreferences",
+          "traits": {
+            "smithy.api#documentation": "Optional Preferences related to the reverse shipment logistics of the sku."
+          }
+        },
+        "encryptionPreferences": {
+          "target": "com.azure.databox#EncryptionPreferences",
+          "traits": {
+            "smithy.api#documentation": "Preferences related to the Encryption."
+          }
+        },
+        "storageAccountAccessTierPreferences": {
+          "target": "com.azure.databox#PreferencesStorageAccountAccessTierPreferencesList",
+          "traits": {
+            "smithy.api#documentation": "Preferences related to the Access Tier of storage accounts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Preferences related to the order"
+      }
+    },
+    "com.azure.databox#PreferencesStorageAccountAccessTierPreferencesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#PreferencesStorageAccountAccessTierPreferencesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Preferences related to the Access Tier of storage accounts."
+      }
+    },
+    "com.azure.databox#PreferencesStorageAccountAccessTierPreferencesItem": {
+      "type": "enum",
+      "members": {
+        "ARCHIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Archive"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.databox#EncryptionPreferences": {
+      "type": "structure",
+      "members": {
+        "doubleEncryption": {
+          "target": "com.azure.databox#EncryptionPreferencesDoubleEncryption",
+          "traits": {
+            "smithy.api#documentation": "Defines secondary layer of software-based encryption enablement."
+          }
+        },
+        "hardwareEncryption": {
+          "target": "com.azure.databox#HardwareEncryption",
+          "traits": {
+            "smithy.api#documentation": "Defines Hardware level encryption (Only for disk)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Preferences related to the Encryption."
+      }
+    },
+    "com.azure.databox#EncryptionPreferencesDoubleEncryption": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines secondary layer of software-based encryption enablement."
+      }
+    },
+    "com.azure.databox#TransportPreferences": {
+      "type": "structure",
+      "members": {
+        "preferredShipmentType": {
+          "target": "com.azure.databox#TransportShipmentTypes",
+          "traits": {
+            "smithy.api#documentation": "Indicates Shipment Logistics type that the customer preferred.",
+            "smithy.api#required": {}
+          }
+        },
+        "isUpdated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Read only property which indicates whether transport preferences has been updated or not after device is prepared."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Preferences related to the shipment logistics of the sku"
+      }
+    },
+    "com.azure.databox#PreferencesPreferredDataCenterRegionList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Preferred data center region."
+      }
+    },
+    "com.azure.databox#JobDetailsDataExportDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#DataExportDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the data to be exported from azure."
+      }
+    },
+    "com.azure.databox#DataExportDetails": {
+      "type": "structure",
+      "members": {
+        "transferConfiguration": {
+          "target": "com.azure.databox#TransferConfiguration",
+          "traits": {
+            "smithy.api#documentation": "Configuration for the data transfer.",
+            "smithy.api#required": {}
+          }
+        },
+        "logCollectionLevel": {
+          "target": "com.azure.databox#DataExportDetailsLogCollectionLevel",
+          "traits": {
+            "smithy.api#documentation": "Level of the logs to be collected."
+          }
+        },
+        "accountDetails": {
+          "target": "com.azure.databox#DataAccountDetails",
+          "traits": {
+            "smithy.api#documentation": "Account details of the data to be transferred",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the data to be used for exporting data from azure."
+      }
+    },
+    "com.azure.databox#DataAccountDetails": {
+      "type": "structure",
+      "members": {
+        "dataAccountType": {
+          "target": "com.azure.databox#DataAccountDetailsDataAccountType",
+          "traits": {
+            "smithy.api#documentation": "Account Type of the data to be transferred.",
+            "smithy.api#required": {}
+          }
+        },
+        "sharePassword": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Password for all the shares to be created on the device. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\\-$%^!+=;:_()]+",
+            "smithy.api#sensitive": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Account details of the data to be transferred"
+      }
+    },
+    "com.azure.databox#DataAccountDetailsDataAccountType": {
+      "type": "enum",
+      "members": {
+        "STORAGEACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "StorageAccount"
+          }
+        },
+        "MANAGEDDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedDisk"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Account Type of the data to be transferred."
+      }
+    },
+    "com.azure.databox#DataExportDetailsLogCollectionLevel": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Error"
+          }
+        },
+        "VERBOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Verbose"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Level of the logs to be collected."
+      }
+    },
+    "com.azure.databox#TransferConfiguration": {
+      "type": "structure",
+      "members": {
+        "transferConfigurationType": {
+          "target": "com.azure.databox#TransferConfigurationType",
+          "traits": {
+            "smithy.api#documentation": "Type of the configuration for transfer.",
+            "smithy.api#required": {}
+          }
+        },
+        "transferFilterDetails": {
+          "target": "com.azure.databox#TransferConfigurationTransferFilterDetails",
+          "traits": {
+            "smithy.api#documentation": "Map of filter type and the details to filter. This field is required only if the TransferConfigurationType is given as TransferUsingFilter."
+          }
+        },
+        "transferAllDetails": {
+          "target": "com.azure.databox#TransferConfigurationTransferAllDetails",
+          "traits": {
+            "smithy.api#documentation": "Map of filter type and the details to transfer all data. This field is required only if the TransferConfigurationType is given as TransferAll"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Configuration for defining the transfer of data."
+      }
+    },
+    "com.azure.databox#TransferConfigurationTransferAllDetails": {
+      "type": "structure",
+      "members": {
+        "include": {
+          "target": "com.azure.databox#TransferAllDetails",
+          "traits": {
+            "smithy.api#documentation": "Details to transfer all data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map of filter type and the details to transfer all data. This field is required only if the TransferConfigurationType is given as TransferAll"
+      }
+    },
+    "com.azure.databox#TransferAllDetails": {
+      "type": "structure",
+      "members": {
+        "dataAccountType": {
+          "target": "com.azure.databox#TransferAllDetailsDataAccountType",
+          "traits": {
+            "smithy.api#documentation": "Type of the account of data",
+            "smithy.api#required": {}
+          }
+        },
+        "transferAllBlobs": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To indicate if all Azure blobs have to be transferred"
+          }
+        },
+        "transferAllFiles": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "To indicate if all Azure Files have to be transferred"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details to transfer all data."
+      }
+    },
+    "com.azure.databox#TransferAllDetailsDataAccountType": {
+      "type": "enum",
+      "members": {
+        "STORAGEACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "StorageAccount"
+          }
+        },
+        "MANAGEDDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedDisk"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the account of data"
+      }
+    },
+    "com.azure.databox#TransferConfigurationTransferFilterDetails": {
+      "type": "structure",
+      "members": {
+        "include": {
+          "target": "com.azure.databox#TransferFilterDetails",
+          "traits": {
+            "smithy.api#documentation": "Details of the filtering the transfer of data."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Map of filter type and the details to filter. This field is required only if the TransferConfigurationType is given as TransferUsingFilter."
+      }
+    },
+    "com.azure.databox#TransferFilterDetails": {
+      "type": "structure",
+      "members": {
+        "dataAccountType": {
+          "target": "com.azure.databox#TransferFilterDetailsDataAccountType",
+          "traits": {
+            "smithy.api#documentation": "Type of the account of data.",
+            "smithy.api#required": {}
+          }
+        },
+        "blobFilterDetails": {
+          "target": "com.azure.databox#BlobFilterDetails",
+          "traits": {
+            "smithy.api#documentation": "Filter details to transfer blobs."
+          }
+        },
+        "azureFileFilterDetails": {
+          "target": "com.azure.databox#AzureFileFilterDetails",
+          "traits": {
+            "smithy.api#documentation": "Filter details to transfer Azure files."
+          }
+        },
+        "filterFileDetails": {
+          "target": "com.azure.databox#TransferFilterDetailsFilterFileDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Details of the filter files to be used for data transfer."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the filtering the transfer of data."
+      }
+    },
+    "com.azure.databox#TransferFilterDetailsFilterFileDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#FilterFileDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the filter files to be used for data transfer."
+      }
+    },
+    "com.azure.databox#FilterFileDetails": {
+      "type": "structure",
+      "members": {
+        "filterFileType": {
+          "target": "com.azure.databox#FilterFileType",
+          "traits": {
+            "smithy.api#documentation": "Type of the filter file.",
+            "smithy.api#required": {}
+          }
+        },
+        "filterFilePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Path of the file that contains the details of all items to transfer.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the filter files to be used for data transfer."
+      }
+    },
+    "com.azure.databox#FilterFileType": {
+      "type": "enum",
+      "members": {
+        "AZUREBLOB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureBlob"
+          }
+        },
+        "AZUREFILE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AzureFile"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the filter file."
+      }
+    },
+    "com.azure.databox#AzureFileFilterDetails": {
+      "type": "structure",
+      "members": {
+        "filePrefixList": {
+          "target": "com.azure.databox#AzureFileFilterDetailsFilePrefixListList",
+          "traits": {
+            "smithy.api#documentation": "Prefix list of the Azure files to be transferred."
+          }
+        },
+        "filePathList": {
+          "target": "com.azure.databox#AzureFileFilterDetailsFilePathListList",
+          "traits": {
+            "smithy.api#documentation": "List of full path of the files to be transferred."
+          }
+        },
+        "fileShareList": {
+          "target": "com.azure.databox#AzureFileFilterDetailsFileShareListList",
+          "traits": {
+            "smithy.api#documentation": "List of file shares to be transferred."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter details to transfer Azure files"
+      }
+    },
+    "com.azure.databox#AzureFileFilterDetailsFileShareListList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of file shares to be transferred."
+      }
+    },
+    "com.azure.databox#AzureFileFilterDetailsFilePathListList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of full path of the files to be transferred."
+      }
+    },
+    "com.azure.databox#AzureFileFilterDetailsFilePrefixListList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Prefix list of the Azure files to be transferred."
+      }
+    },
+    "com.azure.databox#BlobFilterDetails": {
+      "type": "structure",
+      "members": {
+        "blobPrefixList": {
+          "target": "com.azure.databox#BlobFilterDetailsBlobPrefixListList",
+          "traits": {
+            "smithy.api#documentation": "Prefix list of the Azure blobs to be transferred."
+          }
+        },
+        "blobPathList": {
+          "target": "com.azure.databox#BlobFilterDetailsBlobPathListList",
+          "traits": {
+            "smithy.api#documentation": "List of full path of the blobs to be transferred."
+          }
+        },
+        "containerList": {
+          "target": "com.azure.databox#BlobFilterDetailsContainerListList",
+          "traits": {
+            "smithy.api#documentation": "List of blob containers to be transferred."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter details to transfer Azure Blobs"
+      }
+    },
+    "com.azure.databox#BlobFilterDetailsContainerListList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of blob containers to be transferred."
+      }
+    },
+    "com.azure.databox#BlobFilterDetailsBlobPathListList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of full path of the blobs to be transferred."
+      }
+    },
+    "com.azure.databox#BlobFilterDetailsBlobPrefixListList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Prefix list of the Azure blobs to be transferred."
+      }
+    },
+    "com.azure.databox#TransferFilterDetailsDataAccountType": {
+      "type": "enum",
+      "members": {
+        "STORAGEACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "StorageAccount"
+          }
+        },
+        "MANAGEDDISK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedDisk"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the account of data."
+      }
+    },
+    "com.azure.databox#TransferConfigurationType": {
+      "type": "enum",
+      "members": {
+        "TRANSFERALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TransferAll"
+          }
+        },
+        "TRANSFERUSINGFILTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TransferUsingFilter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Type of the configuration for transfer."
+      }
+    },
+    "com.azure.databox#JobDetailsDataImportDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#DataImportDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the data to be imported into azure."
+      }
+    },
+    "com.azure.databox#DataImportDetails": {
+      "type": "structure",
+      "members": {
+        "accountDetails": {
+          "target": "com.azure.databox#DataAccountDetails",
+          "traits": {
+            "smithy.api#documentation": "Account details of the data to be transferred",
+            "smithy.api#required": {}
+          }
+        },
+        "logCollectionLevel": {
+          "target": "com.azure.databox#DataImportDetailsLogCollectionLevel",
+          "traits": {
+            "smithy.api#documentation": "Level of the logs to be collected."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the data to be used for importing data to azure."
+      }
+    },
+    "com.azure.databox#DataImportDetailsLogCollectionLevel": {
+      "type": "enum",
+      "members": {
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Error"
+          }
+        },
+        "VERBOSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Verbose"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Level of the logs to be collected."
+      }
+    },
+    "com.azure.databox#PackageShippingDetails": {
+      "type": "structure",
+      "members": {
+        "trackingUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url where shipment can be tracked."
+          }
+        },
+        "carrierName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the carrier."
+          }
+        },
+        "trackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tracking Id of shipment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "package shipping details"
+      }
+    },
+    "com.azure.databox#ContactDetails": {
+      "type": "structure",
+      "members": {
+        "contactName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Contact name of the person.",
+            "smithy.api#required": {}
+          }
+        },
+        "phone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone number of the contact person.",
+            "smithy.api#required": {}
+          }
+        },
+        "phoneExtension": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Phone extension number of the contact person."
+          }
+        },
+        "mobile": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Mobile number of the contact person."
+          }
+        },
+        "emailList": {
+          "target": "com.azure.databox#ContactDetailsEmailListList",
+          "traits": {
+            "smithy.api#documentation": "List of Email-ids to be notified about job progress.",
+            "smithy.api#required": {}
+          }
+        },
+        "notificationPreference": {
+          "target": "com.azure.databox#ContactDetailsNotificationPreferenceList",
+          "traits": {
+            "smithy.api#documentation": "Notification preference for a job stage."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Contact Details."
+      }
+    },
+    "com.azure.databox#ContactDetailsNotificationPreferenceList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#NotificationPreference"
+      },
+      "traits": {
+        "smithy.api#documentation": "Notification preference for a job stage."
+      }
+    },
+    "com.azure.databox#NotificationPreference": {
+      "type": "structure",
+      "members": {
+        "stageName": {
+          "target": "com.azure.databox#NotificationStageName",
+          "traits": {
+            "smithy.api#documentation": "Name of the stage.",
+            "smithy.api#required": {}
+          }
+        },
+        "sendNotification": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Notification is required or not.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Notification preference for a job stage."
+      }
+    },
+    "com.azure.databox#NotificationStageName": {
+      "type": "enum",
+      "members": {
+        "DEVICEPREPARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DevicePrepared"
+          }
+        },
+        "DISPATCHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Dispatched"
+          }
+        },
+        "DELIVERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Delivered"
+          }
+        },
+        "PICKEDUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PickedUp"
+          }
+        },
+        "ATAZUREDC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AtAzureDC"
+          }
+        },
+        "DATACOPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataCopy"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Created"
+          }
+        },
+        "SHIPPEDTOCUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ShippedToCustomer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the stage."
+      }
+    },
+    "com.azure.databox#ContactDetailsEmailListList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of Email-ids to be notified about job progress."
+      }
+    },
+    "com.azure.databox#JobDetailsJobStagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#JobStages"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of stages that run in the job."
+      }
+    },
+    "com.azure.databox#JobStages": {
+      "type": "structure",
+      "members": {
+        "stageName": {
+          "target": "com.azure.databox#StageName",
+          "traits": {
+            "smithy.api#documentation": "Name of the job stage."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Display name of the job stage."
+          }
+        },
+        "stageStatus": {
+          "target": "com.azure.databox#StageStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of the job stage."
+          }
+        },
+        "stageTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time for the job stage in UTC ISO 8601 format."
+          }
+        },
+        "jobStageDetails": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Job Stage Details"
+          }
+        },
+        "delayInformation": {
+          "target": "com.azure.databox#JobStagesDelayInformationList",
+          "traits": {
+            "smithy.api#documentation": "Delay information for the job stages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job stages."
+      }
+    },
+    "com.azure.databox#JobStagesDelayInformationList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#JobDelayDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "Delay information for the job stages."
+      }
+    },
+    "com.azure.databox#JobDelayDetails": {
+      "type": "structure",
+      "members": {
+        "status": {
+          "target": "com.azure.databox#DelayNotificationStatus",
+          "traits": {
+            "smithy.api#documentation": "Status of notification"
+          }
+        },
+        "errorCode": {
+          "target": "com.azure.databox#PortalDelayErrorCode",
+          "traits": {
+            "smithy.api#documentation": "Delay Error code"
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the delay."
+          }
+        },
+        "startTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the delay notification was created."
+          }
+        },
+        "resolutionTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp when the delay notification was resolved."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job Delay Notification details"
+      }
+    },
+    "com.azure.databox#PortalDelayErrorCode": {
+      "type": "enum",
+      "members": {
+        "INTERNALISSUEDELAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "InternalIssueDelay"
+          }
+        },
+        "ACTIVEORDERLIMITBREACHEDDELAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ActiveOrderLimitBreachedDelay"
+          }
+        },
+        "HIGHDEMANDDELAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "HighDemandDelay"
+          }
+        },
+        "LARGENUMBEROFFILESDELAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LargeNumberOfFilesDelay"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Delay Error code"
+      }
+    },
+    "com.azure.databox#DelayNotificationStatus": {
+      "type": "enum",
+      "members": {
+        "ACTIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Active"
+          }
+        },
+        "RESOLVED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Resolved"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Status of notification"
+      }
+    },
+    "com.azure.databox#StageName": {
+      "type": "enum",
+      "members": {
+        "DEVICEORDERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DeviceOrdered"
+          }
+        },
+        "DEVICEPREPARED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DevicePrepared"
+          }
+        },
+        "DISPATCHED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Dispatched"
+          }
+        },
+        "DELIVERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Delivered"
+          }
+        },
+        "PICKEDUP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PickedUp"
+          }
+        },
+        "ATAZUREDC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AtAzureDC"
+          }
+        },
+        "DATACOPY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DataCopy"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        },
+        "COMPLETEDWITHERRORS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CompletedWithErrors"
+          }
+        },
+        "CANCELLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Cancelled"
+          }
+        },
+        "FAILED_ISSUEREPORTEDATCUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed_IssueReportedAtCustomer"
+          }
+        },
+        "FAILED_ISSUEDETECTEDATAZUREDC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed_IssueDetectedAtAzureDC"
+          }
+        },
+        "ABORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Aborted"
+          }
+        },
+        "COMPLETEDWITHWARNINGS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CompletedWithWarnings"
+          }
+        },
+        "READYTODISPATCHFROMAZUREDC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReadyToDispatchFromAzureDC"
+          }
+        },
+        "READYTORECEIVEATAZUREDC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ReadyToReceiveAtAzureDC"
+          }
+        },
+        "CREATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Created"
+          }
+        },
+        "SHIPPEDTOAZUREDC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ShippedToAzureDC"
+          }
+        },
+        "AWAITINGSHIPMENTDETAILS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AwaitingShipmentDetails"
+          }
+        },
+        "PREPARINGTOSHIPFROMAZUREDC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PreparingToShipFromAzureDC"
+          }
+        },
+        "SHIPPEDTOCUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ShippedToCustomer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Name of the stage which is in progress."
+      }
+    },
+    "com.azure.databox#ReverseTransportPreferenceEditStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "NOTSUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSupported"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Editable status for Reverse Transport preferences"
+      }
+    },
+    "com.azure.databox#ReverseShippingDetailsEditStatus": {
+      "type": "enum",
+      "members": {
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Enabled"
+          }
+        },
+        "DISABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Disabled"
+          }
+        },
+        "NOTSUPPORTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NotSupported"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The Editable status for Reverse Shipping Address and Contact Info"
+      }
+    },
+    "com.azure.databox#JobsUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databox#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.databox#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.databox#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.databox#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.databox#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.databox#JobsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"
+          }
+        },
+        "properties": {
+          "target": "com.azure.databox#UpdateJobPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of a job to be updated."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databox#JobsUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "The list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups)."
+          }
+        },
+        "identity": {
+          "target": "com.azure.databox#ResourceIdentityInput",
+          "traits": {
+            "smithy.api#documentation": "Msi identity of the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#ResourceIdentityInput": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identity type"
+          }
+        },
+        "userAssignedIdentities": {
+          "target": "com.azure.databox#ResourceIdentityInputUserAssignedIdentitiesMap",
+          "traits": {
+            "smithy.api#documentation": "User Assigned Identities"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Msi identity details of the resource"
+      }
+    },
+    "com.azure.databox#ResourceIdentityInputUserAssignedIdentitiesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "com.azure.databox#ResourceIdentityInputUserAssignedIdentitiesValue"
+      },
+      "traits": {
+        "smithy.api#documentation": "User Assigned Identities"
+      }
+    },
+    "com.azure.databox#ResourceIdentityInputUserAssignedIdentitiesValue": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "User assigned identity properties"
+      }
+    },
+    "com.azure.databox#JobsUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups)."
+      }
+    },
+    "com.azure.databox#UpdateJobPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.azure.databox#UpdateJobDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "Details of a job to be updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job Properties for update"
+      }
+    },
+    "com.azure.databox#UpdateJobDetailsInput": {
+      "type": "structure",
+      "members": {
+        "contactDetails": {
+          "target": "com.azure.databox#ContactDetails",
+          "traits": {
+            "smithy.api#documentation": "Contact details for notification and shipping."
+          }
+        },
+        "shippingAddress": {
+          "target": "com.azure.databox#ShippingAddress",
+          "traits": {
+            "smithy.api#documentation": "Shipping address of the customer."
+          }
+        },
+        "reverseShippingDetails": {
+          "target": "com.azure.databox#ReverseShippingDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "Reverse Shipping Address and contact details for a job."
+          }
+        },
+        "preferences": {
+          "target": "com.azure.databox#PreferencesInput",
+          "traits": {
+            "smithy.api#documentation": "Preferences related to the order"
+          }
+        },
+        "keyEncryptionKey": {
+          "target": "com.azure.databox#KeyEncryptionKey",
+          "traits": {
+            "smithy.api#documentation": "Key encryption key for the job."
+          }
+        },
+        "returnToCustomerPackageDetails": {
+          "target": "com.azure.databox#PackageCarrierDetails",
+          "traits": {
+            "smithy.api#documentation": "Return package details of job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job details for update."
+      }
+    },
+    "com.azure.databox#PackageCarrierDetails": {
+      "type": "structure",
+      "members": {
+        "carrierAccountNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Carrier Account Number of customer for customer disk."
+          }
+        },
+        "carrierName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the carrier."
+          }
+        },
+        "trackingId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tracking Id of shipment."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Package carrier details."
+      }
+    },
+    "com.azure.databox#PreferencesInput": {
+      "type": "structure",
+      "members": {
+        "preferredDataCenterRegion": {
+          "target": "com.azure.databox#PreferencesInputPreferredDataCenterRegionList",
+          "traits": {
+            "smithy.api#documentation": "Preferred data center region."
+          }
+        },
+        "transportPreferences": {
+          "target": "com.azure.databox#TransportPreferencesInput",
+          "traits": {
+            "smithy.api#documentation": "Preferences related to the shipment logistics of the sku."
+          }
+        },
+        "reverseTransportPreferences": {
+          "target": "com.azure.databox#TransportPreferencesInput",
+          "traits": {
+            "smithy.api#documentation": "Optional Preferences related to the reverse shipment logistics of the sku."
+          }
+        },
+        "encryptionPreferences": {
+          "target": "com.azure.databox#EncryptionPreferences",
+          "traits": {
+            "smithy.api#documentation": "Preferences related to the Encryption."
+          }
+        },
+        "storageAccountAccessTierPreferences": {
+          "target": "com.azure.databox#PreferencesInputStorageAccountAccessTierPreferencesList",
+          "traits": {
+            "smithy.api#documentation": "Preferences related to the Access Tier of storage accounts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Preferences related to the order"
+      }
+    },
+    "com.azure.databox#PreferencesInputStorageAccountAccessTierPreferencesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#PreferencesInputStorageAccountAccessTierPreferencesItem"
+      },
+      "traits": {
+        "smithy.api#documentation": "Preferences related to the Access Tier of storage accounts."
+      }
+    },
+    "com.azure.databox#PreferencesInputStorageAccountAccessTierPreferencesItem": {
+      "type": "enum",
+      "members": {
+        "ARCHIVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Archive"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.databox#TransportPreferencesInput": {
+      "type": "structure",
+      "members": {
+        "preferredShipmentType": {
+          "target": "com.azure.databox#TransportShipmentTypes",
+          "traits": {
+            "smithy.api#documentation": "Indicates Shipment Logistics type that the customer preferred.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Preferences related to the shipment logistics of the sku"
+      }
+    },
+    "com.azure.databox#PreferencesInputPreferredDataCenterRegionList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Preferred data center region."
+      }
+    },
+    "com.azure.databox#ReverseShippingDetailsInput": {
+      "type": "structure",
+      "members": {
+        "contactDetails": {
+          "target": "com.azure.databox#ContactInfo",
+          "traits": {
+            "smithy.api#documentation": "Contact Info."
+          }
+        },
+        "shippingAddress": {
+          "target": "com.azure.databox#ShippingAddress",
+          "traits": {
+            "smithy.api#documentation": "Shipping address where customer wishes to receive the device."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Reverse Shipping Address and contact details for a job."
+      }
+    },
+    "com.azure.databox#JobsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#JobsCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "Creates a new job with the specified parameters. Existing job cannot be updated with this API and should instead be updated with the Update job API.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#JobsCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databox#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databox#JobsCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databox#JobProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a job.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databox#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku type.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.databox#ResourceIdentity",
+          "traits": {
+            "smithy.api#documentation": "Msi identity of the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databox#JobsCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databox#JobsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"
+          }
+        },
+        "tags": {
+          "target": "com.azure.databox#JobsCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databox#JobPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Properties of a job.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databox#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku type.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.databox#ResourceIdentityInput",
+          "traits": {
+            "smithy.api#documentation": "Msi identity of the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#JobPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "transferType": {
+          "target": "com.azure.databox#TransferType",
+          "traits": {
+            "smithy.api#documentation": "Type of the data transfer.",
+            "smithy.api#required": {}
+          }
+        },
+        "details": {
+          "target": "com.azure.databox#JobDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "Details of a job run. This field will only be sent for expand details filter."
+          }
+        },
+        "deliveryType": {
+          "target": "com.azure.databox#JobPropertiesInputDeliveryType",
+          "traits": {
+            "smithy.api#documentation": "Delivery type of Job."
+          }
+        },
+        "deliveryInfo": {
+          "target": "com.azure.databox#JobDeliveryInfo",
+          "traits": {
+            "smithy.api#documentation": "Delivery Info of Job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job Properties"
+      }
+    },
+    "com.azure.databox#JobPropertiesInputDeliveryType": {
+      "type": "enum",
+      "members": {
+        "NONSCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "NonScheduled"
+          }
+        },
+        "SCHEDULED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Scheduled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Delivery type of Job."
+      }
+    },
+    "com.azure.databox#JobDetailsInput": {
+      "type": "structure",
+      "members": {
+        "contactDetails": {
+          "target": "com.azure.databox#ContactDetails",
+          "traits": {
+            "smithy.api#documentation": "Contact details for notification and shipping.",
+            "smithy.api#required": {}
+          }
+        },
+        "shippingAddress": {
+          "target": "com.azure.databox#ShippingAddress",
+          "traits": {
+            "smithy.api#documentation": "Shipping address of the customer."
+          }
+        },
+        "dataImportDetails": {
+          "target": "com.azure.databox#JobDetailsInputDataImportDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Details of the data to be imported into azure."
+          }
+        },
+        "dataExportDetails": {
+          "target": "com.azure.databox#JobDetailsInputDataExportDetailsList",
+          "traits": {
+            "smithy.api#documentation": "Details of the data to be exported from azure."
+          }
+        },
+        "jobDetailsType": {
+          "target": "com.azure.databox#ClassDiscriminator",
+          "traits": {
+            "smithy.api#documentation": "Indicates the type of job details.",
+            "smithy.api#required": {}
+          }
+        },
+        "preferences": {
+          "target": "com.azure.databox#PreferencesInput",
+          "traits": {
+            "smithy.api#documentation": "Preferences for the order."
+          }
+        },
+        "reverseShippingDetails": {
+          "target": "com.azure.databox#ReverseShippingDetailsInput",
+          "traits": {
+            "smithy.api#documentation": "Optional Reverse Shipping details for order."
+          }
+        },
+        "keyEncryptionKey": {
+          "target": "com.azure.databox#KeyEncryptionKey",
+          "traits": {
+            "smithy.api#documentation": "Details about which key encryption type is being used."
+          }
+        },
+        "expectedDataSizeInTeraBytes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The expected size of the data, which needs to be transferred in this job, in terabytes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job details."
+      }
+    },
+    "com.azure.databox#JobDetailsInputDataExportDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#DataExportDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the data to be exported from azure."
+      }
+    },
+    "com.azure.databox#JobDetailsInputDataImportDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#DataImportDetails"
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of the data to be imported into azure."
+      }
+    },
+    "com.azure.databox#JobsCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databox#JobsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#JobsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "Gets information about the specified job.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#JobsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databox#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databox#JobsGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databox#JobProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a job.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databox#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku type.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.databox#ResourceIdentity",
+          "traits": {
+            "smithy.api#documentation": "Msi identity of the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.databox#JobsGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databox#JobsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "jobName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"
+          }
+        },
+        "_expand": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$expand",
+            "smithy.api#documentation": "$expand is supported on details parameter for job, which provides details on the job stages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#JobsListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#JobResourceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "Lists all the jobs available under the given resource group.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#JobResourceList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databox#JobResourceListValueList",
+          "traits": {
+            "smithy.api#documentation": "The JobResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job Resource Collection"
+      }
+    },
+    "com.azure.databox#JobResourceListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#JobResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The JobResource items on this page"
+      }
+    },
+    "com.azure.databox#JobResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. Ex - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.databox#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.databox#JobResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.databox#JobProperties",
+          "traits": {
+            "smithy.api#documentation": "Properties of a job.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "com.azure.databox#Sku",
+          "traits": {
+            "smithy.api#documentation": "The sku type.",
+            "smithy.api#required": {}
+          }
+        },
+        "identity": {
+          "target": "com.azure.databox#ResourceIdentity",
+          "traits": {
+            "smithy.api#documentation": "Msi identity of the resource"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Job Resource."
+      }
+    },
+    "com.azure.databox#JobResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.databox#JobsListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "$skipToken is supported on Get list of jobs, which provides the next page in the list of jobs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#ServiceValidateInputs": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#ServiceValidateInputsRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#ValidationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DataBox/locations/{location}/validateInputs",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "This method does all necessary pre-job creation validation under subscription.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#ServiceValidateInputsRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "validationCategory": {
+          "target": "com.azure.databox#ServiceValidateInputsRequestValidationCategory",
+          "traits": {
+            "smithy.api#documentation": "Identify the nature of validation.",
+            "smithy.api#required": {}
+          }
+        },
+        "individualRequestDetails": {
+          "target": "com.azure.databox#ServiceValidateInputsRequestIndividualRequestDetailsList",
+          "traits": {
+            "smithy.api#documentation": "List of request details contain validationType and its request as key and value respectively.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#ServiceValidateInputsRequestIndividualRequestDetailsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#ValidationInputRequest"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of request details contain validationType and its request as key and value respectively."
+      }
+    },
+    "com.azure.databox#ServiceValidateInputsRequestValidationCategory": {
+      "type": "enum",
+      "members": {
+        "JOBCREATIONVALIDATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "JobCreationValidation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Identify the nature of validation."
+      }
+    },
+    "com.azure.databox#ServiceRegionConfiguration": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#ServiceRegionConfigurationRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#RegionConfigurationResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DataBox/locations/{location}/regionConfiguration",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "This API provides configuration details specific to given region/location at Subscription level.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#ServiceRegionConfigurationRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of Azure region."
+          }
+        },
+        "scheduleAvailabilityRequest": {
+          "target": "com.azure.databox#ScheduleAvailabilityRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body to get the availability for scheduling orders."
+          }
+        },
+        "transportAvailabilityRequest": {
+          "target": "com.azure.databox#TransportAvailabilityRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body to get the transport availability for given sku."
+          }
+        },
+        "datacenterAddressRequest": {
+          "target": "com.azure.databox#DatacenterAddressRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body to get the datacenter address for given sku."
+          }
+        },
+        "deviceCapabilityRequest": {
+          "target": "com.azure.databox#DeviceCapabilityRequest",
+          "traits": {
+            "smithy.api#documentation": "Request body to get the device capabilities for a given sku."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#JobsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.databox#JobsListRequest"
+      },
+      "output": {
+        "target": "com.azure.databox#JobResourceList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.DataBox/jobs",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "Lists all the jobs available under the subscription.",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#JobsListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription."
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "$skipToken",
+            "smithy.api#documentation": "$skipToken is supported on Get list of jobs, which provides the next page in the list of jobs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.databox#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.databox#OperationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.DataBox/operations",
+          "code": 200,
+          "apiVersion": "2025-07-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-07-01"
+      }
+    },
+    "com.azure.databox#OperationList": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.databox#OperationListValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of connected cluster API operations."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to fetch the next page of connected cluster API operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The paginated list of connected cluster API operations."
+      }
+    },
+    "com.azure.databox#OperationListValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.databox#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of connected cluster API operations."
+      }
+    },
+    "com.azure.databox#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the operation. Format: {resourceProviderNamespace}/{resourceType}/{read|write|delete|action}"
+          }
+        },
+        "display": {
+          "target": "com.azure.databox#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Operation display values."
+          }
+        },
+        "properties": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Operation properties."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Origin of the operation. Can be : user|system|user,system"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is a data action"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation entity."
+      }
+    },
+    "com.azure.databox#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Provider name."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized name of the operation for display purpose."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized description of the operation for display purpose."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Operation display"
+      }
+    },
+    "com.azure.databox#Databox": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.databox#ServiceValidateInputsByResourceGroup"
+        },
+        {
+          "target": "com.azure.databox#ServiceRegionConfigurationByResourceGroup"
+        },
+        {
+          "target": "com.azure.databox#ServiceListAvailableSkusByResourceGroup"
+        },
+        {
+          "target": "com.azure.databox#Mitigate"
+        },
+        {
+          "target": "com.azure.databox#JobsMarkDevicesShipped"
+        },
+        {
+          "target": "com.azure.databox#JobsListCredentials"
+        },
+        {
+          "target": "com.azure.databox#JobsCancel"
+        },
+        {
+          "target": "com.azure.databox#JobsBookShipmentPickUp"
+        },
+        {
+          "target": "com.azure.databox#JobsDelete"
+        },
+        {
+          "target": "com.azure.databox#JobsUpdate"
+        },
+        {
+          "target": "com.azure.databox#JobsCreate"
+        },
+        {
+          "target": "com.azure.databox#JobsGet"
+        },
+        {
+          "target": "com.azure.databox#JobsListByResourceGroup"
+        },
+        {
+          "target": "com.azure.databox#ServiceValidateInputs"
+        },
+        {
+          "target": "com.azure.databox#ServiceRegionConfiguration"
+        },
+        {
+          "target": "com.azure.databox#JobsList"
+        },
+        {
+          "target": "com.azure.databox#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Databox",
+        "smithy.api#documentation": "Azure Databox API — merged from the databox resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

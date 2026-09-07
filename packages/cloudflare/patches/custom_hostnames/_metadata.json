@@ -1,0 +1,42 @@
+{
+  "description": "Key dictionary / op aliases for custom_hostnames (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "bundleMethod": "bundle_method",
+        "certificateAuthority": "certificate_authority",
+        "cloudflareBranding": "cloudflare_branding",
+        "cnameTarget": "cname_target",
+        "createdAt": "created_at",
+        "customCertBundle": "custom_cert_bundle",
+        "customCertificate": "custom_certificate",
+        "customCsrId": "custom_csr_id",
+        "customKey": "custom_key",
+        "customMetadata": "custom_metadata",
+        "customOriginServer": "custom_origin_server",
+        "customOriginSni": "custom_origin_sni",
+        "dcvDelegationRecords": "dcv_delegation_records",
+        "earlyHints": "early_hints",
+        "expiresOn": "expires_on",
+        "httpBody": "http_body",
+        "httpUrl": "http_url",
+        "minTlsVersion": "min_tls_version",
+        "ownershipVerification": "ownership_verification",
+        "ownershipVerificationHttp": "ownership_verification_http",
+        "perPage": "per_page",
+        "resultInfo": "result_info",
+        "serialNumber": "serial_number",
+        "totalCount": "total_count",
+        "txtName": "txt_name",
+        "txtValue": "txt_value",
+        "updatedAt": "updated_at",
+        "uploadedOn": "uploaded_on",
+        "validationErrors": "validation_errors",
+        "validationRecords": "validation_records",
+        "verificationErrors": "verification_errors"
+      }
+    }
+  ]
+}

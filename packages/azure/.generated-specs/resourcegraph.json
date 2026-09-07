@@ -1,0 +1,1366 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.resourcegraph#GraphQueryDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcegraph#GraphQueryDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceGraph/queries/{resourceName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Delete a graph query.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Graph Query resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcegraph#GraphQueryUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcegraph#GraphQueryUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceGraph/queries/{resourceName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Updates a graph query that has already been added.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcegraph#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcegraph#GraphQueryProperties",
+          "traits": {
+            "smithy.api#documentation": "Metadata describing a graph query for an Azure resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourcegraph#GraphQueryUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This will be used to handle Optimistic Concurrency. If not present, it will always overwrite the existing resource without checking conflict."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryProperties": {
+      "type": "structure",
+      "members": {
+        "timeModified": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date and time in UTC of the last modification that was made to this graph query definition."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of a graph query."
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "KQL query that will be graph.",
+            "smithy.api#required": {}
+          }
+        },
+        "resultKind": {
+          "target": "com.azure.resourcegraph#ResultKind",
+          "traits": {
+            "smithy.api#documentation": "Enum indicating a type of graph query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties that contain a graph query."
+      }
+    },
+    "com.azure.resourcegraph#ResultKind": {
+      "type": "enum",
+      "members": {
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "basic"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum indicating a type of graph query."
+      }
+    },
+    "com.azure.resourcegraph#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.resourcegraph#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.resourcegraph#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.resourcegraph#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.resourcegraph#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Graph Query resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourcegraph#GraphQueryUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This will be used to handle Optimistic Concurrency. If not present, it will always overwrite the existing resource without checking conflict."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcegraph#GraphQueryPropertiesUpdateParameters",
+          "traits": {
+            "smithy.api#documentation": "Metadata describing a graph query for an Azure resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryPropertiesUpdateParameters": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of a graph query."
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "KQL query that will be graph."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties that contain a workbook for PATCH operation."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags"
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryCreateOrUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcegraph#GraphQueryCreateOrUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcegraph#GraphQueryCreateOrUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceGraph/queries/{resourceName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Create a new graph query.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryCreateOrUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcegraph#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcegraph#GraphQueryProperties",
+          "traits": {
+            "smithy.api#documentation": "Metadata describing a graph query for an Azure resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourcegraph#GraphQueryCreateOrUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This will be used to handle Optimistic Concurrency. If not present, it will always overwrite the existing resource without checking conflict."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryCreateOrUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryCreateOrUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Graph Query resource."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcegraph#GraphQueryPropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "Metadata describing a graph query for an Azure resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourcegraph#GraphQueryCreateOrUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This will be used to handle Optimistic Concurrency. If not present, it will always overwrite the existing resource without checking conflict."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryCreateOrUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryPropertiesInput": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The description of a graph query."
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "KQL query that will be graph.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties that contain a graph query."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcegraph#GraphQueryGetRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcegraph#GraphQueryGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceGraph/queries/{resourceName}",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get a single graph query by its resourceName.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcegraph#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcegraph#GraphQueryProperties",
+          "traits": {
+            "smithy.api#documentation": "Metadata describing a graph query for an Azure resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourcegraph#GraphQueryGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This will be used to handle Optimistic Concurrency. If not present, it will always overwrite the existing resource without checking conflict."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "resourceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the Graph Query resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryList": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcegraph#GraphQueryListRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcegraph#GraphQueryListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ResourceGraph/queries",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get all graph queries defined within a specified subscription and resource group.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourcegraph#GraphQueryListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The GraphQueryResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Graph query list result."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcegraph#GraphQueryResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The GraphQueryResource items on this page"
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.resourcegraph#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.resourcegraph#GraphQueryProperties",
+          "traits": {
+            "smithy.api#documentation": "Metadata describing a graph query for an Azure resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.resourcegraph#GraphQueryResourceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The location of the resource"
+          }
+        },
+        "etag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This will be used to handle Optimistic Concurrency. If not present, it will always overwrite the existing resource without checking conflict."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Graph Query entity definition."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryResourceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryListRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcegraph#GraphQueryListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcegraph#GraphQueryListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.ResourceGraph/queries",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Get all graph queries defined within a specified subscription.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.resourcegraph#GraphQueryListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcegraph#Resources": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.resourcegraph#ResourcesRequest"
+      },
+      "output": {
+        "target": "com.azure.resourcegraph#QueryResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.ResourceGraph/resources",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "Queries the resources managed by Azure Resource Manager for scopes specified in the request.",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.resourcegraph#QueryResponse": {
+      "type": "structure",
+      "members": {
+        "totalRecords": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of total records matching the query.",
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of records returned in the current response. In the case of paging, this is the number of records in the current page.",
+            "smithy.api#required": {}
+          }
+        },
+        "resultTruncated": {
+          "target": "com.azure.resourcegraph#ResultTruncated",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the query results are truncated.",
+            "smithy.api#required": {}
+          }
+        },
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When present, the value can be passed to a subsequent query call (together with the same query and scopes used in the current request) to retrieve the next page of data.",
+            "smithy.api#jsonName": "$skipToken"
+          }
+        },
+        "data": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Query output in JObject array or Table format.",
+            "smithy.api#required": {}
+          }
+        },
+        "facets": {
+          "target": "com.azure.resourcegraph#QueryResponseFacetsList",
+          "traits": {
+            "smithy.api#documentation": "Query facets."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Query result."
+      }
+    },
+    "com.azure.resourcegraph#QueryResponseFacetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcegraph#Facet"
+      },
+      "traits": {
+        "smithy.api#documentation": "Query facets."
+      }
+    },
+    "com.azure.resourcegraph#Facet": {
+      "type": "structure",
+      "members": {
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Facet expression, same as in the corresponding facet request.",
+            "smithy.api#required": {}
+          }
+        },
+        "resultType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Result type",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A facet containing additional statistics on the response of a query. Can be either FacetResult or FacetError."
+      }
+    },
+    "com.azure.resourcegraph#ResultTruncated": {
+      "type": "enum",
+      "members": {
+        "TRUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "true"
+          }
+        },
+        "FALSE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "false"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Indicates whether the query results are truncated."
+      }
+    },
+    "com.azure.resourcegraph#ResourcesRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptions": {
+          "target": "com.azure.resourcegraph#ResourcesRequestSubscriptionsList",
+          "traits": {
+            "smithy.api#documentation": "Azure subscriptions against which to execute the query."
+          }
+        },
+        "managementGroups": {
+          "target": "com.azure.resourcegraph#ResourcesRequestManagementGroupsList",
+          "traits": {
+            "smithy.api#documentation": "Azure management groups against which to execute the query. Example: [ 'mg1', 'mg2' ]"
+          }
+        },
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resources query.",
+            "smithy.api#required": {}
+          }
+        },
+        "options": {
+          "target": "com.azure.resourcegraph#QueryRequestOptions",
+          "traits": {
+            "smithy.api#documentation": "The query evaluation options"
+          }
+        },
+        "facets": {
+          "target": "com.azure.resourcegraph#ResourcesRequestFacetsList",
+          "traits": {
+            "smithy.api#documentation": "An array of facet requests to be computed against the query result."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.resourcegraph#ResourcesRequestFacetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcegraph#FacetRequest"
+      },
+      "traits": {
+        "smithy.api#documentation": "An array of facet requests to be computed against the query result."
+      }
+    },
+    "com.azure.resourcegraph#FacetRequest": {
+      "type": "structure",
+      "members": {
+        "expression": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The column or list of columns to summarize by",
+            "smithy.api#required": {}
+          }
+        },
+        "options": {
+          "target": "com.azure.resourcegraph#FacetRequestOptions",
+          "traits": {
+            "smithy.api#documentation": "The options for facet evaluation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A request to compute additional statistics (facets) over the query results."
+      }
+    },
+    "com.azure.resourcegraph#FacetRequestOptions": {
+      "type": "structure",
+      "members": {
+        "sortBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The column name or query expression to sort on. Defaults to count if not present."
+          }
+        },
+        "sortOrder": {
+          "target": "com.azure.resourcegraph#FacetRequestOptionsSortOrder",
+          "traits": {
+            "smithy.api#documentation": "The sorting order by the selected column (count by default)."
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Specifies the filter condition for the 'where' clause which will be run on main query's result, just before the actual faceting."
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of facet rows that should be returned.",
+            "smithy.api#jsonName": "$top"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The options for facet evaluation"
+      }
+    },
+    "com.azure.resourcegraph#FacetRequestOptionsSortOrder": {
+      "type": "enum",
+      "members": {
+        "ASC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "asc"
+          }
+        },
+        "DESC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "desc"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The sorting order by the selected column (count by default)."
+      }
+    },
+    "com.azure.resourcegraph#QueryRequestOptions": {
+      "type": "structure",
+      "members": {
+        "_skipToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Continuation token for pagination, capturing the next page size and offset, as well as the context of the query.",
+            "smithy.api#jsonName": "$skipToken"
+          }
+        },
+        "_top": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of rows that the query should return. Overrides the page size when ```$skipToken``` property is present.",
+            "smithy.api#jsonName": "$top"
+          }
+        },
+        "_skip": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of rows to skip from the beginning of the results. Overrides the next page offset when ```$skipToken``` property is present.",
+            "smithy.api#jsonName": "$skip"
+          }
+        },
+        "resultFormat": {
+          "target": "com.azure.resourcegraph#QueryRequestOptionsResultFormat",
+          "traits": {
+            "smithy.api#documentation": "Defines in which format query result returned."
+          }
+        },
+        "allowPartialScopes": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Only applicable for tenant and management group level queries to decide whether to allow partial scopes for result in case the number of subscriptions exceed allowed limits."
+          }
+        },
+        "authorizationScopeFilter": {
+          "target": "com.azure.resourcegraph#QueryRequestOptionsAuthorizationScopeFilter",
+          "traits": {
+            "smithy.api#documentation": "Defines what level of authorization resources should be returned based on the which subscriptions and management groups are passed as scopes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The options for query evaluation"
+      }
+    },
+    "com.azure.resourcegraph#QueryRequestOptionsAuthorizationScopeFilter": {
+      "type": "enum",
+      "members": {
+        "ATSCOPEANDBELOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AtScopeAndBelow"
+          }
+        },
+        "ATSCOPEANDABOVE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AtScopeAndAbove"
+          }
+        },
+        "ATSCOPEEXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AtScopeExact"
+          }
+        },
+        "ATSCOPEABOVEANDBELOW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AtScopeAboveAndBelow"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines what level of authorization resources should be returned based on the which subscriptions and management groups are passed as scopes."
+      }
+    },
+    "com.azure.resourcegraph#QueryRequestOptionsResultFormat": {
+      "type": "enum",
+      "members": {
+        "TABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "table"
+          }
+        },
+        "OBJECTARRAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "objectArray"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines in which format query result returned."
+      }
+    },
+    "com.azure.resourcegraph#ResourcesRequestManagementGroupsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure management groups against which to execute the query. Example: [ 'mg1', 'mg2' ]"
+      }
+    },
+    "com.azure.resourcegraph#ResourcesRequestSubscriptionsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Azure subscriptions against which to execute the query."
+      }
+    },
+    "com.azure.resourcegraph#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.resourcegraph#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.ResourceGraph/operations",
+          "code": 200,
+          "apiVersion": "2024-04-01"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2024-04-01"
+      }
+    },
+    "com.azure.resourcegraph#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.resourcegraph#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Operation items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paged collection of Operation items"
+      }
+    },
+    "com.azure.resourcegraph#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.resourcegraph#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Operation items on this page"
+      }
+    },
+    "com.azure.resourcegraph#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}"
+          }
+        },
+        "display": {
+          "target": "com.azure.resourcegraph#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Display metadata associated with the operation."
+          }
+        },
+        "origin": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The origin of operations."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource Graph REST API operation definition."
+      }
+    },
+    "com.azure.resourcegraph#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Microsoft Resource Graph."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed etc."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of operation: get, read, delete, etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description for the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Display metadata associated with the operation."
+      }
+    },
+    "com.azure.resourcegraph#Resourcegraph": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.resourcegraph#GraphQueryDelete"
+        },
+        {
+          "target": "com.azure.resourcegraph#GraphQueryUpdate"
+        },
+        {
+          "target": "com.azure.resourcegraph#GraphQueryCreateOrUpdate"
+        },
+        {
+          "target": "com.azure.resourcegraph#GraphQueryGet"
+        },
+        {
+          "target": "com.azure.resourcegraph#GraphQueryList"
+        },
+        {
+          "target": "com.azure.resourcegraph#GraphQueryListBySubscription"
+        },
+        {
+          "target": "com.azure.resourcegraph#Resources"
+        },
+        {
+          "target": "com.azure.resourcegraph#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Resourcegraph",
+        "smithy.api#documentation": "Azure Resourcegraph API — merged from the resourcegraph resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

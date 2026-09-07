@@ -1,0 +1,24 @@
+{
+  "description": "Key dictionary / op aliases for request_tracers (mined from distilled)",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/metadata/keyDictionary",
+      "value": {
+        "actionParameters": "action_parameters",
+        "botScore": "bot_score",
+        "isEuCountry": "is_eu_country",
+        "isoCode": "iso_code",
+        "plainText": "plain_text",
+        "postalCode": "postal_code",
+        "regionCode": "region_code",
+        "skipChallenge": "skip_challenge",
+        "skipResponse": "skip_response",
+        "statusCode": "status_code",
+        "stepName": "step_name",
+        "subdivision_2IsoCode": "subdivision_2_iso_code",
+        "threatScore": "threat_score"
+      }
+    }
+  ]
+}

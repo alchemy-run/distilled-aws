@@ -1,0 +1,10 @@
+{
+  "description": "volumeInstanceUpdate returns Boolean! so the baked document must not select subfields.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.railway.api#VolumeInstanceUpdateRequest/traits/com.railway.graphql#operation/query",
+      "value": "mutation volumeInstanceUpdate($environmentId: String, $input: VolumeInstanceUpdateInput!, $volumeId: String!) {\n  volumeInstanceUpdate(environmentId: $environmentId, input: $input, volumeId: $volumeId)\n}"
+    }
+  ]
+}

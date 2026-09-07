@@ -1,0 +1,63 @@
+{
+  "description": "Fix Organization schema: make has_past_due_invoices and sso_portal_url optional, change invoice_budget_amount to string",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/definitions/Organization/required",
+      "value": [
+        "id",
+        "name",
+        "billing_email",
+        "created_at",
+        "updated_at",
+        "plan",
+        "valid_billing_info",
+        "sso",
+        "sso_directory",
+        "single_tenancy",
+        "managed_tenancy",
+        "database_count",
+        "features",
+        "idp_managed_roles",
+        "invoice_budget_amount",
+        "keyspace_shard_limit",
+        "has_card",
+        "payment_info_required"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/Organization/properties/invoice_budget_amount/type",
+      "value": "string"
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/PaginatedOrganization/properties/data/items/required",
+      "value": [
+        "id",
+        "name",
+        "billing_email",
+        "created_at",
+        "updated_at",
+        "plan",
+        "valid_billing_info",
+        "sso",
+        "sso_directory",
+        "single_tenancy",
+        "managed_tenancy",
+        "database_count",
+        "features",
+        "idp_managed_roles",
+        "invoice_budget_amount",
+        "keyspace_shard_limit",
+        "has_card",
+        "payment_info_required"
+      ]
+    },
+    {
+      "op": "replace",
+      "path": "/definitions/PaginatedOrganization/properties/data/items/properties/invoice_budget_amount/type",
+      "value": "string"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "description": "Align dns#SettingsAccountViewsList with distilled cloudflare/dns listSettingAccountViews",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsList",
+      "path": "/shapes/com.cloudflare.dns#ListSettingAccountViews"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsListRequest",
+      "path": "/shapes/com.cloudflare.dns#ListSettingAccountViewsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ListSettingAccountViews/input/target",
+      "value": "com.cloudflare.dns#ListSettingAccountViewsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#SettingsAccountViewsListResponse",
+      "path": "/shapes/com.cloudflare.dns#ListSettingAccountViewsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#ListSettingAccountViews/output/target",
+      "value": "com.cloudflare.dns#ListSettingAccountViewsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.dns#ListSettingAccountViews/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

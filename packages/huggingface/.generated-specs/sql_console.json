@@ -1,0 +1,496 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.huggingface.sql_console#UpdateEmbedRequestRepoType": {
+      "type": "enum",
+      "members": {
+        "DATASETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "datasets"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.sql_console#UpdateEmbedRequest": {
+      "type": "structure",
+      "members": {
+        "repoType": {
+          "target": "com.huggingface.sql_console#UpdateEmbedRequestRepoType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String"
+        },
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "sql": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.sql_console#UpdateEmbedResponseViewsItem": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "viewName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.sql_console#UpdateEmbedResponseViewsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.sql_console#UpdateEmbedResponseViewsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.sql_console#UpdateEmbedResponse": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repoId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "views": {
+          "target": "com.huggingface.sql_console#UpdateEmbedResponseViewsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sql": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "rating": {
+          "target": "smithy.api#Double"
+        },
+        "justification": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.sql_console#UpdateEmbed": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.sql_console#UpdateEmbedRequest"
+      },
+      "output": {
+        "target": "com.huggingface.sql_console#UpdateEmbedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/{repoType}/{namespace}/{repo}/sql-console/embed/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update embed\n\nUpdate SQL Console embed"
+      }
+    },
+    "com.huggingface.sql_console#DeleteEmbedRequestRepoType": {
+      "type": "enum",
+      "members": {
+        "DATASETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "datasets"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.sql_console#DeleteEmbedRequest": {
+      "type": "structure",
+      "members": {
+        "repoType": {
+          "target": "com.huggingface.sql_console#DeleteEmbedRequestRepoType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.sql_console#DeleteEmbedResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.sql_console#DeleteEmbed": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.sql_console#DeleteEmbedRequest"
+      },
+      "output": {
+        "target": "com.huggingface.sql_console#DeleteEmbedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/{repoType}/{namespace}/{repo}/sql-console/embed/{id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete embed\n\nDelete SQL Console embed"
+      }
+    },
+    "com.huggingface.sql_console#CreateEmbedRequestRepoType": {
+      "type": "enum",
+      "members": {
+        "DATASETS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "datasets"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.sql_console#CreateEmbedRequestViewsItem": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "viewName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.sql_console#CreateEmbedRequestViewsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.sql_console#CreateEmbedRequestViewsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.sql_console#CreateEmbedRequest": {
+      "type": "structure",
+      "members": {
+        "repoType": {
+          "target": "com.huggingface.sql_console#CreateEmbedRequestRepoType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "namespace": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "repo": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "sql": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "views": {
+          "target": "com.huggingface.sql_console#CreateEmbedRequestViewsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.huggingface.sql_console#CreateEmbedResponseViewsItem": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "viewName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.huggingface.sql_console#CreateEmbedResponseViewsList": {
+      "type": "list",
+      "member": {
+        "target": "com.huggingface.sql_console#CreateEmbedResponseViewsItem"
+      },
+      "traits": {}
+    },
+    "com.huggingface.sql_console#CreateEmbedResponse": {
+      "type": "structure",
+      "members": {
+        "_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "repoId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "views": {
+          "target": "com.huggingface.sql_console#CreateEmbedResponseViewsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "sql": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "userId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "private": {
+          "target": "smithy.api#Boolean"
+        },
+        "rating": {
+          "target": "smithy.api#Double"
+        },
+        "justification": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.huggingface.sql_console#CreateEmbed": {
+      "type": "operation",
+      "input": {
+        "target": "com.huggingface.sql_console#CreateEmbedRequest"
+      },
+      "output": {
+        "target": "com.huggingface.sql_console#CreateEmbedResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/{repoType}/{namespace}/{repo}/sql-console/embed",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create embed\n\nCreate SQL Console embed"
+      }
+    },
+    "com.huggingface.sql_console#SqlConsole": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.huggingface.sql_console#UpdateEmbed"
+        },
+        {
+          "target": "com.huggingface.sql_console#DeleteEmbed"
+        },
+        {
+          "target": "com.huggingface.sql_console#CreateEmbed"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Hub API Endpoints",
+        "smithy.api#documentation": "We have open endpoints that you can use to retrieve information from the Hub as well as perform certain actions such as creating model, dataset or Space repos. We offer a wrapper Python client, [`huggingface_hub`](https://github.com/huggingface/huggingface_hub), and a JS client, [`huggingface.js`](https://github.com/huggingface/huggingface.js), that allow easy access to these endpoints. We also provide [webhooks](https://huggingface.co/docs/hub/webhooks) to receive real-time incremental info about repos. Enjoy!\n\nThe base URL for those endpoints below is `https://huggingface.co`. For example, to construct the `/api/models` call below, one can call the URL [https://huggingface.co/api/models](https://huggingface.co/api/models).\n\nIf you're an Agent, you might prefer the [markdown version OpenAPI spec](https://huggingface.co/.well-known/openapi.md)."
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align r2#SuperSlurperJobsLogsList with distilled cloudflare/r2 listSuperSlurperJobLogs",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperJobsLogsList",
+      "path": "/shapes/com.cloudflare.r2#ListSuperSlurperJobLogs"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperJobsLogsListRequest",
+      "path": "/shapes/com.cloudflare.r2#ListSuperSlurperJobLogsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#ListSuperSlurperJobLogs/input/target",
+      "value": "com.cloudflare.r2#ListSuperSlurperJobLogsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.r2#SuperSlurperJobsLogsListResponse",
+      "path": "/shapes/com.cloudflare.r2#ListSuperSlurperJobLogsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.r2#ListSuperSlurperJobLogs/output/target",
+      "value": "com.cloudflare.r2#ListSuperSlurperJobLogsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#ListSuperSlurperJobLogs/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

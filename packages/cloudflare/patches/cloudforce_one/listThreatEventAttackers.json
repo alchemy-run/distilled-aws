@@ -1,0 +1,30 @@
+{
+  "description": "Align cloudforce_one#ThreatEventsAttackersList with distilled cloudflare/cloudforce-one listThreatEventAttackers",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsAttackersList",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventAttackers"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsAttackersListRequest",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventAttackersRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventAttackers/input/target",
+      "value": "com.cloudflare.cloudforce_one#ListThreatEventAttackersRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.cloudforce_one#ThreatEventsAttackersListResponse",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventAttackersResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.cloudforce_one#ListThreatEventAttackers/output/target",
+      "value": "com.cloudflare.cloudforce_one#ListThreatEventAttackersResponse"
+    }
+  ]
+}

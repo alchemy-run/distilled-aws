@@ -1,0 +1,12 @@
+{
+  "errorCategories": {
+    "NoSuchDomain": ["NotFoundError"],
+    "AttributeDoesNotExist": ["NotFoundError"],
+    "NumberDomainsExceeded": ["QuotaError"],
+    "NumberDomainAttributesExceeded": ["QuotaError"],
+    "NumberDomainBytesExceeded": ["QuotaError"],
+    "NumberItemAttributesExceeded": ["QuotaError"],
+    "NumberSubmittedAttributesExceeded": ["QuotaError"],
+    "NumberSubmittedItemsExceeded": ["QuotaError"]
+  }
+}

@@ -1,0 +1,3413 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.vision#VisionActionsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "scanner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "scanner",
+            "smithy.api#documentation": "Filter to the actions belonging to one scanner."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#PaginatedVisionActionList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.vision#PaginatedVisionActionListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#VisionAction": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable action name. Unique within the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "scanner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scanner whose observations this action operates on. Must belong to the same team.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When false, the scheduler skips this action."
+          }
+        },
+        "trigger_type": {
+          "target": "com.posthog.vision#TriggerTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "What fires the action. MVP supports 'schedule' only.\n\n* `schedule` - Schedule\n* `threshold` - Threshold"
+          }
+        },
+        "mode": {
+          "target": "com.posthog.vision#VisionActionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "What the action produces. MVP supports 'group_summary' only.\n\n* `group_summary` - Group summary\n* `per_observation` - Per observation"
+          }
+        },
+        "trigger_config": {
+          "target": "com.posthog.vision#TriggerConfig",
+          "traits": {
+            "smithy.api#documentation": "Trigger parameters. For schedule triggers: {rrule, timezone}."
+          }
+        },
+        "selection": {
+          "target": "com.posthog.vision#Selection",
+          "traits": {
+            "smithy.api#documentation": "Observation filter applied at synthesis time."
+          }
+        },
+        "synthesis_config": {
+          "target": "com.posthog.vision#SynthesisConfig",
+          "traits": {
+            "smithy.api#documentation": "Synthesis options for the group summary, e.g. {prompt_guide}."
+          }
+        },
+        "delivery_config": {
+          "target": "com.posthog.vision#VisionActionDeliveryConfigList",
+          "traits": {
+            "smithy.api#documentation": "List of delivery destinations the synthesized summary is sent to."
+          }
+        },
+        "next_run_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Computed next fire time for schedule triggers; the scheduler scans this.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_run_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the most recent run, or null if it has never run.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hog_flow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the delivery flow provisioned for this action. Null until delivery is wired up.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.vision#UserBasic",
+          "traits": {
+            "smithy.api#documentation": "User who created the action.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#TriggerTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SCHEDULE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "schedule"
+          }
+        },
+        "THRESHOLD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "threshold"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `schedule` - Schedule\n* `threshold` - Threshold"
+      }
+    },
+    "com.posthog.vision#VisionActionModeEnum": {
+      "type": "enum",
+      "members": {
+        "GROUP_SUMMARY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "group_summary"
+          }
+        },
+        "PER_OBSERVATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "per_observation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `group_summary` - Group summary\n* `per_observation` - Per observation"
+      }
+    },
+    "com.posthog.vision#TriggerConfig": {
+      "type": "structure",
+      "members": {
+        "rrule": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "iCal RRULE string controlling the schedule cadence (no DTSTART — the start is managed separately)."
+          }
+        },
+        "timezone": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA timezone name the RRULE is expanded in, e.g. 'Europe/Prague'. Defaults to 'UTC'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Schedule trigger parameters. Threshold triggers are reserved and rejected at the API for now."
+      }
+    },
+    "com.posthog.vision#Selection": {
+      "type": "structure",
+      "members": {
+        "scanner_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter observations by scanner type (monitor/classifier/scorer/summarizer)."
+          }
+        },
+        "scanner_ids": {
+          "target": "com.posthog.vision#SelectionScannerIdsList",
+          "traits": {
+            "smithy.api#documentation": "Restrict to observations produced by these scanner IDs."
+          }
+        },
+        "verdict": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter to observations with this monitor verdict."
+          }
+        },
+        "tags": {
+          "target": "com.posthog.vision#SelectionTagsList",
+          "traits": {
+            "smithy.api#documentation": "Filter to observations carrying any of these classifier tags."
+          }
+        },
+        "min_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Lower bound (inclusive) on scorer score."
+          }
+        },
+        "max_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Upper bound (inclusive) on scorer score."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filter to observations with this processing status."
+          }
+        },
+        "window_days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lookback window in days for the observations gathered at synthesis time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Observation filter applied at synthesis time. All keys optional; this typed shape is the\nallowlist, so unknown input keys are dropped rather than persisted."
+      }
+    },
+    "com.posthog.vision#SelectionScannerIdsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Restrict to observations produced by these scanner IDs."
+      }
+    },
+    "com.posthog.vision#SelectionTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Filter to observations carrying any of these classifier tags."
+      }
+    },
+    "com.posthog.vision#SynthesisConfig": {
+      "type": "structure",
+      "members": {
+        "prompt_guide": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-form guidance steering how the group summary is written."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Options for the group-summary synthesis step."
+      }
+    },
+    "com.posthog.vision#DeliveryTarget": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "com.posthog.vision#DeliveryTargetTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Destination channel type. MVP supports 'slack' only.\n\n* `slack` - Slack",
+            "smithy.api#required": {}
+          }
+        },
+        "integration_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "ID of the Slack Integration on this team used to deliver the summary.",
+            "smithy.api#required": {}
+          }
+        },
+        "channel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Slack channel ID or name the summary is posted to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single delivery destination. MVP supports Slack only."
+      }
+    },
+    "com.posthog.vision#DeliveryTargetTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SLACK": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "slack"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `slack` - Slack"
+      }
+    },
+    "com.posthog.vision#VisionActionDeliveryConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#DeliveryTarget"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of delivery destinations the synthesized summary is sent to."
+      }
+    },
+    "com.posthog.vision#UserBasic": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "uuid": {
+          "target": "smithy.api#String"
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "last_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        },
+        "is_email_verified": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "hedgehog_config": {
+          "target": "com.posthog.vision#UserBasicHedgehogConfigMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "role_at_organization": {
+          "target": "com.posthog.vision#UserBasicRoleAtOrganization",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#UserBasicHedgehogConfigMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#RoleAtOrganizationEnum": {
+      "type": "enum",
+      "members": {
+        "ENGINEERING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "engineering"
+          }
+        },
+        "DATA": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "data"
+          }
+        },
+        "PRODUCT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "product"
+          }
+        },
+        "FOUNDER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "founder"
+          }
+        },
+        "LEADERSHIP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "leadership"
+          }
+        },
+        "MARKETING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "marketing"
+          }
+        },
+        "SALES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sales"
+          }
+        },
+        "OTHER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "other"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `engineering` - Engineering\n* `data` - Data\n* `product` - Product Management\n* `founder` - Founder\n* `leadership` - Leadership\n* `marketing` - Marketing\n* `sales` - Sales / Success\n* `other` - Other"
+      }
+    },
+    "com.posthog.vision#BlankEnum": {
+      "type": "enum",
+      "members": {
+        "VALUE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": ""
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#UserBasicRoleAtOrganization": {
+      "type": "union",
+      "members": {
+        "RoleAtOrganizationEnum": {
+          "target": "com.posthog.vision#RoleAtOrganizationEnum"
+        },
+        "BlankEnum": {
+          "target": "com.posthog.vision#BlankEnum"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#PaginatedVisionActionListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#VisionAction"
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#VisionActionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionActionsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#PaginatedVisionActionList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/actions/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision actions — scheduled \"and then…\" automations over a scanner's observations."
+      }
+    },
+    "com.posthog.vision#VisionActionsCreateRequestDeliveryConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#DeliveryTarget"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of delivery destinations the synthesized summary is sent to."
+      }
+    },
+    "com.posthog.vision#VisionActionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable action name. Unique within the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "scanner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scanner whose observations this action operates on. Must belong to the same team.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When false, the scheduler skips this action."
+          }
+        },
+        "trigger_type": {
+          "target": "com.posthog.vision#TriggerTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "What fires the action. MVP supports 'schedule' only.\n\n* `schedule` - Schedule\n* `threshold` - Threshold"
+          }
+        },
+        "mode": {
+          "target": "com.posthog.vision#VisionActionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "What the action produces. MVP supports 'group_summary' only.\n\n* `group_summary` - Group summary\n* `per_observation` - Per observation"
+          }
+        },
+        "trigger_config": {
+          "target": "com.posthog.vision#TriggerConfig",
+          "traits": {
+            "smithy.api#documentation": "Trigger parameters. For schedule triggers: {rrule, timezone}."
+          }
+        },
+        "selection": {
+          "target": "com.posthog.vision#Selection",
+          "traits": {
+            "smithy.api#documentation": "Observation filter applied at synthesis time."
+          }
+        },
+        "synthesis_config": {
+          "target": "com.posthog.vision#SynthesisConfig",
+          "traits": {
+            "smithy.api#documentation": "Synthesis options for the group summary, e.g. {prompt_guide}."
+          }
+        },
+        "delivery_config": {
+          "target": "com.posthog.vision#VisionActionsCreateRequestDeliveryConfigList",
+          "traits": {
+            "smithy.api#documentation": "List of delivery destinations the synthesized summary is sent to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionActionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionActionsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#VisionAction"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/vision/actions/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision actions — scheduled \"and then…\" automations over a scanner's observations."
+      }
+    },
+    "com.posthog.vision#VisionActionsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this vision action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionActionsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionActionsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#VisionAction"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/actions/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision actions — scheduled \"and then…\" automations over a scanner's observations."
+      }
+    },
+    "com.posthog.vision#VisionActionsPartialUpdateRequestDeliveryConfigList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#DeliveryTarget"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of delivery destinations the synthesized summary is sent to."
+      }
+    },
+    "com.posthog.vision#VisionActionsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this vision action."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable action name. Unique within the team."
+          }
+        },
+        "scanner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scanner whose observations this action operates on. Must belong to the same team."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When false, the scheduler skips this action."
+          }
+        },
+        "trigger_type": {
+          "target": "com.posthog.vision#TriggerTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "What fires the action. MVP supports 'schedule' only.\n\n* `schedule` - Schedule\n* `threshold` - Threshold"
+          }
+        },
+        "mode": {
+          "target": "com.posthog.vision#VisionActionModeEnum",
+          "traits": {
+            "smithy.api#documentation": "What the action produces. MVP supports 'group_summary' only.\n\n* `group_summary` - Group summary\n* `per_observation` - Per observation"
+          }
+        },
+        "trigger_config": {
+          "target": "com.posthog.vision#TriggerConfig",
+          "traits": {
+            "smithy.api#documentation": "Trigger parameters. For schedule triggers: {rrule, timezone}."
+          }
+        },
+        "selection": {
+          "target": "com.posthog.vision#Selection",
+          "traits": {
+            "smithy.api#documentation": "Observation filter applied at synthesis time."
+          }
+        },
+        "synthesis_config": {
+          "target": "com.posthog.vision#SynthesisConfig",
+          "traits": {
+            "smithy.api#documentation": "Synthesis options for the group summary, e.g. {prompt_guide}."
+          }
+        },
+        "delivery_config": {
+          "target": "com.posthog.vision#VisionActionsPartialUpdateRequestDeliveryConfigList",
+          "traits": {
+            "smithy.api#documentation": "List of delivery destinations the synthesized summary is sent to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionActionsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionActionsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#VisionAction"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/vision/actions/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision actions — scheduled \"and then…\" automations over a scanner's observations."
+      }
+    },
+    "com.posthog.vision#VisionActionsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this vision action."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionActionsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionActionsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/vision/actions/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision actions — scheduled \"and then…\" automations over a scanner's observations."
+      }
+    },
+    "com.posthog.vision#VisionActionsRunsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "vision_action_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#PaginatedVisionActionRunList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.vision#PaginatedVisionActionRunListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#VisionActionRun": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.vision#VisionActionRunStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Run outcome: running, completed, failed, or skipped.\n\n* `running` - Running\n* `completed` - Completed\n* `failed` - Failed\n* `skipped` - Skipped",
+            "smithy.api#required": {}
+          }
+        },
+        "scheduled_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scheduled fire time this run was claimed for.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "observation_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of observations that fed this run's summary.",
+            "smithy.api#required": {}
+          }
+        },
+        "synthesized_markdown": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The synthesized group-summary report in Markdown. Empty until a run completes successfully.",
+            "smithy.api#required": {}
+          }
+        },
+        "error_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Short human-readable reason a run skipped or failed; null on success.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Read-only history of one VisionAction execution, backing the per-action run list + summary view."
+      }
+    },
+    "com.posthog.vision#VisionActionRunStatusEnum": {
+      "type": "enum",
+      "members": {
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "SKIPPED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "skipped"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `running` - Running\n* `completed` - Completed\n* `failed` - Failed\n* `skipped` - Skipped"
+      }
+    },
+    "com.posthog.vision#PaginatedVisionActionRunListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#VisionActionRun"
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#VisionActionsRunsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionActionsRunsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#PaginatedVisionActionRunList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/actions/{vision_action_id}/runs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read-only run history for a single vision action (nested under /vision/actions/{action_id}/runs/)."
+      }
+    },
+    "com.posthog.vision#VisionActionsRunsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "vision_action_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this vision action run."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionActionsRunsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionActionsRunsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#VisionActionRun"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/actions/{vision_action_id}/runs/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read-only run history for a single vision action (nested under /vision/actions/{action_id}/runs/)."
+      }
+    },
+    "com.posthog.vision#VisionObservationsListRequestOrderBy": {
+      "type": "enum",
+      "members": {
+        "COMPLETED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-completed_at"
+          }
+        },
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_at"
+          }
+        },
+        "RECORDING_SUBJECT_EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-recording_subject_email"
+          }
+        },
+        "RESULT_SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-result_score"
+          }
+        },
+        "RESULT_VERDICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-result_verdict"
+          }
+        },
+        "SCANNER_VERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-scanner_version"
+          }
+        },
+        "STARTED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-started_at"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-status"
+          }
+        },
+        "COMPLETED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed_at"
+          }
+        },
+        "CREATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        },
+        "RECORDING_SUBJECT_EMAIL_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recording_subject_email"
+          }
+        },
+        "RESULT_SCORE_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "result_score"
+          }
+        },
+        "RESULT_VERDICT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "result_verdict"
+          }
+        },
+        "SCANNER_VERSION_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scanner_version"
+          }
+        },
+        "STARTED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started_at"
+          }
+        },
+        "STATUS_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#VisionObservationsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order_by": {
+          "target": "com.posthog.vision#VisionObservationsListRequestOrderBy",
+          "traits": {
+            "smithy.api#httpQuery": "order_by",
+            "smithy.api#documentation": "Sort observations. Plain keys: created_at, started_at, completed_at, status, recording_subject_email. JSONB keys: result_score (scorer), result_verdict (monitor), scanner_version. Prefix with `-` for descending."
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "session_id",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Session recording id to return observations for."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#PaginatedReplayObservationList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.vision#PaginatedReplayObservationListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ReplayObservation": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scanner_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The scanner that produced this observation.",
+            "smithy.api#required": {}
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Session recording id this scanner was applied to.",
+            "smithy.api#required": {}
+          }
+        },
+        "status": {
+          "target": "com.posthog.vision#ObservationStatusEnum",
+          "traits": {
+            "smithy.api#documentation": "Observation status (pending, running, succeeded, failed, ineligible).\n\n* `pending` - Pending\n* `running` - Running\n* `succeeded` - Succeeded\n* `failed` - Failed\n* `ineligible` - Ineligible",
+            "smithy.api#required": {}
+          }
+        },
+        "error_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Populated on terminal non-success statuses; formatted as `kind:human-readable message`. For `ineligible`, kind is one of no_recording / too_short / too_inactive / too_long / no_events. For `failed`, kind is one of provider_transient / provider_rejected / rasterization_failed / validation_failed / internal_error.",
+            "smithy.api#required": {}
+          }
+        },
+        "workflow_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Temporal workflow id for progress queries and debugging. Empty until the workflow starts.",
+            "smithy.api#required": {}
+          }
+        },
+        "scanner_snapshot": {
+          "target": "com.posthog.vision#ScannerSnapshot",
+          "traits": {
+            "smithy.api#documentation": "Frozen view of the scanner at run time; scanner edits do not retroactively mutate this observation.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scanner_result": {
+          "target": "com.posthog.vision#ScannerResult",
+          "traits": {
+            "smithy.api#documentation": "Result data persisted on success; null until the observation succeeds.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "triggered_by": {
+          "target": "com.posthog.vision#ObservationTriggerEnum",
+          "traits": {
+            "smithy.api#documentation": "Whether this observation came from the schedule or an on-demand request.\n\n* `schedule` - Schedule\n* `on_demand` - On demand",
+            "smithy.api#required": {}
+          }
+        },
+        "triggered_by_user": {
+          "target": "com.posthog.vision#UserBasic",
+          "traits": {
+            "smithy.api#documentation": "User who triggered an on-demand observation; null for scheduled observations.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "distinct_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Distinct id of the person in the recorded session (the subject being watched); null if unknown.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "recording_subject_email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email of the person in the recorded session (the subject being watched, not the user who triggered the observation), captured at scan time. Null when the session had no identified person.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous_observation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the newer sibling observation for the same scanner (prev/next nav); only set on retrieve, null at the start.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "next_observation_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Id of the older sibling observation for the same scanner (prev/next nav); only set on retrieve, null at the end.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "started_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "completed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ObservationStatusEnum": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "pending"
+          }
+        },
+        "RUNNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "running"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "failed"
+          }
+        },
+        "INELIGIBLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ineligible"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `pending` - Pending\n* `running` - Running\n* `succeeded` - Succeeded\n* `failed` - Failed\n* `ineligible` - Ineligible"
+      }
+    },
+    "com.posthog.vision#ScannerSnapshot": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Scanner name at run time.",
+            "smithy.api#required": {}
+          }
+        },
+        "scanner_type": {
+          "target": "com.posthog.vision#ScannerTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Scanner type (monitor, classifier, scorer, summarizer) at run time.\n\n* `monitor` - Monitor\n* `classifier` - Classifier\n* `scorer` - Scorer\n* `summarizer` - Summarizer",
+            "smithy.api#required": {}
+          }
+        },
+        "scanner_version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The `ReplayScanner.scanner_version` value at the moment the workflow ran.",
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "com.posthog.vision#ScannerModelEnum",
+          "traits": {
+            "smithy.api#documentation": "Concrete model that ran the observation.\n\n* `gemini-3-flash-preview` - Gemini 3 Flash\n* `gemini-3.1-flash-lite-preview` - Gemini 3 Flash Lite",
+            "smithy.api#required": {}
+          }
+        },
+        "provider": {
+          "target": "com.posthog.vision#ScannerProviderEnum",
+          "traits": {
+            "smithy.api#documentation": "Concrete provider that ran the observation.\n\n* `google` - Google",
+            "smithy.api#required": {}
+          }
+        },
+        "emits_signals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the observation was run with Signal emission enabled.",
+            "smithy.api#required": {}
+          }
+        },
+        "scanner_config": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Scanner-type-specific configuration at run time (prompt, tags, scale, etc.).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mirrors `temporal.types.ScannerSnapshot` for OpenAPI generation."
+      }
+    },
+    "com.posthog.vision#ScannerTypeEnum": {
+      "type": "enum",
+      "members": {
+        "MONITOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "monitor"
+          }
+        },
+        "CLASSIFIER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "classifier"
+          }
+        },
+        "SCORER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scorer"
+          }
+        },
+        "SUMMARIZER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "summarizer"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `monitor` - Monitor\n* `classifier` - Classifier\n* `scorer` - Scorer\n* `summarizer` - Summarizer"
+      }
+    },
+    "com.posthog.vision#ScannerModelEnum": {
+      "type": "enum",
+      "members": {
+        "GEMINI_3_FLASH_PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gemini-3-flash-preview"
+          }
+        },
+        "GEMINI_3_1_FLASH_LITE_PREVIEW": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "gemini-3.1-flash-lite-preview"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `gemini-3-flash-preview` - Gemini 3 Flash\n* `gemini-3.1-flash-lite-preview` - Gemini 3 Flash Lite"
+      }
+    },
+    "com.posthog.vision#ScannerProviderEnum": {
+      "type": "enum",
+      "members": {
+        "GOOGLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "google"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `google` - Google"
+      }
+    },
+    "com.posthog.vision#ScannerResult": {
+      "type": "structure",
+      "members": {
+        "model_output": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Validated scanner output. Shape depends on `scanner_snapshot.scanner_type`; always carries `confidence` and `scanner_type`.",
+            "smithy.api#required": {}
+          }
+        },
+        "signals_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of PostHog Signals emitted from this observation.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Mirrors `temporal.types.ScannerResult` for OpenAPI generation."
+      }
+    },
+    "com.posthog.vision#ObservationTriggerEnum": {
+      "type": "enum",
+      "members": {
+        "SCHEDULE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "schedule"
+          }
+        },
+        "ON_DEMAND": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "on_demand"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `schedule` - Schedule\n* `on_demand` - On demand"
+      }
+    },
+    "com.posthog.vision#PaginatedReplayObservationListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#ReplayObservation"
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#VisionObservationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionObservationsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#PaginatedReplayObservationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/observations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read-only access to a session's observations across every scanner the caller can read, for the replay-page dock."
+      }
+    },
+    "com.posthog.vision#VisionObservationsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this replay observation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionObservationsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionObservationsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#ReplayObservation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/observations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read-only access to a session's observations across every scanner the caller can read, for the replay-page dock."
+      }
+    },
+    "com.posthog.vision#EnvironmentVisionQuotaRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionQuota": {
+      "type": "structure",
+      "members": {
+        "monthly_quota": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total observations the org may complete per calendar month.",
+            "smithy.api#required": {}
+          }
+        },
+        "usage_this_month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Observations created this month that are in flight or have succeeded, counted against the quota.",
+            "smithy.api#required": {}
+          }
+        },
+        "remaining": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "`monthly_quota - usage_this_month`, floored at 0.",
+            "smithy.api#required": {}
+          }
+        },
+        "exhausted": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when `usage_this_month >= monthly_quota`; further observations are skipped until next period.",
+            "smithy.api#required": {}
+          }
+        },
+        "period_start": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First moment of the current quota period (UTC).",
+            "smithy.api#required": {}
+          }
+        },
+        "period_end": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "First moment of the next quota period (UTC); the current period's exclusive upper bound.",
+            "smithy.api#required": {}
+          }
+        },
+        "projected_monthly_observations": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Sum of enabled scanners' projected observations/month across the organization. Scanners without a computed estimate contribute 0.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#EnvironmentVisionQuotaRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#EnvironmentVisionQuotaRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#VisionQuota"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/quota/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.vision#VisionScannersListRequestOrderBy": {
+      "type": "enum",
+      "members": {
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_at"
+          }
+        },
+        "CREATED_BY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_by"
+          }
+        },
+        "ENABLED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-enabled"
+          }
+        },
+        "NAME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-name"
+          }
+        },
+        "SAMPLING_RATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-sampling_rate"
+          }
+        },
+        "SCANNER_TYPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-scanner_type"
+          }
+        },
+        "UPDATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-updated_at"
+          }
+        },
+        "CREATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        },
+        "CREATED_BY_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_by"
+          }
+        },
+        "ENABLED_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enabled"
+          }
+        },
+        "NAME_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "name"
+          }
+        },
+        "SAMPLING_RATE_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "sampling_rate"
+          }
+        },
+        "SCANNER_TYPE_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scanner_type"
+          }
+        },
+        "UPDATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "updated_at"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#VisionScannersListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "created_by",
+            "smithy.api#documentation": "Filter to scanners created by the given user IDs (comma-separated)."
+          }
+        },
+        "emits_signals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "emits_signals",
+            "smithy.api#documentation": "Filter to scanners that emit Signals."
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "enabled",
+            "smithy.api#documentation": "Filter by enabled state. Accepts a comma-separated list of `enabled`/`disabled`."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order_by": {
+          "target": "com.posthog.vision#VisionScannersListRequestOrderBy",
+          "traits": {
+            "smithy.api#httpQuery": "order_by",
+            "smithy.api#documentation": "Sort scanners by name, created_at, updated_at, scanner_type, enabled, sampling_rate, or created_by. Prefix with `-` for descending."
+          }
+        },
+        "scanner_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "scanner_type",
+            "smithy.api#documentation": "Filter by scanner type (monitor, classifier, scorer, summarizer). Accepts a comma-separated list."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Case-insensitive substring match across name, description, and the prompt in scanner_config."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#PaginatedReplayScannerList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.vision#PaginatedReplayScannerListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ReplayScanner": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable scanner name. Unique within the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-form description shown in the scanner management UI."
+          }
+        },
+        "scanner_type": {
+          "target": "com.posthog.vision#ScannerTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "What the scanner does: monitor, classifier, scorer, or summarizer.\n\n* `monitor` - Monitor\n* `classifier` - Classifier\n* `scorer` - Scorer\n* `summarizer` - Summarizer",
+            "smithy.api#required": {}
+          }
+        },
+        "scanner_config": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Type-specific configuration. All scanner types require `prompt`; monitors add optional `allow_inconclusive`, classifiers add `tags`, scorers add `scale`, summarizers add optional `length`.",
+            "smithy.api#required": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Persisted `RecordingsQuery` shape used to pick candidate sessions. `date_from`/`date_to` are stripped on save — the schedule controls time, not the user."
+          }
+        },
+        "sampling_rate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "0..1 random downsample applied after the query matches. Defaults to 1.0 (no downsampling)."
+          }
+        },
+        "provider": {
+          "target": "com.posthog.vision#ScannerProviderEnum",
+          "traits": {
+            "smithy.api#documentation": "LLM provider. v1 is Google-only.\n\n* `google` - Google"
+          }
+        },
+        "model": {
+          "target": "com.posthog.vision#ScannerModelEnum",
+          "traits": {
+            "smithy.api#documentation": "Concrete model to use for this scanner.\n\n* `gemini-3-flash-preview` - Gemini 3 Flash\n* `gemini-3.1-flash-lite-preview` - Gemini 3 Flash Lite",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When false, the reconciler removes the scanner's Temporal schedule. On-demand triggers still work."
+          }
+        },
+        "emits_signals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the prompt is augmented with the Signal side mission and the scanner emits PostHog Signals."
+          }
+        },
+        "scanner_version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Increments on every config-changing save. Observations snapshot this value.",
+            "smithy.api#required": {}
+          }
+        },
+        "estimated_monthly_observations": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Latest projected observations/month for this scanner. Null until first computed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "last_swept_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Watermark for the scanner's last scheduled fire. Mirrors Temporal schedule state for recovery.",
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "com.posthog.vision#UserBasic",
+          "traits": {
+            "smithy.api#documentation": "User who created the scanner.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#PaginatedReplayScannerListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#ReplayScanner"
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#VisionScannersList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersListRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#PaginatedReplayScannerList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/scanners/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision scanners."
+      }
+    },
+    "com.posthog.vision#VisionScannersCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable scanner name. Unique within the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-form description shown in the scanner management UI."
+          }
+        },
+        "scanner_type": {
+          "target": "com.posthog.vision#ScannerTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "What the scanner does: monitor, classifier, scorer, or summarizer.\n\n* `monitor` - Monitor\n* `classifier` - Classifier\n* `scorer` - Scorer\n* `summarizer` - Summarizer",
+            "smithy.api#required": {}
+          }
+        },
+        "scanner_config": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Type-specific configuration. All scanner types require `prompt`; monitors add optional `allow_inconclusive`, classifiers add `tags`, scorers add `scale`, summarizers add optional `length`.",
+            "smithy.api#required": {}
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Persisted `RecordingsQuery` shape used to pick candidate sessions. `date_from`/`date_to` are stripped on save — the schedule controls time, not the user."
+          }
+        },
+        "sampling_rate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "0..1 random downsample applied after the query matches. Defaults to 1.0 (no downsampling)."
+          }
+        },
+        "provider": {
+          "target": "com.posthog.vision#ScannerProviderEnum",
+          "traits": {
+            "smithy.api#documentation": "LLM provider. v1 is Google-only.\n\n* `google` - Google"
+          }
+        },
+        "model": {
+          "target": "com.posthog.vision#ScannerModelEnum",
+          "traits": {
+            "smithy.api#documentation": "Concrete model to use for this scanner.\n\n* `gemini-3-flash-preview` - Gemini 3 Flash\n* `gemini-3.1-flash-lite-preview` - Gemini 3 Flash Lite",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When false, the reconciler removes the scanner's Temporal schedule. On-demand triggers still work."
+          }
+        },
+        "emits_signals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the prompt is augmented with the Signal side mission and the scanner emits PostHog Signals."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionScannersCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#ReplayScanner"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/vision/scanners/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision scanners."
+      }
+    },
+    "com.posthog.vision#VisionScannersRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this replay scanner."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionScannersRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#ReplayScanner"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/scanners/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision scanners."
+      }
+    },
+    "com.posthog.vision#VisionScannersPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this replay scanner."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable scanner name. Unique within the team."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Free-form description shown in the scanner management UI."
+          }
+        },
+        "scanner_type": {
+          "target": "com.posthog.vision#ScannerTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "What the scanner does: monitor, classifier, scorer, or summarizer.\n\n* `monitor` - Monitor\n* `classifier` - Classifier\n* `scorer` - Scorer\n* `summarizer` - Summarizer"
+          }
+        },
+        "scanner_config": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Type-specific configuration. All scanner types require `prompt`; monitors add optional `allow_inconclusive`, classifiers add `tags`, scorers add `scale`, summarizers add optional `length`."
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Persisted `RecordingsQuery` shape used to pick candidate sessions. `date_from`/`date_to` are stripped on save — the schedule controls time, not the user."
+          }
+        },
+        "sampling_rate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "0..1 random downsample applied after the query matches. Defaults to 1.0 (no downsampling)."
+          }
+        },
+        "provider": {
+          "target": "com.posthog.vision#ScannerProviderEnum",
+          "traits": {
+            "smithy.api#documentation": "LLM provider. v1 is Google-only.\n\n* `google` - Google"
+          }
+        },
+        "model": {
+          "target": "com.posthog.vision#ScannerModelEnum",
+          "traits": {
+            "smithy.api#documentation": "Concrete model to use for this scanner.\n\n* `gemini-3-flash-preview` - Gemini 3 Flash\n* `gemini-3.1-flash-lite-preview` - Gemini 3 Flash Lite"
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When false, the reconciler removes the scanner's Temporal schedule. On-demand triggers still work."
+          }
+        },
+        "emits_signals": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When true, the prompt is augmented with the Signal side mission and the scanner emits PostHog Signals."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionScannersPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#ReplayScanner"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/vision/scanners/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision scanners."
+      }
+    },
+    "com.posthog.vision#VisionScannersDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this replay scanner."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionScannersDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/vision/scanners/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "CRUD for Replay Vision scanners."
+      }
+    },
+    "com.posthog.vision#VisionScannersObserveCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this replay scanner."
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the session recording to apply the scanner to.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionScannersObserveCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersObserveCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/vision/scanners/{id}/observe/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Apply this scanner to one specific session, on demand. Returns 202 with the workflow handle."
+      }
+    },
+    "com.posthog.vision#VisionScannersObservationsListRequestOrderBy": {
+      "type": "enum",
+      "members": {
+        "COMPLETED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-completed_at"
+          }
+        },
+        "CREATED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-created_at"
+          }
+        },
+        "RECORDING_SUBJECT_EMAIL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-recording_subject_email"
+          }
+        },
+        "RESULT_SCORE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-result_score"
+          }
+        },
+        "RESULT_VERDICT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-result_verdict"
+          }
+        },
+        "SCANNER_VERSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-scanner_version"
+          }
+        },
+        "STARTED_AT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-started_at"
+          }
+        },
+        "STATUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "-status"
+          }
+        },
+        "COMPLETED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "completed_at"
+          }
+        },
+        "CREATED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "created_at"
+          }
+        },
+        "RECORDING_SUBJECT_EMAIL_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "recording_subject_email"
+          }
+        },
+        "RESULT_SCORE_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "result_score"
+          }
+        },
+        "RESULT_VERDICT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "result_verdict"
+          }
+        },
+        "SCANNER_VERSION_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "scanner_version"
+          }
+        },
+        "STARTED_AT_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "started_at"
+          }
+        },
+        "STATUS_2": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "status"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#VisionScannersObservationsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "scanner_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "order_by": {
+          "target": "com.posthog.vision#VisionScannersObservationsListRequestOrderBy",
+          "traits": {
+            "smithy.api#httpQuery": "order_by",
+            "smithy.api#documentation": "Sort observations. Plain keys: created_at, started_at, completed_at, status, recording_subject_email. JSONB keys: result_score (scorer), result_verdict (monitor), scanner_version. Prefix with `-` for descending."
+          }
+        },
+        "recording_subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "recording_subject",
+            "smithy.api#documentation": "Filter to observations whose recording subject email contains this value (case-insensitive)."
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "session_id",
+            "smithy.api#documentation": "Filter to observations of one or more session recordings. Accepts a comma-separated list."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter by observation status. Accepts a comma-separated list."
+          }
+        },
+        "tags": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tags",
+            "smithy.api#documentation": "Filter classifier observations whose fixed or freeform tags include any of the given values (comma-separated). Matches if the tag appears in either `tags` or `tags_freeform`."
+          }
+        },
+        "triggered_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "triggered_by",
+            "smithy.api#documentation": "Filter by trigger source (schedule or on_demand). Accepts a comma-separated list."
+          }
+        },
+        "verdict": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "verdict",
+            "smithy.api#documentation": "Filter monitor observations by verdict. Accepts a comma-separated list (e.g. `yes,inconclusive`)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionScannersObservationsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersObservationsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#PaginatedReplayObservationList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/scanners/{scanner_id}/observations/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read-only access to observations produced by a scanner."
+      }
+    },
+    "com.posthog.vision#VisionScannersObservationsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "scanner_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this replay observation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#VisionScannersObservationsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersObservationsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#ReplayObservation"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/scanners/{scanner_id}/observations/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Read-only access to observations produced by a scanner."
+      }
+    },
+    "com.posthog.vision#VisionScannersObservationsStatsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "scanner_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "recent_days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "recent_days",
+            "smithy.api#documentation": "Window size in days for the coverage `recent_sessions` count. Clamped to [1, 365]. Defaults to 14 when omitted."
+          }
+        },
+        "recording_subject": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "recording_subject",
+            "smithy.api#documentation": "Filter to observations whose recording subject email contains this value (case-insensitive)."
+          }
+        },
+        "session_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "session_id",
+            "smithy.api#documentation": "Filter to observations of one or more session recordings. Accepts a comma-separated list."
+          }
+        },
+        "status": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "status",
+            "smithy.api#documentation": "Filter by observation status. Accepts a comma-separated list."
+          }
+        },
+        "tags": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "tags",
+            "smithy.api#documentation": "Filter classifier observations whose fixed or freeform tags include any of the given values (comma-separated). Matches if the tag appears in either `tags` or `tags_freeform`."
+          }
+        },
+        "triggered_by": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "triggered_by",
+            "smithy.api#documentation": "Filter by trigger source (schedule or on_demand). Accepts a comma-separated list."
+          }
+        },
+        "verdict": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "verdict",
+            "smithy.api#documentation": "Filter monitor observations by verdict. Accepts a comma-separated list (e.g. `yes,inconclusive`)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#ObservationStats": {
+      "type": "structure",
+      "members": {
+        "status_counts": {
+          "target": "com.posthog.vision#ObservationStatusCounts",
+          "traits": {
+            "smithy.api#documentation": "Counts of observations by terminal status.",
+            "smithy.api#required": {}
+          }
+        },
+        "coverage": {
+          "target": "com.posthog.vision#CoverageStats",
+          "traits": {
+            "smithy.api#documentation": "Session-level scanner coverage.",
+            "smithy.api#required": {}
+          }
+        },
+        "available_tags": {
+          "target": "com.posthog.vision#ObservationStatsAvailableTagsList",
+          "traits": {
+            "smithy.api#documentation": "All distinct tags (fixed + freeform) emitted by succeeded observations in the filtered set.",
+            "smithy.api#required": {}
+          }
+        },
+        "monitor": {
+          "target": "com.posthog.vision#MonitorStats",
+          "traits": {
+            "smithy.api#documentation": "Monitor-type aggregates; null when the scanner is not a monitor.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "classifier": {
+          "target": "com.posthog.vision#ClassifierStats",
+          "traits": {
+            "smithy.api#documentation": "Classifier-type aggregates; null when the scanner is not a classifier.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "scorer": {
+          "target": "com.posthog.vision#ScorerStats",
+          "traits": {
+            "smithy.api#documentation": "Scorer-type aggregates; null when the scanner is not a scorer.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ObservationStatusCounts": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total observations in the filtered set.",
+            "smithy.api#required": {}
+          }
+        },
+        "succeeded": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Observations with `status=succeeded`.",
+            "smithy.api#required": {}
+          }
+        },
+        "failed": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Observations with `status=failed`.",
+            "smithy.api#required": {}
+          }
+        },
+        "ineligible": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Observations with `status=ineligible`.",
+            "smithy.api#required": {}
+          }
+        },
+        "in_flight": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Observations not yet in a terminal status.",
+            "smithy.api#required": {}
+          }
+        },
+        "success_rate": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Percentage of (succeeded + failed) observations that succeeded; ineligible rows are excluded. Null when no observations have completed.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#CoverageStats": {
+      "type": "structure",
+      "members": {
+        "recent_sessions": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Distinct sessions observed within the last `recent_days` days.",
+            "smithy.api#required": {}
+          }
+        },
+        "total_sessions": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Distinct sessions observed overall.",
+            "smithy.api#required": {}
+          }
+        },
+        "recent_days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Window size in days used for `recent_sessions`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ObservationStatsAvailableTagsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "All distinct tags (fixed + freeform) emitted by succeeded observations in the filtered set."
+      }
+    },
+    "com.posthog.vision#MonitorStats": {
+      "type": "structure",
+      "members": {
+        "yes_total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Succeeded observations whose verdict was `yes`.",
+            "smithy.api#required": {}
+          }
+        },
+        "no_total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Succeeded observations whose verdict was `no`.",
+            "smithy.api#required": {}
+          }
+        },
+        "inconclusive_total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Succeeded observations whose verdict was `inconclusive`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ClassifierStats": {
+      "type": "structure",
+      "members": {
+        "fixed_ranked": {
+          "target": "com.posthog.vision#ClassifierStatsFixedRankedList",
+          "traits": {
+            "smithy.api#documentation": "Top fixed-vocabulary tags by emission count.",
+            "smithy.api#required": {}
+          }
+        },
+        "freeform_ranked": {
+          "target": "com.posthog.vision#ClassifierStatsFreeformRankedList",
+          "traits": {
+            "smithy.api#documentation": "Top freeform tags by emission count.",
+            "smithy.api#required": {}
+          }
+        },
+        "total_with_tags": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Succeeded observations that emitted at least one tag.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#TagCount": {
+      "type": "structure",
+      "members": {
+        "tag": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The tag value.",
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of succeeded observations carrying this tag.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ClassifierStatsFixedRankedList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#TagCount"
+      },
+      "traits": {
+        "smithy.api#documentation": "Top fixed-vocabulary tags by emission count."
+      }
+    },
+    "com.posthog.vision#ClassifierStatsFreeformRankedList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#TagCount"
+      },
+      "traits": {
+        "smithy.api#documentation": "Top freeform tags by emission count."
+      }
+    },
+    "com.posthog.vision#ScorerStats": {
+      "type": "structure",
+      "members": {
+        "summary": {
+          "target": "com.posthog.vision#ScorerSummary",
+          "traits": {
+            "smithy.api#documentation": "Score quantile summary; null when no observations have been scored.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "histogram": {
+          "target": "com.posthog.vision#ScorerHistogram",
+          "traits": {
+            "smithy.api#documentation": "Score histogram; null when no observations have been scored.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ScorerSummary": {
+      "type": "structure",
+      "members": {
+        "min": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Minimum observed score.",
+            "smithy.api#required": {}
+          }
+        },
+        "p25": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "25th-percentile score.",
+            "smithy.api#required": {}
+          }
+        },
+        "median": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Median score.",
+            "smithy.api#required": {}
+          }
+        },
+        "mean": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Mean score.",
+            "smithy.api#required": {}
+          }
+        },
+        "p75": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "75th-percentile score.",
+            "smithy.api#required": {}
+          }
+        },
+        "max": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Maximum observed score.",
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of scored observations summarized.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ScorerHistogram": {
+      "type": "structure",
+      "members": {
+        "labels": {
+          "target": "com.posthog.vision#ScorerHistogramLabelsList",
+          "traits": {
+            "smithy.api#documentation": "Bucket labels (one per histogram bar) spanning the scanner's configured scale.",
+            "smithy.api#required": {}
+          }
+        },
+        "counts": {
+          "target": "com.posthog.vision#ScorerHistogramCountsList",
+          "traits": {
+            "smithy.api#documentation": "Observation count per bucket; same length as `labels`.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.vision#ScorerHistogramLabelsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Bucket labels (one per histogram bar) spanning the scanner's configured scale."
+      }
+    },
+    "com.posthog.vision#ScorerHistogramCountsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {
+        "smithy.api#documentation": "Observation count per bucket; same length as `labels`."
+      }
+    },
+    "com.posthog.vision#VisionScannersObservationsStatsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersObservationsStatsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#ObservationStats"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/scanners/{scanner_id}/observations/stats/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Aggregate counts and per-scanner-type distributions over the filtered observation set. Same filters as the list endpoint apply."
+      }
+    },
+    "com.posthog.vision#VisionScannersCreatorsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#ScannerCreatorsResponse": {
+      "type": "structure",
+      "members": {
+        "creators": {
+          "target": "com.posthog.vision#ScannerCreatorsResponseCreatorsList",
+          "traits": {
+            "smithy.api#documentation": "Users who created at least one scanner on this team. Returned regardless of pagination state so the dropdown stays stable across pages.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Distinct creators across all scanners on the team — feeds the `Created by` filter dropdown."
+      }
+    },
+    "com.posthog.vision#ScannerCreatorsResponseCreatorsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.vision#UserBasic"
+      },
+      "traits": {
+        "smithy.api#documentation": "Users who created at least one scanner on this team. Returned regardless of pagination state so the dropdown stays stable across pages."
+      }
+    },
+    "com.posthog.vision#VisionScannersCreatorsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersCreatorsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#ScannerCreatorsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/scanners/creators/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Distinct creators across the team's scanners — feeds the `Created by` filter dropdown."
+      }
+    },
+    "com.posthog.vision#VisionScannersEstimateCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "query": {
+          "target": "smithy.api#Document",
+          "traits": {
+            "smithy.api#documentation": "Proposed `RecordingsQuery` for the candidate filter. `date_from`/`date_to` are ignored — the estimate always uses a fixed 30-day lookback. Omit to estimate against all recordings."
+          }
+        },
+        "sampling_rate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "0..1 downsample applied to matched sessions. Defaults to 1.0 (no downsampling)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#EstimateResponse": {
+      "type": "structure",
+      "members": {
+        "matched_sessions_in_window": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Distinct sessions matching the query within the 30-day lookback, before sampling.",
+            "smithy.api#required": {}
+          }
+        },
+        "window_days": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Lookback window the estimate is based on. Normally 30; smaller when the team has fewer days of recordings.",
+            "smithy.api#required": {}
+          }
+        },
+        "estimated_observations_per_month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Projected monthly observations: matched sessions scaled to 30 days, times sampling_rate.",
+            "smithy.api#required": {}
+          }
+        },
+        "sampling_rate": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Sampling rate applied to the projection. Echoed from the request.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Forward-looking observation-volume estimate for a proposed scanner. Pricing-agnostic."
+      }
+    },
+    "com.posthog.vision#VisionScannersEstimateCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersEstimateCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#EstimateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/vision/scanners/estimate/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Estimate the observation volume a proposed scanner would generate, for the pre-save cost preview."
+      }
+    },
+    "com.posthog.vision#VisionScannersStatsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.vision#ScannerStatsResponse": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total scanners on the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "enabled": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of enabled scanners on the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "by_type": {
+          "target": "com.posthog.vision#ScannerStatsByType",
+          "traits": {
+            "smithy.api#documentation": "Per-scanner-type breakdown (monitor / classifier / scorer / summarizer).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Team-wide scanner counts independent of any list-filter state."
+      }
+    },
+    "com.posthog.vision#ScannerStatsByType": {
+      "type": "structure",
+      "members": {
+        "monitor": {
+          "target": "com.posthog.vision#ScannerTypeStats",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "classifier": {
+          "target": "com.posthog.vision#ScannerTypeStats",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "scorer": {
+          "target": "com.posthog.vision#ScannerTypeStats",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "summarizer": {
+          "target": "com.posthog.vision#ScannerTypeStats",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "One `ScannerTypeStats` per scanner type — explicit fields give callers a typed shape, not `Record<string, …>`."
+      }
+    },
+    "com.posthog.vision#ScannerTypeStats": {
+      "type": "structure",
+      "members": {
+        "enabled": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of enabled scanners of this type.",
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of scanners of this type (enabled + disabled).",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-scanner-type count of enabled vs total scanners."
+      }
+    },
+    "com.posthog.vision#VisionScannersStatsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.vision#VisionScannersStatsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.vision#ScannerStatsResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/vision/scanners/stats/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Team-wide scanner counts — independent of list filters, so the overview stays stable."
+      }
+    },
+    "com.posthog.vision#Vision": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.vision#VisionActionsList"
+        },
+        {
+          "target": "com.posthog.vision#VisionActionsCreate"
+        },
+        {
+          "target": "com.posthog.vision#VisionActionsRetrieve"
+        },
+        {
+          "target": "com.posthog.vision#VisionActionsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.vision#VisionActionsDestroy"
+        },
+        {
+          "target": "com.posthog.vision#VisionActionsRunsList"
+        },
+        {
+          "target": "com.posthog.vision#VisionActionsRunsRetrieve"
+        },
+        {
+          "target": "com.posthog.vision#VisionObservationsList"
+        },
+        {
+          "target": "com.posthog.vision#VisionObservationsRetrieve"
+        },
+        {
+          "target": "com.posthog.vision#EnvironmentVisionQuotaRetrieve"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersList"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersCreate"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersRetrieve"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersPartialUpdate"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersDestroy"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersObserveCreate"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersObservationsList"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersObservationsRetrieve"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersObservationsStatsRetrieve"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersCreatorsRetrieve"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersEstimateCreate"
+        },
+        {
+          "target": "com.posthog.vision#VisionScannersStatsRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

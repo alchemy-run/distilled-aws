@@ -1,0 +1,25 @@
+{
+  "description": "Docs bug (same readOnly-id class as token policies): member create/update REQUEST bodies mark server-assigned ids and server-side role definitions as required. Create policies have no id yet — drop the member ({access, permission_groups, resource_groups} is the real write shape). Update policies may reference an existing policy by id but new ones cannot — make it optional. Update roles are referenced by id alone on the wire — description/name/permissions are read-only role definitions, so drop their required.",
+  "patches": [
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.accounts#MembersCreateRequestPoliciesItem/members/id"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.accounts#MembersUpdateRequestPoliciesItem/members/id/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.accounts#MembersUpdateRequestRolesItem/members/description/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.accounts#MembersUpdateRequestRolesItem/members/name/traits/smithy.api#required"
+    },
+    {
+      "op": "remove",
+      "path": "/shapes/com.cloudflare.accounts#MembersUpdateRequestRolesItem/members/permissions/traits/smithy.api#required"
+    }
+  ]
+}

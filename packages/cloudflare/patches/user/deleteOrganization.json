@@ -1,0 +1,30 @@
+{
+  "description": "Align user#OrganizationsDelete with distilled cloudflare/user deleteOrganization",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#OrganizationsDelete",
+      "path": "/shapes/com.cloudflare.user#DeleteOrganization"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#OrganizationsDeleteRequest",
+      "path": "/shapes/com.cloudflare.user#DeleteOrganizationRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#DeleteOrganization/input/target",
+      "value": "com.cloudflare.user#DeleteOrganizationRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#OrganizationsDeleteResponse",
+      "path": "/shapes/com.cloudflare.user#DeleteOrganizationResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#DeleteOrganization/output/target",
+      "value": "com.cloudflare.user#DeleteOrganizationResponse"
+    }
+  ]
+}

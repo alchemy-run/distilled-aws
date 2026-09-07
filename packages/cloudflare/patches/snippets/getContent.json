@@ -1,0 +1,20 @@
+{
+  "description": "Align snippets#ContentGet with distilled cloudflare/snippets getContent",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#ContentGet",
+      "path": "/shapes/com.cloudflare.snippets#GetContent"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#ContentGetRequest",
+      "path": "/shapes/com.cloudflare.snippets#GetContentRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.snippets#GetContent/input/target",
+      "value": "com.cloudflare.snippets#GetContentRequest"
+    }
+  ]
+}

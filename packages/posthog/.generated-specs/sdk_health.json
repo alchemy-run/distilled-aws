@@ -1,0 +1,394 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.sdk_health#SdkHealthReportRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "force_refresh": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "force_refresh",
+            "smithy.api#documentation": "When true, bypasses the Redis cache and re-queries ClickHouse for SDK usage. Use sparingly — data is refreshed every 12 hours by a background job."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.sdk_health#SdkHealthReport": {
+      "type": "structure",
+      "members": {
+        "overall_health": {
+          "target": "com.posthog.sdk_health#OverallHealthEnum",
+          "traits": {
+            "smithy.api#documentation": "'healthy' when no SDKs need updating, 'needs_attention' otherwise.\n\n* `healthy` - healthy\n* `needs_attention` - needs_attention"
+          }
+        },
+        "health": {
+          "target": "com.posthog.sdk_health#HealthEnum",
+          "traits": {
+            "smithy.api#documentation": "UI-level status — 'success' when healthy, 'warning' when some SDKs are outdated, 'danger' when the majority are outdated.\n\n* `success` - success\n* `warning` - warning\n* `danger` - danger"
+          }
+        },
+        "needs_updating_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of SDKs that need updating."
+          }
+        },
+        "team_sdk_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of distinct PostHog SDKs the project is actively using."
+          }
+        },
+        "sdks": {
+          "target": "com.posthog.sdk_health#SdkHealthReportSdksList",
+          "traits": {
+            "smithy.api#documentation": "Per-SDK health assessments."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.sdk_health#OverallHealthEnum": {
+      "type": "enum",
+      "members": {
+        "HEALTHY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "healthy"
+          }
+        },
+        "NEEDS_ATTENTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "needs_attention"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `healthy` - healthy\n* `needs_attention` - needs_attention"
+      }
+    },
+    "com.posthog.sdk_health#HealthEnum": {
+      "type": "enum",
+      "members": {
+        "SUCCESS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "success"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warning"
+          }
+        },
+        "DANGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "danger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `success` - success\n* `warning` - warning\n* `danger` - danger"
+      }
+    },
+    "com.posthog.sdk_health#SdkAssessment": {
+      "type": "structure",
+      "members": {
+        "lib": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SDK identifier, e.g. 'web', 'posthog-python', 'posthog-node', 'posthog-ios'."
+          }
+        },
+        "readable_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable SDK name matching the SDK Health UI (e.g. 'Python', 'Node.js', 'Web', 'iOS')."
+          }
+        },
+        "latest_version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Most recent published version of this SDK."
+          }
+        },
+        "needs_updating": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if this SDK needs attention (is_outdated OR is_old)."
+          }
+        },
+        "is_outdated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the primary in-use version is flagged as outdated."
+          }
+        },
+        "is_old": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if the primary in-use version is flagged as old by age alone."
+          }
+        },
+        "severity": {
+          "target": "com.posthog.sdk_health#SdkAssessmentSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "UI severity badge — 'none' when healthy, 'warning' when outdated, 'danger' when the majority of team SDKs are outdated.\n\n* `none` - none\n* `warning` - warning\n* `danger` - danger"
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Per-SDK programmatic summary (used for ranking/filtering). For user-facing copy, prefer releases[].status_reason (badge tooltip) and banners (top-level alert text) — those match the UI exactly."
+          }
+        },
+        "banners": {
+          "target": "com.posthog.sdk_health#SdkAssessmentBannersList",
+          "traits": {
+            "smithy.api#documentation": "Top-level alert sentences matching the SDK Health UI's 'Time for an update!' banner — one per outdated version with significant traffic. Quote verbatim when surfacing the headline to users."
+          }
+        },
+        "releases": {
+          "target": "com.posthog.sdk_health#SdkAssessmentReleasesList",
+          "traits": {
+            "smithy.api#documentation": "Per-version assessment for all versions seen in the last 7 days."
+          }
+        },
+        "outdated_traffic_alerts": {
+          "target": "com.posthog.sdk_health#SdkAssessmentOutdatedTrafficAlertsList",
+          "traits": {
+            "smithy.api#documentation": "Outdated versions that handle a significant share of traffic (above the threshold). Not populated for mobile SDKs."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.sdk_health#SdkAssessmentSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "NONE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "none"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "warning"
+          }
+        },
+        "DANGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "danger"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `none` - none\n* `warning` - warning\n* `danger` - danger"
+      }
+    },
+    "com.posthog.sdk_health#SdkAssessmentBannersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Top-level alert sentences matching the SDK Health UI's 'Time for an update!' banner — one per outdated version with significant traffic. Quote verbatim when surfacing the headline to users."
+      }
+    },
+    "com.posthog.sdk_health#SdkReleaseAssessment": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "In-use SDK version string, e.g. '1.298.0'."
+          }
+        },
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of events captured with this version in the last 7 days."
+          }
+        },
+        "max_timestamp": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Timestamp of the most recent event seen for this version (ISO 8601)."
+          }
+        },
+        "release_date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "When this version was published on GitHub (ISO 8601), or null if unknown.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "days_since_release": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Days since this version was released, or null if unknown.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "released_ago": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable relative release age matching the UI (e.g. '5 months ago'). Null when release_date is unknown.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_outdated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when this version is flagged as outdated by smart-semver rules."
+          }
+        },
+        "is_old": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when this version is flagged as old by age alone (separate from semver rules)."
+          }
+        },
+        "needs_updating": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True if is_outdated OR is_old."
+          }
+        },
+        "is_current_or_newer": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "True when this version equals or exceeds the latest known published version."
+          }
+        },
+        "status_reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Per-version badge tooltip text matching the SDK Health UI exactly. Quote verbatim when reporting to users. Varies by state: 'Released X ago. Upgrade recommended.' for outdated versions, 'You have the latest available.' for current versions, or 'Released X ago. Upgrading is a good idea, but it's not urgent yet.' for recent-but-behind versions."
+          }
+        },
+        "sql_query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SQL SELECT statement for drilling into events for this SDK version over the last 7 days. Suitable to pass to the execute-sql tool or to display as a copy-paste snippet."
+          }
+        },
+        "activity_page_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Relative URL path (starting with /project/{id}/) for the Activity > Explore page pre-filtered to events captured with this lib and lib_version over the last 7 days. Combine with the user's PostHog host (e.g. us.posthog.com) for a clickable link."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.sdk_health#SdkAssessmentReleasesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.sdk_health#SdkReleaseAssessment"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-version assessment for all versions seen in the last 7 days."
+      }
+    },
+    "com.posthog.sdk_health#OutdatedTrafficAlert": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Outdated version handling significant traffic."
+          }
+        },
+        "threshold_percent": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Traffic-percentage threshold that triggered the alert (10% for most SDKs, 20% for web)."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.sdk_health#SdkAssessmentOutdatedTrafficAlertsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.sdk_health#OutdatedTrafficAlert"
+      },
+      "traits": {
+        "smithy.api#documentation": "Outdated versions that handle a significant share of traffic (above the threshold). Not populated for mobile SDKs."
+      }
+    },
+    "com.posthog.sdk_health#SdkHealthReportSdksList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.sdk_health#SdkAssessment"
+      },
+      "traits": {
+        "smithy.api#documentation": "Per-SDK health assessments."
+      }
+    },
+    "com.posthog.sdk_health#SdkHealthReportRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.sdk_health#SdkHealthReportRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.sdk_health#SdkHealthReport"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/sdk_health/report/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get SDK health report for a project\n\nReturns a pre-digested health assessment of the PostHog SDKs the project is using. Covers which SDKs are current vs outdated (smart-semver rules with grace periods and traffic-percentage thresholds), per-version breakdown, and a human-readable reason for each assessment. Use this to diagnose SDK version issues, surface upgrade recommendations, or check overall SDK health."
+      }
+    },
+    "com.posthog.sdk_health#SdkHealth": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.sdk_health#SdkHealthReportRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "description": "Align turnstile#WidgetsList with distilled cloudflare/turnstile listWidgets",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsList",
+      "path": "/shapes/com.cloudflare.turnstile#ListWidgets"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsListRequest",
+      "path": "/shapes/com.cloudflare.turnstile#ListWidgetsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#ListWidgets/input/target",
+      "value": "com.cloudflare.turnstile#ListWidgetsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsListResponse",
+      "path": "/shapes/com.cloudflare.turnstile#ListWidgetsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#ListWidgets/output/target",
+      "value": "com.cloudflare.turnstile#ListWidgetsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.turnstile#ListWidgets/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

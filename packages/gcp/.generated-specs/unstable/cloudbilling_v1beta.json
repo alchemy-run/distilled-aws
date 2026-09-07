@@ -1,0 +1,3175 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "cloudbilling",
+    "version": "v1beta",
+    "title": "Cloud Billing API",
+    "baseUrl": "https://cloudbilling.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.cloudbilling_v1beta#UserContext": {
+      "type": "structure",
+      "members": {
+        "role": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. The user's role (e.g., Billing Admin, Project Owner, etc.)."
+          }
+        },
+        "persona": {
+          "target": "com.gcp.cloudbilling_v1beta#UserContextPersonaEnum",
+          "traits": {
+            "smithy.api#documentation": "Optional. The user's persona (e.g., FinOps Manager, Developer)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Additional context for personalization (e.g., user persona, role)."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#UserContextPersonaEnum": {
+      "type": "enum",
+      "members": {
+        "PERSONA_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PERSONA_UNSPECIFIED"
+          }
+        },
+        "FINOPS_MANAGER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINOPS_MANAGER"
+          }
+        },
+        "DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVELOPER"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomy": {
+      "type": "structure",
+      "members": {
+        "multiRegionalMetadata": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyMultiRegional",
+          "traits": {
+            "smithy.api#documentation": "Multi-regional geographic metadata with 2 or more regions."
+          }
+        },
+        "type": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of geographic taxonomy associated with the billing account SKU group SKU."
+          }
+        },
+        "globalMetadata": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyGlobal",
+          "traits": {
+            "smithy.api#documentation": "Global geographic metadata with no regions."
+          }
+        },
+        "regionalMetadata": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegional",
+          "traits": {
+            "smithy.api#documentation": "Regional geographic metadata with 1 region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates geographic metadata, such as regions and multi-regions like `us-east4` or `European Union`."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "TYPE_GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_GLOBAL"
+          }
+        },
+        "TYPE_REGIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_REGIONAL"
+          }
+        },
+        "TYPE_MULTI_REGIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_MULTI_REGIONAL"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaRateTier": {
+      "type": "structure",
+      "members": {
+        "listPrice": {
+          "target": "com.gcp.cloudbilling_v1beta#Money",
+          "traits": {
+            "smithy.api#documentation": "List price of one tier."
+          }
+        },
+        "startAmount": {
+          "target": "com.gcp.cloudbilling_v1beta#Decimal",
+          "traits": {
+            "smithy.api#documentation": "Lower bound amount for a tier. Tiers 0-100, 100-200 will be represented with two tiers with `start_amount` 0 and 100."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a rate price tier."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaMigratedPrice": {
+      "type": "structure",
+      "members": {
+        "sourceSku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Source SKU where the discount is migrated from. Format: billingAccounts/{billing_account}/skus/{sku}"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a price migrated from other SKUs."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountservicesV1betaListBillingAccountServicesResponse": {
+      "type": "structure",
+      "members": {
+        "billingAccountServices": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountservicesV1betaBillingAccountServiceList",
+          "traits": {
+            "smithy.api#documentation": "The returned billing account services."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListBillingAccountServices."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountservicesV1betaBillingAccountServiceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountservicesV1betaBillingAccountService"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Cloudbilling_Array": {
+      "type": "structure",
+      "members": {
+        "element": {
+          "target": "com.gcp.cloudbilling_v1beta#ValueProtoList",
+          "traits": {
+            "smithy.api#documentation": "The elements of the array."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An ordered collection of elements of arbitrary count."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ValueProtoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#ValueProto"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Range": {
+      "type": "structure",
+      "members": {
+        "start": {
+          "target": "com.gcp.cloudbilling_v1beta#ValueProto",
+          "traits": {
+            "smithy.api#documentation": "Represents the start of the range."
+          }
+        },
+        "end": {
+          "target": "com.gcp.cloudbilling_v1beta#ValueProto",
+          "traits": {
+            "smithy.api#documentation": "Represents the end of the range."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A range of values, bounded by the values 'start' (inclusive) and 'end' (exclusive). A range has an element type, and values must be of this element type. A range is contiguous, ie it contains all values of the given element type starting at 'start' and ending before 'end'. A \"null\" value on start or end represents an unbounded start or end value respectively. Start and end values must always be present."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaRateTier": {
+      "type": "structure",
+      "members": {
+        "startAmount": {
+          "target": "com.gcp.cloudbilling_v1beta#Decimal",
+          "traits": {
+            "smithy.api#documentation": "Lower bound amount for a tier. Tiers 0-100, 100-200 will be represented with two tiers with `start_amount` 0 and 100."
+          }
+        },
+        "listPrice": {
+          "target": "com.gcp.cloudbilling_v1beta#Money",
+          "traits": {
+            "smithy.api#documentation": "List price of one tier."
+          }
+        },
+        "contractPrice": {
+          "target": "com.gcp.cloudbilling_v1beta#Money",
+          "traits": {
+            "smithy.api#documentation": "Negotiated contract price specific for a billing account."
+          }
+        },
+        "effectiveDiscountPercent": {
+          "target": "com.gcp.cloudbilling_v1beta#Decimal",
+          "traits": {
+            "smithy.api#documentation": "Percentage of effective discount calculated using the current list price per pricing tier. Formula used: effective_discount_percent = (list_price - contract_price) / list_price × 100 If list_price and contract_price are zero, this field is the same as `discount_percent` of FixedDiscount and FloatingDiscount. If your contract does NOT have the feature LIST_PRICE_AS_CEILING enabled, the effective_discount_percent can be negative if the SKU has a FixedDiscount and the current list price is lower than the list price on the date of the contract agreement. See the `FixedDiscount.fix_time` on when the discount was set. If you have questions regarding pricing per SKU, contact your Account team for more details."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a rate price tier."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaProductTaxonomy": {
+      "type": "structure",
+      "members": {
+        "taxonomyCategories": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaTaxonomyCategoryList",
+          "traits": {
+            "smithy.api#documentation": "All product categories that the SKU group SKU belongs to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates product categories, such as `Serverless`, `Cloud Run`, `TaskQueue`, and others."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaTaxonomyCategoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaTaxonomyCategory"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyRegional": {
+      "type": "structure",
+      "members": {
+        "region": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyRegion",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud region associated with the regional geographic taxonomy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a regional geographic taxonomy."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#FinalResult": {
+      "type": "structure",
+      "members": {
+        "interopLinks": {
+          "target": "com.gcp.cloudbilling_v1beta#InteropLinkList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Links to interoperable tools (e.g., pre-filtered Cost Reports or BQE queries)."
+          }
+        },
+        "dataSets": {
+          "target": "com.gcp.cloudbilling_v1beta#DataSetList",
+          "traits": {
+            "smithy.api#documentation": "Output only. Data sets used to support the insights, suitable for UI rendering (tables/charts)."
+          }
+        },
+        "suggestedQueries": {
+          "target": "com.gcp.cloudbilling_v1beta#SuggestedQueryList",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of suggested follow-up queries for the user."
+          }
+        },
+        "fullAnalysis": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Contains the full natural language analysis, including thoughts, reasoning, and references."
+          }
+        },
+        "insights": {
+          "target": "com.gcp.cloudbilling_v1beta#InsightList",
+          "traits": {
+            "smithy.api#documentation": "Output only. A list of discrete insights gleaned from the data."
+          }
+        },
+        "summary": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The full natural language summary (re-sent for consistency)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates all structured data and the completed summary."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#InteropLinkList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#InteropLink"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#DataSetList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#DataSet"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#SuggestedQueryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#SuggestedQuery"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#InsightList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#Insight"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Insight": {
+      "type": "structure",
+      "members": {
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The description of the insight."
+          }
+        },
+        "severity": {
+          "target": "com.gcp.cloudbilling_v1beta#InsightSeverityEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The severity of the insight, used for UI rendering (e.g., color-coding)."
+          }
+        },
+        "title": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The title of the insight."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "e.g. insight: title: \"Cost Increase (The Explanation)\" description: \"Your cost increase was driven by Vertex AI Online Prediction in us-central1...\" severity: INFO"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#InsightSeverityEnum": {
+      "type": "enum",
+      "members": {
+        "SEVERITY_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SEVERITY_UNSPECIFIED"
+          }
+        },
+        "INFO": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INFO"
+          }
+        },
+        "WARNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WARNING"
+          }
+        },
+        "CRITICAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CRITICAL"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ValueProto": {
+      "type": "structure",
+      "members": {
+        "tokenlistValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded tokenlist value. copybara:strip_begin(internal-comment) See //search/tokens:token_list. copybara:strip_end"
+          }
+        },
+        "uuidValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded uuid value. For the encoding format see documentation for UuidValue::SerializeAsBytes()."
+          }
+        },
+        "bignumericValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded bignumeric value. For the encoding format see documentation for BigNumericValue::SerializeAsProtoBytes()."
+          }
+        },
+        "enumValue": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Tag 11 was used for specifying micros timestamps as int64, now obsolete."
+          }
+        },
+        "protoValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Stores a serialized protocol message."
+          }
+        },
+        "datetimeValue": {
+          "target": "com.gcp.cloudbilling_v1beta#Datetime",
+          "traits": {
+            "smithy.api#documentation": "primitive for datetime"
+          }
+        },
+        "ValueProtoSwitchMustHaveADefault": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "User code that switches on this oneoff enum must have a default case so builds won't break when new fields are added."
+          }
+        },
+        "arrayValue": {
+          "target": "com.gcp.cloudbilling_v1beta#Cloudbilling_Array",
+          "traits": {
+            "smithy.api#documentation": "An array of value"
+          }
+        },
+        "numericValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded numeric value. For the encoding format see documentation for NumericValue::SerializeAsProtoBytes()."
+          }
+        },
+        "structValue": {
+          "target": "com.gcp.cloudbilling_v1beta#Struct",
+          "traits": {
+            "smithy.api#documentation": "A struct of values"
+          }
+        },
+        "dateValue": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Primitive for date."
+          }
+        },
+        "geographyValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Geography encoded using ::stlib::STGeographyEncoder"
+          }
+        },
+        "uint32Value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Primitive for uint32."
+          }
+        },
+        "boolValue": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Primitive for bool."
+          }
+        },
+        "doubleValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Primitive for double."
+          }
+        },
+        "int32Value": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Primitive value for int32."
+          }
+        },
+        "timeValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Bit field encoding of hour/minute/second/nanos. See TimeValue class for details."
+          }
+        },
+        "mapValue": {
+          "target": "com.gcp.cloudbilling_v1beta#Cloudbilling_Map",
+          "traits": {
+            "smithy.api#documentation": "Encoded map value. See go/googlesql_map."
+          }
+        },
+        "intervalValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded interval value. For the encoding format see documentation for IntervalValue::SerializeAsBytes()."
+          }
+        },
+        "int64Value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Primitive for int64."
+          }
+        },
+        "rangeValue": {
+          "target": "com.gcp.cloudbilling_v1beta#Range",
+          "traits": {
+            "smithy.api#documentation": "Encoded range value. See go/googlesql_range."
+          }
+        },
+        "uint64Value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Primitive for uint64."
+          }
+        },
+        "bytesValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Primitive for bytes."
+          }
+        },
+        "timestampValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "primitive for timestamp"
+          }
+        },
+        "timestampPicoValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoded timestamp_pico value. For the encoding format see documentation for googlesql::TimestampPico::SerializeAsBytes()."
+          }
+        },
+        "jsonValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tag 22 was used for json value as bytes, now obsolete. Json value represented as a string document."
+          }
+        },
+        "stringValue": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Primitive for string."
+          }
+        },
+        "floatValue": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Primitive for float."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This is a copy of storage/googlesql/public/value.proto. ValueProto represents the serialized form of the googlesql::Value. The intention is to support multiple languages including Java and C++, so we must be sensitive to the distinction between Java Strings and byte arrays or ByteStrings. We also want to support use-cases which do not want to serialize a copy of the GoogleSQL type for every instance (which might be very repetitive). Therefore, unlike googlesql::Value, ValueProto does not carry full type information with every instance, and can only be fully interpreted with an associated TypeProto."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomy": {
+      "type": "structure",
+      "members": {
+        "globalMetadata": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyGlobal",
+          "traits": {
+            "smithy.api#documentation": "Global geographic metadata with no regions."
+          }
+        },
+        "regionalMetadata": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyRegional",
+          "traits": {
+            "smithy.api#documentation": "Regional geographic metadata with 1 region."
+          }
+        },
+        "multiRegionalMetadata": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyMultiRegional",
+          "traits": {
+            "smithy.api#documentation": "Multi-regional geographic metadata with 2 or more regions."
+          }
+        },
+        "type": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of geographic taxonomy associated with the SKU group SKU."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates geographic metadata, such as regions and multi-regions like `us-east4` or `European Union`."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "TYPE_GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_GLOBAL"
+          }
+        },
+        "TYPE_REGIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_REGIONAL"
+          }
+        },
+        "TYPE_MULTI_REGIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_MULTI_REGIONAL"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyGlobal": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a global geographic taxonomy."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaTaxonomyCategory": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the product category."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a product category."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#AgenticQueryInfo": {
+      "type": "structure",
+      "members": {
+        "view": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The view queried."
+          }
+        },
+        "groupBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The group-by clause applied to the query."
+          }
+        },
+        "columns": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The columns queried."
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The filter applied to the query."
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The order-by clause applied to the query."
+          }
+        },
+        "parents": {
+          "target": "com.gcp.cloudbilling_v1beta#StringList",
+          "traits": {
+            "smithy.api#documentation": "The parents (e.g. projects, billing accounts) queried."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The row limit applied to the query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A local representation of the query used to fetch the data. This is used instead of the raw QueryBillingDataRequest to avoid pulling in Cloud Policy Enforcement (CPE) resource_type annotations into the response payload, which causes ESF validation failures."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaListPriceAsCeiling": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a contract feature that the list price (DefaultPrice) will be used for the price if the current list price drops lower than the custom fixed price. Available to new contracts after March 21, 2022. Applies to all fixed price SKUs in the contract, including FixedPrice, FixedDiscount, MigratedPrice, and MergedPrice."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaTaxonomyCategory": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the product category."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a product category."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaListPricesResponse": {
+      "type": "structure",
+      "members": {
+        "prices": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaPriceList",
+          "traits": {
+            "smithy.api#documentation": "The returned publicly listed prices."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListPrices."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaPriceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaPrice"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyGlobal": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a global geographic taxonomy."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyRegional": {
+      "type": "structure",
+      "members": {
+        "region": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyRegion",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud region associated with the regional geographic taxonomy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a regional geographic taxonomy."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GenerateInsightsResponse": {
+      "type": "structure",
+      "members": {
+        "rejection": {
+          "target": "com.gcp.cloudbilling_v1beta#Rejection",
+          "traits": {
+            "smithy.api#documentation": "Output only. The request was rejected (e.g. out of scope)."
+          }
+        },
+        "thoughtChunk": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A chunk of the agent's internal reasoning process. The UI can use this to render a \"Thinking...\" log or status."
+          }
+        },
+        "summaryChunk": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A chunk of the natural language summary (customer-facing). The UI can append these chunks to provide a real-time \"typing\" effect."
+          }
+        },
+        "finalResult": {
+          "target": "com.gcp.cloudbilling_v1beta#FinalResult",
+          "traits": {
+            "smithy.api#documentation": "Output only. The final structured results and metadata. Usually sent as the final message in the stream."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response for GenerateInsights."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaListSkuGroupSkusResponse": {
+      "type": "structure",
+      "members": {
+        "skuGroupSkus": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaSkuGroupSkuList",
+          "traits": {
+            "smithy.api#documentation": "The returned SKU group SKUs."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListSkuGroupSkus."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaSkuGroupSkuList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaSkuGroupSku"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountservicesV1betaBillingAccountService": {
+      "type": "structure",
+      "members": {
+        "serviceId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Identifier for the service. It is the string after the collection identifier \"services/\". Example: \"DA34-426B-A397\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the BillingAccountService. Example: \"billingAccounts/012345-567890-ABCDEF/services/DA34-426B-A397\"."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the BillingAccountService. Example: \"BigQuery\", \"Compute Engine\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a Google Cloud service visible to a billing account."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Row": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.gcp.cloudbilling_v1beta#ValueProtoList",
+          "traits": {
+            "smithy.api#documentation": "Values for a row in the column order."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a row in the query result."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaFloatingDiscount": {
+      "type": "structure",
+      "members": {
+        "discountScopeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the floating discount scope which indicates the source of the discount. It can have values such as 'unspecified' and 'sku-group'."
+          }
+        },
+        "skuGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU group where the floating discount comes from."
+          }
+        },
+        "discountPercent": {
+          "target": "com.gcp.cloudbilling_v1beta#Decimal",
+          "traits": {
+            "smithy.api#documentation": "Percentage of the floating discount."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a discount off the current list price, not anchored to any list price as of a fixed time."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaMergedPrice": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a price after merging from multiple sources. With merged tiers, each individual tier can be from a different source with different discount types."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaUnitInfo": {
+      "type": "structure",
+      "members": {
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shorthand for the unit. Example: GiBy.mo."
+          }
+        },
+        "unitDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable description of the unit. Example: gibibyte month."
+          }
+        },
+        "unitQuantity": {
+          "target": "com.gcp.cloudbilling_v1beta#Decimal",
+          "traits": {
+            "smithy.api#documentation": "Unit quantity for the tier. Example: if the RateTier price is $1 per 1000000 Bytes, then `unit_quantity` is set to 1000000."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates the unit information for a Rate"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaListBillingAccountSkuGroupSkusResponse": {
+      "type": "structure",
+      "members": {
+        "billingAccountSkuGroupSkus": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSkuList",
+          "traits": {
+            "smithy.api#documentation": "The returned billing account SKU group SKUs."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListBillingAccountSkuGroupSkus."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSkuList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSku"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSku": {
+      "type": "structure",
+      "members": {
+        "billingAccountService": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "BillingAccountService that the BillingAccountSkuGroupSku belongs to."
+          }
+        },
+        "productTaxonomy": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaProductTaxonomy",
+          "traits": {
+            "smithy.api#documentation": "List of product categories that apply to the BillingAccountSkuGroupSku."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the BillingAccountSkuGroupSku. Example: \"A2 Instance Core running in Hong Kong\"."
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the SKU. It is the string after the collection identifier \"skus/\" Example: \"AA95-CD31-42FE\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the BillingAccountSkuGroupSku. Example: \"billingAccounts/012345-567890-ABCDEF/skuGroups/0e6403d1-4694-44d2-a696-7a78b1a69301/skus/AA95-CD31-42FE\"."
+          }
+        },
+        "geoTaxonomy": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomy",
+          "traits": {
+            "smithy.api#documentation": "Geographic metadata that applies to the BillingAccountSkuGroupSku."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a SKU that is part of a billing account SKU group."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Rejection": {
+      "type": "structure",
+      "members": {
+        "displayMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. A user-facing message explaining the rejection."
+          }
+        },
+        "reason": {
+          "target": "com.gcp.cloudbilling_v1beta#RejectionReasonEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The reason for the rejection."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates details about why a request was rejected."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#RejectionReasonEnum": {
+      "type": "enum",
+      "members": {
+        "REASON_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "REASON_UNSPECIFIED"
+          }
+        },
+        "EXPLICIT_OUT_OF_SCOPE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "EXPLICIT_OUT_OF_SCOPE"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupsV1betaListBillingAccountSkuGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages."
+          }
+        },
+        "billingAccountSkuGroups": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroupList",
+          "traits": {
+            "smithy.api#documentation": "The returned publicly listed billing account SKU groups."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListBillingAccountSkuGroups."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroup"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegional": {
+      "type": "structure",
+      "members": {
+        "region": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegion",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud region associated with the regional geographic taxonomy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a regional geographic taxonomy."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaRate": {
+      "type": "structure",
+      "members": {
+        "unitInfo": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaUnitInfo",
+          "traits": {
+            "smithy.api#documentation": "Unit info such as name and quantity."
+          }
+        },
+        "aggregationInfo": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaAggregationInfo",
+          "traits": {
+            "smithy.api#documentation": "Aggregation info for tiers such as aggregation level and interval."
+          }
+        },
+        "tiers": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaRateTierList",
+          "traits": {
+            "smithy.api#documentation": "All tiers associated with the `Rate` price."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a `Rate` price. SKUs with `Rate` price are offered by pricing tiers. The price have 1 or more rate pricing tiers."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaRateTierList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaRateTier"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaProductTaxonomy": {
+      "type": "structure",
+      "members": {
+        "taxonomyCategories": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaTaxonomyCategoryList",
+          "traits": {
+            "smithy.api#documentation": "All product categories that the billing account SKU group SKU belong to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates product categories, such as `Serverless`, `Cloud Run`, `TaskQueue`, and others."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaTaxonomyCategoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaTaxonomyCategory"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaAggregationInfo": {
+      "type": "structure",
+      "members": {
+        "level": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaAggregationInfoLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Level at which usage is aggregated to compute cost. Example: \"ACCOUNT\" level indicates that usage is aggregated across all projects in a single account."
+          }
+        },
+        "interval": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaAggregationInfoIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "Interval at which usage is aggregated to compute cost. Example: \"MONTHLY\" interval indicates that usage is aggregated every month."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates the aggregation information such as aggregation level and interval for a billing account price."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaAggregationInfoLevelEnum": {
+      "type": "enum",
+      "members": {
+        "LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_UNSPECIFIED"
+          }
+        },
+        "LEVEL_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_ACCOUNT"
+          }
+        },
+        "LEVEL_PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_PROJECT"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaAggregationInfoIntervalEnum": {
+      "type": "enum",
+      "members": {
+        "INTERVAL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERVAL_UNSPECIFIED"
+          }
+        },
+        "INTERVAL_MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERVAL_MONTHLY"
+          }
+        },
+        "INTERVAL_DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERVAL_DAILY"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaPriceReason": {
+      "type": "structure",
+      "members": {
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the price reason. It can have values such as 'unspecified', 'default-price', 'fixed-price', 'fixed-discount', 'floating-discount', 'migrated-price', 'merged-price', 'list-price-as-ceiling'."
+          }
+        },
+        "fixedDiscount": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaFixedDiscount",
+          "traits": {
+            "smithy.api#documentation": "Discount off the list price, anchored to the list price as of a fixed time."
+          }
+        },
+        "mergedPrice": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaMergedPrice",
+          "traits": {
+            "smithy.api#documentation": "Price after merging from multiple sources."
+          }
+        },
+        "defaultPrice": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaDefaultPrice",
+          "traits": {
+            "smithy.api#documentation": "Default price which is the current list price."
+          }
+        },
+        "floatingDiscount": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaFloatingDiscount",
+          "traits": {
+            "smithy.api#documentation": "Discount off the current list price, not anchored to any list price as of a fixed time."
+          }
+        },
+        "listPriceAsCeiling": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaListPriceAsCeiling",
+          "traits": {
+            "smithy.api#documentation": "Contract feature that the list price (DefaultPrice) will be used for the price if the current list price drops lower than the custom fixed price. Available to new contracts after March 21, 2022. Applies to all fixed price SKUs in the contract, including FixedPrice, FixedDiscount, MigratedPrice, and MergedPrice."
+          }
+        },
+        "fixedPrice": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaFixedPrice",
+          "traits": {
+            "smithy.api#documentation": "Fixed price applicable during the terms of a contract agreement."
+          }
+        },
+        "migratedPrice": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaMigratedPrice",
+          "traits": {
+            "smithy.api#documentation": "Price migrated from other SKUs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a price reason which contains background information about the origin of the price."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#SuggestedQuery": {
+      "type": "structure",
+      "members": {
+        "query": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The natural language query."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A suggested follow-up query for the user."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GenerateInsightsRequest": {
+      "type": "structure",
+      "members": {
+        "userContext": {
+          "target": "com.gcp.cloudbilling_v1beta#UserContext",
+          "traits": {
+            "smithy.api#documentation": "Optional. Additional context for personalization (e.g., user persona, role)."
+          }
+        },
+        "overriddenMaxIterationCounts": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Overrides the maximum iterations for any selected strategy."
+          }
+        },
+        "parents": {
+          "target": "com.gcp.cloudbilling_v1beta#BillingDataResourceList",
+          "traits": {
+            "smithy.api#documentation": "Optional. The billing account or projects to analyze."
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Filters cost data by service id. Follows https://google.aip.dev/160 for the filter syntax. eg. filter: \"service = 'C7E2-9256-1C43'\""
+          }
+        },
+        "prompt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The natural language prompt from the user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request for GenerateInsights."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#BillingDataResourceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#BillingDataResource"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaRate": {
+      "type": "structure",
+      "members": {
+        "unitInfo": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaUnitInfo",
+          "traits": {
+            "smithy.api#documentation": "Unit info such as name and quantity."
+          }
+        },
+        "aggregationInfo": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaAggregationInfo",
+          "traits": {
+            "smithy.api#documentation": "Aggregation info for tiers such as aggregation level and interval."
+          }
+        },
+        "tiers": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaRateTierList",
+          "traits": {
+            "smithy.api#documentation": "All tiers associated with the `Rate` price."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a `Rate` price. Billing account SKUs with `Rate` price are offered by pricing tiers. The price have 1 or more rate pricing tiers."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaRateTierList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaRateTier"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaAggregationInfo": {
+      "type": "structure",
+      "members": {
+        "level": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaAggregationInfoLevelEnum",
+          "traits": {
+            "smithy.api#documentation": "Level at which usage is aggregated to compute cost. Example: \"ACCOUNT\" level indicates that usage is aggregated across all projects in a single account."
+          }
+        },
+        "interval": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaAggregationInfoIntervalEnum",
+          "traits": {
+            "smithy.api#documentation": "Interval at which usage is aggregated to compute cost. Example: \"MONTHLY\" interval indicates that usage is aggregated every month."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates the aggregation information such as aggregation level and interval for a price."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaAggregationInfoLevelEnum": {
+      "type": "enum",
+      "members": {
+        "LEVEL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_UNSPECIFIED"
+          }
+        },
+        "LEVEL_ACCOUNT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_ACCOUNT"
+          }
+        },
+        "LEVEL_PROJECT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LEVEL_PROJECT"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaAggregationInfoIntervalEnum": {
+      "type": "enum",
+      "members": {
+        "INTERVAL_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERVAL_UNSPECIFIED"
+          }
+        },
+        "INTERVAL_MONTHLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERVAL_MONTHLY"
+          }
+        },
+        "INTERVAL_DAILY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERVAL_DAILY"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaUnitInfo": {
+      "type": "structure",
+      "members": {
+        "unit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Shorthand for the unit. Example: GiBy.mo."
+          }
+        },
+        "unitDescription": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable description of the unit. Example: gibibyte month."
+          }
+        },
+        "unitQuantity": {
+          "target": "com.gcp.cloudbilling_v1beta#Decimal",
+          "traits": {
+            "smithy.api#documentation": "Unit quantity for the tier. Example: if the RateTier price is $1 per 1000000 Bytes, then `unit_quantity` is set to 1000000."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates the unit information for a Rate"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaPrice": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO-4217 currency code for the price."
+          }
+        },
+        "rate": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaRate",
+          "traits": {
+            "smithy.api#documentation": "Rate price metadata. SKUs with `Rate` price are offered by pricing tiers. The price can have 1 or more rate pricing tiers."
+          }
+        },
+        "valueType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the price. It can have values: [\"unspecified\", \"rate\"]."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the latest price."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates the latest price for a SKU."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku": {
+      "type": "structure",
+      "members": {
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the SKU. It is the string after the collection identifier \"skus/\" Example: \"AA95-CD31-42FE\"."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the BillingAccountSku. Example: \"billingAccounts/012345-567890-ABCDEF/skus/AA95-CD31-42FE\"."
+          }
+        },
+        "geoTaxonomy": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomy",
+          "traits": {
+            "smithy.api#documentation": "Geographic metadata that applies to the BillingAccountSku."
+          }
+        },
+        "billingAccountService": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "BillingAccountService that the BillingAccountSku belongs to."
+          }
+        },
+        "productTaxonomy": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaProductTaxonomy",
+          "traits": {
+            "smithy.api#documentation": "List of product categories that apply to the BillingAccountSku."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the BillingAccountSku. Example: \"A2 Instance Core running in Hong Kong\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a stock keeping unit (SKU) visible to a billing account. A SKU distinctly identifies a resource that you can purchase. For a list of available SKUs, see [SKUs](https://cloud.google.com/skus)."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaTaxonomyCategory": {
+      "type": "structure",
+      "members": {
+        "category": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the product category."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a product category."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#BillingData": {
+      "type": "structure",
+      "members": {
+        "columnInfo": {
+          "target": "com.gcp.cloudbilling_v1beta#ColumnInfoList",
+          "traits": {
+            "smithy.api#documentation": "Information about columns."
+          }
+        },
+        "rows": {
+          "target": "com.gcp.cloudbilling_v1beta#RowList",
+          "traits": {
+            "smithy.api#documentation": "Rows."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates billing data."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ColumnInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#ColumnInfo"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#RowList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#Row"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Datetime": {
+      "type": "structure",
+      "members": {
+        "bitFieldDatetimeSeconds": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Represents bit field encoding of year/month/day/hour/minute/second. See class DatetimeValue in civil_time.h for details of encoding."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Non-negative fractions of a second at nanosecond resolution."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A datetime value."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaFixedPrice": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a set fixed price applicable during the terms of a contract agreement."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#MapEntry": {
+      "type": "structure",
+      "members": {
+        "key": {
+          "target": "com.gcp.cloudbilling_v1beta#ValueProto",
+          "traits": {
+            "smithy.api#documentation": "Represents the serialized map key for the entry."
+          }
+        },
+        "value": {
+          "target": "com.gcp.cloudbilling_v1beta#ValueProto",
+          "traits": {
+            "smithy.api#documentation": "Represents the serialized map value of the entry."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A single entry in a Map, representing the mapping between `key` and `value`."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#SuggestedChart": {
+      "type": "structure",
+      "members": {
+        "yAxisLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label of the y-axis."
+          }
+        },
+        "xAxisField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field used for the x-axis."
+          }
+        },
+        "yAxisField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field used for the y-axis."
+          }
+        },
+        "chartTitle": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The title of the chart."
+          }
+        },
+        "xAxisLabel": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label of the x-axis."
+          }
+        },
+        "seriesField": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The field used for the series (e.g., color-coding). Optional, but recommended for time-series data."
+          }
+        },
+        "chartType": {
+          "target": "com.gcp.cloudbilling_v1beta#SuggestedChartChartTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "The type of the chart."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A suggested chart for the data set, used for UI rendering."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#SuggestedChartChartTypeEnum": {
+      "type": "enum",
+      "members": {
+        "CHART_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CHART_TYPE_UNSPECIFIED"
+          }
+        },
+        "BAR_CHART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BAR_CHART"
+          }
+        },
+        "UNCHARTABLE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "UNCHARTABLE"
+          }
+        },
+        "LINE_CHART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINE_CHART"
+          }
+        },
+        "AREA_CHART": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AREA_CHART"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Struct": {
+      "type": "structure",
+      "members": {
+        "field": {
+          "target": "com.gcp.cloudbilling_v1beta#ValueProtoList",
+          "traits": {
+            "smithy.api#documentation": "The fields in the struct"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A collection of fields. The count, order, and type of the fields is determined by the type associated with this value."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaSkuGroupSku": {
+      "type": "structure",
+      "members": {
+        "productTaxonomy": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaProductTaxonomy",
+          "traits": {
+            "smithy.api#documentation": "List of product categories that apply to the SkuGroupSku."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the SkuGroupSku. Example: \"A2 Instance Core running in Hong Kong\"."
+          }
+        },
+        "service": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service that the SkuGroupSku belongs to."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the SkuGroupSku. Example: \"skuGroups/0e6403d1-4694-44d2-a696-7a78b1a69301/skus/AA95-CD31-42FE\"."
+          }
+        },
+        "geoTaxonomy": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomy",
+          "traits": {
+            "smithy.api#documentation": "Geographic metadata that applies to the SkuGroupSku."
+          }
+        },
+        "skuId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unique identifier for the SKU. It is the string after the collection identifier \"skus/\" Example: \"AA95-CD31-42FE\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a publicly listed stock keeping unit (SKU) that is part of a publicly listed SKU group. A SKU group represents a collection of SKUs that are related to each other. For example, the `AI Platform APIs` SKU group includes SKUs from the Cloud Dialogflow API, the Cloud Text-to-Speech API, and additional related APIs."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Decimal": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The decimal value, as a string. The string representation consists of an optional sign, `+` (`U+002B`) or `-` (`U+002D`), followed by a sequence of zero or more decimal digits (\"the integer\"), optionally followed by a fraction, optionally followed by an exponent. An empty string **should** be interpreted as `0`. The fraction consists of a decimal point followed by zero or more decimal digits. The string must contain at least one digit in either the integer or the fraction. The number formed by the sign, the integer and the fraction is referred to as the significand. The exponent consists of the character `e` (`U+0065`) or `E` (`U+0045`) followed by one or more decimal digits. Services **should** normalize decimal values before storing them by: - Removing an explicitly-provided `+` sign (`+2.5` -> `2.5`). - Replacing a zero-length integer value with `0` (`.5` -> `0.5`). - Coercing the exponent character to upper-case, with explicit sign (`2.5e8` -> `2.5E+8`). - Removing an explicitly-provided zero exponent (`2.5E0` -> `2.5`). Services **may** perform additional normalization based on its own needs and the internal decimal implementation selected, such as shifting the decimal point and exponent value together (example: `2.5E-1` <-> `0.25`). Additionally, services **may** preserve trailing zeroes in the fraction to indicate increased precision, but are not required to do so. Note that only the `.` character is supported to divide the integer and the fraction; `,` **should not** be supported regardless of locale. Additionally, thousand separators **should not** be supported. If a service does support them, values **must** be normalized. The ENBF grammar is: DecimalString = '' | [Sign] Significand [Exponent]; Sign = '+' | '-'; Significand = Digits '.' | [Digits] '.' Digits; Exponent = ('e' | 'E') [Sign] Digits; Digits = { '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' }; Services **should** clearly document the range of supported values, the maximum supported precision (total number of digits), and, if applicable, the scale (number of digits after the decimal point), as well as how it behaves when receiving out-of-bounds values. Services **may** choose to accept values passed as input even when the value has a higher precision or scale than the service supports, and **should** round the value to fit the supported scale. Alternatively, the service **may** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if precision would be lost. Services **should** error with `400 Bad Request` (`INVALID_ARGUMENT` in gRPC) if the service receives a value outside of the supported range."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A representation of a decimal value, such as 2.5. Clients may convert values into language-native decimal formats, such as Java's [BigDecimal](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/math/BigDecimal.html) or Python's [decimal.Decimal](https://docs.python.org/3/library/decimal.html)."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegion": {
+      "type": "structure",
+      "members": {
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of a Google Cloud region. Example: \"us-west2\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a Google Cloud region."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Money": {
+      "type": "structure",
+      "members": {
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Number of nano (10^-9) units of the amount. The value must be between -999,999,999 and +999,999,999 inclusive. If `units` is positive, `nanos` must be positive or zero. If `units` is zero, `nanos` can be positive, zero, or negative. If `units` is negative, `nanos` must be negative or zero. For example $-1.75 is represented as `units`=-1 and `nanos`=-750,000,000."
+          }
+        },
+        "units": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The whole units of the amount. For example if `currencyCode` is `\"USD\"`, then 1 unit is one US dollar."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The three-letter currency code defined in ISO 4217."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents an amount of money with its currency type."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaFixedDiscount": {
+      "type": "structure",
+      "members": {
+        "discountPercent": {
+          "target": "com.gcp.cloudbilling_v1beta#Decimal",
+          "traits": {
+            "smithy.api#documentation": "Percentage of the fixed discount."
+          }
+        },
+        "fixTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Time that the fixed discount is anchored to."
+          }
+        },
+        "skuGroup": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU group where the fixed discount comes from."
+          }
+        },
+        "discountScopeType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the fixed discount scope which indicates the source of the discount. It can have values such as 'unspecified' and 'sku-group'."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a discount off the list price, anchored to the list price as of a fixed time."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupsV1betaSkuGroup": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the SKU group. Example: \"skuGroups/0e6403d1-4694-44d2-a696-7a78b1a69301\"."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the SKU group. Example: \"A2 VMs (1 Year CUD)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a publicly listed stock keeping unit (SKU) group. A SKU group represents a collection of SKUs that are related to each other. For example, the `AI Platform APIs` SKU group includes SKUs from the Cloud Dialogflow API, the Cloud Text-to-Speech API, and additional related APIs."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#BillingDataResource": {
+      "type": "structure",
+      "members": {
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Resource name for an entitity that can be used for authorization to access billing data such as `projects/{project}` or `billingAccounts/{billing_account}`"
+          }
+        },
+        "billingAccount": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. If not provided the billing account currently associated with the resource will be used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies a Billing data resource that can be used for authorization to access billing data."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyMultiRegional": {
+      "type": "structure",
+      "members": {
+        "regions": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyRegionList",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud regions associated with the multi-regional geographic taxonomy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a multi-regional geographic taxonomy."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyRegionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyRegion"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Cloudbilling_Map": {
+      "type": "structure",
+      "members": {
+        "entry": {
+          "target": "com.gcp.cloudbilling_v1beta#MapEntryList",
+          "traits": {
+            "smithy.api#documentation": "Represents the map entries in the map."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "An unordered mapping from key to value, represented as a collection of map entries."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#MapEntryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#MapEntry"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroup": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the BillingAccountSkuGroup. Example: \"billingAccounts/012345-567890-ABCDEF/skuGroups/0e6403d1-4694-44d2-a696-7a78b1a69301\"."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of the BillingAccountSkuGroup. Example: \"A2 VMs (1 Year CUD)\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a stock keeping (SKU) group visible to a billing account. A SKU group represents a collection of SKUs that are related to each other. For example, the `AI Platform APIs` SKU group includes SKUs from the Cloud Dialogflow API, the Cloud Text-to-Speech API, and additional related APIs."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyRegion": {
+      "type": "structure",
+      "members": {
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of a Google Cloud region. Example: \"us-west2\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a Google Cloud region."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyMultiRegional": {
+      "type": "structure",
+      "members": {
+        "regions": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyRegionList",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud regions associated with the multi-regional geographic taxonomy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a multi-regional geographic taxonomy."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyRegionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyRegion"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaGeoTaxonomyRegion": {
+      "type": "structure",
+      "members": {
+        "region": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Description of a Google Cloud region. Example: \"us-west2\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a Google Cloud region."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse": {
+      "type": "structure",
+      "members": {
+        "billingAccountPrices": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPriceList",
+          "traits": {
+            "smithy.api#documentation": "The returned billing account prices."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListBillingAccountPrices."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPriceList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaDefaultPrice": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a default price which is the current list price."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponse": {
+      "type": "structure",
+      "members": {
+        "billingAccountSkus": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaBillingAccountSkuList",
+          "traits": {
+            "smithy.api#documentation": "The returned billing account SKUs."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListBillingAccountSkus."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaBillingAccountSkuList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyGlobal": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a global geographic taxonomy."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyMultiRegional": {
+      "type": "structure",
+      "members": {
+        "regions": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegionList",
+          "traits": {
+            "smithy.api#documentation": "Google Cloud regions associated with the multi-regional geographic taxonomy."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates a multi-regional geographic taxonomy."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegionList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaGeoTaxonomyRegion"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#DataSet": {
+      "type": "structure",
+      "members": {
+        "billingData": {
+          "target": "com.gcp.cloudbilling_v1beta#BillingData",
+          "traits": {
+            "smithy.api#documentation": "Output only. Actual billing data returned from the Data Mart. Uses the formal message from the Billing Data Service."
+          }
+        },
+        "queryInfo": {
+          "target": "com.gcp.cloudbilling_v1beta#AgenticQueryInfo",
+          "traits": {
+            "smithy.api#documentation": "Output only. The query used to fetch this data."
+          }
+        },
+        "suggestedChart": {
+          "target": "com.gcp.cloudbilling_v1beta#SuggestedChart",
+          "traits": {
+            "smithy.api#documentation": "Output only. A suggested chart for the data set, used for UI rendering."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A dataset used to support an insight, suitable for UI rendering (tables/charts)."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice": {
+      "type": "structure",
+      "members": {
+        "rate": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaRate",
+          "traits": {
+            "smithy.api#documentation": "Rate price metadata. Billing account SKUs with `Rate` price are offered by pricing tiers. The price can have 1 or more rate pricing tiers."
+          }
+        },
+        "valueType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Type of the price. The possible values are: [\"unspecified\", \"rate\"]."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the latest billing account price."
+          }
+        },
+        "priceReason": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaPriceReason",
+          "traits": {
+            "smithy.api#documentation": "Background information on the origin of the price."
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ISO-4217 currency code for the price."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates the latest price for a billing account SKU."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#InteropLink": {
+      "type": "structure",
+      "members": {
+        "linkType": {
+          "target": "com.gcp.cloudbilling_v1beta#InteropLinkLinkTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The type of the interop link, e.g., \"COST_REPORT\", \"BQE_QUERY\", etc."
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The label of the link, suitable for UI rendering."
+          }
+        },
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The URL of the link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A link to interoperable tools (e.g., pre-filtered Cost Reports, BQE queries)."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#InteropLinkLinkTypeEnum": {
+      "type": "enum",
+      "members": {
+        "LINK_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "LINK_TYPE_UNSPECIFIED"
+          }
+        },
+        "COST_REPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "COST_REPORT"
+          }
+        },
+        "BQE_QUERY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BQE_QUERY"
+          }
+        },
+        "FINOPS_HUB": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FINOPS_HUB"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomy": {
+      "type": "structure",
+      "members": {
+        "multiRegionalMetadata": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyMultiRegional",
+          "traits": {
+            "smithy.api#documentation": "Multi-regional geographic metadata with 2 or more regions."
+          }
+        },
+        "type": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Type of geographic taxonomy associated with the billing account SKU."
+          }
+        },
+        "globalMetadata": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyGlobal",
+          "traits": {
+            "smithy.api#documentation": "Global geographic metadata with no regions."
+          }
+        },
+        "regionalMetadata": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyRegional",
+          "traits": {
+            "smithy.api#documentation": "Regional geographic metadata with 1 region."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates geographic metadata, such as regions and multi-regions like `us-east4` or `European Union`."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaGeoTaxonomyTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_UNSPECIFIED"
+          }
+        },
+        "TYPE_GLOBAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_GLOBAL"
+          }
+        },
+        "TYPE_REGIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_REGIONAL"
+          }
+        },
+        "TYPE_MULTI_REGIONAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TYPE_MULTI_REGIONAL"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ColumnInfo": {
+      "type": "structure",
+      "members": {
+        "column": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the column."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a column header."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaProductTaxonomy": {
+      "type": "structure",
+      "members": {
+        "taxonomyCategories": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaTaxonomyCategoryList",
+          "traits": {
+            "smithy.api#documentation": "All product categories that the billing account SKU belong to."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Encapsulates product categories, such as `Serverless`, `Cloud Run`, `TaskQueue`, and others."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaTaxonomyCategoryList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaTaxonomyCategory"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupsV1betaListSkuGroupsResponse": {
+      "type": "structure",
+      "members": {
+        "skuGroups": {
+          "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupsV1betaSkuGroupList",
+          "traits": {
+            "smithy.api#documentation": "The returned publicly listed SKU groups."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Token that can be sent as `page_token` in the subsequent request to retrieve the next page. If this field is empty, there are no subsequent pages."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Response message for ListSkuGroups."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupsV1betaSkuGroupList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupsV1betaSkuGroup"
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetSkusPriceRequest": {
+      "type": "structure",
+      "members": {
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. ISO-4217 currency code for the price. If not specified, USD will be used.",
+            "smithy.api#httpQuery": "currencyCode"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the latest price to retrieve. Format: skus/{sku}/price",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetSkusPrice": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#GetSkusPriceRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaPrice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest price for the given SKU."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListSkusPricesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of prices to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. To list the prices for all SKUs, use `-` as the SKU ID. Format: `skus/-` Specifying a specific SKU ID returns a collection with one Price object for the SKU.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token received from a previous ListPrices call to retrieve the next page of results. If this field is empty, the first page is returned.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. ISO-4217 currency code for the price. If not specified, USD will be used.",
+            "smithy.api#httpQuery": "currencyCode"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListSkusPrices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#ListSkusPricesRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingPricesV1betaListPricesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/prices"
+        },
+        "smithy.api#documentation": "Lists the latest prices for all SKUs.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsServicesRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of billing account service to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The billing account to list billing account service from. Format: billingAccounts/{billing_account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous ListBillingAccountServices call to retrieve the next page of results. If this field is empty, the first page is returned.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#ListBillingAccountsServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountservicesV1betaListBillingAccountServicesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/services"
+        },
+        "smithy.api#documentation": "Lists services visible to a billing account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsServicesRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the billing account service to retrieve. Format: billingAccounts/{billing_account}/services/{service}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsServices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#GetBillingAccountsServicesRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountservicesV1betaBillingAccountService"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets a Google Cloud service visible to a billing account."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkusRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The billing account to list billing account SKU from. Format: billingAccounts/{billing_account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Options for how to filter the billing account SKUs. Currently, only filter on `billing_account_service` is supported. Only !=, = operators are supported. Examples: - billing_account_service = \"billingAccounts/012345-567890-ABCDEF/services/DA34-426B-A397\"",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous ListBillingAccountSkus call to retrieve the next page of results. If this field is empty, the first page is returned.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of billing account SKUs to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkus": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkusRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaListBillingAccountSkusResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/skus"
+        },
+        "smithy.api#documentation": "Lists SKUs visible to a billing account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkusRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the billing account SKU to retrieve. Format: billingAccounts/{billing_account}/skus/{sku}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkus": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkusRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskusV1betaBillingAccountSku"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets a SKU visible to a billing account."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkusPriceRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the billing account price to retrieve. Format: billingAccounts/{billing_account}/skus/{sku}/price",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. ISO-4217 currency code for the price. If not specified, the currency of the billing account is used.",
+            "smithy.api#httpQuery": "currencyCode"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkusPrice": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkusPriceRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaBillingAccountPrice"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest price for SKUs available to your Cloud Billing account."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkusPricesRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. To list all Billing Account SKUs, use `-` as the SKU ID. Format: `billingAccounts/{billing_account}/skus/-` Note: Specifying an actual SKU resource id will return a collection of one Billing Account Price.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "currencyCode": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. ISO-4217 currency code for the price. If not specified, currency of billing account will be used.",
+            "smithy.api#httpQuery": "currencyCode"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Page token received from a previous ListBillingAccountPrices call to retrieve the next page of results. If this field is empty, the first page is returned.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of billing account price to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkusPrices": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkusPricesRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountpricesV1betaListBillingAccountPricesResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/prices"
+        },
+        "smithy.api#documentation": "Lists the latest prices for SKUs available to your Cloud Billing account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkuGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of billing account SKU groups to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The billing account to list billing account SKU groups from. Format: billingAccounts/{billing_account}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous ListBillingAccountSkuGroups call to retrieve the next page of results. If this field is empty, the first page is returned.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkuGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkuGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupsV1betaListBillingAccountSkuGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/skuGroups"
+        },
+        "smithy.api#documentation": "Lists SKU groups visible to a billing account.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkuGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the BillingAccountSkuGroup to retrieve. Format: billingAccounts/{billing_account}/skuGroups/{sku_group}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkuGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkuGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupsV1betaBillingAccountSkuGroup"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets a SKU group visible to a billing account."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkuGroupsSkusRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The billing account SKU group to list billing account SKU group SKUs from. Format: billingAccounts/{billing_account}/skuGroups/{sku_group}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous ListBillingAccountSkuGroupSkus call to retrieve the next page of results. If this field is empty, the first page is returned.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of billing account SKU group SKUs to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkuGroupsSkus": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#ListBillingAccountsSkuGroupsSkusRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaListBillingAccountSkuGroupSkusResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/skus"
+        },
+        "smithy.api#documentation": "Lists SKUs that is part of billing account SKU groups.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkuGroupsSkusRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the billing account SKU group SKU to retrieve. Format: billingAccounts/{billing_account}/skuGroups/{sku_group}/skus/{sku}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkuGroupsSkus": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#GetBillingAccountsSkuGroupsSkusRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingBillingaccountskugroupskusV1betaBillingAccountSkuGroupSku"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets a SKU that is part of a billing account SKU group."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListSkuGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of SKU groups to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous ListSkuGroups call to retrieve the next page of results. If this field is empty, the first page is returned.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListSkuGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#ListSkuGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupsV1betaListSkuGroupsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/skuGroups"
+        },
+        "smithy.api#documentation": "Lists all publicly listed SKU groups.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetSkuGroupsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the SKU group to retrieve. Format: skuGroups/{sku_group}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetSkuGroups": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#GetSkuGroupsRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupsV1betaSkuGroup"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets a publicly listed SKU group."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListSkuGroupsSkusRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The SkuGroup to list SkuGroupSku from. Format: skuGroups/{sku_group}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Page token received from a previous ListSkuGroupSkus call to retrieve the next page of results. If this field is empty, the first page is returned.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Maximum number of SKU group SKUs to return. Results may return fewer than this value. Default value is 50 and maximum value is 5000.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#ListSkuGroupsSkus": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#ListSkuGroupsSkusRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaListSkuGroupSkusResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+parent}/skus"
+        },
+        "smithy.api#documentation": "Lists all publicly listed SKUs contained by a publicly listed SKU group.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetSkuGroupsSkusRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. The name of the SKU group SKU to retrieve. Format: skuGroups/{sku_group}/skus/{sku}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GetSkuGroupsSkus": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#GetSkuGroupsSkusRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GoogleCloudBillingSkugroupskusV1betaSkuGroupSku"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1beta/{+name}"
+        },
+        "smithy.api#documentation": "Gets a publicly listed SKU that is part of a publicly listed SKU group."
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GenerateInsightsV1betaRequest": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.gcp.cloudbilling_v1beta#GenerateInsightsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.cloudbilling_v1beta#GenerateInsightsV1beta": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.cloudbilling_v1beta#GenerateInsightsV1betaRequest"
+      },
+      "output": {
+        "target": "com.gcp.cloudbilling_v1beta#GenerateInsightsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.cloudbilling_v1beta#NotFound"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Forbidden"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#BadRequest"
+        },
+        {
+          "target": "com.gcp.cloudbilling_v1beta#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1beta:generateInsights"
+        },
+        "smithy.api#documentation": "Analyzes cost data for a billing account and/or specific projects. Returns a natural language summary and supporting datasets."
+      }
+    }
+  }
+}

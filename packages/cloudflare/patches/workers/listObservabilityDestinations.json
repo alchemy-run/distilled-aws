@@ -1,0 +1,47 @@
+{
+  "description": "Align workers#ObservabilityDestinationsList with distilled cloudflare/workers listObservabilityDestinations",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityDestinationsList",
+      "path": "/shapes/com.cloudflare.workers#ListObservabilityDestinations"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityDestinationsListRequest",
+      "path": "/shapes/com.cloudflare.workers#ListObservabilityDestinationsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListObservabilityDestinations/input/target",
+      "value": "com.cloudflare.workers#ListObservabilityDestinationsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#ObservabilityDestinationsListResponse",
+      "path": "/shapes/com.cloudflare.workers#ListObservabilityDestinationsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#ListObservabilityDestinations/output/target",
+      "value": "com.cloudflare.workers#ListObservabilityDestinationsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListObservabilityDestinations/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#ListObservabilityDestinations/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

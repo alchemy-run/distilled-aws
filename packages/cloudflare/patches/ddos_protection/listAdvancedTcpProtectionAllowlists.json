@@ -1,0 +1,53 @@
+{
+  "description": "Align ddos_protection#AdvancedTcpProtectionAllowlistList with distilled cloudflare/ddos-protection listAdvancedTcpProtectionAllowlists",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistList",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlists"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListRequest",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlistsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlists/input/target",
+      "value": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlistsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ddos_protection#AdvancedTcpProtectionAllowlistListResponse",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlistsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlists/output/target",
+      "value": "com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlistsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlists/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ddos_protection#ListAdvancedTcpProtectionAllowlists/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ddos_protection#AdvancedTcpProtectionNotEntitled"
+        },
+        {
+          "target": "com.cloudflare.ddos_protection#Forbidden"
+        }
+      ]
+    }
+  ]
+}

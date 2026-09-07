@@ -1,0 +1,45 @@
+{
+  "description": "Align magic_network_monitoring#ConfigsCreate with distilled cloudflare/magic-network-monitoring createConfig",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsCreate",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateConfig"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsCreateRequest",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateConfigRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateConfig/input/target",
+      "value": "com.cloudflare.magic_network_monitoring#CreateConfigRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_network_monitoring#ConfigsCreateResponse",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateConfigResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateConfig/output/target",
+      "value": "com.cloudflare.magic_network_monitoring#CreateConfigResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_network_monitoring#CreateConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_network_monitoring#MnmConfigAlreadyExists"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#InvalidMnmConfig"
+        },
+        {
+          "target": "com.cloudflare.magic_network_monitoring#Forbidden"
+        }
+      ]
+    }
+  ]
+}

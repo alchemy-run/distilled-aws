@@ -1,0 +1,18 @@
+{
+  "operations": {
+    "createEventDataStore": {
+      "syntheticErrors": [
+        {
+          "name": "CloudTrailLakeOnboardingClosed",
+          "from": "InvalidParameterException",
+          "message": {
+            "includes": "no longer accepting new customers"
+          }
+        }
+      ]
+    }
+  },
+  "errorCategories": {
+    "CloudTrailLakeOnboardingClosed": ["BadRequestError"]
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "description": "Align load_balancers#Update with distilled cloudflare/load-balancers updateLoadBalancer",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#Update",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateLoadBalancer"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#UpdateRequest",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateLoadBalancerRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateLoadBalancer/input/target",
+      "value": "com.cloudflare.load_balancers#UpdateLoadBalancerRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.load_balancers#UpdateResponse",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateLoadBalancerResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateLoadBalancer/output/target",
+      "value": "com.cloudflare.load_balancers#UpdateLoadBalancerResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.load_balancers#UpdateLoadBalancer/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.load_balancers#LoadBalancerNotFound"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#LoadBalancingNotEnabledForZone"
+        },
+        {
+          "target": "com.cloudflare.load_balancers#Forbidden"
+        }
+      ]
+    }
+  ]
+}

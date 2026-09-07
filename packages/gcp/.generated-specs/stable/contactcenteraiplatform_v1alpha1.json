@@ -1,0 +1,2562 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "service": "contactcenteraiplatform",
+    "version": "v1alpha1",
+    "title": "Contact Center AI Platform API",
+    "baseUrl": "https://contactcenteraiplatform.googleapis.com/"
+  },
+  "shapes": {
+    "com.gcp.contactcenteraiplatform_v1alpha1#FeatureConfig": {
+      "type": "structure",
+      "members": {
+        "agentDesktopEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. If true - enables the agent desktop feature. Default is false."
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Contactcenteraiplatform_Date": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#EmployeeInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique ID of this employee."
+          }
+        },
+        "unwantedEventIntervals": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#UnwantedEventIntervalList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of unwanted event intervals for this employee. The start time of the interval must be in the planning horizon."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information about a particular employee for planning purposes."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#UnwantedEventIntervalList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#UnwantedEventInterval"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#PlanningHorizon": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Required. Start of the time interval for the given demand (inclusive). These values are read down to the minute; seconds and all smaller units are ignored."
+          }
+        },
+        "endTime": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Required. End of the time interval for the given demand (exclusive). These values are read down to the minute; seconds and all smaller units are ignored."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the time interval during which the solver should generate shifts. The start time must be before the end time."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#PscSetting": {
+      "type": "structure",
+      "members": {
+        "allowedConsumerProjectIds": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "The list of project ids that are allowed to send traffic to the service attachment. This field should be filled only for the ingress components."
+          }
+        },
+        "producerProjectIds": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. The CCAIP tenant project ids."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Private service connect settings."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#StringList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#URIs": {
+      "type": "structure",
+      "members": {
+        "mediaUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Media Uri of the ContactCenter."
+          }
+        },
+        "rootUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Root Uri of the ContactCenter."
+          }
+        },
+        "virtualAgentStreamingServiceUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Virtual Agent Streaming Service Uri of the ContactCenter."
+          }
+        },
+        "chatBotUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Chat Bot Uri of the ContactCenter"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message storing the URIs of the ContactCenter."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#DateList": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Contactcenteraiplatform_DateList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Values in the list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of dates."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Contactcenteraiplatform_DateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Contactcenteraiplatform_Date"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#WeeklySchedule": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Required. Daily start time of the schedule."
+          }
+        },
+        "duration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Duration of the schedule."
+          }
+        },
+        "days": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#WeeklyScheduleDaysItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Required. Days of the week this schedule applies to."
+          }
+        },
+        "endTime": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Optional. Daily end time of the schedule. If `end_time` is before `start_time`, the schedule will be considered as ending on the next day."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message representing a weekly schedule."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#WeeklyScheduleDaysItemEnum": {
+      "type": "enum",
+      "members": {
+        "DAY_OF_WEEK_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DAY_OF_WEEK_UNSPECIFIED"
+          }
+        },
+        "MONDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MONDAY"
+          }
+        },
+        "TUESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TUESDAY"
+          }
+        },
+        "WEDNESDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEDNESDAY"
+          }
+        },
+        "THURSDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "THURSDAY"
+          }
+        },
+        "FRIDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "FRIDAY"
+          }
+        },
+        "SATURDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SATURDAY"
+          }
+        },
+        "SUNDAY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SUNDAY"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#WeeklyScheduleDaysItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#WeeklyScheduleDaysItemEnum"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ShiftTemplate": {
+      "type": "structure",
+      "members": {
+        "latestStartTime": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Required. Latest time in the day that a shift can start. This value is specified with hours and minutes; seconds and nanos are ignored. If this value is less than the `earliest_start_time`, it may imply an overnight shift."
+          }
+        },
+        "minimumIntereventGapMinutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Minimum minutes between the end of one event and the start of the next."
+          }
+        },
+        "minimumEmployeeCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Minimum number of employees that can be assigned to all shifts generated by this template on working days."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique ID of this template."
+          }
+        },
+        "durationMinutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Fixed duration of a shift generated by this template."
+          }
+        },
+        "maximumEmployeeCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Maximum number of employees that can be assigned to all shifts generated by this template on working days."
+          }
+        },
+        "earliestStartTime": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#TimeOfDay",
+          "traits": {
+            "smithy.api#documentation": "Required. Earliest time in the day that a shift can start. This value is specified with hours and minutes; seconds and nanos are ignored."
+          }
+        },
+        "daysOffCountPerWeek": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Fixed number of days off per week. An employee has a given day off if they are not assigned to a shift that starts on that day. A week is 7 days and begins on Sunday."
+          }
+        },
+        "assignableEmployeeIds": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. A list of specific employee IDs that can be assigned to shifts generated by this template. If this field is present, there will be `EmployeeSchedule`s in the response for which the `EmployeeSchedule.employee_id` field is set to one of the IDs in this list. The number of employee schedules with an assigned employee ID will be between `minimum_employee_count` and `maximum_employee_count`. If this field is empty, between `minimum_employee_count` and `maximum_employee_count` employees can be assigned to shifts generated by this template and the employee schedules won't have an assigned employee ID. Currently, only one assignable employee ID is supported."
+          }
+        },
+        "daysOffDates": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DateList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Fixed dates when shifts from this template should not be generated."
+          }
+        },
+        "eventTemplates": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#EventTemplateList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Rules for generating events for each shift. Exactly one event will be included in each shift for each `EventTemplate` specified."
+          }
+        },
+        "startTimeIncrementMinutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. The time increment (in minutes) used to generate the set of possible start times between `earliest_start_time` and `latest_start_time`. For example, if the earliest start time is 8:00, the latest start time is 8:30, and the start time increment is 10 minutes, then all possible start times for this shift template are: 8:00, 8:10, 8:20, and 8:30."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Template specifying rules for generating shifts. A shift is a unit of work that specifies a start time, end time, and may contain events (e.g. lunch, breaks etc.). Shifts will be assigned to specific dates in the response."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#EventTemplateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#EventTemplate"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#DateTime": {
+      "type": "structure",
+      "members": {
+        "minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Minutes of hour of day. Must be from 0 to 59, defaults to 0."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999, defaults to 0."
+          }
+        },
+        "utcOffset": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a datetime without a day."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year."
+          }
+        },
+        "seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Seconds of minutes of the time. Must normally be from 0 to 59, defaults to 0. An API may allow the value 60 if it allows leap-seconds."
+          }
+        },
+        "timeZone": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#TimeZone",
+          "traits": {
+            "smithy.api#documentation": "Time zone."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Month of year. Must be from 1 to 12, or 0 if specifying a datetime without a month."
+          }
+        },
+        "hours": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Hours of day in 24 hour format. Should be from 0 to 23, defaults to 0 (midnight). An API may choose to allow the value \"24:00:00\" for scenarios like business closing time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year, month, or day are 0, the DateTime is considered not to have a specific year, month, or day respectively. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#WorkforceDemandList": {
+      "type": "structure",
+      "members": {
+        "values": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#WorkforceDemandList_",
+          "traits": {
+            "smithy.api#documentation": "Optional. Values in the list."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "List of workforce demands."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#WorkforceDemandList_": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#WorkforceDemand"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#EventTemplate": {
+      "type": "structure",
+      "members": {
+        "startTimeIncrementMinutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. The time increment (in minutes) used to generate the set of possible event start times between `minimum_minutes_after_shift_start` and `maximum_minutes_after_shift_start`. For example, if the minimum minutes after shift start are 30, maximum minutes after shift start are 45, and the start time increment is 5 minutes, the event can take place 30, 35, 40, or 45 minutes after the start of the shift."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Unique ID of this template."
+          }
+        },
+        "maximumMinutesAfterShiftStart": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum number of minutes after the beginning of a shift that this event can start."
+          }
+        },
+        "durationMinutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Fixed duration in minutes of this event."
+          }
+        },
+        "minimumMinutesAfterShiftStart": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Minimum number of minutes after the beginning of a shift that this event can start."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Template specifying rules for generating a single event that occurs during a shift. An event may represent a meeting, break, lunch, etc."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Empty": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Component": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the component."
+          }
+        },
+        "serviceAttachmentNames": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Associated service attachments. The service attachment names that will be used for sending private traffic to the CCAIP tenant project. Example service attachment name: \"projects/${TENANT_PROJECT_ID}/regions/${REGION}/serviceAttachments/ingress-default\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines a logical CCAIP component that e.g. “EMAIL”, \"CRM\". For more information see go/ccaip-private-path-v2. Each logical component is associated with a list of service attachments."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenter": {
+      "type": "structure",
+      "members": {
+        "normal": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Normal",
+          "traits": {
+            "smithy.api#documentation": "Optional. Normal release channel."
+          }
+        },
+        "featureConfig": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#FeatureConfig",
+          "traits": {
+            "smithy.api#documentation": "Optional. Feature configuration to populate the feature flags."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. [Output only] Create time stamp"
+          }
+        },
+        "userEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Email address of the first admin user."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of resource"
+          }
+        },
+        "kmsKey": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Immutable. The KMS key name to encrypt the user input (`ContactCenter`)."
+          }
+        },
+        "state": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenterStateEnum",
+          "traits": {
+            "smithy.api#documentation": "Output only. The state of this contact center."
+          }
+        },
+        "privateComponents": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Output only. TODO(b/283407860) Deprecate this field."
+          }
+        },
+        "early": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Early",
+          "traits": {
+            "smithy.api#documentation": "Optional. Early release channel."
+          }
+        },
+        "deleteTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp in UTC of when this resource was soft-deleted."
+          }
+        },
+        "ccaipManagedUsers": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether to enable users to be created in the CCAIP-instance concurrently to having users in Cloud identity"
+          }
+        },
+        "releaseVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. UJET release version, unique for each new release."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Labels as key value pairs"
+          }
+        },
+        "instanceConfig": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#InstanceConfig",
+          "traits": {
+            "smithy.api#documentation": "The configuration of this instance, it is currently immutable once created."
+          }
+        },
+        "updateTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. [Output only] Update time stamp"
+          }
+        },
+        "expireTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp in UTC of when this resource is considered expired."
+          }
+        },
+        "customerDomainPrefix": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Immutable. At least 2 and max 16 char long, must conform to [RFC 1035](https://www.ietf.org/rfc/rfc1035.txt)."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. A user friendly name for the ContactCenter."
+          }
+        },
+        "uris": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#URIs",
+          "traits": {
+            "smithy.api#documentation": "Output only. URIs to access the deployed ContactCenters."
+          }
+        },
+        "samlParams": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#SAMLParams",
+          "traits": {
+            "smithy.api#documentation": "Optional. Params that sets up Google as IdP."
+          }
+        },
+        "purgeTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Timestamp in UTC of when this resource is going to be hard-deleted."
+          }
+        },
+        "adminUser": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#AdminUser",
+          "traits": {
+            "smithy.api#documentation": "Optional. Info about the first admin user, such as given name and family name."
+          }
+        },
+        "critical": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Critical",
+          "traits": {
+            "smithy.api#documentation": "Optional. Critical release channel."
+          }
+        },
+        "privateAccess": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#PrivateAccess",
+          "traits": {
+            "smithy.api#documentation": "Optional. VPC-SC related networking configuration."
+          }
+        },
+        "advancedReportingEnabled": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Optional. Whether the advanced reporting feature is enabled."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message describing ContactCenter object"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenterStateEnum": {
+      "type": "enum",
+      "members": {
+        "STATE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_UNSPECIFIED"
+          }
+        },
+        "STATE_DEPLOYING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_DEPLOYING"
+          }
+        },
+        "STATE_DEPLOYED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_DEPLOYED"
+          }
+        },
+        "STATE_TERMINATING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_TERMINATING"
+          }
+        },
+        "STATE_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_FAILED"
+          }
+        },
+        "STATE_TERMINATING_FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_TERMINATING_FAILED"
+          }
+        },
+        "STATE_TERMINATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_TERMINATED"
+          }
+        },
+        "STATE_IN_GRACE_PERIOD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_IN_GRACE_PERIOD"
+          }
+        },
+        "STATE_FAILING_OVER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_FAILING_OVER"
+          }
+        },
+        "STATE_DEGRADED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_DEGRADED"
+          }
+        },
+        "STATE_REPAIRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_REPAIRING"
+          }
+        },
+        "STATE_EXPIRING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STATE_EXPIRING"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#StringMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#InstanceConfig": {
+      "type": "structure",
+      "members": {
+        "instanceSize": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#InstanceConfigInstanceSizeEnum",
+          "traits": {
+            "smithy.api#documentation": "The instance size of this the instance configuration."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message storing the instance configuration."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#InstanceConfigInstanceSizeEnum": {
+      "type": "enum",
+      "members": {
+        "INSTANCE_SIZE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTANCE_SIZE_UNSPECIFIED"
+          }
+        },
+        "STANDARD_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_SMALL"
+          }
+        },
+        "STANDARD_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_MEDIUM"
+          }
+        },
+        "STANDARD_LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_LARGE"
+          }
+        },
+        "STANDARD_XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_XLARGE"
+          }
+        },
+        "STANDARD_2XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_2XLARGE"
+          }
+        },
+        "STANDARD_3XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_3XLARGE"
+          }
+        },
+        "MULTIREGION_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_SMALL"
+          }
+        },
+        "MULTIREGION_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_MEDIUM"
+          }
+        },
+        "MULTIREGION_LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_LARGE"
+          }
+        },
+        "MULTIREGION_XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_XLARGE"
+          }
+        },
+        "MULTIREGION_2XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_2XLARGE"
+          }
+        },
+        "MULTIREGION_3XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_3XLARGE"
+          }
+        },
+        "DEV_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEV_SMALL"
+          }
+        },
+        "SANDBOX_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SANDBOX_SMALL"
+          }
+        },
+        "TRIAL_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIAL_SMALL"
+          }
+        },
+        "TIME_LIMITED_TRIAL_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIME_LIMITED_TRIAL_SMALL"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Normal": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Instances in this Channel will receive updates after all instances in `Early` were updated + 2 days."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#PrivateAccess": {
+      "type": "structure",
+      "members": {
+        "ingressSettings": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#ComponentList",
+          "traits": {
+            "smithy.api#documentation": "List of ingress components that should not be accessed via the Internet. For more information see go/ccaip-private-path-v2."
+          }
+        },
+        "pscSetting": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#PscSetting",
+          "traits": {
+            "smithy.api#documentation": "Private service connect settings."
+          }
+        },
+        "egressSettings": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#ComponentList",
+          "traits": {
+            "smithy.api#documentation": "List of egress components that should not be accessed via the Internet. For more information see go/ccaip-private-path-v2."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Defines ingress and egress private traffic settings for CCAIP instances."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ComponentList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Component"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#WorkforceDemand": {
+      "type": "structure",
+      "members": {
+        "startTime": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Required. Start of the time interval for the given demand (inclusive). These values are read down to the minute; seconds and all smaller units are ignored."
+          }
+        },
+        "endTime": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Required. End of the time interval for the given demand (exclusive). These values are read down to the minute; seconds and all smaller units are ignored."
+          }
+        },
+        "employeeCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Optional. Number of employees needed to cover the demand for this interval."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies the number of employees required to cover the demand in the given time interval. The length of the interval must be strictly positive."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ListContactCentersResponse": {
+      "type": "structure",
+      "members": {
+        "contactCenters": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenterList",
+          "traits": {
+            "smithy.api#documentation": "The list of ContactCenter"
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Locations that could not be reached."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message for response to listing ContactCenters"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenterList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenter"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#OperationMetadata": {
+      "type": "structure",
+      "members": {
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        },
+        "contactCenter": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenter",
+          "traits": {
+            "smithy.api#documentation": "Contact center information for this request"
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "statusMessage": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "requestedCancellation": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#TimeZone": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IANA Time Zone Database time zone. For example \"America/New_York\"."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. IANA Time Zone Database version number. For example \"2019a\"."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones)."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Critical": {
+      "type": "structure",
+      "members": {
+        "peakHours": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#WeeklyScheduleList",
+          "traits": {
+            "smithy.api#documentation": "Required. Hours during which the instance should not be updated."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Instances in this Channel will receive updates after all instances in `Normal` were updated. They also will only be updated outside of their peak hours."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#WeeklyScheduleList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#WeeklySchedule"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GenerateShiftsRequest": {
+      "type": "structure",
+      "members": {
+        "shiftTemplates": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#ShiftTemplateList",
+          "traits": {
+            "smithy.api#documentation": "Required. Set of shift templates specifying rules for generating shifts. A shift template can be used for generating multiple shifts."
+          }
+        },
+        "workforceDemands": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#WorkforceDemandList",
+          "traits": {
+            "smithy.api#documentation": "Required. All the workforce demands that the generated shifts need to cover. The planning horizon is defined between the earliest start time and the latest end time across all the entries. This field cannot be empty."
+          }
+        },
+        "solverConfig": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#SolverConfig",
+          "traits": {
+            "smithy.api#documentation": "Required. Parameters for the solver."
+          }
+        },
+        "planningHorizon": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#PlanningHorizon",
+          "traits": {
+            "smithy.api#documentation": "Required. The solver will generate the maximum number of shifts per shift template."
+          }
+        },
+        "employeeInfo": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#EmployeeInfoList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Employee information that should be considered when generating shifts."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Request with constraints for generating shifts. The shifts generated must adhere to these constraints."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ShiftTemplateList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ShiftTemplate"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#EmployeeInfoList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#EmployeeInfo"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Quota": {
+      "type": "structure",
+      "members": {
+        "contactCenterCountLimit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Reflects the count limit of contact centers on a billing account."
+          }
+        },
+        "contactCenterCountSum": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Reflects the count sum of contact centers on a billing account."
+          }
+        },
+        "contactCenterInstanceSize": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#QuotaContactCenterInstanceSizeEnum",
+          "traits": {
+            "smithy.api#documentation": "Contact center instance type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Quota details."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#QuotaContactCenterInstanceSizeEnum": {
+      "type": "enum",
+      "members": {
+        "INSTANCE_SIZE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INSTANCE_SIZE_UNSPECIFIED"
+          }
+        },
+        "STANDARD_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_SMALL"
+          }
+        },
+        "STANDARD_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_MEDIUM"
+          }
+        },
+        "STANDARD_LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_LARGE"
+          }
+        },
+        "STANDARD_XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_XLARGE"
+          }
+        },
+        "STANDARD_2XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_2XLARGE"
+          }
+        },
+        "STANDARD_3XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "STANDARD_3XLARGE"
+          }
+        },
+        "MULTIREGION_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_SMALL"
+          }
+        },
+        "MULTIREGION_MEDIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_MEDIUM"
+          }
+        },
+        "MULTIREGION_LARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_LARGE"
+          }
+        },
+        "MULTIREGION_XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_XLARGE"
+          }
+        },
+        "MULTIREGION_2XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_2XLARGE"
+          }
+        },
+        "MULTIREGION_3XLARGE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MULTIREGION_3XLARGE"
+          }
+        },
+        "DEV_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEV_SMALL"
+          }
+        },
+        "SANDBOX_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SANDBOX_SMALL"
+          }
+        },
+        "TRIAL_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TRIAL_SMALL"
+          }
+        },
+        "TIME_LIMITED_TRIAL_SMALL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIME_LIMITED_TRIAL_SMALL"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Location": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`"
+          }
+        },
+        "locationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The canonical id for this location. For example: `\"us-east1\"`."
+          }
+        },
+        "labels": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringMap",
+          "traits": {
+            "smithy.api#documentation": "Cross-service attributes for the location. For example {\"cloud.googleapis.com/region\": \"us-east1\"}"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name for this location, typically a nearby city name. For example, \"Tokyo\"."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata. For example the available capacity at the given location."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A resource that represents a Google Cloud location."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#DocumentMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#UnwantedEventInterval": {
+      "type": "structure",
+      "members": {
+        "durationMinutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Required. Duration of the event."
+          }
+        },
+        "startTime": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DateTime",
+          "traits": {
+            "smithy.api#documentation": "Required. Start time of the event."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies a time interval during which the overlap with events (generated from event templates) should be minimal."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#AdminUser": {
+      "type": "structure",
+      "members": {
+        "givenName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. First/given name of the first admin user."
+          }
+        },
+        "familyName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Last/family name of the first admin user."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message storing info about the first admin user. Next ID: 3"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Early": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "LINT.IfChange First Channel to receive the updates. Meant to dev/test instances"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#SolverConfig": {
+      "type": "structure",
+      "members": {
+        "scheduleType": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#SolverConfigScheduleTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "Required. Specifies the type of schedule to generate."
+          }
+        },
+        "maximumProcessingDuration": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. Maximum time the solver should spend on the problem. If not set, defaults to 1 minute. The choice of a time limit should depend on the size of the problem. To give an example, when solving a 7-day instance with 2 `ShiftTemplates`, each with ~20 possible start times and holding 2 events with ~30 possible start times, and two days off per week, recommended values are: <10s for fast solutions (and likely suboptimal), (10s, 300s) for good quality solutions, and >300s for an exhaustive search. Larger instances may require longer time limits. This value is not a hard limit and it does not account for the communication overhead. The expected latency to solve the problem may slightly exceed this value."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Specifies additional parameters for the solver generating shifts."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#SolverConfigScheduleTypeEnum": {
+      "type": "enum",
+      "members": {
+        "SCHEDULE_TYPE_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SCHEDULE_TYPE_UNSPECIFIED"
+          }
+        },
+        "SINGLE_SHIFT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SINGLE_SHIFT"
+          }
+        },
+        "WEEKLY_WITH_FIXED_EVENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY_WITH_FIXED_EVENTS"
+          }
+        },
+        "WEEKLY_WITH_VARIABLE_EVENTS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "WEEKLY_WITH_VARIABLE_EVENTS"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ListLocationsResponse": {
+      "type": "structure",
+      "members": {
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        },
+        "locations": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#LocationList",
+          "traits": {
+            "smithy.api#documentation": "A list of locations that matches the specified filter in the request."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Locations.ListLocations."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#LocationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Location"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Operation": {
+      "type": "structure",
+      "members": {
+        "done": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "If the value is `false`, it means the operation is still in progress. If `true`, the operation is completed, and either `error` or `response` is available."
+          }
+        },
+        "metadata": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any."
+          }
+        },
+        "error": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Status",
+          "traits": {
+            "smithy.api#documentation": "The error result of the operation in case of failure or cancellation."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`."
+          }
+        },
+        "response": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DocumentMap",
+          "traits": {
+            "smithy.api#documentation": "The normal, successful response of the operation. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This resource represents a long-running operation that is the result of a network API call."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GoogleCloudCommonOperationMetadata": {
+      "type": "structure",
+      "members": {
+        "createTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation was created."
+          }
+        },
+        "endTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. The time the operation finished running."
+          }
+        },
+        "cancelRequested": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have been cancelled successfully have google.longrunning.Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+          }
+        },
+        "statusDetail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Human-readable status of the operation, if any."
+          }
+        },
+        "target": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Server-defined resource path for the target of the operation."
+          }
+        },
+        "verb": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. Name of the verb executed by the operation."
+          }
+        },
+        "apiVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Output only. API version used to start the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents the metadata of the long-running operation."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Status": {
+      "type": "structure",
+      "members": {
+        "details": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#DocumentMapList",
+          "traits": {
+            "smithy.api#documentation": "A list of messages that carry the error details. There is a common set of message types for APIs to use."
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client."
+          }
+        },
+        "code": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The status code, which should be an enum value of google.rpc.Code."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors)."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#DocumentMapList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#DocumentMap"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenterQuota": {
+      "type": "structure",
+      "members": {
+        "contactCenterCountLimit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: Use the Quota fields instead. Reflects the count limit of contact centers on a billing account."
+          }
+        },
+        "contactCenterCountSum": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Deprecated: Use the Quota fields instead. Reflects the count sum of contact centers on a billing account."
+          }
+        },
+        "quotas": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#QuotaList",
+          "traits": {
+            "smithy.api#documentation": "Quota details per contact center instance type."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a quota for contact centers."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#QuotaList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Quota"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#SAMLParams": {
+      "type": "structure",
+      "members": {
+        "certificate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SAML certificate"
+          }
+        },
+        "emailMapping": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "IdP field that maps to the user’s email address"
+          }
+        },
+        "ssoUri": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Single sign-on URL"
+          }
+        },
+        "entityId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Entity id URL"
+          }
+        },
+        "userEmail": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Email address of the first admin users."
+          }
+        },
+        "authenticationContexts": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#SAMLParamsAuthenticationContextsItemEnumList",
+          "traits": {
+            "smithy.api#documentation": "Additional contexts used for authentication."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Message storing SAML params to enable Google as IDP."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#SAMLParamsAuthenticationContextsItemEnum": {
+      "type": "enum",
+      "members": {
+        "AUTHENTICATION_CONTEXT_UNSPECIFIED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "AUTHENTICATION_CONTEXT_UNSPECIFIED"
+          }
+        },
+        "INTERNET_PROTOCOL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNET_PROTOCOL"
+          }
+        },
+        "INTERNET_PROTOCOL_PASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "INTERNET_PROTOCOL_PASSWORD"
+          }
+        },
+        "KERBEROS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "KERBEROS"
+          }
+        },
+        "MOBILE_ONE_FACTOR_UNREGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE_ONE_FACTOR_UNREGISTERED"
+          }
+        },
+        "MOBILE_TWO_FACTOR_UNREGISTERED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE_TWO_FACTOR_UNREGISTERED"
+          }
+        },
+        "MOBILE_ONE_FACTOR_CONTRACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE_ONE_FACTOR_CONTRACT"
+          }
+        },
+        "MOBILE_TWO_FACTOR_CONTRACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MOBILE_TWO_FACTOR_CONTRACT"
+          }
+        },
+        "PASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSWORD"
+          }
+        },
+        "PASSWORD_PROTECTED_TRANSPORT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PASSWORD_PROTECTED_TRANSPORT"
+          }
+        },
+        "PREVIOUS_SESSION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PREVIOUS_SESSION"
+          }
+        },
+        "PUBLIC_KEY_X509": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC_KEY_X509"
+          }
+        },
+        "PUBLIC_KEY_PGP": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC_KEY_PGP"
+          }
+        },
+        "PUBLIC_KEY_SPKI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC_KEY_SPKI"
+          }
+        },
+        "PUBLIC_KEY_XML_DIGITAL_SIGNATURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PUBLIC_KEY_XML_DIGITAL_SIGNATURE"
+          }
+        },
+        "SMARTCARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMARTCARD"
+          }
+        },
+        "SMARTCARD_PKI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SMARTCARD_PKI"
+          }
+        },
+        "SOFTWARE_PKI": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SOFTWARE_PKI"
+          }
+        },
+        "TELEPHONY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TELEPHONY"
+          }
+        },
+        "TELEPHONY_NOMADIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TELEPHONY_NOMADIC"
+          }
+        },
+        "TELEPHONY_PERSONALIZED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TELEPHONY_PERSONALIZED"
+          }
+        },
+        "TELEPHONY_AUTHENTICATED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TELEPHONY_AUTHENTICATED"
+          }
+        },
+        "SECURE_REMOTE_PASSWORD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURE_REMOTE_PASSWORD"
+          }
+        },
+        "SSL_TLS_CERTIFICATE_BASED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SSL_TLS_CERTIFICATE_BASED"
+          }
+        },
+        "TIME_SYNC_TOKEN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "TIME_SYNC_TOKEN"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#SAMLParamsAuthenticationContextsItemEnumList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#SAMLParamsAuthenticationContextsItemEnum"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#CancelOperationRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "The request message for Operations.CancelOperation."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ListOperationsResponse": {
+      "type": "structure",
+      "members": {
+        "operations": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#OperationList",
+          "traits": {
+            "smithy.api#documentation": "A list of operations that matches the specified filter in the request."
+          }
+        },
+        "unreachable": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Unordered list. Unreachable resources. Populated when the request sets `ListOperationsRequest.return_partial_success` and reads across collections. For example, when attempting to list all resources across all supported locations."
+          }
+        },
+        "nextPageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard List next-page token."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response message for Operations.ListOperations."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#OperationList": {
+      "type": "list",
+      "member": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Operation"
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#TimeOfDay": {
+      "type": "structure",
+      "members": {
+        "seconds": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds."
+          }
+        },
+        "minutes": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Minutes of an hour. Must be greater than or equal to 0 and less than or equal to 59."
+          }
+        },
+        "nanos": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Fractions of seconds, in nanoseconds. Must be greater than or equal to 0 and less than or equal to 999,999,999."
+          }
+        },
+        "hours": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Hours of a day in 24 hour format. Must be greater than or equal to 0 and typically must be less than or equal to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#QueryContactCenterQuotaProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent project resource id.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#QueryContactCenterQuotaProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#QueryContactCenterQuotaProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenterQuota"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}:queryContactCenterQuota"
+        },
+        "smithy.api#documentation": "Queries the contact center quota, an aggregation over all the projects, that belongs to the billing account, which the input project belongs to."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GenerateShiftsProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the parent resource associated with the request. Format: projects/{project}/locations/{location}",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#GenerateShiftsRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#Conflict": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 409,
+        "com.gcp.protocols#errorMatchers": [
+          {
+            "status": 409
+          }
+        ]
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GenerateShiftsProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#GenerateShiftsProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}:generateShifts"
+        },
+        "smithy.api#documentation": "Generates shifts constrained by various parameters."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ListProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The maximum number of results to return. If not set, the service selects a default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The resource that owns the locations collection, if applicable.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "extraLocationTypes": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#StringList",
+          "traits": {
+            "smithy.api#documentation": "Optional. Do not use this field unless explicitly documented otherwise. This is primarily for internal usage.",
+            "smithy.api#httpQuery": "extraLocationTypes"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A filter to narrow down results to a preferred subset. The filtering language accepts strings like `\"displayName=tokyo\"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).",
+            "smithy.api#httpQuery": "filter"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ListProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ListProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ListLocationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}/locations"
+        },
+        "smithy.api#documentation": "Lists information about the supported locations for this service. This method lists locations based on the resource scope provided in the ListLocationsRequest.name field: * **Global locations**: If `name` is empty, the method lists the public locations available to all projects. * **Project-specific locations**: If `name` follows the format `projects/{project}`, the method lists locations visible to that specific project. This includes public, private, or other project-specific locations enabled for the project. For gRPC and client library implementations, the resource name is passed as the `name` field. For direct service calls, the resource name is incorporated into the request path based on the specific service implementation and version.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GetProjectsLocationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource name for the location.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GetProjectsLocations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#GetProjectsLocationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Location"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets information about a location."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ListProjectsLocationsContactCentersRequest": {
+      "type": "structure",
+      "members": {
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A token identifying a page of results the server should return.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        },
+        "orderBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hint for how to order the results",
+            "smithy.api#httpQuery": "orderBy"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Filtering results",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Parent value for ListContactCentersRequest",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ListProjectsLocationsContactCenters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ListProjectsLocationsContactCentersRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ListContactCentersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+parent}/contactCenters"
+        },
+        "smithy.api#documentation": "Lists ContactCenters in a given project and location.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#CreateProjectsLocationsContactCentersRequest": {
+      "type": "structure",
+      "members": {
+        "parent": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Value for parent.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "contactCenterId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Id of the requesting object If auto-generating Id server-side, remove this field and contact_center_id from the method_signature of Create RPC",
+            "smithy.api#httpQuery": "contactCenterId"
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "body": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenter",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#CreateProjectsLocationsContactCenters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#CreateProjectsLocationsContactCentersRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+parent}/contactCenters"
+        },
+        "smithy.api#documentation": "Creates a new ContactCenter in a given project and location."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#PatchProjectsLocationsContactCentersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "name of resource",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        },
+        "updateMask": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Field mask is used to specify the fields to be overwritten in the ContactCenter resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+            "smithy.api#httpQuery": "updateMask"
+          }
+        },
+        "body": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenter",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#PatchProjectsLocationsContactCenters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#PatchProjectsLocationsContactCentersRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Updates the parameters of a single ContactCenter."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GetProjectsLocationsContactCentersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GetProjectsLocationsContactCenters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#GetProjectsLocationsContactCentersRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ContactCenter"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets details of a single ContactCenter."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#DeleteProjectsLocationsContactCentersRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Required. Name of the resource",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "requestId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+            "smithy.api#httpQuery": "requestId"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#DeleteProjectsLocationsContactCenters": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#DeleteProjectsLocationsContactCentersRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a single ContactCenter."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ListProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation's parent resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "pageSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The standard list page size.",
+            "smithy.api#httpQuery": "pageSize"
+          }
+        },
+        "filter": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list filter.",
+            "smithy.api#httpQuery": "filter"
+          }
+        },
+        "returnPartialSuccess": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "When set to `true`, operations that are reachable are returned as normal, and those that are unreachable are returned in the ListOperationsResponse.unreachable field. This can only be `true` when reading across collections. For example, when `parent` is set to `\"projects/example/locations/-\"`. This field is not supported by default and will result in an `UNIMPLEMENTED` error if set unless explicitly documented otherwise in service or product specific documentation.",
+            "smithy.api#httpQuery": "returnPartialSuccess"
+          }
+        },
+        "pageToken": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The standard list page token.",
+            "smithy.api#httpQuery": "pageToken"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#ListProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ListProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#ListOperationsResponse"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}/operations"
+        },
+        "smithy.api#documentation": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
+        "smithy.api#paginated": {
+          "inputToken": "pageToken",
+          "outputToken": "nextPageToken"
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GetProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#GetProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#GetProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Operation"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#DeleteProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be deleted.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#DeleteProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#DeleteProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "v1alpha1/{+name}"
+        },
+        "smithy.api#documentation": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`."
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#CancelProjectsLocationsOperationsRequest": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation resource to be cancelled.",
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "body": {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#CancelOperationRequest",
+          "traits": {
+            "smithy.api#httpPayload": {},
+            "smithy.api#documentation": "Request body"
+          }
+        }
+      }
+    },
+    "com.gcp.contactcenteraiplatform_v1alpha1#CancelProjectsLocationsOperations": {
+      "type": "operation",
+      "input": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#CancelProjectsLocationsOperationsRequest"
+      },
+      "output": {
+        "target": "com.gcp.contactcenteraiplatform_v1alpha1#Empty"
+      },
+      "errors": [
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#NotFound"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Forbidden"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#BadRequest"
+        },
+        {
+          "target": "com.gcp.contactcenteraiplatform_v1alpha1#Conflict"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "v1alpha1/{+name}:cancel"
+        },
+        "smithy.api#documentation": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`."
+      }
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "description": "Align zero_trust#DlpSensitivityGroupsList with distilled cloudflare/zero-trust listDlpSensitivityGroups",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSensitivityGroupsList",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpSensitivityGroups"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSensitivityGroupsListRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpSensitivityGroupsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpSensitivityGroups/input/target",
+      "value": "com.cloudflare.zero_trust#ListDlpSensitivityGroupsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpSensitivityGroupsListResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpSensitivityGroupsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpSensitivityGroups/output/target",
+      "value": "com.cloudflare.zero_trust#ListDlpSensitivityGroupsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#ListDlpSensitivityGroups/traits/smithy.api#paginated",
+      "value": {
+        "mode": "single",
+        "items": "result"
+      }
+    }
+  ]
+}

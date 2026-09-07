@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AiInferenceSummaryModel with distilled cloudflare/radar modelAiInferenceSummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiInferenceSummaryModel",
+      "path": "/shapes/com.cloudflare.radar#ModelAiInferenceSummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiInferenceSummaryModelRequest",
+      "path": "/shapes/com.cloudflare.radar#ModelAiInferenceSummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ModelAiInferenceSummary/input/target",
+      "value": "com.cloudflare.radar#ModelAiInferenceSummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AiInferenceSummaryModelResponse",
+      "path": "/shapes/com.cloudflare.radar#ModelAiInferenceSummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#ModelAiInferenceSummary/output/target",
+      "value": "com.cloudflare.radar#ModelAiInferenceSummaryResponse"
+    }
+  ]
+}

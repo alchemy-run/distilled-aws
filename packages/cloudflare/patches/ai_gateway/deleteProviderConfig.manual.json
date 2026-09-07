@@ -1,0 +1,86 @@
+{
+  "description": "Hand-authored: the gateway-scoped provider_configs DELETE is not in the API docs (they document the newer account-level custom-providers API instead). Route and the typed 7002 ProviderConfigNotFound error transcribed from the distilled SDK.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteProviderConfigRequest",
+      "value": {
+        "type": "structure",
+        "members": {
+          "account_id": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {},
+              "smithy.api#documentation": "Identifier."
+            }
+          },
+          "gateway_id": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {}
+            }
+          },
+          "id": {
+            "target": "smithy.api#String",
+            "traits": {
+              "smithy.api#httpLabel": {},
+              "smithy.api#required": {}
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#input": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteProviderConfigResponse",
+      "value": {
+        "type": "structure",
+        "members": {
+          "result": {
+            "target": "smithy.api#Document",
+            "traits": {
+              "com.cloudflare.protocols#envelopePayload": {}
+            }
+          }
+        },
+        "traits": {
+          "smithy.api#output": {}
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteProviderConfig",
+      "value": {
+        "type": "operation",
+        "input": {
+          "target": "com.cloudflare.ai_gateway#DeleteProviderConfigRequest"
+        },
+        "output": {
+          "target": "com.cloudflare.ai_gateway#DeleteProviderConfigResponse"
+        },
+        "traits": {
+          "smithy.api#http": {
+            "method": "DELETE",
+            "uri": "/accounts/{account_id}/ai-gateway/gateways/{gateway_id}/provider_configs/{id}",
+            "code": 200
+          }
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#DeleteProviderConfig/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#ProviderConfigNotFound"
+        }
+      ]
+    }
+  ]
+}

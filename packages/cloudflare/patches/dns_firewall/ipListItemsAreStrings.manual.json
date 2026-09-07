@@ -1,0 +1,55 @@
+{
+  "description": "Docs gap: `dns_firewall_ips` and `upstream_ips` arrays omit the item schema, so the lists decode as unknown[] — each item is an IPv4/IPv6 address string on the wire (v0 typed string[]). Retype every request/response list item to string.",
+  "patches": [
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#CreateRequestUpstreamIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#CreateResponseDnsFirewallIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#CreateResponseUpstreamIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#EditRequestUpstreamIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#EditResponseDnsFirewallIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#EditResponseUpstreamIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetResponseDnsFirewallIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#GetResponseUpstreamIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#ListResultItemDnsFirewallIpsList/member/target",
+      "value": "smithy.api#String"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns_firewall#ListResultItemUpstreamIpsList/member/target",
+      "value": "smithy.api#String"
+    }
+  ]
+}

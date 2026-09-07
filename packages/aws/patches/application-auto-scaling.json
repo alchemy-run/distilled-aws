@@ -1,0 +1,24 @@
+{
+  "operations": {
+    "getPredictiveScalingForecast": {
+      "syntheticErrors": [
+        {
+          "name": "PredictiveScalingForecastNotSupported",
+          "from": "AccessDeniedException",
+          "message": {
+            "includes": "GetPredictiveScalingForecast is not supported"
+          }
+        }
+      ]
+    }
+  },
+  "structures": {
+    "ScheduledAction": {
+      "members": {
+        "ScalableDimension": {
+          "optional": false
+        }
+      }
+    }
+  }
+}

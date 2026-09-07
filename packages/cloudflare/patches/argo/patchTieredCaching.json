@@ -1,0 +1,42 @@
+{
+  "description": "Align argo#TieredCachingEdit with distilled cloudflare/argo patchTieredCaching",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.argo#TieredCachingEdit",
+      "path": "/shapes/com.cloudflare.argo#PatchTieredCaching"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.argo#TieredCachingEditRequest",
+      "path": "/shapes/com.cloudflare.argo#PatchTieredCachingRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.argo#PatchTieredCaching/input/target",
+      "value": "com.cloudflare.argo#PatchTieredCachingRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.argo#TieredCachingEditResponse",
+      "path": "/shapes/com.cloudflare.argo#PatchTieredCachingResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.argo#PatchTieredCaching/output/target",
+      "value": "com.cloudflare.argo#PatchTieredCachingResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.argo#PatchTieredCaching/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.argo#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.argo#Forbidden"
+        }
+      ]
+    }
+  ]
+}

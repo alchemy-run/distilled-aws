@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#DlpDataClassesDelete with distilled cloudflare/zero-trust deleteDlpDataClass",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataClassesDelete",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataClass"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataClassesDeleteRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataClassRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataClass/input/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpDataClassRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#DlpDataClassesDeleteResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataClassResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#DeleteDlpDataClass/output/target",
+      "value": "com.cloudflare.zero_trust#DeleteDlpDataClassResponse"
+    }
+  ]
+}

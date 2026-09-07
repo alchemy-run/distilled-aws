@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#TrafficAnomaliesGet with distilled cloudflare/radar getTrafficAnomaly",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#TrafficAnomaliesGet",
+      "path": "/shapes/com.cloudflare.radar#GetTrafficAnomaly"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#TrafficAnomaliesGetRequest",
+      "path": "/shapes/com.cloudflare.radar#GetTrafficAnomalyRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetTrafficAnomaly/input/target",
+      "value": "com.cloudflare.radar#GetTrafficAnomalyRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#TrafficAnomaliesGetResponse",
+      "path": "/shapes/com.cloudflare.radar#GetTrafficAnomalyResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#GetTrafficAnomaly/output/target",
+      "value": "com.cloudflare.radar#GetTrafficAnomalyResponse"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "description": "Align brand_protection#QueriesDelete with distilled cloudflare/brand-protection deleteQuery",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#QueriesDelete",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteQuery"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.brand_protection#QueriesDeleteRequest",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteQueryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.brand_protection#DeleteQuery/input/target",
+      "value": "com.cloudflare.brand_protection#DeleteQueryRequest"
+    }
+  ]
+}

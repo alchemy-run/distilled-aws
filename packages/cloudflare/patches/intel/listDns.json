@@ -1,0 +1,41 @@
+{
+  "description": "Align intel#DnsList with distilled cloudflare/intel listDns",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DnsList",
+      "path": "/shapes/com.cloudflare.intel#ListDns"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DnsListRequest",
+      "path": "/shapes/com.cloudflare.intel#ListDnsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListDns/input/target",
+      "value": "com.cloudflare.intel#ListDnsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.intel#DnsListResponse",
+      "path": "/shapes/com.cloudflare.intel#ListDnsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.intel#ListDns/output/target",
+      "value": "com.cloudflare.intel#ListDnsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.intel#ListDns/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result.items",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

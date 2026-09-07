@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#ZoneTransfersAclsCreate with distilled cloudflare/dns createZoneTransferAcl",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersAclsCreate",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferAcl"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersAclsCreateRequest",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferAclRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferAcl/input/target",
+      "value": "com.cloudflare.dns#CreateZoneTransferAclRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#ZoneTransfersAclsCreateResponse",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferAclResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#CreateZoneTransferAcl/output/target",
+      "value": "com.cloudflare.dns#CreateZoneTransferAclResponse"
+    }
+  ]
+}

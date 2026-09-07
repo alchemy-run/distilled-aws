@@ -1,0 +1,30 @@
+{
+  "description": "Align turnstile#WidgetsCreate with distilled cloudflare/turnstile createWidget",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsCreate",
+      "path": "/shapes/com.cloudflare.turnstile#CreateWidget"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsCreateRequest",
+      "path": "/shapes/com.cloudflare.turnstile#CreateWidgetRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#CreateWidget/input/target",
+      "value": "com.cloudflare.turnstile#CreateWidgetRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.turnstile#WidgetsCreateResponse",
+      "path": "/shapes/com.cloudflare.turnstile#CreateWidgetResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.turnstile#CreateWidget/output/target",
+      "value": "com.cloudflare.turnstile#CreateWidgetResponse"
+    }
+  ]
+}

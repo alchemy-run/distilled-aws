@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#EmailSecuritySummarySpoof with distilled cloudflare/radar spoofEmailSecuritySummary",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummarySpoof",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecuritySummary"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummarySpoofRequest",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecuritySummary/input/target",
+      "value": "com.cloudflare.radar#SpoofEmailSecuritySummaryRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#EmailSecuritySummarySpoofResponse",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecuritySummaryResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#SpoofEmailSecuritySummary/output/target",
+      "value": "com.cloudflare.radar#SpoofEmailSecuritySummaryResponse"
+    }
+  ]
+}

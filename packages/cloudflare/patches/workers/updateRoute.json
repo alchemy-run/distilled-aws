@@ -1,0 +1,42 @@
+{
+  "description": "Align workers#RoutesUpdate with distilled cloudflare/workers updateRoute",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesUpdate",
+      "path": "/shapes/com.cloudflare.workers#UpdateRoute"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesUpdateRequest",
+      "path": "/shapes/com.cloudflare.workers#UpdateRouteRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#UpdateRoute/input/target",
+      "value": "com.cloudflare.workers#UpdateRouteRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.workers#RoutesUpdateResponse",
+      "path": "/shapes/com.cloudflare.workers#UpdateRouteResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.workers#UpdateRoute/output/target",
+      "value": "com.cloudflare.workers#UpdateRouteResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.workers#UpdateRoute/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.workers#RouteNotFound"
+        },
+        {
+          "target": "com.cloudflare.workers#InvalidRoutePattern"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,509 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.custom_property_definitions#PaginatedCustomPropertyDefinitionList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.custom_property_definitions#PaginatedCustomPropertyDefinitionListResultsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinition": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the custom property. Unique within the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description of what the property represents.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "display_type": {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDisplayTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "How the property is interpreted and rendered: 'text', 'number', 'currency', 'percent', 'date', 'datetime', or 'boolean'.\n\n* `text` - text\n* `number` - number\n* `currency` - currency\n* `percent` - percent\n* `date` - date\n* `datetime` - datetime\n* `boolean` - boolean",
+            "smithy.api#required": {}
+          }
+        },
+        "is_big_number": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties."
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_by": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "A team-scoped definition of a custom account property — the attribute side of the model.\n\nHolds only the property's shape (name, display type, big-number flag). Per-account values are\nstored separately, so this serializer never reads or writes account values. The numeric-only\nbig-number rule and the unique-name conflict are enforced behind the facade."
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDisplayTypeEnum": {
+      "type": "enum",
+      "members": {
+        "TEXT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "text"
+          }
+        },
+        "NUMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "number"
+          }
+        },
+        "CURRENCY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "currency"
+          }
+        },
+        "PERCENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "percent"
+          }
+        },
+        "DATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "date"
+          }
+        },
+        "DATETIME": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "datetime"
+          }
+        },
+        "BOOLEAN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "boolean"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "* `text` - text\n* `number` - number\n* `currency` - currency\n* `percent` - percent\n* `date` - date\n* `datetime` - datetime\n* `boolean` - boolean"
+      }
+    },
+    "com.posthog.custom_property_definitions#PaginatedCustomPropertyDefinitionListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinition"
+      },
+      "traits": {}
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.custom_property_definitions#PaginatedCustomPropertyDefinitionList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/custom_property_definitions/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the custom property. Unique within the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description of what the property represents.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "display_type": {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDisplayTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "How the property is interpreted and rendered: 'text', 'number', 'currency', 'percent', 'date', 'datetime', or 'boolean'.\n\n* `text` - text\n* `number` - number\n* `currency` - currency\n* `percent` - percent\n* `date` - date\n* `datetime` - datetime\n* `boolean` - boolean",
+            "smithy.api#required": {}
+          }
+        },
+        "is_big_number": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/custom_property_definitions/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/custom_property_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the custom property. Unique within the team.",
+            "smithy.api#required": {}
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description of what the property represents.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "display_type": {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDisplayTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "How the property is interpreted and rendered: 'text', 'number', 'currency', 'percent', 'date', 'datetime', or 'boolean'.\n\n* `text` - text\n* `number` - number\n* `currency` - currency\n* `percent` - percent\n* `date` - date\n* `datetime` - datetime\n* `boolean` - boolean",
+            "smithy.api#required": {}
+          }
+        },
+        "is_big_number": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/custom_property_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Human-readable name of the custom property. Unique within the team."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional description of what the property represents.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "display_type": {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDisplayTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "How the property is interpreted and rendered: 'text', 'number', 'currency', 'percent', 'date', 'datetime', or 'boolean'.\n\n* `text` - text\n* `number` - number\n* `currency` - currency\n* `percent` - percent\n* `date` - date\n* `datetime` - datetime\n* `boolean` - boolean"
+          }
+        },
+        "is_big_number": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Abbreviate large numbers (e.g. 10,000 → 10K). Only applies to numeric properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinition"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/custom_property_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitionsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/custom_property_definitions/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.custom_property_definitions#CustomPropertyDefinitions": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsList"
+        },
+        {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsCreate"
+        },
+        {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsRetrieve"
+        },
+        {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsUpdate"
+        },
+        {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.custom_property_definitions#CustomPropertyDefinitionsDestroy"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

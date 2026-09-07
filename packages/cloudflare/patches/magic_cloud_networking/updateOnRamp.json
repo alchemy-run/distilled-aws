@@ -1,0 +1,45 @@
+{
+  "description": "Align magic_cloud_networking#OnRampsUpdate with distilled cloudflare/magic-cloud-networking updateOnRamp",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#OnRampsUpdate",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#UpdateOnRamp"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#OnRampsUpdateRequest",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#UpdateOnRampRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#UpdateOnRamp/input/target",
+      "value": "com.cloudflare.magic_cloud_networking#UpdateOnRampRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.magic_cloud_networking#OnRampsUpdateResponse",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#UpdateOnRampResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#UpdateOnRamp/output/target",
+      "value": "com.cloudflare.magic_cloud_networking#UpdateOnRampResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.magic_cloud_networking#UpdateOnRamp/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.magic_cloud_networking#FeatureNotEnabled"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.magic_cloud_networking#OnRampNotFound"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align api_gateway#UserSchemasCreate with distilled cloudflare/api-gateway createUserSchema",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#UserSchemasCreate",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchema"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#UserSchemasCreateRequest",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchemaRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchema/input/target",
+      "value": "com.cloudflare.api_gateway#CreateUserSchemaRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.api_gateway#UserSchemasCreateResponse",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchemaResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchema/output/target",
+      "value": "com.cloudflare.api_gateway#CreateUserSchemaResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.api_gateway#CreateUserSchema/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.api_gateway#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.api_gateway#Forbidden"
+        }
+      ]
+    }
+  ]
+}

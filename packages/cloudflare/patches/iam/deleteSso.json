@@ -1,0 +1,30 @@
+{
+  "description": "Align iam#SsoDelete with distilled cloudflare/iam deleteSso",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoDelete",
+      "path": "/shapes/com.cloudflare.iam#DeleteSso"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoDeleteRequest",
+      "path": "/shapes/com.cloudflare.iam#DeleteSsoRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#DeleteSso/input/target",
+      "value": "com.cloudflare.iam#DeleteSsoRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#SsoDeleteResponse",
+      "path": "/shapes/com.cloudflare.iam#DeleteSsoResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#DeleteSso/output/target",
+      "value": "com.cloudflare.iam#DeleteSsoResponse"
+    }
+  ]
+}

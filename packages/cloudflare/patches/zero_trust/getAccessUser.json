@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#AccessUsersGet with distilled cloudflare/zero-trust getAccessUser",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersGet",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUser"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersGetRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUserRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUser/input/target",
+      "value": "com.cloudflare.zero_trust#GetAccessUserRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessUsersGetResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUserResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#GetAccessUser/output/target",
+      "value": "com.cloudflare.zero_trust#GetAccessUserResponse"
+    }
+  ]
+}

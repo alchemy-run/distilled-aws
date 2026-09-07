@@ -1,0 +1,42 @@
+{
+  "description": "Align ai_gateway#BillingSpendingLimitCreate with distilled cloudflare/ai-gateway createBillingSpendingLimit",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingSpendingLimitCreate",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateBillingSpendingLimit"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingSpendingLimitCreateRequest",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateBillingSpendingLimitRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateBillingSpendingLimit/input/target",
+      "value": "com.cloudflare.ai_gateway#CreateBillingSpendingLimitRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.ai_gateway#BillingSpendingLimitCreateResponse",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateBillingSpendingLimitResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateBillingSpendingLimit/output/target",
+      "value": "com.cloudflare.ai_gateway#CreateBillingSpendingLimitResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.ai_gateway#CreateBillingSpendingLimit/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.ai_gateway#NoManualTopup"
+        },
+        {
+          "target": "com.cloudflare.ai_gateway#AiGatewaySpendingLimitDeprecated"
+        }
+      ]
+    }
+  ]
+}

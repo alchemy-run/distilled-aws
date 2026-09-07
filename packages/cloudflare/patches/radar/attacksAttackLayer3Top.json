@@ -1,0 +1,30 @@
+{
+  "description": "Align radar#AttacksLayer3TopAttacks with distilled cloudflare/radar attacksAttackLayer3Top",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3TopAttacks",
+      "path": "/shapes/com.cloudflare.radar#AttacksAttackLayer3Top"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3TopAttacksRequest",
+      "path": "/shapes/com.cloudflare.radar#AttacksAttackLayer3TopRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AttacksAttackLayer3Top/input/target",
+      "value": "com.cloudflare.radar#AttacksAttackLayer3TopRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.radar#AttacksLayer3TopAttacksResponse",
+      "path": "/shapes/com.cloudflare.radar#AttacksAttackLayer3TopResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.radar#AttacksAttackLayer3Top/output/target",
+      "value": "com.cloudflare.radar#AttacksAttackLayer3TopResponse"
+    }
+  ]
+}

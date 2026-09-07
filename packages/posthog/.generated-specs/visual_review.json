@@ -1,0 +1,2917 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.visual_review#VisualReviewReposListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#PaginatedRepoList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.visual_review#PaginatedRepoListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#Repo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "team_id": {
+          "target": "smithy.api#Integer"
+        },
+        "repo_external_id": {
+          "target": "smithy.api#Integer"
+        },
+        "repo_full_name": {
+          "target": "smithy.api#String"
+        },
+        "baseline_file_paths": {
+          "target": "com.posthog.visual_review#RepoBaselineFilePathsMap"
+        },
+        "enable_pr_comments": {
+          "target": "smithy.api#Boolean"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#RepoBaselineFilePathsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#PaginatedRepoListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#Repo"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewReposList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposListRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#PaginatedRepoList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/repos/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List all projects for the team."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "repo_full_name": {
+          "target": "smithy.api#String"
+        },
+        "repo_external_id": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#Repo"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/repos/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new repo."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#Repo"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a repo by ID."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposPartialUpdateRequestBaselineFilePathsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewReposPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "baseline_file_paths": {
+          "target": "com.posthog.visual_review#VisualReviewReposPartialUpdateRequestBaselineFilePathsMap",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "enable_pr_comments": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#Repo"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a repo's settings."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposBaselinesRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#BaselineOverview": {
+      "type": "structure",
+      "members": {
+        "entries": {
+          "target": "com.posthog.visual_review#BaselineOverviewEntriesList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "totals": {
+          "target": "com.posthog.visual_review#BaselineTotals",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "generated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#BaselineEntry": {
+      "type": "structure",
+      "members": {
+        "quarantine": {
+          "target": "com.posthog.visual_review#BaselineQuarantineSummary",
+          "traits": {
+            "smithy.api#documentation": "Active quarantine details when `is_quarantined` is true. Null otherwise.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "run_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "browser": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "thumbnail_hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "tolerate_count_30d": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "tolerate_count_90d": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "is_quarantined": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "last_run_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "baseline_change_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "recent_drift_avg": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#BaselineQuarantineSummary": {
+      "type": "structure",
+      "members": {
+        "created_by": {
+          "target": "com.posthog.visual_review#UserBasicInfo",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "source_run": {
+          "target": "com.posthog.visual_review#QuarantineSourceRun",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#UserBasicInfo": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#Integer"
+        },
+        "first_name": {
+          "target": "smithy.api#String"
+        },
+        "email": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#QuarantineSourceRun": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "commit_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pr_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#BaselineOverviewEntriesList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#BaselineEntry"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#BaselineTotals": {
+      "type": "structure",
+      "members": {
+        "by_run_type": {
+          "target": "com.posthog.visual_review#BaselineTotalsByRunTypeMap",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "all_snapshots": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "recently_tolerated": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "frequently_tolerated": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "currently_quarantined": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#BaselineTotalsByRunTypeMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Integer"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewReposBaselinesRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposBaselinesRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#BaselineOverview"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{id}/baselines/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Snapshots overview for a repo: every identifier with a current baseline (latest non-superseded master/main run per run_type), plus tolerate counts, active quarantine state, and a 30-day stability sparkline. Capped at 5000 entries — sets `truncated` and returns the most recently active when exceeded. Filtering / faceting / search are all done client-side; this endpoint takes no filter query params."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposQuarantineListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "identifier",
+            "smithy.api#documentation": "Filter by identifier (returns full history)"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "run_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "run_type",
+            "smithy.api#documentation": "Filter by run type"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#PaginatedQuarantinedIdentifierEntryList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.visual_review#PaginatedQuarantinedIdentifierEntryListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#QuarantinedIdentifierEntry": {
+      "type": "structure",
+      "members": {
+        "created_by": {
+          "target": "com.posthog.visual_review#UserBasicInfo",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "source_run": {
+          "target": "com.posthog.visual_review#QuarantineSourceRun",
+          "traits": {
+            "smithy.api#documentation": "Run whose failing snapshot prompted this quarantine. Null when quarantine was created without run context.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "identifier": {
+          "target": "smithy.api#String"
+        },
+        "run_type": {
+          "target": "smithy.api#String"
+        },
+        "reason": {
+          "target": "smithy.api#String"
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#PaginatedQuarantinedIdentifierEntryListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#QuarantinedIdentifierEntry"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewReposQuarantineList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposQuarantineListRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#PaginatedQuarantinedIdentifierEntryList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{id}/quarantine/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List quarantined identifiers. Without filter: active only. With identifier: full history."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposQuarantineCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "run_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot identifier to quarantine."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why this snapshot is being quarantined."
+          }
+        },
+        "source_run_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional pointer to the run whose failing snapshot prompted this quarantine — used to surface a 'view the failing run' link later.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposQuarantineCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposQuarantineCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#QuarantinedIdentifierEntry"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{id}/quarantine/{run_type}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Quarantine a snapshot identifier for a specific run type."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposQuarantineExpireCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "run_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Snapshot identifier to quarantine."
+          }
+        },
+        "reason": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Why this snapshot is being quarantined."
+          }
+        },
+        "source_run_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Optional pointer to the run whose failing snapshot prompted this quarantine — used to surface a 'view the failing run' link later.",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "expires_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposQuarantineExpireCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposQuarantineExpireCreateRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{id}/quarantine/{run_type}/expire/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Expire all active quarantine entries for an identifier."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposThumbnailsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposThumbnailsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposThumbnailsRetrieveRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{id}/thumbnails/{identifier}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Serve a snapshot thumbnail by identifier. Returns WebP with ETag caching."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposRunsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "review_state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "review_state",
+            "smithy.api#documentation": "Filter by review state"
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Free-text search over branch, commit SHA, run type, and PR number"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#PaginatedRunList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.visual_review#PaginatedRunListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#Run": {
+      "type": "structure",
+      "members": {
+        "approved_by": {
+          "target": "com.posthog.visual_review#UserBasicInfo",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "search_match_type": {
+          "target": "com.posthog.visual_review#SearchMatchTypeEnum",
+          "traits": {
+            "smithy.api#documentation": "How this row matched the `search` query parameter: `exact` (the term is a case-insensitive substring of branch/run type, a commit SHA prefix, or an exact PR number) or `similar` (a fuzzy trigram match only). Results are ordered exact-first. Null when the list is not filtered by `search`.\n\n* `exact` - exact\n* `similar` - similar",
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "repo_id": {
+          "target": "smithy.api#String"
+        },
+        "status": {
+          "target": "smithy.api#String"
+        },
+        "run_type": {
+          "target": "smithy.api#String"
+        },
+        "commit_sha": {
+          "target": "smithy.api#String"
+        },
+        "branch": {
+          "target": "smithy.api#String"
+        },
+        "pr_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "approved": {
+          "target": "smithy.api#Boolean"
+        },
+        "approved_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "summary": {
+          "target": "com.posthog.visual_review#RunSummary"
+        },
+        "error_message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "completed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_stale": {
+          "target": "smithy.api#Boolean"
+        },
+        "superseded_by_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "metadata": {
+          "target": "com.posthog.visual_review#RunMetadataMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#SearchMatchTypeEnum": {
+      "type": "enum",
+      "members": {
+        "EXACT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "exact"
+          }
+        },
+        "SIMILAR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "similar"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#RunSummary": {
+      "type": "structure",
+      "members": {
+        "total": {
+          "target": "smithy.api#Integer"
+        },
+        "changed": {
+          "target": "smithy.api#Integer"
+        },
+        "new": {
+          "target": "smithy.api#Integer"
+        },
+        "removed": {
+          "target": "smithy.api#Integer"
+        },
+        "unchanged": {
+          "target": "smithy.api#Integer"
+        },
+        "unresolved": {
+          "target": "smithy.api#Integer"
+        },
+        "tolerated_matched": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#RunMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#PaginatedRunListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#Run"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewReposRunsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposRunsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#PaginatedRunList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{repo_id}/runs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List runs in this repo, optionally filtered by review state and free-text search."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposRunsCountsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#ReviewStateCounts": {
+      "type": "structure",
+      "members": {
+        "needs_review": {
+          "target": "smithy.api#Integer"
+        },
+        "clean": {
+          "target": "smithy.api#Integer"
+        },
+        "processing": {
+          "target": "smithy.api#Integer"
+        },
+        "stale": {
+          "target": "smithy.api#Integer"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewReposRunsCountsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposRunsCountsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#ReviewStateCounts"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{repo_id}/runs/counts/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Review state counts for runs in this repo."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewReposSnapshotsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "run_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Run type (storybook, playwright)"
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot identifier; clients must percent-encode before sending"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#PaginatedSnapshotHistoryEntryList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.visual_review#PaginatedSnapshotHistoryEntryListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#SnapshotHistoryEntry": {
+      "type": "structure",
+      "members": {
+        "current_artifact": {
+          "target": "com.posthog.visual_review#Artifact",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "run_id": {
+          "target": "smithy.api#String"
+        },
+        "snapshot_id": {
+          "target": "smithy.api#String"
+        },
+        "result": {
+          "target": "smithy.api#String"
+        },
+        "branch": {
+          "target": "smithy.api#String"
+        },
+        "commit_sha": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "pr_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "diff_percentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "review_state": {
+          "target": "smithy.api#String"
+        },
+        "ssim_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "change_kind": {
+          "target": "smithy.api#String"
+        },
+        "size_mismatch": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#Artifact": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "content_hash": {
+          "target": "smithy.api#String"
+        },
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "download_url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#PaginatedSnapshotHistoryEntryListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#SnapshotHistoryEntry"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewReposSnapshotsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewReposSnapshotsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#PaginatedSnapshotHistoryEntryList"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/repos/{repo_id}/snapshots/{run_type}/{identifier}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Deduped baseline timeline for a snapshot identity. Newest first."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "branch": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "branch",
+            "smithy.api#documentation": "Filter by branch name"
+          }
+        },
+        "commit_sha": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "commit_sha",
+            "smithy.api#documentation": "Filter by full commit SHA"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        },
+        "pr_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "pr_number",
+            "smithy.api#documentation": "Filter by GitHub PR number"
+          }
+        },
+        "review_state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "review_state",
+            "smithy.api#documentation": "Filter by review state"
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Free-text search over branch, commit SHA, run type, and PR number"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#PaginatedRunList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/runs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List runs for the team, optionally filtered by review state, PR number, commit SHA, branch, or free-text search."
+      }
+    },
+    "com.posthog.visual_review#SnapshotManifestItem": {
+      "type": "structure",
+      "members": {
+        "identifier": {
+          "target": "smithy.api#String"
+        },
+        "content_hash": {
+          "target": "smithy.api#String"
+        },
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "metadata": {
+          "target": "com.posthog.visual_review#SnapshotManifestItemMetadataMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#SnapshotManifestItemMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsCreateRequestSnapshotsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#SnapshotManifestItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsCreateRequestBaselineHashesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsCreateRequestRemovedIdentifiersList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsCreateRequestMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "repo_id": {
+          "target": "smithy.api#String"
+        },
+        "run_type": {
+          "target": "smithy.api#String"
+        },
+        "commit_sha": {
+          "target": "smithy.api#String"
+        },
+        "branch": {
+          "target": "smithy.api#String"
+        },
+        "snapshots": {
+          "target": "com.posthog.visual_review#VisualReviewRunsCreateRequestSnapshotsList"
+        },
+        "pr_number": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "baseline_hashes": {
+          "target": "com.posthog.visual_review#VisualReviewRunsCreateRequestBaselineHashesMap"
+        },
+        "unchanged_count": {
+          "target": "smithy.api#Integer"
+        },
+        "removed_identifiers": {
+          "target": "com.posthog.visual_review#VisualReviewRunsCreateRequestRemovedIdentifiersList"
+        },
+        "purpose": {
+          "target": "smithy.api#String"
+        },
+        "metadata": {
+          "target": "com.posthog.visual_review#VisualReviewRunsCreateRequestMetadataMap"
+        },
+        "is_partial": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#CreateRunResult": {
+      "type": "structure",
+      "members": {
+        "run_id": {
+          "target": "smithy.api#String"
+        },
+        "uploads": {
+          "target": "com.posthog.visual_review#CreateRunResultUploadsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#UploadTarget": {
+      "type": "structure",
+      "members": {
+        "content_hash": {
+          "target": "smithy.api#String"
+        },
+        "url": {
+          "target": "smithy.api#String"
+        },
+        "fields": {
+          "target": "com.posthog.visual_review#UploadTargetFieldsMap"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#UploadTargetFieldsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#CreateRunResultUploadsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#UploadTarget"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#CreateRunResult"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/runs/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a new run from a CI manifest."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#Run"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get run status and summary."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreateRequestSnapshotsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#SnapshotManifestItem"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreateRequestBaselineHashesMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "snapshots": {
+          "target": "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreateRequestSnapshotsList"
+        },
+        "baseline_hashes": {
+          "target": "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreateRequestBaselineHashesMap"
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#AddSnapshotsResult": {
+      "type": "structure",
+      "members": {
+        "added": {
+          "target": "smithy.api#Integer"
+        },
+        "uploads": {
+          "target": "com.posthog.visual_review#AddSnapshotsResultUploadsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#AddSnapshotsResultUploadsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#UploadTarget"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#AddSnapshotsResult"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/add-snapshots/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Add a batch of snapshots to a pending run (shard-based flow)."
+      }
+    },
+    "com.posthog.visual_review#ApproveSnapshotInput": {
+      "type": "structure",
+      "members": {
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The snapshot identifier to approve (e.g. Storybook story id plus theme)."
+          }
+        },
+        "new_hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The content hash of the new baseline image to record for this identifier."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsApproveCreateRequestSnapshotsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#ApproveSnapshotInput"
+      },
+      "traits": {
+        "smithy.api#documentation": "Snapshots to mark reviewed, each with `identifier` and `new_hash`. This only records the review in the database (the per-snapshot \"Accept change\" action) — it does not change the baseline or the GitHub gate. Commit the baseline and green the gate with the finalize endpoint."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsApproveCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "snapshots": {
+          "target": "com.posthog.visual_review#VisualReviewRunsApproveCreateRequestSnapshotsList",
+          "traits": {
+            "smithy.api#documentation": "Snapshots to mark reviewed, each with `identifier` and `new_hash`. This only records the review in the database (the per-snapshot \"Accept change\" action) — it does not change the baseline or the GitHub gate. Commit the baseline and green the gate with the finalize endpoint.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsApproveCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsApproveCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#Run"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/approve/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Mark snapshots reviewed (DB only).\n\nRecords the per-snapshot \"Accept change\" decision. Does not commit the baseline\nor change the GitHub gate — call finalize to ship the run."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsCompleteCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsCompleteCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsCompleteCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#Run"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/complete/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Complete a run: detect removals, verify uploads, trigger diff processing."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsFinalizeCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "approve_all": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Approve every still-pending changed and new snapshot before finalizing (tolerated snapshots are left untouched). Leave false to finalize a run you've already reviewed — finalizing fails if any changed/new snapshot is still unreviewed."
+          }
+        },
+        "commit_to_github": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the server commits the approved baseline to the PR branch and greens the gate (the normal path — leave true). Set false only for tooling that commits the baseline itself: the server skips the commit and returns the signed YAML in `baseline_content` instead. With false, the gate is NOT greened and `metadata.baseline_commit_sha` is absent."
+          }
+        },
+        "add_images_to_comment_on_pr": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to embed the before/after snapshot images in the post-approval PR comment. The comment itself is always posted (when the run was initiated from a GitHub review prompt and the repo has PR comments enabled); this flag only controls the images. Defaults false — the comment stays a text summary unless the reviewer opts in to attach the snapshots."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#FinalizeResult": {
+      "type": "structure",
+      "members": {
+        "run": {
+          "target": "com.posthog.visual_review#Run",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "baseline_content": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsFinalizeCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsFinalizeCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#FinalizeResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/finalize/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Finalize a fully-reviewed run: commit the approved baseline and green the gate.\n\nCommits exactly the snapshots approved in the DB (tolerated ones keep their baseline)\nand only succeeds once every changed/new snapshot is resolved. With approve_all=true,\nany still-pending changed/new snapshot is approved first. With commit_to_github=false\nthe server returns the signed baseline YAML instead of committing it."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsRecomputeCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#RecomputeResult": {
+      "type": "structure",
+      "members": {
+        "run": {
+          "target": "com.posthog.visual_review#Run"
+        },
+        "counts_changed": {
+          "target": "smithy.api#Boolean"
+        },
+        "unresolved": {
+          "target": "smithy.api#Integer"
+        },
+        "ci_rerun_triggered": {
+          "target": "smithy.api#Boolean"
+        },
+        "ci_rerun_error": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsRecomputeCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsRecomputeCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#RecomputeResult"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/recompute/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Re-evaluate quarantine and counts, update commit status, and optionally rerun the CI job."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsSnapshotHistoryListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "identifier",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot identifier"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsSnapshotHistoryList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsSnapshotHistoryListRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#PaginatedSnapshotHistoryEntryList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/snapshot-history/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Recent change history for a snapshot identifier across runs."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsSnapshotsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "include_quarantined": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#httpQuery": "include_quarantined",
+            "smithy.api#documentation": "Whether to include snapshots whose identifier is currently quarantined. Defaults to false: quarantined snapshots are excluded from results and reported in quarantined_count instead, since they are noise when reviewing real changes."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#PaginatedSnapshotList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.visual_review#PaginatedSnapshotListResultsList"
+        },
+        "quarantined_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Count of this run's snapshots whose identifier is currently quarantined. Excluded from results unless include_quarantined=true is passed."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#Snapshot": {
+      "type": "structure",
+      "members": {
+        "current_artifact": {
+          "target": "com.posthog.visual_review#Artifact",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "baseline_artifact": {
+          "target": "com.posthog.visual_review#Artifact",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "diff_artifact": {
+          "target": "com.posthog.visual_review#Artifact",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "reviewed_by": {
+          "target": "com.posthog.visual_review#UserBasicInfo",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "cluster_summary": {
+          "target": "com.posthog.visual_review#ClusterSummary",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "run_id": {
+          "target": "smithy.api#String"
+        },
+        "identifier": {
+          "target": "smithy.api#String"
+        },
+        "result": {
+          "target": "smithy.api#String"
+        },
+        "classification_reason": {
+          "target": "smithy.api#String"
+        },
+        "diff_percentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "diff_pixel_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "review_state": {
+          "target": "smithy.api#String"
+        },
+        "reviewed_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "approved_hash": {
+          "target": "smithy.api#String"
+        },
+        "tolerated_hash_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "is_quarantined": {
+          "target": "smithy.api#Boolean"
+        },
+        "metadata": {
+          "target": "com.posthog.visual_review#SnapshotMetadataMap"
+        },
+        "ssim_score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "change_kind": {
+          "target": "smithy.api#String"
+        },
+        "size_mismatch": {
+          "target": "smithy.api#Boolean"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#ClusterSummary": {
+      "type": "structure",
+      "members": {
+        "items": {
+          "target": "com.posthog.visual_review#ClusterSummaryItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "total": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "truncated": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#DiffCluster": {
+      "type": "structure",
+      "members": {
+        "x": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "y": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "width": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "height": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pixel_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "centroid_x": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "centroid_y": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#ClusterSummaryItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#DiffCluster"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#SnapshotMetadataMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#Document"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#PaginatedSnapshotListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#Snapshot"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsSnapshotsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsSnapshotsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#PaginatedSnapshotList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/snapshots/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a run's snapshots with diff results, excluding quarantined ones by default."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsTolerateCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "snapshot_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UUID of the changed snapshot to mark as a known tolerated alternate. Future runs that produce the same alternate hash for this identifier will not be flagged as changes."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsTolerateCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsTolerateCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#Snapshot"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/tolerate/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Mark a changed snapshot as a known tolerated alternate."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsToleratedHashesListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {}
+          }
+        },
+        "identifier": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "identifier",
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Snapshot identifier"
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#PaginatedToleratedHashEntryList": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.visual_review#PaginatedToleratedHashEntryListResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#ToleratedHashEntry": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "alternate_hash": {
+          "target": "smithy.api#String"
+        },
+        "baseline_hash": {
+          "target": "smithy.api#String"
+        },
+        "reason": {
+          "target": "smithy.api#String"
+        },
+        "diff_percentage": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "source_run_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#PaginatedToleratedHashEntryListResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.visual_review#ToleratedHashEntry"
+      },
+      "traits": {}
+    },
+    "com.posthog.visual_review#VisualReviewRunsToleratedHashesList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsToleratedHashesListRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#PaginatedToleratedHashEntryList"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#BadRequest"
+        },
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/runs/{id}/tolerated-hashes/",
+          "code": 200
+        },
+        "smithy.api#documentation": "List known tolerated hashes for a snapshot identifier."
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsCountsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.visual_review#VisualReviewRunsCountsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.visual_review#VisualReviewRunsCountsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.visual_review#ReviewStateCounts"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.visual_review#Forbidden"
+        },
+        {
+          "target": "com.posthog.visual_review#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/visual_review/runs/counts/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Review state counts for the runs list."
+      }
+    },
+    "com.posthog.visual_review#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.visual_review#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.visual_review#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.visual_review#VisualReview": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposList"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposRetrieve"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposPartialUpdate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposBaselinesRetrieve"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposQuarantineList"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposQuarantineCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposQuarantineExpireCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposThumbnailsRetrieve"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposRunsList"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposRunsCountsRetrieve"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewReposSnapshotsList"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsList"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsRetrieve"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsAddSnapshotsCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsApproveCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsCompleteCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsFinalizeCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsRecomputeCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsSnapshotHistoryList"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsSnapshotsList"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsTolerateCreate"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsToleratedHashesList"
+        },
+        {
+          "target": "com.posthog.visual_review#VisualReviewRunsCountsRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "description": "Align d1#DatabaseTimeTravelRestore with distilled cloudflare/d1 restoreDatabaseTimeTravel",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseTimeTravelRestore",
+      "path": "/shapes/com.cloudflare.d1#RestoreDatabaseTimeTravel"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseTimeTravelRestoreRequest",
+      "path": "/shapes/com.cloudflare.d1#RestoreDatabaseTimeTravelRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#RestoreDatabaseTimeTravel/input/target",
+      "value": "com.cloudflare.d1#RestoreDatabaseTimeTravelRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.d1#DatabaseTimeTravelRestoreResponse",
+      "path": "/shapes/com.cloudflare.d1#RestoreDatabaseTimeTravelResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.d1#RestoreDatabaseTimeTravel/output/target",
+      "value": "com.cloudflare.d1#RestoreDatabaseTimeTravelResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.d1#RestoreDatabaseTimeTravel/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.d1#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.d1#NoHistoryAvailable"
+        },
+        {
+          "target": "com.cloudflare.d1#DatabaseNotFound"
+        },
+        {
+          "target": "com.cloudflare.d1#InvalidProperty"
+        }
+      ]
+    }
+  ]
+}

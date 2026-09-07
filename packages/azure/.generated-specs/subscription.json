@@ -1,0 +1,1661 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.subscription#BillingAccountGetPolicy": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#BillingAccountGetPolicyRequest"
+      },
+      "output": {
+        "target": "com.azure.subscription#BillingAccountPoliciesResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Billing/billingAccounts/{billingAccountId}/providers/Microsoft.Subscription/policies/default",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Get Billing Account Policy.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#BillingAccountPoliciesResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the policy."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Policy name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.subscription#BillingAccountPoliciesResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Billing account policies response properties."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.subscription#BillingAccountPoliciesResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Billing account policies information."
+      }
+    },
+    "com.azure.subscription#BillingAccountPoliciesResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.subscription#BillingAccountPoliciesResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.subscription#BillingAccountPoliciesResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.subscription#BillingAccountPoliciesResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.subscription#BillingAccountPoliciesResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.subscription#BillingAccountPoliciesResponseProperties": {
+      "type": "structure",
+      "members": {
+        "serviceTenants": {
+          "target": "com.azure.subscription#BillingAccountPoliciesResponsePropertiesServiceTenantsList",
+          "traits": {
+            "smithy.api#documentation": "Service tenant for the billing account."
+          }
+        },
+        "allowTransfers": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Determine if the transfers are allowed for the billing account"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Put billing account policies response properties."
+      }
+    },
+    "com.azure.subscription#BillingAccountPoliciesResponsePropertiesServiceTenantsList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.subscription#ServiceTenantResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "Service tenant for the billing account."
+      }
+    },
+    "com.azure.subscription#ServiceTenantResponse": {
+      "type": "structure",
+      "members": {
+        "tenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service tenant id."
+          }
+        },
+        "tenantName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service tenant name."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Billing account service tenant."
+      }
+    },
+    "com.azure.subscription#BillingAccountGetPolicyRequest": {
+      "type": "structure",
+      "members": {
+        "billingAccountId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Billing Account Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#SubscriptionPolicyListPolicyForTenant": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.subscription#GetTenantPolicyListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Subscription/policies",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Get the subscription tenant policy for the user's tenant.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#GetTenantPolicyListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.subscription#GetTenantPolicyListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of tenant policies."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tenant policy information list."
+      }
+    },
+    "com.azure.subscription#GetTenantPolicyListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.subscription#GetTenantPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of tenant policies."
+      }
+    },
+    "com.azure.subscription#GetTenantPolicyResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Policy Id."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Policy name."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type."
+          }
+        },
+        "properties": {
+          "target": "com.azure.subscription#TenantPolicy",
+          "traits": {
+            "smithy.api#documentation": "Tenant policy properties."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.subscription#GetTenantPolicyResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tenant policy Information."
+      }
+    },
+    "com.azure.subscription#GetTenantPolicyResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.subscription#GetTenantPolicyResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.subscription#GetTenantPolicyResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.subscription#GetTenantPolicyResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.subscription#GetTenantPolicyResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.subscription#TenantPolicy": {
+      "type": "structure",
+      "members": {
+        "policyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Policy Id."
+          }
+        },
+        "blockSubscriptionsLeavingTenant": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Blocks the leaving of subscriptions from user's tenant."
+          }
+        },
+        "blockSubscriptionsIntoTenant": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Blocks the entering of subscriptions into user's tenant."
+          }
+        },
+        "exemptedPrincipals": {
+          "target": "com.azure.subscription#TenantPolicyExemptedPrincipalsList",
+          "traits": {
+            "smithy.api#documentation": "List of user objectIds that are exempted from the set subscription tenant policies for the user's tenant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Tenant policy."
+      }
+    },
+    "com.azure.subscription#TenantPolicyExemptedPrincipalsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of user objectIds that are exempted from the set subscription tenant policies for the user's tenant."
+      }
+    },
+    "com.azure.subscription#SubscriptionPolicyAddUpdatePolicyForTenant": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#SubscriptionPolicyAddUpdatePolicyForTenantRequest"
+      },
+      "output": {
+        "target": "com.azure.subscription#GetTenantPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Subscription/policies/default",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Create or Update Subscription tenant policy for user's tenant.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#SubscriptionPolicyAddUpdatePolicyForTenantRequest": {
+      "type": "structure",
+      "members": {
+        "blockSubscriptionsLeavingTenant": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Blocks the leaving of subscriptions from user's tenant."
+          }
+        },
+        "blockSubscriptionsIntoTenant": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Blocks the entering of subscriptions into user's tenant."
+          }
+        },
+        "exemptedPrincipals": {
+          "target": "com.azure.subscription#SubscriptionPolicyAddUpdatePolicyForTenantRequestExemptedPrincipalsList",
+          "traits": {
+            "smithy.api#documentation": "List of user objectIds that are exempted from the set subscription tenant policies for the user's tenant."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#SubscriptionPolicyAddUpdatePolicyForTenantRequestExemptedPrincipalsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of user objectIds that are exempted from the set subscription tenant policies for the user's tenant."
+      }
+    },
+    "com.azure.subscription#SubscriptionPolicyGetPolicyForTenant": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.subscription#GetTenantPolicyResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Subscription/policies/default",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Get the subscription tenant policy for the user's tenant.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#SubscriptionAcceptOwnershipStatus": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#SubscriptionAcceptOwnershipStatusRequest"
+      },
+      "output": {
+        "target": "com.azure.subscription#AcceptOwnershipStatusResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Subscription/subscriptions/{subscriptionId}/acceptOwnershipStatus",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Accept subscription ownership status.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#AcceptOwnershipStatusResponse": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Newly created subscription Id."
+          }
+        },
+        "acceptOwnershipState": {
+          "target": "com.azure.subscription#AcceptOwnershipState"
+        },
+        "provisioningState": {
+          "target": "com.azure.subscription#ProvisioningState"
+        },
+        "billingOwner": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "UPN of the billing owner"
+          }
+        },
+        "subscriptionTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant Id of the subscription"
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the subscription."
+          }
+        },
+        "tags": {
+          "target": "com.azure.subscription#AcceptOwnershipStatusResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Subscription Accept Ownership Response"
+      }
+    },
+    "com.azure.subscription#AcceptOwnershipStatusResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the subscription"
+      }
+    },
+    "com.azure.subscription#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state of the resource."
+      }
+    },
+    "com.azure.subscription#AcceptOwnershipState": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "COMPLETED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Completed"
+          }
+        },
+        "EXPIRED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Expired"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The accept ownership state of the resource."
+      }
+    },
+    "com.azure.subscription#SubscriptionAcceptOwnershipStatusRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#SubscriptionAcceptOwnership": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#SubscriptionAcceptOwnershipRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/providers/Microsoft.Subscription/subscriptions/{subscriptionId}/acceptOwnership",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Accept subscription ownership.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#SubscriptionAcceptOwnershipRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription Id."
+          }
+        },
+        "properties": {
+          "target": "com.azure.subscription#AcceptOwnershipRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Accept subscription ownership request properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#AcceptOwnershipRequestProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the subscription.",
+            "smithy.api#required": {}
+          }
+        },
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Management group Id for the subscription."
+          }
+        },
+        "tags": {
+          "target": "com.azure.subscription#AcceptOwnershipRequestPropertiesTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Accept subscription ownership request properties."
+      }
+    },
+    "com.azure.subscription#AcceptOwnershipRequestPropertiesTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the subscription"
+      }
+    },
+    "com.azure.subscription#AliasList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.subscription#SubscriptionAliasListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Subscription/aliases",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "List Alias Subscription.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#SubscriptionAliasListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.subscription#SubscriptionAliasListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The list of alias."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link (url) to the next page of results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of aliases."
+      }
+    },
+    "com.azure.subscription#SubscriptionAliasListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.subscription#SubscriptionAliasResponse"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of alias."
+      }
+    },
+    "com.azure.subscription#SubscriptionAliasResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified ID for the alias resource."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Alias ID."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource type, Microsoft.Subscription/aliases."
+          }
+        },
+        "properties": {
+          "target": "com.azure.subscription#SubscriptionAliasResponseProperties",
+          "traits": {
+            "smithy.api#documentation": "Subscription Alias response properties."
+          }
+        },
+        "systemData": {
+          "target": "com.azure.subscription#SubscriptionAliasResponseSystemData",
+          "traits": {
+            "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Subscription Information with the alias."
+      }
+    },
+    "com.azure.subscription#SubscriptionAliasResponseSystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.subscription#SubscriptionAliasResponseSystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.subscription#SubscriptionAliasResponseSystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.subscription#SubscriptionAliasResponseSystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.subscription#SubscriptionAliasResponseSystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.subscription#SubscriptionAliasResponseProperties": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Newly created subscription Id."
+          }
+        },
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The display name of the subscription."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.subscription#SubscriptionAliasResponsePropertiesProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The provisioning state of the resource."
+          }
+        },
+        "acceptOwnershipUrl": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Url to accept ownership of the subscription."
+          }
+        },
+        "acceptOwnershipState": {
+          "target": "com.azure.subscription#AcceptOwnershipState"
+        },
+        "billingScope": {
+          "target": "smithy.api#String"
+        },
+        "workload": {
+          "target": "com.azure.subscription#Workload"
+        },
+        "resellerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reseller Id"
+          }
+        },
+        "subscriptionOwnerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Owner Id of the subscription"
+          }
+        },
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The Management Group Id."
+          }
+        },
+        "createdTime": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Created Time"
+          }
+        },
+        "tags": {
+          "target": "com.azure.subscription#SubscriptionAliasResponsePropertiesTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Put subscription creation result properties."
+      }
+    },
+    "com.azure.subscription#SubscriptionAliasResponsePropertiesTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the subscription"
+      }
+    },
+    "com.azure.subscription#Workload": {
+      "type": "enum",
+      "members": {
+        "PRODUCTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Production"
+          }
+        },
+        "DEVTEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DevTest"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The workload type of the subscription. It can be either Production or DevTest."
+      }
+    },
+    "com.azure.subscription#SubscriptionAliasResponsePropertiesProvisioningState": {
+      "type": "enum",
+      "members": {
+        "ACCEPTED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Accepted"
+          }
+        },
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The provisioning state of the resource."
+      }
+    },
+    "com.azure.subscription#AliasDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#AliasDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/providers/Microsoft.Subscription/aliases/{aliasName}",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Delete Alias.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#AliasDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "aliasName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "AliasName is the name for the subscription creation request. Note that this is not the same as subscription name and this doesn’t have any other lifecycle need beyond the request for subscription creation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#AliasCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#AliasCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.subscription#SubscriptionAliasResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/providers/Microsoft.Subscription/aliases/{aliasName}",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Create Alias Subscription.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#AliasCreateRequest": {
+      "type": "structure",
+      "members": {
+        "aliasName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "AliasName is the name for the subscription creation request. Note that this is not the same as subscription name and this doesn’t have any other lifecycle need beyond the request for subscription creation."
+          }
+        },
+        "properties": {
+          "target": "com.azure.subscription#PutAliasRequestProperties",
+          "traits": {
+            "smithy.api#documentation": "Put alias request properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#PutAliasRequestProperties": {
+      "type": "structure",
+      "members": {
+        "displayName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The friendly name of the subscription."
+          }
+        },
+        "workload": {
+          "target": "com.azure.subscription#Workload"
+        },
+        "billingScope": {
+          "target": "smithy.api#String"
+        },
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "This parameter can be used to create alias for existing subscription Id"
+          }
+        },
+        "resellerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Reseller Id"
+          }
+        },
+        "additionalProperties": {
+          "target": "com.azure.subscription#PutAliasRequestAdditionalProperties",
+          "traits": {
+            "smithy.api#documentation": "Put alias request additional properties."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Put subscription properties."
+      }
+    },
+    "com.azure.subscription#PutAliasRequestAdditionalProperties": {
+      "type": "structure",
+      "members": {
+        "managementGroupId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Management group Id for the subscription."
+          }
+        },
+        "subscriptionTenantId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Tenant Id of the subscription"
+          }
+        },
+        "subscriptionOwnerId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Owner Id of the subscription"
+          }
+        },
+        "tags": {
+          "target": "com.azure.subscription#PutAliasRequestAdditionalPropertiesTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Tags for the subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Put subscription additional properties."
+      }
+    },
+    "com.azure.subscription#PutAliasRequestAdditionalPropertiesTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Tags for the subscription"
+      }
+    },
+    "com.azure.subscription#AliasGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#AliasGetRequest"
+      },
+      "output": {
+        "target": "com.azure.subscription#SubscriptionAliasResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Subscription/aliases/{aliasName}",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Get Alias Subscription.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#AliasGetRequest": {
+      "type": "structure",
+      "members": {
+        "aliasName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "AliasName is the name for the subscription creation request. Note that this is not the same as subscription name and this doesn’t have any other lifecycle need beyond the request for subscription creation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.subscription#OperationListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Subscription/operations",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Lists all of the available Microsoft.Subscription API operations.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#OperationListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.subscription#OperationListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations."
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results if there are any."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Result of the request to list operations. It contains a list of operations and a URL link to get the next set of results."
+      }
+    },
+    "com.azure.subscription#OperationListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.subscription#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations."
+      }
+    },
+    "com.azure.subscription#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation name: {provider}/{resource}/{operation}"
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates whether the operation is a data action"
+          }
+        },
+        "display": {
+          "target": "com.azure.subscription#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "The object that represents the operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "REST API operation"
+      }
+    },
+    "com.azure.subscription#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Service provider: Microsoft.Subscription"
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Resource on which the operation is performed: Profile, endpoint, etc."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Operation type: Read, write, delete, etc."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Localized friendly description for the operation"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object that represents the operation."
+      }
+    },
+    "com.azure.subscription#SubscriptionOperationGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#SubscriptionOperationGetRequest"
+      },
+      "output": {
+        "target": "com.azure.subscription#SubscriptionCreationResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.Subscription/subscriptionOperations/{operationId}",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "Get the status of the pending Microsoft.Subscription API operations.",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#SubscriptionCreationResult": {
+      "type": "structure",
+      "members": {
+        "subscriptionLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the new subscription. Use this link to check the status of subscription creation operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The created subscription object."
+      }
+    },
+    "com.azure.subscription#SubscriptionOperationGetRequest": {
+      "type": "structure",
+      "members": {
+        "operationId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The operation ID, which can be found from the Location field in the generate recommendation response header."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#SubscriptionEnable": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#SubscriptionEnableRequest"
+      },
+      "output": {
+        "target": "com.azure.subscription#EnabledSubscriptionId"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Subscription/enable",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "The operation to enable a subscription",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#EnabledSubscriptionId": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the subscriptions that is being enabled"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ID of the subscriptions that is being enabled"
+      }
+    },
+    "com.azure.subscription#SubscriptionEnableRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#SubscriptionRename": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#SubscriptionRenameRequest"
+      },
+      "output": {
+        "target": "com.azure.subscription#RenamedSubscriptionId"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Subscription/rename",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "The operation to rename a subscription",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#RenamedSubscriptionId": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the subscriptions that is being renamed"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ID of the subscriptions that is being renamed"
+      }
+    },
+    "com.azure.subscription#SubscriptionRenameRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription Id."
+          }
+        },
+        "subscriptionName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "New subscription name"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#SubscriptionCancel": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.subscription#SubscriptionCancelRequest"
+      },
+      "output": {
+        "target": "com.azure.subscription#CanceledSubscriptionId"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.Subscription/cancel",
+          "code": 200,
+          "apiVersion": "2021-10-01"
+        },
+        "smithy.api#documentation": "The operation to cancel a subscription",
+        "com.distilled.openapi#apiVersion": "2021-10-01"
+      }
+    },
+    "com.azure.subscription#CanceledSubscriptionId": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the canceled subscription"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The ID of the canceled subscription"
+      }
+    },
+    "com.azure.subscription#SubscriptionCancelRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Subscription Id."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.subscription#Subscription": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.subscription#BillingAccountGetPolicy"
+        },
+        {
+          "target": "com.azure.subscription#SubscriptionPolicyListPolicyForTenant"
+        },
+        {
+          "target": "com.azure.subscription#SubscriptionPolicyAddUpdatePolicyForTenant"
+        },
+        {
+          "target": "com.azure.subscription#SubscriptionPolicyGetPolicyForTenant"
+        },
+        {
+          "target": "com.azure.subscription#SubscriptionAcceptOwnershipStatus"
+        },
+        {
+          "target": "com.azure.subscription#SubscriptionAcceptOwnership"
+        },
+        {
+          "target": "com.azure.subscription#AliasList"
+        },
+        {
+          "target": "com.azure.subscription#AliasDelete"
+        },
+        {
+          "target": "com.azure.subscription#AliasCreate"
+        },
+        {
+          "target": "com.azure.subscription#AliasGet"
+        },
+        {
+          "target": "com.azure.subscription#OperationsList"
+        },
+        {
+          "target": "com.azure.subscription#SubscriptionOperationGet"
+        },
+        {
+          "target": "com.azure.subscription#SubscriptionEnable"
+        },
+        {
+          "target": "com.azure.subscription#SubscriptionRename"
+        },
+        {
+          "target": "com.azure.subscription#SubscriptionCancel"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Subscription",
+        "smithy.api#documentation": "Azure Subscription API — merged from the subscription resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

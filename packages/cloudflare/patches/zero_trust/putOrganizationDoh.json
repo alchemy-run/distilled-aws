@@ -1,0 +1,30 @@
+{
+  "description": "Align zero_trust#OrganizationsDohUpdate with distilled cloudflare/zero-trust putOrganizationDoh",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsDohUpdate",
+      "path": "/shapes/com.cloudflare.zero_trust#PutOrganizationDoh"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsDohUpdateRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#PutOrganizationDohRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutOrganizationDoh/input/target",
+      "value": "com.cloudflare.zero_trust#PutOrganizationDohRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#OrganizationsDohUpdateResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#PutOrganizationDohResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#PutOrganizationDoh/output/target",
+      "value": "com.cloudflare.zero_trust#PutOrganizationDohResponse"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align dns#RecordsUpdate with distilled cloudflare/dns updateRecord",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsUpdate",
+      "path": "/shapes/com.cloudflare.dns#UpdateRecord"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsUpdateRequest",
+      "path": "/shapes/com.cloudflare.dns#UpdateRecordRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#UpdateRecord/input/target",
+      "value": "com.cloudflare.dns#UpdateRecordRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.dns#RecordsUpdateResponse",
+      "path": "/shapes/com.cloudflare.dns#UpdateRecordResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.dns#UpdateRecord/output/target",
+      "value": "com.cloudflare.dns#UpdateRecordResponse"
+    }
+  ]
+}

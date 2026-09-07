@@ -1,0 +1,45 @@
+{
+  "description": "Align acm#TotalTlsGet with distilled cloudflare/acm getTotalTl",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.acm#TotalTlsGet",
+      "path": "/shapes/com.cloudflare.acm#GetTotalTl"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.acm#TotalTlsGetRequest",
+      "path": "/shapes/com.cloudflare.acm#GetTotalTlRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.acm#GetTotalTl/input/target",
+      "value": "com.cloudflare.acm#GetTotalTlRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.acm#TotalTlsGetResponse",
+      "path": "/shapes/com.cloudflare.acm#GetTotalTlResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.acm#GetTotalTl/output/target",
+      "value": "com.cloudflare.acm#GetTotalTlResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.acm#GetTotalTl/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.acm#InvalidObjectIdentifier"
+        },
+        {
+          "target": "com.cloudflare.acm#AdvancedCertificateManagerRequired"
+        },
+        {
+          "target": "com.cloudflare.acm#Forbidden"
+        }
+      ]
+    }
+  ]
+}

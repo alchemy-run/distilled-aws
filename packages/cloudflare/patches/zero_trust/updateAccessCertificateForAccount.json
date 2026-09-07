@@ -1,0 +1,39 @@
+{
+  "description": "Align zero_trust#AccessCertificatesUpdateForAccount with distilled cloudflare/zero-trust updateAccessCertificateForAccount",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesUpdateForAccount",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessCertificateForAccount"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesUpdateForAccountRequest",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessCertificateForAccountRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessCertificateForAccount/input/target",
+      "value": "com.cloudflare.zero_trust#UpdateAccessCertificateForAccountRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zero_trust#AccessCertificatesUpdateForAccountResponse",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessCertificateForAccountResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessCertificateForAccount/output/target",
+      "value": "com.cloudflare.zero_trust#UpdateAccessCertificateForAccountResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zero_trust#UpdateAccessCertificateForAccount/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zero_trust#AccessCertificateNotFound"
+        }
+      ]
+    }
+  ]
+}

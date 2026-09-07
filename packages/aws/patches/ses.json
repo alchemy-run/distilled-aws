@@ -1,0 +1,24 @@
+{
+  "operations": {
+    "createReceiptRule": {
+      "errors": ["InvalidParameterValue"],
+      "syntheticErrors": [
+        {
+          "name": "IdentityNotVerified",
+          "from": "InvalidParameterValue",
+          "message": { "includes": "Identity is not verified" }
+        }
+      ]
+    },
+    "updateReceiptRule": {
+      "errors": ["InvalidParameterValue"],
+      "syntheticErrors": [
+        {
+          "name": "IdentityNotVerified",
+          "from": "InvalidParameterValue",
+          "message": { "includes": "Identity is not verified" }
+        }
+      ]
+    }
+  }
+}

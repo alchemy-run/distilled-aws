@@ -1,0 +1,30 @@
+{
+  "description": "Align secrets_store#StoresGet with distilled cloudflare/secrets-store getStore",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresGet",
+      "path": "/shapes/com.cloudflare.secrets_store#GetStore"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresGetRequest",
+      "path": "/shapes/com.cloudflare.secrets_store#GetStoreRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#GetStore/input/target",
+      "value": "com.cloudflare.secrets_store#GetStoreRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.secrets_store#StoresGetResponse",
+      "path": "/shapes/com.cloudflare.secrets_store#GetStoreResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.secrets_store#GetStore/output/target",
+      "value": "com.cloudflare.secrets_store#GetStoreResponse"
+    }
+  ]
+}

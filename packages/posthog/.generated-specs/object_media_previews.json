@@ -1,0 +1,553 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.posthog.object_media_previews#ObjectMediaPreviewsListRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Number of results to return per page."
+          }
+        },
+        "offset": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "offset",
+            "smithy.api#documentation": "The initial index from which to return the results."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.object_media_previews#PaginatedObjectMediaPreviewListOutput": {
+      "type": "structure",
+      "members": {
+        "count": {
+          "target": "smithy.api#Integer"
+        },
+        "next": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "previous": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "results": {
+          "target": "com.posthog.object_media_previews#PaginatedObjectMediaPreviewListOutputResultsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewOutput": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String"
+        },
+        "created_at": {
+          "target": "smithy.api#String"
+        },
+        "updated_at": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "media_url": {
+          "target": "smithy.api#String"
+        },
+        "media_type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Return 'uploaded' or 'exported' based on which media is set"
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#Document"
+        }
+      },
+      "traits": {}
+    },
+    "com.posthog.object_media_previews#PaginatedObjectMediaPreviewListOutputResultsList": {
+      "type": "list",
+      "member": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
+      },
+      "traits": {}
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsList": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsListRequest"
+      },
+      "output": {
+        "target": "com.posthog.object_media_previews#PaginatedObjectMediaPreviewListOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.object_media_previews#BadRequest"
+        },
+        {
+          "target": "com.posthog.object_media_previews#Forbidden"
+        },
+        {
+          "target": "com.posthog.object_media_previews#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/object_media_previews/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsCreateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#Document"
+        },
+        "uploaded_media_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exported_asset_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "event_definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsCreateRequest"
+      },
+      "output": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.object_media_previews#BadRequest"
+        },
+        {
+          "target": "com.posthog.object_media_previews#Forbidden"
+        },
+        {
+          "target": "com.posthog.object_media_previews#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/api/projects/{project_id}/object_media_previews/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this object media preview."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.object_media_previews#Forbidden"
+        },
+        {
+          "target": "com.posthog.object_media_previews#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/object_media_previews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this object media preview."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#Document"
+        },
+        "uploaded_media_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exported_asset_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "event_definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.object_media_previews#BadRequest"
+        },
+        {
+          "target": "com.posthog.object_media_previews#Forbidden"
+        },
+        {
+          "target": "com.posthog.object_media_previews#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/api/projects/{project_id}/object_media_previews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsPartialUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this object media preview."
+          }
+        },
+        "metadata": {
+          "target": "smithy.api#Document"
+        },
+        "uploaded_media_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "exported_asset_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "event_definition_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsPartialUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsPartialUpdateRequest"
+      },
+      "output": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.object_media_previews#BadRequest"
+        },
+        {
+          "target": "com.posthog.object_media_previews#Forbidden"
+        },
+        {
+          "target": "com.posthog.object_media_previews#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/api/projects/{project_id}/object_media_previews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsDestroyRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "A UUID string identifying this object media preview."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsDestroy": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsDestroyRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.object_media_previews#Forbidden"
+        },
+        {
+          "target": "com.posthog.object_media_previews#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/api/projects/{project_id}/object_media_previews/{id}/",
+          "code": 200
+        }
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsPreferredForEventRetrieveRequest": {
+      "type": "structure",
+      "members": {
+        "project_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "Project ID of the project you're trying to access. To find the ID of the project, make a call to /api/projects/."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviewsPreferredForEventRetrieve": {
+      "type": "operation",
+      "input": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewsPreferredForEventRetrieveRequest"
+      },
+      "output": {
+        "target": "com.posthog.object_media_previews#ObjectMediaPreviewOutput"
+      },
+      "errors": [
+        {
+          "target": "com.posthog.object_media_previews#Forbidden"
+        },
+        {
+          "target": "com.posthog.object_media_previews#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/api/projects/{project_id}/object_media_previews/preferred_for_event/",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get the preferred media preview for an event definition.\nMost recent user-uploaded, then most recent exported asset.\nRequires event_definition (query param)."
+      }
+    },
+    "com.posthog.object_media_previews#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.posthog.object_media_previews#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.posthog.object_media_previews#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.posthog.object_media_previews#ObjectMediaPreviews": {
+      "type": "service",
+      "version": "1.0.0",
+      "operations": [
+        {
+          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsList"
+        },
+        {
+          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsCreate"
+        },
+        {
+          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsRetrieve"
+        },
+        {
+          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsUpdate"
+        },
+        {
+          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsPartialUpdate"
+        },
+        {
+          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsDestroy"
+        },
+        {
+          "target": "com.posthog.object_media_previews#ObjectMediaPreviewsPreferredForEventRetrieve"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "PostHog API"
+      }
+    }
+  }
+}

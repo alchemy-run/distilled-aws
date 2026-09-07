@@ -1,0 +1,3347 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.github.billing#GetGithubBillingAiCreditUsageReportOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "year",
+            "smithy.api#documentation": "If specified, only return results for a single year. The value of `year` is an integer with four digits representing a year. For example, `2025`. Default value is the current year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "month",
+            "smithy.api#documentation": "If specified, only return results for a single month. The value of `month` is an integer between `1` and `12`. Default value is the current month. If no year is specified the default `year` is used."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#documentation": "If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "The user name to query usage for. The name is not case sensitive."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "model",
+            "smithy.api#documentation": "The model name to query usage for. The name is not case sensitive."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "product",
+            "smithy.api#documentation": "The product name to query usage for. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#BillingAiCreditUsageReportOrg": {
+      "type": "structure",
+      "members": {
+        "timePeriod": {
+          "target": "com.github.billing#BillingAiCreditUsageReportOrgTimePeriod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the organization.",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the user for the usage report."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product for the usage report."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The model for the usage report."
+          }
+        },
+        "usageItems": {
+          "target": "com.github.billing#BillingAiCreditUsageReportOrgUsageItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingAiCreditUsageReportOrgTimePeriod": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The year for the usage report.",
+            "smithy.api#required": {}
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The month for the usage report."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The day for the usage report."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingAiCreditUsageReportOrgUsageItemsItem": {
+      "type": "structure",
+      "members": {
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU name.",
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Model name.",
+            "smithy.api#required": {}
+          }
+        },
+        "unitType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit type of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricePerUnit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Price per unit of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingAiCreditUsageReportOrgUsageItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.billing#BillingAiCreditUsageReportOrgUsageItemsItem"
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetGithubBillingAiCreditUsageReportOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetGithubBillingAiCreditUsageReportOrgRequest"
+      },
+      "output": {
+        "target": "com.github.billing#BillingAiCreditUsageReportOrg"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/organizations/{org}/settings/billing/ai_credit/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get billing AI credit usage report for an organization\n\nGets a report of AI credit usage for an organization. To use this endpoint, you must be an administrator of an organization within an enterprise or an organization account.\n\n**Note:** Only data from the past 24 months is accessible via this endpoint."
+      }
+    },
+    "com.github.billing#GetAllBudgetsOrgRequestScope": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cost_center"
+          }
+        },
+        "MULTI_USER_CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_customer"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetAllBudgetsOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "page",
+            "smithy.api#documentation": "The page number of the results to fetch."
+          }
+        },
+        "per_page": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "per_page",
+            "smithy.api#documentation": "The number of results per page (max 100)."
+          }
+        },
+        "scope": {
+          "target": "com.github.billing#GetAllBudgetsOrgRequestScope",
+          "traits": {
+            "smithy.api#httpQuery": "scope",
+            "smithy.api#documentation": "Filter budgets by scope type.\n\n- `organization`: Budgets scoped to the organization.\n- `repository`: Budgets scoped to a repository.\n- `multi_user_customer`: Universal budgets that apply to all users in the organization.\n- `user`: Budgets scoped to an individual user."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "Filter consumed amount details for budgets by the specified user login."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#GetAllBudgets": {
+      "type": "structure",
+      "members": {
+        "budgets": {
+          "target": "com.github.billing#GetAllBudgetsBudgetsList",
+          "traits": {
+            "smithy.api#documentation": "Array of budget objects for the enterprise",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User login included when the response is scoped with the `user` query parameter."
+          }
+        },
+        "effective_budget": {
+          "target": "com.github.billing#GetAllBudgetsEffectiveBudget",
+          "traits": {
+            "smithy.api#documentation": "Effective user-level budget details returned when the response is scoped with the `user` query parameter."
+          }
+        },
+        "has_next_page": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if there are more pages of results available (maps to hasNextPage from billing platform)"
+          }
+        },
+        "total_count": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Total number of budgets matching the query"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#Budget": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier for the budget",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_type": {
+          "target": "com.github.billing#BudgetBudgetType",
+          "traits": {
+            "smithy.api#documentation": "The type of pricing for the budget",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_amount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The budget amount limit in whole dollars. For license-based products, this represents the number of licenses.",
+            "smithy.api#required": {}
+          }
+        },
+        "prevent_further_usage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "The type of limit enforcement for the budget",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_scope": {
+          "target": "com.github.billing#BudgetBudgetScope",
+          "traits": {
+            "smithy.api#documentation": "The scope of the budget",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_entity_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the entity for the budget (enterprise does not require a name)."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user login when the budget is scoped to a single user (`user` scope)."
+          }
+        },
+        "consumed_amount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The amount consumed for a user-scoped budget, or for a multi-user budget when filtering by user."
+          }
+        },
+        "budget_product_sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A single product or sku to apply the budget to.",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_alerting": {
+          "target": "com.github.billing#BudgetBudgetAlerting",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BudgetBudgetTypeCase0": {
+      "type": "enum",
+      "members": {
+        "SKUPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SkuPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BudgetBudgetTypeCase1": {
+      "type": "enum",
+      "members": {
+        "PRODUCTPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ProductPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BudgetBudgetType": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.billing#BudgetBudgetTypeCase0"
+        },
+        "Case1": {
+          "target": "com.github.billing#BudgetBudgetTypeCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of pricing for the budget"
+      }
+    },
+    "com.github.billing#BudgetBudgetScope": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cost_center"
+          }
+        },
+        "MULTI_USER_CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_customer"
+          }
+        },
+        "MULTI_USER_COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_cost_center"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The scope of the budget"
+      }
+    },
+    "com.github.billing#BudgetBudgetAlertingAlertRecipientsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of user login names who will receive alerts"
+      }
+    },
+    "com.github.billing#BudgetBudgetAlerting": {
+      "type": "structure",
+      "members": {
+        "will_alert": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether alerts are enabled for this budget",
+            "smithy.api#required": {}
+          }
+        },
+        "alert_recipients": {
+          "target": "com.github.billing#BudgetBudgetAlertingAlertRecipientsList",
+          "traits": {
+            "smithy.api#documentation": "Array of user login names who will receive alerts",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetAllBudgetsBudgetsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.billing#Budget"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of budget objects for the enterprise"
+      }
+    },
+    "com.github.billing#GetAllBudgetsEffectiveBudget": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the effective budget.",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_amount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The budget amount for the effective budget.",
+            "smithy.api#required": {}
+          }
+        },
+        "consumed_amount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The consumed amount for the specified user within the effective budget.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Effective user-level budget details returned when the response is scoped with the `user` query parameter."
+      }
+    },
+    "com.github.billing#GetAllBudgetsOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetAllBudgetsOrgRequest"
+      },
+      "output": {
+        "target": "com.github.billing#GetAllBudgets"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/organizations/{org}/settings/billing/budgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get all budgets for an organization\n\nGets all budgets for an organization. The authenticated user must be an organization admin or billing manager.\nEach page returns up to 100 budgets."
+      }
+    },
+    "com.github.billing#CreateOrganizationBudgetRequestBudgetAlertingAlertRecipientsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of user login names who will receive alerts"
+      }
+    },
+    "com.github.billing#CreateOrganizationBudgetRequestBudgetAlerting": {
+      "type": "structure",
+      "members": {
+        "will_alert": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether alerts are enabled for this budget"
+          }
+        },
+        "alert_recipients": {
+          "target": "com.github.billing#CreateOrganizationBudgetRequestBudgetAlertingAlertRecipientsList",
+          "traits": {
+            "smithy.api#documentation": "Array of user login names who will receive alerts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#CreateOrganizationBudgetRequestBudgetScope": {
+      "type": "enum",
+      "members": {
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "MULTI_USER_CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_customer"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The scope of the budget for this organization.\n\n- `organization`: Apply the budget to the organization.\n- `repository`: Apply the budget to a specific repository in the organization.\n- `multi_user_customer`: Apply a universal budget to all users in the organization.\n- `user`: Apply the budget to a single user in the organization.\n\n`user` and `multi_user_customer` scopes are only supported when\n`budget_product_sku` is `ai_credits` or `premium_requests`."
+      }
+    },
+    "com.github.billing#CreateOrganizationBudgetRequestBudgetTypeCase0": {
+      "type": "enum",
+      "members": {
+        "BUNDLEPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BundlePricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#CreateOrganizationBudgetRequestBudgetTypeCase1": {
+      "type": "enum",
+      "members": {
+        "PRODUCTPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ProductPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#CreateOrganizationBudgetRequestBudgetTypeCase2": {
+      "type": "enum",
+      "members": {
+        "SKUPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SkuPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#CreateOrganizationBudgetRequestBudgetType": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.billing#CreateOrganizationBudgetRequestBudgetTypeCase0"
+        },
+        "Case1": {
+          "target": "com.github.billing#CreateOrganizationBudgetRequestBudgetTypeCase1"
+        },
+        "Case2": {
+          "target": "com.github.billing#CreateOrganizationBudgetRequestBudgetTypeCase2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of pricing model used by the budget. Determines how `budget_product_sku` is interpreted.\n\n- `BundlePricing`: Covers all AI credit SKUs. Set `budget_product_sku` to `ai_credits`.\n- `ProductPricing`: Covers all SKUs that belong to a product. Set `budget_product_sku` to a product such as `actions` or `packages`.\n- `SkuPricing`: Covers a single, specific SKU. Set `budget_product_sku` to a SKU such as `actions_linux`."
+      }
+    },
+    "com.github.billing#CreateOrganizationBudgetRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "budget_amount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The budget amount in whole dollars. For license-based products, this represents the number of licenses."
+          }
+        },
+        "prevent_further_usage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to prevent additional spending once the budget is exceeded. For `user` and `multi_user_customer` scopes, this must be `true`."
+          }
+        },
+        "budget_alerting": {
+          "target": "com.github.billing#CreateOrganizationBudgetRequestBudgetAlerting"
+        },
+        "budget_scope": {
+          "target": "com.github.billing#CreateOrganizationBudgetRequestBudgetScope",
+          "traits": {
+            "smithy.api#documentation": "The scope of the budget for this organization.\n\n- `organization`: Apply the budget to the organization.\n- `repository`: Apply the budget to a specific repository in the organization.\n- `multi_user_customer`: Apply a universal budget to all users in the organization.\n- `user`: Apply the budget to a single user in the organization.\n\n`user` and `multi_user_customer` scopes are only supported when\n`budget_product_sku` is `ai_credits` or `premium_requests`."
+          }
+        },
+        "budget_entity_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the entity to apply the budget to"
+          }
+        },
+        "budget_type": {
+          "target": "com.github.billing#CreateOrganizationBudgetRequestBudgetType",
+          "traits": {
+            "smithy.api#documentation": "The type of pricing model used by the budget. Determines how `budget_product_sku` is interpreted.\n\n- `BundlePricing`: Covers all AI credit SKUs. Set `budget_product_sku` to `ai_credits`.\n- `ProductPricing`: Covers all SKUs that belong to a product. Set `budget_product_sku` to a product such as `actions` or `packages`.\n- `SkuPricing`: Covers a single, specific SKU. Set `budget_product_sku` to a SKU such as `actions_linux`."
+          }
+        },
+        "budget_product_sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A single product or SKU that will be covered in the budget"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the user for `user` scope budgets. This field is required when `budget_scope` is `user`."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#CreateBudget": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating the result of the create operation",
+            "smithy.api#required": {}
+          }
+        },
+        "budget": {
+          "target": "com.github.billing#CreateBudgetBudget",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#CreateBudgetBudgetBudgetScope": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cost_center"
+          }
+        },
+        "MULTI_USER_CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_customer"
+          }
+        },
+        "MULTI_USER_COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_cost_center"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of scope for the budget"
+      }
+    },
+    "com.github.billing#CreateBudgetBudgetBudgetTypeCase0": {
+      "type": "enum",
+      "members": {
+        "PRODUCTPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ProductPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#CreateBudgetBudgetBudgetTypeCase1": {
+      "type": "enum",
+      "members": {
+        "SKUPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SkuPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#CreateBudgetBudgetBudgetType": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.billing#CreateBudgetBudgetBudgetTypeCase0"
+        },
+        "Case1": {
+          "target": "com.github.billing#CreateBudgetBudgetBudgetTypeCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of pricing for the budget"
+      }
+    },
+    "com.github.billing#CreateBudgetBudgetBudgetAlertingAlertRecipientsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of user login names who will receive alerts"
+      }
+    },
+    "com.github.billing#CreateBudgetBudgetBudgetAlerting": {
+      "type": "structure",
+      "members": {
+        "will_alert": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether alerts are enabled for this budget"
+          }
+        },
+        "alert_recipients": {
+          "target": "com.github.billing#CreateBudgetBudgetBudgetAlertingAlertRecipientsList",
+          "traits": {
+            "smithy.api#documentation": "Array of user login names who will receive alerts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#CreateBudgetBudget": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the budget."
+          }
+        },
+        "budget_scope": {
+          "target": "com.github.billing#CreateBudgetBudgetBudgetScope",
+          "traits": {
+            "smithy.api#documentation": "The type of scope for the budget"
+          }
+        },
+        "budget_entity_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the entity to apply the budget to"
+          }
+        },
+        "budget_amount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The budget amount in whole dollars. For license-based products, this represents the number of licenses."
+          }
+        },
+        "prevent_further_usage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to prevent additional spending once the budget is exceeded"
+          }
+        },
+        "budget_product_sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A single product or sku to apply the budget to."
+          }
+        },
+        "budget_type": {
+          "target": "com.github.billing#CreateBudgetBudgetBudgetType",
+          "traits": {
+            "smithy.api#documentation": "The type of pricing for the budget"
+          }
+        },
+        "budget_alerting": {
+          "target": "com.github.billing#CreateBudgetBudgetBudgetAlerting"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#CreateOrganizationBudget": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#CreateOrganizationBudgetRequest"
+      },
+      "output": {
+        "target": "com.github.billing#CreateBudget"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        },
+        {
+          "target": "com.github.billing#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/organizations/{org}/settings/billing/budgets",
+          "code": 200
+        },
+        "smithy.api#documentation": "Create a budget for an organization\n\nCreates a new budget for an organization. The authenticated user must be an\norganization admin or billing manager."
+      }
+    },
+    "com.github.billing#GetBudgetOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "budget_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID corresponding to the budget."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#GetBudget": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the budget.",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_scope": {
+          "target": "com.github.billing#GetBudgetBudgetScope",
+          "traits": {
+            "smithy.api#documentation": "The type of scope for the budget",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_entity_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the entity to apply the budget to",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user login when the budget is scoped to a single user (`user` scope)."
+          }
+        },
+        "budget_amount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The budget amount in whole dollars. For license-based products, this represents the number of licenses.",
+            "smithy.api#required": {}
+          }
+        },
+        "prevent_further_usage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to prevent additional spending once the budget is exceeded",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_product_sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A single product or sku to apply the budget to.",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_type": {
+          "target": "com.github.billing#GetBudgetBudgetType",
+          "traits": {
+            "smithy.api#documentation": "The type of pricing for the budget",
+            "smithy.api#required": {}
+          }
+        },
+        "budget_alerting": {
+          "target": "com.github.billing#GetBudgetBudgetAlerting",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetBudgetBudgetScope": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cost_center"
+          }
+        },
+        "MULTI_USER_CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_customer"
+          }
+        },
+        "MULTI_USER_COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_cost_center"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of scope for the budget"
+      }
+    },
+    "com.github.billing#GetBudgetBudgetTypeCase0": {
+      "type": "enum",
+      "members": {
+        "PRODUCTPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ProductPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetBudgetBudgetTypeCase1": {
+      "type": "enum",
+      "members": {
+        "SKUPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SkuPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetBudgetBudgetType": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.billing#GetBudgetBudgetTypeCase0"
+        },
+        "Case1": {
+          "target": "com.github.billing#GetBudgetBudgetTypeCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of pricing for the budget"
+      }
+    },
+    "com.github.billing#GetBudgetBudgetAlertingAlertRecipientsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of user login names who will receive alerts"
+      }
+    },
+    "com.github.billing#GetBudgetBudgetAlerting": {
+      "type": "structure",
+      "members": {
+        "will_alert": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether alerts are enabled for this budget"
+          }
+        },
+        "alert_recipients": {
+          "target": "com.github.billing#GetBudgetBudgetAlertingAlertRecipientsList",
+          "traits": {
+            "smithy.api#documentation": "Array of user login names who will receive alerts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetBudgetOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetBudgetOrgRequest"
+      },
+      "output": {
+        "target": "com.github.billing#GetBudget"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/organizations/{org}/settings/billing/budgets/{budget_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get a budget by ID for an organization\n\nGets a budget by ID. The authenticated user must be an organization admin or billing manager."
+      }
+    },
+    "com.github.billing#UpdateBudgetOrgRequestBudgetAlertingAlertRecipientsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of user login names who will receive alerts"
+      }
+    },
+    "com.github.billing#UpdateBudgetOrgRequestBudgetAlerting": {
+      "type": "structure",
+      "members": {
+        "will_alert": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether alerts are enabled for this budget"
+          }
+        },
+        "alert_recipients": {
+          "target": "com.github.billing#UpdateBudgetOrgRequestBudgetAlertingAlertRecipientsList",
+          "traits": {
+            "smithy.api#documentation": "Array of user login names who will receive alerts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#UpdateBudgetOrgRequestBudgetScope": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cost_center"
+          }
+        },
+        "MULTI_USER_CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_customer"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The scope of the budget for this organization.\n\n- `organization`: Apply the budget to the organization.\n- `repository`: Apply the budget to a specific repository in the organization.\n- `multi_user_customer`: Apply a universal budget to all users in the organization.\n- `user`: Apply the budget to a single user in the organization."
+      }
+    },
+    "com.github.billing#UpdateBudgetOrgRequestBudgetTypeCase0": {
+      "type": "enum",
+      "members": {
+        "BUNDLEPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BundlePricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#UpdateBudgetOrgRequestBudgetTypeCase1": {
+      "type": "enum",
+      "members": {
+        "PRODUCTPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ProductPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#UpdateBudgetOrgRequestBudgetTypeCase2": {
+      "type": "enum",
+      "members": {
+        "SKUPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SkuPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#UpdateBudgetOrgRequestBudgetType": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.billing#UpdateBudgetOrgRequestBudgetTypeCase0"
+        },
+        "Case1": {
+          "target": "com.github.billing#UpdateBudgetOrgRequestBudgetTypeCase1"
+        },
+        "Case2": {
+          "target": "com.github.billing#UpdateBudgetOrgRequestBudgetTypeCase2"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of pricing model used by the budget. Determines how `budget_product_sku` is interpreted.\n\n- `BundlePricing`: Covers all AI credit SKUs. Set `budget_product_sku` to `ai_credits`.\n- `ProductPricing`: Covers all SKUs that belong to a product. Set `budget_product_sku` to a product such as `actions` or `packages`.\n- `SkuPricing`: Covers a single, specific SKU. Set `budget_product_sku` to a SKU such as `actions_linux`."
+      }
+    },
+    "com.github.billing#UpdateBudgetOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "budget_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID corresponding to the budget."
+          }
+        },
+        "budget_amount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The budget amount in whole dollars. For license-based products, this represents the number of licenses."
+          }
+        },
+        "prevent_further_usage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to prevent additional spending once the budget is exceeded. For budgets with `user` or `multi_user_customer` scope, this must remain `true`."
+          }
+        },
+        "budget_alerting": {
+          "target": "com.github.billing#UpdateBudgetOrgRequestBudgetAlerting"
+        },
+        "budget_scope": {
+          "target": "com.github.billing#UpdateBudgetOrgRequestBudgetScope",
+          "traits": {
+            "smithy.api#documentation": "The scope of the budget for this organization.\n\n- `organization`: Apply the budget to the organization.\n- `repository`: Apply the budget to a specific repository in the organization.\n- `multi_user_customer`: Apply a universal budget to all users in the organization.\n- `user`: Apply the budget to a single user in the organization."
+          }
+        },
+        "budget_entity_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the entity to apply the budget to"
+          }
+        },
+        "budget_type": {
+          "target": "com.github.billing#UpdateBudgetOrgRequestBudgetType",
+          "traits": {
+            "smithy.api#documentation": "The type of pricing model used by the budget. Determines how `budget_product_sku` is interpreted.\n\n- `BundlePricing`: Covers all AI credit SKUs. Set `budget_product_sku` to `ai_credits`.\n- `ProductPricing`: Covers all SKUs that belong to a product. Set `budget_product_sku` to a product such as `actions` or `packages`.\n- `SkuPricing`: Covers a single, specific SKU. Set `budget_product_sku` to a SKU such as `actions_linux`."
+          }
+        },
+        "budget_product_sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A single product or SKU that will be covered in the budget"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the user for `user` scope budgets."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#UpdateBudget": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating the result of the update operation",
+            "smithy.api#required": {}
+          }
+        },
+        "budget": {
+          "target": "com.github.billing#UpdateBudgetBudget",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#UpdateBudgetBudgetBudgetScope": {
+      "type": "enum",
+      "members": {
+        "ENTERPRISE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "enterprise"
+          }
+        },
+        "ORGANIZATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "organization"
+          }
+        },
+        "REPOSITORY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "repository"
+          }
+        },
+        "COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "cost_center"
+          }
+        },
+        "MULTI_USER_CUSTOMER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_customer"
+          }
+        },
+        "MULTI_USER_COST_CENTER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "multi_user_cost_center"
+          }
+        },
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of scope for the budget"
+      }
+    },
+    "com.github.billing#UpdateBudgetBudgetBudgetTypeCase0": {
+      "type": "enum",
+      "members": {
+        "PRODUCTPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ProductPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#UpdateBudgetBudgetBudgetTypeCase1": {
+      "type": "enum",
+      "members": {
+        "SKUPRICING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SkuPricing"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#UpdateBudgetBudgetBudgetType": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "com.github.billing#UpdateBudgetBudgetBudgetTypeCase0"
+        },
+        "Case1": {
+          "target": "com.github.billing#UpdateBudgetBudgetBudgetTypeCase1"
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of pricing for the budget"
+      }
+    },
+    "com.github.billing#UpdateBudgetBudgetBudgetAlertingAlertRecipientsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Array of user login names who will receive alerts"
+      }
+    },
+    "com.github.billing#UpdateBudgetBudgetBudgetAlerting": {
+      "type": "structure",
+      "members": {
+        "will_alert": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether alerts are enabled for this budget"
+          }
+        },
+        "alert_recipients": {
+          "target": "com.github.billing#UpdateBudgetBudgetBudgetAlertingAlertRecipientsList",
+          "traits": {
+            "smithy.api#documentation": "Array of user login names who will receive alerts"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#UpdateBudgetBudget": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the budget."
+          }
+        },
+        "budget_scope": {
+          "target": "com.github.billing#UpdateBudgetBudgetBudgetScope",
+          "traits": {
+            "smithy.api#documentation": "The type of scope for the budget"
+          }
+        },
+        "budget_entity_name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the entity to apply the budget to"
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The user login when the budget is scoped to a single user (`user` scope)."
+          }
+        },
+        "consumed_amount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The consumed amount for the specified user within the budget. Only included for `user`-scoped budgets."
+          }
+        },
+        "budget_amount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The budget amount in whole dollars. For license-based products, this represents the number of licenses."
+          }
+        },
+        "prevent_further_usage": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether to prevent additional spending once the budget is exceeded"
+          }
+        },
+        "budget_product_sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A single product or sku to apply the budget to."
+          }
+        },
+        "budget_type": {
+          "target": "com.github.billing#UpdateBudgetBudgetBudgetType",
+          "traits": {
+            "smithy.api#documentation": "The type of pricing for the budget"
+          }
+        },
+        "budget_alerting": {
+          "target": "com.github.billing#UpdateBudgetBudgetBudgetAlerting"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#UpdateBudgetOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#UpdateBudgetOrgRequest"
+      },
+      "output": {
+        "target": "com.github.billing#UpdateBudget"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        },
+        {
+          "target": "com.github.billing#UnprocessableEntity"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/organizations/{org}/settings/billing/budgets/{budget_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Update a budget for an organization\n\nUpdates an existing budget for an organization. The authenticated user must be an organization admin or billing manager."
+      }
+    },
+    "com.github.billing#DeleteBudgetOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "budget_id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID corresponding to the budget."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#DeleteBudget": {
+      "type": "structure",
+      "members": {
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A message indicating the result of the deletion operation",
+            "smithy.api#required": {}
+          }
+        },
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the deleted budget",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#DeleteBudgetOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#DeleteBudgetOrgRequest"
+      },
+      "output": {
+        "target": "com.github.billing#DeleteBudget"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/organizations/{org}/settings/billing/budgets/{budget_id}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Delete a budget for an organization\n\nDeletes a budget by ID for an organization. The authenticated user must be an organization admin or billing manager."
+      }
+    },
+    "com.github.billing#GetGithubBillingPremiumRequestUsageReportOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "year",
+            "smithy.api#documentation": "If specified, only return results for a single year. The value of `year` is an integer with four digits representing a year. For example, `2025`. Default value is the current year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "month",
+            "smithy.api#documentation": "If specified, only return results for a single month. The value of `month` is an integer between `1` and `12`. Default value is the current month. If no year is specified the default `year` is used."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#documentation": "If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used."
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "user",
+            "smithy.api#documentation": "The user name to query usage for. The name is not case sensitive."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "model",
+            "smithy.api#documentation": "The model name to query usage for. The name is not case sensitive."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "product",
+            "smithy.api#documentation": "The product name to query usage for. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#BillingPremiumRequestUsageReportOrg": {
+      "type": "structure",
+      "members": {
+        "timePeriod": {
+          "target": "com.github.billing#BillingPremiumRequestUsageReportOrgTimePeriod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the organization.",
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the user for the usage report."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product for the usage report."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The model for the usage report."
+          }
+        },
+        "usageItems": {
+          "target": "com.github.billing#BillingPremiumRequestUsageReportOrgUsageItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingPremiumRequestUsageReportOrgTimePeriod": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The year for the usage report.",
+            "smithy.api#required": {}
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The month for the usage report."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The day for the usage report."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingPremiumRequestUsageReportOrgUsageItemsItem": {
+      "type": "structure",
+      "members": {
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU name.",
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Model name.",
+            "smithy.api#required": {}
+          }
+        },
+        "unitType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit type of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricePerUnit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Price per unit of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingPremiumRequestUsageReportOrgUsageItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.billing#BillingPremiumRequestUsageReportOrgUsageItemsItem"
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetGithubBillingPremiumRequestUsageReportOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetGithubBillingPremiumRequestUsageReportOrgRequest"
+      },
+      "output": {
+        "target": "com.github.billing#BillingPremiumRequestUsageReportOrg"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/organizations/{org}/settings/billing/premium_request/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get billing premium request usage report for an organization\n\nGets a report of premium request usage for an organization. To use this endpoint, you must be an administrator of an organization within an enterprise or an organization account.\n\n**Note:** Only data from the past 24 months is accessible via this endpoint."
+      }
+    },
+    "com.github.billing#GetGithubBillingUsageReportOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "year",
+            "smithy.api#documentation": "If specified, only return results for a single year. The value of `year` is an integer with four digits representing a year. For example, `2025`. Default value is the current year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "month",
+            "smithy.api#documentation": "If specified, only return results for a single month. The value of `month` is an integer between `1` and `12`. If no year is specified the default `year` is used."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#documentation": "If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#BillingUsageReport": {
+      "type": "structure",
+      "members": {
+        "usageItems": {
+          "target": "com.github.billing#BillingUsageReportUsageItemsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageReportUsageItemsItem": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU name.",
+            "smithy.api#required": {}
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "unitType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit type of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricePerUnit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Price per unit of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "organizationName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the organization.",
+            "smithy.api#required": {}
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the repository."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageReportUsageItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.billing#BillingUsageReportUsageItemsItem"
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetGithubBillingUsageReportOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetGithubBillingUsageReportOrgRequest"
+      },
+      "output": {
+        "target": "com.github.billing#BillingUsageReport"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/organizations/{org}/settings/billing/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get billing usage report for an organization\n\nGets a report of the total usage for an organization. To use this endpoint, you must be an administrator of an organization within an enterprise or an organization account.\n\n**Note:** This endpoint is only available to organizations with access to the enhanced billing platform. For more information, see \"[About the enhanced billing platform](https://docs.github.com/billing/using-the-new-billing-platform).\""
+      }
+    },
+    "com.github.billing#GetGithubBillingUsageSummaryReportOrgRequest": {
+      "type": "structure",
+      "members": {
+        "org": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The organization name. The name is not case sensitive."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "year",
+            "smithy.api#documentation": "If specified, only return results for a single year. The value of `year` is an integer with four digits representing a year. For example, `2025`. Default value is the current year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "month",
+            "smithy.api#documentation": "If specified, only return results for a single month. The value of `month` is an integer between `1` and `12`. Default value is the current month. If no year is specified the default `year` is used."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#documentation": "If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used."
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repository",
+            "smithy.api#documentation": "The repository name to query for usage in the format owner/repository."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "product",
+            "smithy.api#documentation": "The product name to query usage for. The name is not case sensitive."
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "sku",
+            "smithy.api#documentation": "The SKU to query for usage."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#BillingUsageSummaryReportOrg": {
+      "type": "structure",
+      "members": {
+        "timePeriod": {
+          "target": "com.github.billing#BillingUsageSummaryReportOrgTimePeriod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the organization.",
+            "smithy.api#required": {}
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the repository for the usage report."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product for the usage report."
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU for the usage report."
+          }
+        },
+        "usageItems": {
+          "target": "com.github.billing#BillingUsageSummaryReportOrgUsageItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageSummaryReportOrgTimePeriod": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The year for the usage report.",
+            "smithy.api#required": {}
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The month for the usage report."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The day for the usage report."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageSummaryReportOrgUsageItemsItem": {
+      "type": "structure",
+      "members": {
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU name.",
+            "smithy.api#required": {}
+          }
+        },
+        "unitType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit type of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricePerUnit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Price per unit of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageSummaryReportOrgUsageItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.billing#BillingUsageSummaryReportOrgUsageItemsItem"
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetGithubBillingUsageSummaryReportOrg": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetGithubBillingUsageSummaryReportOrgRequest"
+      },
+      "output": {
+        "target": "com.github.billing#BillingUsageSummaryReportOrg"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/organizations/{org}/settings/billing/usage/summary",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get billing usage summary for an organization\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nGets a summary report of usage for an organization. To use this endpoint, you must be an administrator of an organization within an enterprise or an organization account.\n\n**Note:** Only data from the past 24 months is accessible via this endpoint."
+      }
+    },
+    "com.github.billing#GetGithubBillingAiCreditUsageReportUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "year",
+            "smithy.api#documentation": "If specified, only return results for a single year. The value of `year` is an integer with four digits representing a year. For example, `2025`. Default value is the current year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "month",
+            "smithy.api#documentation": "If specified, only return results for a single month. The value of `month` is an integer between `1` and `12`. Default value is the current month. If no year is specified the default `year` is used."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#documentation": "If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "model",
+            "smithy.api#documentation": "The model name to query usage for. The name is not case sensitive."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "product",
+            "smithy.api#documentation": "The product name to query usage for. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#BillingAiCreditUsageReportUser": {
+      "type": "structure",
+      "members": {
+        "timePeriod": {
+          "target": "com.github.billing#BillingAiCreditUsageReportUserTimePeriod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product for the usage report."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The model for the usage report."
+          }
+        },
+        "usageItems": {
+          "target": "com.github.billing#BillingAiCreditUsageReportUserUsageItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingAiCreditUsageReportUserTimePeriod": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The year for the usage report.",
+            "smithy.api#required": {}
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The month for the usage report."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The day for the usage report."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingAiCreditUsageReportUserUsageItemsItem": {
+      "type": "structure",
+      "members": {
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU name.",
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Model name.",
+            "smithy.api#required": {}
+          }
+        },
+        "unitType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit type of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricePerUnit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Price per unit of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingAiCreditUsageReportUserUsageItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.billing#BillingAiCreditUsageReportUserUsageItemsItem"
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetGithubBillingAiCreditUsageReportUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetGithubBillingAiCreditUsageReportUserRequest"
+      },
+      "output": {
+        "target": "com.github.billing#BillingAiCreditUsageReportUser"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/settings/billing/ai_credit/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get billing AI credit usage report for a user\n\nGets a report of AI credit usage for a user.\n\n**Note:** Only data from the past 24 months is accessible via this endpoint."
+      }
+    },
+    "com.github.billing#GetGithubBillingPremiumRequestUsageReportUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "year",
+            "smithy.api#documentation": "If specified, only return results for a single year. The value of `year` is an integer with four digits representing a year. For example, `2025`. Default value is the current year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "month",
+            "smithy.api#documentation": "If specified, only return results for a single month. The value of `month` is an integer between `1` and `12`. Default value is the current month. If no year is specified the default `year` is used."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#documentation": "If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "model",
+            "smithy.api#documentation": "The model name to query usage for. The name is not case sensitive."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "product",
+            "smithy.api#documentation": "The product name to query usage for. The name is not case sensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#BillingPremiumRequestUsageReportUser": {
+      "type": "structure",
+      "members": {
+        "timePeriod": {
+          "target": "com.github.billing#BillingPremiumRequestUsageReportUserTimePeriod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product for the usage report."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The model for the usage report."
+          }
+        },
+        "usageItems": {
+          "target": "com.github.billing#BillingPremiumRequestUsageReportUserUsageItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingPremiumRequestUsageReportUserTimePeriod": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The year for the usage report.",
+            "smithy.api#required": {}
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The month for the usage report."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The day for the usage report."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingPremiumRequestUsageReportUserUsageItemsItem": {
+      "type": "structure",
+      "members": {
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU name.",
+            "smithy.api#required": {}
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Model name.",
+            "smithy.api#required": {}
+          }
+        },
+        "unitType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit type of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricePerUnit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Price per unit of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingPremiumRequestUsageReportUserUsageItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.billing#BillingPremiumRequestUsageReportUserUsageItemsItem"
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetGithubBillingPremiumRequestUsageReportUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetGithubBillingPremiumRequestUsageReportUserRequest"
+      },
+      "output": {
+        "target": "com.github.billing#BillingPremiumRequestUsageReportUser"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/settings/billing/premium_request/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get billing premium request usage report for a user\n\nGets a report of premium request usage for a user.\n\n**Note:** Only data from the past 24 months is accessible via this endpoint."
+      }
+    },
+    "com.github.billing#GetGithubBillingUsageReportUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "year",
+            "smithy.api#documentation": "If specified, only return results for a single year. The value of `year` is an integer with four digits representing a year. For example, `2025`. Default value is the current year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "month",
+            "smithy.api#documentation": "If specified, only return results for a single month. The value of `month` is an integer between `1` and `12`. If no year is specified the default `year` is used."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#documentation": "If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#BillingUsageReportUser": {
+      "type": "structure",
+      "members": {
+        "usageItems": {
+          "target": "com.github.billing#BillingUsageReportUserUsageItemsList"
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageReportUserUsageItemsItem": {
+      "type": "structure",
+      "members": {
+        "date": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Date of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU name.",
+            "smithy.api#required": {}
+          }
+        },
+        "quantity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "unitType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit type of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricePerUnit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Price per unit of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "repositoryName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the repository."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageReportUserUsageItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.billing#BillingUsageReportUserUsageItemsItem"
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetGithubBillingUsageReportUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetGithubBillingUsageReportUserRequest"
+      },
+      "output": {
+        "target": "com.github.billing#BillingUsageReportUser"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/settings/billing/usage",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get billing usage report for a user\n\nGets a report of the total usage for a user.\n\n**Note:** This endpoint is only available to users with access to the enhanced billing platform."
+      }
+    },
+    "com.github.billing#GetGithubBillingUsageSummaryReportUserRequest": {
+      "type": "structure",
+      "members": {
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The handle for the GitHub user account."
+          }
+        },
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "year",
+            "smithy.api#documentation": "If specified, only return results for a single year. The value of `year` is an integer with four digits representing a year. For example, `2025`. Default value is the current year."
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "month",
+            "smithy.api#documentation": "If specified, only return results for a single month. The value of `month` is an integer between `1` and `12`. Default value is the current month. If no year is specified the default `year` is used."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "day",
+            "smithy.api#documentation": "If specified, only return results for a single day. The value of `day` is an integer between `1` and `31`. If no `year` or `month` is specified, the default `year` and `month` are used."
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "repository",
+            "smithy.api#documentation": "The repository name to query for usage in the format owner/repository."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "product",
+            "smithy.api#documentation": "The product name to query usage for. The name is not case sensitive."
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "sku",
+            "smithy.api#documentation": "The SKU to query for usage."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.github.billing#BillingUsageSummaryReportUser": {
+      "type": "structure",
+      "members": {
+        "timePeriod": {
+          "target": "com.github.billing#BillingUsageSummaryReportUserTimePeriod",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "user": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique identifier of the user.",
+            "smithy.api#required": {}
+          }
+        },
+        "repository": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the repository for the usage report."
+          }
+        },
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The product for the usage report."
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU for the usage report."
+          }
+        },
+        "usageItems": {
+          "target": "com.github.billing#BillingUsageSummaryReportUserUsageItemsList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageSummaryReportUserTimePeriod": {
+      "type": "structure",
+      "members": {
+        "year": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The year for the usage report.",
+            "smithy.api#required": {}
+          }
+        },
+        "month": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The month for the usage report."
+          }
+        },
+        "day": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The day for the usage report."
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageSummaryReportUserUsageItemsItem": {
+      "type": "structure",
+      "members": {
+        "product": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Product name.",
+            "smithy.api#required": {}
+          }
+        },
+        "sku": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SKU name.",
+            "smithy.api#required": {}
+          }
+        },
+        "unitType": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Unit type of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "pricePerUnit": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Price per unit of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "grossAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Gross amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "discountAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Discount amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netQuantity": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net quantity of the usage line item.",
+            "smithy.api#required": {}
+          }
+        },
+        "netAmount": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Net amount of the usage line item.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.github.billing#BillingUsageSummaryReportUserUsageItemsList": {
+      "type": "list",
+      "member": {
+        "target": "com.github.billing#BillingUsageSummaryReportUserUsageItemsItem"
+      },
+      "traits": {}
+    },
+    "com.github.billing#GetGithubBillingUsageSummaryReportUser": {
+      "type": "operation",
+      "input": {
+        "target": "com.github.billing#GetGithubBillingUsageSummaryReportUserRequest"
+      },
+      "output": {
+        "target": "com.github.billing#BillingUsageSummaryReportUser"
+      },
+      "errors": [
+        {
+          "target": "com.github.billing#BadRequest"
+        },
+        {
+          "target": "com.github.billing#Forbidden"
+        },
+        {
+          "target": "com.github.billing#NotFound"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/users/{username}/settings/billing/usage/summary",
+          "code": 200
+        },
+        "smithy.api#documentation": "Get billing usage summary for a user\n\n> [!NOTE]\n> This endpoint is in public preview and is subject to change.\n\nGets a summary report of usage for a user.\n\n**Note:** Only data from the past 24 months is accessible via this endpoint."
+      }
+    },
+    "com.github.billing#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.github.billing#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.github.billing#NotFound": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 404,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 404
+          }
+        ]
+      }
+    },
+    "com.github.billing#UnprocessableEntity": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 422,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 422
+          }
+        ]
+      }
+    },
+    "com.github.billing#Billing": {
+      "type": "service",
+      "version": "1.1.4",
+      "operations": [
+        {
+          "target": "com.github.billing#GetGithubBillingAiCreditUsageReportOrg"
+        },
+        {
+          "target": "com.github.billing#GetAllBudgetsOrg"
+        },
+        {
+          "target": "com.github.billing#CreateOrganizationBudget"
+        },
+        {
+          "target": "com.github.billing#GetBudgetOrg"
+        },
+        {
+          "target": "com.github.billing#UpdateBudgetOrg"
+        },
+        {
+          "target": "com.github.billing#DeleteBudgetOrg"
+        },
+        {
+          "target": "com.github.billing#GetGithubBillingPremiumRequestUsageReportOrg"
+        },
+        {
+          "target": "com.github.billing#GetGithubBillingUsageReportOrg"
+        },
+        {
+          "target": "com.github.billing#GetGithubBillingUsageSummaryReportOrg"
+        },
+        {
+          "target": "com.github.billing#GetGithubBillingAiCreditUsageReportUser"
+        },
+        {
+          "target": "com.github.billing#GetGithubBillingPremiumRequestUsageReportUser"
+        },
+        {
+          "target": "com.github.billing#GetGithubBillingUsageReportUser"
+        },
+        {
+          "target": "com.github.billing#GetGithubBillingUsageSummaryReportUser"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "GitHub v3 REST API",
+        "smithy.api#documentation": "GitHub's v3 REST API."
+      }
+    }
+  }
+}

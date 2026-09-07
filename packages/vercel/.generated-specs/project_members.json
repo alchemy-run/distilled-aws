@@ -1,0 +1,622 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.vercel.project_members#GetProjectMembersRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID or name of the Project."
+          }
+        },
+        "limit": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "limit",
+            "smithy.api#documentation": "Limit how many project members should be returned"
+          }
+        },
+        "since": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "since",
+            "smithy.api#documentation": "Timestamp in milliseconds to only include members added since then."
+          }
+        },
+        "until": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#httpQuery": "until",
+            "smithy.api#documentation": "Timestamp in milliseconds to only include members added until then."
+          }
+        },
+        "search": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "search",
+            "smithy.api#documentation": "Search project members by their name, username, and email."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersItemRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        },
+        "PROJECT_GUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_GUEST"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role of this user in the project."
+      }
+    },
+    "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersItemComputedProjectRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        },
+        "PROJECT_GUEST": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_GUEST"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Role of this user in the project."
+      }
+    },
+    "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersItemTeamRole": {
+      "type": "enum",
+      "members": {
+        "BILLING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BILLING"
+          }
+        },
+        "CONTRIBUTOR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CONTRIBUTOR"
+          }
+        },
+        "DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "DEVELOPER"
+          }
+        },
+        "MEMBER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "MEMBER"
+          }
+        },
+        "OWNER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "OWNER"
+          }
+        },
+        "SECURITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "SECURITY"
+          }
+        },
+        "VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIEWER"
+          }
+        },
+        "VIEWER_FOR_PLUS": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "VIEWER_FOR_PLUS"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The role of this user in the team."
+      }
+    },
+    "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersItem": {
+      "type": "structure",
+      "members": {
+        "avatar": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the file for the Avatar of this member."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of this member.",
+            "smithy.api#required": {}
+          }
+        },
+        "role": {
+          "target": "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersItemRole",
+          "traits": {
+            "smithy.api#documentation": "Role of this user in the project.",
+            "smithy.api#required": {}
+          }
+        },
+        "computedProjectRole": {
+          "target": "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersItemComputedProjectRole",
+          "traits": {
+            "smithy.api#documentation": "Role of this user in the project.",
+            "smithy.api#required": {}
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of this user.",
+            "smithy.api#required": {}
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The unique username of this user.",
+            "smithy.api#required": {}
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of this user."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp in milliseconds when this member was added.",
+            "smithy.api#required": {}
+          }
+        },
+        "teamRole": {
+          "target": "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersItemTeamRole",
+          "traits": {
+            "smithy.api#documentation": "The role of this user in the team.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersList": {
+      "type": "list",
+      "member": {
+        "target": "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersItem"
+      },
+      "traits": {}
+    },
+    "com.vercel.project_members#GetProjectMembersResponseBodyCase1Pagination": {
+      "type": "structure",
+      "members": {
+        "hasNext": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "count": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Amount of items in the current page.",
+            "smithy.api#required": {}
+          }
+        },
+        "next": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp that must be used to request the next page.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        },
+        "prev": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "Timestamp that must be used to request the previous page.",
+            "smithy.api#required": {},
+            "com.distilled.openapi#nullable": {}
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.project_members#GetProjectMembersResponseBodyCase1": {
+      "type": "structure",
+      "members": {
+        "members": {
+          "target": "com.vercel.project_members#GetProjectMembersResponseBodyCase1MembersList",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        },
+        "pagination": {
+          "target": "com.vercel.project_members#GetProjectMembersResponseBodyCase1Pagination",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Paginated list of members for the project."
+      }
+    },
+    "com.vercel.project_members#GetProjectMembersResponseBody": {
+      "type": "union",
+      "members": {
+        "Case0": {
+          "target": "smithy.api#Document"
+        },
+        "Case1": {
+          "target": "com.vercel.project_members#GetProjectMembersResponseBodyCase1"
+        }
+      },
+      "traits": {}
+    },
+    "com.vercel.project_members#GetProjectMembersResponse": {
+      "type": "structure",
+      "members": {
+        "body": {
+          "target": "com.vercel.project_members#GetProjectMembersResponseBody",
+          "traits": {
+            "com.distilled.openapi#rawResponse": {},
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.project_members#GetProjectMembers": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.project_members#GetProjectMembersRequest"
+      },
+      "output": {
+        "target": "com.vercel.project_members#GetProjectMembersResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.project_members#BadRequest"
+        },
+        {
+          "target": "com.vercel.project_members#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/v1/projects/{idOrName}/members",
+          "code": 200
+        },
+        "smithy.api#documentation": "List project members\n\nLists all members of a project."
+      }
+    },
+    "com.vercel.project_members#AddProjectMemberRequestRole": {
+      "type": "enum",
+      "members": {
+        "ADMIN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ADMIN"
+          }
+        },
+        "PROJECT_VIEWER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_VIEWER"
+          }
+        },
+        "PROJECT_DEVELOPER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "PROJECT_DEVELOPER"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The project role of the member that will be added."
+      }
+    },
+    "com.vercel.project_members#AddProjectMemberRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID or name of the Project."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The ID of the team member that should be added to this project."
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The username of the team member that should be added to this project."
+          }
+        },
+        "email": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The email of the team member that should be added to this project."
+          }
+        },
+        "role": {
+          "target": "com.vercel.project_members#AddProjectMemberRequestRole",
+          "traits": {
+            "smithy.api#documentation": "The project role of the member that will be added.",
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.project_members#AddProjectMemberResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.project_members#AddProjectMember": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.project_members#AddProjectMemberRequest"
+      },
+      "output": {
+        "target": "com.vercel.project_members#AddProjectMemberResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.project_members#BadRequest"
+        },
+        {
+          "target": "com.vercel.project_members#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/v1/projects/{idOrName}/members",
+          "code": 200
+        },
+        "smithy.api#documentation": "Adds a new member to a project.\n\nAdds a new member to the project."
+      }
+    },
+    "com.vercel.project_members#RemoveProjectMemberRequest": {
+      "type": "structure",
+      "members": {
+        "idOrName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID or name of the Project."
+          }
+        },
+        "uid": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The user ID of the member."
+          }
+        },
+        "teamId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "teamId",
+            "smithy.api#documentation": "The Team identifier to perform the request on behalf of."
+          }
+        },
+        "slug": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpQuery": "slug",
+            "smithy.api#documentation": "The Team slug to perform the request on behalf of."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.vercel.project_members#RemoveProjectMemberResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#required": {}
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.vercel.project_members#RemoveProjectMember": {
+      "type": "operation",
+      "input": {
+        "target": "com.vercel.project_members#RemoveProjectMemberRequest"
+      },
+      "output": {
+        "target": "com.vercel.project_members#RemoveProjectMemberResponse"
+      },
+      "errors": [
+        {
+          "target": "com.vercel.project_members#BadRequest"
+        },
+        {
+          "target": "com.vercel.project_members#Forbidden"
+        }
+      ],
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/v1/projects/{idOrName}/members/{uid}",
+          "code": 200
+        },
+        "smithy.api#documentation": "Remove a Project Member\n\nRemove a member from a specific project"
+      }
+    },
+    "com.vercel.project_members#BadRequest": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 400,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 400
+          }
+        ]
+      }
+    },
+    "com.vercel.project_members#Forbidden": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#error": "client",
+        "smithy.api#httpError": 403,
+        "com.distilled.openapi#errorMatchers": [
+          {
+            "status": 403
+          }
+        ]
+      }
+    },
+    "com.vercel.project_members#ProjectMembers": {
+      "type": "service",
+      "version": "0.0.1",
+      "operations": [
+        {
+          "target": "com.vercel.project_members#GetProjectMembers"
+        },
+        {
+          "target": "com.vercel.project_members#AddProjectMember"
+        },
+        {
+          "target": "com.vercel.project_members#RemoveProjectMember"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Vercel API",
+        "smithy.api#documentation": "Vercel combines the best developer experience with an obsessive focus on end-user performance. Our platform enables frontend teams to do their best work."
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "description": "Align accounts#TokensUpdate with distilled cloudflare/accounts updateToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensUpdate",
+      "path": "/shapes/com.cloudflare.accounts#UpdateToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensUpdateRequest",
+      "path": "/shapes/com.cloudflare.accounts#UpdateTokenRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#UpdateToken/input/target",
+      "value": "com.cloudflare.accounts#UpdateTokenRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.accounts#TokensUpdateResponse",
+      "path": "/shapes/com.cloudflare.accounts#UpdateTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.accounts#UpdateToken/output/target",
+      "value": "com.cloudflare.accounts#UpdateTokenResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.accounts#UpdateToken/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.accounts#InvalidRoute"
+        },
+        {
+          "target": "com.cloudflare.accounts#MethodNotAllowed"
+        },
+        {
+          "target": "com.cloudflare.accounts#TokenNotFound"
+        },
+        {
+          "target": "com.cloudflare.accounts#PermissionGroupNotFound"
+        }
+      ]
+    }
+  ]
+}

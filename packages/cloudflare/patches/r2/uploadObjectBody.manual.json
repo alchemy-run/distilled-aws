@@ -1,0 +1,109 @@
+{
+  "description": "putObject: the object IS the request body; content type rides the Content-Type header",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/body",
+      "value": {
+        "target": "smithy.api#Blob",
+        "traits": {
+          "smithy.api#httpPayload": {},
+          "smithy.api#documentation": "The object content — sent verbatim as the request body."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/content_type",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#httpHeader": "Content-Type",
+          "smithy.api#documentation": "MIME type stored with the object."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObject/traits/smithy.api#http/bodyMediaType",
+      "value": "application/octet-stream"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/content_disposition",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#httpHeader": "Content-Disposition",
+          "smithy.api#documentation": "Content disposition of the object."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/content_encoding",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#httpHeader": "Content-Encoding",
+          "smithy.api#documentation": "Content encoding of the object."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/content_language",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#httpHeader": "Content-Language",
+          "smithy.api#documentation": "Content language of the object."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/content_length",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#httpHeader": "Content-Length",
+          "smithy.api#documentation": "Content length of the object in bytes."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/cache_control",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#httpHeader": "Cache-Control",
+          "smithy.api#documentation": "Cache control directives for the object."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/expires",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#httpHeader": "Expires",
+          "smithy.api#documentation": "Expiration date of the object."
+        }
+      }
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.r2#UploadBucketObjectRequest/members/cf_r2_storage_class",
+      "value": {
+        "target": "smithy.api#String",
+        "traits": {
+          "smithy.api#httpHeader": "cf-r2-storage-class",
+          "smithy.api#documentation": "Storage class for the object."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,4274 @@
+{
+  "smithy": "2.0",
+  "metadata": {
+    "suppressions": [
+      {
+        "id": "HttpUriConflict",
+        "namespace": "*"
+      },
+      {
+        "id": "HttpMethodSemantics",
+        "namespace": "*"
+      },
+      {
+        "id": "UnreferencedShape",
+        "namespace": "*"
+      }
+    ]
+  },
+  "shapes": {
+    "com.azure.fist#UsageMetricsGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#UsageMetricsGetRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#UsageMetricsGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/usageMetrics/{name}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Gets monthly usage information for a workspace.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#UsageMetricsGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#UsageMetricProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fist#UsageMetricProperties": {
+      "type": "structure",
+      "members": {
+        "monthlyFirmwareUploadCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The number of firmware analysis jobs that have been submitted in the current month.",
+            "smithy.api#required": {}
+          }
+        },
+        "totalFirmwareCount": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The total number of firmwares that are in the workspace.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a workspaces usage metrics."
+      }
+    },
+    "com.azure.fist#ProvisioningState": {
+      "type": "enum",
+      "members": {
+        "SUCCEEDED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Succeeded"
+          }
+        },
+        "FAILED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Failed"
+          }
+        },
+        "CANCELED": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Canceled"
+          }
+        },
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "EXTRACTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Extracting"
+          }
+        },
+        "ANALYZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Analyzing"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of a firmware analysis job."
+      }
+    },
+    "com.azure.fist#SystemData": {
+      "type": "structure",
+      "members": {
+        "createdBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that created the resource."
+          }
+        },
+        "createdByType": {
+          "target": "com.azure.fist#SystemDataCreatedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that created the resource."
+          }
+        },
+        "createdAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource creation (UTC)."
+          }
+        },
+        "lastModifiedBy": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The identity that last modified the resource."
+          }
+        },
+        "lastModifiedByType": {
+          "target": "com.azure.fist#SystemDataLastModifiedByType",
+          "traits": {
+            "smithy.api#documentation": "The type of identity that last modified the resource."
+          }
+        },
+        "lastModifiedAt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The timestamp of resource last modification (UTC)"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Metadata pertaining to creation and last modification of the resource."
+      }
+    },
+    "com.azure.fist#SystemDataLastModifiedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that last modified the resource."
+      }
+    },
+    "com.azure.fist#SystemDataCreatedByType": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "User"
+          }
+        },
+        "APPLICATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Application"
+          }
+        },
+        "MANAGEDIDENTITY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ManagedIdentity"
+          }
+        },
+        "KEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Key"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The type of identity that created the resource."
+      }
+    },
+    "com.azure.fist#UsageMetricsGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Firmware analysis summary name describing the type of summary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#UsageMetricsListByWorkspace": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#UsageMetricsListByWorkspaceRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#UsageMetricListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/usageMetrics",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists monthly usage information for a workspace.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#UsageMetricListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#UsageMetricListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The UsageMetric items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a UsageMetric list operation."
+      }
+    },
+    "com.azure.fist#UsageMetricListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#UsageMetric"
+      },
+      "traits": {
+        "smithy.api#documentation": "The UsageMetric items on this page"
+      }
+    },
+    "com.azure.fist#UsageMetric": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#UsageMetricProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object representing how many firmwares the user has uploaded to the workspace."
+      }
+    },
+    "com.azure.fist#UsageMetricsListByWorkspaceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#WorkspacesGenerateUploadUrl": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#WorkspacesGenerateUploadUrlRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#UrlToken"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "POST",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/generateUploadUrl",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Generate a URL for uploading a firmware image.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#UrlToken": {
+      "type": "structure",
+      "members": {
+        "url": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "SAS URL for creating or accessing a blob file."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Url data for creating or accessing a blob file."
+      }
+    },
+    "com.azure.fist#WorkspacesGenerateUploadUrlRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "A unique ID for the firmware to be uploaded."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#SummariesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#SummariesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#SummariesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/summaries/{summaryType}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Get an analysis result summary of a firmware by name.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#SummariesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#SummaryResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fist#SummaryResourceProperties": {
+      "type": "structure",
+      "members": {
+        "summaryType": {
+          "target": "com.azure.fist#SummaryType",
+          "traits": {
+            "smithy.api#documentation": "The type of summary.",
+            "smithy.api#required": {}
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of an analysis summary."
+      }
+    },
+    "com.azure.fist#SummaryType": {
+      "type": "enum",
+      "members": {
+        "FIRMWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Firmware"
+          }
+        },
+        "COMMONVULNERABILITIESANDEXPOSURES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CommonVulnerabilitiesAndExposures"
+          }
+        },
+        "BINARYHARDENING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BinaryHardening"
+          }
+        },
+        "CRYPTOCERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CryptoCertificate"
+          }
+        },
+        "CRYPTOKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CryptoKey"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Describes the type of summary."
+      }
+    },
+    "com.azure.fist#SummariesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        },
+        "summaryType": {
+          "target": "com.azure.fist#SummariesGetRequestSummaryType",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The Firmware analysis summary name describing the type of summary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#SummariesGetRequestSummaryType": {
+      "type": "enum",
+      "members": {
+        "FIRMWARE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Firmware"
+          }
+        },
+        "COMMONVULNERABILITIESANDEXPOSURES": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CommonVulnerabilitiesAndExposures"
+          }
+        },
+        "BINARYHARDENING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "BinaryHardening"
+          }
+        },
+        "CRYPTOCERTIFICATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CryptoCertificate"
+          }
+        },
+        "CRYPTOKEY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "CryptoKey"
+          }
+        }
+      },
+      "traits": {}
+    },
+    "com.azure.fist#SummariesListByFirmware": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#SummariesListByFirmwareRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#SummaryResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/summaries",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists analysis result summary names of a firmware. To fetch the full summary data, get that summary by name.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#SummaryResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#SummaryResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The SummaryResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a SummaryResource list operation."
+      }
+    },
+    "com.azure.fist#SummaryResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#SummaryResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The SummaryResource items on this page"
+      }
+    },
+    "com.azure.fist#SummaryResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#SummaryResourceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object representing a firmware analysis summary resource."
+      }
+    },
+    "com.azure.fist#SummariesListByFirmwareRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#SbomComponentsListByFirmware": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#SbomComponentsListByFirmwareRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#SbomComponentResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/sbomComponents",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists sbom analysis results of a firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#SbomComponentResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#SbomComponentResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The SbomComponentResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a SbomComponentResource list operation."
+      }
+    },
+    "com.azure.fist#SbomComponentResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#SbomComponentResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The SbomComponentResource items on this page"
+      }
+    },
+    "com.azure.fist#SbomComponentResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#SbomComponent",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object representing a firmware analysis SBOM component result resource"
+      }
+    },
+    "com.azure.fist#SbomComponent": {
+      "type": "structure",
+      "members": {
+        "componentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID for the component."
+          }
+        },
+        "componentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name for the component."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version for the component."
+          }
+        },
+        "license": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "License for the component."
+          }
+        },
+        "filePaths": {
+          "target": "com.azure.fist#SbomComponentFilePathsList",
+          "traits": {
+            "smithy.api#documentation": "File paths related to the component. Note, relatedFiles should be used instead of this property."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "SBOM component of a firmware."
+      }
+    },
+    "com.azure.fist#SbomComponentFilePathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "File paths related to the component. Note, relatedFiles should be used instead of this property."
+      }
+    },
+    "com.azure.fist#SbomComponentsListByFirmwareRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#PasswordHashesListByFirmware": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#PasswordHashesListByFirmwareRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#PasswordHashResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/passwordHashes",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists password hash analysis results of a firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#PasswordHashResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#PasswordHashResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The PasswordHashResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a PasswordHashResource list operation."
+      }
+    },
+    "com.azure.fist#PasswordHashResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#PasswordHashResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The PasswordHashResource items on this page"
+      }
+    },
+    "com.azure.fist#PasswordHashResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#PasswordHash",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object representing a firmware analysis password hash result resource"
+      }
+    },
+    "com.azure.fist#PasswordHash": {
+      "type": "structure",
+      "members": {
+        "passwordHashId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID for password hash",
+            "smithy.api#sensitive": {}
+          }
+        },
+        "filePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File path of the password hash"
+          }
+        },
+        "salt": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Salt of the password hash"
+          }
+        },
+        "hash": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Hash of the password"
+          }
+        },
+        "context": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Context of password hash"
+          }
+        },
+        "username": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User name of password hash"
+          }
+        },
+        "algorithm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Algorithm of the password hash"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Password hash properties"
+      }
+    },
+    "com.azure.fist#PasswordHashesListByFirmwareRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#CvesListByFirmware": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#CvesListByFirmwareRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#CveResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/cves",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists CVE analysis results of a firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#CveResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#CveResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The CveResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a CveResource list operation."
+      }
+    },
+    "com.azure.fist#CveResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#CveResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CveResource items on this page"
+      }
+    },
+    "com.azure.fist#CveResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#CveResult",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object representing a firmware analysis CVE result resource"
+      }
+    },
+    "com.azure.fist#CveResult": {
+      "type": "structure",
+      "members": {
+        "cveId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the CVE result."
+          }
+        },
+        "componentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the affected SBOM component."
+          }
+        },
+        "componentName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the affected SBOM component."
+          }
+        },
+        "componentVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the affected SBOM component."
+          }
+        },
+        "severity": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Severity of the CVE."
+          }
+        },
+        "cveName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the CVE."
+          }
+        },
+        "component": {
+          "target": "com.azure.fist#CveComponent",
+          "traits": {
+            "smithy.api#documentation": "Legacy property for what is now componentName"
+          }
+        },
+        "cvssScore": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Legacy property for the effective CVE score (deprecated)."
+          }
+        },
+        "cvssV2Score": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Legacy property for the CVE CVSS version 2 score, if one existed. (deprecated)"
+          }
+        },
+        "cvssV3Score": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Legacy property for the CVE CVSS version 3 score, if one existed. (deprecated)"
+          }
+        },
+        "cvssVersion": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Legacy property for the what CVSS version score was stored in the cvssScore property (deprecated)."
+          }
+        },
+        "effectiveCvssScore": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The most recent CVSS score of the CVE."
+          }
+        },
+        "effectiveCvssVersion": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The version of the effectiveCvssScore property."
+          }
+        },
+        "cvssScores": {
+          "target": "com.azure.fist#CveResultCvssScoresList",
+          "traits": {
+            "smithy.api#documentation": "All known CVSS scores for the CVE."
+          }
+        },
+        "links": {
+          "target": "com.azure.fist#CveResultLinksList",
+          "traits": {
+            "smithy.api#documentation": "The list of reference links for the CVE."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The CVE description."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a CVE detected in firmware."
+      }
+    },
+    "com.azure.fist#CveResultLinksList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#CveLink"
+      },
+      "traits": {
+        "smithy.api#documentation": "The list of reference links for the CVE."
+      }
+    },
+    "com.azure.fist#CveLink": {
+      "type": "structure",
+      "members": {
+        "href": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The destination of the reference link."
+          }
+        },
+        "label": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The label of the reference link."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Properties of a reference link for a CVE."
+      }
+    },
+    "com.azure.fist#CveResultCvssScoresList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#CvssScore"
+      },
+      "traits": {
+        "smithy.api#documentation": "All known CVSS scores for the CVE."
+      }
+    },
+    "com.azure.fist#CvssScore": {
+      "type": "structure",
+      "members": {
+        "version": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The version of the Common Vulnerability Scoring System (CVSS).",
+            "smithy.api#required": {}
+          }
+        },
+        "score": {
+          "target": "smithy.api#Double",
+          "traits": {
+            "smithy.api#documentation": "The score of the CVE according to the CVSS specified."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Common Vulnerability Scoring System values."
+      }
+    },
+    "com.azure.fist#CveComponent": {
+      "type": "structure",
+      "members": {
+        "componentId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the SBOM component."
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the SBOM component."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Version of the SBOM component."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Legacy component of a CVE result."
+      }
+    },
+    "com.azure.fist#CvesListByFirmwareRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#CryptoKeysListByFirmware": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#CryptoKeysListByFirmwareRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#CryptoKeyResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/cryptoKeys",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists crypto key analysis results of a firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#CryptoKeyResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#CryptoKeyResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The CryptoKeyResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a CryptoKeyResource list operation."
+      }
+    },
+    "com.azure.fist#CryptoKeyResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#CryptoKeyResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CryptoKeyResource items on this page"
+      }
+    },
+    "com.azure.fist#CryptoKeyResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#CryptoKey",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object representing a firmware analysis crypto key resource"
+      }
+    },
+    "com.azure.fist#CryptoKey": {
+      "type": "structure",
+      "members": {
+        "cryptoKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID for the key result."
+          }
+        },
+        "keyType": {
+          "target": "com.azure.fist#CryptoKeyType",
+          "traits": {
+            "smithy.api#documentation": "Type of the key (public or private)."
+          }
+        },
+        "cryptoKeySize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the key in bits."
+          }
+        },
+        "keyAlgorithm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key algorithm name."
+          }
+        },
+        "usage": {
+          "target": "com.azure.fist#CryptoKeyUsageList",
+          "traits": {
+            "smithy.api#documentation": "Functions the key can fulfill."
+          }
+        },
+        "filePaths": {
+          "target": "com.azure.fist#CryptoKeyFilePathsList",
+          "traits": {
+            "smithy.api#documentation": "List of files where this key was found."
+          }
+        },
+        "pairedKey": {
+          "target": "com.azure.fist#PairedKey",
+          "traits": {
+            "smithy.api#documentation": "A matching paired key or certificate."
+          }
+        },
+        "isShortKeySize": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates the key size is considered too small to be secure for the algorithm according to NIST guidance."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Crypto key properties"
+      }
+    },
+    "com.azure.fist#PairedKey": {
+      "type": "structure",
+      "members": {
+        "pairedKeyId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID of the paired key or certificate."
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type indicating whether the paired object is a key or certificate."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a matching paired key or certificate."
+      }
+    },
+    "com.azure.fist#CryptoKeyFilePathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of files where this key was found."
+      }
+    },
+    "com.azure.fist#CryptoKeyUsageList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Functions the key can fulfill."
+      }
+    },
+    "com.azure.fist#CryptoKeyType": {
+      "type": "enum",
+      "members": {
+        "PUBLIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Public"
+          }
+        },
+        "PRIVATE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Private"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Different types of cryptographic keys."
+      }
+    },
+    "com.azure.fist#CryptoKeysListByFirmwareRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#CryptoCertificatesListByFirmware": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#CryptoCertificatesListByFirmwareRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#CryptoCertificateResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/cryptoCertificates",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists crypto certificate analysis results of a firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#CryptoCertificateResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#CryptoCertificateResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The CryptoCertificateResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a CryptoCertificateResource list operation."
+      }
+    },
+    "com.azure.fist#CryptoCertificateResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#CryptoCertificateResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The CryptoCertificateResource items on this page"
+      }
+    },
+    "com.azure.fist#CryptoCertificateResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#CryptoCertificate",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object representing a firmware analysis crypto certificate resource"
+      }
+    },
+    "com.azure.fist#CryptoCertificate": {
+      "type": "structure",
+      "members": {
+        "cryptoCertId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID for the certificate result."
+          }
+        },
+        "certificateName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Name of the certificate."
+          }
+        },
+        "subject": {
+          "target": "com.azure.fist#CryptoCertificateEntity",
+          "traits": {
+            "smithy.api#documentation": "Subject information of the certificate."
+          }
+        },
+        "issuer": {
+          "target": "com.azure.fist#CryptoCertificateEntity",
+          "traits": {
+            "smithy.api#documentation": "Issuer information of the certificate."
+          }
+        },
+        "issuedDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Issue date for the certificate."
+          }
+        },
+        "expirationDate": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Expiration date for the certificate."
+          }
+        },
+        "certificateRole": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Role of the certificate (Root CA, etc)"
+          }
+        },
+        "signatureAlgorithm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The signature algorithm used in the certificate."
+          }
+        },
+        "certificateKeySize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "Size of the certificate's key in bits"
+          }
+        },
+        "certificateKeyAlgorithm": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Key algorithm used in the certificate."
+          }
+        },
+        "encoding": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Encoding used for the certificate."
+          }
+        },
+        "serialNumber": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Serial number of the certificate."
+          }
+        },
+        "fingerprint": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fingerprint of the certificate."
+          }
+        },
+        "certificateUsage": {
+          "target": "com.azure.fist#CryptoCertificateCertificateUsageList",
+          "traits": {
+            "smithy.api#documentation": "List of functions the certificate can fulfill."
+          }
+        },
+        "filePaths": {
+          "target": "com.azure.fist#CryptoCertificateFilePathsList",
+          "traits": {
+            "smithy.api#documentation": "List of files where this certificate was found."
+          }
+        },
+        "pairedKey": {
+          "target": "com.azure.fist#PairedKey",
+          "traits": {
+            "smithy.api#documentation": "A matching paired private key."
+          }
+        },
+        "isExpired": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the certificate is expired."
+          }
+        },
+        "isSelfSigned": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates if the certificate is self-signed."
+          }
+        },
+        "isWeakSignature": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates the signature algorithm used is insecure according to NIST guidance."
+          }
+        },
+        "isShortKeySize": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Indicates the certificate's key size is considered too small to be secure for the key algorithm according to NIST guidance."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Crypto certificate properties"
+      }
+    },
+    "com.azure.fist#CryptoCertificateFilePathsList": {
+      "type": "list",
+      "member": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of files where this certificate was found."
+      }
+    },
+    "com.azure.fist#CryptoCertificateCertificateUsageList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#CertificateUsage"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of functions the certificate can fulfill."
+      }
+    },
+    "com.azure.fist#CertificateUsage": {
+      "type": "enum",
+      "members": {
+        "DIGITALSIGNATURE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "digitalSignature"
+          }
+        },
+        "NONREPUDIATION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "nonRepudiation"
+          }
+        },
+        "CONTENTCOMMITMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "contentCommitment"
+          }
+        },
+        "KEYENCIPHERMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keyEncipherment"
+          }
+        },
+        "DATAENCIPHERMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "dataEncipherment"
+          }
+        },
+        "KEYAGREEMENT": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keyAgreement"
+          }
+        },
+        "KEYCERTSIGN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "keyCertSign"
+          }
+        },
+        "CRLSIGN": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "crlSign"
+          }
+        },
+        "ENCIPHERONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "encipherOnly"
+          }
+        },
+        "DECIPHERONLY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "decipherOnly"
+          }
+        },
+        "SERVERAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "serverAuth"
+          }
+        },
+        "CLIENTAUTH": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "clientAuth"
+          }
+        },
+        "CODESIGNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "codeSigning"
+          }
+        },
+        "EMAILPROTECTION": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "emailProtection"
+          }
+        },
+        "TIMESTAMPING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "timeStamping"
+          }
+        },
+        "OCSPSIGNING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "ocspSigning"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Activities for which the cryptographic certificate can be used."
+      }
+    },
+    "com.azure.fist#CryptoCertificateEntity": {
+      "type": "structure",
+      "members": {
+        "commonName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Common name of the certificate entity."
+          }
+        },
+        "organization": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Organization of the certificate entity."
+          }
+        },
+        "organizationalUnit": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The organizational unit of the certificate entity."
+          }
+        },
+        "state": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Geographical state or province of the certificate entity."
+          }
+        },
+        "country": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Country code of the certificate entity."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Information on an entity (distinguished name) in a cryptographic certificate."
+      }
+    },
+    "com.azure.fist#CryptoCertificatesListByFirmwareRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#BinaryHardeningListByFirmware": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#BinaryHardeningListByFirmwareRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#BinaryHardeningResourceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}/binaryHardeningResults",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists binary hardening analysis results of a firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#BinaryHardeningResourceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#BinaryHardeningResourceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The BinaryHardeningResource items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a BinaryHardeningResource list operation."
+      }
+    },
+    "com.azure.fist#BinaryHardeningResourceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#BinaryHardeningResource"
+      },
+      "traits": {
+        "smithy.api#documentation": "The BinaryHardeningResource items on this page"
+      }
+    },
+    "com.azure.fist#BinaryHardeningResource": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#BinaryHardeningResult",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The object representing a firmware analysis binary hardening result resource"
+      }
+    },
+    "com.azure.fist#BinaryHardeningResult": {
+      "type": "structure",
+      "members": {
+        "binaryHardeningId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "ID for the binary hardening result."
+          }
+        },
+        "securityHardeningFeatures": {
+          "target": "com.azure.fist#BinaryHardeningFeatures",
+          "traits": {
+            "smithy.api#documentation": "The security hardening features of the binary."
+          }
+        },
+        "executableArchitecture": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The architecture of the binary being reported on."
+          }
+        },
+        "filePath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The path to the binary in the firmware."
+          }
+        },
+        "executableClass": {
+          "target": "com.azure.fist#ExecutableClass",
+          "traits": {
+            "smithy.api#documentation": "The executable class to indicate 32 or 64 bit."
+          }
+        },
+        "runpath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The runpath property of the uploaded binary, which is a method of specifying additional paths to load objects at runtime."
+          }
+        },
+        "rpath": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The rpath property of the uploaded binary, which is a deprecated method of specifying additional paths to load objects at runtime."
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "The status of the last operation."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Binary hardening of a firmware."
+      }
+    },
+    "com.azure.fist#ExecutableClass": {
+      "type": "enum",
+      "members": {
+        "X86": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "x86"
+          }
+        },
+        "X64": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "x64"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "String to indicate if the executable is 32 or 64 bit."
+      }
+    },
+    "com.azure.fist#BinaryHardeningFeatures": {
+      "type": "structure",
+      "members": {
+        "noExecute": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating the binary's stack is set to NX (no-execute)."
+          }
+        },
+        "positionIndependentExecutable": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating the binary was compiled to be a position independent executable."
+          }
+        },
+        "relocationReadOnly": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating the binary has enabled relocation read-only protections."
+          }
+        },
+        "canary": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating if the binary was compiled with stack canaries enabled."
+          }
+        },
+        "stripped": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Flag indicating if debug symbols have been stripped from the binary."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Binary hardening features."
+      }
+    },
+    "com.azure.fist#BinaryHardeningListByFirmwareRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#FirmwaresDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#FirmwaresDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "The operation to delete a firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#FirmwaresDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#FirmwaresUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#FirmwaresUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#FirmwaresUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "The operation to update firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#FirmwaresUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#FirmwareProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fist#FirmwareProperties": {
+      "type": "structure",
+      "members": {
+        "fileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File name for a firmware that user uploaded."
+          }
+        },
+        "vendor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Firmware vendor."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Firmware model."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Firmware version."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-specified description of the firmware."
+          }
+        },
+        "fileSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "File size of the uploaded firmware image."
+          }
+        },
+        "status": {
+          "target": "com.azure.fist#Status",
+          "traits": {
+            "smithy.api#documentation": "The status of firmware scan."
+          }
+        },
+        "statusMessages": {
+          "target": "com.azure.fist#FirmwarePropertiesStatusMessagesList",
+          "traits": {
+            "smithy.api#documentation": "A list of errors or other messages generated during firmware analysis"
+          }
+        },
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Firmware properties."
+      }
+    },
+    "com.azure.fist#FirmwarePropertiesStatusMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#StatusMessage"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of errors or other messages generated during firmware analysis"
+      }
+    },
+    "com.azure.fist#StatusMessage": {
+      "type": "structure",
+      "members": {
+        "errorCode": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "The error code"
+          }
+        },
+        "message": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The error or status message"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Error and status message"
+      }
+    },
+    "com.azure.fist#Status": {
+      "type": "enum",
+      "members": {
+        "PENDING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Pending"
+          }
+        },
+        "EXTRACTING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Extracting"
+          }
+        },
+        "ANALYZING": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Analyzing"
+          }
+        },
+        "READY": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Ready"
+          }
+        },
+        "ERROR": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Error"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The status of a firmware analysis job."
+      }
+    },
+    "com.azure.fist#FirmwaresUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#FirmwarePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The editable properties of a firmware"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#FirmwarePropertiesInput": {
+      "type": "structure",
+      "members": {
+        "fileName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "File name for a firmware that user uploaded."
+          }
+        },
+        "vendor": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Firmware vendor."
+          }
+        },
+        "model": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Firmware model."
+          }
+        },
+        "version": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Firmware version."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "User-specified description of the firmware."
+          }
+        },
+        "fileSize": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "File size of the uploaded firmware image."
+          }
+        },
+        "status": {
+          "target": "com.azure.fist#Status",
+          "traits": {
+            "smithy.api#documentation": "The status of firmware scan."
+          }
+        },
+        "statusMessages": {
+          "target": "com.azure.fist#FirmwarePropertiesInputStatusMessagesList",
+          "traits": {
+            "smithy.api#documentation": "A list of errors or other messages generated during firmware analysis"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Firmware properties."
+      }
+    },
+    "com.azure.fist#FirmwarePropertiesInputStatusMessagesList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#StatusMessage"
+      },
+      "traits": {
+        "smithy.api#documentation": "A list of errors or other messages generated during firmware analysis"
+      }
+    },
+    "com.azure.fist#FirmwaresCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#FirmwaresCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#FirmwaresCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "The operation to create a firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#FirmwaresCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#FirmwareProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fist#FirmwaresCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#FirmwarePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#FirmwaresGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#FirmwaresGetRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#FirmwaresGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares/{firmwareId}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Get firmware.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#FirmwaresGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#FirmwareProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fist#FirmwaresGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "firmwareId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The id of the firmware."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#FirmwaresListByWorkspace": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#FirmwaresListByWorkspaceRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#FirmwareListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}/firmwares",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists all of firmwares inside a workspace.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#FirmwareListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#FirmwareListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Firmware items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Firmware list operation."
+      }
+    },
+    "com.azure.fist#FirmwareListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#Firmware"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Firmware items on this page"
+      }
+    },
+    "com.azure.fist#Firmware": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#FirmwareProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Firmware definition"
+      }
+    },
+    "com.azure.fist#FirmwaresListByWorkspaceRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#WorkspacesDelete": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#WorkspacesDeleteRequest"
+      },
+      "output": {
+        "target": "smithy.api#Unit"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "DELETE",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "The operation to delete a firmware analysis workspace.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#WorkspacesDeleteRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#WorkspacesUpdate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#WorkspacesUpdateRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#WorkspacesUpdateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PATCH",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "The operation to update a firmware analysis workspaces.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#WorkspacesUpdateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fist#WorkspacesUpdateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.fist#WorkspacesUpdateResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fist#WorkspacesUpdateResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.fist#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.fist#SkuTier": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Premium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
+      }
+    },
+    "com.azure.fist#WorkspaceProperties": {
+      "type": "structure",
+      "members": {
+        "provisioningState": {
+          "target": "com.azure.fist#ProvisioningState",
+          "traits": {
+            "smithy.api#documentation": "Provisioning state of the resource."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Workspace properties."
+      }
+    },
+    "com.azure.fist#WorkspacesUpdateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fist#WorkspacesUpdateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "sku": {
+          "target": "com.azure.fist#AzureResourceManagerCommonTypesSkuUpdate",
+          "traits": {
+            "smithy.api#documentation": "The SKU (Stock Keeping Unit) assigned to this resource."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fist#WorkspacesUpdateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#WorkspacesUpdateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fist#AzureResourceManagerCommonTypesSkuUpdate": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. Ex - P3. It is typically a letter+number code"
+          }
+        },
+        "tier": {
+          "target": "com.azure.fist#AzureResourceManagerCommonTypesSkuUpdateTier",
+          "traits": {
+            "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
+          }
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code."
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.fist#AzureResourceManagerCommonTypesSkuUpdateTier": {
+      "type": "enum",
+      "members": {
+        "FREE": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Free"
+          }
+        },
+        "BASIC": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Basic"
+          }
+        },
+        "STANDARD": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Standard"
+          }
+        },
+        "PREMIUM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Premium"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."
+      }
+    },
+    "com.azure.fist#WorkspacesCreate": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#WorkspacesCreateRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#WorkspacesCreateResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "PUT",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "The operation to create or update a firmware analysis workspace.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#WorkspacesCreateResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fist#WorkspacesCreateResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.fist#WorkspacesCreateResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fist#WorkspacesCreateResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.fist#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.fist#WorkspacesCreateResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fist#WorkspacesCreateRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fist#WorkspacesCreateRequestTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#WorkspacePropertiesInput",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.fist#WorkspacesCreateRequestSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#WorkspacesCreateRequestSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.fist#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.fist#WorkspacePropertiesInput": {
+      "type": "structure",
+      "members": {},
+      "traits": {
+        "smithy.api#documentation": "Workspace properties."
+      }
+    },
+    "com.azure.fist#WorkspacesCreateRequestTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fist#WorkspacesGet": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#WorkspacesGetRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#WorkspacesGetResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces/{workspaceName}",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Get firmware analysis workspace.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#WorkspacesGetResponse": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fist#WorkspacesGetResponseTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.fist#WorkspacesGetResponseSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fist#WorkspacesGetResponseSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.fist#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.fist#WorkspacesGetResponseTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fist#WorkspacesGetRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        },
+        "workspaceName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the firmware analysis workspace."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#WorkspacesListByResourceGroup": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#WorkspacesListByResourceGroupRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#WorkspaceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.IoTFirmwareDefense/workspaces",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists all of the firmware analysis workspaces in the specified resource group.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#WorkspaceListResult": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#WorkspaceListResultValueList",
+          "traits": {
+            "smithy.api#documentation": "The Workspace items on this page",
+            "smithy.api#required": {}
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The link to the next page of items"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The response of a Workspace list operation."
+      }
+    },
+    "com.azure.fist#WorkspaceListResultValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#Workspace"
+      },
+      "traits": {
+        "smithy.api#documentation": "The Workspace items on this page"
+      }
+    },
+    "com.azure.fist#Workspace": {
+      "type": "structure",
+      "members": {
+        "id": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "Fully qualified resource ID for the resource. E.g. \"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/{resourceType}/{resourceName}\""
+          }
+        },
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the resource"
+          }
+        },
+        "type": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The type of the resource. E.g. \"Microsoft.Compute/virtualMachines\" or \"Microsoft.Storage/storageAccounts\""
+          }
+        },
+        "systemData": {
+          "target": "com.azure.fist#SystemData",
+          "traits": {
+            "smithy.api#documentation": "Azure Resource Manager metadata containing createdBy and modifiedBy information."
+          }
+        },
+        "tags": {
+          "target": "com.azure.fist#WorkspaceTagsMap",
+          "traits": {
+            "smithy.api#documentation": "Resource tags."
+          }
+        },
+        "location": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The geo-location where the resource lives",
+            "smithy.api#required": {}
+          }
+        },
+        "properties": {
+          "target": "com.azure.fist#WorkspaceProperties",
+          "traits": {
+            "smithy.api#documentation": "The resource-specific properties for this resource."
+          }
+        },
+        "sku": {
+          "target": "com.azure.fist#WorkspaceSku",
+          "traits": {
+            "smithy.api#documentation": "The resource model definition representing SKU"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Firmware analysis workspace."
+      }
+    },
+    "com.azure.fist#WorkspaceSku": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the SKU. E.g. P3. It is typically a letter+number code",
+            "smithy.api#required": {}
+          }
+        },
+        "tier": {
+          "target": "com.azure.fist#SkuTier"
+        },
+        "size": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code. "
+          }
+        },
+        "family": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "If the service has different generations of hardware, for the same SKU, then that can be captured here."
+          }
+        },
+        "capacity": {
+          "target": "smithy.api#Integer",
+          "traits": {
+            "smithy.api#documentation": "If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The resource model definition representing SKU"
+      }
+    },
+    "com.azure.fist#WorkspaceTagsMap": {
+      "type": "map",
+      "key": {
+        "target": "smithy.api#String"
+      },
+      "value": {
+        "target": "smithy.api#String"
+      },
+      "traits": {
+        "smithy.api#documentation": "Resource tags."
+      }
+    },
+    "com.azure.fist#WorkspacesListByResourceGroupRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        },
+        "resourceGroupName": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The name of the resource group. The name is case insensitive."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#WorkspacesListBySubscription": {
+      "type": "operation",
+      "input": {
+        "target": "com.azure.fist#WorkspacesListBySubscriptionRequest"
+      },
+      "output": {
+        "target": "com.azure.fist#WorkspaceListResult"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/subscriptions/{subscriptionId}/providers/Microsoft.IoTFirmwareDefense/workspaces",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "Lists all of the firmware analysis workspaces in the specified subscription.",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#WorkspacesListBySubscriptionRequest": {
+      "type": "structure",
+      "members": {
+        "subscriptionId": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#httpLabel": {},
+            "smithy.api#required": {},
+            "smithy.api#documentation": "The ID of the target subscription. The value must be an UUID."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#input": {}
+      }
+    },
+    "com.azure.fist#OperationsList": {
+      "type": "operation",
+      "input": {
+        "target": "smithy.api#Unit"
+      },
+      "output": {
+        "target": "com.azure.fist#OperationsListResponse"
+      },
+      "traits": {
+        "smithy.api#http": {
+          "method": "GET",
+          "uri": "/providers/Microsoft.IoTFirmwareDefense/operations",
+          "code": 200,
+          "apiVersion": "2025-08-02"
+        },
+        "smithy.api#documentation": "List the operations for the provider",
+        "com.distilled.openapi#apiVersion": "2025-08-02"
+      }
+    },
+    "com.azure.fist#OperationsListResponse": {
+      "type": "structure",
+      "members": {
+        "value": {
+          "target": "com.azure.fist#OperationsListResponseValueList",
+          "traits": {
+            "smithy.api#documentation": "List of operations supported by the resource provider"
+          }
+        },
+        "nextLink": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "URL to get the next set of operation list results (if there are any)."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#output": {}
+      }
+    },
+    "com.azure.fist#OperationsListResponseValueList": {
+      "type": "list",
+      "member": {
+        "target": "com.azure.fist#Operation"
+      },
+      "traits": {
+        "smithy.api#documentation": "List of operations supported by the resource provider"
+      }
+    },
+    "com.azure.fist#Operation": {
+      "type": "structure",
+      "members": {
+        "name": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The name of the operation, as per Resource-Based Access Control (RBAC). Examples: \"Microsoft.Compute/virtualMachines/write\", \"Microsoft.Compute/virtualMachines/capture/action\""
+          }
+        },
+        "isDataAction": {
+          "target": "smithy.api#Boolean",
+          "traits": {
+            "smithy.api#documentation": "Whether the operation applies to data-plane. This is \"true\" for data-plane operations and \"false\" for ARM/control-plane operations."
+          }
+        },
+        "display": {
+          "target": "com.azure.fist#OperationDisplay",
+          "traits": {
+            "smithy.api#documentation": "Localized display information for this particular operation."
+          }
+        },
+        "origin": {
+          "target": "com.azure.fist#OperationOrigin",
+          "traits": {
+            "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+          }
+        },
+        "actionType": {
+          "target": "com.azure.fist#OperationActionType",
+          "traits": {
+            "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Details of a REST API operation, returned from the Resource Provider Operations API"
+      }
+    },
+    "com.azure.fist#OperationActionType": {
+      "type": "enum",
+      "members": {
+        "INTERNAL": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "Internal"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Enum. Indicates the action type. \"Internal\" refers to actions that are for internal only APIs."
+      }
+    },
+    "com.azure.fist#OperationOrigin": {
+      "type": "enum",
+      "members": {
+        "USER": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user"
+          }
+        },
+        "SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "system"
+          }
+        },
+        "USER_SYSTEM": {
+          "target": "smithy.api#Unit",
+          "traits": {
+            "smithy.api#enumValue": "user,system"
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "The intended executor of the operation; as in Resource Based Access Control (RBAC) and audit logs UX. Default value is \"user,system\""
+      }
+    },
+    "com.azure.fist#OperationDisplay": {
+      "type": "structure",
+      "members": {
+        "provider": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly form of the resource provider name, e.g. \"Microsoft Monitoring Insights\" or \"Microsoft Compute\"."
+          }
+        },
+        "resource": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The localized friendly name of the resource type related to this operation. E.g. \"Virtual Machines\" or \"Job Schedule Collections\"."
+          }
+        },
+        "operation": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The concise, localized friendly name for the operation; suitable for dropdowns. E.g. \"Create or Update Virtual Machine\", \"Restart Virtual Machine\"."
+          }
+        },
+        "description": {
+          "target": "smithy.api#String",
+          "traits": {
+            "smithy.api#documentation": "The short, localized friendly description of the operation; suitable for tool tips and detailed views."
+          }
+        }
+      },
+      "traits": {
+        "smithy.api#documentation": "Localized display information for this particular operation."
+      }
+    },
+    "com.azure.fist#Fist": {
+      "type": "service",
+      "version": "1.0",
+      "operations": [
+        {
+          "target": "com.azure.fist#UsageMetricsGet"
+        },
+        {
+          "target": "com.azure.fist#UsageMetricsListByWorkspace"
+        },
+        {
+          "target": "com.azure.fist#WorkspacesGenerateUploadUrl"
+        },
+        {
+          "target": "com.azure.fist#SummariesGet"
+        },
+        {
+          "target": "com.azure.fist#SummariesListByFirmware"
+        },
+        {
+          "target": "com.azure.fist#SbomComponentsListByFirmware"
+        },
+        {
+          "target": "com.azure.fist#PasswordHashesListByFirmware"
+        },
+        {
+          "target": "com.azure.fist#CvesListByFirmware"
+        },
+        {
+          "target": "com.azure.fist#CryptoKeysListByFirmware"
+        },
+        {
+          "target": "com.azure.fist#CryptoCertificatesListByFirmware"
+        },
+        {
+          "target": "com.azure.fist#BinaryHardeningListByFirmware"
+        },
+        {
+          "target": "com.azure.fist#FirmwaresDelete"
+        },
+        {
+          "target": "com.azure.fist#FirmwaresUpdate"
+        },
+        {
+          "target": "com.azure.fist#FirmwaresCreate"
+        },
+        {
+          "target": "com.azure.fist#FirmwaresGet"
+        },
+        {
+          "target": "com.azure.fist#FirmwaresListByWorkspace"
+        },
+        {
+          "target": "com.azure.fist#WorkspacesDelete"
+        },
+        {
+          "target": "com.azure.fist#WorkspacesUpdate"
+        },
+        {
+          "target": "com.azure.fist#WorkspacesCreate"
+        },
+        {
+          "target": "com.azure.fist#WorkspacesGet"
+        },
+        {
+          "target": "com.azure.fist#WorkspacesListByResourceGroup"
+        },
+        {
+          "target": "com.azure.fist#WorkspacesListBySubscription"
+        },
+        {
+          "target": "com.azure.fist#OperationsList"
+        }
+      ],
+      "traits": {
+        "smithy.api#title": "Azure Fist",
+        "smithy.api#documentation": "Azure Fist API — merged from the fist resource-manager specs (latest stable api-version per resource provider)."
+      }
+    }
+  }
+}

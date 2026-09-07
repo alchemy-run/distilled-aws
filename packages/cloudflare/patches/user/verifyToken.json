@@ -1,0 +1,29 @@
+{
+  "description": "Align user#TokensVerify with distilled cloudflare/user verifyToken",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensVerify",
+      "path": "/shapes/com.cloudflare.user#VerifyToken"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.user#TokensVerifyResponse",
+      "path": "/shapes/com.cloudflare.user#VerifyTokenResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.user#VerifyToken/output/target",
+      "value": "com.cloudflare.user#VerifyTokenResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.user#VerifyToken/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.user#Forbidden"
+        }
+      ]
+    }
+  ]
+}

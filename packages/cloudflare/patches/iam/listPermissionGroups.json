@@ -1,0 +1,41 @@
+{
+  "description": "Align iam#PermissionGroupsList with distilled cloudflare/iam listPermissionGroups",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#PermissionGroupsList",
+      "path": "/shapes/com.cloudflare.iam#ListPermissionGroups"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#PermissionGroupsListRequest",
+      "path": "/shapes/com.cloudflare.iam#ListPermissionGroupsRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListPermissionGroups/input/target",
+      "value": "com.cloudflare.iam#ListPermissionGroupsRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#PermissionGroupsListResponse",
+      "path": "/shapes/com.cloudflare.iam#ListPermissionGroupsResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#ListPermissionGroups/output/target",
+      "value": "com.cloudflare.iam#ListPermissionGroupsResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#ListPermissionGroups/traits/smithy.api#paginated",
+      "value": {
+        "mode": "page",
+        "inputToken": "page",
+        "outputToken": "resultInfo.page",
+        "items": "result",
+        "pageSize": "perPage"
+      }
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "description": "Align zaraz#WorkflowGet with distilled cloudflare/zaraz getWorkflow",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#WorkflowGet",
+      "path": "/shapes/com.cloudflare.zaraz#GetWorkflow"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#WorkflowGetRequest",
+      "path": "/shapes/com.cloudflare.zaraz#GetWorkflowRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetWorkflow/input/target",
+      "value": "com.cloudflare.zaraz#GetWorkflowRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.zaraz#WorkflowGetResponse",
+      "path": "/shapes/com.cloudflare.zaraz#GetWorkflowResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.zaraz#GetWorkflow/output/target",
+      "value": "com.cloudflare.zaraz#GetWorkflowResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.zaraz#GetWorkflow/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.zaraz#Forbidden"
+        },
+        {
+          "target": "com.cloudflare.zaraz#NotFound"
+        }
+      ]
+    }
+  ]
+}

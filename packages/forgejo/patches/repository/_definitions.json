@@ -1,0 +1,41 @@
+{
+  "description": "Mark the always-present members of the repository-tag response definitions as required. Forgejo's Swagger is generated from Go structs with no `required` lists at all, so every response member types as optional and a caller has to defend against a repository without an `id` or a hook without an `url` — shapes Forgejo never produces: these fields are plain (non-pointer, non-omitempty) struct members serialized on every response. Only identity and timestamp members that every consumer needs are listed; genuinely optional data (descriptions, counters, nested trackers) and slices Go may serialize as `null` (`events`, `topics`) stay optional.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/definitions/Repository/required",
+      "value": [
+        "id",
+        "name",
+        "full_name",
+        "html_url",
+        "clone_url",
+        "ssh_url",
+        "default_branch",
+        "created_at",
+        "updated_at",
+        "owner"
+      ]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Hook/required",
+      "value": ["id", "url", "type", "active", "created_at", "updated_at"]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/BranchProtection/required",
+      "value": ["rule_name", "created_at", "updated_at"]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/Secret/required",
+      "value": ["name", "created_at"]
+    },
+    {
+      "op": "add",
+      "path": "/definitions/ActionVariable/required",
+      "value": ["name", "data"]
+    }
+  ]
+}

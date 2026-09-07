@@ -1,0 +1,45 @@
+{
+  "description": "Align iam#UserGroupsMembersGet with distilled cloudflare/iam getUserGroupMember",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersGet",
+      "path": "/shapes/com.cloudflare.iam#GetUserGroupMember"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersGetRequest",
+      "path": "/shapes/com.cloudflare.iam#GetUserGroupMemberRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#GetUserGroupMember/input/target",
+      "value": "com.cloudflare.iam#GetUserGroupMemberRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.iam#UserGroupsMembersGetResponse",
+      "path": "/shapes/com.cloudflare.iam#GetUserGroupMemberResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.iam#GetUserGroupMember/output/target",
+      "value": "com.cloudflare.iam#GetUserGroupMemberResponse"
+    },
+    {
+      "op": "add",
+      "path": "/shapes/com.cloudflare.iam#GetUserGroupMember/errors",
+      "value": [
+        {
+          "target": "com.cloudflare.iam#UserGroupMemberNotFound"
+        },
+        {
+          "target": "com.cloudflare.iam#UserGroupNotFound"
+        },
+        {
+          "target": "com.cloudflare.iam#Forbidden"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "description": "Align snippets#RulesGet with distilled cloudflare/snippets getRule",
+  "patches": [
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#RulesGet",
+      "path": "/shapes/com.cloudflare.snippets#GetRule"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#RulesGetRequest",
+      "path": "/shapes/com.cloudflare.snippets#GetRuleRequest"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.snippets#GetRule/input/target",
+      "value": "com.cloudflare.snippets#GetRuleRequest"
+    },
+    {
+      "op": "move",
+      "from": "/shapes/com.cloudflare.snippets#RulesGetResponse",
+      "path": "/shapes/com.cloudflare.snippets#GetRuleResponse"
+    },
+    {
+      "op": "replace",
+      "path": "/shapes/com.cloudflare.snippets#GetRule/output/target",
+      "value": "com.cloudflare.snippets#GetRuleResponse"
+    }
+  ]
+}

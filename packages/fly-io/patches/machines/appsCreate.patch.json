@@ -1,0 +1,19 @@
+{
+  "description": "Type Conflict (409) and UnprocessableEntity (422) on appsCreate so name-taken races are catchable.",
+  "patches": [
+    {
+      "op": "add",
+      "path": "/paths/~1apps/post/responses/409",
+      "value": {
+        "description": "Conflict"
+      }
+    },
+    {
+      "op": "add",
+      "path": "/paths/~1apps/post/responses/422",
+      "value": {
+        "description": "Unprocessable Entity"
+      }
+    }
+  ]
+}
